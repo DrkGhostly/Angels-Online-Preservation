@@ -63,6 +63,9 @@ class Personaje:
     checkpoint_y: int = 0
     tutorial: int = 0        # en que tramo del tutorial va
     oro: int = 0
+    class_id: int = 0
+    banco_habilidades: dict = field(default_factory=dict)   # {skill_id: [nivel, exp]}
+    hechizos_aprendidos: set = field(default_factory=set)   # {magic_id, ...}
     stage: int = 51
     faction: str = "Heaven"
     nivel: int = 1

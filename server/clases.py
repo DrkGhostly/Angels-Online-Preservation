@@ -84,8 +84,10 @@ NOMBRE_RAMA = {
     11: 'Spear', 12: 'Enhance', 13: 'Grapple', 14: 'Shield', 15: 'Reserve',
     16: 'Finesse', 17: 'Longbow', 18: 'Snipe', 19: 'Eagle Eye',
     20: 'Collect', 21: 'Fishing', 22: 'Dig', 23: 'Lumber',
-    30: 'Cooking', 32: 'Mantle', 33: 'Garment', 34: 'Vestment',
-    35: 'Avatar',
+    24: 'Mechanism', 25: 'Drive', 26: 'Weapon', 27: 'Armor',
+    28: 'Sew', 29: 'Technics', 30: 'Alchemy', 31: 'Cooking',
+    32: 'Mantle', 33: 'Garment', 34: 'Vestment',
+    35: 'Avatar', 36: 'Assault',
 }
 
 
@@ -144,26 +146,31 @@ def aviso_doble(msg_id: int, s1: str, s2: str = '', tipo: int = 2) -> bytes:
 
 
 def hechizos_iniciales(skill_ids):
-    """Los tres hechizos de nivel 1 del arma elegida, en el orden de magic.xml.
+    """Devuelve [(numero, nombre)] de todos los hechizos de nivel 1 de las ramas elegidas."""
+    import skills
+    return skills.hechizos_iniciales_de(skill_ids)
 
-    Devuelve [(numero, nombre)] en el orden de magic.xml.
 
-    En la captura llegan como tres 0x000D seguidos, uno por hechizo, justo
-    despues del 0x001C del arbol (logs/proxy/mundo_103243_666191_s2c.bin,
-    offset 36618), y enseguida un 0x001D que es el que los otorga de verdad.
-    Ese log es de un personaje de ESPADA (los ids son 601/602/603) y trae
-    "Slicing Chop I": ese servidor tiene la 601 renombrada, en el cliente se
-    llama "Slicing Hit I".
-    """
-    tabla = _cargar_hechizos()
-    for sid in skill_ids:
-        rama = RAMA_POR_SKILL.get(sid)
-        if rama and tabla.get(rama):
-            return tabla[rama][:3]
-    return []
+def hechizos_de_rama(sid: int):
+    """Devuelve [(numero, nombre)] de los hechizos iniciales de una rama concreta."""
+    import skills
+    return skills.hechizos_de_rama(sid)
+
+
+def info_pergamino(item_id: int):
+    """Consulta si un item es un pergamino de habilidad y que hechizo enseña."""
+    import skills
+    return skills.info_pergamino(item_id)
+
+
+def skill_de_magia(magic_id: int):
+    """Devuelve el skill_id de la rama a la que pertenece este hechizo/habilidad."""
+    import skills
+    return skills.skill_de_magia(magic_id)
 
 
 KIND_HECHIZO = 9
+
 
 
 def otorgar_hechizos(entity_id: int, numeros) -> bytes:
@@ -178,9 +185,15 @@ def otorgar_hechizos(entity_id: int, numeros) -> bytes:
         [LE32 entidad][U8 cantidad] y luego, por hechizo,
         [U8 kind=9][LE32 numero de magic.xml][LE32 nivel]
     """
-    cuerpo = struct.pack('<IB', entity_id, len(numeros))
+    import skills
+    cuerpo = struct.pack('<IB', entity_id, min(255, len(numeros)))
     for n in numeros:
-        cuerpo += struct.pack('<BII', KIND_HECHIZO, n, 1)
+        if isinstance(n, (tuple, list)):
+            mid, mlv = n[0], n[1]
+        else:
+            mid = n
+            mlv = skills.nivel_de_magia(mid)
+        cuerpo += struct.pack('<BII', KIND_HECHIZO, mid, mlv)
     return struct.pack('<H', 0x001D) + cuerpo
 
 
@@ -387,8 +400,11 @@ def regalo(ids):
     return salida
 
 
-def class_id(skill_principal: int):
-    return CLASE_POR_SKILL.get(skill_principal)
+def class_id(skills_input):
+    import skills
+    if isinstance(skills_input, (list, tuple, set)):
+        return skills.calcular_class_id(skills_input)
+    return skills.calcular_class_id([skills_input])
 
 
 # --------------------------------------------------------------- 0x001C
@@ -440,13 +456,16 @@ def _arbol():
 # Antes se le daba experiencia a todas las habilidades en cada golpe, asi que
 # un espadachin subia Cook y Fishing pegandole a un Slarm.
 ACCION_POR_SKILL = {
-    # Ramas de magia: suben lanzando hechizos de su propia rama
-    1: 'magia', 2: 'magia', 3: 'magia', 4: 'magia',
-    # Armas: suben golpeando con ESE tipo de arma
-    9: 'arma', 10: 'arma', 11: 'arma', 17: 'arma', 30: 'arma', 14: 'arma',
-    # Recoleccion y produccion: suben haciendo esa actividad
+    # Magia
+    1: 'magia', 2: 'magia', 3: 'magia', 4: 'magia', 5: 'magia', 6: 'magia', 7: 'magia', 8: 'magia', 34: 'magia', 35: 'magia', 36: 'magia',
+    # Armas melee
+    9: 'melee', 10: 'melee', 11: 'melee', 32: 'melee', 14: 'melee',
+    # Distancia
+    17: 'distancia',
+    # Recoleccion
     20: 'recolectar', 21: 'recolectar', 22: 'recolectar', 23: 'recolectar',
-    26: 'producir', 27: 'producir', 28: 'producir', 29: 'producir', 31: 'producir',
+    # Produccion
+    26: 'producir', 27: 'producir', 28: 'producir', 29: 'producir', 30: 'producir', 31: 'producir',
 }
 
 # Lo que sube SIEMPRE con cada actividad, ademas de la habilidad concreta.
@@ -462,18 +481,20 @@ ACCION_POR_SKILL = {
 # Como despues se filtra por las habilidades que el personaje REALMENTE tiene,
 # poner Garment y Mantle juntos no hace que suban las dos: sube la que lleve.
 PASIVAS_POR_ACCION = {
-    'melee': [12, 13, 15, 16, 33, 32],       # Enhance Grapple Reserve Finesse Garment Mantle
-    'distancia': [12, 13, 15, 16, 33, 32, 18, 19],   # + Snipe y Eagle Eye
-    'magia': [5, 7, 8, 6, 34],               # Curse Hit StaffHit Meditate Vestment
-    'recolectar': [25, 24],                  # Drive y Mechanism
-    'producir': [],
+    'melee': [16, 13, 12, 15, 14, 35, 36, 33, 32],       # Finesse, Grapple, Enhance, Reserve, Shield, Avatar, Assault, Garment, Mantle
+    'distancia': [17, 18, 19, 32],                        # Bow, Snipe, Eagle Eye, Mantle
+    'magia': [1, 2, 3, 4, 5, 6, 7, 8, 34, 35, 36],       # Life, Wraith, Chaos, Earth, Curse, Meditate, Hit, Staff Hit, Vestment, Avatar, Assault
+    'recolectar': [20, 21, 22, 23, 24, 25, 32],           # Collect, Fish, Dig, Lumber, Mechanism, Drive, Mantle
+    'producir': [26, 27, 28, 29, 30, 31, 24, 25, 32],     # Weapon, Armor, Sew, Technics, Alchemy, Cook, Mechanism, Drive, Mantle
 }
 
 # Que armas arrastran ademas otra habilidad al golpear.
 EXTRA_POR_ARMA = {
-    9: [14],    # espada -> Shield
-    10: [14],   # hacha  -> Shield
-    17: [18, 19],   # arco -> Snipe y Eagle Eye
+    9: [14],            # espada -> Shield
+    10: [14],           # hacha  -> Shield
+    11: [14],           # lanza  -> Shield
+    17: [18, 19, 32],   # arco   -> Snipe, Eagle Eye, Mantle
+    8: [6, 34, 35, 36], # baston -> Meditate, Vestment, Avatar, Assault
 }
 
 
@@ -489,7 +510,7 @@ SKILL_POR_CATEGORIA = {
     '斧': 10, '錘': 10,        # hacha (210) y martillo (178) -> Axe
     '槍': 11,                  # lanza (384) -> Spear
     '弓箭': 17, '彈弓': 17,    # arco (363) y tirachinas (21) -> Longbow
-    '影刃': 30,                # hoja de sombra (331) -> ShadowBlade
+    '影刃': 32,                # hoja de sombra (331) -> Mantle / ShadowBlade
     '盾': 14,                  # escudo (267) -> Shield
     '杖': 8,                   # baston (386) -> Staff Hit
     '鐵鍬': 22,                # pala -> Dig
@@ -514,18 +535,22 @@ def skill_de_item(item_id: int):
         if db.exists():
             try:
                 con = sqlite3.connect(db)
-                for iid, cat, lim in con.execute(
-                        'select id, 物品類別, 技能限制1 from item'):
+                for tabla in ('item', 'item2', 'item3', 'item4', 'item5', 'item6', 'item7', 'item8', 'item9'):
                     try:
-                        _CAT_ITEM[int(iid)] = (cat or '', lim or '')
-                    except (TypeError, ValueError):
-                        continue
+                        for iid, cat, lim in con.execute(
+                                f'select id, 物品類別, 技能限制1 from {tabla}'):
+                            try:
+                                _CAT_ITEM[int(iid)] = (cat or '', lim or '')
+                            except (TypeError, ValueError):
+                                continue
+                    except Exception:
+                        pass
                 con.close()
             except Exception:
                 pass
     cat, lim = _CAT_ITEM.get(int(item_id or 0), ('', ''))
     try:
-        if lim and int(float(lim)) in ACCION_POR_SKILL:
+        if lim and 1 <= int(float(lim)) <= 36:
             return int(float(lim))
     except (TypeError, ValueError):
         pass
@@ -563,11 +588,15 @@ def es_dos_manos(item_id) -> bool:
         if db.exists():
             try:
                 con = sqlite3.connect(db)
-                for iid, izq in con.execute('select id, 左手裝備 from item'):
+                for tabla in ('item', 'item2', 'item3', 'item4', 'item5', 'item6', 'item7', 'item8', 'item9'):
                     try:
-                        _MANOS_ITEM[int(iid)] = (izq == '是')
-                    except (TypeError, ValueError):
-                        continue
+                        for iid, izq in con.execute(f'select id, 左手裝備 from {tabla}'):
+                            try:
+                                _MANOS_ITEM[int(iid)] = (izq == '是')
+                            except (TypeError, ValueError):
+                                continue
+                    except Exception:
+                        pass
                 con.close()
             except Exception:
                 pass
@@ -640,17 +669,26 @@ def exp_requerida_skill(nivel: int) -> int:
     return EXP_POR_NIVEL_SKILL[nivel - 1]
 
 
-def arbol(ids) -> bytes:
+def arbol(ids, banco=None) -> bytes:
     """Sub-mensaje 0x001C con las 36 habilidades, su nivel y su experiencia.
 
-    Cada registro son 14 bytes: [skill_id][nivel][0][nivel][0][LE16 exp]
-    [0][0][requerido][0][0][0][puesto]. Antes solo se llenaba el nivel, asi
-    que el panel mostraba siempre 0.00%.
+    Soporta banco de habilidades para recordar niveles entrenados en ramas no equipadas.
     """
     a = _arbol()
     niveles = {}
     lista_ids = []
     exps = {}
+
+    if banco:
+        for k, v in banco.items():
+            sid_b = int(k)
+            if isinstance(v, (tuple, list)):
+                niveles[sid_b] = v[0]
+                exps[sid_b] = v[1] if len(v) > 1 else 0
+            else:
+                niveles[sid_b] = int(v)
+                exps[sid_b] = 0
+
     for item in ids:
         if isinstance(item, (tuple, list)):
             sid = item[0]
@@ -658,16 +696,16 @@ def arbol(ids) -> bytes:
             exps[sid] = item[2] if len(item) > 2 else 0
             lista_ids.append(sid)
         else:
-            niveles[item] = 1
+            niveles.setdefault(item, 1)
             lista_ids.append(item)
     elegidas = [i for i in lista_ids if i in a['regs']]
     resto = [i for i in sorted(a['regs']) if i not in elegidas]
     salida = bytearray(a['cabecera'])
     for puesto, sid in enumerate(elegidas + resto):
         r = bytearray(a['regs'][sid])
-        nv = max(1, min(100, niveles.get(sid, 1)))
-        r[1] = nv
-        r[3] = nv
+        nv = max(1, min(500, niveles.get(sid, 1)))
+        struct.pack_into('<H', r, 1, nv)
+        struct.pack_into('<H', r, 3, nv)
         struct.pack_into('<H', r, 5, max(0, min(65535, exps.get(sid, 0))))
         r[9] = min(255, exp_requerida_skill(nv))
         r[13] = puesto + 1 if puesto < len(elegidas) else 0

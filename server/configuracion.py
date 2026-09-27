@@ -29,7 +29,7 @@ EVENTO_DOBLE_EXP_FORZADO = False
 
 # Multiplicador adicional que se aplica durante el evento
 BONUS_EVENTO_EXP = 2.0
-BONUS_EVENTO_SKILL = 2.0
+BONUS_EVENTO_SKILL = 50000.0
 
 
 def es_fin_de_semana() -> bool:

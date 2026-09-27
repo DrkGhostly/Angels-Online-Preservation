@@ -110,21 +110,43 @@ a guess, it says so.
   attack rhythm
 - Mages can swap a magic branch: the spells of the new branch are granted
   and the old branch's are dropped
+- **Magic and skill system**: implemented combat and magic branches (Life,
+  Wraith, Chaos, Earth, Curse, Meditate, Hit, Staff Hit, etc.) with initial
+  spells, MP costs, and quick-bar assignments
+- **Spell damage formula & scaling**: base damage computed from Spell Attack
+  (SA) and spell multiplier minus target's effective Spell Defense (SD), plus
+  elemental affinity modifiers (Fire, Ice, Thunder, Corrosion) and spell damage %
+- **Cast times and reductions**: dynamic cast times read from `content.db`,
+  supporting flat cast time reductions from active self-buffs (`First Path`,
+  `Third Spirit`, `Limit Breaker`, `Shadow Meld`, `Killer Intent`) and the
+  **50% cast reduction** from passive `Curse Spell` (ID 5)
+- **Distinct casting animations**: magic spells play proper hand-casting
+  animations and ground circle glyphs (`0x0011` byte 20 = 1) without triggering
+  phantom dual-wield melee strikes (`0x000A`)
+- **Level up visual banners (`0x0020`)**: cherub and trumpet animations (red
+  banner for character level up, blue banner for skill level up)
+- **Skill EXP progression**: leveling up skill ranks (up to level 300) through
+  both physical and magical combat, distributing experience to active and class
+  passive skills based on damage dealt
+- **Dynamic Job / Class ID calculation**: automatic character Job ID
+  determination based on currently equipped skill trees
+- **Skill Scrolls & Books**: reading and learning new skills from scrolls
+  found in `content.db`
 
 **Partly**
 
 - NPC dialogue: 17 of the Lyceum's 52 NPCs have their text and options
-- **Skills are only really tested on three branches: Sword, Spear and
-  Axe/Hammer (Warrior)**, and even there only partly -- they cast, hit and
-  buff, but plenty is still missing. The **magic branches (Life, Wraith,
-  Chaos, Earth) are not tested**: a player reported that a mage's spells
-  failed on them, and that is not diagnosed yet. Longbow and Mantle have
-  had no testing either. If you are trying this out, play a melee class
+- **Skills and spells**: melee combat and magic trees are operational (casting,
+  costs, damage, buffs, debuffs, and progression), but certain advanced visual
+  effects (complex aura effects and multi-target AoE impact visuals) remain to be
+  fully matched. Longbow and dagger have received less testing
 - Spells: they show up on F1-F3, cast, buff and deal damage, but some visual
   effects are still missing
-- The damage formula holds up at low level and drifts badly at high level: it
-  turned out to be linear in defence, and the coefficients depend on the
-  levels of both sides
+- Physical and spell damage formulas now scale with linear defense mitigation
+  and elemental stats, though extreme high levels (300+) or monsters with outlier
+  attributes may still need fine calibration against packet captures
+- Pets: can be equipped and show their world sprite, but autonomous pet combat AI
+  and automatic feeding systems are still in development
 - Combos are read from `magic.xml` but never executed
 - The slow effect is registered but doesn't change movement speed
 - The staff and the axe use the sword's attack animation until someone

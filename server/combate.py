@@ -59,6 +59,8 @@ def _datos(npc_type: int):
                     'atk': _n(d.get('atk_avg')),
                     'var': _n(d.get('atk_var')),
                     'def': _n(d.get('def')),
+                    'mdef': _n(d.get('mdef')),
+                    'matk': _n(d.get('matk')),
                     'exp': _n(d.get('exp_value')) or 25,
                     'atk_range': _n(d.get('atk_range')) or 1,
                     'proj_ef': _n(d.get('投射特效')) or 0,
@@ -92,7 +94,9 @@ def _cargar_curva_nivel():
 
 def exp_para_nivel(nv: int) -> int:
     curva = _cargar_curva_nivel()
-    return curva.get(nv, nv * 120)
+    val = curva.get(nv, nv * 120)
+    # Limitar a 0xFFFFFFFF (32-bit max) para asegurar compatibilidad total con empaquetado <BII y <I
+    return min(int(val), 0xFFFFFFFF)
 
 
 def calcular_exp(npc_type: int, buffs: dict = None) -> int:
@@ -198,6 +202,8 @@ class Monstruo:
         self.atk = d['atk']
         self.var = d['var']
         self.defensa = d['def']
+        self.mdef = d.get('mdef', 0)
+        self.matk = d.get('matk', 0)
         self.atk_range = d.get('atk_range', 1)
         self.proj_ef = d.get('proj_ef', 0)
         self.move_speed = d.get('move_speed', 50)
@@ -218,10 +224,18 @@ class Monstruo:
         self.sangra_cada = 0
         self.sangra_hp = 0
         self.sangra_ultimo = 0.0
+        self.panico = False
+        self.panico_hasta = 0.0
+        self.debuffs = {}
 
     @property
     def vivo(self):
         return self.hp > 0
+
+    @vivo.setter
+    def vivo(self, val):
+        if not val:
+            self.hp = 0
 
     @property
     def porcentaje(self):
@@ -232,11 +246,16 @@ class Monstruo:
         return time.time() < self.aturdido_hasta
 
     def aplicar_efecto(self, ef: dict):
-        """Aplica el 轉嫁法術 de un ataque: stun, sangrado o ralentizacion."""
+        """Aplica el 轉嫁法術 de un ataque: stun, sangrado, veneno o ralentizacion."""
         if not ef or not ef.get('dur_ms'):
             return None
         ahora = time.time()
         fin = ahora + ef['dur_ms'] / 1000.0
+        if not hasattr(self, 'efectos_activos') or self.efectos_activos is None:
+            self.efectos_activos = {}
+        mid = ef.get('magia')
+        if mid:
+            self.efectos_activos[mid] = fin
         if ef.get('estado') in ('aturdido', 'congelado', 'inmovilizado',
                                 'paralizado', 'atado'):
             self.aturdido_hasta = max(self.aturdido_hasta, fin)
@@ -246,11 +265,12 @@ class Monstruo:
             self.sangra_cada = max(1, ef.get('intervalo') or 1)
             self.sangra_hp = abs(ef['hp_tick'])
             self.sangra_ultimo = ahora
-            return 'sangrado'
+            nom = ef.get('nombre', '').lower()
+            return 'veneno' if ('poison' in nom or ef.get('estado') == '閃綠色') else 'sangrado'
         if ef.get('vel_mov', 0) < 0:
             self.lento_hasta = max(self.lento_hasta, fin)
             return 'lento'
-        return None
+        return 'efecto'
 
     def tick_sangrado(self):
         """Cuanto dano por sangrado toca ahora, o 0."""
@@ -267,55 +287,97 @@ class Monstruo:
             self.en_combate_con = None
         return d
 
-    def recibir(self, ataque: int) -> int:
-        """Aplica el dano y devuelve cuanto pego de verdad.
 
-        La defensa NO se resta: divide. Medido en Celestia contra un Earth Elf
-        (defensa 59), con el mismo personaje y dos armas distintas:
+    @property
+    def defensa_efectiva(self) -> int:
+        d = self.defensa
+        now = time.time()
+        if hasattr(self, 'debuffs') and self.debuffs:
+            for bid, bdata in list(self.debuffs.items()):
+                if bdata.get('fin', 0) > now:
+                    d += bdata.get('def_mod', 0)
+                else:
+                    self.debuffs.pop(bid, None)
+        return max(0, d)
 
-            R.Atk 212 -> 76 de dano     212 * 33/92 = 76.04
-            R.Atk 165 -> 59 de dano     165 * 33/92 = 59.18
+    @property
+    def mdef_efectiva(self) -> int:
+        d = self.mdef
+        now = time.time()
+        if hasattr(self, 'debuffs') and self.debuffs:
+            for bid, bdata in list(self.debuffs.items()):
+                if bdata.get('fin', 0) > now:
+                    d += bdata.get('mdef_mod', 0)
+                else:
+                    self.debuffs.pop(bid, None)
+        return max(0, d)
 
-        El cociente dano/ataque da 0.358 en los dos casos, o sea que depende
-        solo de la defensa. Con la resta simple que habia antes, un nivel 5
-        con 48 de ataque le hacia 1 de dano a un Earth Elf y era imposible
-        matarlo.
-        """
-        tope = ataque * K_DEFENSA / (K_DEFENSA + self.defensa)
-        d = max(1, int(round(tope * random.uniform(VARIACION_DANO, 1.0))))
+    def recibir(self, ataque: int, es_magico: bool = False, mult: float = 1.0, var_pct: float = 0.05) -> int:
+        """Aplica el dano y devuelve cuanto pego de verdad."""
+        now = time.time()
+        mit_pct = 0
+        if hasattr(self, 'debuffs') and self.debuffs:
+            for bid, bdata in list(self.debuffs.items()):
+                if bdata.get('fin', 0) > now:
+                    mit_pct += (bdata.get('mag_mit_pct', 0) if es_magico else bdata.get('phys_mit_pct', 0))
+                else:
+                    self.debuffs.pop(bid, None)
+        defensa_target = self.mdef_efectiva if es_magico else self.defensa_efectiva
+        if ataque > defensa_target:
+            base_dano = (ataque - defensa_target) * mult
+        else:
+            base_dano = max(1.0, (ataque * 0.027) * mult)
+        spread = 1.0 + random.uniform(-var_pct, var_pct)
+        d = max(1, int(round(base_dano * spread)))
+        if mit_pct != 0:
+            d = max(1, int(round(d * (1.0 - mit_pct / 100.0))))
         self.hp = max(0, self.hp - d)
+        if getattr(self, 'panico', False):
+            self.panico = False
         if not self.hp:
             self.muerto_en = time.time()
             self.en_combate_con = None
+            if hasattr(self, 'debuffs') and self.debuffs:
+                self.debuffs.clear()
         return d
 
     def pegar(self) -> int:
-        return max(1, self.atk + random.randint(-self.var, self.var))
+        base = self.atk + random.randint(-self.var, self.var)
+        now = time.time()
+        atk_mod = 0
+        dmg_pct = 0
+        if hasattr(self, 'debuffs') and self.debuffs:
+            for bid, bdata in list(self.debuffs.items()):
+                if bdata.get('fin', 0) > now:
+                    atk_mod += bdata.get('atk_mod', 0)
+                    dmg_pct += bdata.get('phys_dmg_pct', 0)
+                else:
+                    self.debuffs.pop(bid, None)
+        total = max(1, base + atk_mod)
+        if dmg_pct != 0:
+            total = max(1, int(round(total * (1.0 + dmg_pct / 100.0))))
+        return total
 
     def toca_reaparecer(self) -> bool:
         return (not self.vivo and self.muerto_en
                 and time.time() - self.muerto_en >= SEGUNDOS_REAPARICION)
 
     def revivir(self):
-        """Vuelve a la vida cerca de su sitio, no clavado en el mismo punto.
-
-        Antes reaparecia siempre en la casilla exacta de su spawn, asi que
-        las Lily salian una y otra vez en el mismo lugar. Ahora sale en un
-        punto al azar dentro de su radio de movimiento -- los estaticos
-        incluidos, que no pasean pero si pueden aparecer en otro sitio.
-        """
+        """Vuelve a la vida cerca de su sitio, no clavado en el mismo punto."""
         import random as _r
         self.hp = self.hp_max
         self.muerto_en = None
         radio = max(1, min(getattr(self, 'move_range', 0) or 0,
                            RANGO_PASEO_MIN))
-        # Nunca negativas: un bicho con el punto de origen cerca del borde
-        # reaparecia fuera del mapa y el constructor del movimiento reventaba.
         self.tile_x = max(0, self.spawn_x + _r.randint(-radio, radio))
         self.tile_y = max(0, self.spawn_y + _r.randint(-radio, radio))
         self.tile = [self.tile_x, self.tile_y]
         self.en_combate_con = None
         self.ultimo_ataque = 0.0
+        self.panico = False
+        self.panico_hasta = 0.0
+        if hasattr(self, 'debuffs') and self.debuffs:
+            self.debuffs.clear()
 
 
 
@@ -404,6 +466,10 @@ def datos_magia(magic_id: int) -> dict:
                 res['crit_rate'] = _num(d.get('crit_rate'), 0)
                 res['phys_mit'] = _num(d.get('物理傷害抵銷'), 0)
                 res['mag_mit'] = _num(d.get('魔法傷害抵銷'), 0)
+                res['dano_base'] = _num(d.get('平均傷害'), 0)
+                res['dano_var'] = _num(d.get('傷害變數'), 0)
+                res['dano_coef'] = _num(d.get('傷害係數'), 0)
+                res['formula'] = _num(d.get('公式'), 0)
 
                 target = str(d.get('對象') or '')
                 desc = str(d.get('desc') or '')
@@ -413,33 +479,102 @@ def datos_magia(magic_id: int) -> dict:
                 nom_l = res['nombre'].lower()
                 desc_l = desc.lower()
 
+                # Deteccion de invocaciones (Summon Skeleton, Summon Mummy, Ghostly Swordsman, etc.)
+                res['invoca_npc'] = _num(d.get('動態參數1'), 0)
+                dur_inv = _num(d.get('動態參數2'), 0)
+                res['dur_invoca'] = dur_inv if dur_inv > 0 else 3600
+                res['es_invocacion'] = bool(
+                    res['invoca_npc'] > 0 and (
+                        any(k in nom_l for k in ('summon', 'ghostly swordsman', 'clone', 'mirage', 'phantom', 'avatar', 'titan', 'putridox', 'minotaur')) or
+                        'summon' in desc_l
+                    )
+                )
+
+                # Hechizo de encanto / control de monstruos (Shining Charm I..V, Creature Charm, etc.)
+                res['es_encanto'] = (d.get('魔法狀態') == '媚惑' or 'charm' in nom_l) and not res['es_invocacion']
+
+                # Hechizo de panico / miedo (Soul Entangle I..V, Crazy Roar I..XXVII, etc.)
+                res['es_panico'] = (not res['es_invocacion']) and (
+                    d.get('魔法狀態') in ('恐懼', '恐慌') or
+                    'frighten' in desc_l or
+                    'fear' in desc_l or
+                    'panic' in desc_l
+                )
+
+                # Hechizo de transformacion / shapeshift (Wolf Shift, Bear Shift, Unicorn Shift, etc.)
+                res['es_transformacion'] = (not res['es_invocacion']) and (
+                    d.get('變身型') == '是' or
+                    ('shift' in nom_l and target == '自己')
+                )
+                res['trans_sprite'] = _num(d.get('動態參數1'), 0)
+                res['def_bonus'] = _num(d.get('防禦力') or d.get('def'), 0)
+                res['atk_bonus'] = _num(d.get('攻擊力') or d.get('atk'), 0)
+                res['matk_bonus'] = _num(d.get('matk') or d.get('magic_attack'), 0)
+                res['mdef_bonus'] = _num(d.get('mdef') or d.get('magic_defend'), 0)
+                res['move_speed_bonus'] = _num(d.get('move_speed'), 0)
+                res['atk_speed_bonus'] = _num(d.get('atk_speed'), 0)
+                res['hp_bonus'] = _num(d.get('hp'), 0)
+                res['mp_bonus'] = _num(d.get('mp'), 0)
+                res['cast_redux'] = _num(d.get('動態參數3'), 0)
+                if not res['cast_redux'] and 'limit breaker' in nom_l:
+                    lb_ranks = {'limit breaker i': 500, 'limit breaker ii': 600, 'limit breaker iii': 700, 'limit breaker iv': 800, 'limit breaker v': 1000}
+                    for k, v in lb_ranks.items():
+                        if k in nom_l:
+                            res['cast_redux'] = v
+                            break
+
+                res['atk_mod'] = _num(d.get('atk') or d.get('攻擊力'), 0)
+                res['def_mod'] = _num(d.get('def') or d.get('防禦力'), 0)
+                res['phys_dmg_pct'] = _num(d.get('物理傷害'), 0)
+                res['mag_dmg_pct'] = _num(d.get('魔法傷害'), 0)
+                res['phys_mit_pct'] = _num(d.get('物理傷害抵銷'), 0)
+                res['mag_mit_pct'] = _num(d.get('魔法傷害抵銷'), 0)
+                res['vel_mov_mod'] = _num(d.get('move_speed'), 0)
+
+                # Hechizo de debuff / maldicion a enemigos (Exhaustion Curse, Weak Curse, Blind Curse, Slow Curse, Tough Break, etc.)
+                res['es_debuff'] = (not res['es_invocacion']) and (not res['es_encanto']) and (not res['es_panico']) and (
+                    res['dur_ms'] > 0 and target != '自己' and (
+                        res['atk_mod'] < 0 or
+                        res['def_mod'] < 0 or
+                        res['phys_dmg_pct'] < 0 or
+                        res['mag_dmg_pct'] < 0 or
+                        res['phys_mit_pct'] < 0 or
+                        res['mag_mit_pct'] < 0 or
+                        res['vel_mov_mod'] < 0 or
+                        'curse' in nom_l or
+                        'melody' in nom_l or
+                        d.get('魔法狀態') in ('閃紫色', '閃黃色', '暗灰色')
+                    )
+                )
+
                 # Curacion directa solo si es un hechizo curativo real (ej. Cure Spell, Holy Light, Angel Prayer, Tears of Life)
                 # Las habilidades basicas como Injury Cure son buffs con regeneracion, no curas directas verdes
-                res['es_cura'] = (
+                res['es_cura'] = (not res['es_invocacion']) and (not res['es_encanto']) and (not res['es_panico']) and (not res['es_debuff']) and (
                     any(k in nom_l for k in ('cure spell', 'holy light', 'angel prayer', 'tears of life')) or
                     ('restores hp' in desc_l and 'speed' not in desc_l and 'injury' not in nom_l and 'song' not in nom_l)
                 ) and d.get('攻擊型') != '是'
 
                 # Buff temporal (aumenta defensa, velocidad, critico, % reduccion de dano, etc.)
-                res['es_buff'] = (
+                res['es_buff'] = (not res['es_invocacion']) and (not res['es_encanto']) and (not res['es_panico']) and (not res['es_debuff']) and (
                     res['dur_ms'] > 0 or
                     target == '自己' or
+                    res['es_transformacion'] or
                     res['crit_rate'] > 0 or
                     res['phys_mit'] > 0 or
                     ('within the effective time' in desc_l or 'increase' in desc_l or 'raises' in desc_l or 'enhances' in desc_l)
                 ) and not (d.get('攻擊型') == '是' or 'harm' in desc_l) and not res['es_cura']
 
                 # Habilidad ofensiva de ataque (dano a enemigo, estun, etc.)
-                res['es_ataque'] = (not res['es_cura']) and (not res['es_buff']) and (
+                res['es_ataque'] = (not res['es_invocacion']) and (not res['es_encanto']) and (not res['es_panico']) and (not res['es_debuff']) and (not res['es_cura']) and (not res['es_buff']) and (
                     d.get('攻擊型') == '是' or
                     any(k in desc_l for k in ('attack', 'attacks', 'harm', 'laceration', 'damage', 'shoot', 'strike', 'repulse', 'stun', 'pierce')) or
                     any(k in nom_l for k in ('hit', 'attack', 'chop', 'beating', 'slash', 'wave', 'bomb', 'shot', 'thrust', 'strike', 'killing'))
                 )
 
-                # Se puede usar sobre uno mismo si es curacion o buff
-                res['es_auto'] = res['es_cura'] or res['es_buff']
+                # Se puede usar sobre uno mismo si es curacion, buff o invocacion
+                res['es_auto'] = res['es_cura'] or res['es_buff'] or res['es_invocacion']
 
-                res['es_pasiva'] = (
+                res['es_pasiva'] = (not res['es_invocacion']) and (
                     d.get('被動') == '是' or
                     (act in ('無動作', '', 'None') and not res['es_ataque'] and not res['es_cura'] and not res['es_auto']) or
                     any(k in nom_l for k in ('enhance', 'grapple', 'reserve', 'finesse', 'garment', 'mastery'))
@@ -448,6 +583,39 @@ def datos_magia(magic_id: int) -> dict:
             pass
     _MAGIC_CACHE[magic_id] = res
     return res
+
+
+def datos_invocacion(npc_type: int) -> dict:
+    """Obtiene los datos base del monstruo invocado desde la tabla monster."""
+    db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
+    if not db.exists():
+        return {'nombre': 'Summon', 'sprite': 42142, 'hp': 200, 'atk': 50, 'def': 30, 'move_speed': 70, 'atk_speed': 70, 'atk_range': 1, 'skills': []}
+    try:
+        con = sqlite3.connect(db)
+        r = con.execute('SELECT name, sprite_id, hp, atk_avg, def, move_speed, atk_speed, atk_range, 攻擊法術1, 攻擊法術2 FROM monster WHERE id = ?', (str(npc_type),)).fetchone()
+        con.close()
+        if r:
+            sks = []
+            for sk_idx in (8, 9):
+                val = r[sk_idx]
+                if val is not None and str(val).strip().isdigit() and int(val) > 0:
+                    sks.append(int(val))
+            return {
+                'nombre': str(r[0] or 'Summon'),
+                'sprite': int(r[1] or 42142),
+                'hp': max(50, int(r[2] or 160)),
+                'atk': max(10, int(r[3] or 50)),
+                'def': max(5, int(r[4] or 20)),
+                'move_speed': int(r[5] or 70),
+                'atk_speed': int(r[6] or 70),
+                'atk_range': int(r[7] or 1),
+                'skills': sks,
+            }
+    except Exception:
+        pass
+    return {'nombre': 'Summon', 'sprite': 42142, 'hp': 200, 'atk': 50, 'def': 30, 'move_speed': 70, 'atk_speed': 70, 'atk_range': 1, 'skills': []}
+
+
 
 
 
@@ -877,14 +1045,13 @@ CADENCIA_ATAQUE = 1.15
 
 
 def dano_recibido(ataque: int, defensa: int) -> int:
-    """Dano que recibe el jugador, ya reducido por su defensa.
-
-    Antes el golpe del monstruo se descontaba TAL CUAL de la vida: su ataque
-    entero, sin mirar la defensa del personaje. Por eso los bichos pegaban
-    igual de fuerte con armadura que sin ella y el Dfs no servia de nada.
-    Se usa la misma relacion que cuando pegamos nosotros.
-    """
-    return max(1, int(round(ataque * K_DEFENSA / (K_DEFENSA + max(0, defensa)))))
+    """Dano que recibe el jugador, ya reducido por su defensa."""
+    def_eff = max(0, defensa)
+    if ataque > def_eff:
+        d = ataque - def_eff
+    else:
+        d = max(1, int(round(ataque * 0.05)))
+    return max(1, d)
 
 
 # Cada cuanto pega un monstruo, en segundos. Medido en las capturas:
@@ -1185,14 +1352,29 @@ def anim_de_arma(item_id: int = 0, duales: bool = False,
     return ANIM_POR_DEFECTO
 
 
-def confirmar_cast(target: int, x: int, y: int, tipo: int = 1) -> bytes:
+def confirmar_cast(target: int, x: int, y: int, *args, **kwargs) -> bytes:
     """0x0006 s2c: confirma el cast y dice sobre que casilla ocurre.
 
-    Medido: 01 00 | dd 7c 0f 00 | 75 00 00 00 | cd 00 00 00 | 00 00
-    es decir [u2 tipo][u4 target][u4 x][u4 y][u2 0]. Antes se armaba con un
-    formato inventado de 15 bytes que no correspondia a nada.
+    Medido en Celestia: 01 00 | target [u4] | x [u4] | y [u4] | 00 00 [u2]
+    Status es SIEMPRE 1 (0x0001 = aceptado/exito).
     """
-    return struct.pack('<HHIIIH', 0x0006, tipo & 0xFFFF, target, x, y, 0)
+    return struct.pack('<HHIIIH', 0x0006, 1, target, x, y, 0)
+
+
+def efecto_aura_objetivo(atacante: int, objetivo: int, x: int, y: int, magic_id: int) -> bytes:
+    """0x0011 fase 0x80: activa el aura / efecto visual del debuff sobre el objetivo en sus coordenadas (x, y).
+
+    Medido en Celestia: 00 80 | atacante | objetivo | x (u4) | y (u4) | 00 00 | 00 | magic_id (u2).
+    """
+    b = bytearray(23)
+    b[0] = 0x00
+    b[1] = 0x80
+    struct.pack_into('<IIII', b, 2, atacante, objetivo, x, y)
+    b[18] = 0
+    b[19] = 0
+    b[20] = 0
+    struct.pack_into('<H', b, 21, magic_id & 0xFFFF)
+    return struct.pack('<H', 0x0011) + bytes(b)
 
 
 TIPO_GOLPE = 1
@@ -1228,6 +1410,7 @@ def ataque(source: int, target: int, animacion: int = 0,
 TIPO_DANO = 1
 TIPO_DANO_CRITICO = 2
 TIPO_DANO_ALT = 2      # alias historico
+TIPO_DANO_ESTADO = 4   # DoT (veneno / sangrado) medido en Celestia (tipo 4)
 
 
 def numero_flotante(entity_id: int, cantidad: int, tipo: int = TIPO_DANO) -> bytes:
@@ -1236,37 +1419,79 @@ def numero_flotante(entity_id: int, cantidad: int, tipo: int = TIPO_DANO) -> byt
                        max(0, min(0xFFFFFFFF, int(cantidad))), 0)
 
 
+def calcular_cast_time(base_cast_time: int, buffs: dict = None, habilidades: list = None, es_magia: bool = True) -> int:
+    """Calcula el tiempo de casteo efectivo (en ms) aplicando:
+    1. Reducciones planas de buffs activos (First Path, Third Spirit, Limit Breaker, Shadow Meld, Killer Intent, etc.).
+    2. Reduccion del 50% de la habilidad pasiva Curse Spell (ID 5).
+    Formula oficial:
+      ct = max(100, base - flat_reductions)
+      if tiene_curse and es_magia:
+          ct = max(100, ct * 0.5)
+    """
+    ct = base_cast_time
+    if buffs:
+        now = time.time()
+        max_redux = 0
+        for b_data in buffs.values():
+            if isinstance(b_data, dict) and b_data.get('fin', 0) > now:
+                r = b_data.get('cast_redux', 0)
+                if r > max_redux:
+                    max_redux = r
+        if max_redux > 0:
+            ct = max(100, ct - max_redux)
+
+    if es_magia and habilidades:
+        tiene_curse = False
+        for h in habilidades:
+            sid = h[0] if isinstance(h, (list, tuple)) else h
+            if sid == 5:
+                tiene_curse = True
+                break
+        if tiene_curse:
+            ct = max(100, int(round(ct * 0.5)))
+
+    return max(100, ct)
+
+
+def efecto_level_up(yo: int, es_skill: bool = False) -> bytes:
+    """Opcode 0x0020: reproduce la animacion visual y banner de Level Up sobre el jugador.
+    effect_id = 1 (0x0001) -> Banner ROJO con querubines y trompetas (Subida de nivel de personaje)
+    effect_id = 2 (0x0002) -> Banner AZUL con querubines y trompetas (Subida de nivel de habilidad / skill)
+    """
+    effect_id = 2 if es_skill else 1
+    return struct.pack('<HIHI', 0x0020, yo, effect_id, yo)
+
+
 def numero_de_dano(atacante: int, objetivo: int, dano: int = 0,
                    ataque: int = ATAQUE_NORMAL, efecto: int = EFECTO_GOLPE,
-                   cast_time: int = 100):
+                   cast_time: int = 100, es_magia: bool = False):
     """0x0011 fase 0x00: reproduce el EFECTO del ataque sobre el objetivo.
 
-    El offset 18 es el CAST TIME, no el dano. Aqui se seguia escribiendo el
-    dano, asi que el efecto duraba lo que valiera el golpe -- 47, 80, 2... --
-    y no se llegaba a ver. El numero va aparte, en el 0x000B.
-    Medido en Celestia (mundo_204956_255129): un Slicing Hit sobre un monstruo
-    es 88 00 | yo | monstruo | 0 | 0 | 64 00 | 02 | 59 02, o sea sprite 136,
-    cast time 100, anim 2 y el hechizo 601.
+    El offset 18 es el CAST TIME, no el dano.
+    Medido en Celestia: efecto va en 12 bits (byte 0 es low byte, byte 1 es high nibble).
+    Offset 20: 1 para magias ofensivas a distancia (reproduce cast de manos/circulo), 2 para fisicos.
+    Offset 21-22: magic_id / tipo de ataque.
     """
     b0 = bytearray(23)
     b0[0] = efecto & 0xFF
-    b0[1] = 0x00
+    b0[1] = (efecto >> 8) & 0x0F
     struct.pack_into('<II', b0, 2, atacante, objetivo)
     struct.pack_into('<H', b0, 18, max(0, min(65535, cast_time)))
-    b0[20] = 2
+    b0[20] = 1 if es_magia else 2
     struct.pack_into('<H', b0, 21, ataque & 0xFFFF)
     return struct.pack('<H', 0x0011) + bytes(b0)
 
 
 def cierre_de_dano(atacante: int, objetivo: int,
-                   ataque: int = ATAQUE_NORMAL, efecto: int = EFECTO_GOLPE):
+                   ataque: int = ATAQUE_NORMAL, efecto: int = EFECTO_GOLPE,
+                   es_magia: bool = False):
     """Sub-mensaje 0x0011 fase 0x80 que concluye el impacto tras reproducir el efecto."""
     b1 = bytearray(23)
     b1[0] = efecto & 0xFF
-    b1[1] = 0x80  # Fase 0x80: cierre del impacto con dano 0
+    b1[1] = 0x80 | ((efecto >> 8) & 0x0F)  # Fase 0x80 + high nibble del efecto
     struct.pack_into('<II', b1, 2, atacante, objetivo)
     struct.pack_into('<H', b1, 18, 0)
-    b1[20] = 2
+    b1[20] = 1 if es_magia else 2
     struct.pack_into('<H', b1, 21, ataque & 0xFFFF)
     return struct.pack('<H', 0x0011) + bytes(b1)
 
@@ -1337,7 +1562,7 @@ def efecto_magia_self_inicio(yo: int, ef: int, tipo: int, cast_time: int = 100) 
     """Fase 0x00 del efecto visual 0x0011 de buff sobre si mismo."""
     b0 = bytearray(23)
     b0[0] = ef & 0xFF
-    b0[1] = 0x00
+    b0[1] = (ef >> 8) & 0x0F
     struct.pack_into('<II', b0, 2, yo, yo)
     struct.pack_into('<H', b0, 18, cast_time & 0xFFFF)
     b0[20] = 2
@@ -1356,7 +1581,7 @@ def efecto_magia_self_cierre(yo: int, ef: int, tipo: int,
     """
     b = bytearray(23)
     b[0] = ef & 0xFF
-    b[1] = 0x80
+    b[1] = 0x80 | ((ef >> 8) & 0x0F)
     struct.pack_into('<II', b, 2, yo, yo)
     struct.pack_into('<II', b, 10, tile_x, tile_y)
     struct.pack_into('<H', b, 18, 0)
@@ -1369,7 +1594,7 @@ def efecto_magia_self_fin(yo: int, ef: int, tipo: int) -> bytes:
     """Fase 0x80 del efecto visual 0x0011 de buff sobre si mismo."""
     b1 = bytearray(23)
     b1[0] = ef & 0xFF
-    b1[1] = 0x80
+    b1[1] = 0x80 | ((ef >> 8) & 0x0F)
     struct.pack_into('<II', b1, 2, yo, yo)
     struct.pack_into('<H', b1, 18, 0)
     b1[20] = 2

@@ -114,21 +114,45 @@ una suposición, lo dice.
   del ataque básico
 - Los magos pueden cambiar de rama de magia: se otorgan los hechizos de la
   nueva y se quitan los de la vieja
+- **Sistema de magias y habilidades**: implementadas las ramas de combate y
+  magia (Life, Wraith, Chaos, Earth, Curse, Meditate, Hit, Staff Hit, etc.) con
+  sus hechizos iniciales, consumo de MP y asignación a la barra de acceso rápido
+- **Fórmula de daño mágico y escalado**: daño base calculado según Ataque
+  Mágico (SA) y multiplicador de hechizo menos Defensa Mágica (SD) efectiva,
+  con bonificaciones por afinidad elemental (Fuego, Hielo, Trueno, Corrosión)
+  y porcentaje de daño mágico
+- **Tiempos de casteo (Cast time) y reducciones**: casteo dinámico medido de
+  `content.db`, aplicando reducción de casteo plana por buffs activos (`First
+  Path`, `Third Spirit`, `Limit Breaker`, `Shadow Meld`, `Killer Intent`) y la
+  reducción del **50% de casteo** de la pasiva `Curse Spell` (ID 5)
+- **Animaciones de casteo diferenciadas**: los hechizos mágicos reproducen la
+  animación propia de invocación con manos y glifo en el suelo (`0x0011` byte
+  20 = 1), sin disparar animaciones de ataque físico de arma (`0x000A`)
+- **Banners de subida de nivel (`0x0020`)**: animación visual con querubines y
+  trompetas (banner rojo para nivel de personaje, banner azul para nivel de
+  habilidad)
+- **Progresión de habilidades (Skill EXP)**: subida de rango de habilidades
+  (hasta nivel 300) mediante combate físico y mágico, repartiendo experiencia a
+  las habilidades activas y pasivas de la clase según el daño realizado
+- **Cálculo dinámico de Job / Clase**: asignación y actualización automática del
+  Job ID del personaje según las habilidades equipadas en el árbol
+- **Pergaminos de habilidad**: lectura y aprendizaje de habilidades desde libros
+  y pergaminos en `content.db`
 
 **A medias**
 
 - Diálogos de NPC: 17 de los 52 del Lyceum tienen su texto y sus opciones
-- **Las habilidades solo están probadas de verdad en tres ramas: espada,
-  lanza y hacha/martillo (Warrior)**, y ahí a medias -- se lanzan, pegan y
-  dan buff, pero falta bastante. Las **ramas de magia (Life, Wraith, Chaos,
-  Earth) no están probadas**: un jugador avisó de que a un mago le fallaron
-  los hechizos, y eso todavía no está diagnosticado. Arco y daga tampoco se
-  han probado. Si vas a probar el servidor, juega una clase cuerpo a cuerpo
+- **Habilidades y magias**: las ramas de combate cuerpo a cuerpo y magia están
+  operativas (lanzamiento, costes, daño, buffs, debuffs y progresión), pero faltan
+  algunos efectos visuales complejos (auras avanzadas y animaciones de impacto
+  AoE de múltiples objetivos simultáneos). Arco y daga tienen menos pruebas
 - Hechizos: salen en F1-F3, se lanzan, dan buff y hacen daño, pero faltan
   algunos efectos visuales
-- La fórmula de daño aguanta a nivel bajo y se va mucho a nivel alto: resultó
-  ser lineal en la defensa, y los coeficientes dependen del nivel de los dos
-  bandos
+- La fórmula de daño físico y mágico ahora escala con mitigación lineal de
+  defensa y atributos elementales, pero a niveles extremos (300+) o contra
+  monstruos con estadísticas atípicas puede requerir ajustes finos de calibración
+- Mascotas (Pets): se pueden equipar y muestran su sprite en el mapa, pero el
+  sistema de combate e IA de mascotas y la alimentación automática están en desarrollo
 - Los combos se leen de `magic.xml` pero no se ejecutan
 - El efecto de lentitud se registra pero no cambia la velocidad de movimiento
 - El bastón y el hacha usan la animación de ataque de la espada hasta que

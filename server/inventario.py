@@ -224,12 +224,17 @@ def _bonus(item_id: int) -> dict:
             _filas_b = []
             for _t in TABLAS_ITEM:
                 try:
+                    cols = [r[1] for r in con.execute('pragma table_info(%s)' % _t)]
+                    has_hp = 'hp' in cols
+                    has_mp = 'mp' in cols
+                    hp_col = 'hp' if has_hp else '0'
+                    mp_col = 'mp' if has_mp else '0'
                     _filas_b += list(con.execute(
-                        'select id, def, accuracy, agility, atk_avg from %s '
-                        "where id glob '[0-9]*'" % _t))
+                        f"select id, def, accuracy, agility, atk_avg, matk, mdef, {hp_col}, {mp_col} from {_t} "
+                        "where id glob '[0-9]*'"))
                 except Exception:
                     continue
-            for i, d, ac, ag, av in _filas_b:
+            for i, d, ac, ag, av, ma, md, _hp, _mp in _filas_b:
                 # Algunos valores vienen con decimales en item.xml.
                 def _n(x):
                     try:
@@ -237,8 +242,10 @@ def _bonus(item_id: int) -> dict:
                     except (TypeError, ValueError):
                         return 0
                 _BON[int(i)] = {'def': _n(d), 'accuracy': _n(ac),
-                                'agility': _n(ag), 'atk': _n(av)}
-    return _BON.get(item_id, {'def': 0, 'accuracy': 0, 'agility': 0, 'atk': 0})
+                                'agility': _n(ag), 'atk': _n(av),
+                                'matk': _n(ma), 'mdef': _n(md),
+                                'hp': _n(_hp), 'mp': _n(_mp)}
+    return _BON.get(item_id, {'def': 0, 'accuracy': 0, 'agility': 0, 'atk': 0, 'matk': 0, 'mdef': 0, 'hp': 0, 'mp': 0})
 
 
 def bonos_de_habilidades(habilidades):
@@ -350,14 +357,39 @@ def bonos_de_habilidades(habilidades):
     }
 
 
-def vida_maxima(hp_max, habilidades):
-    """El tope de vida de verdad: el guardado mas lo que dan las pasivas."""
-    return int(hp_max or 0) + bonos_de_habilidades(habilidades)['hp']
+def bonos_de_equipo(bolsa) -> dict:
+    """Calcula la suma de atributos que otorgan los items equipados en la bolsa."""
+    eq = {'def': 0, 'accuracy': 0, 'agility': 0, 'atk_r': 0, 'atk_l': 0, 'matk': 0, 'mdef': 0, 'hp': 0, 'mp': 0}
+    if not bolsa:
+        return eq
+    for ranura, item_id in bolsa.items():
+        if not es_equipo(ranura) or ranura == RANURA_ORO:
+            continue
+        x = _bonus(item_id)
+        eq['def'] += x.get('def', 0)
+        eq['accuracy'] += x.get('accuracy', 0)
+        eq['agility'] += x.get('agility', 0)
+        eq['matk'] += x.get('matk', 0)
+        eq['mdef'] += x.get('mdef', 0)
+        eq['hp'] += x.get('hp', 0)
+        eq['mp'] += x.get('mp', 0)
+        if ranura == RANURA_DERECHA:
+            eq['atk_r'] += x.get('atk', 0) + x.get('accuracy', 0)
+        elif ranura == RANURA_IZQUIERDA:
+            eq['atk_l'] += x.get('atk', 0) + x.get('accuracy', 0)
+    return eq
 
 
-def mana_maximo(mp_max, habilidades):
-    """El tope de mana de verdad."""
-    return int(mp_max or 0) + bonos_de_habilidades(habilidades)['mp']
+def vida_maxima(hp_max, habilidades, bolsa=None):
+    """El tope de vida de verdad: el guardado mas lo que dan las pasivas y el equipo."""
+    eq_hp = bonos_de_equipo(bolsa)['hp'] if bolsa else 0
+    return int(hp_max or 0) + bonos_de_habilidades(habilidades)['hp'] + eq_hp
+
+
+def mana_maximo(mp_max, habilidades, bolsa=None):
+    """El tope de mana de verdad: el guardado mas lo que dan las pasivas y el equipo."""
+    eq_mp = bonos_de_equipo(bolsa)['mp'] if bolsa else 0
+    return int(mp_max or 0) + bonos_de_habilidades(habilidades)['mp'] + eq_mp
 
 
 
@@ -410,42 +442,50 @@ def stats(bolsa=None, habilidades: list = None,
     else:
         sp_bars_current = sp_max_bars
 
-    if buffs:
-        now = time.time()
-        for b_id, b_data in buffs.items():
-            if isinstance(b_data, dict) and b_data.get('fin', 0) > now and 'crit' in b_data:
-                crit_eff += b_data['crit']
-
-    eq_def = 0
-    eq_r_atk = 0
-    eq_l_atk = 0
-    eq_rigor = 0
-    eq_agi = 0
+    eq = bonos_de_equipo(bolsa)
+    eq_def = eq['def']
+    eq_r_atk = eq['atk_r']
+    eq_l_atk = eq['atk_l']
+    eq_rigor = eq['accuracy']
+    eq_agi = eq['agility']
     eq_load = 0
-
-    if bolsa:
-        for ranura, item_id in bolsa.items():
-            if not es_equipo(ranura) or ranura == RANURA_ORO:
-                continue
-            x = _bonus(item_id)
-            eq_def += x.get('def', 0)
-            eq_rigor += x.get('accuracy', 0)
-            eq_agi += x.get('agility', 0)
-            if ranura == RANURA_DERECHA:
-                eq_r_atk += x.get('atk', 0) + x.get('accuracy', 0)
-            elif ranura == RANURA_IZQUIERDA:
-                eq_l_atk += x.get('atk', 0) + x.get('accuracy', 0)
+    eq_matk = eq['matk']
+    eq_mdef = eq['mdef']
+    eq_hp = eq['hp']
+    eq_mp = eq['mp']
 
     r_atk_eff = c_atk_base + eq_r_atk
     l_atk_eff = c_atk_base + eq_l_atk
     dfs_eff = c_def_base + eq_def
+    matk_eff = c_matk_base + eq_matk
+    mdef_eff = c_mdef_base + eq_mdef
     rigor_eff = c_rigor_base + eq_rigor
     agi_eff = c_agi_base + eq_agi
 
     hp_eff = hp if hp is not None else struct.unpack_from('<I', b, 0)[0]
-    hp_max_eff = (hp_max + hp_bonus) if hp_max is not None else (struct.unpack_from('<I', b, 4)[0] + hp_bonus)
+    hp_max_eff = (hp_max + hp_bonus + eq_hp) if hp_max is not None else (struct.unpack_from('<I', b, 4)[0] + hp_bonus + eq_hp)
     mp_eff = mp if mp is not None else struct.unpack_from('<I', b, 8)[0]
-    mp_max_eff = (mp_max + mp_bonus) if mp_max is not None else (struct.unpack_from('<I', b, 12)[0] + mp_bonus)
+    mp_max_eff = (mp_max + mp_bonus + eq_mp) if mp_max is not None else (struct.unpack_from('<I', b, 12)[0] + mp_bonus + eq_mp)
+
+    if buffs:
+        now = time.time()
+        for b_id, b_data in buffs.items():
+            if isinstance(b_data, dict) and b_data.get('fin', 0) > now:
+                if 'crit' in b_data:
+                    crit_eff += b_data['crit']
+                if 'def' in b_data:
+                    dfs_eff += b_data['def']
+                if 'atk' in b_data:
+                    r_atk_eff += b_data['atk']
+                    l_atk_eff += b_data['atk']
+                if 'matk' in b_data:
+                    matk_eff += b_data['matk']
+                if 'mdef' in b_data:
+                    mdef_eff += b_data['mdef']
+                if 'hp' in b_data:
+                    hp_max_eff += b_data['hp']
+                if 'mp' in b_data:
+                    mp_max_eff += b_data['mp']
 
     struct.pack_into('<I', b, 0, hp_eff)
     struct.pack_into('<I', b, 4, hp_max_eff)
@@ -458,9 +498,9 @@ def stats(bolsa=None, habilidades: list = None,
     struct.pack_into('<I', b, 32, c_def_base)
     struct.pack_into('<I', b, 36, dfs_eff)
     struct.pack_into('<I', b, 40, c_matk_base)
-    struct.pack_into('<I', b, 44, c_matk_base)
+    struct.pack_into('<I', b, 44, matk_eff)
     struct.pack_into('<I', b, 48, c_mdef_base)
-    struct.pack_into('<I', b, 52, c_mdef_base)
+    struct.pack_into('<I', b, 52, mdef_eff)
     struct.pack_into('<HH', b, 56, c_rigor_base, rigor_eff)
     struct.pack_into('<HH', b, 60, c_agi_base, agi_eff)
     struct.pack_into('<HH', b, 64, base_crit, crit_eff)
@@ -987,6 +1027,15 @@ def efecto_consumible(item_id: int):
         if not row:
             return None
         d1, mid, cat, name, desc = str(row[0] or ''), str(row[1] or ''), str(row[2] or ''), str(row[3] or ''), str(row[4] or '')
+        # Un pergamino de habilidad, tarjeta, mascota, caja, etc., NUNCA es consumible de HP/MP
+        import skills as _sk_check
+        if _sk_check.info_pergamino(item_id):
+            return None
+        if es_advancement_stone(item_id) or es_skill_leveling_stone(item_id):
+            return None
+        if cat in ('卷軸', '卡片', '寵物', '紅包', '扭蛋', '禮物', '禮盒', '寶箱', '配方', '防禦塔', '訂單', '表情卡', '徽章', '座騎', '強化道具', '紙娃娃'):
+            return None
+
         res = {}
         # 1. Si apunta a un registro en magic.xml via 常駐法術 o 動態資料1
         magic_id = mid if mid and mid.isdigit() else (d1 if d1 and d1.isdigit() else None)
@@ -1005,14 +1054,15 @@ def efecto_consumible(item_id: int):
             m_hp = re.search(r'(?:increase|restore)\s*(\d+)\s*hp', desc, re.I)
             if m_hp:
                 res['hp'] = int(m_hp.group(1))
-        # 3. Heuristica si no habia magic row
-        if not res and d1.isdigit() and int(d1) > 0:
+        # 3. Heuristica SOLO para categoria '一般' (pociones / comida comun)
+        if not res and d1.isdigit() and int(d1) > 0 and cat in ('一般', ''):
             val = int(d1)
             if 'mp' in name.lower() or 'magic' in name.lower() or 'blue' in name.lower():
                 res['mp'] = val
-            else:
+            elif 'hp' in name.lower() or 'red' in name.lower() or 'potion' in name.lower() or 'hierba' in name.lower() or 'biscuit' in name.lower():
                 res['hp'] = val
         return res if res else None
+
     except Exception:
         return None
 
@@ -1031,4 +1081,71 @@ def es_tarjeta_coleccion(item_id: int) -> bool:
         return False
     except Exception:
         return False
+
+
+def es_advancement_stone(item_id: int):
+    """Devuelve el nivel objetivo si el item es una Advancement Stone, o None."""
+    con_nivel = {
+        81997: 300,
+        71989: 290,
+        71987: 280,
+        40931: 220,
+        40930: 210,
+    }
+    if item_id in con_nivel:
+        return con_nivel[item_id]
+    import sqlite3, re
+    db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
+    if db.exists():
+        try:
+            con = sqlite3.connect(db)
+            r = fila_item(con, '"基本名稱"', item_id)
+            con.close()
+            if r and r[0]:
+                m = re.search(r'Lv\s*(\d+)\s+Advancement\s+Stone', str(r[0]), re.I)
+                if m:
+                    return int(m.group(1))
+        except Exception:
+            pass
+    return None
+
+
+def es_skill_leveling_stone(item_id: int):
+    """Devuelve el nivel de habilidad objetivo si es una Skill Leveling Stone, o None."""
+    con_skill = {
+        81998: 300,
+        71990: 290,
+        71988: 280,
+        52204: 270,
+        52203: 260,
+        46571: 250,
+        48600: 250,
+        48453: 240,
+        43265: 240,
+        43264: 230,
+        40933: 220,
+        40932: 210,
+        72057: 200,
+        47204: 180,
+        49526: 180,
+        53482: 180,
+        44042: 170,
+        28583: 100,
+    }
+    if item_id in con_skill:
+        return con_skill[item_id]
+    import sqlite3, re
+    db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
+    if db.exists():
+        try:
+            con = sqlite3.connect(db)
+            r = fila_item(con, '"基本名稱"', item_id)
+            con.close()
+            if r and r[0]:
+                m = re.search(r'Lv\s*(\d+)\s+Skill\s+Leveling\s+Stone', str(r[0]), re.I)
+                if m:
+                    return int(m.group(1))
+        except Exception:
+            pass
+    return None
 

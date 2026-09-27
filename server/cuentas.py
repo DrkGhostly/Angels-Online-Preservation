@@ -151,6 +151,9 @@ def personaje_de(cuenta, indice=0):
         exp=p.get('exp', 0),
         banco={int(k): v for k, v in p.get('banco', {}).items()},
         buffs=p.get('buffs', {}),
+        class_id=p.get('class_id', 0),
+        banco_habilidades={int(k): list(v) for k, v in p.get('banco_habilidades', {}).items()},
+        hechizos_aprendidos=set(p.get('hechizos_aprendidos', [])),
     )
 
 
@@ -221,6 +224,39 @@ def guardar_habilidades(usuario: str, char_id: int, habilidades):
     for p in c.get('personajes', []):
         if p.get('char_id') == char_id:
             p['habilidades'] = [list(h) for h in habilidades]
+            # Sincronizar tambien con el banco de habilidades para no perder los niveles entrenados
+            banco = p.setdefault('banco_habilidades', {})
+            for h in habilidades:
+                if isinstance(h, (list, tuple)) and len(h) >= 2:
+                    banco[str(h[0])] = [int(h[1]), int(h[2]) if len(h) > 2 else 0]
+            ARCHIVO.write_text(json.dumps(d, indent=2, ensure_ascii=False),
+                               encoding='utf-8')
+            return
+
+
+def guardar_hechizos(usuario: str, char_id: int, hechizos):
+    """Guarda la lista de hechizos aprendidos por el personaje."""
+    d = json.loads(ARCHIVO.read_text(encoding='utf-8'))
+    c = d['cuentas'].get(usuario)
+    if not c:
+        return
+    for p in c.get('personajes', []):
+        if p.get('char_id') == char_id:
+            p['hechizos_aprendidos'] = list(hechizos)
+            ARCHIVO.write_text(json.dumps(d, indent=2, ensure_ascii=False),
+                               encoding='utf-8')
+            return
+
+
+def guardar_banco_habilidades(usuario: str, char_id: int, banco: dict):
+    """Guarda el banco de habilidades completo (niveles y exp de todas las ramas)."""
+    d = json.loads(ARCHIVO.read_text(encoding='utf-8'))
+    c = d['cuentas'].get(usuario)
+    if not c:
+        return
+    for p in c.get('personajes', []):
+        if p.get('char_id') == char_id:
+            p['banco_habilidades'] = {str(k): list(v) for k, v in banco.items()}
             ARCHIVO.write_text(json.dumps(d, indent=2, ensure_ascii=False),
                                encoding='utf-8')
             return
@@ -347,6 +383,10 @@ def guardar_progreso(usuario: str, char_id: int, nivel: int, exp: int,
                 p['mp_max'] = int(mp)
             if habilidades is not None:
                 p['habilidades'] = [list(h) for h in habilidades]
+                banco = p.setdefault('banco_habilidades', {})
+                for h in habilidades:
+                    if isinstance(h, (list, tuple)) and len(h) >= 2:
+                        banco[str(h[0])] = [int(h[1]), int(h[2]) if len(h) > 2 else 0]
             ARCHIVO.write_text(json.dumps(d, indent=2, ensure_ascii=False),
                                encoding='utf-8')
             return
