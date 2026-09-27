@@ -51,7 +51,7 @@ a guess, it says so.
   three whole zones -- **Night City Code**, **Sun Sea Maze** and
   **Cybertronica** -- plus two Training Areas. It is the only exception to
   "everything comes from captures of one server", and it is explained below in
-  *The three zones that came from elsewhere*
+  _The three zones that came from elsewhere_
 - **Whole zones are closed**, meaning every tornado in them has been crossed
   and measured: **Heart of Eden**, **Floating** (6 maps), **the desert ring**
   (Crescent Valley, Desert Racetrack, Ghost Village, Troop Outpost, Ancient
@@ -358,13 +358,13 @@ The documentation is in Spanish. The code and the commit history are too.
 
 The sprite walking around the world wears its gear correctly, but the figure
 inside the ID Card panel shows the character in their underwear. The weapon
-and the boots *are* drawn there; it is the body garment that never applies.
+and the boots _are_ drawn there; it is the body garment that never applies.
 
 Three candidates were ruled out by measurement, so nobody needs to repeat
 them: `0x0149` is byte-for-byte identical every single time, `0x0179` comes
 out the same after every equip regardless of what you put on, and the
 character record `0x0002` contains none of the equipped item ids — two logins
-of the *same* character with different gear differ in only 56 bytes, all of
+of the _same_ character with different gear differ in only 56 bytes, all of
 them stats and level.
 
 What would settle it is a capture taken with the ID Card **open** while
@@ -383,12 +383,12 @@ pin it down.
 The `0x000A` carries a type and an animation number, and the pair depends on
 the weapon. Measured by following the equipment changes inside each session:
 
-| weapon | type | animation |
-| ------ | ---- | --------- |
-| sword, dagger | 3 | 1480 |
-| spear | 2 | 827 |
-| staff | 2 | 951 |
-| two one-handed weapons | 2 | 832 |
+| weapon                 | type | animation |
+| ---------------------- | ---- | --------- |
+| sword, dagger          | 3    | 1480      |
+| spear                  | 2    | 827       |
+| staff                  | 2    | 951       |
+| two one-handed weapons | 2    | 832       |
 
 The number is not a duration: the spear swings slower than the sword and yet
 its number is lower. It selects which animation the client plays, so sending

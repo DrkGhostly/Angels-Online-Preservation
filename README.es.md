@@ -1,6 +1,6 @@
 # Servidor local para Angels Online
 
-*[English](README.md) · **Español***
+\*[English](README.md) · **Español\***
 
 Reconstrucción del protocolo de red de **Angels Online** (IGG, cerrado en
 febrero de 2026, cliente 8.5.1.0) y un servidor que lo habla, hecho por ingeniería inversa del
@@ -51,8 +51,8 @@ una suposición, lo dice.
 - **Veinte mapas no salen del servidor principal, sino de un segundo
   servidor**: tres zonas enteras —**Night City Code**, **Sun Sea Maze** y
   **Cybertronica**— más dos Training Area. Es la única excepción a "todo sale
-  de capturas de un servidor", y está explicada más abajo en *Las tres zonas
-  que salieron de otro sitio*
+  de capturas de un servidor", y está explicada más abajo en _Las tres zonas
+  que salieron de otro sitio_
 - **Hay zonas enteras cerradas**, es decir con todos sus tornados cruzados y
   medidos: **Heart of Eden**, **Floating** (6 mapas), **el anillo del
   desierto** (Crescent Valley, Desert Racetrack, Ghost Village, Troop
@@ -123,7 +123,7 @@ una suposición, lo dice.
   y porcentaje de daño mágico
 - **Tiempos de casteo (Cast time) y reducciones**: casteo dinámico medido de
   `content.db`, aplicando reducción de casteo plana por buffs activos (`First
-  Path`, `Third Spirit`, `Limit Breaker`, `Shadow Meld`, `Killer Intent`) y la
+Path`, `Third Spirit`, `Limit Breaker`, `Shadow Meld`, `Killer Intent`) y la
   reducción del **50% de casteo** de la pasiva `Curse Spell` (ID 5)
 - **Animaciones de casteo diferenciadas**: los hechizos mágicos reproducen la
   animación propia de invocación con manos y glifo en el suelo (`0x0011` byte
@@ -332,12 +332,12 @@ para depurar.
 
 ### Variables de entorno
 
-| Variable | Para qué sirve |
-|---|---|
-| `AO_TILE` | Punto de aparición en Guide Palace (por defecto `82,83`) |
-| `AO_TILE_LYCEUM` | Punto de aparición en el Lyceum (`152,74`) |
-| `AO_DURABILIDAD` | Multiplica la durabilidad de lo que entrega el servidor |
-| `AO_SECUENCIA_COMPLETA` | Manda la captura de entrada entera, para comparar |
+| Variable                | Para qué sirve                                           |
+| ----------------------- | -------------------------------------------------------- |
+| `AO_TILE`               | Punto de aparición en Guide Palace (por defecto `82,83`) |
+| `AO_TILE_LYCEUM`        | Punto de aparición en el Lyceum (`152,74`)               |
+| `AO_DURABILIDAD`        | Multiplica la durabilidad de lo que entrega el servidor  |
+| `AO_SECUENCIA_COMPLETA` | Manda la captura de entrada entera, para comparar        |
 
 ---
 
@@ -388,12 +388,12 @@ rangos de nivel para fijarla.
 El `0x000A` lleva un tipo y un número de animación, y el par depende del arma.
 Medido siguiendo los cambios de equipo dentro de cada sesión:
 
-| arma | tipo | animación |
-| ---- | ---- | --------- |
-| espada, daga | 3 | 1480 |
-| lanza | 2 | 827 |
-| bastón | 2 | 951 |
-| dos armas de una mano | 2 | 832 |
+| arma                  | tipo | animación |
+| --------------------- | ---- | --------- |
+| espada, daga          | 3    | 1480      |
+| lanza                 | 2    | 827       |
+| bastón                | 2    | 951       |
+| dos armas de una mano | 2    | 832       |
 
 El número no es una duración: la lanza pega más lento que la espada y sin
 embargo su número es menor. Lo que hace es elegir qué animación reproduce el
