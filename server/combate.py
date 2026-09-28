@@ -161,18 +161,28 @@ def despawn_monstruo(entity_id: int) -> bytes:
     return struct.pack('<HIB', 0x0007, entity_id, 0)
 
 
-def parsear_ataque(cuerpo: bytes):
-    """(tipo_de_ataque, entity del objetivo) del 0x0006 del mundo.
+class AtaqueInfo(tuple):
+    """Tupla de 2 elementos (tipo, objetivo) para compatibilidad total con `tipo, objetivo = d3`,
+    que ademas expone tx, ty y flags como atributos para AOEs."""
+    def __new__(cls, tipo, objetivo, tx=0, ty=0, flags=0):
+        obj = super().__new__(cls, (tipo, objetivo))
+        obj.tipo = tipo
+        obj.objetivo = objetivo
+        obj.tx = tx
+        obj.ty = ty
+        obj.flags = flags
+        return obj
 
-    El objetivo es u4, no u2. Con entidades de id bajo daba igual, pero en
-    Celestia los monstruos son 0x000f7cdd y leerlo como u2 lo truncaba a
-    0x7cdd. Medido: C2S 0x0006 = 59 02 dd 7c 0f 00 + 10 bytes en cero,
-    o sea [u2 effect=601][u4 target=0x000f7cdd].
-    """
+
+def parsear_ataque(cuerpo: bytes) -> AtaqueInfo:
+    """Devuelve AtaqueInfo(tipo, objetivo, tx, ty, flags) desempaquetable como (tipo, objetivo)."""
     if len(cuerpo) < 6:
         return None
+    if len(cuerpo) >= 16:
+        tipo, objetivo, tx, ty, flags = struct.unpack_from('<HIIIH', cuerpo, 0)
+        return AtaqueInfo(tipo, objetivo, tx, ty, flags)
     tipo, objetivo = struct.unpack_from('<HI', cuerpo, 0)
-    return (tipo, objetivo)
+    return AtaqueInfo(tipo, objetivo, 0, 0, 0)
 
 
 class Monstruo:
@@ -475,9 +485,13 @@ def datos_magia(magic_id: int) -> dict:
                 desc = str(d.get('desc') or '')
                 act = str(d.get('施展動作') or '')
                 res['accion'] = act
-
+                res['target'] = target
+                res['area'] = _num(d.get('範圍'), 0)
+                res['es_terreno'] = (target == '地面')
                 nom_l = res['nombre'].lower()
                 desc_l = desc.lower()
+                res['es_self_aoe'] = (target == '自己' and res['area'] > 0 and (d.get('攻擊型') == '是' or 'trap' in nom_l or 'trap' in desc_l))
+                res['es_aoe'] = res['es_terreno'] or res['es_self_aoe']
 
                 # Deteccion de invocaciones (Summon Skeleton, Summon Mummy, Ghostly Swordsman, etc.)
                 res['invoca_npc'] = _num(d.get('動態參數1'), 0)
@@ -485,10 +499,15 @@ def datos_magia(magic_id: int) -> dict:
                 res['dur_invoca'] = dur_inv if dur_inv > 0 else 3600
                 res['es_invocacion'] = bool(
                     res['invoca_npc'] > 0 and (
-                        any(k in nom_l for k in ('summon', 'ghostly swordsman', 'clone', 'mirage', 'phantom', 'avatar', 'titan', 'putridox', 'minotaur')) or
+                        any(k in nom_l for k in ('summon', 'ghostly swordsman', 'clone', 'mirage', 'phantom', 'avatar', 'titan', 'putridox', 'minotaur', 'leech', 'azrael', 'muncher', 'skeleton', 'mummy', 'demon', 'golem')) or
                         'summon' in desc_l
                     )
                 )
+
+                if res['es_invocacion']:
+                    res['es_terreno'] = False
+                    res['es_self_aoe'] = False
+                    res['es_aoe'] = False
 
                 # Hechizo de encanto / control de monstruos (Shining Charm I..V, Creature Charm, etc.)
                 res['es_encanto'] = (d.get('魔法狀態') == '媚惑' or 'charm' in nom_l) and not res['es_invocacion']
@@ -571,8 +590,8 @@ def datos_magia(magic_id: int) -> dict:
                     any(k in nom_l for k in ('hit', 'attack', 'chop', 'beating', 'slash', 'wave', 'bomb', 'shot', 'thrust', 'strike', 'killing'))
                 )
 
-                # Se puede usar sobre uno mismo si es curacion, buff o invocacion
-                res['es_auto'] = res['es_cura'] or res['es_buff'] or res['es_invocacion']
+                # Se puede usar sobre uno mismo si es curacion, buff, invocacion o self-aoe
+                res['es_auto'] = res['es_cura'] or res['es_buff'] or res['es_invocacion'] or res['es_self_aoe']
 
                 res['es_pasiva'] = (not res['es_invocacion']) and (
                     d.get('被動') == '是' or
@@ -600,8 +619,12 @@ def datos_invocacion(npc_type: int) -> dict:
                 val = r[sk_idx]
                 if val is not None and str(val).strip().isdigit() and int(val) > 0:
                     sks.append(int(val))
+            nom_raw = str(r[0] or 'Summon')
+            for k_b5, k_num in (('T', ' 1'), ('U', ' 2'), ('V', ' 3'), ('W', ' 4'), ('X', ' 5'), ('\ufffdT', ' 1'), ('\ufffdU', ' 2'), ('\ufffdV', ' 3'), ('\ufffdW', ' 4'), ('\ufffdX', ' 5')):
+                nom_raw = nom_raw.replace(k_b5, k_num)
+            nom_limpio = nom_raw.encode('ascii', 'ignore').decode('ascii').strip() or 'Summon'
             return {
-                'nombre': str(r[0] or 'Summon'),
+                'nombre': nom_limpio,
                 'sprite': int(r[1] or 42142),
                 'hp': max(50, int(r[2] or 160)),
                 'atk': max(10, int(r[3] or 50)),
@@ -1464,18 +1487,22 @@ def efecto_level_up(yo: int, es_skill: bool = False) -> bytes:
 
 def numero_de_dano(atacante: int, objetivo: int, dano: int = 0,
                    ataque: int = ATAQUE_NORMAL, efecto: int = EFECTO_GOLPE,
-                   cast_time: int = 100, es_magia: bool = False):
+                   cast_time: int = 100, es_magia: bool = False,
+                   tile_x: int = 0, tile_y: int = 0):
     """0x0011 fase 0x00: reproduce el EFECTO del ataque sobre el objetivo.
 
     El offset 18 es el CAST TIME, no el dano.
     Medido en Celestia: efecto va en 12 bits (byte 0 es low byte, byte 1 es high nibble).
     Offset 20: 1 para magias ofensivas a distancia (reproduce cast de manos/circulo), 2 para fisicos.
     Offset 21-22: magic_id / tipo de ataque.
+    Offsets 10-17: tile_x y tile_y cuando es ground AOE o self AOE.
     """
     b0 = bytearray(23)
     b0[0] = efecto & 0xFF
     b0[1] = (efecto >> 8) & 0x0F
     struct.pack_into('<II', b0, 2, atacante, objetivo)
+    if tile_x or tile_y:
+        struct.pack_into('<II', b0, 10, tile_x, tile_y)
     struct.pack_into('<H', b0, 18, max(0, min(65535, cast_time)))
     b0[20] = 1 if es_magia else 2
     struct.pack_into('<H', b0, 21, ataque & 0xFFFF)
@@ -1484,12 +1511,15 @@ def numero_de_dano(atacante: int, objetivo: int, dano: int = 0,
 
 def cierre_de_dano(atacante: int, objetivo: int,
                    ataque: int = ATAQUE_NORMAL, efecto: int = EFECTO_GOLPE,
-                   es_magia: bool = False):
+                   es_magia: bool = False,
+                   tile_x: int = 0, tile_y: int = 0):
     """Sub-mensaje 0x0011 fase 0x80 que concluye el impacto tras reproducir el efecto."""
     b1 = bytearray(23)
     b1[0] = efecto & 0xFF
     b1[1] = 0x80 | ((efecto >> 8) & 0x0F)  # Fase 0x80 + high nibble del efecto
     struct.pack_into('<II', b1, 2, atacante, objetivo)
+    if tile_x or tile_y:
+        struct.pack_into('<II', b1, 10, tile_x, tile_y)
     struct.pack_into('<H', b1, 18, 0)
     b1[20] = 1 if es_magia else 2
     struct.pack_into('<H', b1, 21, ataque & 0xFFFF)

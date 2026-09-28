@@ -131,15 +131,31 @@ a guess, it says so.
 - **Dynamic Job / Class ID calculation**: automatic character Job ID
   determination based on currently equipped skill trees
 - **Skill Scrolls & Books**: reading and learning new skills from scrolls
-  found in `content.db`
+  found in `content.db`, fully persisting learned skills across sessions and
+  map changes without losing them or reverting to `?`
+- **Wraith Summoning System**: full implementation of minion invocations across
+  all 11 families and 55 skills (Death's Head / Skeleton, Death Mummy, Death Leech,
+  Azrael, Soul Eater / Muncher, Demon I-V, Demon Summon I-V, Ghostly Swordsman,
+  Putridox, Minotaur, and Earth Titan / Golem). Features ground portal/coffer
+  summon animations at target tile (`tx, ty`), minion entity spawning (`0x0008`),
+  dedicated minion HP bar (`0x0013`), player-minion bidirectional binding links
+  (`0x3c` and `0x3d`), autonomous combat AI, and cross-map persistence (`0x000D`)
+- **Ground & Self Area of Effect (AoE)**: execution of ground-targeted and
+  self-centered AoE spells (Strong Acid Rain, Hell Flame, Frozen Trap, Fire Trap,
+  Thunder Scope, etc.) on any valid tile without requiring an enemy target,
+  with ground glyph and impact visuals (`0x0011`)
+- **Ring of Angel Wings**: teleportation back to the Cupid revival checkpoint
+- **Expanded NPC Dialogues & Skill Trainers**: dynamic dialogue, quest interactions,
+  and skill book shops across faction and dungeon maps (Cherry Village, Memory Cave,
+  Mysterious Garden, Gebuer Vale, Dragon Graveyard, Mysterious Wetland)
 
 **Partly**
 
-- NPC dialogue: 17 of the Lyceum's 52 NPCs have their text and options
-- **Skills and spells**: melee combat and magic trees are operational (casting,
-  costs, damage, buffs, debuffs, and progression), but certain advanced visual
-  effects (complex aura effects and multi-target AoE impact visuals) remain to be
-  fully matched. Longbow and dagger have received less testing
+- NPC dialogue: 17 of the Lyceum's 52 NPCs have their text and options, plus
+  expansion to regional and dungeon skill vendors
+- **Skills and spells**: melee combat, AoE spells, and magic trees are operational
+  (casting, costs, damage, buffs, debuffs, summons, and progression). Longbow
+  and dagger have received less testing
 - Spells: they show up on F1-F3, cast, buff and deal damage, but some visual
   effects are still missing
 - Physical and spell damage formulas now scale with linear defense mitigation

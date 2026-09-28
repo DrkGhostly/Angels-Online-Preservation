@@ -137,15 +137,30 @@ Path`, `Third Spirit`, `Limit Breaker`, `Shadow Meld`, `Killer Intent`) y la
 - **Cálculo dinámico de Job / Clase**: asignación y actualización automática del
   Job ID del personaje según las habilidades equipadas en el árbol
 - **Pergaminos de habilidad**: lectura y aprendizaje de habilidades desde libros
-  y pergaminos en `content.db`
+  y pergaminos en `content.db`, con persistencia completa de habilidades aprendidas
+  entre sesiones y cambios de mapa (sin que se borren ni queden como `?`)
+- **Sistema de Invocaciones de Wraith**: implementación completa de invocaciones de esbirros
+  en las 11 familias y 55 habilidades (Death's Head / Esqueleto, Death Mummy / Momia,
+  Death Leech, Azrael, Soul Eater / Devorador de Almas, Demonio I-V, Demon Summon I-V,
+  Ghostly Swordsman, Putridox, Minotauro y Titán de Tierra / Golem). Incluye animación
+  de cofre/portal en el suelo en la casilla objetivo (`tx, ty`), spawn de la criatura (`0x0008`),
+  barra de vida dedicada (`0x0013`), vínculos bidireccionales amo-criatura (`0x3c` y `0x3d`),
+  IA de combate autónoma (asiste al amo y cambia de blanco) y persistencia entre mapas (`0x000D`)
+- **Habilidades de Área de Efecto (AoE) en suelo y sobre sí mismo**: ejecución de hechizos
+  AoE de terreno (Strong Acid Rain, Hell Flame, Frozen Trap, Fire Trap, Thunder Scope, etc.)
+  en cualquier casilla del mapa sin requerir objetivo enemigo marcado, con glifos de suelo
+  e impacto en (`tx, ty`) (`0x0011`)
+- **Ring of Angel Wings**: teletransporte directo al checkpoint de Cupido
+- **Diálogos de NPCs y Vendedores de Skills ampliados**: diálogos dinámicos, misiones y tiendas
+  de libros de habilidades en mapas de facción y mazmorras (Cherry Village, Memory Cave,
+  Mysterious Garden, Gebuer Vale, Dragon Graveyard, Mysterious Wetland)
 
 **A medias**
 
-- Diálogos de NPC: 17 de los 52 del Lyceum tienen su texto y sus opciones
-- **Habilidades y magias**: las ramas de combate cuerpo a cuerpo y magia están
-  operativas (lanzamiento, costes, daño, buffs, debuffs y progresión), pero faltan
-  algunos efectos visuales complejos (auras avanzadas y animaciones de impacto
-  AoE de múltiples objetivos simultáneos). Arco y daga tienen menos pruebas
+- Diálogos de NPC: 17 de los 52 del Lyceum tienen su texto y sus opciones, más expansión
+  a vendedores regionales de habilidades
+- **Habilidades y magias**: las ramas de combate cuerpo a cuerpo, AoEs, invocaciones y magia están
+  operativas (lanzamiento, costes, daño, buffs, debuffs, invocaciones y progresión). Arco y daga tienen menos pruebas
 - Hechizos: salen en F1-F3, se lanzan, dan buff y hacen daño, pero faltan
   algunos efectos visuales
 - La fórmula de daño físico y mágico ahora escala con mitigación lineal de

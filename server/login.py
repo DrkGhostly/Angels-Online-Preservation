@@ -980,11 +980,11 @@ def _ficha(p, base):
     # la ID Card enseñaba un tope distinto del que enseña la barra de arriba:
     # 529/529 en la card contra 529/1009 en el HUD.
     import inventario as _inv
-    hp_tope = _inv.vida_maxima(p.hp_max, p.habilidades)
-    mp_tope = _inv.mana_maximo(p.mp_max, p.habilidades)
-    hp_val = 280 if (not p.habilidades and p.nivel == 1 and p.hp <= 205) else p.hp
+    hp_tope = _inv.vida_maxima(p.hp_max, p.habilidades, bolsa=p.inventario)
+    mp_tope = _inv.mana_maximo(p.mp_max, p.habilidades, bolsa=p.inventario)
+    hp_val = 280 if (not p.habilidades and p.nivel == 1 and p.hp <= 205) else min(p.hp, hp_tope)
     hp_max_val = 280 if (not p.habilidades and p.nivel == 1 and p.hp_max <= 205) else hp_tope
-    struct.pack_into('<IIII', st, 0, hp_val, hp_max_val, p.mp, mp_tope)
+    struct.pack_into('<IIII', st, 0, hp_val, hp_max_val, min(p.mp, mp_tope), mp_tope)
     d['stats'] = bytes(st)
     if p.habilidades:
         sk = list(d['skills'])

@@ -159,9 +159,23 @@ def ranura_de_instancia(instancias, instancia: bytes, bolsa=None,
     return None
 
 
-def es_equipo(ranura: int) -> bool:
-    """Si esa ranura es del personaje (equipo) y no de la mochila."""
-    return ranura < PRIMERA_RANURA_BOLSA
+def es_equipo(ranura) -> bool:
+    """Si esa ranura es del personaje (equipo regular 1..19 o Fashion 167..174) y no de la mochila."""
+    try:
+        r = int(ranura)
+    except (ValueError, TypeError):
+        return False
+    return (r < PRIMERA_RANURA_BOLSA) or (167 <= r <= 174)
+
+
+def es_fashion(ranura) -> bool:
+    """Si esa ranura corresponde a la pestaña de Fashion (167..174)."""
+    try:
+        r = int(ranura)
+    except (ValueError, TypeError):
+        return False
+    return 167 <= r <= 174
+
 
 
 def _plantillas():
@@ -358,14 +372,24 @@ def bonos_de_habilidades(habilidades):
 
 
 def bonos_de_equipo(bolsa) -> dict:
-    """Calcula la suma de atributos que otorgan los items equipados en la bolsa."""
+    """Calcula la suma de atributos que otorgan los items equipados en la bolsa (Gear 1..10 y Fashion 167..174)."""
     eq = {'def': 0, 'accuracy': 0, 'agility': 0, 'atk_r': 0, 'atk_l': 0, 'matk': 0, 'mdef': 0, 'hp': 0, 'mp': 0}
     if not bolsa:
         return eq
+
+    r_weap_atk = 0
+    l_weap_atk = 0
+    gen_atk = 0
+
     for ranura, item_id in bolsa.items():
-        if not es_equipo(ranura) or ranura == RANURA_ORO:
+        try:
+            r = int(ranura)
+            iid = int(item_id)
+        except (ValueError, TypeError):
             continue
-        x = _bonus(item_id)
+        if not es_equipo(r) or r == RANURA_ORO:
+            continue
+        x = _bonus(iid)
         eq['def'] += x.get('def', 0)
         eq['accuracy'] += x.get('accuracy', 0)
         eq['agility'] += x.get('agility', 0)
@@ -373,10 +397,26 @@ def bonos_de_equipo(bolsa) -> dict:
         eq['mdef'] += x.get('mdef', 0)
         eq['hp'] += x.get('hp', 0)
         eq['mp'] += x.get('mp', 0)
-        if ranura == RANURA_DERECHA:
-            eq['atk_r'] += x.get('atk', 0) + x.get('accuracy', 0)
-        elif ranura == RANURA_IZQUIERDA:
-            eq['atk_l'] += x.get('atk', 0) + x.get('accuracy', 0)
+
+        item_atk = x.get('atk', 0)
+
+        if r == RANURA_DERECHA: # 3 (Arma Gear mano derecha)
+            r_weap_atk += item_atk + x.get('accuracy', 0)
+        elif r == RANURA_IZQUIERDA: # 4 (Escudo / Arma Gear mano izquierda)
+            l_weap_atk += item_atk + x.get('accuracy', 0)
+        elif r == 169: # Arma Fashion (derecha / principal)
+            r_weap_atk += item_atk
+            if es_arma_dual(iid):
+                l_weap_atk += item_atk
+        elif r == 170: # Arma/Escudo Fashion (izquierda)
+            l_weap_atk += item_atk
+        else:
+            # Armaduras Gear (1, 2, 5, 6, 7, 8) y Prendas Fashion (167, 168, 171, 172, 173)
+            # Si dan ataque, se suma a AMBOS (R.Atk y L.Atk)
+            gen_atk += item_atk
+
+    eq['atk_r'] = r_weap_atk + gen_atk
+    eq['atk_l'] = l_weap_atk + gen_atk
     return eq
 
 
@@ -390,6 +430,165 @@ def mana_maximo(mp_max, habilidades, bolsa=None):
     """El tope de mana de verdad: el guardado mas lo que dan las pasivas y el equipo."""
     eq_mp = bonos_de_equipo(bolsa)['mp'] if bolsa else 0
     return int(mp_max or 0) + bonos_de_habilidades(habilidades)['mp'] + eq_mp
+
+
+_RESIDENT_MAGIC_CACHE = {}
+_MAGIC_DATA_CACHE = {}
+
+
+def resident_magic_de(item_id: int):
+    """Devuelve el magic_id de la magia residente (常駐法術) de un item, o None."""
+    global _RESIDENT_MAGIC_CACHE
+    if not item_id:
+        return None
+    try:
+        iid = int(item_id)
+    except (ValueError, TypeError):
+        return None
+    if iid in _RESIDENT_MAGIC_CACHE:
+        return _RESIDENT_MAGIC_CACHE[iid]
+    import sqlite3
+    db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
+    if not db.exists():
+        return None
+    mid = None
+    try:
+        con = sqlite3.connect(db)
+        cur = con.cursor()
+        for t in ['item', 'item2', 'item3', 'item4', 'item5', 'item6', 'item7', 'item8', 'item9']:
+            cur.execute(f'PRAGMA table_info({t})')
+            cols = [c[1] for c in cur.fetchall()]
+            col_res = next((c for c in cols if '常駐' in c), None)
+            if col_res:
+                row = cur.execute(f'SELECT "{col_res}" FROM {t} WHERE id=?', (str(iid),)).fetchone()
+                if row and row[0]:
+                    try:
+                        mid = int(row[0])
+                        break
+                    except ValueError:
+                        pass
+    except Exception:
+        pass
+    _RESIDENT_MAGIC_CACHE[iid] = mid
+    return mid
+
+
+def datos_magia_residente(magic_id: int) -> dict:
+    """Devuelve los atributos numericos (% dano, % mitigacion, prioridades) de un magic_id."""
+    global _MAGIC_DATA_CACHE
+    if not magic_id:
+        return {}
+    try:
+        mid = int(magic_id)
+    except (ValueError, TypeError):
+        return {}
+    if mid in _MAGIC_DATA_CACHE:
+        return _MAGIC_DATA_CACHE[mid]
+    import sqlite3
+    db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
+    res = {}
+    if db.exists():
+        try:
+            con = sqlite3.connect(db)
+            cur = con.cursor()
+            cur.execute('PRAGMA table_info(magic)')
+            cols = [c[1] for c in cur.fetchall()]
+            row = cur.execute('SELECT * FROM magic WHERE id=?', (str(mid),)).fetchone()
+            if row:
+                d = dict(zip(cols, row))
+                def _to_int(k):
+                    val = d.get(k)
+                    if val is not None and str(val).isdigit():
+                        return int(val)
+                    return 0
+                res = {
+                    'id': mid,
+                    'name': d.get('name', ''),
+                    'high_pri': _to_int('高權位'),
+                    'low_pri': _to_int('低權位'),
+                    'mag_dmg': _to_int('魔法傷害'),
+                    'phys_dmg': _to_int('物理傷害'),
+                    'phys_mit': _to_int('物理傷害抵銷'),
+                    'mag_mit': _to_int('魔法傷害抵銷'),
+                    'res_ice': _to_int('res_ice'),
+                    'res_fire': _to_int('res_fire'),
+                    'res_elec': _to_int('res_elec'),
+                    'res_poison': _to_int('res_poison'),
+                }
+        except Exception:
+            pass
+    _MAGIC_DATA_CACHE[mid] = res
+    return res
+
+
+def modificadores_porcentuales_equipo(bolsa) -> dict:
+    """Calcula los modificadores porcentuales activos segun los items equipados en la bolsa.
+    Aplica la regla de no acumulacion ('Cannot be stacked with similar effects'):
+    - Si dos o mas items tienen el mismo grupo de prioridad (high_pri / 高權位),
+      prevalece el mayor.
+    - Entre fuentes distintas, las mitigaciones se calculan de manera compuesta multiplicativa.
+    """
+    res = {
+        'mag_dmg_pct': 0,     # % extra a daño magico (+30% etc)
+        'phys_dmg_pct': 0,    # % extra a daño fisico (+14% etc)
+        'phys_mit_pct': 0,    # % total de mitigacion de daño fisico
+        'mag_mit_pct': 0,     # % total de mitigacion de daño magico
+        'phys_mit_mult': 1.0, # Multiplicador de dano fisico recibido (ej 0.7695)
+        'mag_mit_mult': 1.0,  # Multiplicador de dano magico recibido (ej 0.81)
+        'res_ice': 0,
+        'res_fire': 0,
+        'res_elec': 0,
+        'res_poison': 0,
+    }
+    if not bolsa:
+        return res
+
+    grupos = {}
+    for ranura, item_id in bolsa.items():
+        if not es_equipo(ranura) or ranura == RANURA_ORO:
+            continue
+        try:
+            iid = int(item_id)
+        except (ValueError, TypeError):
+            continue
+        mid = resident_magic_de(iid)
+        if not mid:
+            continue
+        md = datos_magia_residente(mid)
+        if not md:
+            continue
+
+        hpri = md.get('high_pri') or mid
+        if hpri not in grupos:
+            grupos[hpri] = {
+                'mag_dmg': 0, 'phys_dmg': 0,
+                'phys_mit': 0, 'mag_mit': 0,
+                'res_ice': 0, 'res_fire': 0, 'res_elec': 0, 'res_poison': 0
+            }
+        for k in ['mag_dmg', 'phys_dmg', 'phys_mit', 'mag_mit', 'res_ice', 'res_fire', 'res_elec', 'res_poison']:
+            grupos[hpri][k] = max(grupos[hpri][k], md.get(k, 0))
+
+    mult_phys = 1.0
+    mult_mag = 1.0
+
+    for g in grupos.values():
+        res['mag_dmg_pct'] += g['mag_dmg']
+        res['phys_dmg_pct'] += g['phys_dmg']
+        res['res_ice'] += g['res_ice']
+        res['res_fire'] += g['res_fire']
+        res['res_elec'] += g['res_elec']
+        res['res_poison'] += g['res_poison']
+
+        if g['phys_mit'] > 0:
+            mult_phys *= (1.0 - min(0.95, g['phys_mit'] / 100.0))
+        if g['mag_mit'] > 0:
+            mult_mag *= (1.0 - min(0.95, g['mag_mit'] / 100.0))
+
+    res['phys_mit_mult'] = max(0.05, mult_phys)
+    res['mag_mit_mult'] = max(0.05, mult_mag)
+    res['phys_mit_pct'] = int(round((1.0 - res['phys_mit_mult']) * 100.0))
+    res['mag_mit_pct'] = int(round((1.0 - res['mag_mit_mult']) * 100.0))
+    return res
 
 
 
@@ -598,14 +797,16 @@ def _tabla():
                     d = int(fila[1]) if fila[1] else 0
                 except ValueError:
                     d = 0
-                es_eq = any(v == '是' for v in fila[3:]) or (fila[2] == '寵物')
+                es_eq = any(v == '是' for v in fila[3:]) or (fila[2] in ('寵物', '座騎', '紙娃娃'))
                 _CAT[int(fila[0])] = (es_eq, d)
     return _CAT
 
 
 def es_equipable(item_id: int) -> bool:
-    """Si el item va en alguna de las casillas de equipo (0..9). Las mascotas van en ranura 9."""
+    """Si el item va en alguna de las casillas de equipo (0..10 o 167..174)."""
     if es_mascota(item_id):
+        return True
+    if ranura_equipo_de(item_id) is not None:
         return True
     return _tabla().get(item_id, (False, 0))[0]
 
@@ -662,7 +863,7 @@ def velocidad_de_montura(item_id: int) -> int:
     if item_id in _VEL_MONTURA:
         return _VEL_MONTURA[item_id]
     v = 0
-    if ranura_equipo_de(item_id) == 10:
+    if ranura_equipo_de(item_id) in (10, 174):
         import sqlite3
         db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
         if db.exists():
@@ -677,13 +878,54 @@ def velocidad_de_montura(item_id: int) -> int:
     return v
 
 
+_DUAL_CACHE = {}
+_FASHION_CACHE = {}
+
+
+def es_item_fashion(item_id: int) -> bool:
+    """Si el item pertenece a la categoria Fashion / Paper Doll (167..174)."""
+    ranura_equipo_de(item_id)
+    return _FASHION_CACHE.get(item_id, False)
+
+
+def es_arma_dual(item_id: int) -> bool:
+    """Si el arma se puede equipar en ambas manos (derecha e izquierda)."""
+    ranura_equipo_de(item_id)
+    return _DUAL_CACHE.get(item_id, False)
+
+
+def es_ranura_valida(item_id: int, ranura: int) -> bool:
+    """Verifica si un item puede colocarse en esa ranura especifica para evitar pisar armadura real con fashion."""
+    if ranura >= PRIMERA_RANURA_BOLSA: # >= 20 (mochila siempre valida)
+        return True
+    target = ranura_equipo_de(item_id)
+    if target is None:
+        return False
+    # Pestaña Fashion (167..174):
+    if es_fashion(ranura):
+        if not es_item_fashion(item_id):
+            return False
+        if target == 169 and ranura in (169, 170) and es_arma_dual(item_id):
+            return True
+        return ranura == target
+    # Pestaña Gear regular (1..10):
+    else:
+        if es_item_fashion(item_id):
+            return False # Un item de Fashion NUNCA va en la pestaña de Gear!
+        if target == 3 and ranura in (3, 4) and not es_arma_dos_manos(item_id):
+            return True
+        return ranura == target
+
+
 def ranura_equipo_de(item_id: int):
     """Devuelve la ranura de equipamiento donde se coloca el item, o None si no es equipable."""
-    global _SLOT_CACHE
+    global _SLOT_CACHE, _DUAL_CACHE, _FASHION_CACHE
     if _SLOT_CACHE is None:
         import sqlite3
         db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
         _SLOT_CACHE = {}
+        _DUAL_CACHE = {}
+        _FASHION_CACHE = {}
         if db.exists():
             con = sqlite3.connect(db)
             campos = ','.join(f'"{c}"' for c in COLUMNAS_EQUIPO)
@@ -704,14 +946,30 @@ def ranura_equipo_de(item_id: int):
                 iid = int(fila[0])
                 cat = fila[1]
                 rhand, lhand, head, acc, body, hands, feet, back, pet = [v == '是' for v in fila[2:]]
-                # Las MONTURAS van a la ranura 10, no a la 9. Medido: el
-                # cliente manda 0x0012 con origen 41 y destino 10 al subirse
-                # a una, y el servidor contesta con el acuse de la 10.
-                # Mandandolas a la 9, que es la de mascota, en vez de montar
-                # se invocaba un bicho al lado.
-                if cat == '座騎':
+                if rhand and lhand:
+                    _DUAL_CACHE[iid] = True
+                if cat == '紙娃娃':
+                    _FASHION_CACHE[iid] = True
+                    # Items de Fashion (Paper Doll) se equipan en las ranuras de la pestaña Fashion (167..174)
+                    if head:
+                        _SLOT_CACHE[iid] = 167
+                    elif body:
+                        _SLOT_CACHE[iid] = 168
+                    elif rhand:
+                        _SLOT_CACHE[iid] = 169
+                    elif lhand:
+                        _SLOT_CACHE[iid] = 170
+                    elif hands:
+                        _SLOT_CACHE[iid] = 171
+                    elif feet:
+                        _SLOT_CACHE[iid] = 172
+                    elif back:
+                        _SLOT_CACHE[iid] = 173
+                    elif pet or cat == '座騎':
+                        _SLOT_CACHE[iid] = 174
+                elif cat == '座騎':
                     _SLOT_CACHE[iid] = 10
-                elif cat == '寵物' or pet:
+                elif cat == '寵物' or (pet and not (body or head or hands or feet or back or rhand or lhand)):
                     _SLOT_CACHE[iid] = 9
                 elif rhand:
                     _SLOT_CACHE[iid] = 3

@@ -146,10 +146,18 @@ def skill_de_magia(magic_id: int):
         return None
     try:
         con = sqlite3.connect(DB_PATH)
-        row = con.execute('SELECT "技能限制1" FROM magic WHERE id = ?', (str(mid),)).fetchone()
+        row = con.execute('SELECT "技能限制1", "群組編號" FROM magic WHERE id = ?', (str(mid),)).fetchone()
+        if row:
+            if row[0]:
+                con.close()
+                return CHINO_A_RAMA.get(str(row[0]).strip())
+            # Si un rango superior no tiene 技能限制1 explicito, heredar del grupo (ej. Frozen Trap II)
+            if row[1]:
+                row_grp = con.execute('SELECT "技能限制1" FROM magic WHERE "群組編號" = ? AND "技能限制1" IS NOT NULL LIMIT 1', (row[1],)).fetchone()
+                if row_grp and row_grp[0]:
+                    con.close()
+                    return CHINO_A_RAMA.get(str(row_grp[0]).strip())
         con.close()
-        if row and row[0]:
-            return CHINO_A_RAMA.get(str(row[0]).strip())
     except Exception:
         pass
     return None
@@ -245,5 +253,3 @@ def nivel_de_magia(magic_id: int) -> int:
         return lv
     except Exception:
         return 1
-
-

@@ -55,7 +55,21 @@ OFF_HP_MAX = 455       # dword_958E0C: HP maximo por ranura
 OFF_MP_MAX = 467       # dword_958E10: MP maximo por ranura
 OFF_SKILLS = 479       # seis habilidades por ranura, no equipo (ver abajo)
 PRIMERA_BOLSA = 20     # de la 20 en adelante es la mochila
-RANURAS_VISIBLES = (2, 3, 4, 5, 6)   # cuerpo, mano derecha, izquierda, guantes, pies
+# 8 ranuras visibles en el muñeco de la ID Card (selector de personajes):
+# offsets +77 a +108 dentro de la ficha de 147 bytes (medido en Celestia y verificado en sub_4C5A70 de Angel.exe).
+# Prioridad: si lleva Fashion puesto (167..174), se manda el item de Fashion;
+# si no, el equipo regular (1..7, 10).
+RANURAS_CARD = (
+    (167, 1),   # Head (Headgear)
+    (168, 2),   # Body (Armor / Robe)
+    (169, 3),   # Weapon (Right hand)
+    (170, 4),   # Shield / Offhand (Left hand)
+    (171, 5),   # Gloves (Hands)
+    (172, 6),   # Shoes (Feet)
+    (173, 7),   # Back (Cloak / Wings)
+    (174, 10),  # Mount (Montura)
+)
+RANURAS_VISIBLES = (1, 2, 3, 4, 5, 6, 7, 10)
 OFF_MAX_RANURAS = 587
 OFF_NOMBRES2 = 595
 OFF_SERVIDOR = 591     # indice de sub-canal; el cliente lo compara con el
@@ -97,21 +111,30 @@ def _ficha(buf, base, idx, p):
     # +113 es hp_max y +121 mp_max. Se escriben los cuatro.
     # Solo el VALOR ACTUAL vive en la ficha. El MAXIMO va en arreglos
     # aparte (ver OFF_HP_MAX / OFF_MP_MAX en bloque_cuenta).
-    struct.pack_into('<I', buf, base + 109, p.get('hp', 0) & 0xFFFFFFFF)
-    struct.pack_into('<I', buf, base + 113, p.get('hp_max', p.get('hp', 0)) & 0xFFFFFFFF)
-    struct.pack_into('<I', buf, base + 117, p.get('mp', 0) & 0xFFFFFFFF)
-    struct.pack_into('<I', buf, base + 121, p.get('mp_max', p.get('mp', 0)) & 0xFFFFFFFF)
-    # Equipo que se ve en el muneco del selector: cinco LE32 desde +81.
-    # Medido en el bloque que mando el servidor privado para un personaje
-    # equipado: +84..+100 del cuerpo, o sea +81..+97 dentro del slot, con
-    # 26 (prenda), 10 y 10 (las dos armas), 28 (guantes) y 30 (zapatos),
-    # en ese orden. Antes iba todo en cero y por eso el personaje aparecia
-    # desnudo en la pantalla de seleccion.
+    # HP y MP: el cliente muestra "actual / maximo".
+    import inventario as _inv
     inv = p.get('inventario') or {}
-    puesto = {int(r): it for r, it in inv.items() if int(r) < PRIMERA_BOLSA}
-    for k, ranura in enumerate(RANURAS_VISIBLES):
-        struct.pack_into('<I', buf, base + 81 + 4 * k,
-                         puesto.get(ranura, 0) & 0xFFFFFFFF)
+    habs = p.get('habilidades', [])
+    eff_hp = _inv.vida_maxima(p.get('hp_max', p.get('hp', 0)), habs, bolsa=inv)
+    eff_mp = _inv.mana_maximo(p.get('mp_max', p.get('mp', 0)), habs, bolsa=inv)
+    hp_act = p.get('hp', eff_hp)
+    if hp_act >= p.get('hp_max', 0):
+        hp_act = eff_hp
+    mp_act = p.get('mp', eff_mp)
+    if mp_act >= p.get('mp_max', 0):
+        mp_act = eff_mp
+    struct.pack_into('<I', buf, base + 109, hp_act & 0xFFFFFFFF)
+    struct.pack_into('<I', buf, base + 113, eff_hp & 0xFFFFFFFF)
+    struct.pack_into('<I', buf, base + 117, mp_act & 0xFFFFFFFF)
+    struct.pack_into('<I', buf, base + 121, eff_mp & 0xFFFFFFFF)
+    # 8 slots de apariencia para el muneco de la ID Card (desde +77 hasta +108):
+    # Headgear, Body, Weapon, Shield, Gloves, Shoes, Back, Mount.
+    # Si tiene Fashion equipado en 167..174, se prioriza el Fashion; si no, el equipo regular.
+    puesto = {int(r): int(it) for r, it in inv.items() if (int(r) < PRIMERA_BOLSA or 167 <= int(r) <= 174)}
+    for k, (f_slot, reg_slot) in enumerate(RANURAS_CARD):
+        item_id = puesto.get(f_slot) or puesto.get(reg_slot, 0)
+        struct.pack_into('<I', buf, base + 77 + 4 * k,
+                         int(item_id) & 0xFFFFFFFF)
 
 
 def bloque_cuenta(personajes, ranuras=MAX_RANURAS, subcanal=2,
@@ -138,10 +161,7 @@ def bloque_cuenta(personajes, ranuras=MAX_RANURAS, subcanal=2,
             continue                      # ranura vacia: se puede crear
         base_f = BASE_FICHAS + i * TAM_FICHA
         _ficha(a, base_f, i, personajes[i])
-        # Dos valores mas que la captura real trae y yo mandaba en cero.
-        # No se sabe que son; se replican por estar medidos.
-        struct.pack_into('<I', a, base_f + 52, personajes[i].get('unk_52', 5481))
-        a[base_f + 81] = personajes[i].get('unk_81', 26) & 0xFF
+        struct.pack_into('<I', a, base_f + 52, personajes[i].get('unk_52', 250))
         # (el bloque de nombres secundarios de 595+ figura en CERO en la
         #  captura real; escribir ahi era invento mio)
         # HP/MP MAXIMOS: NO van en la ficha. El cliente los lee de arreglos
@@ -151,10 +171,13 @@ def bloque_cuenta(personajes, ranuras=MAX_RANURAS, subcanal=2,
         # El actual sale de la ficha (+109 y +117); el maximo, de estos
         # arreglos, que se llenan desde los offsets 455 y 467 del bloque.
         # Escribirlos dentro de la ficha dejaba la tarjeta en "205 / 0".
-        struct.pack_into('<I', a, OFF_HP_MAX + 4 * i,
-                         personajes[i].get('hp_max', personajes[i].get('hp', 0)) & 0xFFFFFFFF)
-        struct.pack_into('<I', a, OFF_MP_MAX + 4 * i,
-                         personajes[i].get('mp_max', personajes[i].get('mp', 0)) & 0xFFFFFFFF)
+        import inventario as _inv
+        inv_pj = personajes[i].get('inventario') or {}
+        habs_pj = personajes[i].get('habilidades', [])
+        eff_hp_max = _inv.vida_maxima(personajes[i].get('hp_max', personajes[i].get('hp', 0)), habs_pj, bolsa=inv_pj)
+        eff_mp_max = _inv.mana_maximo(personajes[i].get('mp_max', personajes[i].get('mp', 0)), habs_pj, bolsa=inv_pj)
+        struct.pack_into('<I', a, OFF_HP_MAX + 4 * i, eff_hp_max & 0xFFFFFFFF)
+        struct.pack_into('<I', a, OFF_MP_MAX + 4 * i, eff_mp_max & 0xFFFFFFFF)
     # [479] son las HABILIDADES evaluadas para la clase (sub_71C380).
     # Cada ranura ocupa 36 bytes (9 DWORDs = 36 B, desde 479 + 36 * i):
     # seis habilidades iniciales y tres ceros. Con salto de 24 se solapaban.

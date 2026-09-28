@@ -246,31 +246,16 @@ def _nombre_entidad(ses, entity_id: int) -> str:
     import login as _lg
     if entity_id in _lg.TOTEMS_PUESTOS:
         return _lg.TOTEMS_PUESTOS[entity_id]
-    import json
-    # Se busca en la plantilla del mapa en el que esta el jugador, no solo en
-    # la del Lyceum. Mirando una sola, los NPC del Graduation Palace y de los
-    # dos playgrounds no se resolvian por nombre y se quedaban mudos: el
-    # dialogo se busca POR NOMBRE.
-    import login as _lgm
-    _plant = pathlib.Path(__file__).parent / 'plantillas'
-    _st = getattr(getattr(ses, 'personaje', None), 'stage', None)
-    _archivos = []
-    # La tabla comun mas los dos que se tratan aparte.
-    _por_stage = mapas_poblados()
-    if _st in _por_stage:
-        _archivos.append(_por_stage[_st])
-    if 'lyceum.json' not in _archivos:
-        _archivos.append('lyceum.json')
-    for _nom_arch in _archivos:
-        f = _plant / _nom_arch
-        if not f.exists():
-            continue
-        for e in json.loads(f.read_text(encoding='utf-8')).get('spawns', []):
-            if e.get('entity_id') == entity_id:
-                return e.get('nombre', '')
+
+    import dialogos as _dlg
+    info = _dlg.info_npc(entity_id)
+    if info and info.get('nombre'):
+        return info['nombre']
+
     # Si es un NPC de quest de los xmls (entity_id >= 900)
     f_mapas = pathlib.Path(__file__).parent / 'plantillas' / 'npc_por_mapa.json'
     if f_mapas.exists() and entity_id >= 900 and getattr(ses, 'personaje', None):
+        import json
         d_mapas = json.loads(f_mapas.read_text(encoding='utf-8')).get('mapas', {})
         st_npcs = d_mapas.get(str(ses.personaje.stage), [])
         idx = entity_id - 900
@@ -807,7 +792,7 @@ def _velocidad_de(ses) -> int:
     try:
         import inventario as _inv
         bolsa = getattr(ses, 'inventario', None) or {}
-        item = bolsa.get(RANURA_MONTURA)
+        item = bolsa.get(174) or bolsa.get(RANURA_MONTURA)
         if not item:
             return base
         ms = _inv.velocidad_de_montura(item)
@@ -909,11 +894,8 @@ RANURAS_VISIBLES = (1, 2, 3, 4, 5, 6, 7, 10)
 
 
 def _apariencia(ses):
-    """Los 0x001D code 1 que le dicen al cliente que lleva puesto.
-
-    Sin esto el personaje se dibuja con la apariencia por defecto -- en ropa
-    interior -- por mucho que el inventario diga otra cosa: el panel de
-    equipo y la figura de la ID Card se alimentan de mensajes distintos.
+    """Los 0x001D code 1 que le dicen al cliente que lleva puesto en cada ranura.
+    No cruza las ranuras de Gear con las de Fashion para evitar glitches visuales en la UI.
     """
     import combate as _cb
     p = getattr(ses, 'personaje', None)
@@ -921,8 +903,15 @@ def _apariencia(ses):
         return []
     bolsa = getattr(ses, 'inventario', None) or {}
     ent = p.entity_id
-    return [_cb.equipar_visual(ent, r, int(bolsa.get(r, 0) or 0))
-            for r in RANURAS_VISIBLES]
+    out = []
+    # 1. Ranuras de equipo regular (1..7, 10)
+    for r in RANURAS_VISIBLES:
+        out.append(_cb.equipar_visual(ent, r, int(bolsa.get(r, 0) or 0)))
+    # 2. Ranuras de Fashion (167..174) si estan equipadas
+    for r in range(167, 175):
+        if r in bolsa:
+            out.append(_cb.equipar_visual(ent, r, int(bolsa.get(r, 0) or 0)))
+    return out
 
 
 def _viajar_dentro_del_mapa(ses, addr, por, motivo=''):
@@ -1022,8 +1011,8 @@ def _sincronizar_cambio_mapa(ses, stage_id: int, x: int = None, y: int = None):
         struct.pack('<BII', 31, exp_sig, 0) +
         struct.pack('<BII', 32, min(0xFFFFFFFF, p.exp), 0),
         inv.stats(b, p.habilidades,
-                  hp=p.hp, hp_max=eff_hp_max,
-                  mp=p.mp, mp_max=eff_mp_max,
+                  hp=p.hp, hp_max=p.hp_max,
+                  mp=p.mp, mp_max=p.mp_max,
                   oro=getattr(ses, 'oro', p.oro), sp=ses.sp, sp_max=bars),
         *_apariencia(ses)
     ]
@@ -1149,15 +1138,25 @@ def _cerrar_viaje(ses, addr, stage, tile, nombre_dest):
 
 def _vida_max(p, bolsa=None) -> int:
     """El tope de vida que el cliente enseña: el guardado mas lo que dan las
-    pasivas y el equipo."""
+    pasivas y el equipo (gear y fashion)."""
     import inventario as inv
-    b = bolsa if bolsa is not None else getattr(p, 'inventario', None)
+    b = bolsa
+    if b is None:
+        b = getattr(p, 'inventario', None)
+    if b is None and hasattr(p, 'ses'):
+        b = getattr(p.ses, 'inventario', None)
     return inv.vida_maxima(getattr(p, 'hp_max', 0), getattr(p, 'habilidades', None), bolsa=b)
 
 
 def _mana_max(p, bolsa=None) -> int:
+    """El tope de mana que el cliente enseña: el guardado mas lo que dan las
+    pasivas y el equipo (gear y fashion)."""
     import inventario as inv
-    b = bolsa if bolsa is not None else getattr(p, 'inventario', None)
+    b = bolsa
+    if b is None:
+        b = getattr(p, 'inventario', None)
+    if b is None and hasattr(p, 'ses'):
+        b = getattr(p.ses, 'inventario', None)
     return inv.mana_maximo(getattr(p, 'mp_max', 0), getattr(p, 'habilidades', None), bolsa=b)
 
 
@@ -1172,6 +1171,7 @@ def _stats_ses(ses):
     """Genera el paquete 0x0042 con stats completos del personaje."""
     import inventario as inv
     p = getattr(ses, 'personaje', None)
+    bolsa = getattr(ses, 'inventario', None)
     habs = p.habilidades if p else None
     hp = p.hp if p else None
     hp_max = p.hp_max if p else None
@@ -1181,7 +1181,6 @@ def _stats_ses(ses):
     buffs = getattr(p, 'buffs', None)
     bars, max_pts = _max_sp_info(p)
     sp = getattr(ses, 'sp', None)
-    bolsa = getattr(ses, 'inventario', None)
     return inv.stats(bolsa, habs, hp=hp, hp_max=hp_max, mp=mp, mp_max=mp_max, oro=oro, buffs=buffs, sp=sp, sp_max=bars)
 
 
@@ -1396,11 +1395,14 @@ class Servidor:
 
                 if toca_regen:
                     pkgs = []
-                    if p.mp < p.mp_max:
-                        p.mp = min(_mana_max(p), p.mp + rec_mp)
+                    bolsa_pj = getattr(ses, 'inventario', None)
+                    eff_hp_max = _vida_max(p, bolsa=bolsa_pj)
+                    eff_mp_max = _mana_max(p, bolsa=bolsa_pj)
+                    if p.mp < eff_mp_max:
+                        p.mp = min(eff_mp_max, p.mp + rec_mp)
                         pkgs.append(_cb.atributo(yo, p.mp, _cb.KIND_MP))
-                    if p.hp < p.hp_max:
-                        p.hp = min(_vida_max(p), p.hp + rec_hp)
+                    if p.hp < eff_hp_max:
+                        p.hp = min(eff_hp_max, p.hp + rec_hp)
                         pkgs.append(_cb.atributo(yo, p.hp, _cb.KIND_HP))
 
                     if pkgs:
@@ -1977,6 +1979,17 @@ class Servidor:
                                                 f"{_cb.cadencia_monstruo(m):.3f}s)")
                                         suyo = _cb.dano_recibido(m.pegar(),
                                                                  defensa_jugador(ses))
+                                        import inventario as _iv
+                                        bolsa_yo = getattr(ses, 'inventario', None)
+                                        if bolsa_yo:
+                                            mods_eq = _iv.modificadores_porcentuales_equipo(bolsa_yo)
+                                            mult_mit = mods_eq.get('phys_mit_mult', 1.0)
+                                            if mult_mit < 1.0:
+                                                suyo = max(1, int(round(suyo * mult_mit)))
+                                        if ses.personaje and getattr(ses.personaje, 'buffs', None):
+                                            for b_data in ses.personaje.buffs.values():
+                                                if isinstance(b_data, dict) and b_data.get('fin', 0) > ahora and 'mit' in b_data:
+                                                    suyo = max(1, int(round(suyo * (1.0 - b_data['mit'] / 100.0))))
                                         ef_atk = m.proj_ef if m.proj_ef > 0 else 148
 
                                         # El golpe sale ya y el dano espera a
@@ -2191,8 +2204,8 @@ class Servidor:
                     struct.pack('<BII', 31, exp_sig, 0) +
                     struct.pack('<BII', 32, min(0xFFFFFFFF, p.exp), 0),
                     inv.stats(b, p.habilidades,
-                              hp=p.hp, hp_max=eff_hp_max,
-                              mp=p.mp, mp_max=eff_mp_max,
+                              hp=p.hp, hp_max=p.hp_max,
+                              mp=p.mp, mp_max=p.mp_max,
                               oro=getattr(ses, 'oro', p.oro), sp=ses.sp, sp_max=bars),
                     *_apariencia(ses)
                 ]
@@ -2213,18 +2226,29 @@ class Servidor:
             if not d3:
                 return
             tipo, objetivo = d3
+            tx = getattr(d3, 'tx', 0)
+            ty = getattr(d3, 'ty', 0)
             yo = ses.entity_id or 1001
 
             bichos = getattr(ses, 'monstruos', None) or {}
             m = bichos.get(objetivo)
             arma_puesta = ses.inventario.get(3, 0) if ses.inventario else 0
 
-            # PRIMERO el alcance, DESPUES la cadencia. Si se comprueba al
-            # reves, cada intento de pegar mientras uno camina hacia el bicho
-            # consume el cooldown aunque el golpe se descarte: al llegar al
-            # lado hay que esperar el ciclo entero y parece que el personaje
-            # "lo piensa" antes de empezar.
-            if m is not None and ses.personaje:
+            mag = _cb.datos_magia(tipo) if tipo != _cb.ATAQUE_NORMAL else {}
+            es_invocacion = bool(mag.get('es_invocacion'))
+            es_terreno = (bool(mag.get('es_terreno')) or (objetivo == 0 and tipo != _cb.ATAQUE_NORMAL)) and not es_invocacion
+            es_self_aoe = bool(mag.get('es_self_aoe')) and not es_invocacion
+            es_aoe = (es_terreno or es_self_aoe or bool(mag.get('es_aoe'))) and not es_invocacion
+
+            # Comprobacion de alcance
+            if es_terreno and ses.personaje:
+                _rango_aoe = max(1, mag.get('rango', 12))
+                _d = max(abs(tx - ses.personaje.tile_x), abs(ty - ses.personaje.tile_y))
+                if _d > _rango_aoe + 2:
+                    log.info(f"[{addr}] AOE TERRENO RECHAZADO por alcance: {_d} casillas y el hechizo llega a {_rango_aoe}. "
+                             f"jugador ({ses.personaje.tile_x},{ses.personaje.tile_y}) target ({tx},{ty})")
+                    return
+            elif not es_self_aoe and m is not None and ses.personaje:
                 # La invocacion y el aliado encantado fijan el objetivo de inmediato si no es un aliado
                 if not getattr(m, 'encantado', False):
                     if getattr(ses, 'invocacion', None):
@@ -2235,7 +2259,7 @@ class Servidor:
                 # El alcance sale del arma o de la habilidad, no es 1 fijo:
                 # con sable es 1 casilla, con lanza 2 y con arco 12.
                 if tipo != _cb.ATAQUE_NORMAL:
-                    _rango_arma = max(1, _cb.datos_magia(tipo).get('rango', 1))
+                    _rango_arma = max(1, mag.get('rango', 1))
                 else:
                     _rango_arma = _cb.alcance_arma(arma_puesta)
                 _d = max(abs(m.tile_x - ses.personaje.tile_x),
@@ -2248,40 +2272,20 @@ class Servidor:
                              f"({m.tile_x},{m.tile_y})")
                     return
 
-            # Ya en rango: ahora si, la cadencia.
-            #
-            # Objetivo nuevo: el primer golpe sale enseguida. El cooldown se
-            # limpiaba solo al clicar (0x0005), pero si uno camina hasta el
-            # bicho y ataca sin volver a clicar, el primer 0x0016 caia dentro
-            # de la cadencia del objetivo anterior y el personaje se quedaba
-            # quieto un rato antes de empezar a pegar.
-            if m is not None:
+            # Ya en rango: cadencia y cooldown
+            if m is not None and not es_aoe:
                 _obj_act = getattr(ses, 'objetivo_actual', None)
-                # Solo el ataque BASICO necesita objetivo fijado. Una
-                # habilidad es una accion que el jugador pide a proposito y
-                # sale siempre: al aplicarle esta regla dejaron de ejecutarse
-                # los golpes de las skills.
                 if _obj_act is None and tipo == _cb.ATAQUE_NORMAL:
                     log.info(f"[{addr}] GOLPE RECHAZADO: no hay objetivo "
                              f"fijado (te alejaste del {m.nombre})")
                     return
                 if _obj_act != objetivo:
-                    # Objetivo nuevo: el primer golpe sale enseguida, sin
-                    # arrastrar la cadencia del anterior.
                     ses.objetivo_actual = objetivo
                     ses.ultimo_golpe = 0
 
             _ahora_atk = time.time()
             if tipo != _cb.ATAQUE_NORMAL:
-                # Una habilidad tiene SU PROPIO cooldown, el que el cliente
-                # dibuja en el icono y que sale del 後置時間 de magic.xml
-                # (Slicing Hit I: 1000 ms). Antes se le exigia la cadencia
-                # del ataque basico, 1370 ms: el jugador apretaba en cuanto
-                # el icono se liberaba, a los 1000 ms, el servidor lo
-                # rechazaba, y como el cliente manda UNA sola peticion por
-                # ciclo se rechazaban todas. La habilidad salia una vez y no
-                # volvia a salir nunca.
-                _cd = max(0.0, _cb.datos_magia(tipo).get('cd_ms', 0) / 1000.0)
+                _cd = max(0.0, mag.get('cd_ms', 0) / 1000.0)
                 _usos = getattr(ses, 'ultimo_uso', None)
                 if _usos is None:
                     _usos = {}
@@ -2292,10 +2296,6 @@ class Servidor:
                              f"los {_espera:.3f}s y su cooldown es {_cd:.3f}s")
                     return
                 _usos[tipo] = _ahora_atk
-                # Y NO se toca ses.ultimo_golpe: la habilidad tiene su propio
-                # cooldown y el ataque basico el suyo. Al compartirlos, usar
-                # una habilidad dejaba al personaje quieto un ciclo entero
-                # antes de volver a pegar.
             else:
                 _cad = _cb.cadencia_ataque(
                     getattr(ses.personaje, 'buffs', None) if ses.personaje else None,
@@ -2309,8 +2309,298 @@ class Servidor:
                     return
                 ses.ultimo_golpe = _ahora_atk
 
-            # Si se uso una habilidad de ataque sin objetivo fijado, auto-fijar el monstruo mas cercano
-            if m is None and tipo != _cb.ATAQUE_NORMAL and ses.personaje:
+            # Si es Invocacion (Summon Skeleton, Mummy, Leech, Azrael, Demon, etc.)
+            if es_invocacion:
+                if getattr(ses, 'sentado', False):
+                    ses.sentado = False
+                    ses.enviar(struct.pack('<HIII', 0x000A, yo, 0, 0))
+
+                mp_coste = mag.get('mp', 0)
+                if ses.personaje and mp_coste > 0:
+                    if ses.personaje.mp < mp_coste:
+                        log.info(f"[{addr}] MP insuficiente ({ses.personaje.mp}/{mp_coste}) para invocacion {tipo}")
+                        return
+                    ses.personaje.mp = max(0, ses.personaje.mp - mp_coste)
+                    ses.enviar(_cb.atributo(yo, ses.personaje.mp, _cb.KIND_MP))
+
+                cost_sp = mag.get('cost_sp', 0)
+                if cost_sp > 0:
+                    if getattr(ses, 'sp', 0) < cost_sp:
+                        log.info(f"[{addr}] SP insuficiente ({getattr(ses, 'sp', 0)}/{cost_sp}) para invocacion {tipo}")
+                        return
+                    ses.sp -= cost_sp
+                    ses.enviar(_cb.atributo(yo, ses.sp, _cb.KIND_SP))
+
+                cd_ms = mag.get('cd_ms', 2000)
+                cast_time = _cb.calcular_cast_time(
+                    mag.get('cast_time', 2000),
+                    buffs=getattr(ses.personaje, 'buffs', {}),
+                    habilidades=getattr(ses.personaje, 'habilidades', None),
+                    es_magia=True
+                )
+                ef = _cb.efecto_de_ataque(tipo) or mag.get('efecto', 9)
+
+                # Despawnear invocacion anterior si ya tenia una
+                if getattr(ses, 'invocacion', None):
+                    old_eid = ses.invocacion['entity_id']
+                    ses.enviar(_cb.atributo(old_eid, 0, _cb.KIND_HP),
+                               _cb.despawn_monstruo(old_eid),
+                               struct.pack('<HIBBI', 0x0013, yo, 1, 0x3d, 0))
+                    ses.invocacion = None
+
+                npc_t = mag.get('invoca_npc')
+                info_inv = _cb.datos_invocacion(npc_t)
+                summon_eid = yo + 8000
+
+                # Coordenadas donde se invoca: si el cliente mando tx, ty validas cerca, usarlas; sino al lado del personaje
+                if tx > 0 and ty > 0 and ses.personaje and max(abs(tx - ses.personaje.tile_x), abs(ty - ses.personaje.tile_y)) <= 14:
+                    stx, sty = tx, ty
+                else:
+                    stx = (ses.personaje.tile_x + 1) if ses.personaje else tx
+                    sty = ses.personaje.tile_y if ses.personaje else ty
+
+                dur_s = mag.get('dur_invoca', 3600)
+                ses.invocacion = {
+                    'entity_id': summon_eid,
+                    'npc_type': npc_t,
+                    'nombre': info_inv['nombre'],
+                    'sprite': info_inv['sprite'],
+                    'hp': info_inv['hp'],
+                    'hp_max': info_inv['hp'],
+                    'atk': info_inv['atk'],
+                    'defensa': info_inv['def'],
+                    'atk_range': info_inv.get('atk_range', 1),
+                    'move_speed': info_inv.get('move_speed', 70),
+                    'atk_speed': info_inv.get('atk_speed', 70),
+                    'skills': info_inv.get('skills', []),
+                    'tile_x': stx,
+                    'tile_y': sty,
+                    'expira': time.time() + dur_s,
+                    'objetivo': None,
+                    'ultimo_ataque': 0.0,
+                    'proximo_paso': 0.0,
+                }
+
+                import login as _lg
+                spawn_pkg = _lg._monster_spawn(summon_eid, npc_t, info_inv['nombre'], (stx, sty), sprite=info_inv['sprite'])
+                hp_pkg = _cb.atributo(summon_eid, info_inv['hp'], _cb.KIND_HP)
+                atk_confirm = _cb.confirmar_cast(yo, stx, sty)
+
+                # Paquetes iniciales: confirm, efecto suelo con numero_de_dano (portal/cofre), efecto self, GCD
+                ses.enviar(
+                    atk_confirm,
+                    _cb.numero_de_dano(yo, 0, 0, ataque=tipo, efecto=ef, cast_time=cast_time, es_magia=True, tile_x=stx, tile_y=sty),
+                    _cb.efecto_magia_self_inicio(yo, ef, tipo, cast_time=cast_time),
+                    _cb.gcd_paquete()
+                )
+
+                def _fin_invoca():
+                    if not ses.personaje or getattr(ses, 'muerto', False):
+                        return
+                    pkgs_inv = [
+                        _cb.cierre_de_dano(yo, 0, ataque=tipo, efecto=ef, es_magia=True, tile_x=stx, tile_y=sty),
+                        _cb.efecto_magia_self_fin(yo, ef, tipo),
+                        spawn_pkg,
+                        hp_pkg,
+                        struct.pack('<HIBBI', 0x0013, summon_eid, 1, 0x3c, yo),
+                        struct.pack('<HIBBI', 0x0013, yo, 1, 0x3d, summon_eid),
+                    ]
+                    if cd_ms > 0:
+                        _sk_ids_copia = _cb.grupo_de(tipo)
+                        for sk_id in _sk_ids_copia:
+                            pkgs_inv.append(struct.pack('<HIBBII', 0x001D, yo, 1, 3, sk_id, cd_ms))
+                        asyncio.get_event_loop().call_later(cd_ms / 1000.0, lambda: ses.enviar_inmediato(*[
+                            struct.pack('<HIBBII', 0x001D, yo, 1, 3, sk_id, 0) for sk_id in _sk_ids_copia
+                        ]))
+
+                    pkgs_inv.extend(_otorgar_skill_exp(ses, ses.personaje, yo, magic_id=tipo))
+                    ses.enviar_inmediato(*pkgs_inv)
+
+                _ret_inv = max(0.14, min(2.5, cast_time / 1000.0))
+                asyncio.get_event_loop().call_later(_ret_inv, _fin_invoca)
+
+                if getattr(ses, 'usuario', None):
+                    cuentas.guardar_progreso(ses.usuario, ses.personaje.char_id,
+                                             ses.personaje.nivel, ses.personaje.exp,
+                                             ses.personaje.hp, ses.personaje.mp,
+                                             ses.personaje.habilidades,
+                                             hp_max=ses.personaje.hp_max, mp_max=ses.personaje.mp_max)
+                log.info(f"[{addr}] invocacion {info_inv['nombre']} (npc_type {npc_t}, sprite {info_inv['sprite']}) invocada para jugador {yo} en ({stx},{sty})")
+                return
+
+            # Si es AOE (Ground AOE o Self AOE), ejecutarlo directamente
+            if es_aoe:
+                if getattr(ses, 'sentado', False):
+                    ses.sentado = False
+                    ses.enviar(struct.pack('<HIII', 0x000A, yo, 0, 0))
+
+                cost_sp = mag.get('cost_sp', 0)
+                if cost_sp > 0:
+                    if getattr(ses, 'sp', 0) < cost_sp:
+                        log.info(f"[{addr}] SP insuficiente ({getattr(ses, 'sp', 0)}/{cost_sp}) para AOE {tipo}")
+                        return
+                    ses.sp -= cost_sp
+                    ses.enviar(_cb.atributo(yo, ses.sp, _cb.KIND_SP))
+
+                mp_coste = mag.get('mp', 0)
+                if ses.personaje and mp_coste > 0:
+                    if ses.personaje.mp < mp_coste:
+                        log.info(f"[{addr}] MP insuficiente ({ses.personaje.mp}/{mp_coste}) para AOE {tipo}")
+                        return
+                    ses.personaje.mp = max(0, ses.personaje.mp - mp_coste)
+                    ses.enviar(_cb.atributo(yo, ses.personaje.mp, _cb.KIND_MP))
+
+                cd_ms = mag.get('cd_ms', 1000)
+                if cd_ms > 0 and ses.personaje:
+                    _sk_ids_copia = _cb.grupo_de(tipo)
+                    cd_pkgs = [struct.pack('<HIBBII', 0x001D, yo, 1, 3, sk_id, cd_ms)
+                               for sk_id in _sk_ids_copia]
+                    ses.enviar(*cd_pkgs, _cb.gcd_paquete())
+                    try:
+                        asyncio.get_event_loop().call_later(cd_ms / 1000.0,
+                            lambda ids=_sk_ids_copia: ses.enviar_inmediato(*[
+                                struct.pack('<HIBBII', 0x001D, yo, 1, 3, sk_id, 0)
+                                for sk_id in ids
+                            ]))
+                    except Exception:
+                        pass
+
+                import skills as _sk_mod
+                import inventario as _iv
+                is_magic_skill = bool(_sk_mod.skill_de_magia(tipo) in (1, 2, 3, 4))
+                ef = _cb.efecto_de_ataque(tipo)
+                cast_time = _cb.calcular_cast_time(
+                    mag.get('cast_time', 100),
+                    buffs=getattr(ses.personaje, 'buffs', {}),
+                    habilidades=getattr(ses.personaje, 'habilidades', None),
+                    es_magia=is_magic_skill
+                )
+
+                if es_self_aoe:
+                    target_ent = yo
+                    cx = ses.personaje.tile_x if ses.personaje else 0
+                    cy = ses.personaje.tile_y if ses.personaje else 0
+                    tile_ef_x = 0
+                    tile_ef_y = 0
+                elif m is not None:
+                    target_ent = m.entity_id
+                    cx = m.tile_x
+                    cy = m.tile_y
+                    tile_ef_x = 0
+                    tile_ef_y = 0
+                else:
+                    target_ent = 0
+                    cx = tx
+                    cy = ty
+                    tile_ef_x = tx
+                    tile_ef_y = ty
+
+                area = max(1, mag.get('area', 1))
+                _ef2 = _cb.efecto_secundario(tipo)
+
+                def _fin_aoe(enviar_cierre=True):
+                    if not ses.personaje or getattr(ses, 'muerto', False):
+                        return
+                    if enviar_cierre:
+                        ses.enviar_inmediato(
+                            _cb.cierre_de_dano(yo, target_ent, ataque=tipo, efecto=ef,
+                                               es_magia=is_magic_skill, tile_x=tile_ef_x, tile_y=tile_ef_y)
+                        )
+
+                    blancos = [b for b in bichos.values() if b.vivo and max(abs(b.tile_x - cx), abs(b.tile_y - cy)) <= area]
+
+                    if blancos:
+                        habs = ses.personaje.habilidades if ses.personaje else None
+                        buffs_activos = getattr(ses.personaje, 'buffs', None)
+                        st = _iv.stats(ses.inventario, habs, buffs=buffs_activos)
+                        if is_magic_skill:
+                            ataque = struct.unpack_from('<I', st, 2 + 44)[0]
+                            dano_base = mag.get('dano_base', 0)
+                            denom = mag.get('base_denom', 200) or 200
+                            mult_spell = (dano_base / float(denom)) if dano_base > 0 else 1.0
+                            coef = mag.get('dano_coef', 0)
+                            if coef > 0:
+                                mult_spell *= (coef / 100.0)
+                            dano_var = mag.get('dano_var', 0)
+                            var_pct = min(0.15, max(0.02, dano_var / float(denom))) if dano_var > 0 else 0.05
+                        else:
+                            ataque = struct.unpack_from('<I', st, 2 + 20 + 4)[0]
+                            stance = _cb.stance_de(tipo)
+                            denom = mag.get('base_denom', 300) or 300
+                            mult_spell = 1.0 + (stance / float(denom))
+                            var_pct = 0.03
+
+                        extra_crit = 0
+                        if buffs_activos:
+                            now = time.time()
+                            for b_id, b_data in list(buffs_activos.items()):
+                                if isinstance(b_data, dict) and b_data.get('fin', 0) > now and 'crit' in b_data:
+                                    extra_crit += b_data['crit']
+                        crit_prob = min(0.90, (critico_jugador(ses) + extra_crit) / 100.0)
+
+                        for b in blancos:
+                            if not b.vivo:
+                                continue
+                            es_crit = (random.random() < crit_prob)
+                            mult_crit = 1.5 if es_crit else 1.0
+                            dano = b.recibir(ataque, es_magico=is_magic_skill, mult=mult_spell * mult_crit, var_pct=var_pct)
+
+                            pkg_debuff = []
+                            if _ef2 and random.randint(1, 100) <= _ef2.get('prob', 100):
+                                b.aplicar_efecto(_ef2)
+                                if _ef2.get('magia') and _ef2.get('dur_ms'):
+                                    pkg_debuff.append(struct.pack('<HIBBII', 0x001D, b.entity_id, 1, 4, _ef2['magia'], _ef2['dur_ms']))
+
+                            _tipo_num = _cb.TIPO_DANO_CRITICO if es_crit else _cb.TIPO_DANO
+                            ses.enviar_inmediato(
+                                _cb.atributo(b.entity_id, b.porcentaje),
+                                _cb.numero_flotante(b.entity_id, dano, _tipo_num),
+                                *pkg_debuff
+                            )
+
+                            if not b.vivo:
+                                _procesar_muerte_monstruo(ses, b, yo, addr, espera=0.0)
+                            else:
+                                if b.en_combate_con != yo:
+                                    b.en_combate_con = yo
+
+                    ses.enviar_inmediato(*_otorgar_skill_exp(ses, ses.personaje, yo, magic_id=tipo))
+
+                    if getattr(ses, 'usuario', None):
+                        cuentas.guardar_progreso(ses.usuario, ses.personaje.char_id,
+                                                 ses.personaje.nivel, ses.personaje.exp,
+                                                 ses.personaje.hp, ses.personaje.mp,
+                                                 ses.personaje.habilidades,
+                                                 hp_max=ses.personaje.hp_max, mp_max=ses.personaje.mp_max)
+
+                if cast_time <= 0:
+                    ses.enviar(
+                        _cb.confirmar_cast(target_ent, cx, cy),
+                        _cb.numero_de_dano(yo, target_ent, dano=0, ataque=tipo, efecto=ef,
+                                           cast_time=0, es_magia=is_magic_skill,
+                                           tile_x=tile_ef_x, tile_y=tile_ef_y),
+                        _cb.cierre_de_dano(yo, target_ent, ataque=tipo, efecto=ef,
+                                           es_magia=is_magic_skill, tile_x=tile_ef_x, tile_y=tile_ef_y)
+                    )
+                    _fin_aoe(enviar_cierre=False)
+                else:
+                    ses.enviar(
+                        _cb.confirmar_cast(target_ent, cx, cy),
+                        _cb.numero_de_dano(yo, target_ent, dano=0, ataque=tipo, efecto=ef,
+                                           cast_time=cast_time, es_magia=is_magic_skill,
+                                           tile_x=tile_ef_x, tile_y=tile_ef_y)
+                    )
+                    ret_aoe = max(0.1, cast_time / 1000.0)
+                    try:
+                        asyncio.get_event_loop().call_later(ret_aoe, _fin_aoe)
+                    except Exception:
+                        _fin_aoe()
+
+                log.info(f"[{addr}] AOE {tipo} ({mag.get('nombre')}) ejecutado en ({cx},{cy}) radio={area} cast_time={cast_time}ms")
+                return
+
+            # Si se uso una habilidad de ataque sin objetivo fijado y NO es AOE, auto-fijar el monstruo mas cercano
+            if m is None and not es_aoe and tipo != _cb.ATAQUE_NORMAL and ses.personaje:
                 mag_check = _cb.datos_magia(tipo)
                 if mag_check.get('es_ataque'):
                     r_max = max(2, mag_check.get('rango', 1))
@@ -2394,87 +2684,8 @@ class Servidor:
                         log.info(f"[{addr}] {mag.get('nombre')}: cura {_tic['hp']} "
                                  f"HP x{_tic['tics']} cada {_tic['intervalo']}s")
 
-                    # 1. Habilidad de invocacion (Summon Skeleton, Summon Mummy, Ghostly Swordsman, etc.)
-                    if mag.get('es_invocacion') and ses.personaje:
-                        npc_t = mag.get('invoca_npc')
-                        info_inv = _cb.datos_invocacion(npc_t)
-                        atk_confirm = _cb.confirmar_cast(yo, ses.personaje.tile_x, ses.personaje.tile_y)
-
-                        # Despawnear invocacion anterior si ya tenia una
-                        if getattr(ses, 'invocacion', None):
-                            old_eid = ses.invocacion['entity_id']
-                            ses.enviar(_cb.atributo(old_eid, 0, _cb.KIND_HP),
-                                       _cb.despawn_monstruo(old_eid),
-                                       struct.pack('<HIBBI', 0x0013, yo, 1, 0x3d, 0))
-                            ses.invocacion = None
-
-                        summon_eid = yo + 8000
-                        stx = ses.personaje.tile_x + 1
-                        sty = ses.personaje.tile_y
-                        dur_s = mag.get('dur_invoca', 3600)
-
-                        ses.invocacion = {
-                            'entity_id': summon_eid,
-                            'npc_type': npc_t,
-                            'nombre': info_inv['nombre'],
-                            'sprite': info_inv['sprite'],
-                            'hp': info_inv['hp'],
-                            'hp_max': info_inv['hp'],
-                            'atk': info_inv['atk'],
-                            'defensa': info_inv['def'],
-                            'atk_range': info_inv.get('atk_range', 1),
-                            'move_speed': info_inv.get('move_speed', 70),
-                            'atk_speed': info_inv.get('atk_speed', 70),
-                            'skills': info_inv.get('skills', []),
-                            'tile_x': stx,
-                            'tile_y': sty,
-                            'expira': time.time() + dur_s,
-                            'objetivo': None,
-                            'ultimo_ataque': 0.0,
-                            'proximo_paso': 0.0,
-                        }
-
-                        import login as _lg
-                        spawn_pkg = _lg._monster_spawn(summon_eid, npc_t, info_inv['nombre'], (stx, sty), sprite=info_inv['sprite'])
-                        hp_pkg = _cb.atributo(summon_eid, info_inv['hp'], _cb.KIND_HP)
-
-                        ses.enviar(
-                            _cb.atributo(yo, ses.personaje.mp, _cb.KIND_MP),
-                            atk_confirm,
-                            _cb.efecto_magia_self_inicio(yo, ef, tipo, cast_time=cast_time),
-                        )
-
-                        def _fin_invoca():
-                            if not ses.personaje or getattr(ses, 'muerto', False):
-                                return
-                            pkgs_inv = [
-                                _cb.efecto_magia_self_fin(yo, ef, tipo),
-                                spawn_pkg,
-                                hp_pkg,
-                                struct.pack('<HIBBI', 0x0013, summon_eid, 1, 0x3c, yo),
-                                struct.pack('<HIBBI', 0x0013, yo, 1, 0x3d, summon_eid),
-                            ]
-                            if cd_ms > 0:
-                                pkgs_inv.append(struct.pack('<HIBBII', 0x001D, yo, 1, 3, tipo, cd_ms))
-                                asyncio.get_event_loop().call_later(cd_ms / 1000.0, lambda: ses.enviar_inmediato(struct.pack('<HIBBII', 0x001D, yo, 1, 3, tipo, 0)))
-
-                            pkgs_inv.extend(_otorgar_skill_exp(ses, ses.personaje, yo, magic_id=tipo))
-                            ses.enviar_inmediato(*pkgs_inv)
-
-                        _ret_inv = max(0.14, min(1.0, cast_time / 1000.0))
-                        asyncio.get_event_loop().call_later(_ret_inv, _fin_invoca)
-
-                        if getattr(ses, 'usuario', None):
-                            cuentas.guardar_progreso(ses.usuario, ses.personaje.char_id,
-                                                     ses.personaje.nivel, ses.personaje.exp,
-                                                     ses.personaje.hp, ses.personaje.mp,
-                                                     ses.personaje.habilidades,
-                                                     hp_max=ses.personaje.hp_max, mp_max=ses.personaje.mp_max)
-                        log.info(f"[{addr}] invocacion {info_inv['nombre']} (npc_type {npc_t}, sprite {info_inv['sprite']}) invocada para jugador {yo}")
-                        return
-
                     # 2. Habilidad de curacion real (Cure Spell de mago, etc.)
-                    elif mag.get('es_cura') and ses.personaje:
+                    if mag.get('es_cura') and ses.personaje:
                         cura = max(10, abs(mag.get('hp', 0)))
                         ses.personaje.hp = min(_vida_max(ses.personaje), ses.personaje.hp + cura)
                         ses.enviar(_cb.efecto_curacion_inicio(yo, yo, cura, efecto=ef), _cb.gcd_paquete())
@@ -2939,6 +3150,15 @@ class Servidor:
             if es_crit:
                 mult_spell *= 1.5
 
+            # Modificadores porcentuales del equipo (ej. +30% spell damage de Snow Queen's Cufflink)
+            mods_eq = _iv.modificadores_porcentuales_equipo(ses.inventario)
+            if is_magic_skill:
+                if mods_eq.get('mag_dmg_pct', 0) > 0:
+                    mult_spell *= (1.0 + mods_eq['mag_dmg_pct'] / 100.0)
+            else:
+                if mods_eq.get('phys_dmg_pct', 0) > 0:
+                    mult_spell *= (1.0 + mods_eq['phys_dmg_pct'] / 100.0)
+
             total_atk = ataque
             dano = m.recibir(total_atk, es_magico=is_magic_skill, mult=mult_spell, var_pct=var_pct)
             if tipo != _cb.ATAQUE_NORMAL:
@@ -3130,8 +3350,11 @@ class Servidor:
                 # mapa o de revivir.
                 ses.enviar(_cl2.arbol(p.habilidades))
                 _hech = _cl2.hechizos_iniciales(_ids)
-                if _hech:
-                    ses.enviar(_cl2.otorgar_hechizos(p.entity_id, [n for n, _ in _hech]))
+                _todos_hech = [n for n, _ in _hech]
+                if getattr(p, 'hechizos_aprendidos', None):
+                    _todos_hech = list(set(_todos_hech) | set(p.hechizos_aprendidos))
+                if _todos_hech:
+                    ses.enviar(_cl2.otorgar_hechizos(p.entity_id, _todos_hech))
             if getattr(ses, 'invocacion', None):
                 inv = ses.invocacion
                 inv['tile_x'] = p.tile_x + 1
@@ -3537,11 +3760,19 @@ class Servidor:
             if org not in bolsa:
                 log.warning(f"[{addr}] mover {org} -> {dst}: la ranura {org} esta vacia")
                 return
+            it_org = bolsa[org]
+            if not inv.es_ranura_valida(it_org, dst):
+                log.warning(f"[{addr}] mover {org} -> {dst}: ranura no valida para item {it_org}")
+                ses.enviar(*_refrescar(ses, [org]))
+                return
             cid = ses.personaje.char_id if ses.personaje else 4980
             if dst in bolsa:
-                # Intercambio (swap) entre ranuras ocupadas
-                it_org = bolsa[org]
                 it_dst = bolsa[dst]
+                if not inv.es_ranura_valida(it_dst, org):
+                    log.warning(f"[{addr}] swap {org} <-> {dst}: ranura {org} no valida para item {it_dst}")
+                    ses.enviar(*_refrescar(ses, [org, dst]))
+                    return
+                # Intercambio (swap) entre ranuras ocupadas
                 bolsa[org] = it_dst
                 bolsa[dst] = it_org
                 _c_org = _cant_de(ses, org)
@@ -3559,6 +3790,16 @@ class Servidor:
                     (org, it_dst, _c_dst, _inst(ses, org)),
                 ], _dueno(ses))]
                 if inv.es_equipo(org) or inv.es_equipo(dst):
+                    if ses.personaje:
+                        import combate as _cb
+                        _max_h = _vida_max(ses.personaje, bolsa=bolsa)
+                        if ses.personaje.hp > _max_h:
+                            ses.personaje.hp = _max_h
+                        _max_m = _mana_max(ses.personaje, bolsa=bolsa)
+                        if ses.personaje.mp > _max_m:
+                            ses.personaje.mp = _max_m
+                        salida.append(_cb.atributo(ses.personaje.entity_id, ses.personaje.hp, _cb.KIND_HP))
+                        salida.append(_cb.atributo(ses.personaje.entity_id, ses.personaje.mp, _cb.KIND_MP))
                     salida.append(_stats_ses(ses))
                     salida.extend(_apariencia(ses))
                 ses.enviar(*salida)
@@ -3574,6 +3815,16 @@ class Servidor:
             salida = [inv.acuse_movimiento(org)]
             salida.extend(_refrescar(ses, [org, dst]))
             if inv.es_equipo(org) or inv.es_equipo(dst):
+                if ses.personaje:
+                    import combate as _cb
+                    _max_h = _vida_max(ses.personaje, bolsa=bolsa)
+                    if ses.personaje.hp > _max_h:
+                        ses.personaje.hp = _max_h
+                    _max_m = _mana_max(ses.personaje, bolsa=bolsa)
+                    if ses.personaje.mp > _max_m:
+                        ses.personaje.mp = _max_m
+                    salida.append(_cb.atributo(ses.personaje.entity_id, ses.personaje.hp, _cb.KIND_HP))
+                    salida.append(_cb.atributo(ses.personaje.entity_id, ses.personaje.mp, _cb.KIND_MP))
                 salida.append(_stats_ses(ses))
                 salida.extend(_apariencia(ses))
             # Gestion de mascota en ranura 9
@@ -3699,6 +3950,12 @@ class Servidor:
                 salida.extend(_apariencia(ses))
                 if ses.personaje:
                     import combate as _cb
+                    _max_h = _vida_max(ses.personaje, bolsa=bolsa)
+                    if ses.personaje.hp > _max_h:
+                        ses.personaje.hp = _max_h
+                    _max_m = _mana_max(ses.personaje, bolsa=bolsa)
+                    if ses.personaje.mp > _max_m:
+                        ses.personaje.mp = _max_m
                     salida.append(_cb.atributo(ses.personaje.entity_id, ses.personaje.hp, _cb.KIND_HP))
                     salida.append(_cb.atributo(ses.personaje.entity_id, ses.personaje.mp, _cb.KIND_MP))
                 if ranura == 9 and getattr(ses, 'pet_entity_id', None):
@@ -3714,8 +3971,11 @@ class Servidor:
 
             eq_slot = inv.ranura_equipo_de(item_id)
             if eq_slot is not None:
-                # Poner en la ranura de equipo correspondiente
-                dst = eq_slot
+                # Si es un arma dual de fashion y 169 ya esta ocupado pero 170 esta libre:
+                if eq_slot == 169 and (169 in bolsa) and (170 not in bolsa) and inv.es_arma_dual(item_id):
+                    dst = 170
+                else:
+                    dst = eq_slot
                 # Si se equipa un arma a dos manos (Lanza, Arco, etc.) en mano derecha (3):
                 # Desequipar la mano izquierda (4) si habia algo puesto
                 if dst == 3 and inv.es_arma_dos_manos(item_id) and 4 in bolsa:
@@ -3749,6 +4009,12 @@ class Servidor:
                 salida.extend(_apariencia(ses))
                 if ses.personaje:
                     import combate as _cb
+                    _max_h = _vida_max(ses.personaje, bolsa=bolsa)
+                    if ses.personaje.hp > _max_h:
+                        ses.personaje.hp = _max_h
+                    _max_m = _mana_max(ses.personaje, bolsa=bolsa)
+                    if ses.personaje.mp > _max_m:
+                        ses.personaje.mp = _max_m
                     salida.append(_cb.atributo(ses.personaje.entity_id, ses.personaje.hp, _cb.KIND_HP))
                     salida.append(_cb.atributo(ses.personaje.entity_id, ses.personaje.mp, _cb.KIND_MP))
 
@@ -3871,6 +4137,37 @@ class Servidor:
                 log.info(f"[{addr}] pergamino usado: {item_id} -> aprendio {mid} ({mnombre} Lv {mlv})")
                 return
 
+            # Caso 4.5: Ring of Angel Wings (Item 1905) - Regresa al checkpoint de Cupido
+            if item_id == 1905 and ses.personaje:
+                _sacar(ses, ranura, 1)
+                _pj = ses.personaje
+                dst = getattr(_pj, 'checkpoint_stage', None) or _pj.stage
+                cx = getattr(_pj, 'checkpoint_x', None) or _pj.tile_x
+                cy = getattr(_pj, 'checkpoint_y', None) or _pj.tile_y
+                lleg = [cx, cy]
+                yo = _pj.entity_id
+                salida = [struct.pack('<H', 0x0012) + bytes(7)]
+                salida += list(_refrescar(ses, [ranura]))
+                salida.append(_stats_ses(ses))
+                _pj.tile_x, _pj.tile_y = lleg
+                import clases as _cgo
+                if dst == _pj.stage:
+                    salida.append(struct.pack('<HIII', 0x0003, yo, lleg[0], lleg[1]))
+                    ses.enviar(*salida)
+                else:
+                    salida.append(struct.pack('<HIB', 0x0007, yo, 1))
+                    _pj.stage = dst
+                    ses.monstruos = _monstruos_de(dst)
+                    ses.mapa_cambiado_en = time.time()
+                    salida.append(_cgo.cambiar_mapa(dst))
+                    ses.enviar(*salida)
+                cid = _pj.char_id
+                _guardar_bolsa(ses, cid)
+                if getattr(ses, 'usuario', None):
+                    cuentas.guardar_mapa(ses.usuario, cid, dst, *lleg)
+                log.info(f"[{addr}] Ring of Angel Wings usado: teletransporte al checkpoint stage {dst} tile {lleg}")
+                return
+
             # Caso 5: Consumibles (Pociones HP/MP, Hierba Magica 1228, Biscuits 2, etc.)
             ef_con = inv.efecto_consumible(item_id)
             if ef_con and ses.personaje:
@@ -3881,14 +4178,15 @@ class Servidor:
                 salida = []
                 yo = ses.personaje.entity_id
                 import combate as _cb
+                bolsa_p = getattr(ses, 'inventario', None)
                 if 'hp' in ef_con:
                     curado = ef_con['hp']
-                    ses.personaje.hp = min(_vida_max(ses.personaje), ses.personaje.hp + curado)
+                    ses.personaje.hp = min(_vida_max(ses.personaje, bolsa=bolsa_p), ses.personaje.hp + curado)
                     salida.append(_cb.atributo(yo, ses.personaje.hp, _cb.KIND_HP))
                     salida.extend(_cb.efecto_curacion(yo, yo, curado, efecto=165))
                 if 'mp' in ef_con:
                     rec_mp = ef_con['mp']
-                    ses.personaje.mp = min(_mana_max(ses.personaje), ses.personaje.mp + rec_mp)
+                    ses.personaje.mp = min(_mana_max(ses.personaje, bolsa=bolsa_p), ses.personaje.mp + rec_mp)
                     salida.append(_cb.atributo(yo, ses.personaje.mp, _cb.KIND_MP))
                     salida.extend(_cb.efecto_recuperacion_mp(yo, yo, rec_mp, efecto=69))
                 salida.extend(_refrescar(ses, [ranura]))
@@ -4173,13 +4471,29 @@ class Servidor:
                 # Fuera del tutorial, cada NPC tiene su propia linea, sacada
                 # de msg.xml por su nombre.
                 faccion = ses.personaje.faction if ses.personaje else "Heaven"
+                if 121600 <= ent <= 121699: _st_ent = 3     # Aurora City
+                elif 121700 <= ent <= 121725: _st_ent = 5   # Cherry Village
+                elif 121765 <= ent <= 121775: _st_ent = 15  # Mysterious Wetland
+                elif 121799 <= ent <= 121811: _st_ent = 21  # Dragon Graveyard
+                elif 121812 <= ent <= 121835: _st_ent = 22  # Mysterious Garden
+                elif 121850 <= ent <= 121919: _st_ent = 26  # Dark City
+                elif 121920 <= ent <= 121999: _st_ent = 29  # Breeze Woods
+                elif 122040 <= ent <= 122063: _st_ent = 35  # Memory Cave
+                elif 122064 <= ent <= 122085: _st_ent = 36  # Gebuer Vale
+                elif 122086 <= ent <= 122199: _st_ent = 38  # Iron Castle
+                else: _st_ent = None
+
+                if _st_ent and ses.personaje and (not getattr(ses.personaje, 'stage', 0) or ses.personaje.stage != _st_ent):
+                    ses.personaje.stage = _st_ent
+
                 g2 = dialogos.propio(
                     _nombre_entidad(ses, ent), faccion=faccion,
                     jugador=getattr(ses.personaje, 'nombre', '') if ses.personaje else '',
                     visto_michael=bool(getattr(ses.personaje, 'hablo_michael', False)
                                        if ses.personaje else False),
                     stage=getattr(ses.personaje, 'stage', 0) if ses.personaje else 0,
-                    registrado=_ya_registrado(ses))
+                    registrado=_ya_registrado(ses),
+                    entidad=ent)
                 if g2:
                     nom2 = ses.personaje.nombre if ses.personaje else 'Jugador'
                     ses.dlg_ent, ses.dlg_guion, ses.dlg_paso = ent, g2, 1
@@ -4318,6 +4632,19 @@ class Servidor:
                     log.info(f"[{addr}] Raphael: abandono tutorial -> enviado a Angel Lyceum (41)")
                     return
 
+                if 121600 <= ent <= 121699: _st_ent = 3     # Aurora City
+                elif 121700 <= ent <= 121799: _st_ent = 5   # Cherry Village
+                elif 121800 <= ent <= 121849: _st_ent = 22  # Mysterious Garden
+                elif 121850 <= ent <= 121919: _st_ent = 26  # Dark City
+                elif 121920 <= ent <= 121999: _st_ent = 29  # Breeze Woods
+                elif 122040 <= ent <= 122063: _st_ent = 35  # Memory Cave
+                elif 122064 <= ent <= 122085: _st_ent = 36  # Gebuer Vale
+                elif 122086 <= ent <= 122199: _st_ent = 38  # Iron Castle
+                else: _st_ent = None
+
+                if _st_ent and ses.personaje and (not getattr(ses.personaje, 'stage', 0) or ses.personaje.stage != _st_ent):
+                    ses.personaje.stage = _st_ent
+
                 submsgs = dialogos.respuesta_a(
                     _el, entidad=ent, val=val,
                     nombre=_nombre_entidad(ses, ent),
@@ -4348,8 +4675,6 @@ class Servidor:
                 if _el in DESTINOS_ENTRENAMIENTO and ses.personaje:
                     _st_area, _tile_area, _nombre_area = DESTINOS_ENTRENAMIENTO[_el]
                     ses.viaje_pendiente = (_st_area, _tile_area, _nombre_area)
-                    log.info(f"[{addr}] Terra Keeper: {_nombre_area}, "
-                             f"stage {_st_area} en {_tile_area} al cerrar el dialogo")
                 elif _el == 10125 and ses.personaje:
                     # "Quit the training": el traslado NO va aqui. Medido:
                     # al decir que si el servidor manda el 10127, el cliente

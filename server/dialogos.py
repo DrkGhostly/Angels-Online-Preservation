@@ -169,6 +169,69 @@ def _propios():
     return _PROPIOS
 
 
+_ENTIDADES_NPC = None
+
+
+def _cargar_npcs():
+    """Indexa nombre, sprite y stage de todos los NPCs del juego desde plantillas."""
+    global _ENTIDADES_NPC
+    if _ENTIDADES_NPC is not None:
+        return _ENTIDADES_NPC
+    _ENTIDADES_NPC = {}
+    plant = pathlib.Path(__file__).parent / 'plantillas'
+    for f in plant.glob('*.json'):
+        if f.name in ('dialogos_npc.json', 'tutorial.json', 'npc_por_mapa.json', 'lista_totems.json'):
+            continue
+        try:
+            d = json.loads(f.read_text(encoding='utf-8'))
+            if isinstance(d, dict) and 'spawns' in d:
+                for sp in d['spawns']:
+                    eid = sp.get('entity_id')
+                    if eid and not sp.get('monstruo'):
+                        _ENTIDADES_NPC[eid] = {
+                            'nombre': sp.get('nombre', ''),
+                            'sprite': sp.get('sprite', 0),
+                            'stage': d.get('stage', 0),
+                        }
+        except Exception:
+            pass
+    f_mapas = plant / 'npc_por_mapa.json'
+    if f_mapas.exists():
+        try:
+            d_mapas = json.loads(f_mapas.read_text(encoding='utf-8')).get('mapas', {})
+            for st_str, npcs in d_mapas.items():
+                st_val = int(st_str) if st_str.isdigit() else 0
+                for idx, n in enumerate(npcs):
+                    eid = 900 + idx
+                    if eid not in _ENTIDADES_NPC:
+                        _ENTIDADES_NPC[eid] = {
+                            'nombre': n.get('nombre', ''),
+                            'sprite': n.get('sprite', 0),
+                            'stage': st_val,
+                        }
+        except Exception:
+            pass
+    return _ENTIDADES_NPC
+
+
+def info_npc(entidad: int):
+    """Devuelve dict con nombre, sprite y stage de la entidad, o None si no existe."""
+    return _cargar_npcs().get(entidad)
+
+
+def val_por_entidad(entidad: int, val_defecto: int = 3) -> int:
+    """Calcula el ID de retrato val (sprite - 40000) a partir de la entidad."""
+    info = info_npc(entidad)
+    if info:
+        spr = info.get('sprite', 0)
+        if 40000 <= spr < 50000:
+            return spr - 40000
+        if spr > 0:
+            return spr
+    return val_defecto
+
+
+
 def armar_linea(mid: int, val: int = 4, opts: list = None, strings: list = None,
                 acciones: list = None) -> bytes:
     """Construye un sub-mensaje 0x0012 completo.
@@ -288,8 +351,61 @@ ANGELES_FACCION = {
 
 def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
            visto_michael: bool = False, stage: int = 0,
-           registrado: bool = False):
+           registrado: bool = False, entidad: int = 0, val: int = 0):
     """Una linea de dialogo para ese NPC, o None si no se le conoce ninguna."""
+    npc_val = val or (val_por_entidad(entidad, 0) if entidad else 0)
+
+    # Prioridad por id de entidad exacto de NPC de ciudad
+    # --- Aurora City (Stage 3) ---
+    if entidad == 121625:  # Ride Seller (Horses/Steeds, Magic Donkey)
+        return [armar_linea(5189, npc_val or 66, [5262, 5190, 5191])[2:]]
+    if entidad == 121654:  # Ride Seller C (Top Steeds, Top Donkey)
+        return [armar_linea(5189, npc_val or 10, [5262, 5190, 5191])[2:]]
+    if entidad == 121631:  # Repair Expert
+        return [armar_linea(5226, npc_val or 3, [5227, 5191])[2:]]
+    if entidad == 121681:  # Healer
+        return [armar_linea(5775, npc_val or 10, [5190, 5191])[2:]]
+
+    # --- Breeze Woods (Stage 29) ---
+    if entidad == 121934:  # Ride Seller (Nightwolf, Chicken, Pig Dodo)
+        return [armar_linea(5224, npc_val or 92, [5262, 5190, 5191])[2:]]
+    if entidad == 121927:  # Ride Seller C (Top Nightwolf, Top Chicken)
+        return [armar_linea(5224, npc_val or 147, [5262, 5190, 5191])[2:]]
+    if entidad == 121958:  # Repair Expert
+        return [armar_linea(5233, npc_val or 33, [5227, 5191])[2:]]
+    if entidad == 121959:  # Healer
+        return [armar_linea(5775, npc_val or 33, [5190, 5191])[2:]]
+
+    # --- Iron Castle (Stage 38) ---
+    if entidad == 122099:  # Ride Seller (Boars, Gerbil)
+        return [armar_linea(5202, npc_val or 38, [5262, 5190, 5191])[2:]]
+    if entidad == 122138:  # Ride Seller C (Top Boars, Top Gerbil)
+        return [armar_linea(5202, npc_val or 158, [5262, 5190, 5191])[2:]]
+    if entidad == 122098:  # Technician (Repair)
+        return [armar_linea(5229, npc_val or 38, [5227, 5191])[2:]]
+    if entidad == 122089:  # Healer
+        return [armar_linea(5775, npc_val or 74, [5190, 5191])[2:]]
+
+    # --- Dark City (Stage 26) ---
+    if entidad == 121853:  # Ride Seller (Lizards, Evil Cat)
+        return [armar_linea(5213, npc_val or 17, [5262, 5190, 5191])[2:]]
+    if entidad == 121889:  # Ride Seller C (Top Lizards, Top Evil Cat)
+        return [armar_linea(5213, npc_val or 80, [5262, 5190, 5191])[2:]]
+    if entidad == 121871:  # Repair Slave
+        return [armar_linea(5231, npc_val or 19, [5227, 5191])[2:]]
+    if entidad == 121883:  # Healer
+        return [armar_linea(5775, npc_val or 107, [5190, 5191])[2:]]
+
+    # --- Secondary Towns Repair NPCs ---
+    if entidad == 121715:  # Cherry Village Repair Expert
+        return [armar_linea(5226, npc_val or 67, [5227, 5191])[2:]]
+    if entidad == 121829:  # Mysterious Garden Repair Expert
+        return [armar_linea(5233, npc_val or 33, [5227, 5191])[2:]]
+    if entidad == 122060:  # Memory Cave Repair Slave
+        return [armar_linea(5231, npc_val or 137, [5227, 5191])[2:]]
+    if entidad == 122079:  # Gebuer Vale Technician
+        return [armar_linea(5229, npc_val or 38, [5227, 5191])[2:]]
+
     if nombre == 'Director Wolay':
         if faccion in ("Heaven", "Neutral", "Neutrally", "Graduated"):
             return [armar_linea(10004, 49, [])[2:]]
@@ -378,13 +494,126 @@ def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
         # anterior devolvia, para faccion Heaven, el dialogo 10201 que es
         # del Angel Protector ('I'm the Angel Protector from Aurora City').
         return [armar_linea(5138, 0, [])[2:]]
+    # Entrenadores de skills y magias
+    if 'Weapon Expert' in nombre:
+        return [armar_linea(5168, npc_val or (158 if stage == 21 else 162), [5190, 5191])[2:]]
+    if 'Sword Expert' in nombre:
+        return [armar_linea(5823, npc_val or (153 if stage in (26, 35) else 3), [5190, 5191])[2:]]
+    if 'Axe Expert' in nombre:
+        return [armar_linea(5824, npc_val or (154 if stage in (26, 35) else 3), [5190, 5191])[2:]]
+    if 'Spear Expert' in nombre:
+        return [armar_linea(5825, npc_val or (155 if stage in (26, 35) else 3), [5190, 5191])[2:]]
+    if 'Bow Expert' in nombre:
+        return [armar_linea(5826, npc_val or (160 if stage == 21 else (164 if stage == 15 else (156 if stage in (26, 35) else 3))), [5190, 5191])[2:]]
+    if 'Life Mage' in nombre:
+        return [armar_linea(5185, npc_val or 82, [5190, 5191])[2:]]
+    if 'Wraith Mage' in nombre or 'Wraith Priest' in nombre:
+        return [armar_linea(5186, npc_val or (77 if stage == 21 else (90 if stage == 15 else 83)), [5190, 5191])[2:]]
+    if 'Chaos Mage' in nombre:
+        return [armar_linea(5187, npc_val or 84, [5190, 5191])[2:]]
+    if 'Earth Mage' in nombre or 'Earth Priest' in nombre:
+        return [armar_linea(5188, npc_val or (39 if stage == 21 else (34 if stage == 15 else 85)), [5190, 5191])[2:]]
+
+    # Maestros de recetas avanzadas y vendedores de armas/equipo
+    if 'Senior Smith' in nombre or 'Super Smith' in nombre:
+        return [armar_linea(5260, npc_val or (75 if stage == 21 else (92 if stage == 15 else 139)), [5190, 5191])[2:]]
+    if 'Senior Master' in nombre or 'Super Master' in nombre:
+        return [armar_linea(5261, npc_val or (35 if stage == 21 else (88 if stage == 15 else 140)), [5190, 5191])[2:]]
+    if 'Armament Seller' in nombre:
+        return [armar_linea(5179, npc_val or 106, [5190, 5191])[2:]]
+    if 'Bowset Seller' in nombre:
+        return [armar_linea(5180, npc_val or 107, [5190, 5191])[2:]]
+
+    # Quest NPCs - Mysterious Wetland (Stage 15) & Dragon Graveyard (Stage 21)
+    if 'Explorer Peter' in nombre:
+        return [armar_linea(82601, npc_val or 11, [82602, 82603])[2:]]
+    if 'Researcher Mary' in nombre:
+        return [armar_linea(82701, npc_val or 38, [82702, 82703, 82704])[2:]]
+    if 'Warlock Ofer' in nombre:
+        return [armar_linea(82901, npc_val or 23, [82902, 82903])[2:]]
+    if 'Warrior Gegen' in nombre:
+        return [armar_linea(83001, npc_val or 32, [83002, 83003, 83004])[2:]]
+    if 'Paladin Gerison' in nombre:
+        return [armar_linea(83201, npc_val or 13, [83202, 83203])[2:]]
+    if 'Mad Mike' in nombre:
+        return [armar_linea(83401, npc_val or 17, [83402, 83403])[2:]]
+    if 'Chef Boship' in nombre:
+        return [armar_linea(60319, npc_val or 64, [])[2:]]
+    if 'Angel Agent' in nombre:
+        return [armar_linea(93302, npc_val or 112, [93303, 93304])[2:]]
+
+    # Healer (Vendedora de pociones, martillos, soap, etc.)
+    if 'Healer' in nombre:
+        return [armar_linea(5775, npc_val or 33, [5190, 5191])[2:]]
+
+    # Reparadores de equipo segun ciudad
+    if 'Repair Slave' in nombre or (stage == 26 and 'Repair' in nombre):
+        return [armar_linea(5231, npc_val or 19, [5227, 5191])[2:]]
+    if 'Technician' in nombre or (stage == 38 and ('Repair' in nombre or 'Technician' in nombre)):
+        return [armar_linea(5229, npc_val or 38, [5227, 5191])[2:]]
+    if stage == 3 and 'Repair' in nombre:
+        return [armar_linea(5226, npc_val or 3, [5227, 5191])[2:]]
+    if any(r in nombre for r in ['Repair Expert', 'Repair Angel', 'Repair Worker', 'Repair Slave']):
+        return [armar_linea(5233, npc_val or 33, [5227, 5191])[2:]]
+
+    # Vendedores de monturas (Ride Seller / Ride Seller C) segun ciudad
+    if 'Ride Seller C' in nombre:
+        v_c = {3: (5189, 10), 38: (5202, 158), 26: (5213, 80), 29: (5224, 147)}.get(stage, (5224, 147))
+        return [armar_linea(v_c[0], npc_val or v_c[1], [5262, 5190, 5191])[2:]]
+    if 'Ride Seller' in nombre:
+        v_s = {3: (5189, 66), 38: (5202, 38), 26: (5213, 17), 29: (5224, 92)}.get(stage, (5224, 92))
+        return [armar_linea(v_s[0], npc_val or v_s[1], [5262, 5190, 5191])[2:]]
+
+    # Plan Sellers (Recetas de produccion)
+    if 'W. Plan Seller' in nombre:
+        return [armar_linea(5254, npc_val or 3, [5190, 5191])[2:]]
+    if any(a in nombre for a in ['A. Recipe Seller', 'A. Plan Seller']):
+        return [armar_linea(5255, npc_val or 3, [5190, 5191])[2:]]
+    if 'C. Plan Seller' in nombre:
+        return [armar_linea(5256, npc_val or 3, [5190, 5191])[2:]]
+    if 'D. Plan Seller' in nombre:
+        return [armar_linea(5257, npc_val or 3, [5190, 5191])[2:]]
+    if 'F. Plan Seller' in nombre:
+        return [armar_linea(5258, npc_val or 3, [5190, 5191])[2:]]
+    if 'Adv. Plan Seller' in nombre:
+        return [armar_linea(5259, npc_val or 3, [5190, 5191])[2:]]
+
+    # Mercaderes y artesanos
+    if 'Weaponsmith' in nombre:
+        return [armar_linea(5179, npc_val or 3, [5190, 5191])[2:]]
+    if 'Armorsmith' in nombre:
+        return [armar_linea(5195, npc_val or 3, [5190, 5191])[2:]]
+    if 'Lightgear Seller' in nombre:
+        return [armar_linea(5183, npc_val or 3, [5190, 5191])[2:]]
+    if 'Heavygear Seller' in nombre:
+        return [armar_linea(5182, npc_val or 3, [5190, 5191])[2:]]
+    if 'Mage Gear Seller' in nombre:
+        return [armar_linea(5184, npc_val or 3, [5190, 5191])[2:]]
+    if 'Bow Seller' in nombre:
+        return [armar_linea(5180, npc_val or 3, [5190, 5191])[2:]]
+    if 'Borg Seller' in nombre:
+        return [armar_linea(5181, npc_val or 3, [5190, 5191])[2:]]
+    if 'Material Seller' in nombre:
+        return [armar_linea(5269, npc_val or 3, [5190, 5191])[2:]]
+
+    # Salesman de la camara de comercio Suft (ordenes)
+    if 'Weapon Salesman' in nombre:
+        return [armar_linea(70000, npc_val or 3, [5190, 5191])[2:]]
+    if 'Armor Salesman' in nombre:
+        return [armar_linea(70001, npc_val or 3, [5190, 5191])[2:]]
+    if 'Sewing Salesman' in nombre:
+        return [armar_linea(70002, npc_val or 3, [5190, 5191])[2:]]
+    if 'Cooking Salesman' in nombre:
+        return [armar_linea(70003, npc_val or 3, [5190, 5191])[2:]]
+    if any(s in nombre for s in ['Art Salesman', 'Art Saleman']):
+        return [armar_linea(70004, npc_val or 3, [5190, 5191])[2:]]
     d = _propios().get(nombre)
     if not d:
         return None
-    # 'hex' es el cuerpo tal como lo manda el servidor real, con sus opciones
-    # y su campo val, que cambia por NPC (6 Cupid, 4 Shopkeeper, 49 Wolay).
-    # Sin esas opciones el cuadro sale sin las lineas de respuesta.
-    return [bytes.fromhex(d['hex'])]
+    res_b = bytearray(bytes.fromhex(d['hex']))
+    if npc_val > 0 and len(res_b) >= 6:
+        struct.pack_into('<H', res_b, 4, npc_val)
+    return [bytes(res_b)]
 
 
 # ------------------------------------------- elegir una opcion del cuadro
@@ -407,6 +636,8 @@ RESPUESTAS = {
     6108: 6114,
     6109: 6115,
     6110: 6116,
+    # Ride Seller
+    5262: 5264,   # "Tell me about the Rides" -> 5264
     # Angels' Tutor
     10107: 10112,   # Score Regulation
     10108: 10115,   # Top Student Training
@@ -417,26 +648,248 @@ RESPUESTAS = {
     10119: 10121,   # Graduate confirm Yes -> 10121
 }
 
-# Tiendas especificas segun la entidad del NPC que vende (para opcion 12103)
+# Mapeo por nombre de NPC a su Shop ID correspondiente
+TIENDAS_POR_NOMBRE = {
+    'Sword Expert': 36,
+    'Axe Expert': 39,
+    'Spear Expert': 40,
+    'Bow Expert': 41,
+    'Earth Mage': 11,
+    'Life Mage': 8,
+    'Wraith Mage': 9,
+    'Chaos Mage': 10,
+    'Weapon Salesman': 2,
+    'Armor Salesman': 5,
+    'Bow Seller': 3,
+    'Borg Seller A': 4,
+    'Borg Seller B': 42,
+    'Heavygear Seller': 5,
+    'Lightgear Seller': 6,
+    'Mage Gear Seller': 7,
+    'Cooking Salesman': 7,
+    'Sewing Salesman': 5,
+    'Art Saleman': 6,
+    'Material Seller': 56,
+    'Pet Expert': 69,
+    'Weaponsmith': 2,         # Armas de guerrero hasta lv 35
+    'Armorsmith': 3,          # Armaduras
+    'A. Recipe Seller': 20,   # Recetas de armaduras (A. Plan)
+    'A. Plan Seller': 20,
+    'C. Plan Seller': 21,     # Recetas de artesania (Crafting)
+    'D. Plan Seller': 22,     # Recetas de sastreria / costura (Dress/Tailor)
+    'F. Plan Seller': 23,     # Recetas de comida (Food/Cooking)
+    'W. Plan Seller': 16,     # Recetas de armas (Weapon Plan)
+    'Adv. Plan Seller': 24,   # Recetas avanzadas
+    'Weapon Director': 16,
+    'Armor Director': 20,
+    'Sewing Director': 22,
+    'Cooking Director': 23,
+    'Art Director': 21,
+    'Scroll Seller': 17,
+    'Magic Seller': 18,
+    'Shopkeeper': 1,
+    'Healer': 35,             # Pociones HP/MP, Ring of Angel Wings, Piercing Hammers, Soap Powder
+    'Senior Smith': 25,       # Recetas avanzadas de armas
+    'Senior Master': 26,      # Recetas avanzadas de artesania/cocina/costura
+    'Super Smith': 66,        # Recetas maestras de armas (W.Plan)
+    'Super Master': 67,       # Recetas maestras de artesania/cocina/costura (C/D/F.Plan)
+    'Weapon Expert': 64,      # Habilidades de armas maestras (Sword, Axe, Spear)
+    'Earth Priest': 62,       # Magias de sacerdote (Life & Earth)
+    'Wraith Priest': 63,      # Magias de sacerdote (Chaos & Wraith)
+    'Armament Seller': 51,    # Armas intermedias
+    'Bowset Seller': 52,      # Arcos y catapultas intermedias
+}
+
+# Tiendas especificas segun la entidad del NPC que vende
 TIENDAS_POR_ENTIDAD = {
-    11: 17,    # Scroll Seller (Lyceum) -> Shop 17 (Combat Skill Scrolls: Crazy Roar, Recovery Shield, etc.)
-    19: 18,    # Magic Seller (Lyceum) -> Shop 18 (Magic Scrolls: Shock Wave, Cure Spell, etc.)
-    46: 21,    # C. Plan Seller (Lyceum) -> Shop 21 (Craft / Wood recipes)
-    47: 22,    # C. Plan Seller (Lyceum) -> Shop 22 (Tailor / Sewing recipes)
-    17: 16,    # Ironsmith (Lyceum) -> Shop 16 (Weaponsmith recipes)
-    18: 20,    # Ironsmith (Lyceum) -> Shop 20 (Armorsmith recipes)
+    # --- Lyceum (Stage 41) ---
+    11: 17,    # Scroll Seller -> Shop 17 (Crazy Roar, Recovery Shield, etc.)
+    19: 18,    # Magic Seller -> Shop 18 (Shock Wave, Cure Spell, etc.)
+    46: 21,    # C. Plan Seller -> Shop 21 (Craft / Wood recipes)
+    47: 22,    # D. Plan Seller -> Shop 22 (Tailor / Sewing recipes)
+    17: 16,    # Ironsmith -> Shop 16 (Weaponsmith recipes)
+    18: 20,    # Ironsmith -> Shop 20 (Armorsmith recipes)
     36: 2,     # Weapon Salesman -> Shop 2
     37: 3,     # Armor Salesman -> Shop 3
     38: 5,     # Sewing Salesman -> Shop 5
     39: 7,     # Cooking Salesman -> Shop 7
     40: 6,     # Art Saleman -> Shop 6
     24: 1,     # Shopkeeper -> Shop 1
+
+    # --- Aurora City (Stage 3) ---
+    121625: 12, # Ride Seller -> Shop 12 (White/Brown Steed, Magic Donkey)
+    121654: 57, # Ride Seller C -> Shop 57 (Top Steed, Top Donkey, Pig Dodo)
+    121681: 35, # Healer -> Shop 35 (HP/MP Potions, Ring of Angel Wings, Soap, Hammers)
+    121627: 2,  # Weapon Seller -> Shop 2
+    121636: 3,  # Bow Seller -> Shop 3
+    121651: 4,  # Borg Seller A -> Shop 4
+    121652: 42, # Borg Seller B -> Shop 42
+    121649: 5,  # Armor Salesman -> Shop 5
+    121645: 6,  # Lightgear Seller -> Shop 6
+    121619: 7,  # Mage Gear Seller -> Shop 7
+    121616: 56, # Material Seller -> Shop 56
+    121676: 16, # W. Plan Seller -> Shop 16
+    121673: 20, # A. Recipe Seller -> Shop 20
+    121674: 21, # C. Plan Seller -> Shop 21
+    121677: 22, # D. Plan Seller -> Shop 22
+    121678: 23, # F. Plan Seller -> Shop 23
+    121657: 36, # Sword Expert -> Shop 36
+    121615: 39, # Axe Expert -> Shop 39
+    121617: 40, # Spear Expert -> Shop 40
+    121646: 41, # Bow Expert -> Shop 41
+    121666: 69, # Pet Expert -> Shop 69
+
+    # --- Breeze Woods (Stage 29) ---
+    121934: 13, # Ride Seller -> Shop 13 (Nightwolf, Orange Chicken, Pig Dodo)
+    121927: 58, # Ride Seller C -> Shop 58 (Top Nightwolf, Top Chicken)
+    121959: 35, # Healer -> Shop 35
+    121960: 2,  # Weaponsmith -> Shop 2
+    121954: 3,  # Bow Seller -> Shop 3
+    121939: 4,  # Borg Seller A -> Shop 4
+    121952: 42, # Borg Seller B -> Shop 42
+    121955: 5,  # Armor Salesman -> Shop 5
+    121933: 6,  # Lightgear Seller -> Shop 6
+    121941: 7,  # Mage Gear Seller -> Shop 7
+    121932: 56, # Material Seller -> Shop 56
+    121971: 16, # W. Plan Seller -> Shop 16
+    121972: 20, # A. Recipe Seller -> Shop 20
+    121973: 21, # C. Plan Seller -> Shop 21
+    121974: 22, # D. Plan Seller -> Shop 22
+    121975: 23, # F. Plan Seller -> Shop 23
+    121929: 36, # Sword Expert -> Shop 36
+    121930: 39, # Axe Expert -> Shop 39
+    121931: 40, # Spear Expert -> Shop 40
+    121950: 41, # Bow Expert -> Shop 41
+    121982: 69, # Pet Expert -> Shop 69
+
+    # --- Iron Castle (Stage 38) ---
+    122099: 14, # Ride Seller -> Shop 14 (Yellow/Brown/Red Boar, Gerbil)
+    122138: 59, # Ride Seller C -> Shop 59 (Top Boar, Top Gerbil)
+    122089: 35, # Healer -> Shop 35
+    122093: 2,  # Weaponsmith -> Shop 2
+    122104: 3,  # Bow Seller -> Shop 3
+    122106: 4,  # Borg Seller A -> Shop 4
+    122126: 42, # Borg Seller B -> Shop 42
+    122102: 5,  # Armor Salesman -> Shop 5
+    122105: 6,  # Lightgear Seller -> Shop 6
+    122130: 7,  # Mage Gear Seller -> Shop 7
+    122088: 56, # Material Seller -> Shop 56
+    122131: 16, # W. Plan Seller -> Shop 16
+    122132: 20, # A. Recipe Seller -> Shop 20
+    122133: 21, # C. Plan Seller -> Shop 21
+    122134: 22, # D. Plan Seller -> Shop 22
+    122135: 23, # F. Plan Seller -> Shop 23
+    122094: 36, # Sword Expert -> Shop 36
+    122095: 39, # Axe Expert -> Shop 39
+    122096: 40, # Spear Expert -> Shop 40
+    122128: 41, # Bow Expert -> Shop 41
+    122148: 69, # Pet Expert -> Shop 69
+
+    # --- Dark City (Stage 26) ---
+    121853: 15, # Ride Seller -> Shop 15 (Cyan/Green/Red Lizard, Evil Cat)
+    121889: 60, # Ride Seller C -> Shop 60 (Top Lizard, Top Evil Cat, Pig Dodo)
+    121883: 35, # Healer -> Shop 35
+    121851: 2,  # Weaponsmith -> Shop 2
+    121886: 3,  # Bow Seller -> Shop 3
+    121885: 4,  # Borg Seller A -> Shop 4
+    121882: 42, # Borg Seller B -> Shop 42
+    121861: 5,  # Armor Salesman -> Shop 5
+    121887: 6,  # Lightgear Seller -> Shop 6
+    121859: 7,  # Mage Gear Seller -> Shop 7
+    121875: 56, # Material Seller -> Shop 56
+    121876: 16, # W. Plan Seller -> Shop 16
+    121877: 20, # A. Recipe Seller -> Shop 20
+    121878: 21, # C. Plan Seller -> Shop 21
+    121879: 22, # D. Plan Seller -> Shop 22
+    121880: 23, # F. Plan Seller -> Shop 23
+    121864: 36, # Sword Expert -> Shop 36
+    121869: 39, # Axe Expert -> Shop 39
+    121870: 40, # Spear Expert -> Shop 40
+    121888: 41, # Bow Expert -> Shop 41
+    121898: 69, # Pet Expert -> Shop 69
+
+    # --- Cherry Village (Stage 5 - Aurora) ---
+    121701: 51, # Armament Seller -> Shop 51
+    121702: 52, # Bowset Seller -> Shop 52
+    121704: 26, # Senior Master -> Shop 26
+    121705: 25, # Senior Smith -> Shop 25
+    121706: 53, # Mage Gear Seller -> Shop 53
+    121707: 43, # Life Mage -> Shop 43
+    121708: 44, # Wraith Mage -> Shop 44
+    121709: 45, # Chaos Mage -> Shop 45
+    121710: 46, # Earth Mage -> Shop 46
+    121711: 47, # Sword Expert -> Shop 47
+    121712: 48, # Axe Expert -> Shop 48
+    121713: 49, # Spear Expert -> Shop 49
+    121714: 50, # Bow Expert -> Shop 50
+
+    # --- Mysterious Garden (Stage 22 - Beasts) ---
+    121816: 25, # Senior Smith -> Shop 25
+    121817: 26, # Senior Master -> Shop 26
+    121818: 51, # Armament Seller -> Shop 51
+    121819: 52, # Bowset Seller -> Shop 52
+    121820: 53, # Mage Gear Seller -> Shop 53
+    121821: 47, # Sword Expert -> Shop 47
+    121822: 48, # Axe Expert -> Shop 48
+    121823: 50, # Bow Expert -> Shop 50
+    121824: 43, # Life Mage -> Shop 43
+    121825: 44, # Wraith Mage -> Shop 44
+    121826: 45, # Chaos Mage -> Shop 45
+    121827: 46, # Earth Mage -> Shop 46
+    121830: 49, # Spear Expert -> Shop 49
+
+    # --- Memory Cave (Stage 35 - Shadow) ---
+    122044: 47, # Sword Expert -> Shop 47
+    122045: 26, # Senior Master -> Shop 26
+    122046: 25, # Senior Smith -> Shop 25
+    122050: 48, # Axe Expert -> Shop 48
+    122051: 49, # Spear Expert -> Shop 49
+    122052: 50, # Bow Expert -> Shop 50
+    122053: 51, # Armament Seller -> Shop 51
+    122054: 52, # Bowset Seller -> Shop 52
+    122055: 43, # Life Mage -> Shop 43
+    122056: 44, # Wraith Mage -> Shop 44
+    122057: 45, # Chaos Mage -> Shop 45
+    122058: 46, # Earth Mage -> Shop 46
+    122059: 53, # Mage Gear Seller -> Shop 53
+
+    # --- Gebuer Vale (Stage 36 - Iron) ---
+    122066: 25, # Senior Smith -> Shop 25
+    122067: 26, # Senior Master -> Shop 26
+    122068: 51, # Armament Seller -> Shop 51
+    122069: 52, # Bowset Seller -> Shop 52
+    122070: 53, # Mage Gear Seller -> Shop 53
+    122071: 47, # Sword Expert -> Shop 47
+    122072: 48, # Axe Expert -> Shop 48
+    122073: 49, # Spear Expert -> Shop 49
+    122074: 50, # Bow Expert -> Shop 50
+    122075: 44, # Wraith Mage -> Shop 44
+    122076: 45, # Chaos Mage -> Shop 45
+    122077: 46, # Earth Mage -> Shop 46
+    122078: 43, # Life Mage -> Shop 43
+
+    # --- Mysterious Wetland (Stage 15) ---
+    121766: 66, # Super Smith -> Shop 66 (Weapon Recipe / W.Plan)
+    121767: 67, # Super Master -> Shop 67 (Craft / Tailor / Cook Recipe: C/D/F.Plan)
+    121768: 65, # Bow Expert -> Shop 65 (Bow expert skills)
+    121769: 64, # Weapon Expert -> Shop 64 (Sword, Axe, Spear expert skills)
+    121770: 62, # Earth Priest -> Shop 62 (Life & Earth magic skills)
+    121771: 63, # Wraith Priest -> Shop 63 (Chaos & Wraith magic skills)
+
+    # --- Dragon Graveyard (Stage 21) ---
+    121800: 66, # Super Smith -> Shop 66 (Weapon Recipe / W.Plan)
+    121801: 67, # Super Master -> Shop 67 (Craft / Tailor / Cook Recipe: C/D/F.Plan)
+    121802: 65, # Bow Expert -> Shop 65 (Bow expert skills)
+    121803: 64, # Weapon Expert -> Shop 64 (Sword, Axe, Spear expert skills)
+    121804: 62, # Earth Priest -> Shop 62 (Life & Earth magic skills)
+    121805: 63, # Wraith Priest -> Shop 63 (Chaos & Wraith magic skills)
 }
 
 # Opciones de dialogo que abren la ventana de tienda (WND_NPCSALE).
 # Medido en sub_605190/sub_656E70 del cliente: opcode S->C 0x0034 [LE16 shop_id].
 TIENDAS_POR_OPCION = {
     12103: 1,    # Default compra/venta
+    5190: 1,     # "I wish to look at your goods" (Skills & gear)
     6102: 69,    # Pet Expert -> Shop 69 (Comida y galletas de mascota)
     5045: 37,    # Angel Aide (Guide Palace) -> Shop 37
 }
@@ -464,14 +917,33 @@ def opciones_de(linea: bytes):
 def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
                 nombre: str = '', stage: int = 0, nivel: int = 0):
     """Devuelve tupla de sub-mensajes: apertura de tienda y/o cierre/continuacion de dialogo."""
-    if opcion_id in TIENDAS_POR_OPCION:
-        if opcion_id == 12103 and entidad in TIENDAS_POR_ENTIDAD:
+    if opcion_id in (5190, 12103) or opcion_id in TIENDAS_POR_OPCION:
+        shop_id = 0
+        # 1. Prioridad: por entity_id exacto (garantiza tienda correcta por ciudad)
+        if entidad in TIENDAS_POR_ENTIDAD:
             shop_id = TIENDAS_POR_ENTIDAD[entidad]
-        else:
+        # 2. Vendedores de monturas segun ciudad (stage) si no vino en TIENDAS_POR_ENTIDAD
+        elif 'Ride Seller C' in nombre:
+            shop_id = {3: 57, 26: 60, 38: 59, 29: 58}.get(stage, 58)
+        elif 'Ride Seller' in nombre:
+            shop_id = {3: 12, 26: 15, 38: 14, 29: 13}.get(stage, 13)
+        # 3. Mapeo general por nombre
+        elif nombre:
+            if nombre in TIENDAS_POR_NOMBRE:
+                shop_id = TIENDAS_POR_NOMBRE[nombre]
+            else:
+                for k in sorted(TIENDAS_POR_NOMBRE.keys(), key=len, reverse=True):
+                    if k.lower() in nombre.lower():
+                        shop_id = TIENDAS_POR_NOMBRE[k]
+                        break
+        # 4. Fallback por opcion
+        if not shop_id and opcion_id in TIENDAS_POR_OPCION:
             shop_id = TIENDAS_POR_OPCION[opcion_id]
-        pkg_shop = struct.pack('<HH', 0x0034, shop_id)
-        pkg_cierre = struct.pack('<H', 0x0012) + FIN
-        return (pkg_shop, pkg_cierre)
+
+        if shop_id:
+            pkg_shop = struct.pack('<HH', 0x0034, shop_id)
+            pkg_cierre = struct.pack('<H', 0x0012) + FIN
+            return (pkg_shop, pkg_cierre)
 
     if opcion_id == 5976:
         if nivel >= 60:
@@ -588,11 +1060,15 @@ def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
         pkg_prof = struct.pack('<HIBBII', 0x001D, entidad, 1, 12, 0, 0)
         return (pkg_prof, pkg_cierre)
 
-    # Repair Angel: 5101 ("Repair the equipment.") -> abre WND_REPAIR (opcode 0x004F)
-    if opcion_id == 5101:
+    # Reparacion de equipo (Repair Angel: 5101 / Repair Expert: 5227) -> abre WND_REPAIR (opcode 0x004F)
+    if opcion_id in (5101, 5227):
         pkg_cierre = struct.pack('<H', 0x0012) + FIN
         pkg_repair = struct.pack('<HBB', 0x004F, 1, 0)
         return (pkg_repair, pkg_cierre)
+
+    # Healer / Curacion (5140 "Revival." / 5178)
+    if opcion_id in (5140, 5178):
+        return (armar_linea(5178, val, []),)
 
     # Cupid: 5747 ("Set the place for your revival.") fija donde revives.
     #
@@ -618,7 +1094,7 @@ def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
     # Angel Raphael (Guide Palace)
     if opcion_id == 5009:  # "I don't want to join in." -> 5010 (preguntar si esta seguro)
         return (armar_linea(5010, 3, [5011, 5012]),)
-    if opcion_id in (5012, 5242, 5046, 5059, 5064):  # Quit / cerrar
+    if opcion_id in (5012, 5191, 5242, 5046, 5059, 5064):  # Quit / cerrar
         return (struct.pack('<H', 0x0012) + FIN,)
 
     # Angel Raphael (Fighting Palace): 5063 "I'm ready to go to the Angel Lyceum."

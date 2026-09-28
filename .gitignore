@@ -33,3 +33,5 @@ __pycache__/
 Thumbs.db
 desktop.ini
 scratch/
+extracted_paks
+*.db
