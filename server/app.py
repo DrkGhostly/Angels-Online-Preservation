@@ -1739,34 +1739,33 @@ class Servidor:
                                                 es_mag = True
                                             else:
                                                 atk_magic = 656
-                                                atk_efecto = 148
+                                                atk_efecto = 0
                                                 dano_base = inv['atk']
                                                 es_mag = False
 
                                             dano_inv = targ.recibir(dano_base, es_magico=es_mag, mult=mult_inv)
                                             anim_inv = _cb.anim_de_monstruo(inv.get('nombre', '')) or 832
+                                            tipo_dmg = _cb.TIPO_DANO_CRITICO if es_crit else _cb.TIPO_DANO
                                             if getattr(targ, 'en_combate_con', None) is None:
                                                 targ.en_combate_con = yo
+
+                                            pkgs_inv_hit = [_cb.ataque(inv['entity_id'], targ.entity_id, anim_inv)]
+                                            if usa_skill:
+                                                pkgs_inv_hit.extend([
+                                                    _cb.numero_de_dano(inv['entity_id'], targ.entity_id, dano_inv, ataque=atk_magic, efecto=atk_efecto),
+                                                    _cb.cierre_de_dano(inv['entity_id'], targ.entity_id, ataque=atk_magic, efecto=atk_efecto),
+                                                ])
+                                            pkgs_inv_hit.append(_cb.numero_flotante(targ.entity_id, dano_inv, tipo=tipo_dmg))
 
                                             if targ.hp <= 0:
                                                 targ.hp = 0
                                                 inv['objetivo'] = None
-                                                ses.enviar_inmediato(
-                                                    _cb.ataque(inv['entity_id'], targ.entity_id, anim_inv),
-                                                    _cb.numero_de_dano(inv['entity_id'], targ.entity_id, dano_inv, ataque=atk_magic, efecto=atk_efecto),
-                                                    _cb.cierre_de_dano(inv['entity_id'], targ.entity_id, ataque=atk_magic, efecto=atk_efecto),
-                                                    _cb.numero_flotante(targ.entity_id, dano_inv),
-                                                    _cb.atributo(targ.entity_id, 0, _cb.VIDA)
-                                                )
+                                                pkgs_inv_hit.append(_cb.atributo(targ.entity_id, 0, _cb.VIDA))
+                                                ses.enviar_inmediato(*pkgs_inv_hit)
                                                 _procesar_muerte_monstruo(ses, targ, yo, addr, espera=0.1)
                                             else:
-                                                ses.enviar_inmediato(
-                                                    _cb.ataque(inv['entity_id'], targ.entity_id, anim_inv),
-                                                    _cb.numero_de_dano(inv['entity_id'], targ.entity_id, dano_inv, ataque=atk_magic, efecto=atk_efecto),
-                                                    _cb.cierre_de_dano(inv['entity_id'], targ.entity_id, ataque=atk_magic, efecto=atk_efecto),
-                                                    _cb.numero_flotante(targ.entity_id, dano_inv),
-                                                    _cb.atributo(targ.entity_id, targ.porcentaje)
-                                                )
+                                                pkgs_inv_hit.append(_cb.atributo(targ.entity_id, targ.porcentaje))
+                                                ses.enviar_inmediato(*pkgs_inv_hit)
                                     else:
                                         if ahora >= inv.get('proximo_paso', 0):
                                             dx = targ.tile_x - inv['tile_x']
@@ -2397,9 +2396,10 @@ class Servidor:
                 import login as _lg
                 spawn_pkg = _lg.spawn_invocacion(summon_eid, npc_t, info_inv['nombre'], (stx, sty), sprite=info_inv['sprite'])
                 hp_pkg = _cb.atributo(summon_eid, 100, _cb.KIND_HP)
-                atk_confirm = _cb.confirmar_cast(yo, stx, sty)
+                # Confirmar cast sobre el suelo (target=0, stx, sty) para que el ataud NO salga sobre la cabeza del jugador
+                atk_confirm = _cb.confirmar_cast(0, stx, sty)
 
-                # Paquetes iniciales: confirm, efecto suelo con numero_de_dano (portal/cofre en el suelo), GCD
+                # Paquetes iniciales: confirmacion al suelo, efecto del ataud unicamente en (stx, sty), GCD
                 ses.enviar(
                     atk_confirm,
                     _cb.numero_de_dano(yo, 0, 0, ataque=tipo, efecto=ef, cast_time=cast_time, es_magia=True, tile_x=stx, tile_y=sty),
@@ -2415,7 +2415,6 @@ class Servidor:
                         struct.pack('<HIBBII', 0x001D, yo, 1, 0x2a, summon_eid, 0),
                         spawn_pkg,
                         hp_pkg,
-                        struct.pack('<HIBBI', 0x0013, summon_eid, 1, 0x3c, yo),
                     ]
                     if cd_ms > 0:
                         _sk_ids_copia = _cb.grupo_de(tipo)

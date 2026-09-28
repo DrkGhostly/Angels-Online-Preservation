@@ -333,10 +333,14 @@ class Monstruo:
                 else:
                     self.debuffs.pop(bid, None)
         defensa_target = self.mdef_efectiva if es_magico else self.defensa_efectiva
-        if ataque > defensa_target:
-            base_dano = (ataque - defensa_target) * mult
+        # Formula oficial de reduccion de dano: mitigacion suave por defensa (factor K=420)
+        # Contra Condor (DEF 329), Death Mummy 3 (ATK 249) pega ~140-143 exactos como en Celestia
+        # Contra Mane Boar (DEF 131), pega ~175-185
+        if defensa_target > 0:
+            factor_def = 420.0 / (defensa_target + 420.0)
         else:
-            base_dano = max(5.0, (ataque * 0.08) * mult)
+            factor_def = 1.0
+        base_dano = max(1.0, ataque * factor_def * mult)
         spread = 1.0 + random.uniform(-var_pct, var_pct)
         d = max(1, int(round(base_dano * spread)))
         if mit_pct != 0:
@@ -604,8 +608,39 @@ def datos_magia(magic_id: int) -> dict:
     return res
 
 
+# Stats oficiales extraidos directamente de monster.xml (update26/setting/eng/monster.xml)
+STATS_INVOCACIONES_XML = {
+    # Death's Head 1..5 (NPC 210..214) - Sprite 42142, sin habilidades activas
+    210: {'nombre': "Death's Head 1", 'sprite': 42142, 'level': 4, 'hp': 162, 'atk': 54, 'def': 41, 'matk': 110, 'mdef': 21, 'accuracy': 32, 'agility': 24, 'move_speed': 70, 'atk_speed': 70, 'atk_range': 1, 'crit_rate': 5, 'skills': []},
+    211: {'nombre': "Death's Head 2", 'sprite': 42142, 'level': 7, 'hp': 300, 'atk': 69, 'def': 59, 'matk': 110, 'mdef': 32, 'accuracy': 47, 'agility': 33, 'move_speed': 70, 'atk_speed': 70, 'atk_range': 1, 'crit_rate': 5, 'skills': []},
+    212: {'nombre': "Death's Head 3", 'sprite': 42142, 'level': 13, 'hp': 458, 'atk': 102, 'def': 97, 'matk': 110, 'mdef': 55, 'accuracy': 77, 'agility': 51, 'move_speed': 70, 'atk_speed': 70, 'atk_range': 1, 'crit_rate': 5, 'skills': []},
+    213: {'nombre': "Death's Head 4", 'sprite': 42142, 'level': 19, 'hp': 635, 'atk': 138, 'def': 139, 'matk': 110, 'mdef': 78, 'accuracy': 107, 'agility': 69, 'move_speed': 70, 'atk_speed': 70, 'atk_range': 1, 'crit_rate': 5, 'skills': []},
+    214: {'nombre': "Death's Head 5", 'sprite': 42142, 'level': 25, 'hp': 1484, 'atk': 300, 'def': 331, 'matk': 150, 'mdef': 181, 'accuracy': 242, 'agility': 150, 'move_speed': 80, 'atk_speed': 80, 'atk_range': 1, 'crit_rate': 10, 'skills': []},
+    # Death Mummy 1..5 (NPC 215..219) - Sprite 42143, sin habilidades activas
+    215: {'nombre': 'Death Mummy 1', 'sprite': 42143, 'level': 27, 'hp': 888, 'atk': 164, 'def': 242, 'matk': 177, 'mdef': 109, 'accuracy': 147, 'agility': 93, 'move_speed': 75, 'atk_speed': 80, 'atk_range': 1, 'crit_rate': 5, 'skills': []},
+    216: {'nombre': 'Death Mummy 2', 'sprite': 42143, 'level': 33, 'hp': 1091, 'atk': 205, 'def': 306, 'matk': 177, 'mdef': 132, 'accuracy': 177, 'agility': 111, 'move_speed': 80, 'atk_speed': 80, 'atk_range': 1, 'crit_rate': 5, 'skills': []},
+    217: {'nombre': 'Death Mummy 3', 'sprite': 42143, 'level': 39, 'hp': 1303, 'atk': 249, 'def': 378, 'matk': 177, 'mdef': 155, 'accuracy': 207, 'agility': 129, 'move_speed': 80, 'atk_speed': 80, 'atk_range': 1, 'crit_rate': 5, 'skills': []},
+    218: {'nombre': 'Death Mummy 4', 'sprite': 42143, 'level': 45, 'hp': 1523, 'atk': 297, 'def': 457, 'matk': 177, 'mdef': 178, 'accuracy': 237, 'agility': 147, 'move_speed': 80, 'atk_speed': 80, 'atk_range': 1, 'crit_rate': 5, 'skills': []},
+    219: {'nombre': 'Death Mummy 5', 'sprite': 42143, 'level': 51, 'hp': 2616, 'atk': 536, 'def': 846, 'matk': 237, 'mdef': 293, 'accuracy': 387, 'agility': 237, 'move_speed': 95, 'atk_speed': 90, 'atk_range': 1, 'crit_rate': 10, 'skills': []},
+    # Death Leech 1..5 (NPC 220..225) - Sprite 42144, habilidades [2062..2066]
+    220: {'nombre': 'Death Leech 1', 'sprite': 42144, 'level': 53, 'hp': 1830, 'atk': 418, 'def': 477, 'matk': 356, 'mdef': 209, 'accuracy': 277, 'agility': 171, 'move_speed': 85, 'atk_speed': 70, 'atk_range': 1, 'crit_rate': 5, 'skills': [2062]},
+    221: {'nombre': 'Death Leech 2', 'sprite': 42144, 'level': 59, 'hp': 2068, 'atk': 485, 'def': 558, 'matk': 402, 'mdef': 232, 'accuracy': 307, 'agility': 189, 'move_speed': 85, 'atk_speed': 70, 'atk_range': 1, 'crit_rate': 5, 'skills': [2063]},
+    222: {'nombre': 'Death Leech 3', 'sprite': 42144, 'level': 65, 'hp': 2313, 'atk': 558, 'def': 649, 'matk': 449, 'mdef': 255, 'accuracy': 337, 'agility': 207, 'move_speed': 90, 'atk_speed': 70, 'atk_range': 1, 'crit_rate': 5, 'skills': [2064]},
+    223: {'nombre': 'Death Leech 4', 'sprite': 42144, 'level': 71, 'hp': 2566, 'atk': 639, 'def': 749, 'matk': 496, 'mdef': 278, 'accuracy': 367, 'agility': 225, 'move_speed': 90, 'atk_speed': 70, 'atk_range': 1, 'crit_rate': 5, 'skills': [2065]},
+    225: {'nombre': 'Death Leech 5', 'sprite': 42144, 'level': 77, 'hp': 3818, 'atk': 1036, 'def': 1243, 'matk': 730, 'mdef': 393, 'accuracy': 517, 'agility': 315, 'move_speed': 105, 'atk_speed': 80, 'atk_range': 3, 'crit_rate': 10, 'skills': [2066]},
+    # Azrael 1..5 (NPC 226..230) - Sprite 42145, habilidades [2067..2071]
+    226: {'nombre': 'Azrael 1', 'sprite': 42145, 'level': 79, 'hp': 2912, 'atk': 722, 'def': 899, 'matk': 558, 'mdef': 309, 'accuracy': 391, 'agility': 249, 'move_speed': 90, 'atk_speed': 80, 'atk_range': 1, 'crit_rate': 15, 'skills': [2067]},
+    227: {'nombre': 'Azrael 2', 'sprite': 42145, 'level': 85, 'hp': 3179, 'atk': 819, 'def': 1025, 'matk': 606, 'mdef': 332, 'accuracy': 420, 'agility': 267, 'move_speed': 90, 'atk_speed': 80, 'atk_range': 1, 'crit_rate': 15, 'skills': [2068]},
+    228: {'nombre': 'Azrael 3', 'sprite': 42145, 'level': 91, 'hp': 3452, 'atk': 925, 'def': 1165, 'matk': 654, 'mdef': 355, 'accuracy': 448, 'agility': 285, 'move_speed': 90, 'atk_speed': 80, 'atk_range': 1, 'crit_rate': 15, 'skills': [2069]},
+    229: {'nombre': 'Azrael 4', 'sprite': 42145, 'level': 97, 'hp': 3731, 'atk': 1041, 'def': 1319, 'matk': 702, 'mdef': 378, 'accuracy': 477, 'agility': 303, 'move_speed': 90, 'atk_speed': 80, 'atk_range': 1, 'crit_rate': 15, 'skills': [2070]},
+    230: {'nombre': 'Azrael 5', 'sprite': 42145, 'level': 103, 'hp': 5120, 'atk': 1720, 'def': 2073, 'matk': 942, 'mdef': 477, 'accuracy': 623, 'agility': 393, 'move_speed': 110, 'atk_speed': 90, 'atk_range': 1, 'crit_rate': 20, 'skills': [2071]},
+}
+
+
 def datos_invocacion(npc_type: int) -> dict:
     """Obtiene los datos base del monstruo invocado desde la tabla monster."""
+    if npc_type in STATS_INVOCACIONES_XML:
+        return dict(STATS_INVOCACIONES_XML[npc_type])
     db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
     if not db.exists():
         return {'nombre': 'Summon', 'sprite': 42142, 'hp': 200, 'atk': 50, 'def': 30, 'move_speed': 70, 'atk_speed': 70, 'atk_range': 1, 'skills': []}
