@@ -526,17 +526,17 @@ def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
 
     # --- Lava Cave (Stage 69) & Flaming Door (Stage 70) ---
     if 'Earth Life Mage' in nombre:
-        return [armar_linea(5166, npc_val or 34, [5190, 5191], acciones=[1000066, 0])[2:]]
+        return [armar_linea(5166, npc_val or 34, [5190, 5191], acciones=[1000076, 0])[2:]]
     if 'ChaosWraith Mage' in nombre:
-        return [armar_linea(5167, npc_val or 90, [5190, 5191], acciones=[1000067, 0])[2:]]
+        return [armar_linea(5167, npc_val or 90, [5190, 5191], acciones=[1000077, 0])[2:]]
     if 'Weapon Boffin' in nombre:
-        return [armar_linea(5168, npc_val or 162, [5190, 5191], acciones=[1000099, 0])[2:]]
+        return [armar_linea(5168, npc_val or 162, [5190, 5191], acciones=[1000078, 0])[2:]]
     if 'Bow Researcher' in nombre:
-        return [armar_linea(5826, npc_val or 164, [5190, 5191], acciones=[1000100, 0])[2:]]
+        return [armar_linea(5826, npc_val or 164, [5190, 5191], acciones=[1000079, 0])[2:]]
     if 'Rock Master' in nombre:
-        return [armar_linea(5261, npc_val or 17, [5190, 5191], acciones=[1000092, 0])[2:]]
+        return [armar_linea(5261, npc_val or 17, [5190, 5191], acciones=[1000075, 0])[2:]]
     if 'Rock Smith' in nombre:
-        return [armar_linea(5260, npc_val or 34, [5190, 5191], acciones=[1000091, 0])[2:]]
+        return [armar_linea(5260, npc_val or 19, [5190, 5191], acciones=[1000074, 0])[2:]]
     if 'Little Childe' in nombre:
         return [armar_linea(64201, npc_val or 151, [])[2:]]
     if "Cook's Assistant" in nombre:
@@ -707,12 +707,12 @@ TIENDAS_POR_NOMBRE = {
     'Art Saleman': 6,
     'Material Seller': 56,
     'Pet Expert': 69,
-    'Earth Life Mage': 66,
-    'ChaosWraith Mage': 67,
-    'Rock Smith': 91,
-    'Rock Master': 92,
-    'Weapon Boffin': 99,
-    'Bow Researcher': 100,
+    'Rock Smith': 74,
+    'Rock Master': 75,
+    'Earth Life Mage': 76,
+    'ChaosWraith Mage': 77,
+    'Weapon Boffin': 78,
+    'Bow Researcher': 79,
     'Weaponsmith': 2,         # Armas de guerrero hasta lv 35
     'Armorsmith': 3,          # Armaduras
     'A. Recipe Seller': 20,   # Recetas de armaduras (A. Plan)
@@ -927,14 +927,14 @@ TIENDAS_POR_ENTIDAD = {
     121805: 63, # Wraith Priest -> Shop 63 (Chaos & Wraith magic skills)
 
     # --- Lava Cave (Stage 69) ---
-    122299: 91, # Rock Smith -> Shop 91
-    122300: 66, # Earth Life Mage -> Shop 66 (Earth & Life magic skills)
-    122301: 67, # ChaosWraith Mage -> Shop 67 (Chaos & Wraith magic skills)
+    122299: 74, # Rock Smith -> Shop 74 (Smith recipes: Black Sycee, Shy Batten, Reborn Sword, Shake Axe...)
+    122300: 76, # Earth Life Mage -> Shop 76 (Earth & Life magic: Wolf Bellowing, Bear Shift 4, Stealth, Unicorn Shift...)
+    122301: 77, # ChaosWraith Mage -> Shop 77 (Chaos & Wraith magic: Demon Surge, Thunder Trap 4, Icy Storm...)
 
     # --- Flaming Door (Stage 70) ---
-    122308: 92,  # Rock Master -> Shop 92 (Rock Master recipes)
-    122310: 99,  # Weapon Boffin -> Shop 99 (Weapon expert skills)
-    122311: 100, # Bow Researcher -> Shop 100 (Bow expert skills)
+    122308: 75, # Rock Master -> Shop 75 (Master recipes: Cherry Oil, Shy Batten, Benison Ring, Fool Staff...)
+    122310: 78, # Weapon Boffin -> Shop 78 (Weapon skills: Defence Wall, Speedup Attack, Swift Cut, Aurora Trap...)
+    122311: 79, # Bow Researcher -> Shop 79 (Bow skills: Defence Wall, Speedup Attack, Scorpion Snipe, Demon Sealed, Triple Shot...)
 }
 
 # Opciones de dialogo que abren la ventana de tienda (WND_NPCSALE).
