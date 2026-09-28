@@ -2386,11 +2386,10 @@ class Servidor:
                 hp_pkg = _cb.atributo(summon_eid, 100, _cb.KIND_HP)
                 atk_confirm = _cb.confirmar_cast(yo, stx, sty)
 
-                # Paquetes iniciales: confirm, efecto suelo con numero_de_dano (portal/cofre), efecto self, GCD
+                # Paquetes iniciales: confirm, efecto suelo con numero_de_dano (portal/cofre en el suelo), GCD
                 ses.enviar(
                     atk_confirm,
                     _cb.numero_de_dano(yo, 0, 0, ataque=tipo, efecto=ef, cast_time=cast_time, es_magia=True, tile_x=stx, tile_y=sty),
-                    _cb.efecto_magia_self_inicio(yo, ef, tipo, cast_time=cast_time),
                     _cb.gcd_paquete()
                 )
 
@@ -2399,7 +2398,6 @@ class Servidor:
                         return
                     pkgs_inv = [
                         _cb.cierre_de_dano(yo, 0, ataque=tipo, efecto=ef, es_magia=True, tile_x=stx, tile_y=sty),
-                        _cb.efecto_magia_self_fin(yo, ef, tipo),
                         struct.pack('<HIBBI', 0x0013, yo, 1, 0x3d, summon_eid),
                         struct.pack('<HIBBII', 0x001D, yo, 1, 0x2a, summon_eid, 0),
                         spawn_pkg,
