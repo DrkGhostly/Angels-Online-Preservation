@@ -313,6 +313,9 @@ DESCUENTO_COMPRA = 7 / 8
 
 def _precio_compra(item_id: int) -> int:
     """Lo que cuesta comprar ese item en una tienda."""
+    import configuracion as _conf
+    if getattr(_conf, 'COMPRAS_1_DE_ORO', False):
+        return 1
     return max(1, int(_precio_item(item_id) * DESCUENTO_COMPRA))
 
 
@@ -4454,7 +4457,14 @@ class Servidor:
                 elif 122086 <= ent <= 122199: _st_ent = 38  # Iron Castle
                 elif 122295 <= ent <= 122305: _st_ent = 69  # Lava Cave
                 elif 122306 <= ent <= 122315: _st_ent = 70  # Flaming Door
-                elif 122355 <= ent <= 122410 or (30080 <= ent <= 30083): _st_ent = 88  # Palm Base
+                elif 122355 <= ent <= 122404 or (30080 <= ent <= 30083): _st_ent = 88  # Palm Base
+                elif 122408 <= ent <= 122415 or (30112 <= ent <= 30115): _st_ent = 90  # Blue Ocean
+                elif 122460 <= ent <= 122495 or (30336 <= ent <= 30339): _st_ent = 104  # Waterfall Camp
+                elif 122585 <= ent <= 122610 or (30608 <= ent <= 30611): _st_ent = 121  # Desert Racetrack
+                elif 122730 <= ent <= 122760 or (31008 <= ent <= 31011): _st_ent = 146  # Airship Station
+                elif 122800 <= ent <= 122820 or (31120 <= ent <= 31123): _st_ent = 153  # Building Blocks City
+                elif 122890 <= ent <= 122925 or (31280 <= ent <= 31283): _st_ent = 163  # Hoca Village
+                elif 123000 <= ent <= 123030 or (31392 <= ent <= 31395): _st_ent = 170  # Pharaoh Village
                 else: _st_ent = None
 
                 if _st_ent and ses.personaje and (not getattr(ses.personaje, 'stage', 0) or ses.personaje.stage != _st_ent):
@@ -4616,7 +4626,14 @@ class Servidor:
                 elif 122086 <= ent <= 122199: _st_ent = 38  # Iron Castle
                 elif 122295 <= ent <= 122305: _st_ent = 69  # Lava Cave
                 elif 122306 <= ent <= 122315: _st_ent = 70  # Flaming Door
-                elif 122355 <= ent <= 122410 or (30080 <= ent <= 30083): _st_ent = 88  # Palm Base
+                elif 122355 <= ent <= 122404 or (30080 <= ent <= 30083): _st_ent = 88  # Palm Base
+                elif 122408 <= ent <= 122415 or (30112 <= ent <= 30115): _st_ent = 90  # Blue Ocean
+                elif 122460 <= ent <= 122495 or (30336 <= ent <= 30339): _st_ent = 104  # Waterfall Camp
+                elif 122585 <= ent <= 122610 or (30608 <= ent <= 30611): _st_ent = 121  # Desert Racetrack
+                elif 122730 <= ent <= 122760 or (31008 <= ent <= 31011): _st_ent = 146  # Airship Station
+                elif 122800 <= ent <= 122820 or (31120 <= ent <= 31123): _st_ent = 153  # Building Blocks City
+                elif 122890 <= ent <= 122925 or (31280 <= ent <= 31283): _st_ent = 163  # Hoca Village
+                elif 123000 <= ent <= 123030 or (31392 <= ent <= 31395): _st_ent = 170  # Pharaoh Village
                 else: _st_ent = None
 
                 if _st_ent and ses.personaje and (not getattr(ses.personaje, 'stage', 0) or ses.personaje.stage != _st_ent):

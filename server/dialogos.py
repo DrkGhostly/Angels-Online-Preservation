@@ -220,10 +220,12 @@ def info_npc(entidad: int):
 
 
 def val_por_entidad(entidad: int, val_defecto: int = 3) -> int:
-    """Calcula el ID de retrato val (sprite - 40000) a partir de la entidad."""
+    """Calcula el ID de retrato val a partir de la entidad."""
     info = info_npc(entidad)
     if info:
         spr = info.get('sprite', 0)
+        if 40200 <= spr < 41000:
+            return 1000 + (spr - 40200)
         if 40000 <= spr < 50000:
             return spr - 40000
         if spr > 0:
@@ -588,6 +590,118 @@ def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
     if 'Pyalu' in nombre:
         return [armar_linea(70707, npc_val or 56, [])[2:]]
 
+    # Atlantis - Blue Ocean (Stage 90)
+    if 'Spell Researcher' in nombre:
+        return [armar_linea(7533, npc_val or 158, [7535, 7536])[2:]]
+    if 'Skill Researcher' in nombre:
+        return [armar_linea(7534, npc_val or 108, [7535, 7536])[2:]]
+    if 'Scholar Lubo' in nombre:
+        return [armar_linea(70705, npc_val or 56, [])[2:]]
+    if 'Watt. Lightening' in nombre:
+        return [armar_linea(74801, npc_val or 9, [])[2:]]
+
+    # --- Waterfall Camp (Stage 104) & Desert Racetrack (Stage 121) ---
+    if 'Water Expert(W)' in nombre:
+        return [armar_linea(7928, npc_val or 1038, [7932, 7933])[2:]]
+    if 'Water Expert(S)' in nombre:
+        return [armar_linea(7929, npc_val or 1029, [7932, 7933])[2:]]
+    if 'Desert Expert(W)' in nombre:
+        return [armar_linea(7930, npc_val or 1063, [7932, 7933])[2:]]
+    if 'Desert Expert(S)' in nombre:
+        return [armar_linea(7931, npc_val or 1064, [7932, 7933])[2:]]
+    if 'Waterfall Blacks' in nombre or 'Desert Smith' in nombre:
+        return [armar_linea(5260, npc_val or (1034 if 'Waterfall' in nombre else 1065), [5190, 5191])[2:]]
+    if 'Waterfall Guide' in nombre or 'Desert Master' in nombre:
+        return [armar_linea(5261, npc_val or (1035 if 'Waterfall' in nombre else 1067), [5190, 5191])[2:]]
+    if 'Waterfall Mender' in nombre or 'Desert Repairman' in nombre:
+        return [armar_linea(5233, npc_val or (1033 if 'Waterfall' in nombre else 1066), [5227, 5191])[2:]]
+    if 'Waterfall Banker' in nombre or 'Desert Banker' in nombre:
+        return [armar_linea(5236, npc_val or (1032 if 'Waterfall' in nombre else 1068), [5237, 5238])[2:]]
+
+    # --- Airship Station (Stage 146 - Floating Island) ---
+    if 'Station Expert(W' in nombre:
+        return [armar_linea(7972, npc_val or 1075, [7932, 7933])[2:]]
+    if 'Station Expert(S' in nombre:
+        return [armar_linea(7973, npc_val or 1074, [7932, 7933])[2:]]
+    if 'Station Blacksmi' in nombre:
+        return [armar_linea(5260, npc_val or 1093, [5190, 5191])[2:]]
+    if 'Station Guide' in nombre:
+        return [armar_linea(5261, npc_val or 3, [5190, 5191])[2:]]
+    if 'Station Mender' in nombre:
+        return [armar_linea(5233, npc_val or 1078, [5227, 5191])[2:]]
+    if 'Station Banker' in nombre:
+        return [armar_linea(5236, npc_val or 1076, [5237, 5238])[2:]]
+    if 'Carstensen' in nombre:
+        return [armar_linea(47004, npc_val or 1095, [])[2:]]
+    if 'Researcher Lolla' in nombre:
+        return [armar_linea(68311, npc_val or 41, [])[2:]]
+
+    # --- Building Blocks City (Stage 153 - Candyland) ---
+    if 'Blocks Expert(W)' in nombre:
+        return [armar_linea(7985, npc_val or 1116, [7986, 7983])[2:]]
+    if 'Blocks Expert(S)' in nombre:
+        return [armar_linea(7987, npc_val or 1117, [7988, 7983])[2:]]
+    if 'Blocks Blacksmit' in nombre:
+        return [armar_linea(7981, npc_val or 1118, [7982, 7983])[2:]]
+    if 'Blocks Guild' in nombre or 'Blocks Guide' in nombre:
+        return [armar_linea(7984, npc_val or 1119, [7982, 7983])[2:]]
+    if 'Repair Robot' in nombre:
+        return [armar_linea(7989, npc_val or 1115, [7990, 7991])[2:]]
+    if 'Blocks Banker' in nombre:
+        return [armar_linea(7980, npc_val or 1114, [5237, 5238])[2:]]
+    if 'Lord Kahn' in nombre:
+        return [armar_linea(14315, npc_val or 1112, [])[2:]]
+
+    # --- Hoca Village (Stage 163 - Dinoland) ---
+    if 'Gurkha Expert(W)' in nombre:
+        return [armar_linea(7972, npc_val or 16, [7932, 7933])[2:]]
+    if 'Gurkha Expert(S)' in nombre:
+        return [armar_linea(7973, npc_val or 70, [7932, 7933])[2:]]
+    if 'Gurkha Smith' in nombre:
+        return [armar_linea(5260, npc_val or 180, [5190, 5191])[2:]]
+    if 'Gurkha Master' in nombre:
+        return [armar_linea(5261, npc_val or 1133, [5190, 5191])[2:]]
+    if 'Gurkha Repairer' in nombre:
+        return [armar_linea(5233, npc_val or 130, [5227, 5191])[2:]]
+    if 'Gurkha Banker' in nombre:
+        return [armar_linea(5236, npc_val or 1125, [5237, 5238])[2:]]
+    if 'Tribe Leader' in nombre:
+        return [armar_linea(19201, npc_val or 1120, [])[2:]]
+    if 'Hungry Lukas' in nombre:
+        return [armar_linea(18904, npc_val or 187, [])[2:]]
+    if 'Lady Gurkha' in nombre:
+        return [armar_linea(19001, npc_val or 1126, [])[2:]]
+    if 'Drake' in nombre:
+        return [armar_linea(19607, npc_val or 181, [])[2:]]
+    if 'Stone Tablet' in nombre:
+        return [armar_linea(26304, npc_val or 0, [])[2:]]
+    if 'Researcher Corbe' in nombre:
+        return [armar_linea(18719, npc_val or 1132, [])[2:]]
+    if 'Douglas the Herm' in nombre:
+        return [armar_linea(19625, npc_val or 1079, [])[2:]]
+    if 'Leader Hanks' in nombre:
+        return [armar_linea(98507, npc_val or 180, [])[2:]]
+
+    # --- Pharaoh Village (Stage 170 - Egypt) ---
+    if 'Pharaoh Expert(W' in nombre:
+        return [armar_linea(7972, npc_val or 1147, [7932, 7933])[2:]]
+    if 'Pharaoh Expert(S' in nombre:
+        return [armar_linea(7973, npc_val or 1068, [7932, 7933])[2:]]
+    if 'Pharaoh Smith' in nombre:
+        return [armar_linea(5260, npc_val or 1026, [5190, 5191])[2:]]
+    if 'Pharaoh Master' in nombre:
+        return [armar_linea(5261, npc_val or 1047, [5190, 5191])[2:]]
+    if 'Pharaoh Repairer' in nombre:
+        return [armar_linea(5233, npc_val or 1142, [5227, 5191])[2:]]
+    if 'Pharaoh Banker' in nombre:
+        return [armar_linea(5236, npc_val or 1143, [5237, 5238])[2:]]
+    if 'Prof. Stein' in nombre:
+        return [armar_linea(37410, npc_val or 1122, [])[2:]]
+    if 'Priest Eaglearch' in nombre:
+        return [armar_linea(37311, npc_val or 1150, [])[2:]]
+    if 'Elder Fredderick' in nombre:
+        return [armar_linea(39120, npc_val or 29, [])[2:]]
+
     if 'Little Childe' in nombre:
         return [armar_linea(64201, npc_val or 151, [])[2:]]
     if "Cook's Assistant" in nombre:
@@ -630,7 +744,7 @@ def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
         return [armar_linea(93302, npc_val or 112, [93303, 93304])[2:]]
 
     # Healer (Vendedora de pociones, martillos, soap, etc.)
-    if 'Healer' in nombre:
+    if 'Healer' in nombre or 'Healing Angel' in nombre:
         return [armar_linea(5775, npc_val or 33, [5190, 5191])[2:]]
 
     # Reparadores de equipo segun ciudad
@@ -805,6 +919,34 @@ TIENDAS_POR_NOMBRE = {
     'Art Clerk': 21,         # Recetas de artesania
     'Sewing Clerk': 22,      # Recetas de sastreria
     'Cooking Clerk': 23,     # Recetas de cocina
+    'Spell Researcher': 89,  # Atlantis Blue Ocean - Spells (Action Sealed IV, Power Shield I-II, Anti-locked Shield I-III)
+    'Skill Researcher': 90,  # Atlantis Blue Ocean - Skills (Dream Slaughter IV, Silence IV, Defence Wall II-IV, Speedup Attack II-IV, Anti-locked Tactics I-III)
+    'Water Expert(W)': 96,   # Waterfall Camp - Weapon skills lv 90-100
+    'Desert Expert(W)': 96,  # Desert Racetrack - Weapon skills lv 90-100
+    'Water Expert(S)': 95,   # Waterfall Camp - Spell skills lv 90-100
+    'Desert Expert(S)': 95,  # Desert Racetrack - Spell skills lv 90-100
+    'Waterfall Blacks': 93,  # Waterfall Camp - Smith recipes lv 90-100
+    'Desert Smith': 93,      # Desert Racetrack - Smith recipes lv 90-100
+    'Waterfall Guide': 94,   # Waterfall Camp - Master recipes lv 90-100
+    'Desert Master': 94,     # Desert Racetrack - Master recipes lv 90-100
+    'Station Expert(W': 105, # Airship Station - Weapon skills lv 100-110
+    'Station Expert(S': 104, # Airship Station - Spell skills lv 100-110
+    'Station Blacksmi': 102, # Airship Station - Smith recipes lv 121-125
+    'Station Guide': 103,    # Airship Station - Master recipes lv 121-125
+    'Blocks Expert(W)': 109, # Building Blocks City - Weapon skills
+    'Blocks Expert(S)': 108, # Building Blocks City - Spell skills
+    'Blocks Blacksmit': 106, # Building Blocks City - Smith recipes lv 131-145
+    'Blocks Guild': 107,     # Building Blocks City - Master recipes lv 131-145
+    'Blocks Guide': 107,     # Building Blocks City - Master recipes lv 131-145
+    'Healing Angel': 35,     # Building Blocks City - Potions & supplies
+    'Gurkha Expert(W)': 113, # Hoca Village - Weapon skills
+    'Gurkha Expert(S)': 112, # Hoca Village - Spell skills
+    'Gurkha Smith': 114,     # Hoca Village - Smith recipes
+    'Gurkha Master': 115,    # Hoca Village - Master recipes
+    'Pharaoh Expert(W)': 117, # Pharaoh Village - Weapon skills
+    'Pharaoh Expert(S)': 116, # Pharaoh Village - Spell skills
+    'Pharaoh Smith': 118,     # Pharaoh Village - Smith recipes
+    'Pharaoh Master': 119,    # Pharaoh Village - Master recipes
 }
 
 # Tiendas especificas segun la entidad del NPC que vende
@@ -1024,6 +1166,47 @@ TIENDAS_POR_ENTIDAD = {
     122389: 21, # Art Clerk -> Shop 21 (Art recipes)
     122362: 22, # Sewing Clerk -> Shop 22 (Sewing recipes)
     122372: 23, # Cooking Clerk -> Shop 23 (Cooking recipes)
+
+    # --- Blue Ocean (Stage 90 - Atlantis) ---
+    122411: 90, # Skill Researcher -> Shop 90 (Dream Slaughter IV, Silence IV, Defence Wall II-IV, Speedup Attack II-IV, Anti-locked Tactics I-III)
+    122412: 89, # Spell Researcher -> Shop 89 (Action Sealed IV, Power Shield I-II, Anti-locked Shield I-III)
+
+    # --- Waterfall Camp (Stage 104) ---
+    122480: 96, # Water Expert(W) -> Shop 96 (Weapon Skill Scrolls lv 90-100)
+    122481: 95, # Water Expert(S) -> Shop 95 (Spell Skill Scrolls lv 90-100)
+    122469: 93, # Waterfall Blacks -> Shop 93 (Smith recipes lv 90-100)
+    122470: 94, # Waterfall Guide -> Shop 94 (Master recipes lv 90-100)
+
+    # --- Desert Racetrack (Stage 121) ---
+    122592: 96, # Desert Expert(W) -> Shop 96 (Weapon Skill Scrolls lv 90-100)
+    122599: 95, # Desert Expert(S) -> Shop 95 (Spell Skill Scrolls lv 90-100)
+    122598: 93, # Desert Smith -> Shop 93 (Smith recipes lv 90-100)
+    122594: 94, # Desert Master -> Shop 94 (Master recipes lv 90-100)
+
+    # --- Airship Station (Stage 146 - Floating Island) ---
+    122738: 105, # Station Expert(W) -> Shop 105 (Weapon Skill Scrolls lv 100-110)
+    122737: 104, # Station Expert(S) -> Shop 104 (Spell Skill Scrolls lv 100-110)
+    122735: 102, # Station Blacksmi -> Shop 102 (Smith recipes lv 121-125)
+    122736: 103, # Station Guide -> Shop 103 (Master recipes lv 121-125)
+
+    # --- Building Blocks City (Stage 153 - Candyland) ---
+    122802: 109, # Blocks Expert(W) -> Shop 109 (Weapon skill scrolls)
+    122801: 108, # Blocks Expert(S) -> Shop 108 (Spell skill scrolls)
+    122805: 106, # Blocks Blacksmit -> Shop 106 (Smith recipes lv 131-145)
+    122806: 107, # Blocks Guild -> Shop 107 (Master recipes lv 131-145)
+    122812: 35,  # Healing Angel -> Shop 35 (Potions & supplies)
+
+    # --- Hoca Village (Stage 163 - Dinoland) ---
+    122898: 113, # Gurkha Expert(W) -> Shop 113 (Weapon skill scrolls)
+    122897: 112, # Gurkha Expert(S) -> Shop 112 (Spell skill scrolls)
+    122899: 114, # Gurkha Smith -> Shop 114 (Smith recipes lv 151-155)
+    122900: 115, # Gurkha Master -> Shop 115 (Master recipes lv 151-155)
+
+    # --- Pharaoh Village (Stage 170 - Egypt) ---
+    123009: 117, # Pharaoh Expert(W) -> Shop 117 (Weapon skill scrolls)
+    123013: 116, # Pharaoh Expert(S) -> Shop 116 (Spell skill scrolls)
+    123011: 118, # Pharaoh Smith -> Shop 118 (Smith recipes lv 161-165)
+    123012: 119, # Pharaoh Master -> Shop 119 (Master recipes lv 161-165)
 }
 
 # Opciones de dialogo que abren la ventana de tienda (WND_NPCSALE).
@@ -1033,6 +1216,10 @@ TIENDAS_POR_OPCION = {
     5190: 1,     # "I wish to look at your goods" (Skills & gear)
     5270: 56,    # "Let me see." (StuffShop / Material Seller)
     7535: 87,    # "I wish to buy the scroll." (Deputy / Weapon Master / Archer Trainer)
+    7932: 96,    # "I want to buy" (Waterfall / Desert Experts)
+    7982: 106,   # "Can you show me what skills you have?" (Blocks Smith & Guild)
+    7986: 109,   # "Oh, I want to learn them!" (Blocks Expert(W))
+    7988: 108,   # "Oh, I want to learn them!" (Blocks Expert(S))
     6102: 69,    # Pet Expert -> Shop 69 (Comida y galletas de mascota)
     5045: 37,    # Angel Aide (Guide Palace) -> Shop 37
 }
@@ -1060,7 +1247,7 @@ def opciones_de(linea: bytes):
 def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
                 nombre: str = '', stage: int = 0, nivel: int = 0):
     """Devuelve tupla de sub-mensajes: apertura de tienda y/o cierre/continuacion de dialogo."""
-    if opcion_id in (5190, 5270, 7535, 12103) or opcion_id in TIENDAS_POR_OPCION:
+    if opcion_id in (5190, 5270, 7535, 7932, 7982, 7986, 7988, 12103) or opcion_id in TIENDAS_POR_OPCION:
         shop_id = 0
         # 1. Prioridad: por entity_id exacto (garantiza tienda correcta por ciudad)
         if entidad in TIENDAS_POR_ENTIDAD:
@@ -1203,8 +1390,8 @@ def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
         pkg_prof = struct.pack('<HIBBII', 0x001D, entidad, 1, 12, 0, 0)
         return (pkg_prof, pkg_cierre)
 
-    # Reparacion de equipo (Repair Angel: 5101 / Repair Expert: 5227) -> abre WND_REPAIR (opcode 0x004F)
-    if opcion_id in (5101, 5227):
+    # Reparacion de equipo (Repair Angel: 5101 / Repair Expert: 5227 / Repair Robot: 7990) -> abre WND_REPAIR (opcode 0x004F)
+    if opcion_id in (5101, 5227, 7990):
         pkg_cierre = struct.pack('<H', 0x0012) + FIN
         pkg_repair = struct.pack('<HBB', 0x004F, 1, 0)
         return (pkg_repair, pkg_cierre)
@@ -1237,7 +1424,7 @@ def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
     # Angel Raphael (Guide Palace)
     if opcion_id == 5009:  # "I don't want to join in." -> 5010 (preguntar si esta seguro)
         return (armar_linea(5010, 3, [5011, 5012]),)
-    if opcion_id in (5012, 5191, 5242, 5046, 5059, 5064, 5271, 7536, 5238):  # Quit / cerrar
+    if opcion_id in (5012, 5191, 5242, 5046, 5059, 5064, 5271, 7536, 5238, 7933, 7983, 7991):  # Quit / cerrar
         return (struct.pack('<H', 0x0012) + FIN,)
 
     # Angel Raphael (Fighting Palace): 5063 "I'm ready to go to the Angel Lyceum."

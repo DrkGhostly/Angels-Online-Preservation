@@ -797,9 +797,15 @@ def _tabla():
                     d = int(fila[1]) if fila[1] else 0
                 except ValueError:
                     d = 0
-                es_eq = any(v == '是' for v in fila[3:]) or (fila[2] in ('寵物', '座騎', '紙娃娃'))
-                _CAT[int(fila[0])] = (es_eq, d)
+                es_eq = any(v == '是' for v in fila[3:]) or (fila[2] in ('寵物', '座騎', '紙娃娃', '機甲'))
+                _CAT[int(fila[0])] = (es_eq, d, fila[2])
     return _CAT
+
+
+def categoria_item(item_id: int) -> str:
+    """Devuelve la categoria del item desde item.xml (ej. '寵物', '機甲', '座騎')."""
+    info = _tabla().get(int(item_id or 0))
+    return info[2] if info and len(info) > 2 else ''
 
 
 def es_equipable(item_id: int) -> bool:
@@ -819,10 +825,14 @@ def es_apilable(item_id: int) -> bool:
 
 
 def es_mascota(item_id: int) -> bool:
-    """Si el item es una mascota o huevo de mascota."""
+    """Si el item es una mascota o huevo de mascota (categoria '寵物').
+    
+    NO confundir con '機甲' (armaduras/partes de robot como Shark Armor 5293)
+    ni '座騎' (monturas como Gryphon 21404), que van en la ranura 9/10 pero
+    tienen estructura de equipo normal y durabilidad."""
     if item_id in (3396, 3397, 3398, 3399):
         return True
-    return ranura_equipo_de(item_id) == 9
+    return categoria_item(item_id) == '寵物'
 
 
 _SLOT_CACHE = None
@@ -1149,9 +1159,8 @@ def _entrada(char_id: int, ranura: int, item_id: int, cant: int,
     struct.pack_into('<I', e, 34, dueno)
     struct.pack_into('<H', e, 38, ranura)
     struct.pack_into('<I', e, 40, cant)
-    if es_mascota(item_id):
-        # Formatear datos de mascota para que no crashee el tooltip y no se
-        # vea muerta
+    if es_mascota(item_id) and not es_eq:
+        # Formatear datos de huevo de mascota para que no crashee el tooltip y no se vea muerta
         nombres_elfos = {3396: b"Water Elf\x00", 3397: b"Fire Elf\x00",
                          3398: b"Wind Elf\x00", 3399: b"Earth Elf\x00"}
         nom_pet = nombres_elfos.get(item_id, b"Pet\x00")
@@ -1175,6 +1184,9 @@ def _entrada(char_id: int, ranura: int, item_id: int, cant: int,
         struct.pack_into('<I', e, 53, dueno if puesta else 0)
         e[57] = 2 if puesta else 3
         e[58] = 1
+        # Offset 51 (0x33) es el campo que le indica al cliente que esta entrada
+        # mide 119 bytes (86 + 33 extra). NUNCA debe alterarse en un equipable.
+        e[51] = 0x21
         # Y el servidor repite ahi los dieciseis bits bajos del numero de
         # instancia.
         struct.pack_into('<I', e, 84,

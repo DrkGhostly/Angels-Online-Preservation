@@ -73,3 +73,10 @@ def multiplicador_drop() -> float:
         m *= 1.5
     return m
 
+
+# =====================================================================
+# MODO PRUEBAS / DEBUG
+# =====================================================================
+# Si es True, cualquier compra en tiendas NPC cuesta solo 1 de oro por item.
+# Si es False, se cobra el precio normal de item.xml.
+COMPRAS_1_DE_ORO = True
