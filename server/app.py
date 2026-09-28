@@ -225,7 +225,7 @@ def _portal_en(stage, tx, ty):
         # y eso no vale para todos: el tornado de Mushroom hacia Jade Vale
         # dispara desde dos casillas antes -- medido, el jugador se quedo en
         # (6,238) y el tornado esta en (5,240).
-        r = por.get('radio', cfg.get('radio', 2))
+        r = max(2, por.get('radio', cfg.get('radio', 2)))
         if abs(por['tile'][0] - tx) <= r and abs(por['tile'][1] - ty) <= r:
             return por
     return None
@@ -1056,23 +1056,32 @@ def _armar_portal_al_llegar(ses, addr, destino_tile, casillas):
     import asyncio
     _cancelar_portal_armado(ses)
     por = _portal_en(ses.personaje.stage, *destino_tile)
-    if por is None or por.get('preguntar'):
+    if por is None:
         return
-    # Mismo guardia que el camino normal: si ya se estaba encima de ese
-    # tornado no se vuelve a viajar, o al aterrizar dentro de su radio se
-    # saldria otra vez en cuanto el jugador diera un paso.
-    if getattr(ses, 'portal_pisado', None) == tuple(por['tile']):
+    if getattr(ses, 'portal_pisado', None) == tuple(por['tile']) and (time.time() - getattr(ses, 'mapa_cambiado_en', 0) < 3.0):
         return
     vel = max(1, _velocidad_de(ses))
-    # 25 casillas-velocidad por segundo: sale de las capturas, donde el
-    # personaje a velocidad 212 recorria unas dos casillas cada 0,2 s.
-    espera = min(10.0, max(0.2, casillas * 25.0 / vel))
+    espera = min(5.0, max(0.2, casillas * 25.0 / vel))
 
     def _saltar():
         ses.portal_armado = None
         try:
-            if ses.personaje and _portal_en(ses.personaje.stage, *destino_tile) is por:
-                _viajar_por_portal(ses, addr, por, '(al terminar el paso)')
+            if ses.personaje:
+                p_act = _portal_en(ses.personaje.stage, *destino_tile)
+                if p_act:
+                    if p_act.get('preguntar'):
+                        import dialogos as _dlg
+                        _cfg = _portales()
+                        _ops = p_act.get('opciones') or _cfg['opciones']
+                        sub = _dlg.armar_linea(p_act.get('msg') or _cfg['msg'], 0, _ops)
+                        ses.dlg_ent = p_act.get('entity', 0)
+                        ses.dlg_guion = [sub[2:]]
+                        ses.dlg_paso = 1
+                        ses.dlg_val = 0
+                        ses.dlg_portal = p_act
+                        ses.enviar(sub)
+                    else:
+                        _viajar_por_portal(ses, addr, p_act, '(al terminar el paso)')
         except Exception:
             log.exception('fallo el portal armado')
 
@@ -1721,7 +1730,7 @@ class Servidor:
                                     if dist_t > 15:
                                         inv['objetivo'] = None
                                     elif dist_t <= r_inv:
-                                        cad_inv = max(1.0, inv.get('atk_speed', 70) / 70.0 * 1.3)
+                                        cad_inv = max(0.65, min(1.0, 1.264 - 0.00477 * inv.get('atk_speed', 80)))
                                         if ahora - inv.get('ultimo_ataque', 0) >= cad_inv:
                                             inv['ultimo_ataque'] = ahora
                                             skills_inv = inv.get('skills', [])
@@ -3889,21 +3898,6 @@ class Servidor:
                             f"en jumpmap.xml: {ido}")
                 return
             dst, lleg = int(d['stage']), list(d['tile'])
-            # Solo a los mapas que tenemos poblados. Mandarlo a un stage sin
-            # plantilla lo dejaria en un mapa vacio y sin forma de salir.
-            if dst not in mapas_poblados():
-                log.info(f"[{addr}] Angels GO! id {ido} -> stage {dst}, que "
-                         f"todavia no esta poblado; no se viaja")
-                return
-            # SIN FACCION NO HAY SUPERWING. Medido: un personaje en
-            # "Heaven", o sea sin haber elegido en el Graduation Palace, no
-            # puede usarlas. Va antes de tocar el inventario para que ni
-            # siquiera se gaste el objeto.
-            if not tiene_faccion(ses.personaje):
-                log.info(f"[{addr}] Angels GO! rechazado: el personaje esta "
-                         f"en '{getattr(ses.personaje, 'faction', '?')}' y no "
-                         f"pertenece a ninguna de las cuatro facciones")
-                return
             ranura = _ranura_de_item(ses, ITEM_SUPERWING)
             if ranura is None:
                 log.info(f"[{addr}] Angels GO! sin Superwing en la mochila")
@@ -5193,13 +5187,16 @@ class Servidor:
                 # desde lejos el viaje salia en el acto, sin caminar. El
                 # cliente informa su posicion mientras camina, asi que al
                 # pisarlo de verdad llega igual.
-                tx, ty = d['cur_x'] // 32, d['cur_y'] // 32
-                _por = _portal_en(ses.personaje.stage, tx, ty)
-                # Se recuerda en que portal se esta parado y solo se abre el
-                # menu al ENTRAR. Antes bastaba con que dlg_ent estuviera
-                # libre, pero si el cliente cierra el cuadro por su cuenta
-                # -- con la X o con Escape -- no avisa, dlg_ent queda pegado y
-                # el portal no volvia a abrir hasta reconectar.
+                cur_tx, cur_ty = d['cur_x'] // 32, d['cur_y'] // 32
+                dst_tx, dst_ty = dst['x'] // 32, dst['y'] // 32
+                _por = _portal_en(ses.personaje.stage, cur_tx, cur_ty)
+                if not _por:
+                    dist_to_dst = max(abs(cur_tx - dst_tx), abs(cur_ty - dst_ty))
+                    if dist_to_dst <= 3:
+                        _por = _portal_en(ses.personaje.stage, dst_tx, dst_ty)
+
+                if time.time() - getattr(ses, 'mapa_cambiado_en', 0) > 2.0:
+                    ses.portal_pisado = None
                 _antes = getattr(ses, 'portal_pisado', None)
                 _ahora = tuple(_por['tile']) if _por else None
                 ses.portal_pisado = _ahora

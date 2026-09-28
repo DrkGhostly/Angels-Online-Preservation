@@ -503,6 +503,7 @@ def datos_magia(magic_id: int) -> dict:
                 res['dur_invoca'] = dur_inv if dur_inv > 0 else 3600
                 res['es_invocacion'] = bool(
                     res['invoca_npc'] > 0 and (
+                        d.get('召喚型') == '是' or
                         any(k in nom_l for k in ('summon', 'ghostly swordsman', 'clone', 'mirage', 'phantom', 'avatar', 'titan', 'putridox', 'minotaur', 'leech', 'azrael', 'muncher', 'skeleton', 'mummy', 'demon', 'golem')) or
                         'summon' in desc_l
                     )
@@ -629,11 +630,47 @@ STATS_INVOCACIONES_XML = {
     223: {'nombre': 'Death Leech 4', 'sprite': 42144, 'level': 71, 'hp': 2566, 'atk': 639, 'def': 749, 'matk': 496, 'mdef': 278, 'accuracy': 367, 'agility': 225, 'move_speed': 90, 'atk_speed': 70, 'atk_range': 1, 'crit_rate': 5, 'skills': [2065]},
     225: {'nombre': 'Death Leech 5', 'sprite': 42144, 'level': 77, 'hp': 3818, 'atk': 1036, 'def': 1243, 'matk': 730, 'mdef': 393, 'accuracy': 517, 'agility': 315, 'move_speed': 105, 'atk_speed': 80, 'atk_range': 3, 'crit_rate': 10, 'skills': [2066]},
     # Azrael 1..5 (NPC 226..230) - Sprite 42145, habilidades [2067..2071]
-    226: {'nombre': 'Azrael 1', 'sprite': 42145, 'level': 79, 'hp': 2912, 'atk': 722, 'def': 899, 'matk': 558, 'mdef': 309, 'accuracy': 391, 'agility': 249, 'move_speed': 90, 'atk_speed': 80, 'atk_range': 1, 'crit_rate': 15, 'skills': [2067]},
-    227: {'nombre': 'Azrael 2', 'sprite': 42145, 'level': 85, 'hp': 3179, 'atk': 819, 'def': 1025, 'matk': 606, 'mdef': 332, 'accuracy': 420, 'agility': 267, 'move_speed': 90, 'atk_speed': 80, 'atk_range': 1, 'crit_rate': 15, 'skills': [2068]},
-    228: {'nombre': 'Azrael 3', 'sprite': 42145, 'level': 91, 'hp': 3452, 'atk': 925, 'def': 1165, 'matk': 654, 'mdef': 355, 'accuracy': 448, 'agility': 285, 'move_speed': 90, 'atk_speed': 80, 'atk_range': 1, 'crit_rate': 15, 'skills': [2069]},
-    229: {'nombre': 'Azrael 4', 'sprite': 42145, 'level': 97, 'hp': 3731, 'atk': 1041, 'def': 1319, 'matk': 702, 'mdef': 378, 'accuracy': 477, 'agility': 303, 'move_speed': 90, 'atk_speed': 80, 'atk_range': 1, 'crit_rate': 15, 'skills': [2070]},
-    230: {'nombre': 'Azrael 5', 'sprite': 42145, 'level': 103, 'hp': 5120, 'atk': 1720, 'def': 2073, 'matk': 942, 'mdef': 477, 'accuracy': 623, 'agility': 393, 'move_speed': 110, 'atk_speed': 90, 'atk_range': 1, 'crit_rate': 20, 'skills': [2071]},
+    226: {'nombre': 'Azrael 1', 'sprite': 42145, 'level': 79, 'hp': 2912, 'atk': 722, 'def': 899, 'matk': 558, 'mdef': 309, 'accuracy': 391, 'agility': 249, 'move_speed': 90, 'atk_speed': 80, 'atk_range': 3, 'crit_rate': 15, 'skills': [2067]},
+    227: {'nombre': 'Azrael 2', 'sprite': 42145, 'level': 85, 'hp': 3179, 'atk': 819, 'def': 1025, 'matk': 606, 'mdef': 332, 'accuracy': 420, 'agility': 267, 'move_speed': 90, 'atk_speed': 80, 'atk_range': 3, 'crit_rate': 15, 'skills': [2068]},
+    228: {'nombre': 'Azrael 3', 'sprite': 42145, 'level': 91, 'hp': 3452, 'atk': 925, 'def': 1165, 'matk': 654, 'mdef': 355, 'accuracy': 448, 'agility': 285, 'move_speed': 90, 'atk_speed': 80, 'atk_range': 3, 'crit_rate': 15, 'skills': [2069]},
+    229: {'nombre': 'Azrael 4', 'sprite': 42145, 'level': 97, 'hp': 3731, 'atk': 1041, 'def': 1319, 'matk': 702, 'mdef': 378, 'accuracy': 477, 'agility': 303, 'move_speed': 90, 'atk_speed': 80, 'atk_range': 3, 'crit_rate': 15, 'skills': [2070]},
+    230: {'nombre': 'Azrael 5', 'sprite': 42145, 'level': 103, 'hp': 5120, 'atk': 1720, 'def': 2073, 'matk': 942, 'mdef': 477, 'accuracy': 623, 'agility': 393, 'move_speed': 110, 'atk_speed': 90, 'atk_range': 3, 'crit_rate': 20, 'skills': [2071]},
+    # Soul Eater 1..5 (NPC 5014..5018) - Sprite 42732, habilidades [3291..3295]
+    5014: {'nombre': 'Soul Eater 1', 'sprite': 42732, 'level': 103, 'hp': 22535, 'atk': 837, 'def': 1813, 'matk': 669, 'mdef': 665, 'accuracy': 527, 'agility': 321, 'move_speed': 125, 'atk_speed': 70, 'atk_range': 1, 'crit_rate': 5, 'skills': [3291]},
+    5015: {'nombre': 'Soul Eater 2', 'sprite': 42732, 'level': 115, 'hp': 25185, 'atk': 1101, 'def': 2459, 'matk': 898, 'mdef': 755, 'accuracy': 587, 'agility': 357, 'move_speed': 125, 'atk_speed': 70, 'atk_range': 1, 'crit_rate': 5, 'skills': [3292]},
+    5016: {'nombre': 'Soul Eater 3', 'sprite': 42732, 'level': 127, 'hp': 28300, 'atk': 1325, 'def': 2974, 'matk': 1060, 'mdef': 1120, 'accuracy': 648, 'agility': 393, 'move_speed': 125, 'atk_speed': 70, 'atk_range': 1, 'crit_rate': 5, 'skills': [3293]},
+    5017: {'nombre': 'Soul Eater 4', 'sprite': 42732, 'level': 139, 'hp': 31415, 'atk': 1549, 'def': 3489, 'matk': 1222, 'mdef': 1234, 'accuracy': 709, 'agility': 429, 'move_speed': 125, 'atk_speed': 70, 'atk_range': 1, 'crit_rate': 5, 'skills': [3294]},
+    5018: {'nombre': 'Soul Eater 5', 'sprite': 42732, 'level': 151, 'hp': 47211, 'atk': 2785, 'def': 6373, 'matk': 2149, 'mdef': 1834, 'accuracy': 1025, 'agility': 615, 'move_speed': 135, 'atk_speed': 80, 'atk_range': 1, 'crit_rate': 10, 'skills': [3295]},
+    # Demon 1..5 (NPC 7875..7879) - Sprite 43157, ataque basico
+    7875: {'nombre': 'Demon 1', 'sprite': 43157, 'level': 126, 'hp': 45000, 'atk': 3600, 'def': 4200, 'matk': 1650, 'mdef': 2950, 'accuracy': 1040, 'agility': 635, 'move_speed': 110, 'atk_speed': 120, 'atk_range': 2, 'crit_rate': 5, 'skills': []},
+    7876: {'nombre': 'Demon 2', 'sprite': 43157, 'level': 134, 'hp': 52000, 'atk': 4000, 'def': 5400, 'matk': 1760, 'mdef': 3150, 'accuracy': 1100, 'agility': 670, 'move_speed': 110, 'atk_speed': 120, 'atk_range': 2, 'crit_rate': 5, 'skills': []},
+    7877: {'nombre': 'Demon 3', 'sprite': 43157, 'level': 142, 'hp': 58000, 'atk': 4590, 'def': 6100, 'matk': 1860, 'mdef': 3300, 'accuracy': 1160, 'agility': 700, 'move_speed': 110, 'atk_speed': 120, 'atk_range': 2, 'crit_rate': 5, 'skills': []},
+    7878: {'nombre': 'Demon 4', 'sprite': 43157, 'level': 150, 'hp': 64000, 'atk': 5160, 'def': 6900, 'matk': 1970, 'mdef': 3470, 'accuracy': 1220, 'agility': 740, 'move_speed': 110, 'atk_speed': 120, 'atk_range': 2, 'crit_rate': 5, 'skills': []},
+    7879: {'nombre': 'Demon 5', 'sprite': 43157, 'level': 158, 'hp': 70000, 'atk': 5790, 'def': 7740, 'matk': 2070, 'mdef': 3600, 'accuracy': 1280, 'agility': 780, 'move_speed': 110, 'atk_speed': 120, 'atk_range': 2, 'crit_rate': 5, 'skills': []},
+    # Demon Lord (NPC 12553) - Sprite 43163
+    12553: {'nombre': 'Demon Lord', 'sprite': 43163, 'level': 192, 'hp': 280000, 'atk': 12000, 'def': 8200, 'matk': 9800, 'mdef': 4100, 'accuracy': 2800, 'agility': 910, 'move_speed': 110, 'atk_speed': 120, 'atk_range': 2, 'crit_rate': 5, 'skills': []},
+    # Ghostly Swordsman 1..5 (NPC 17144..17148) - Sprite 43692
+    17144: {'nombre': 'Ghostly Swordsman 1', 'sprite': 43692, 'level': 210, 'hp': 411919, 'atk': 18583, 'def': 9298, 'matk': 10026, 'mdef': 5177, 'accuracy': 2560, 'agility': 905, 'move_speed': 100, 'atk_speed': 95, 'atk_range': 2, 'crit_rate': 5, 'skills': []},
+    17145: {'nombre': 'Ghostly Swordsman 2', 'sprite': 43692, 'level': 220, 'hp': 470764, 'atk': 21238, 'def': 10626, 'matk': 11458, 'mdef': 5916, 'accuracy': 2926, 'agility': 1034, 'move_speed': 100, 'atk_speed': 95, 'atk_range': 2, 'crit_rate': 5, 'skills': [8342]},
+    17146: {'nombre': 'Ghostly Swordsman 3', 'sprite': 43692, 'level': 230, 'hp': 529610, 'atk': 23893, 'def': 11954, 'matk': 12890, 'mdef': 6656, 'accuracy': 3292, 'agility': 1163, 'move_speed': 100, 'atk_speed': 95, 'atk_range': 2, 'crit_rate': 5, 'skills': [8342]},
+    17147: {'nombre': 'Ghostly Swordsman 4', 'sprite': 43692, 'level': 240, 'hp': 588456, 'atk': 26548, 'def': 13283, 'matk': 14323, 'mdef': 7396, 'accuracy': 3658, 'agility': 1293, 'move_speed': 100, 'atk_speed': 95, 'atk_range': 2, 'crit_rate': 5, 'skills': [8342, 8343]},
+    17148: {'nombre': 'Ghostly Swordsman 5', 'sprite': 43692, 'level': 250, 'hp': 647301, 'atk': 29202, 'def': 14611, 'matk': 15755, 'mdef': 8135, 'accuracy': 4023, 'agility': 1422, 'move_speed': 100, 'atk_speed': 95, 'atk_range': 2, 'crit_rate': 5, 'skills': [8342, 8343]},
+    # Putridox 1..5 (NPC 20351..20355) - Sprite 110412
+    20351: {'nombre': 'Putridox I', 'sprite': 110412, 'level': 260, 'hp': 1100000, 'atk': 59000, 'def': 40500, 'matk': 37500, 'mdef': 19750, 'accuracy': 6200, 'agility': 3000, 'move_speed': 110, 'atk_speed': 120, 'atk_range': 3, 'crit_rate': 5, 'skills': [8351]},
+    20352: {'nombre': 'Putridox II', 'sprite': 110412, 'level': 270, 'hp': 1200000, 'atk': 62000, 'def': 42000, 'matk': 39000, 'mdef': 20500, 'accuracy': 6600, 'agility': 3000, 'move_speed': 110, 'atk_speed': 120, 'atk_range': 3, 'crit_rate': 5, 'skills': [8351]},
+    20353: {'nombre': 'Putridox III', 'sprite': 110412, 'level': 280, 'hp': 1300000, 'atk': 65000, 'def': 43500, 'matk': 40500, 'mdef': 21250, 'accuracy': 7000, 'agility': 3000, 'move_speed': 110, 'atk_speed': 120, 'atk_range': 3, 'crit_rate': 5, 'skills': [8351]},
+    20354: {'nombre': 'Putridox IV', 'sprite': 110412, 'level': 290, 'hp': 1400000, 'atk': 68000, 'def': 45000, 'matk': 42000, 'mdef': 22000, 'accuracy': 7400, 'agility': 3000, 'move_speed': 110, 'atk_speed': 120, 'atk_range': 3, 'crit_rate': 5, 'skills': [8351, 14252]},
+    20355: {'nombre': 'Putridox V', 'sprite': 110412, 'level': 300, 'hp': 1600000, 'atk': 74000, 'def': 48000, 'matk': 45000, 'mdef': 23500, 'accuracy': 8200, 'agility': 3000, 'move_speed': 110, 'atk_speed': 120, 'atk_range': 3, 'crit_rate': 5, 'skills': [8351, 14252]},
+    # Minotaur 1..4 (NPC 21938..21941) - Sprite 110953 / 110954
+    21938: {'nombre': 'Minotaur I', 'sprite': 110953, 'level': 280, 'hp': 1400000, 'atk': 68000, 'def': 43500, 'matk': 40500, 'mdef': 21250, 'accuracy': 5600, 'agility': 2800, 'move_speed': 80, 'atk_speed': 80, 'atk_range': 2, 'crit_rate': 10, 'skills': [20040]},
+    21939: {'nombre': 'Minotaur II', 'sprite': 110953, 'level': 290, 'hp': 1500000, 'atk': 71000, 'def': 45000, 'matk': 42000, 'mdef': 22000, 'accuracy': 5800, 'agility': 2900, 'move_speed': 90, 'atk_speed': 90, 'atk_range': 2, 'crit_rate': 10, 'skills': [20041]},
+    21940: {'nombre': 'Minotaur III', 'sprite': 110954, 'level': 300, 'hp': 1600000, 'atk': 74000, 'def': 46500, 'matk': 43500, 'mdef': 22750, 'accuracy': 6000, 'agility': 3000, 'move_speed': 100, 'atk_speed': 100, 'atk_range': 2, 'crit_rate': 10, 'skills': [20042]},
+    21941: {'nombre': 'Minotaur IV', 'sprite': 110954, 'level': 310, 'hp': 1700000, 'atk': 77000, 'def': 48000, 'matk': 45000, 'mdef': 23500, 'accuracy': 6200, 'agility': 3100, 'move_speed': 110, 'atk_speed': 110, 'atk_range': 2, 'crit_rate': 10, 'skills': [20043, 20066]},
+    # Earth Titan 1..4 (NPC 23528..23531) - Sprite 111388 / 111389
+    23528: {'nombre': 'Earth Titan I', 'sprite': 111388, 'level': 310, 'hp': 1700000, 'atk': 77000, 'def': 48000, 'matk': 45000, 'mdef': 23500, 'accuracy': 6200, 'agility': 3100, 'move_speed': 80, 'atk_speed': 80, 'atk_range': 2, 'crit_rate': 10, 'skills': [20064]},
+    23529: {'nombre': 'Earth Titan II', 'sprite': 111388, 'level': 320, 'hp': 1800000, 'atk': 80000, 'def': 49500, 'matk': 46500, 'mdef': 24250, 'accuracy': 6400, 'agility': 3200, 'move_speed': 90, 'atk_speed': 90, 'atk_range': 2, 'crit_rate': 10, 'skills': [20065]},
+    23530: {'nombre': 'Earth Titan III', 'sprite': 111389, 'level': 330, 'hp': 1900000, 'atk': 83000, 'def': 51000, 'matk': 48000, 'mdef': 25000, 'accuracy': 6600, 'agility': 3300, 'move_speed': 100, 'atk_speed': 100, 'atk_range': 2, 'crit_rate': 10, 'skills': [20066]},
+    23531: {'nombre': 'Earth Titan IV', 'sprite': 111389, 'level': 340, 'hp': 2000000, 'atk': 86000, 'def': 52500, 'matk': 49500, 'mdef': 25750, 'accuracy': 6800, 'agility': 3400, 'move_speed': 110, 'atk_speed': 110, 'atk_range': 2, 'crit_rate': 10, 'skills': [20067, 20068]},
 }
 
 
