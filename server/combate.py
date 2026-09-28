@@ -336,7 +336,7 @@ class Monstruo:
         if ataque > defensa_target:
             base_dano = (ataque - defensa_target) * mult
         else:
-            base_dano = max(1.0, (ataque * 0.027) * mult)
+            base_dano = max(5.0, (ataque * 0.08) * mult)
         spread = 1.0 + random.uniform(-var_pct, var_pct)
         d = max(1, int(round(base_dano * spread)))
         if mit_pct != 0:
@@ -611,11 +611,11 @@ def datos_invocacion(npc_type: int) -> dict:
         return {'nombre': 'Summon', 'sprite': 42142, 'hp': 200, 'atk': 50, 'def': 30, 'move_speed': 70, 'atk_speed': 70, 'atk_range': 1, 'skills': []}
     try:
         con = sqlite3.connect(db)
-        r = con.execute('SELECT name, sprite_id, hp, atk_avg, def, move_speed, atk_speed, atk_range, 攻擊法術1, 攻擊法術2 FROM monster WHERE id = ?', (str(npc_type),)).fetchone()
+        r = con.execute('SELECT name, sprite_id, hp, atk_avg, def, move_speed, atk_speed, atk_range, matk, mdef, level, accuracy, agility, crit_rate, 攻擊法術1, 攻擊法術2 FROM monster WHERE id = ?', (str(npc_type),)).fetchone()
         con.close()
         if r:
             sks = []
-            for sk_idx in (8, 9):
+            for sk_idx in (14, 15):
                 val = r[sk_idx]
                 if val is not None and str(val).strip().isdigit() and int(val) > 0:
                     sks.append(int(val))
@@ -632,11 +632,17 @@ def datos_invocacion(npc_type: int) -> dict:
                 'move_speed': int(r[5] or 70),
                 'atk_speed': int(r[6] or 70),
                 'atk_range': int(r[7] or 1),
+                'matk': int(r[8] or 0),
+                'mdef': int(r[9] or 0),
+                'level': int(r[10] or 1),
+                'accuracy': int(r[11] or 50),
+                'agility': int(r[12] or 50),
+                'crit_rate': int(r[13] or 5),
                 'skills': sks,
             }
     except Exception:
         pass
-    return {'nombre': 'Summon', 'sprite': 42142, 'hp': 200, 'atk': 50, 'def': 30, 'move_speed': 70, 'atk_speed': 70, 'atk_range': 1, 'skills': []}
+    return {'nombre': 'Summon', 'sprite': 42142, 'hp': 200, 'atk': 50, 'def': 30, 'move_speed': 70, 'atk_speed': 70, 'atk_range': 1, 'matk': 50, 'mdef': 30, 'level': 1, 'crit_rate': 5, 'skills': []}
 
 
 
