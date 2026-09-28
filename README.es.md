@@ -45,7 +45,7 @@ una suposición, lo dice.
   respuesta es segura. Por debajo sigue mandando el `klass`, porque `npc.xml`
   no llega ahí y los NPC antiguos del Lyceum usan números de dos y tres
   cifras que chocan con los de `monster.xml`
-- **236 mapas poblados a partir de capturas**: 42.780 monstruos, 2.254 NPC y
+- **255 mapas poblados a partir de capturas**: 42.860+ monstruos, 2.350+ NPC y
   15.059 objetos de mapa, 7.671 de ellos con su recurso identificado. Cada
   monstruo, NPC y recurso sale de una captura; nada está inventado
 - **Veinte mapas no salen del servidor principal, sino de un segundo
@@ -57,9 +57,10 @@ una suposición, lo dice.
   medidos: **Heart of Eden**, **Floating** (6 mapas), **el anillo del
   desierto** (Crescent Valley, Desert Racetrack, Ghost Village, Troop
   Outpost, Ancient Front, Fantastic Sand City, Nightmare Palace) y
-  **Candyland** (7 mapas). **Atlantis está completo salvo las instancias**, y
-  a la cadena del bosque (de Cryptic Moon Swamp a Giant Wooden Stairs, 8
-  mapas) solo le quedan dos tornados. Más buena parte de Pharaoh, East Orient
+  **Candyland** (7 mapas). **Atlantis está completo salvo las instancias**
+  (incluida la ciudad central de **Palm Base**, poblada con sus 50 NPC y 22
+  tiendas y servicios verificados), y a la cadena del bosque (de Cryptic Moon
+  Swamp a Giant Wooden Stairs, 8 mapas) solo le quedan dos tornados. Más buena parte de Pharaoh, East Orient
   y los territorios de las cuatro facciones. También quedan cerradas las
   cadenas de nivel alto añadidas al final: **Arcana** (Starglow Path,
   Academia Woods, Mana Ruins, Coo Village, Ethereal Garden, Daydream Library,
@@ -145,15 +146,24 @@ Path`, `Third Spirit`, `Limit Breaker`, `Shadow Meld`, `Killer Intent`) y la
   Ghostly Swordsman, Putridox, Minotauro y Titán de Tierra / Golem). Incluye animación
   de cofre/portal en el suelo en la casilla objetivo (`tx, ty`), spawn de la criatura (`0x0008`),
   barra de vida dedicada (`0x0013`), vínculos bidireccionales amo-criatura (`0x3c` y `0x3d`),
-  IA de combate autónoma (asiste al amo y cambia de blanco) y persistencia entre mapas (`0x000D`)
+  IA de combate autónoma (asiste al amo y cambia de blanco), persistencia entre mapas (`0x000D`)
+  y calibración auténtica de cadencia/velocidad de ataque
 - **Habilidades de Área de Efecto (AoE) en suelo y sobre sí mismo**: ejecución de hechizos
   AoE de terreno (Strong Acid Rain, Hell Flame, Frozen Trap, Fire Trap, Thunder Scope, etc.)
   en cualquier casilla del mapa sin requerir objetivo enemigo marcado, con glifos de suelo
   e impacto en (`tx, ty`) (`0x0011`)
 - **Ring of Angel Wings**: teletransporte directo al checkpoint de Cupido
-- **Diálogos de NPCs y Vendedores de Skills ampliados**: diálogos dinámicos, misiones y tiendas
-  de libros de habilidades en mapas de facción y mazmorras (Cherry Village, Memory Cave,
-  Mysterious Garden, Gebuer Vale, Dragon Graveyard, Mysterious Wetland)
+- **Diálogos de NPCs y Tiendas Oficiales ampliadas**: diálogos dinámicos, misiones y tiendas oficiales
+  verificadas en ciudades de facción, centros regionales y mazmorras:
+  - **Palm Base (Stage 88 - Atlantis)**: los 50 NPC poblados con sus diálogos exactos, retratos/sprites
+    y 22 tiendas y servicios verificados (entrenadores de habilidades y diputados de magias nv 80-90,
+    vendedores de arcos y armas, recetas maestras y de herrería de nivel alto, tiendas de materiales
+    StuffShop, dependientes de oficios, reparación nativa de equipo, banqueros de almacén y servicios de mascotas)
+  - **Lava Cave (Stage 69) y Flaming Door (Stage 70)**: recetas de herrería y artesanía nv 60-70 (Rock Smith
+    y Rock Master), investigadores avanzados de armas y arcos, y entrenadores de magias (Earth Life Mage
+    y ChaosWraith Mage)
+  - **Poblados de facción y puestos**: Cherry Village, Memory Cave, Mysterious Garden, Gebuer Vale,
+    Dragon Graveyard, Mysterious Wetland, etc.
 
 **A medias**
 

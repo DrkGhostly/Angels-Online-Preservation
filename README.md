@@ -44,7 +44,7 @@ a guess, it says so.
   is certain. Below 1500 the `klass` still decides, because `npc.xml` does not
   reach down there and the old Lyceum NPCs use two- and three-digit numbers
   that collide with `monster.xml`
-- **236 maps populated from captures**: 42,780 monsters, 2,254 NPCs and
+- **255 maps populated from captures**: 42,860+ monsters, 2,350+ NPCs and
   15,059 map objects, 7,671 of them with their resource name resolved. Every
   monster, NPC and resource comes from a capture; none of it is made up
 - **Twenty maps do not come from the main server, but from a second one**:
@@ -56,7 +56,9 @@ a guess, it says so.
   and measured: **Heart of Eden**, **Floating** (6 maps), **the desert ring**
   (Crescent Valley, Desert Racetrack, Ghost Village, Troop Outpost, Ancient
   Front, Fantastic Sand City, Nightmare Palace) and **Candyland** (7 maps).
-  **Atlantis is complete except for the instances**, and the forest chain
+  **Atlantis is complete except for the instances** (including the central city
+  of **Palm Base**, populated with its 50 NPCs and 22 verified shops and services),
+  and the forest chain
   (Cryptic Moon Swamp to Giant Wooden Stairs, 8 maps) only has two tornados
   left. Plus a good part of Pharaoh, East Orient and the four faction
   territories. The late-game chains added last are closed too: **Arcana**
@@ -139,15 +141,24 @@ a guess, it says so.
   Putridox, Minotaur, and Earth Titan / Golem). Features ground portal/coffer
   summon animations at target tile (`tx, ty`), minion entity spawning (`0x0008`),
   dedicated minion HP bar (`0x0013`), player-minion bidirectional binding links
-  (`0x3c` and `0x3d`), autonomous combat AI, and cross-map persistence (`0x000D`)
+  (`0x3c` and `0x3d`), autonomous combat AI, cross-map persistence (`0x000D`),
+  and authentic attack cadence/speed calibration
 - **Ground & Self Area of Effect (AoE)**: execution of ground-targeted and
   self-centered AoE spells (Strong Acid Rain, Hell Flame, Frozen Trap, Fire Trap,
   Thunder Scope, etc.) on any valid tile without requiring an enemy target,
   with ground glyph and impact visuals (`0x0011`)
 - **Ring of Angel Wings**: teleportation back to the Cupid revival checkpoint
-- **Expanded NPC Dialogues & Skill Trainers**: dynamic dialogue, quest interactions,
-  and skill book shops across faction and dungeon maps (Cherry Village, Memory Cave,
-  Mysterious Garden, Gebuer Vale, Dragon Graveyard, Mysterious Wetland)
+- **Expanded NPC Dialogues & Official Shops**: dynamic dialogue, quest interactions,
+  and verified vendor shops across faction cities, regional hubs, and dungeons:
+  - **Palm Base (Stage 88 - Atlantis)**: all 50 NPCs populated with exact dialogues,
+    sprites, and 22 verified shops/services (level 80-90 skill trainers/deputies,
+    bowset & weapon sellers, high-level smith/master recipes, stuffshops, craft clerks,
+    native equipment repair, warehouse bankclerks, and pet services)
+  - **Lava Cave (Stage 69) & Flaming Door (Stage 70)**: level 60-70 smith and master
+    crafting recipes (Rock Smith & Rock Master), advanced weapon and bow researchers,
+    and magic trainers (Earth Life Mage & ChaosWraith Mage)
+  - **Faction Hubs & Outposts**: Cherry Village, Memory Cave, Mysterious Garden,
+    Gebuer Vale, Dragon Graveyard, Mysterious Wetland, etc.
 
 **Partly**
 
