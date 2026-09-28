@@ -501,13 +501,22 @@ def datos_magia(magic_id: int) -> dict:
                 res['invoca_npc'] = _num(d.get('動態參數1'), 0)
                 dur_inv = _num(d.get('動態參數2'), 0)
                 res['dur_invoca'] = dur_inv if dur_inv > 0 else 3600
-                res['es_invocacion'] = bool(
-                    res['invoca_npc'] > 0 and (
-                        d.get('召喚型') == '是' or
-                        any(k in nom_l for k in ('summon', 'ghostly swordsman', 'clone', 'mirage', 'phantom', 'avatar', 'titan', 'putridox', 'minotaur', 'leech', 'azrael', 'muncher', 'skeleton', 'mummy', 'demon', 'golem')) or
-                        'summon' in desc_l
-                    )
-                )
+                is_real_summon = (
+                    d.get('召喚型') == '是' or
+                    any(nom_l.startswith(k) for k in ('summon ', 'lvl 60 summon', 'lvl 90 summon', 'lvl 120 summon')) or
+                    any(k in nom_l for k in ('ghostly swordsman', 'shadow clone', 'avatar', 'titan', 'putridox', 'minotaur', 'leech', 'azrael', 'muncher'))
+                ) and d.get('魔法狀態') != '靈魂護盾' and not ('soul shield' in nom_l)
+                res['es_invocacion'] = bool(res['invoca_npc'] > 0 and is_real_summon)
+
+                # Robos de HP y MP (Forbidden Curse / Formula 39)
+                if res['formula'] == 39 or (5116 <= magic_id <= 5120) or ('forbidden curse' in nom_l):
+                    res['drain_hp_pct'] = _num(d.get('動態參數2'), 25)
+                    res['drain_mp_pct'] = _num(d.get('動態參數3'), 3)
+
+                # Saltos de rebote (Chain Lightning / Formula 42)
+                if res['formula'] == 42 or (5226 <= magic_id <= 5230) or ('chain lightning' in nom_l):
+                    res['chain_jumps'] = _num(d.get('動態參數1'), 5)
+                    res['sub_spell'] = _num(d.get('轉嫁法術'), 0)
 
                 if res['es_invocacion']:
                     res['es_terreno'] = False
@@ -901,6 +910,12 @@ def efecto_de_ataque(magic_id: int) -> int:
     global _EFECTOS_CACHE
     if magic_id in _EFECTOS_CACHE:
         return _EFECTOS_CACHE[magic_id]
+
+    # Doomsday Bomb usa la animacion de explosion 195 (en lugar de 63 que es Poison Hit)
+    if (196 <= magic_id <= 200) or (1262 <= magic_id <= 1266) or (4676 <= magic_id <= 4680):
+        _EFECTOS_CACHE[magic_id] = 195
+        return 195
+
     db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
     if db.exists():
         try:

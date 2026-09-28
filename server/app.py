@@ -3173,6 +3173,22 @@ class Servidor:
                     log.info(f"[{addr}] {m.nombre}: {_aplicado} por "
                              f"{_ef2.get('nombre')} (mid={mid}, {dur_ms}ms)")
             # Marcar al monstruo en combate con el jugador
+            # Forbidden Curse: absorber HP y MP del daño infligido
+            _pkgs_drain = []
+            if tipo != _cb.ATAQUE_NORMAL and dano > 0 and ses.personaje:
+                _hp_drain = mag.get('drain_hp_pct', 0)
+                _mp_drain = mag.get('drain_mp_pct', 0)
+                if _hp_drain > 0:
+                    _hp_gain = max(1, int(round(dano * (_hp_drain / 100.0))))
+                    ses.personaje.hp = min(_vida_max(ses.personaje),
+                                          ses.personaje.hp + _hp_gain)
+                    _pkgs_drain.append(_cb.atributo(yo, ses.personaje.hp, _cb.KIND_HP))
+                    _pkgs_drain.append(_cb.numero_flotante(yo, _hp_gain, 1))
+                if _mp_drain > 0:
+                    _mp_gain = max(1, int(round(dano * (_mp_drain / 100.0))))
+                    ses.personaje.mp = min(_mana_max(ses.personaje),
+                                          ses.personaje.mp + _mp_gain)
+                    _pkgs_drain.append(_cb.atributo(yo, ses.personaje.mp, _cb.KIND_MP))
             m.en_combate_con = yo
             m.ultimo_ataque = time.time()
             if not getattr(m, 'encantado', False):
@@ -3259,6 +3275,7 @@ class Servidor:
                               _cb.atributo(objetivo, m.porcentaje),
                               _cb.numero_flotante(objetivo, dano, _tipo_num),
                               *_pkg_debuff_m,
+                              *_pkgs_drain,
                               *pkgs_sk, *pkgs_sp)
                 _pkgs_dano2 = ((_cb.atributo(objetivo, m.porcentaje),
                                 _cb.numero_flotante(objetivo, _d2, _tipo2))
@@ -3269,6 +3286,7 @@ class Servidor:
                               _cb.atributo(objetivo, m.porcentaje),
                               _cb.numero_flotante(objetivo, dano, _tipo_num),
                               *_pkg_debuff_m,
+                              *_pkgs_drain,
                               *pkgs_sk, *pkgs_sp)
                 _pkgs_dano2 = None
             _ret = 0.0
@@ -3289,6 +3307,83 @@ class Servidor:
                 ses.enviar(*_pkgs_dano)
                 if _pkgs_dano2:
                     ses.enviar(*_pkgs_dano2)
+            # Chain Lightning: rebote a objetivos cercanos
+            _chain_jumps = mag.get('chain_jumps', 0) if tipo != _cb.ATAQUE_NORMAL else 0
+            if _chain_jumps > 0 and ses.monstruos:
+                _sub_spell_id = mag.get('sub_spell', 0)
+                _sub_mag = _cb.datos_magia(_sub_spell_id) if _sub_spell_id else {}
+                _sub_efecto = _cb.efecto_de_ataque(_sub_spell_id) if _sub_spell_id else 305
+                _sub_dano_base = _sub_mag.get('dano_base', 0)
+                _sub_denom = _sub_mag.get('base_denom', 200) or 200
+                _sub_rango = max(6, _sub_mag.get('rango', 6))
+                _crit_prob_chain = crit_prob
+
+                def _hacer_chain_bounce(prev_eid=m.entity_id,
+                                        prev_x=m.tile_x, prev_y=m.tile_y):
+                    if not ses.personaje or getattr(ses, 'muerto', False):
+                        return
+                    blancos_usados = {prev_eid}
+                    _prev_x, _prev_y = prev_x, prev_y
+                    _prev_eid = prev_eid
+                    habs = ses.personaje.habilidades if ses.personaje else None
+                    buffs_act = getattr(ses.personaje, 'buffs', None)
+                    st = _iv.stats(ses.inventario, habs, buffs=buffs_act)
+                    ataque_j = struct.unpack_from('<I', st, 2 + 44)[0]
+                    _sub_mult = ((_sub_dano_base / float(_sub_denom))
+                                 if _sub_dano_base > 0 else 1.0)
+                    for _salto in range(_chain_jumps):
+                        mejor = None
+                        mejor_dist = 999
+                        for mb in (ses.monstruos or {}).values():
+                            if mb.entity_id in blancos_usados or not mb.vivo:
+                                continue
+                            dist = max(abs(mb.tile_x - _prev_x),
+                                       abs(mb.tile_y - _prev_y))
+                            if dist <= _sub_rango and dist < mejor_dist:
+                                mejor = mb
+                                mejor_dist = dist
+                        if mejor is None:
+                            break
+                        blancos_usados.add(mejor.entity_id)
+                        _crit_j = random.random() < _crit_prob_chain
+                        _mult_j = 1.5 if _crit_j else 1.0
+                        dano_j = mejor.recibir(ataque_j, es_magico=True,
+                                               mult=_sub_mult * _mult_j,
+                                               var_pct=0.05)
+                        _tipo_j = (_cb.TIPO_DANO_CRITICO if _crit_j
+                                   else _cb.TIPO_DANO)
+                        ses.enviar_inmediato(
+                            _cb.numero_de_dano(
+                                _prev_eid, mejor.entity_id, dano_j,
+                                _sub_spell_id or tipo, efecto=_sub_efecto,
+                                cast_time=0, es_magia=True),
+                            _cb.cierre_de_dano(
+                                _prev_eid, mejor.entity_id,
+                                ataque=_sub_spell_id or tipo,
+                                efecto=_sub_efecto, es_magia=True),
+                            _cb.atributo(mejor.entity_id, mejor.porcentaje),
+                            _cb.numero_flotante(mejor.entity_id, dano_j,
+                                                _tipo_j),
+                        )
+                        if not mejor.vivo:
+                            _procesar_muerte_monstruo(ses, mejor, yo, addr,
+                                                      espera=0.0)
+                        else:
+                            if mejor.en_combate_con != yo:
+                                mejor.en_combate_con = yo
+                                mejor.ultimo_ataque = 0
+                        _prev_eid = mejor.entity_id
+                        _prev_x = mejor.tile_x
+                        _prev_y = mejor.tile_y
+                    log.info(f"[{addr}] Chain Lightning: "
+                             f"{len(blancos_usados) - 1} rebotes")
+
+                try:
+                    _chain_delay = _ret + 0.3
+                    asyncio.get_event_loop().call_later(
+                        _chain_delay, _hacer_chain_bounce)
+                except Exception:
+                    _hacer_chain_bounce()
             if m.vivo:
                 # El monstruo no contraataca desde aqui. Solo se lo marca en
                 # combate y la IA le da el turno cuando le toca segun su
