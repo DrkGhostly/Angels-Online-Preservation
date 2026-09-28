@@ -211,6 +211,30 @@ a guess, it says so.
 
 ---
 
+## The item catalogue
+
+[`items.html`](items.html) is a single page listing **78,089 items** -- every
+one in the client data, with its **id**, name, kind, group and icon. It is
+built from the extracted client (UPDATE25) and from `corpus/content.db`, and
+it needs no server and no connection: open the file and search.
+
+It exists because the id is the one thing you cannot guess. The game never
+shows it, and the tooling that hands out items takes the id and nothing else,
+so anyone helping with drops, shops or testing ends up asking for the same
+numbers over and over. This puts them all in one place.
+
+The page weighs about 19 MB because the whole catalogue travels inside it, as
+a JSON array the page filters in the browser. That is on purpose: a single
+file that works offline is worth more here than a smaller one that needs
+something running behind it.
+
+`GM_ITEM_COMMAND_FOR_AI.md` is the spec for the in-game command that would use
+those ids, written to be handed to an AI. **It is not implemented yet**: the
+file describes what to reuse from `app.py` and how the command should parse,
+and the server still has none of it.
+
+---
+
 ## The three zones that came from elsewhere
 
 Everything else in this project comes from captures of **a single** private

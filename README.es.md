@@ -216,6 +216,30 @@ Path`, `Third Spirit`, `Limit Breaker`, `Shadow Meld`, `Killer Intent`) y la
 
 ---
 
+## El catálogo de objetos
+
+[`items.html`](items.html) es una sola página con **78.089 objetos**: todos
+los del cliente, con su **id**, su nombre, su tipo, su grupo y su icono. Sale
+del cliente extraído (UPDATE25) y de `corpus/content.db`, y no necesita
+servidor ni conexión: se abre el archivo y se busca.
+
+Existe porque el id es lo único que no se puede adivinar. El juego no lo
+enseña por ningún lado, y lo que reparte objetos pide el id y nada más, así
+que cualquiera que eche una mano con drops, tiendas o pruebas acaba pidiendo
+los mismos números una y otra vez. Esto los junta en un sitio.
+
+La página pesa unos 19 MB porque el catálogo entero viaja dentro, como un
+array JSON que se filtra en el navegador. Es a propósito: aquí vale más un
+archivo suelto que funciona sin nada detrás que uno más pequeño que necesite
+algo levantado.
+
+`GM_ITEM_COMMAND_FOR_AI.md` es la especificación del comando que usaría esos
+ids dentro del juego, escrita para dársela a una IA. **Todavía no está
+implementado**: el archivo dice qué reutilizar de `app.py` y cómo debe leerse
+el comando, y el servidor no tiene nada de eso.
+
+---
+
 ## Las tres zonas que salieron de otro sitio
 
 Todo el resto del proyecto sale de capturas de **un solo** servidor privado.
