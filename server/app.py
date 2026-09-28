@@ -1728,15 +1728,16 @@ class Servidor:
                                             usa_skill = skills_inv and (random.random() < 0.45)
                                             if usa_skill:
                                                 atk_magic = random.choice(skills_inv)
-                                                atk_efecto = _cb.efecto_de_ataque(atk_magic)
+                                                atk_efecto = _cb.efecto_de_ataque(atk_magic) or 148
                                                 dano_base = inv['atk'] + int(round(_cb.stance_de(atk_magic) * _cb.PESO_STANCE))
+                                                mult_inv = 1.3
                                             else:
                                                 atk_magic = 656
                                                 atk_efecto = 148
                                                 dano_base = inv['atk']
+                                                mult_inv = 1.0
 
-                                            dano_inv = max(5, int(dano_base - getattr(targ, 'defensa', 0) // 2))
-                                            targ.hp = max(0, targ.hp - dano_inv)
+                                            dano_inv = targ.recibir(dano_base, es_magico=True, mult=mult_inv)
                                             anim_inv = _cb.anim_de_monstruo(inv.get('nombre', '')) or 832
                                             if getattr(targ, 'en_combate_con', None) is None:
                                                 targ.en_combate_con = yo
@@ -2360,15 +2361,26 @@ class Servidor:
                     sty = ses.personaje.tile_y if ses.personaje else ty
 
                 dur_s = mag.get('dur_invoca', 3600)
+
+                # Escalado de stats del esbirro segun nivel y stats del invocador
+                pj_lvl = getattr(ses.personaje, 'nivel', 1) if ses.personaje else 1
+                bonus_atk = int(pj_lvl * 3.5)
+                bonus_hp = int(pj_lvl * 20)
+                bonus_def = int(pj_lvl * 1.5)
+
+                tot_hp = int(info_inv['hp'] + bonus_hp)
+                tot_atk = int(info_inv['atk'] + bonus_atk)
+                tot_def = int(info_inv['def'] + bonus_def)
+
                 ses.invocacion = {
                     'entity_id': summon_eid,
                     'npc_type': npc_t,
                     'nombre': info_inv['nombre'],
                     'sprite': info_inv['sprite'],
-                    'hp': info_inv['hp'],
-                    'hp_max': info_inv['hp'],
-                    'atk': info_inv['atk'],
-                    'defensa': info_inv['def'],
+                    'hp': tot_hp,
+                    'hp_max': tot_hp,
+                    'atk': tot_atk,
+                    'defensa': tot_def,
                     'atk_range': info_inv.get('atk_range', 1),
                     'move_speed': info_inv.get('move_speed', 70),
                     'atk_speed': info_inv.get('atk_speed', 70),
