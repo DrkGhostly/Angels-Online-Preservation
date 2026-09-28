@@ -537,6 +537,57 @@ def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
         return [armar_linea(5261, npc_val or 17, [5190, 5191], acciones=[1000075, 0])[2:]]
     if 'Rock Smith' in nombre:
         return [armar_linea(5260, npc_val or 19, [5190, 5191], acciones=[1000074, 0])[2:]]
+
+    # --- Palm Base (Stage 88 - Atlantis) ---
+    if 'StuffShop' in nombre:
+        return [armar_linea(5269, npc_val or 11, [5270, 5271])[2:]]
+    if 'Deputy' in nombre:
+        return [armar_linea(7530, npc_val or 82, [7535, 7536])[2:]]
+    if 'Weapon Master' in nombre:
+        return [armar_linea(7531, npc_val or 23, [7535, 7536])[2:]]
+    if 'Archer Trainer' in nombre:
+        return [armar_linea(7532, npc_val or 116, [7535, 7536])[2:]]
+    if 'Palm Base Smith' in nombre:
+        return [armar_linea(5260, npc_val or 73, [5190, 5191])[2:]]
+    if 'Palm Master' in nombre:
+        return [armar_linea(5261, npc_val or 38, [5190, 5191])[2:]]
+    if 'Robot Repairman' in nombre:
+        return [armar_linea(5233, npc_val or 36, [5227, 5191])[2:]]
+    if 'Weapon Clerk' in nombre:
+        return [armar_linea(5254, npc_val or 38, [5190, 5191])[2:]]
+    if 'Armor Clerk' in nombre:
+        return [armar_linea(5255, npc_val or 74, [5190, 5191])[2:]]
+    if 'Art Clerk' in nombre:
+        return [armar_linea(5256, npc_val or 38, [5190, 5191])[2:]]
+    if 'Sewing Clerk' in nombre:
+        return [armar_linea(5257, npc_val or 75, [5190, 5191])[2:]]
+    if 'Cooking Clerk' in nombre:
+        return [armar_linea(5258, npc_val or 74, [5190, 5191])[2:]]
+    if 'Bankclerk' in nombre:
+        return [armar_linea(5236, npc_val or 35, [5237, 5238])[2:]]
+    if 'General Campbell' in nombre:
+        return [armar_linea(72700, npc_val or 104, [])[2:]]
+    if 'Ocean Scholar' in nombre:
+        return [armar_linea(74301, npc_val or 77, [])[2:]]
+    if 'Charge Nurse' in nombre:
+        return [armar_linea(71009, npc_val or 31, [])[2:]]
+    if 'Trainer Noya' in nombre:
+        return [armar_linea(70422, npc_val or 113, [])[2:]]
+    if 'Premier Shanell' in nombre:
+        return [armar_linea(71110, npc_val or 40, [])[2:]]
+    if 'Villiersas' in nombre:
+        return [armar_linea(97604, npc_val or 128, [])[2:]]
+    if 'Disciple Andsen' in nombre:
+        return [armar_linea(76322, npc_val or 187, [])[2:]]
+    if 'BattlefieldAngel' in nombre or 'PuqiVillageAngel' in nombre:
+        return [armar_linea(50001, npc_val or 112, [])[2:]]
+    if any(d in nombre for d in ['Trade Director', 'Science Director', 'Prod. Director', 'Banking Director', 'Gravity Boffin']):
+        return [armar_linea(7538, npc_val or 23, [])[2:]]
+    if any(m in nombre for m in ['Merchant Corian', 'Merchant Kulepas', 'Scholar Oxford']):
+        return [armar_linea(7537, npc_val or 29, [])[2:]]
+    if 'Pyalu' in nombre:
+        return [armar_linea(70707, npc_val or 56, [])[2:]]
+
     if 'Little Childe' in nombre:
         return [armar_linea(64201, npc_val or 151, [])[2:]]
     if "Cook's Assistant" in nombre:
@@ -740,6 +791,20 @@ TIENDAS_POR_NOMBRE = {
     'Wraith Priest': 63,      # Magias de sacerdote (Chaos & Wraith)
     'Armament Seller': 51,    # Armas intermedias
     'Bowset Seller': 52,      # Arcos y catapultas intermedias
+    'Palm Base Smith': 81,    # Recetas de herreria lvl 80-90
+    'Palm Master': 82,       # Recetas maestras lvl 80-90
+    'Weapon Master': 87,     # Habilidades de armas lvl 80-90
+    'Archer Trainer': 88,    # Habilidades de arquero lvl 80-90
+    'Priest Deputy': 83,     # Magias Life & Holy lvl 80-90
+    'Wizard Deputy': 84,     # Magias Chaos & Wraith lvl 80-90
+    'Summoner Deputy': 85,   # Magias Earth & Invocaciones lvl 80-90
+    'Magic Deputy': 86,      # Spells avanzados lvl 80-90
+    'StuffShop': 56,         # Materiales y consumibles de faccion
+    'Weapon Clerk': 24,      # Recetas de armas
+    'Armor Clerk': 20,       # Recetas de armaduras
+    'Art Clerk': 21,         # Recetas de artesania
+    'Sewing Clerk': 22,      # Recetas de sastreria
+    'Cooking Clerk': 23,     # Recetas de cocina
 }
 
 # Tiendas especificas segun la entidad del NPC que vende
@@ -935,6 +1000,30 @@ TIENDAS_POR_ENTIDAD = {
     122308: 75, # Rock Master -> Shop 75 (Master recipes: Cherry Oil, Shy Batten, Benison Ring, Fool Staff...)
     122310: 78, # Weapon Boffin -> Shop 78 (Weapon skills: Defence Wall, Speedup Attack, Swift Cut, Aurora Trap...)
     122311: 79, # Bow Researcher -> Shop 79 (Bow skills: Defence Wall, Speedup Attack, Scorpion Snipe, Demon Sealed, Triple Shot...)
+
+    # --- Palm Base (Stage 88 - Atlantis) ---
+    122392: 52, # Bowset Seller -> Shop 52 (Bow, Arrows, Bullets, Catapults)
+    122403: 56, # Aurora StuffShop -> Shop 56 (Sundries, materials)
+    122366: 56, # SteelS StuffShop -> Shop 56
+    122400: 56, # Beasts StuffShop -> Shop 56
+    122401: 56, # Shadow StuffShop -> Shop 56
+    122399: 87, # Weapon Master -> Shop 87 (Physical skill scrolls: Great Chop, Death Chop...)
+    122398: 88, # Archer Trainer -> Shop 88 (Bow skill scrolls: Scorpion Snipe, Demon Sealed...)
+    122394: 83, # Priest Deputy -> Shop 83 (Holy & Life magic: Protection Spell, Aurora Trap...)
+    122396: 84, # Wizard Deputy -> Shop 84 (Chaos & Wraith magic: Icy Storm, Thunder Strike...)
+    122395: 85, # Summoner Deputy -> Shop 85 (Earth magic: Demon-Sucking, Chaos Melody, Azrael...)
+    122397: 86, # Magic Deputy -> Shop 86 (Spell scrolls: Unicorn Shift, Natural Antibody...)
+    122371: 35, # Healer -> Shop 35 (HP/MP Potions, Angel Wings, Soap, Hammers)
+    122393: 51, # Armament Seller -> Shop 51 (Swords, axes, spears...)
+    122391: 53, # Mage Gear Seller -> Shop 53 (Mage robes, caps, staff...)
+    122373: 81, # Palm Base Smith -> Shop 81 (Smith recipes: Aerolite Ingot, Beech Batten...)
+    122363: 82, # Palm Master -> Shop 82 (Master recipes: Thyme Oil, Beech Batten...)
+    122359: 69, # Pet Expert -> Shop 69 (Pet cookies, cans, eggs)
+    122387: 24, # Weapon Clerk -> Shop 24 (Weapon recipes)
+    122388: 20, # Armor Clerk -> Shop 20 (Armor recipes)
+    122389: 21, # Art Clerk -> Shop 21 (Art recipes)
+    122362: 22, # Sewing Clerk -> Shop 22 (Sewing recipes)
+    122372: 23, # Cooking Clerk -> Shop 23 (Cooking recipes)
 }
 
 # Opciones de dialogo que abren la ventana de tienda (WND_NPCSALE).
@@ -942,6 +1031,8 @@ TIENDAS_POR_ENTIDAD = {
 TIENDAS_POR_OPCION = {
     12103: 1,    # Default compra/venta
     5190: 1,     # "I wish to look at your goods" (Skills & gear)
+    5270: 56,    # "Let me see." (StuffShop / Material Seller)
+    7535: 87,    # "I wish to buy the scroll." (Deputy / Weapon Master / Archer Trainer)
     6102: 69,    # Pet Expert -> Shop 69 (Comida y galletas de mascota)
     5045: 37,    # Angel Aide (Guide Palace) -> Shop 37
 }
@@ -969,7 +1060,7 @@ def opciones_de(linea: bytes):
 def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
                 nombre: str = '', stage: int = 0, nivel: int = 0):
     """Devuelve tupla de sub-mensajes: apertura de tienda y/o cierre/continuacion de dialogo."""
-    if opcion_id in (5190, 12103) or opcion_id in TIENDAS_POR_OPCION:
+    if opcion_id in (5190, 5270, 7535, 12103) or opcion_id in TIENDAS_POR_OPCION:
         shop_id = 0
         # 1. Prioridad: por entity_id exacto (garantiza tienda correcta por ciudad)
         if entidad in TIENDAS_POR_ENTIDAD:
@@ -1146,7 +1237,7 @@ def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
     # Angel Raphael (Guide Palace)
     if opcion_id == 5009:  # "I don't want to join in." -> 5010 (preguntar si esta seguro)
         return (armar_linea(5010, 3, [5011, 5012]),)
-    if opcion_id in (5012, 5191, 5242, 5046, 5059, 5064):  # Quit / cerrar
+    if opcion_id in (5012, 5191, 5242, 5046, 5059, 5064, 5271, 7536, 5238):  # Quit / cerrar
         return (struct.pack('<H', 0x0012) + FIN,)
 
     # Angel Raphael (Fighting Palace): 5063 "I'm ready to go to the Angel Lyceum."

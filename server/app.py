@@ -4491,6 +4491,9 @@ class Servidor:
                 elif 122040 <= ent <= 122063: _st_ent = 35  # Memory Cave
                 elif 122064 <= ent <= 122085: _st_ent = 36  # Gebuer Vale
                 elif 122086 <= ent <= 122199: _st_ent = 38  # Iron Castle
+                elif 122295 <= ent <= 122305: _st_ent = 69  # Lava Cave
+                elif 122306 <= ent <= 122315: _st_ent = 70  # Flaming Door
+                elif 122355 <= ent <= 122410 or (30080 <= ent <= 30083): _st_ent = 88  # Palm Base
                 else: _st_ent = None
 
                 if _st_ent and ses.personaje and (not getattr(ses.personaje, 'stage', 0) or ses.personaje.stage != _st_ent):
@@ -4650,6 +4653,9 @@ class Servidor:
                 elif 122040 <= ent <= 122063: _st_ent = 35  # Memory Cave
                 elif 122064 <= ent <= 122085: _st_ent = 36  # Gebuer Vale
                 elif 122086 <= ent <= 122199: _st_ent = 38  # Iron Castle
+                elif 122295 <= ent <= 122305: _st_ent = 69  # Lava Cave
+                elif 122306 <= ent <= 122315: _st_ent = 70  # Flaming Door
+                elif 122355 <= ent <= 122410 or (30080 <= ent <= 30083): _st_ent = 88  # Palm Base
                 else: _st_ent = None
 
                 if _st_ent and ses.personaje and (not getattr(ses.personaje, 'stage', 0) or ses.personaje.stage != _st_ent):
