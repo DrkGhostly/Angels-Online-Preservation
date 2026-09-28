@@ -2382,8 +2382,8 @@ class Servidor:
                 }
 
                 import login as _lg
-                spawn_pkg = _lg._monster_spawn(summon_eid, npc_t, info_inv['nombre'], (stx, sty), sprite=info_inv['sprite'])
-                hp_pkg = _cb.atributo(summon_eid, info_inv['hp'], _cb.KIND_HP)
+                spawn_pkg = _lg.spawn_invocacion(summon_eid, npc_t, info_inv['nombre'], (stx, sty), sprite=info_inv['sprite'])
+                hp_pkg = _cb.atributo(summon_eid, 100, _cb.KIND_HP)
                 atk_confirm = _cb.confirmar_cast(yo, stx, sty)
 
                 # Paquetes iniciales: confirm, efecto suelo con numero_de_dano (portal/cofre), efecto self, GCD
@@ -2400,10 +2400,11 @@ class Servidor:
                     pkgs_inv = [
                         _cb.cierre_de_dano(yo, 0, ataque=tipo, efecto=ef, es_magia=True, tile_x=stx, tile_y=sty),
                         _cb.efecto_magia_self_fin(yo, ef, tipo),
+                        struct.pack('<HIBBI', 0x0013, yo, 1, 0x3d, summon_eid),
+                        struct.pack('<HIBBII', 0x001D, yo, 1, 0x2a, summon_eid, 0),
                         spawn_pkg,
                         hp_pkg,
                         struct.pack('<HIBBI', 0x0013, summon_eid, 1, 0x3c, yo),
-                        struct.pack('<HIBBI', 0x0013, yo, 1, 0x3d, summon_eid),
                     ]
                     if cd_ms > 0:
                         _sk_ids_copia = _cb.grupo_de(tipo)
@@ -3360,8 +3361,13 @@ class Servidor:
                 inv['tile_x'] = p.tile_x + 1
                 inv['tile_y'] = p.tile_y
                 inv['objetivo'] = None
-                ses.enviar(_lg2._monster_spawn(inv['entity_id'], inv['npc_type'], inv['nombre'], (inv['tile_x'], inv['tile_y']), sprite=inv['sprite']),
-                           _cb2.atributo(inv['entity_id'], inv['hp'], _cb2.KIND_HP))
+                ses.enviar(
+                    struct.pack('<HIBBI', 0x0013, p.entity_id, 1, 0x3d, inv['entity_id']),
+                    struct.pack('<HIBBII', 0x001D, p.entity_id, 1, 0x2a, inv['entity_id'], 0),
+                    _lg2.spawn_invocacion(inv['entity_id'], inv['npc_type'], inv['nombre'], (inv['tile_x'], inv['tile_y']), sprite=inv['sprite']),
+                    _cb2.atributo(inv['entity_id'], 100, _cb2.KIND_HP),
+                    struct.pack('<HIBBI', 0x0013, inv['entity_id'], 1, 0x3c, p.entity_id)
+                )
             log.info(f"[{addr}] mapa cargado exitosamente: stage {p.stage} "
                      f"tile ({p.tile_x},{p.tile_y})")
             return

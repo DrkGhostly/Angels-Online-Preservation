@@ -301,6 +301,24 @@ def _monster_spawn(entity_id, npc_type, nombre, tile, sprite=0):
     return struct.pack('<H', 0x0008) + bytes(b)
 
 
+def spawn_invocacion(entity_id: int, npc_type: int, nombre: str, tile, sprite: int = 0) -> bytes:
+    """0x0008 medido en la captura del servidor oficial (mundo_200804_773798):
+    Cuerpo de 64 bytes para invocaciones de Wraith (klass=38).
+    """
+    b = bytearray(64)
+    struct.pack_into('<IIII', b, 0, entity_id, 0, tile[0], tile[1])
+    n = str(nombre).encode('ascii', 'replace')[:16]
+    b[16:16 + len(n)] = n
+    b[32] = 0
+    b[33] = 0
+    struct.pack_into('<I', b, 34, int(sprite or 42142))
+    struct.pack_into('<H', b, 38, 7)
+    struct.pack_into('<I', b, 40, 38)  # klass 38 = invocacion de jugador
+    b[44] = 1
+    struct.pack_into('<H', b, 45, int(npc_type))
+    return struct.pack('<H', 0x0008) + bytes(b)
+
+
 def rotar(entity_id: int, angulo: int) -> bytes:
     """0x0016: orienta a una entidad. [u4 entity][u1 angulo].
 
