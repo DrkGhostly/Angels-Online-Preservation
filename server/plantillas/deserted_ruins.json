@@ -1,0 +1,3461 @@
+{
+ "_nota": "Deserted Ruins (stage 260), de Celestia, zona Shuwa. Se llega desde Bayan Village (259). Poblado desde UNA sola sesion. Los objetos van CRUDOS.",
+ "stage": 260,
+ "spawns": [
+  {
+   "entity_id": 123453,
+   "nombre": "Xenja",
+   "npc_type": 11467,
+   "sprite": 40072,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    252,
+    27
+   ],
+   "direccion": 6,
+   "visible": 1
+  },
+  {
+   "entity_id": 123454,
+   "nombre": "Yinki",
+   "npc_type": 11468,
+   "sprite": 40120,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    148,
+    57
+   ],
+   "direccion": 6,
+   "visible": 1
+  },
+  {
+   "entity_id": 123455,
+   "nombre": "Koron",
+   "npc_type": 11469,
+   "sprite": 40009,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    147,
+    135
+   ],
+   "direccion": 6,
+   "visible": 1
+  },
+  {
+   "entity_id": 123456,
+   "nombre": "Yeaven",
+   "npc_type": 11470,
+   "sprite": 40062,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    63,
+    112
+   ],
+   "direccion": 6,
+   "visible": 1
+  },
+  {
+   "entity_id": 123457,
+   "nombre": "Evie",
+   "npc_type": 11471,
+   "sprite": 40034,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    147,
+    103
+   ],
+   "direccion": 6,
+   "visible": 1
+  },
+  {
+   "entity_id": 123458,
+   "nombre": "Ancient South Fo",
+   "npc_type": 11482,
+   "sprite": 40217,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    44,
+    28
+   ],
+   "direccion": 6,
+   "visible": 1
+  },
+  {
+   "entity_id": 123459,
+   "nombre": "Ancient West For",
+   "npc_type": 11483,
+   "sprite": 40217,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    30,
+    163
+   ],
+   "direccion": 6,
+   "visible": 1
+  },
+  {
+   "entity_id": 123460,
+   "nombre": "Ancient North Fo",
+   "npc_type": 11484,
+   "sprite": 40217,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    278,
+    165
+   ],
+   "direccion": 6,
+   "visible": 1
+  },
+  {
+   "entity_id": 123461,
+   "nombre": "Sun",
+   "npc_type": 11475,
+   "sprite": 40477,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    208,
+    139
+   ],
+   "direccion": 6,
+   "visible": 1
+  },
+  {
+   "entity_id": 123462,
+   "nombre": "Sates",
+   "npc_type": 11446,
+   "sprite": 40357,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    220,
+    101
+   ],
+   "direccion": 6,
+   "visible": 1
+  },
+  {
+   "entity_id": 123463,
+   "nombre": "Ancient East For",
+   "npc_type": 11481,
+   "sprite": 40217,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    260,
+    30
+   ],
+   "direccion": 6,
+   "visible": 1
+  },
+  {
+   "entity_id": 1047231,
+   "nombre": "Royal Purple Spi",
+   "npc_type": 16166,
+   "sprite": 43992,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    276,
+    39
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 1047232,
+   "nombre": "Royal Purple Spi",
+   "npc_type": 16166,
+   "sprite": 43992,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    27
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 1047233,
+   "nombre": "Royal Purple Spi",
+   "npc_type": 16166,
+   "sprite": 43992,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    287,
+    35
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 1047234,
+   "nombre": "Royal Purple Spi",
+   "npc_type": 16166,
+   "sprite": 43992,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    280,
+    30
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 1047235,
+   "nombre": "Royal Purple Spi",
+   "npc_type": 16166,
+   "sprite": 43992,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    47
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 1047236,
+   "nombre": "Royal Purple Spi",
+   "npc_type": 16166,
+   "sprite": 43992,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    238,
+    64
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 1047237,
+   "nombre": "Royal Purple Spi",
+   "npc_type": 16166,
+   "sprite": 43992,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    235,
+    57
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 1047238,
+   "nombre": "Royal Purple Spi",
+   "npc_type": 16166,
+   "sprite": 43992,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    238,
+    57
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 1047239,
+   "nombre": "Royal Purple Spi",
+   "npc_type": 16166,
+   "sprite": 43992,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    244,
+    59
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 1047240,
+   "nombre": "Royal Purple Spi",
+   "npc_type": 16166,
+   "sprite": 43992,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    245,
+    59
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 1047241,
+   "nombre": "Royal Purple Spi",
+   "npc_type": 16166,
+   "sprite": 43992,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    78
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 1047242,
+   "nombre": "Royal Purple Spi",
+   "npc_type": 16166,
+   "sprite": 43992,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    255,
+    66
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 1047243,
+   "nombre": "Royal Purple Spi",
+   "npc_type": 16166,
+   "sprite": 43992,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    260,
+    69
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 1047244,
+   "nombre": "Royal Purple Spi",
+   "npc_type": 16166,
+   "sprite": 43992,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    262,
+    66
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 1047245,
+   "nombre": "Royal Purple Spi",
+   "npc_type": 16166,
+   "sprite": 43992,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    247,
+    86
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 1047246,
+   "nombre": "Frozen Spider",
+   "npc_type": 16167,
+   "sprite": 43993,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    201,
+    38
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 1047247,
+   "nombre": "Frozen Spider",
+   "npc_type": 16167,
+   "sprite": 43993,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    212,
+    49
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 1047248,
+   "nombre": "Frozen Spider",
+   "npc_type": 16167,
+   "sprite": 43993,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    208,
+    43
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 1047249,
+   "nombre": "Frozen Spider",
+   "npc_type": 16167,
+   "sprite": 43993,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    44
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 1047250,
+   "nombre": "Frozen Spider",
+   "npc_type": 16167,
+   "sprite": 43993,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    36
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 1047251,
+   "nombre": "Frozen Spider",
+   "npc_type": 16167,
+   "sprite": 43993,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    222,
+    28
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 1047252,
+   "nombre": "Frozen Spider",
+   "npc_type": 16167,
+   "sprite": 43993,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    245,
+    10
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 1047253,
+   "nombre": "Frozen Spider",
+   "npc_type": 16167,
+   "sprite": 43993,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    242,
+    16
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 1047254,
+   "nombre": "Frozen Spider",
+   "npc_type": 16167,
+   "sprite": 43993,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    230,
+    21
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 1047255,
+   "nombre": "Frozen Spider",
+   "npc_type": 16167,
+   "sprite": 43993,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    227,
+    25
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 1047256,
+   "nombre": "Frozen Spider",
+   "npc_type": 16167,
+   "sprite": 43993,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    182,
+    38
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 1047257,
+   "nombre": "Frozen Spider",
+   "npc_type": 16167,
+   "sprite": 43993,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    181,
+    27
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 1047258,
+   "nombre": "Frozen Spider",
+   "npc_type": 16167,
+   "sprite": 43993,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    185,
+    40
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 1047259,
+   "nombre": "Frozen Spider",
+   "npc_type": 16167,
+   "sprite": 43993,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    192,
+    31
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 1047260,
+   "nombre": "Frozen Spider",
+   "npc_type": 16167,
+   "sprite": 43993,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    188,
+    41
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 1047261,
+   "nombre": "Prankster Wolf",
+   "npc_type": 16168,
+   "sprite": 43931,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    7
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047262,
+   "nombre": "Prankster Wolf",
+   "npc_type": 16168,
+   "sprite": 43931,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    138,
+    24
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047263,
+   "nombre": "Prankster Wolf",
+   "npc_type": 16168,
+   "sprite": 43931,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    135,
+    15
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047264,
+   "nombre": "Prankster Wolf",
+   "npc_type": 16168,
+   "sprite": 43931,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    134,
+    17
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047265,
+   "nombre": "Prankster Wolf",
+   "npc_type": 16168,
+   "sprite": 43931,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    131,
+    28
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047266,
+   "nombre": "Prankster Wolf",
+   "npc_type": 16168,
+   "sprite": 43931,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    111,
+    25
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047267,
+   "nombre": "Prankster Wolf",
+   "npc_type": 16168,
+   "sprite": 43931,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    113,
+    35
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047268,
+   "nombre": "Prankster Wolf",
+   "npc_type": 16168,
+   "sprite": 43931,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    123,
+    29
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047269,
+   "nombre": "Prankster Wolf",
+   "npc_type": 16168,
+   "sprite": 43931,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    126,
+    24
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047270,
+   "nombre": "Prankster Wolf",
+   "npc_type": 16168,
+   "sprite": 43931,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    109,
+    40
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047271,
+   "nombre": "Prankster Wolf",
+   "npc_type": 16168,
+   "sprite": 43931,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    97,
+    45
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047272,
+   "nombre": "Prankster Wolf",
+   "npc_type": 16168,
+   "sprite": 43931,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    83,
+    51
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047273,
+   "nombre": "Prankster Wolf",
+   "npc_type": 16168,
+   "sprite": 43931,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    100,
+    41
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047274,
+   "nombre": "Prankster Wolf",
+   "npc_type": 16168,
+   "sprite": 43931,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    42
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047275,
+   "nombre": "Prankster Wolf",
+   "npc_type": 16168,
+   "sprite": 43931,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    97,
+    38
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047276,
+   "nombre": "Prankster Wolf",
+   "npc_type": 16168,
+   "sprite": 43931,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    57,
+    68
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047277,
+   "nombre": "Prankster Wolf",
+   "npc_type": 16168,
+   "sprite": 43931,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    66,
+    53
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047278,
+   "nombre": "Prankster Wolf",
+   "npc_type": 16168,
+   "sprite": 43931,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    66,
+    48
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047279,
+   "nombre": "Prankster Wolf",
+   "npc_type": 16168,
+   "sprite": 43931,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    50,
+    57
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047280,
+   "nombre": "Prankster Wolf",
+   "npc_type": 16168,
+   "sprite": 43931,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    71,
+    59
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047281,
+   "nombre": "Passionate Soldi",
+   "npc_type": 16169,
+   "sprite": 43979,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    94,
+    24
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047282,
+   "nombre": "Passionate Soldi",
+   "npc_type": 16169,
+   "sprite": 43979,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    22
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047283,
+   "nombre": "Passionate Soldi",
+   "npc_type": 16169,
+   "sprite": 43979,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    26
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047284,
+   "nombre": "Passionate Soldi",
+   "npc_type": 16169,
+   "sprite": 43979,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    68,
+    16
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047285,
+   "nombre": "Passionate Soldi",
+   "npc_type": 16169,
+   "sprite": 43979,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    16
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047286,
+   "nombre": "Passionate Soldi",
+   "npc_type": 16169,
+   "sprite": 43979,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    25
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047287,
+   "nombre": "Passionate Soldi",
+   "npc_type": 16169,
+   "sprite": 43979,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    33
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047288,
+   "nombre": "Passionate Soldi",
+   "npc_type": 16169,
+   "sprite": 43979,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    23
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047289,
+   "nombre": "Passionate Soldi",
+   "npc_type": 16169,
+   "sprite": 43979,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    47,
+    7
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047290,
+   "nombre": "Passionate Soldi",
+   "npc_type": 16169,
+   "sprite": 43979,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    47,
+    19
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047291,
+   "nombre": "Passionate Soldi",
+   "npc_type": 16169,
+   "sprite": 43979,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    32,
+    39
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047292,
+   "nombre": "Passionate Soldi",
+   "npc_type": 16169,
+   "sprite": 43979,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    29
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047293,
+   "nombre": "Passionate Soldi",
+   "npc_type": 16169,
+   "sprite": 43979,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    49
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047294,
+   "nombre": "Passionate Soldi",
+   "npc_type": 16169,
+   "sprite": 43979,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    19,
+    39
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047295,
+   "nombre": "Passionate Soldi",
+   "npc_type": 16169,
+   "sprite": 43979,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    24,
+    34
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047296,
+   "nombre": "Passionate Soldi",
+   "npc_type": 16169,
+   "sprite": 43979,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    32,
+    69
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047297,
+   "nombre": "Passionate Soldi",
+   "npc_type": 16169,
+   "sprite": 43979,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    77
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047298,
+   "nombre": "Passionate Soldi",
+   "npc_type": 16169,
+   "sprite": 43979,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    75
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047299,
+   "nombre": "Passionate Soldi",
+   "npc_type": 16169,
+   "sprite": 43979,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    28,
+    68
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047300,
+   "nombre": "Passionate Soldi",
+   "npc_type": 16169,
+   "sprite": 43979,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    22,
+    70
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 1047301,
+   "nombre": "Yaksha Camper",
+   "npc_type": 16170,
+   "sprite": 43971,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    95,
+    83
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047302,
+   "nombre": "Yaksha Camper",
+   "npc_type": 16170,
+   "sprite": 43971,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    90,
+    79
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047303,
+   "nombre": "Yaksha Camper",
+   "npc_type": 16170,
+   "sprite": 43971,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    85,
+    79
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047304,
+   "nombre": "Yaksha Camper",
+   "npc_type": 16170,
+   "sprite": 43971,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    83,
+    86
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047305,
+   "nombre": "Yaksha Camper",
+   "npc_type": 16170,
+   "sprite": 43971,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    84,
+    90
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047306,
+   "nombre": "Yaksha Camper",
+   "npc_type": 16170,
+   "sprite": 43971,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    122,
+    69
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047307,
+   "nombre": "Yaksha Camper",
+   "npc_type": 16170,
+   "sprite": 43971,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    63
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047308,
+   "nombre": "Yaksha Camper",
+   "npc_type": 16170,
+   "sprite": 43971,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    108,
+    67
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047309,
+   "nombre": "Yaksha Camper",
+   "npc_type": 16170,
+   "sprite": 43971,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    102,
+    74
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047310,
+   "nombre": "Yaksha Camper",
+   "npc_type": 16170,
+   "sprite": 43971,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    109,
+    75
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047311,
+   "nombre": "Yaksha Camper",
+   "npc_type": 16170,
+   "sprite": 43971,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    130,
+    63
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047312,
+   "nombre": "Yaksha Camper",
+   "npc_type": 16170,
+   "sprite": 43971,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    123,
+    57
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047313,
+   "nombre": "Yaksha Camper",
+   "npc_type": 16170,
+   "sprite": 43971,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    144,
+    45
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047314,
+   "nombre": "Yaksha Camper",
+   "npc_type": 16170,
+   "sprite": 43971,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    146,
+    57
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047315,
+   "nombre": "Yaksha Camper",
+   "npc_type": 16170,
+   "sprite": 43971,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    131,
+    53
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047316,
+   "nombre": "Yaksha Camper",
+   "npc_type": 16170,
+   "sprite": 43971,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    155,
+    60
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047317,
+   "nombre": "Yaksha Camper",
+   "npc_type": 16170,
+   "sprite": 43971,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    63
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047318,
+   "nombre": "Yaksha Camper",
+   "npc_type": 16170,
+   "sprite": 43971,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    47
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047319,
+   "nombre": "Yaksha Camper",
+   "npc_type": 16170,
+   "sprite": 43971,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    166,
+    53
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047320,
+   "nombre": "Yaksha Camper",
+   "npc_type": 16170,
+   "sprite": 43971,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    149,
+    51
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047321,
+   "nombre": "Yaksha Camper",
+   "npc_type": 16170,
+   "sprite": 43971,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    69
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047322,
+   "nombre": "Yaksha Camper",
+   "npc_type": 16170,
+   "sprite": 43971,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    75
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047323,
+   "nombre": "Yaksha Camper",
+   "npc_type": 16170,
+   "sprite": 43971,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    179,
+    71
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047324,
+   "nombre": "Yaksha Camper",
+   "npc_type": 16170,
+   "sprite": 43971,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    63
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047325,
+   "nombre": "Yaksha Camper",
+   "npc_type": 16170,
+   "sprite": 43971,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    192,
+    62
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047326,
+   "nombre": "Yaksha Commando",
+   "npc_type": 16171,
+   "sprite": 43972,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    166,
+    87
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047327,
+   "nombre": "Yaksha Commando",
+   "npc_type": 16171,
+   "sprite": 43972,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    166,
+    90
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047328,
+   "nombre": "Yaksha Commando",
+   "npc_type": 16171,
+   "sprite": 43972,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    88
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047329,
+   "nombre": "Yaksha Commando",
+   "npc_type": 16171,
+   "sprite": 43972,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    160,
+    80
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047330,
+   "nombre": "Yaksha Commando",
+   "npc_type": 16171,
+   "sprite": 43972,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    165,
+    95
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047331,
+   "nombre": "Yaksha Commando",
+   "npc_type": 16171,
+   "sprite": 43972,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    95
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047332,
+   "nombre": "Yaksha Commando",
+   "npc_type": 16171,
+   "sprite": 43972,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    156,
+    88
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047333,
+   "nombre": "Yaksha Commando",
+   "npc_type": 16171,
+   "sprite": 43972,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    84
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047334,
+   "nombre": "Yaksha Commando",
+   "npc_type": 16171,
+   "sprite": 43972,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    159,
+    96
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047335,
+   "nombre": "Yaksha Commando",
+   "npc_type": 16171,
+   "sprite": 43972,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    87
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047336,
+   "nombre": "Yaksha Commando",
+   "npc_type": 16171,
+   "sprite": 43972,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    142,
+    80
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047337,
+   "nombre": "Yaksha Commando",
+   "npc_type": 16171,
+   "sprite": 43972,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    135,
+    95
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047338,
+   "nombre": "Yaksha Commando",
+   "npc_type": 16171,
+   "sprite": 43972,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    127,
+    89
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047339,
+   "nombre": "Yaksha Commando",
+   "npc_type": 16171,
+   "sprite": 43972,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    130,
+    91
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047340,
+   "nombre": "Yaksha Commando",
+   "npc_type": 16171,
+   "sprite": 43972,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    95
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047341,
+   "nombre": "Yaksha Commando",
+   "npc_type": 16171,
+   "sprite": 43972,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    142,
+    93
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047342,
+   "nombre": "Yaksha Commando",
+   "npc_type": 16171,
+   "sprite": 43972,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    130,
+    77
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047343,
+   "nombre": "Yaksha Commando",
+   "npc_type": 16171,
+   "sprite": 43972,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    152,
+    88
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047344,
+   "nombre": "Yaksha Commando",
+   "npc_type": 16171,
+   "sprite": 43972,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    140,
+    83
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047345,
+   "nombre": "Yaksha Commando",
+   "npc_type": 16171,
+   "sprite": 43972,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    142,
+    85
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047346,
+   "nombre": "Yaksha Commando",
+   "npc_type": 16171,
+   "sprite": 43972,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    157,
+    97
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047347,
+   "nombre": "Yaksha Commando",
+   "npc_type": 16171,
+   "sprite": 43972,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    149,
+    94
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047348,
+   "nombre": "Yaksha Commando",
+   "npc_type": 16171,
+   "sprite": 43972,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    148,
+    103
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047349,
+   "nombre": "Yaksha Commando",
+   "npc_type": 16171,
+   "sprite": 43972,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    141,
+    91
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047350,
+   "nombre": "Yaksha Commando",
+   "npc_type": 16171,
+   "sprite": 43972,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    141,
+    100
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 1047351,
+   "nombre": "Carnival Elephan",
+   "npc_type": 16172,
+   "sprite": 43929,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    81,
+    34
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 225
+  },
+  {
+   "entity_id": 1047352,
+   "nombre": "Carnival Elephan",
+   "npc_type": 16172,
+   "sprite": 43929,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    82
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 225
+  },
+  {
+   "entity_id": 1047353,
+   "nombre": "Carnival Elephan",
+   "npc_type": 16172,
+   "sprite": 43929,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    94
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 225
+  },
+  {
+   "entity_id": 1047354,
+   "nombre": "Carnival Elephan",
+   "npc_type": 16172,
+   "sprite": 43929,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    50,
+    83
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 225
+  },
+  {
+   "entity_id": 1047355,
+   "nombre": "Carnival Elephan",
+   "npc_type": 16172,
+   "sprite": 43929,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    66,
+    86
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 225
+  },
+  {
+   "entity_id": 1047356,
+   "nombre": "Carnival Elephan",
+   "npc_type": 16172,
+   "sprite": 43929,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    107,
+    105
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 225
+  },
+  {
+   "entity_id": 1047357,
+   "nombre": "Carnival Elephan",
+   "npc_type": 16172,
+   "sprite": 43929,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    95,
+    97
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 225
+  },
+  {
+   "entity_id": 1047358,
+   "nombre": "Carnival Elephan",
+   "npc_type": 16172,
+   "sprite": 43929,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    100,
+    123
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 225
+  },
+  {
+   "entity_id": 1047359,
+   "nombre": "Carnival Elephan",
+   "npc_type": 16172,
+   "sprite": 43929,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    88,
+    102
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 225
+  },
+  {
+   "entity_id": 1047360,
+   "nombre": "Carnival Elephan",
+   "npc_type": 16172,
+   "sprite": 43929,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    108,
+    114
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 225
+  },
+  {
+   "entity_id": 1047361,
+   "nombre": "Carnival Elephan",
+   "npc_type": 16172,
+   "sprite": 43929,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    125
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 225
+  },
+  {
+   "entity_id": 1047362,
+   "nombre": "Carnival Elephan",
+   "npc_type": 16172,
+   "sprite": 43929,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    141,
+    126
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 225
+  },
+  {
+   "entity_id": 1047363,
+   "nombre": "Carnival Elephan",
+   "npc_type": 16172,
+   "sprite": 43929,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    121
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 225
+  },
+  {
+   "entity_id": 1047364,
+   "nombre": "Carnival Elephan",
+   "npc_type": 16172,
+   "sprite": 43929,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    105,
+    119
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 225
+  },
+  {
+   "entity_id": 1047365,
+   "nombre": "Carnival Elephan",
+   "npc_type": 16172,
+   "sprite": 43929,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    116,
+    120
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 225
+  },
+  {
+   "entity_id": 1047366,
+   "nombre": "Festival Elephan",
+   "npc_type": 16173,
+   "sprite": 43978,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    145,
+    128
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 225
+  },
+  {
+   "entity_id": 1047367,
+   "nombre": "Festival Elephan",
+   "npc_type": 16173,
+   "sprite": 43978,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    175,
+    122
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 225
+  },
+  {
+   "entity_id": 1047368,
+   "nombre": "Festival Elephan",
+   "npc_type": 16173,
+   "sprite": 43978,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    165,
+    123
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 225
+  },
+  {
+   "entity_id": 1047369,
+   "nombre": "Festival Elephan",
+   "npc_type": 16173,
+   "sprite": 43978,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    123
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 225
+  },
+  {
+   "entity_id": 1047370,
+   "nombre": "Festival Elephan",
+   "npc_type": 16173,
+   "sprite": 43978,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    120
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 225
+  },
+  {
+   "entity_id": 1047371,
+   "nombre": "Festival Elephan",
+   "npc_type": 16173,
+   "sprite": 43978,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    199,
+    106
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 225
+  },
+  {
+   "entity_id": 1047372,
+   "nombre": "Festival Elephan",
+   "npc_type": 16173,
+   "sprite": 43978,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    189,
+    115
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 225
+  },
+  {
+   "entity_id": 1047373,
+   "nombre": "Festival Elephan",
+   "npc_type": 16173,
+   "sprite": 43978,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    117
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 225
+  },
+  {
+   "entity_id": 1047374,
+   "nombre": "Festival Elephan",
+   "npc_type": 16173,
+   "sprite": 43978,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    179,
+    117
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 225
+  },
+  {
+   "entity_id": 1047375,
+   "nombre": "Festival Elephan",
+   "npc_type": 16173,
+   "sprite": 43978,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    172,
+    109
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 225
+  },
+  {
+   "entity_id": 1047376,
+   "nombre": "Festival Elephan",
+   "npc_type": 16173,
+   "sprite": 43978,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    207,
+    95
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 225
+  },
+  {
+   "entity_id": 1047377,
+   "nombre": "Festival Elephan",
+   "npc_type": 16173,
+   "sprite": 43978,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    212,
+    103
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 225
+  },
+  {
+   "entity_id": 1047378,
+   "nombre": "Festival Elephan",
+   "npc_type": 16173,
+   "sprite": 43978,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    100
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 225
+  },
+  {
+   "entity_id": 1047379,
+   "nombre": "Festival Elephan",
+   "npc_type": 16173,
+   "sprite": 43978,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    209,
+    106
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 225
+  },
+  {
+   "entity_id": 1047380,
+   "nombre": "Festival Elephan",
+   "npc_type": 16173,
+   "sprite": 43978,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    201,
+    106
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 225
+  },
+  {
+   "entity_id": 1047381,
+   "nombre": "Patty Soldier",
+   "npc_type": 16174,
+   "sprite": 110003,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    46,
+    129
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047382,
+   "nombre": "Patty Soldier",
+   "npc_type": 16174,
+   "sprite": 110003,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    141
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047383,
+   "nombre": "Patty Soldier",
+   "npc_type": 16174,
+   "sprite": 110003,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    37,
+    135
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047384,
+   "nombre": "Patty Soldier",
+   "npc_type": 16174,
+   "sprite": 110003,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    32,
+    131
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047385,
+   "nombre": "Patty Soldier",
+   "npc_type": 16174,
+   "sprite": 110003,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    26,
+    142
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047386,
+   "nombre": "Patty Soldier",
+   "npc_type": 16174,
+   "sprite": 110003,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    162
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047387,
+   "nombre": "Patty Soldier",
+   "npc_type": 16174,
+   "sprite": 110003,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    29,
+    154
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047388,
+   "nombre": "Patty Soldier",
+   "npc_type": 16174,
+   "sprite": 110003,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    28,
+    149
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047389,
+   "nombre": "Patty Soldier",
+   "npc_type": 16174,
+   "sprite": 110003,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    162
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047390,
+   "nombre": "Patty Soldier",
+   "npc_type": 16174,
+   "sprite": 110003,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    39,
+    156
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047391,
+   "nombre": "Patty Soldier",
+   "npc_type": 16174,
+   "sprite": 110003,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    80,
+    164
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047392,
+   "nombre": "Patty Soldier",
+   "npc_type": 16174,
+   "sprite": 110003,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    169
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047393,
+   "nombre": "Patty Soldier",
+   "npc_type": 16174,
+   "sprite": 110003,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    68,
+    161
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047394,
+   "nombre": "Patty Soldier",
+   "npc_type": 16174,
+   "sprite": 110003,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    79,
+    168
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047395,
+   "nombre": "Patty Soldier",
+   "npc_type": 16174,
+   "sprite": 110003,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    56,
+    159
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047396,
+   "nombre": "Patty Soldier",
+   "npc_type": 16174,
+   "sprite": 110003,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    95,
+    153
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047397,
+   "nombre": "Patty Soldier",
+   "npc_type": 16174,
+   "sprite": 110003,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    81,
+    156
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047398,
+   "nombre": "Patty Soldier",
+   "npc_type": 16174,
+   "sprite": 110003,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    156
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047399,
+   "nombre": "Patty Soldier",
+   "npc_type": 16174,
+   "sprite": 110003,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    93,
+    156
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047400,
+   "nombre": "Patty Soldier",
+   "npc_type": 16174,
+   "sprite": 110003,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    102,
+    143
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047401,
+   "nombre": "Datty Soldier",
+   "npc_type": 16175,
+   "sprite": 110004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    123
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047402,
+   "nombre": "Datty Soldier",
+   "npc_type": 16175,
+   "sprite": 110004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    126
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047403,
+   "nombre": "Datty Soldier",
+   "npc_type": 16175,
+   "sprite": 110004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    57,
+    122
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047404,
+   "nombre": "Datty Soldier",
+   "npc_type": 16175,
+   "sprite": 110004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    70,
+    122
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047405,
+   "nombre": "Datty Soldier",
+   "npc_type": 16175,
+   "sprite": 110004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    127
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047406,
+   "nombre": "Datty Soldier",
+   "npc_type": 16175,
+   "sprite": 110004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    80,
+    128
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047407,
+   "nombre": "Datty Soldier",
+   "npc_type": 16175,
+   "sprite": 110004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    89,
+    139
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047408,
+   "nombre": "Datty Soldier",
+   "npc_type": 16175,
+   "sprite": 110004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    118
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047409,
+   "nombre": "Datty Soldier",
+   "npc_type": 16175,
+   "sprite": 110004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    76,
+    126
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047410,
+   "nombre": "Datty Soldier",
+   "npc_type": 16175,
+   "sprite": 110004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    74,
+    126
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047411,
+   "nombre": "Datty Soldier",
+   "npc_type": 16175,
+   "sprite": 110004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    93,
+    129
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047412,
+   "nombre": "Datty Soldier",
+   "npc_type": 16175,
+   "sprite": 110004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    83,
+    132
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047413,
+   "nombre": "Datty Soldier",
+   "npc_type": 16175,
+   "sprite": 110004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    146
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047414,
+   "nombre": "Datty Soldier",
+   "npc_type": 16175,
+   "sprite": 110004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    145
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047415,
+   "nombre": "Datty Soldier",
+   "npc_type": 16175,
+   "sprite": 110004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    110,
+    138
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047416,
+   "nombre": "Datty Soldier",
+   "npc_type": 16175,
+   "sprite": 110004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    129,
+    150
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047417,
+   "nombre": "Datty Soldier",
+   "npc_type": 16175,
+   "sprite": 110004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    123,
+    142
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047418,
+   "nombre": "Datty Soldier",
+   "npc_type": 16175,
+   "sprite": 110004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    122,
+    156
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047419,
+   "nombre": "Datty Soldier",
+   "npc_type": 16175,
+   "sprite": 110004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    155
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047420,
+   "nombre": "Datty Soldier",
+   "npc_type": 16175,
+   "sprite": 110004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    118,
+    154
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 227
+  },
+  {
+   "entity_id": 1047421,
+   "nombre": "Elite - Royal Pu",
+   "npc_type": 16176,
+   "sprite": 43992,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    213,
+    132
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 228
+  },
+  {
+   "entity_id": 1047422,
+   "nombre": "Elite - Royal Pu",
+   "npc_type": 16176,
+   "sprite": 43992,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    229,
+    120
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 228
+  },
+  {
+   "entity_id": 1047423,
+   "nombre": "Elite - Royal Pu",
+   "npc_type": 16176,
+   "sprite": 43992,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    253,
+    132
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 228
+  },
+  {
+   "entity_id": 1047424,
+   "nombre": "Elite - Royal Pu",
+   "npc_type": 16176,
+   "sprite": 43992,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    124
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 228
+  },
+  {
+   "entity_id": 1047425,
+   "nombre": "Elite - Royal Pu",
+   "npc_type": 16176,
+   "sprite": 43992,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    241,
+    124
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 228
+  },
+  {
+   "entity_id": 1047426,
+   "nombre": "Elite - Prankste",
+   "npc_type": 16177,
+   "sprite": 43931,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    260,
+    161
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 228
+  },
+  {
+   "entity_id": 1047427,
+   "nombre": "Elite - Prankste",
+   "npc_type": 16177,
+   "sprite": 43931,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    279,
+    136
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 228
+  },
+  {
+   "entity_id": 1047428,
+   "nombre": "Elite - Prankste",
+   "npc_type": 16177,
+   "sprite": 43931,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    263,
+    131
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 228
+  },
+  {
+   "entity_id": 1047429,
+   "nombre": "Elite - Prankste",
+   "npc_type": 16177,
+   "sprite": 43931,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    268,
+    151
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 228
+  },
+  {
+   "entity_id": 1047430,
+   "nombre": "Elite - Prankste",
+   "npc_type": 16177,
+   "sprite": 43931,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    264,
+    132
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 228
+  },
+  {
+   "entity_id": 1047431,
+   "nombre": "Elite - Yaksha C",
+   "npc_type": 16178,
+   "sprite": 43971,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    254,
+    156
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 228
+  },
+  {
+   "entity_id": 1047432,
+   "nombre": "Elite - Yaksha C",
+   "npc_type": 16178,
+   "sprite": 43971,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    222,
+    164
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 228
+  },
+  {
+   "entity_id": 1047433,
+   "nombre": "Elite - Yaksha C",
+   "npc_type": 16178,
+   "sprite": 43971,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    250,
+    160
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 228
+  },
+  {
+   "entity_id": 1047434,
+   "nombre": "Elite - Yaksha C",
+   "npc_type": 16178,
+   "sprite": 43971,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    166
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 228
+  },
+  {
+   "entity_id": 1047435,
+   "nombre": "Elite - Yaksha C",
+   "npc_type": 16178,
+   "sprite": 43971,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    167
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 228
+  },
+  {
+   "entity_id": 1047436,
+   "nombre": "Elite - Carnival",
+   "npc_type": 16179,
+   "sprite": 43929,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    198,
+    148
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 228
+  },
+  {
+   "entity_id": 1047437,
+   "nombre": "Elite - Carnival",
+   "npc_type": 16179,
+   "sprite": 43929,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    133
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 228
+  },
+  {
+   "entity_id": 1047438,
+   "nombre": "Elite - Carnival",
+   "npc_type": 16179,
+   "sprite": 43929,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    193,
+    142
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 228
+  },
+  {
+   "entity_id": 1047439,
+   "nombre": "Elite - Carnival",
+   "npc_type": 16179,
+   "sprite": 43929,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    141
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 228
+  },
+  {
+   "entity_id": 1047440,
+   "nombre": "Elite - Carnival",
+   "npc_type": 16179,
+   "sprite": 43929,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    199,
+    150
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 228
+  },
+  {
+   "entity_id": 1047441,
+   "nombre": "Elite - Patty So",
+   "npc_type": 16180,
+   "sprite": 110003,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    172,
+    162
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 228
+  },
+  {
+   "entity_id": 1047442,
+   "nombre": "Elite - Patty So",
+   "npc_type": 16180,
+   "sprite": 110003,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    180,
+    156
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 228
+  },
+  {
+   "entity_id": 1047443,
+   "nombre": "Elite - Patty So",
+   "npc_type": 16180,
+   "sprite": 110003,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    159,
+    160
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 228
+  },
+  {
+   "entity_id": 1047444,
+   "nombre": "Elite - Patty So",
+   "npc_type": 16180,
+   "sprite": 110003,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    159
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 228
+  },
+  {
+   "entity_id": 1047445,
+   "nombre": "Elite - Patty So",
+   "npc_type": 16180,
+   "sprite": 110003,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    162,
+    157
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 228
+  },
+  {
+   "entity_id": 1047446,
+   "nombre": "Wolf Mazicka",
+   "npc_type": 16181,
+   "sprite": 43982,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    25
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 229
+  },
+  {
+   "entity_id": 1047447,
+   "nombre": "Elephant Buerobo",
+   "npc_type": 16182,
+   "sprite": 43930,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    86
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 232
+  },
+  {
+   "entity_id": 1047448,
+   "nombre": "Feline Boboro",
+   "npc_type": 16183,
+   "sprite": 43951,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    58,
+    121
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 234
+  }
+ ],
+ "recursos": [
+  {
+   "entity_id": 117932,
+   "capa": 2,
+   "px": [
+    9237,
+    250
+   ],
+   "medio": "0000000027000000000000001a000000",
+   "marca": 220,
+   "orient": 6,
+   "sprite": 60001,
+   "cola": "00004080030000",
+   "crudo": "accc01000200000015240000fa0000000000000027000000000000001a000000dc0661ea00004080030000",
+   "que_es": "tornado (portal)"
+  },
+  {
+   "entity_id": 117933,
+   "capa": 0,
+   "px": [
+    6512,
+    5074
+   ],
+   "medio": "0000000027000000000000001a000000",
+   "marca": 220,
+   "orient": 6,
+   "sprite": 60305,
+   "cola": "00004080140000",
+   "crudo": "adcc01000000000070190000d21300000000000027000000000000001a000000dc0691eb00004080140000"
+  }
+ ]
+}

@@ -30,6 +30,7 @@ quinto stat, que el cliente muestra como Dfs: 5 sin la ropa y 15 con ella.
 """
 import json
 import pathlib
+import re
 import struct
 import time
 
@@ -118,14 +119,29 @@ def es_apilable(item_id: int) -> bool:
     return not es_equipable(item_id)
 
 
-def vaciar_ranura(dueno: int, ranura: int) -> bytes:
+# Que contenedor se esta tocando. Es el byte que va delante del id en el
+# sub-mensaje que vacia una casilla, y lo destapo la captura de Edo City del
+# 28/09/2026 al guardar en el banco: hasta entonces valia siempre 1 y se creia
+# fijo.
+#   1 + la ENTIDAD del personaje -> la mochila
+#   2 + 252                      -> el almacen del banco
+CONT_MOCHILA = 1
+CONT_BANCO = 2
+ID_BANCO = 252
+
+
+def vaciar_ranura(dueno: int, ranura: int,
+                  contenedor: int = CONT_MOCHILA) -> bytes:
     """0x001B que deja una casilla vacia.
 
     Medido al destruir un monton de pociones:
         01000000 | 02 | 01 | 1e010000 | 2900
-    es decir [u32 n=1][u8 02 = vaciar][u8 01][u32 dueno][u16 ranura].
+    es decir [u32 n=1][u8 02 = vaciar][u8 contenedor][u32 dueno][u16 ranura].
+
+    El byte del contenedor se creia fijo en 1. Al guardar algo en el banco el
+    servidor real manda 02 y de dueno el 252 en vez de la entidad.
     """
-    return struct.pack('<HIBBIH', 0x001B, 1, 2, 1, dueno, ranura)
+    return struct.pack('<HIBBIH', 0x001B, 1, 2, contenedor, dueno, ranura)
 
 
 def ranura_de_instancia(instancias, instancia: bytes, bolsa=None,
@@ -1208,6 +1224,116 @@ def completo(char_id: int, items, dueno: int = None) -> bytes:
     return struct.pack('<H', 0x001A) + fuera
 
 
+def almacen(char_id: int, items, dueno: int = None,
+            tipo: int = 2) -> bytes:
+    """Sub-mensaje 0x004E con el almacen del banco.
+
+    El cuerpo es EL MISMO que el del 0x001A: un LE32 con el numero de
+    entradas y detras esas entradas, de 86 bytes las corrientes y 119 las
+    equipables. Se comprobo contra la captura de Edo City del 28/09/2026, en
+    la que el servidor real contesta 824 bytes al elegir "I wish to use my own
+    warehouse": ocho entradas, cuatro de 86 y cuatro de 119, que suman 820
+    mas los cuatro de la cabecera.
+
+    Antes se mandaba un 0x002B, que es otro mensaje: el cliente no abria nada
+    y soltaba un aviso de la lista de amigos.
+
+    El LE32 de la cabecera NO es solo la cuenta: lleva el tipo multiplicado
+    por mil y la cuenta en las unidades. Las dos funciones del cliente que
+    crean la ventana del banco -- las dos llaman a CreateBankWnd -- hacen
+    `tipo = n / 1000` y `cuenta = n % 1000`, y solo abren cuando el tipo es 2
+    o 3. Con tipo 0 rellenan la lista y nada mas.
+
+    Por eso va TIPO 2. Mandandolo como cuenta pelada la ventana no se abria,
+    ni vacia ni con un objeto dentro. En la captura del servidor real ese
+    numero valia 8, o sea tipo 0: ahi la ventana ya debia estar creada por
+    otro camino que no se ha llegado a ver.
+    """
+    lista = []
+    for it in sorted(items, key=lambda x: int(x[0])):
+        lista.append(entrada_banco(char_id, int(it[0]), int(it[1]),
+                                   int(it[2]) if len(it) > 2 else 1,
+                                   it[3] if len(it) > 3 else None, dueno))
+    return (struct.pack('<HI', 0x004E, tipo * 1000 + len(lista))
+            + b''.join(lista))
+
+
+def banco_vaciar_ranura(ranura: int) -> bytes:
+    """Sub-mensaje 0x001B que dice que una casilla del banco quedo vacia.
+
+    Medido en la captura de Edo City: al arrastrar dentro del almacen el
+    servidor real contesta SIEMPRE dos sub-mensajes, y este es el primero.
+    Son doce bytes: la cuenta, un 02 de accion, los cinco del marcador
+    02fc000000 que tambien llevan las entradas del almacen, y la casilla que
+    se vacia.
+    """
+    return vaciar_ranura(ID_BANCO, ranura, CONT_BANCO)
+
+
+def banco_poner(char_id: int, ranura: int, item_id: int, cant: int = 1,
+                inst: bytes = None, dueno: int = None) -> bytes:
+    """Sub-mensaje 0x001B con lo que queda en una casilla del banco.
+
+    Es el segundo de los dos que contesta el servidor real al mover: la
+    cuenta y detras la entrada, con el mismo formato de 86 o 119 bytes que
+    usa el inventario. Los tamanos de la captura cuadran: 90 bytes cuando lo
+    movido no se equipa y 123 cuando si.
+    """
+    return (struct.pack('<H', 0x001B) + struct.pack('<I', 1)
+            + entrada_banco(char_id, ranura, item_id, cant, inst, dueno))
+
+
+def entrada_banco(char_id: int, ranura: int, item_id: int, cant: int = 1,
+                  inst: bytes = None, dueno: int = None) -> bytes:
+    """Una entrada del almacen: la del inventario con tres campos cambiados.
+
+    Comparando byte a byte una entrada nuestra con una de la captura, las
+    unicas diferencias reales son estas tres (la cuarta es el numero de
+    instancia, que el servidor real genera a su manera y nosotros derivamos):
+
+      +33  el contenedor. En la mochila va 01 y la ENTIDAD del personaje; en
+           el almacen va 02 y el 252, el mismo par que usa el sub-mensaje que
+           vacia una casilla.
+      +40  las unidades del monton. Se comprobo con las ocho entradas de la
+           captura: 14, 1, 174, 1, 1, 1, 59 y 252, que son las cantidades que
+           se ven en la ventana del almacen.
+      +84  los dieciseis bits bajos del numero de instancia. En la mochila
+           solo los lleva lo equipable; en el almacen los llevan todas.
+    """
+    return _entrada_marcada(char_id, ranura, item_id, cant, inst, dueno,
+                            CONT_BANCO, ID_BANCO)
+
+
+def entrada_recuperada(char_id: int, ranura: int, item_id: int, cant: int = 1,
+                       inst: bytes = None, dueno: int = None) -> bytes:
+    """La entrada de lo que vuelve del almacen a la mochila.
+
+    Es una entrada de mochila normal, pero el servidor real le pone las
+    unidades en el +40 y el eco de la instancia en el +84, que en las
+    entradas corrientes de la bolsa no van. Medido en el 0x001B de 90 bytes
+    con el que contesta al sacar algo del banco.
+    """
+    return _entrada_marcada(char_id, ranura, item_id, cant, inst, dueno,
+                            CONT_MOCHILA, dueno if dueno else char_id)
+
+
+def _entrada_marcada(char_id, ranura, item_id, cant, inst, dueno,
+                     contenedor, ident) -> bytes:
+    """La entrada de siempre con el contenedor, las unidades y el eco."""
+    e = bytearray(_entrada(char_id, ranura, item_id, cant, inst, dueno))
+    struct.pack_into('<BI', e, 33, contenedor, ident)
+    e[40] = min(int(cant), 255)
+    struct.pack_into('<H', e, 84, struct.unpack_from('<H', e, 1)[0])
+    return bytes(e)
+
+
+def banco_sacar(char_id: int, ranura: int, item_id: int, cant: int = 1,
+                inst: bytes = None, dueno: int = None) -> bytes:
+    """Sub-mensaje 0x001B con lo que llega a la mochila desde el almacen."""
+    return (struct.pack('<H', 0x001B) + struct.pack('<I', 1)
+            + entrada_recuperada(char_id, ranura, item_id, cant, inst, dueno))
+
+
 def acuse_movimiento(ranura: int, accion: int = 0x0012) -> bytes:
     """0x0006 s2c: "hecho lo que pediste con esa casilla".
 
@@ -1418,4 +1544,38 @@ def es_skill_leveling_stone(item_id: int):
         except Exception:
             pass
     return None
+
+# ---------------------------------------------------------------------------
+# Creditos de rango
+# ---------------------------------------------------------------------------
+_INVERSION = None
+
+
+def creditos_de(item_id: int) -> int:
+    """Cuantos creditos de rango da 'invertir' este objeto, o 0 si no da.
+
+    Sale de investitem.xml, que es la lista de los objetos que se entregan a
+    cambio de creditos: 103 entradas, de 5 creditos los mas baratos (Obsidian
+    Brick, Viburnum Strip) a 200 los mas caros. Algunas entradas traen ademas
+    experiencia y otras solo creditos, por eso se lee atributo a atributo y no
+    por posicion.
+
+    Ojo con una cosa: el objeto que se vio dar 120.000 creditos de golpe en la
+    captura del 28/09/2026 NO esta aqui. Es de un parche posterior al cliente
+    del que salieron estos xml, igual que los articulos de las tiendas de Edo
+    City.
+    """
+    global _INVERSION
+    if _INVERSION is None:
+        _INVERSION = {}
+        f = (pathlib.Path(__file__).parent.parent / 'extracted_paks' / 'data1'
+             / 'setting' / 'eng' / 'investitem.xml')
+        if f.exists():
+            txt = f.read_text(encoding='utf-8', errors='replace')
+            for trozo in re.findall(r'<投資物品[^>]*>', txt):
+                mid = re.search(r'編號="(\d+)"', trozo)
+                mcr = re.search(r'功勳="(\d+)"', trozo)
+                if mid and mcr:
+                    _INVERSION[int(mid.group(1))] = int(mcr.group(1))
+    return _INVERSION.get(int(item_id), 0)
 

@@ -416,7 +416,11 @@ def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
     if 'Repair Angel' in nombre:
         return [armar_linea(5100, 4, [5101, 12105])[2:]]
     if 'Cupid' in nombre:
-        return [armar_linea(5745, 6, [5746, 5747, 5748])[2:]]
+        # Las acciones salieron de la captura de Angelic Cave del 28/09/2026.
+        # Antes se mandaba la linea sin ellas y el cliente la aceptaba igual,
+        # pero el servidor real las manda y ahora la linea sale identica.
+        return [armar_linea(5745, 6, [5746, 5747, 5748],
+                            acciones=[1000029, 1000030, 0])[2:]]
     # --- Graduation Palace -------------------------------------------
     # Los cuatro Angeles de faccion tienen DOS dialogos, medidos en la
     # captura del 22/09:
@@ -695,6 +699,201 @@ def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
         return [armar_linea(5233, npc_val or 1142, [5227, 5191])[2:]]
     if 'Pharaoh Banker' in nombre:
         return [armar_linea(5236, npc_val or 1143, [5237, 5238])[2:]]
+    # --- Angelic Cave (Stage 194 - East Orient) ---
+    # Medido el 28/09/2026 en una captura propia: clic 0x0005 sobre cada NPC y
+    # el 0x0012 que contesta el servidor. Los val salen ademas solos de
+    # val_por_entidad, que para sprites 40200..40999 devuelve 1000+(spr-40200):
+    # 40373 -> 1173, 40374 -> 1174, 40358 -> 1158, 40357 -> 1157. Se dejan
+    # escritos igual por si el sprite cambiara.
+    if 'Convo Master' in nombre:
+        return [armar_linea(5261, npc_val or 1173, [5190, 5191],
+                            acciones=[1000028, 0])[2:]]
+    if 'Convo Smith' in nombre:
+        return [armar_linea(5260, npc_val or 1174, [5190, 5242],
+                            acciones=[1000027, 0])[2:]]
+    if 'Convo Expert(W' in nombre:
+        return [armar_linea(7985, npc_val or 1158, [5190, 5191],
+                            acciones=[1000033, 0])[2:]]
+    if 'Convo Expert(S' in nombre:
+        return [armar_linea(7987, npc_val or 31, [5190, 5191],
+                            acciones=[1000034, 0])[2:]]
+    if 'Convo Repairer' in nombre:
+        return [armar_linea(5226, npc_val or 1157, [5227, 5242],
+                            acciones=[1000026, 0])[2:]]
+    # El banquero NO se llego a clicar en la captura. Lleva la linea que usan
+    # los banqueros de TODAS las demas ciudades -- 5236 con [5237, 5238] -- y
+    # su val sale del sprite 40356, o sea 1156. Confirmar con un clic.
+    if 'Convo Bank Clerk' in nombre:
+        return [armar_linea(5236, npc_val or 1156, [5237, 5238])[2:]]
+
+    # --- Snowball Village (Stage 210 - Snow) ---
+    # Medido el 28/09/2026 en captura propia. Los nombres llegan cortados a 16
+    # bytes y uno trae DOS espacios, 'Snowball  Engine'; se comparan tal cual
+    # para no fallar por eso. Los val vuelven a salir solos del sprite:
+    # 40379 -> 1179, 40380 -> 1180, 40088 -> 88, 40113 -> 113.
+    if 'Snowball  Engine' in nombre:
+        return [armar_linea(5260, npc_val or 1179, [5270, 5278],
+                            acciones=[1000031, 0])[2:]]
+    if 'Snowball Master' in nombre:
+        return [armar_linea(5261, npc_val or 88, [5270, 5371],
+                            acciones=[1000032, 0])[2:]]
+    if 'Snowball Combat' in nombre:
+        return [armar_linea(104734, npc_val or 113, [104735, 5242],
+                            acciones=[1000034, 0])[2:]]
+    if 'Snowball Magic R' in nombre:
+        return [armar_linea(104736, npc_val or 1180, [104737, 5242],
+                            acciones=[1000035, 0])[2:]]
+    # Estos dos NO SE CLICARON en la captura, asi que sus lineas no estan
+    # medidas: llevan las genericas, que funcionan pero puede que no sean las
+    # que manda el servidor real.
+    #
+    # El Worker es el reparador de la ciudad, como el 'Steam Worker' de Steam
+    # Town. Alli el mensaje es propio de la ciudad, el 112015, y la opcion que
+    # abre la ventana tambien, la 112016; aqui se usan la 5226 y la 5227
+    # genericas porque el mensaje propio de Snowball no se puede adivinar: su
+    # bloque es el 104xxx y de el solo se conocen dos numeros, el 104734 y el
+    # 104736.
+    #
+    # El banquero empieza por la 5225, que si es compartida entre ciudades.
+    # Lo que no se puede saber son sus acciones -- en Steam Town son la
+    # 1000049 y la 1000050, y van por NPC -- asi que va sin ellas, como el
+    # resto de banqueros del archivo.
+    if 'Snowball Worker' in nombre:
+        return [armar_linea(5226, npc_val or 128, [5227, 5191])[2:]]
+    if 'Snowball Bank Em' in nombre:
+        return [armar_linea(5225, npc_val or 1181, [5030, 5032, 5033])[2:]]
+
+    # --- Steam Town (Stage 223 - Space Cowboy) ---
+    # Medido el 28/09/2026 en captura propia. Otra vez un nombre con DOS
+    # espacios, 'Steam  Engineer'. Los val salen solos del sprite: 40392 ->
+    # 1192, 40327 -> 1127, 40393 -> 1193, 40394 -> 1194, 40405 -> 1205 y
+    # 40345 -> 1145.
+    if 'Steam  Engineer' in nombre:
+        return [armar_linea(112017, npc_val or 1192, [5270, 5278],
+                            acciones=[1000056, 0])[2:]]
+    if 'Steam Master' in nombre:
+        return [armar_linea(112018, npc_val or 1127, [5270, 5278],
+                            acciones=[1000057, 0])[2:]]
+    if 'Steam Magic Rese' in nombre:
+        return [armar_linea(112013, npc_val or 1193, [112014, 5278],
+                            acciones=[1000059, 0])[2:]]
+    if 'Steam Combat Spe' in nombre:
+        return [armar_linea(112011, npc_val or 1194, [112012, 5278],
+                            acciones=[1000058, 0])[2:]]
+    if 'Steam Worker' in nombre:
+        return [armar_linea(112015, npc_val or 1205, [112016, 112004],
+                            acciones=[1000055, 0])[2:]]
+    # El banquero NO empieza por la 5236, que es lo que se venia poniendo en
+    # las demas ciudades: al clicarlo manda la 5225, con tres opciones, y la
+    # 5236 ("Which warehouse do you want to use?") solo llega DESPUES, al
+    # elegir la del medio. La captura lo deja claro: clic, 5225, el cliente
+    # contesta 0x000B con 0x0b -- que es 11, o sea el indice 1 -- y recien ahi
+    # el servidor manda la 5236. El paso de la 5032 a la 5236 esta en
+    # respuesta_a.
+    if 'Steam Bank Emplo' in nombre:
+        return [armar_linea(5225, npc_val or 1145, [5030, 5032, 5033],
+                            acciones=[1000049, 1000050, 0])[2:]]
+
+    # --- Edo City (Stage 232 - Sakura Festival) ---
+    # Medido el 28/09/2026 en captura propia, los SEIS NPC de servicio. Los
+    # val vuelven a salir del sprite: 40403 -> 1203, 40369 -> 1169, 40433 ->
+    # 1233, 40432 -> 1232, 40332 -> 1132 y 40427 -> 1227.
+    if 'City Senior Blac' in nombre:
+        return [armar_linea(117124, npc_val or 1203, [5270, 5271],
+                            acciones=[1000080, 0])[2:]]
+    if 'City Senior Guid' in nombre:
+        return [armar_linea(117125, npc_val or 1169, [5270, 5271],
+                            acciones=[1000081, 0])[2:]]
+    if 'City War Researc' in nombre:
+        return [armar_linea(117118, npc_val or 1233, [117119, 5012],
+                            acciones=[1000086, 0])[2:]]
+    if 'City Magic Resea' in nombre:
+        return [armar_linea(117120, npc_val or 1232, [117121, 5012],
+                            acciones=[1000087, 0])[2:]]
+    if 'City Maintenance' in nombre:
+        return [armar_linea(117122, npc_val or 1132, [117123, 5020],
+                            acciones=[1000073, 0])[2:]]
+    # Segundo banquero medido, y confirma lo de Steam Town: al clicar manda
+    # SOLO la 5225. Sus acciones son otras -- 1000072 y 1000077 frente a
+    # 1000049 y 1000050 -- asi que van por NPC y no se pueden copiar de una
+    # ciudad a otra.
+    if 'City Banker' in nombre:
+        return [armar_linea(5225, npc_val or 1227, [5030, 5032, 5033],
+                            acciones=[1000072, 1000077, 0])[2:]]
+
+    # --- Fruity Village (Stage 246 - Sequoia) ---
+    # Medido el 28/09/2026 en captura propia, los NUEVE que se clicaron. Los
+    # val vuelven a salir del sprite: 40181 -> 181, 40359 -> 1159, 40033 ->
+    # 33, 40454 -> 1254, 40457 -> 1257, 40451 -> 1251, 40275 -> 1075 y
+    # 40440 -> 1240.
+    if 'Fruity Expert(W' in nombre:
+        return [armar_linea(121012, npc_val or 181, [121013, 5012],
+                            acciones=[1000131, 0])[2:]]
+    if 'Fruity Expert(S' in nombre:
+        return [armar_linea(121014, npc_val or 1159, [121015, 5012],
+                            acciones=[1000132, 0])[2:]]
+    if 'Fruity Smith' in nombre:
+        return [armar_linea(121018, npc_val or 33, [5270, 5271],
+                            acciones=[1000125, 0])[2:]]
+    if 'Fruity Master' in nombre:
+        return [armar_linea(121019, npc_val or 1254, [5270, 5271],
+                            acciones=[1000126, 0])[2:]]
+    if 'Fruity Repairer' in nombre:
+        return [armar_linea(121016, npc_val or 1257, [121017, 121004],
+                            acciones=[1000124, 0])[2:]]
+    if 'Fruity Bank Cler' in nombre:
+        return [armar_linea(5225, npc_val or 1251, [5030, 5032, 5033],
+                            acciones=[1000117, 1000118, 0])[2:]]
+    # Estos dos no venden nada: una linea de texto y ya.
+    if 'Scholar Taern' in nombre:
+        return [armar_linea(119116, npc_val or 1075, [])[2:]]
+    if 'Chief Roluck' in nombre:
+        return [armar_linea(121202, npc_val or 1240, [])[2:]]
+
+    # --- Shuwa Market (Stage 258 - Shuwa) ---
+    # Medido el 28/09/2026 en captura propia. Los cuatro vendedores de
+    # habilidades y recetas usan los MISMOS mensajes que los de Building
+    # Blocks City (7981, 7984, 7985, 7987) y las mismas opciones, asi que
+    # aqui la tienda la tiene que decidir la entidad, no la opcion.
+    if 'Shuwa Expert(S' in nombre:
+        return [armar_linea(7987, npc_val or 1284, [7982, 7983],
+                            acciones=[1000084, 0])[2:]]
+    if 'Shuwa Expert(W' in nombre:
+        return [armar_linea(7985, npc_val or 1157, [7982, 7983],
+                            acciones=[1000083, 0])[2:]]
+    if 'Shuwa Smith' in nombre:
+        return [armar_linea(7981, npc_val or 1282, [7982, 7983],
+                            acciones=[1000081, 0])[2:]]
+    if 'Shuwa Master' in nombre:
+        return [armar_linea(7984, npc_val or 1275, [7982, 7983],
+                            acciones=[1000082, 0])[2:]]
+    if 'Shuwa Repairer' in nombre:
+        return [armar_linea(5226, npc_val or 187, [5227, 5242],
+                            acciones=[1000080, 0])[2:]]
+    if 'Shuwa Bank Clerk' in nombre:
+        return [armar_linea(5225, npc_val or 1276, [5030, 5032, 5033],
+                            acciones=[1000073, 1000074, 0])[2:]]
+    # El guardia de Bayan es el primero de VARIAS PAGINAS: manda tres lineas
+    # sueltas que el cliente va pidiendo con 0x000B valor 1, y la cuarta ya
+    # trae opciones. Al elegir la primera contesta la 8388 con cinco, que
+    # estan en respuesta_a.
+    if 'Bayan Entry Guar' in nombre:
+        return [armar_linea(8382, npc_val or 5, [])[2:],
+                armar_linea(8383, npc_val or 5, [])[2:],
+                armar_linea(8384, npc_val or 5, [])[2:],
+                armar_linea(8385, npc_val or 5, [8386, 8387],
+                            acciones=[1000093, 0])[2:]]
+
+    # Brin, en Shuwa Market. Solo una linea de texto.
+    #
+    # Se llego a poner aqui el menu de Siam Square como si fuera su segunda
+    # pagina, y era falso: en la captura el menu aparece DESPUES, cuando el
+    # jugador ya se habia ido de Brin y piso el tornado de (19,175). Lo
+    # delataba el tramo del MOVE_REQ, que acaba en (20,174), justo al lado de
+    # ese tornado. El menu es del PORTAL, no de este NPC.
+    if nombre == 'Brin':
+        return [armar_linea(126714, npc_val or 1285, [])[2:]]
+
     if 'Prof. Stein' in nombre:
         return [armar_linea(37410, npc_val or 1122, [])[2:]]
     if 'Priest Eaglearch' in nombre:
@@ -947,6 +1146,30 @@ TIENDAS_POR_NOMBRE = {
     'Pharaoh Expert(S)': 116, # Pharaoh Village - Spell skills
     'Pharaoh Smith': 118,     # Pharaoh Village - Smith recipes
     'Pharaoh Master': 119,    # Pharaoh Village - Master recipes
+    'Convo Expert(W)': 123,   # Angelic Cave - Weapon skills
+    'Convo Expert(S)': 122,   # Angelic Cave - Spell skills
+    'Convo Smith': 118,       # Angelic Cave - Smith recipes
+    'Convo Master': 119,      # Angelic Cave - Master recipes
+    'Snowball Combat': 128,   # Snowball Village - Weapon skills
+    'Snowball Magic R': 129,  # Snowball Village - Spell skills
+    'Snowball Master': 130,   # Snowball Village - Master recipes
+    'Snowball  Engine': 131,  # Snowball Village - Smith recipes
+    'Steam Magic Rese': 133,  # Steam Town - Spell skills
+    'Steam Combat Spe': 134,  # Steam Town - Weapon skills
+    'Steam  Engineer': 135,   # Steam Town - Smith recipes
+    'Steam Master': 136,      # Steam Town - Master recipes
+    'City Magic Resea': 138,  # Edo City - Spell skills
+    'City War Researc': 139,  # Edo City - Weapon skills
+    'City Senior Blac': 140,  # Edo City - Smith recipes
+    'City Senior Guid': 141,  # Edo City - Master recipes
+    'Fruity Expert(S)': 143,  # Fruity Village - Spell skills
+    'Fruity Expert(W)': 144,  # Fruity Village - Weapon skills
+    'Fruity Smith': 145,      # Fruity Village - Smith recipes
+    'Fruity Master': 146,     # Fruity Village - Master recipes
+    'Shuwa Expert(S)': 151,   # Shuwa Market - Spell skills
+    'Shuwa Expert(W)': 152,   # Shuwa Market - Weapon skills
+    'Shuwa Smith': 145,       # Shuwa Market - Smith recipes
+    'Shuwa Master': 146,      # Shuwa Market - Master recipes
 }
 
 # Tiendas especificas segun la entidad del NPC que vende
@@ -1207,6 +1430,54 @@ TIENDAS_POR_ENTIDAD = {
     123013: 116, # Pharaoh Expert(S) -> Shop 116 (Spell skill scrolls)
     123011: 118, # Pharaoh Smith -> Shop 118 (Smith recipes lv 161-165)
     123012: 119, # Pharaoh Master -> Shop 119 (Master recipes lv 161-165)
+
+    # --- Angelic Cave (Stage 194 - East Orient) ---
+    # Los cuatro salen de la captura del 28/09/2026: se clico el NPC, se
+    # contesto la primera opcion y se leyo el 0x0034 que devolvio el servidor.
+    # Las recetas 118 y 119 son las MISMAS que las de Pharaoh Village, no es
+    # un error de copia: las dos ciudades venden la banda de nivel 161.
+    123057: 123, # Convo Expert(W) -> Shop 123 (Shockwave, Aegis... lv 163-190)
+    123060: 122, # Convo Expert(S) -> Shop 122 (Holy Yoke, Divine Prayer... lv 163-190)
+    123058: 118, # Convo Smith -> Shop 118 (recetas de Smith lv 161)
+    123059: 119, # Convo Master -> Shop 119 (recetas de Master lv 161)
+
+    # --- Snowball Village (Stage 210 - Snow) ---
+    # Misma captura del 28/09/2026, mismo metodo: clic, primera opcion y el
+    # 0x0034 de vuelta. Aqui la banda de nivel es la 171.
+    123153: 128, # Snowball Combat -> Shop 128 (Earth Tremor, Armor Flip... lv 172+)
+    123154: 129, # Snowball Magic R -> Shop 129 (Holy Light, Holy Prayer... lv 171+)
+    123157: 130, # Snowball Master -> Shop 130 (recetas de Master lv 171)
+    123155: 131, # Snowball  Engine -> Shop 131 (recetas de Smith lv 171)
+
+    # --- Steam Town (Stage 223 - Space Cowboy) ---
+    # Misma captura del 28/09/2026. Banda de nivel 181.
+    123214: 133, # Steam Magic Rese -> Shop 133 (Mirror Reflect... lv 186+)
+    123215: 134, # Steam Combat Spe -> Shop 134 (Angry Charge... lv 187+)
+    123216: 135, # Steam  Engineer -> Shop 135 (recetas de Smith lv 181)
+    123217: 136, # Steam Master -> Shop 136 (recetas de Master lv 181)
+
+    # --- Edo City (Stage 232 - Sakura Festival) ---
+    # Misma captura del 28/09/2026. Los articulos de estas cuatro tiendas NO
+    # estan en nuestro content.db: son de un parche posterior al cliente del
+    # que salieron los xml. El id de tienda si es el que manda el servidor.
+    123277: 138, # City Magic Resea -> Shop 138
+    123278: 139, # City War Researc -> Shop 139
+    123279: 140, # City Senior Blac -> Shop 140
+    123281: 141, # City Senior Guid -> Shop 141
+
+    # --- Fruity Village (Stage 246 - Sequoia) ---
+    123376: 143, # Fruity Expert(S) -> Shop 143
+    123378: 144, # Fruity Expert(W) -> Shop 144
+    123377: 145, # Fruity Smith -> Shop 145
+    123374: 146, # Fruity Master -> Shop 146
+
+    # --- Shuwa Market (Stage 258 - Shuwa) ---
+    # Las recetas 145 y 146 son las MISMAS que las de Fruity Village: las dos
+    # ciudades venden la misma banda.
+    123440: 151, # Shuwa Expert(S) -> Shop 151
+    123441: 152, # Shuwa Expert(W) -> Shop 152
+    123442: 145, # Shuwa Smith -> Shop 145
+    123443: 146, # Shuwa Master -> Shop 146
 }
 
 # Opciones de dialogo que abren la ventana de tienda (WND_NPCSALE).
@@ -1222,6 +1493,53 @@ TIENDAS_POR_OPCION = {
     7988: 108,   # "Oh, I want to learn them!" (Blocks Expert(S))
     6102: 69,    # Pet Expert -> Shop 69 (Comida y galletas de mascota)
     5045: 37,    # Angel Aide (Guide Palace) -> Shop 37
+    104735: 128, # Snowball Combat -> Shop 128
+    104737: 129, # Snowball Magic R -> Shop 129
+    112012: 134, # Steam Combat Spe -> Shop 134
+    112014: 133, # Steam Magic Rese -> Shop 133
+    117119: 139, # City War Researc -> Shop 139
+    117121: 138, # City Magic Resea -> Shop 138
+    121013: 144, # Fruity Expert(W) -> Shop 144
+    121015: 143, # Fruity Expert(S) -> Shop 143
+}
+
+
+# Las acciones de la 5236, la linea "Which warehouse do you want to use?".
+#
+# Van por NPC, no por mensaje: el banquero de Steam Town manda 1000051 y
+# 1000054, y el de Edo City 1000078 y 1000079, con la misma linea. Por eso
+# esto es una tabla y no un par de numeros fijos, que fue como se puso al
+# principio y hacia que la linea de Edo City saliera con las de Steam Town.
+#
+# Un banquero que no este aqui manda la linea SIN acciones. Funciona: el
+# cliente la acepta igual y abre el almacen.
+ACCIONES_ALMACEN = {
+    123211: [1000051, 1000054],   # Steam Bank Emplo (Steam Town)
+    123276: [1000078, 1000079],   # City Banker (Edo City)
+    123373: [1000122, 1000123],   # Fruity Bank Cler (Fruity Village)
+    123438: [1000078, 1000079],   # Shuwa Bank Clerk (Shuwa Market)
+}
+
+
+# Opciones de dialogo que MANDAN A OTRO MAPA.
+#
+# El menu sale al PISAR un tornado de los que preguntan: el de (19,175) en
+# Shuwa Market y el de (272,148) en Bayan Village. El mensaje es el mismo en
+# los dos, el 125309, pero cada uno deja en su casilla.
+#
+# La segunda, "Elite Siam Square", lleva al stage 262, "Hell Siam Square", y
+# deja en la MISMA casilla que la normal. Las dos estan medidas.
+# La clave es (mapa DESDE EL QUE se pregunta, opcion), no la opcion sola: el
+# mismo menu 125309 sale en dos sitios y cada uno deja en su casilla.
+VIAJES_POR_OPCION = {
+    # Shuwa Market, pisando el tornado de (19,175). Las dos dejan en la misma
+    # casilla, que es casi el punto "Entrance" del jumpmap, el (286,8).
+    (258, 125310): (261, [289, 11]),   # Siam Square
+    (258, 125311): (262, [289, 11]),   # Hell Siam Square, la version Elite
+    # Bayan Village, pisando el tornado de (272,148). Aqui las dos casillas
+    # son distintas entre si y ninguna se parece a las de Shuwa.
+    (259, 125310): (261, [10, 11]),
+    (259, 125311): (262, [17, 7]),
 }
 
 
@@ -1371,11 +1689,45 @@ def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
     if opcion_id == 10235:
         return (armar_linea(10240, val), armar_linea(10241, val))
 
+    # Banco: la opcion del medio de la 5225 abre la pregunta de QUE almacen.
+    #
+    # Se quedaba sin contestar y el cuadro se cerraba solo, sin abrir nada. La
+    # captura de Steam Town del 28/09/2026 tiene la secuencia entera: la 5225
+    # ofrece [5030, 5032, 5033], el cliente manda 0x000B con 0x0b (indice 1,
+    # la 5032) y el servidor contesta con la 5236 y sus dos opciones, la
+    # propia y la de la corporacion.
+    # Guardia de Bayan: al aceptar contesta la 8388 con cinco opciones. Que
+    # hace cada una no se llego a ver, la captura se corta ahi.
+    if opcion_id == 8386:
+        return (armar_linea(8388, val, [8389, 8390, 8391, 8392, 8393],
+                            acciones=[1000094, 1000095, 1000096, 1000097,
+                                      1000098]),)
+
+    if opcion_id == 5032:
+        return (armar_linea(5236, val, [5237, 5238],
+                            acciones=ACCIONES_ALMACEN.get(entidad, [])),)
+
     # Almacen / Banco (Bao Clerk y Chief Director)
     if opcion_id in (5030, 5237):
         # Abrir almacen personal: WND_WAREHOUSE (opcode 0x002B)
         pkg_cierre = struct.pack('<H', 0x0012) + FIN
-        pkg_bank = struct.pack('<HII', 0x002B, 1, 0)
+        # El almacen es el 0x004E, NO el 0x002B.
+        #
+        # Con el 0x002B el cliente no abria nada y soltaba un aviso de la
+        # lista de amigos, porque ese opcode es de otro mensaje. El bueno
+        # esta medido: en la captura de Edo City del 28/09/2026, al elegir
+        # "I wish to use my own warehouse" el servidor contesta un 0x004E de
+        # 824 bytes y detras el cierre del dialogo.
+        #
+        # El cuerpo resulto ser EL MISMO que el del inventario 0x001A: un
+        # LE32 con el numero de entradas y detras las entradas, de 86 bytes
+        # las corrientes y 119 las equipables. Los 824 bytes de la captura son
+        # cuatro de cabecera y ocho entradas, cuatro de cada clase.
+        # Marcador: app.py lo sustituye por el almacen de verdad, armado con
+        # lo que el personaje tenga guardado. El cuerpo es el mismo que el del
+        # inventario 0x001A -- cuenta y entradas de 86 o 119 bytes -- y eso lo
+        # sabe inventario.py, no este archivo.
+        pkg_bank = struct.pack('<HI', 0x004E, 0)
         return (pkg_bank, pkg_cierre)
 
     # Skill Angel: 5024 ("Change Skill" / redistribucion) vs 5820 ("Choose profession skills")
@@ -1391,9 +1743,13 @@ def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
         return (pkg_prof, pkg_cierre)
 
     # Reparacion de equipo (Repair Angel: 5101 / Repair Expert: 5227 / Repair Robot: 7990) -> abre WND_REPAIR (opcode 0x004F)
-    if opcion_id in (5101, 5227, 7990):
+    if opcion_id in (5101, 5227, 7990, 112016, 117123, 121017):
         pkg_cierre = struct.pack('<H', 0x0012) + FIN
-        pkg_repair = struct.pack('<HBB', 0x004F, 1, 0)
+        # Los dos bytes van 00 01, no 01 00. Estaban del reves desde siempre
+        # y no se habia notado porque nadie comparo el paquete con la captura:
+        # las NUEVE aperturas de la ventana de reparacion que hay capturadas,
+        # de tres ciudades distintas, mandan las mismas 0001.
+        pkg_repair = struct.pack('<HBB', 0x004F, 0, 1)
         return (pkg_repair, pkg_cierre)
 
     # Healer / Curacion (5140 "Revival." / 5178)
@@ -1424,7 +1780,11 @@ def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
     # Angel Raphael (Guide Palace)
     if opcion_id == 5009:  # "I don't want to join in." -> 5010 (preguntar si esta seguro)
         return (armar_linea(5010, 3, [5011, 5012]),)
-    if opcion_id in (5012, 5191, 5242, 5046, 5059, 5064, 5271, 7536, 5238, 7933, 7983, 7991):  # Quit / cerrar
+    # 5278 y 5371 son los "Quit" de los dos vendedores de recetas de Snowball
+    # Village; sin ellos el dialogo se quedaba abierto al decir que no.
+    if opcion_id in (5012, 5191, 5242, 5046, 5059, 5064, 5271, 7536, 5238, 7933, 7983, 7991,
+                     5278, 5371, 112004, 5033, 5020, 121004,
+                     8387):  # Quit / cerrar
         return (struct.pack('<H', 0x0012) + FIN,)
 
     # Angel Raphael (Fighting Palace): 5063 "I'm ready to go to the Angel Lyceum."

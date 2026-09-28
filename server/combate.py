@@ -31,6 +31,13 @@ KIND_HP = 0                 # HP actual del jugador / % del monstruo
 KIND_MP = 2                 # MP actual del jugador (medido en 70/70 capturas de AngelWar)
 KIND_SP = 4                 # Puntos de SP acumulados del jugador (0..max_sp*1000)
 KIND_EXP = 4                # Alias retrocompatible
+# Creditos de rango. Medido el 28/09/2026 en la captura de Edo City: al usar
+# uno de los objetos que dan creditos, el servidor real manda este mismo
+# 0x0013 con el atributo 49 y el total acumulado, y detras un 0x0282 con la
+# cantidad sumada escrita en ASCII ("120000"). El rango que se ve en la ficha
+# del personaje sale de ese total; los cortes entre un rango y otro NO estan
+# en los xml del cliente ni se han podido medir todavia.
+KIND_CREDITO = 49
 COSTE_GOLPE = 4
 SEGUNDOS_REAPARICION = 20
 _MON = None
@@ -434,7 +441,7 @@ def botin_items(npc_type: int) -> list:
         _DROPS_CACHE[npc_type] = candidatos
 
     import configuracion
-    prob = min(0.95, 0.70 * configuracion.multiplicador_drop())
+    prob = min(0.95, 0.90 * configuracion.multiplicador_drop())
     drops = []
     if candidatos and random.random() < prob:
         drops.append(random.choice(candidatos))
@@ -952,7 +959,7 @@ _WEAPON_ATTACK_CACHE = {}
 #
 # Queda como constante para poder subirlo si en el juego se siente flojo. En
 # 1.0 es la suma pura, que es lo unico que respalda la medicion.
-PESO_STANCE = 1.0
+PESO_STANCE = 2
 
 
 def stance_de(magic_id: int) -> int:
@@ -1093,7 +1100,7 @@ VARIACION_DANO = 0.97
 
 # Probabilidad, por golpe y por habilidad, de ganar un punto de skill exp.
 # Medido: 8 avisos en 18 golpes con cinco habilidades candidatas.
-PROB_SKILL_EXP = 0.09
+PROB_SKILL_EXP = 0.55
 
 # Cuanto se alejan los monstruos de su punto de aparicion al pasear, y con
 # que probabilidad dan un paso EN CADA TICK de la IA (300 ms). Era 0.22 con
@@ -1108,7 +1115,7 @@ PROB_PASEO = 0.055
 RANGO_PERDER_AGRO = 18
 
 # Oro base que suelta un monstruo, antes del multiplicador del servidor.
-TASA_ORO_BASE = 1
+TASA_ORO_BASE = 5
 
 # Lo que aporta cada fuente de velocidad de ataque, en tanto por uno.
 # El valor de Swiftness Song sale de 攻擊速度 en magic.xml: la I trae 5 y la

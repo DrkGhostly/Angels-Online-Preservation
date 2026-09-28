@@ -1,0 +1,3528 @@
+{
+ "_nota": "Hell Siam Square (stage 262), de Celestia, zona Shuwa. Es la version 'Elite' de Siam Square: se entra por el mismo NPC, Brin en Shuwa Market, eligiendo la SEGUNDA opcion de su menu. Poblado desde UNA sola sesion. Los objetos van CRUDOS.",
+ "stage": 262,
+ "spawns": [
+  {
+   "entity_id": 32752,
+   "nombre": "Aurora Totem",
+   "npc_type": 1937,
+   "sprite": 60241,
+   "klass": 200,
+   "monstruo": false,
+   "tile": [
+    18,
+    61
+   ],
+   "direccion": 6,
+   "visible": 0
+  },
+  {
+   "entity_id": 32753,
+   "nombre": "Dark City Totem",
+   "npc_type": 1938,
+   "sprite": 60241,
+   "klass": 200,
+   "monstruo": false,
+   "tile": [
+    42,
+    73
+   ],
+   "direccion": 6,
+   "visible": 0
+  },
+  {
+   "entity_id": 32754,
+   "nombre": "Iron Totem",
+   "npc_type": 1939,
+   "sprite": 60241,
+   "klass": 200,
+   "monstruo": false,
+   "tile": [
+    27,
+    64
+   ],
+   "direccion": 6,
+   "visible": 0
+  },
+  {
+   "entity_id": 32755,
+   "nombre": "Breeze Totem",
+   "npc_type": 1940,
+   "sprite": 60241,
+   "klass": 200,
+   "monstruo": false,
+   "tile": [
+    35,
+    69
+   ],
+   "direccion": 6,
+   "visible": 0
+  },
+  {
+   "entity_id": 123471,
+   "nombre": "Cupid",
+   "npc_type": 1502,
+   "sprite": 40006,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    262,
+    159
+   ],
+   "direccion": 6,
+   "visible": 1
+  },
+  {
+   "entity_id": 1047677,
+   "nombre": "Hell - Brawler W",
+   "npc_type": 16202,
+   "sprite": 43980,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    265,
+    46
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047678,
+   "nombre": "Hell - Brawler W",
+   "npc_type": 16202,
+   "sprite": 43980,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    286,
+    24
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047679,
+   "nombre": "Hell - Brawler W",
+   "npc_type": 16202,
+   "sprite": 43980,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    268,
+    35
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047680,
+   "nombre": "Hell - Brawler W",
+   "npc_type": 16202,
+   "sprite": 43980,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    268,
+    43
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047681,
+   "nombre": "Hell - Brawler W",
+   "npc_type": 16202,
+   "sprite": 43980,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    257,
+    28
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047682,
+   "nombre": "Hell - Brawler W",
+   "npc_type": 16202,
+   "sprite": 43980,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    57
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047683,
+   "nombre": "Hell - Brawler W",
+   "npc_type": 16202,
+   "sprite": 43980,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    64
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047684,
+   "nombre": "Hell - Brawler W",
+   "npc_type": 16202,
+   "sprite": 43980,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    235,
+    49
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047685,
+   "nombre": "Hell - Brawler W",
+   "npc_type": 16202,
+   "sprite": 43980,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    257,
+    48
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047686,
+   "nombre": "Hell - Brawler W",
+   "npc_type": 16202,
+   "sprite": 43980,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    269,
+    39
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047687,
+   "nombre": "Hell - Brawler W",
+   "npc_type": 16202,
+   "sprite": 43980,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    63
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047688,
+   "nombre": "Hell - Brawler W",
+   "npc_type": 16202,
+   "sprite": 43980,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    277,
+    72
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047689,
+   "nombre": "Hell - Brawler W",
+   "npc_type": 16202,
+   "sprite": 43980,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    280,
+    58
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047690,
+   "nombre": "Hell - Brawler W",
+   "npc_type": 16202,
+   "sprite": 43980,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    69
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047691,
+   "nombre": "Hell - Brawler W",
+   "npc_type": 16202,
+   "sprite": 43980,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    245,
+    74
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047692,
+   "nombre": "Hell - Brawler W",
+   "npc_type": 16202,
+   "sprite": 43980,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    272,
+    73
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047693,
+   "nombre": "Hell - Brawler W",
+   "npc_type": 16202,
+   "sprite": 43980,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    66
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047694,
+   "nombre": "Hell - Brawler W",
+   "npc_type": 16202,
+   "sprite": 43980,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    281,
+    73
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047695,
+   "nombre": "Hell - Brawler W",
+   "npc_type": 16202,
+   "sprite": 43980,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    277,
+    77
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047696,
+   "nombre": "Hell - Brawler W",
+   "npc_type": 16202,
+   "sprite": 43980,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    272,
+    80
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047697,
+   "nombre": "Hell - Kungfu Wo",
+   "npc_type": 16203,
+   "sprite": 43981,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    234,
+    11
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047698,
+   "nombre": "Hell - Kungfu Wo",
+   "npc_type": 16203,
+   "sprite": 43981,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    223,
+    12
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047699,
+   "nombre": "Hell - Kungfu Wo",
+   "npc_type": 16203,
+   "sprite": 43981,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    12
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047700,
+   "nombre": "Hell - Kungfu Wo",
+   "npc_type": 16203,
+   "sprite": 43981,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    235,
+    12
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047701,
+   "nombre": "Hell - Kungfu Wo",
+   "npc_type": 16203,
+   "sprite": 43981,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    244,
+    6
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047702,
+   "nombre": "Hell - Kungfu Wo",
+   "npc_type": 16203,
+   "sprite": 43981,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    209,
+    17
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047703,
+   "nombre": "Hell - Kungfu Wo",
+   "npc_type": 16203,
+   "sprite": 43981,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    193,
+    16
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047704,
+   "nombre": "Hell - Kungfu Wo",
+   "npc_type": 16203,
+   "sprite": 43981,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    198,
+    14
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047705,
+   "nombre": "Hell - Kungfu Wo",
+   "npc_type": 16203,
+   "sprite": 43981,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    212,
+    3
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047706,
+   "nombre": "Hell - Kungfu Wo",
+   "npc_type": 16203,
+   "sprite": 43981,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    27
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047707,
+   "nombre": "Hell - Kungfu Wo",
+   "npc_type": 16203,
+   "sprite": 43981,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    222,
+    40
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047708,
+   "nombre": "Hell - Kungfu Wo",
+   "npc_type": 16203,
+   "sprite": 43981,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    25
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047709,
+   "nombre": "Hell - Kungfu Wo",
+   "npc_type": 16203,
+   "sprite": 43981,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    199,
+    35
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047710,
+   "nombre": "Hell - Kungfu Wo",
+   "npc_type": 16203,
+   "sprite": 43981,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    41
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047711,
+   "nombre": "Hell - Kungfu Wo",
+   "npc_type": 16203,
+   "sprite": 43981,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    193,
+    35
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047712,
+   "nombre": "Hell - Kungfu Wo",
+   "npc_type": 16203,
+   "sprite": 43981,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    229,
+    47
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047713,
+   "nombre": "Hell - Kungfu Wo",
+   "npc_type": 16203,
+   "sprite": 43981,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    241,
+    40
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047714,
+   "nombre": "Hell - Kungfu Wo",
+   "npc_type": 16203,
+   "sprite": 43981,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    255,
+    27
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047715,
+   "nombre": "Hell - Kungfu Wo",
+   "npc_type": 16203,
+   "sprite": 43981,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    238,
+    51
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047716,
+   "nombre": "Hell - Kungfu Wo",
+   "npc_type": 16203,
+   "sprite": 43981,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    233,
+    40
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 239
+  },
+  {
+   "entity_id": 1047717,
+   "nombre": "Hell - Knitting ",
+   "npc_type": 16204,
+   "sprite": 43941,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    90
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047718,
+   "nombre": "Hell - Knitting ",
+   "npc_type": 16204,
+   "sprite": 43941,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    232,
+    76
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047719,
+   "nombre": "Hell - Knitting ",
+   "npc_type": 16204,
+   "sprite": 43941,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    212,
+    88
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047720,
+   "nombre": "Hell - Knitting ",
+   "npc_type": 16204,
+   "sprite": 43941,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    68
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047721,
+   "nombre": "Hell - Knitting ",
+   "npc_type": 16204,
+   "sprite": 43941,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    74
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047722,
+   "nombre": "Hell - Knitting ",
+   "npc_type": 16204,
+   "sprite": 43941,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    80
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047723,
+   "nombre": "Hell - Knitting ",
+   "npc_type": 16204,
+   "sprite": 43941,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    199,
+    101
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047724,
+   "nombre": "Hell - Knitting ",
+   "npc_type": 16204,
+   "sprite": 43941,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    96
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047725,
+   "nombre": "Hell - Knitting ",
+   "npc_type": 16204,
+   "sprite": 43941,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    197,
+    87
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047726,
+   "nombre": "Hell - Knitting ",
+   "npc_type": 16204,
+   "sprite": 43941,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    185,
+    99
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047727,
+   "nombre": "Hell - Knitting ",
+   "npc_type": 16204,
+   "sprite": 43941,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    182,
+    68
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047728,
+   "nombre": "Hell - Knitting ",
+   "npc_type": 16204,
+   "sprite": 43941,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    80
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047729,
+   "nombre": "Hell - Knitting ",
+   "npc_type": 16204,
+   "sprite": 43941,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    94
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047730,
+   "nombre": "Hell - Knitting ",
+   "npc_type": 16204,
+   "sprite": 43941,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    62
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047731,
+   "nombre": "Hell - Knitting ",
+   "npc_type": 16204,
+   "sprite": 43941,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    70
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047732,
+   "nombre": "Hell - Knitting ",
+   "npc_type": 16204,
+   "sprite": 43941,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    208,
+    66
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047733,
+   "nombre": "Hell - Knitting ",
+   "npc_type": 16204,
+   "sprite": 43941,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    189,
+    58
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047734,
+   "nombre": "Hell - Knitting ",
+   "npc_type": 16204,
+   "sprite": 43941,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    182,
+    50
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047735,
+   "nombre": "Hell - Knitting ",
+   "npc_type": 16204,
+   "sprite": 43941,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    207,
+    64
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047736,
+   "nombre": "Hell - Knitting ",
+   "npc_type": 16204,
+   "sprite": 43941,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    198,
+    57
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047737,
+   "nombre": "Hell - Knitting ",
+   "npc_type": 16204,
+   "sprite": 43941,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    157,
+    59
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047738,
+   "nombre": "Hell - Knitting ",
+   "npc_type": 16204,
+   "sprite": 43941,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    171,
+    63
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047739,
+   "nombre": "Hell - Knitting ",
+   "npc_type": 16204,
+   "sprite": 43941,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    166,
+    56
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047740,
+   "nombre": "Hell - Knitting ",
+   "npc_type": 16204,
+   "sprite": 43941,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    170,
+    54
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047741,
+   "nombre": "Hell - Knitting ",
+   "npc_type": 16204,
+   "sprite": 43941,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    151,
+    72
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047742,
+   "nombre": "Hell - Glacier S",
+   "npc_type": 16205,
+   "sprite": 43995,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    224,
+    130
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047743,
+   "nombre": "Hell - Glacier S",
+   "npc_type": 16205,
+   "sprite": 43995,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    223,
+    120
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047744,
+   "nombre": "Hell - Glacier S",
+   "npc_type": 16205,
+   "sprite": 43995,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    227,
+    121
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047745,
+   "nombre": "Hell - Glacier S",
+   "npc_type": 16205,
+   "sprite": 43995,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    213,
+    121
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047746,
+   "nombre": "Hell - Glacier S",
+   "npc_type": 16205,
+   "sprite": 43995,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    215,
+    133
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047747,
+   "nombre": "Hell - Glacier S",
+   "npc_type": 16205,
+   "sprite": 43995,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    179,
+    159
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047748,
+   "nombre": "Hell - Glacier S",
+   "npc_type": 16205,
+   "sprite": 43995,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    159,
+    157
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047749,
+   "nombre": "Hell - Glacier S",
+   "npc_type": 16205,
+   "sprite": 43995,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    156
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047750,
+   "nombre": "Hell - Glacier S",
+   "npc_type": 16205,
+   "sprite": 43995,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    192,
+    145
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047751,
+   "nombre": "Hell - Glacier S",
+   "npc_type": 16205,
+   "sprite": 43995,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    164
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047752,
+   "nombre": "Hell - Glacier S",
+   "npc_type": 16205,
+   "sprite": 43995,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    263,
+    112
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047753,
+   "nombre": "Hell - Glacier S",
+   "npc_type": 16205,
+   "sprite": 43995,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    278,
+    103
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047754,
+   "nombre": "Hell - Glacier S",
+   "npc_type": 16205,
+   "sprite": 43995,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    282,
+    94
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047755,
+   "nombre": "Hell - Glacier S",
+   "npc_type": 16205,
+   "sprite": 43995,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    97
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047756,
+   "nombre": "Hell - Glacier S",
+   "npc_type": 16205,
+   "sprite": 43995,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    285,
+    80
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047757,
+   "nombre": "Hell - Glacier S",
+   "npc_type": 16205,
+   "sprite": 43995,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    294,
+    127
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047758,
+   "nombre": "Hell - Glacier S",
+   "npc_type": 16205,
+   "sprite": 43995,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    274,
+    135
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047759,
+   "nombre": "Hell - Glacier S",
+   "npc_type": 16205,
+   "sprite": 43995,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    282,
+    121
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047760,
+   "nombre": "Hell - Glacier S",
+   "npc_type": 16205,
+   "sprite": 43995,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    287,
+    122
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047761,
+   "nombre": "Hell - Glacier S",
+   "npc_type": 16205,
+   "sprite": 43995,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    280,
+    133
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047762,
+   "nombre": "Hell - Glacier S",
+   "npc_type": 16205,
+   "sprite": 43995,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    191,
+    160
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047763,
+   "nombre": "Hell - Glacier S",
+   "npc_type": 16205,
+   "sprite": 43995,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    235,
+    160
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047764,
+   "nombre": "Hell - Glacier S",
+   "npc_type": 16205,
+   "sprite": 43995,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    158
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047765,
+   "nombre": "Hell - Glacier S",
+   "npc_type": 16205,
+   "sprite": 43995,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    166
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047766,
+   "nombre": "Hell - Glacier S",
+   "npc_type": 16205,
+   "sprite": 43995,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    218,
+    163
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 241
+  },
+  {
+   "entity_id": 1047767,
+   "nombre": "Hell - Aqua Seas",
+   "npc_type": 16206,
+   "sprite": 43935,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    140,
+    37
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047768,
+   "nombre": "Hell - Aqua Seas",
+   "npc_type": 16206,
+   "sprite": 43935,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    151,
+    31
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047769,
+   "nombre": "Hell - Aqua Seas",
+   "npc_type": 16206,
+   "sprite": 43935,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    147,
+    19
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047770,
+   "nombre": "Hell - Aqua Seas",
+   "npc_type": 16206,
+   "sprite": 43935,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    146,
+    30
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047771,
+   "nombre": "Hell - Aqua Seas",
+   "npc_type": 16206,
+   "sprite": 43935,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    135,
+    14
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047772,
+   "nombre": "Hell - Aqua Seas",
+   "npc_type": 16206,
+   "sprite": 43935,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    120,
+    9
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047773,
+   "nombre": "Hell - Aqua Seas",
+   "npc_type": 16206,
+   "sprite": 43935,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    125,
+    10
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047774,
+   "nombre": "Hell - Aqua Seas",
+   "npc_type": 16206,
+   "sprite": 43935,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    20
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047775,
+   "nombre": "Hell - Aqua Seas",
+   "npc_type": 16206,
+   "sprite": 43935,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    109,
+    11
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047776,
+   "nombre": "Hell - Aqua Seas",
+   "npc_type": 16206,
+   "sprite": 43935,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    97,
+    16
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047777,
+   "nombre": "Hell - Aqua Seas",
+   "npc_type": 16206,
+   "sprite": 43935,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    88,
+    12
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047778,
+   "nombre": "Hell - Aqua Seas",
+   "npc_type": 16206,
+   "sprite": 43935,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    71,
+    14
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047779,
+   "nombre": "Hell - Aqua Seas",
+   "npc_type": 16206,
+   "sprite": 43935,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    83,
+    11
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047780,
+   "nombre": "Hell - Aqua Seas",
+   "npc_type": 16206,
+   "sprite": 43935,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    61,
+    33
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047781,
+   "nombre": "Hell - Aqua Seas",
+   "npc_type": 16206,
+   "sprite": 43935,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    13
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047782,
+   "nombre": "Hell - Aqua Seas",
+   "npc_type": 16206,
+   "sprite": 43935,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    130,
+    36
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047783,
+   "nombre": "Hell - Aqua Seas",
+   "npc_type": 16206,
+   "sprite": 43935,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    127,
+    28
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047784,
+   "nombre": "Hell - Aqua Seas",
+   "npc_type": 16206,
+   "sprite": 43935,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    123,
+    37
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047785,
+   "nombre": "Hell - Aqua Seas",
+   "npc_type": 16206,
+   "sprite": 43935,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    120,
+    25
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047786,
+   "nombre": "Hell - Aqua Seas",
+   "npc_type": 16206,
+   "sprite": 43935,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    112,
+    27
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047787,
+   "nombre": "Hell - Gravel Se",
+   "npc_type": 16207,
+   "sprite": 43987,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    48
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047788,
+   "nombre": "Hell - Gravel Se",
+   "npc_type": 16207,
+   "sprite": 43987,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    34,
+    47
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047789,
+   "nombre": "Hell - Gravel Se",
+   "npc_type": 16207,
+   "sprite": 43987,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    42
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047790,
+   "nombre": "Hell - Gravel Se",
+   "npc_type": 16207,
+   "sprite": 43987,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    45,
+    36
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047791,
+   "nombre": "Hell - Gravel Se",
+   "npc_type": 16207,
+   "sprite": 43987,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    42
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047792,
+   "nombre": "Hell - Gravel Se",
+   "npc_type": 16207,
+   "sprite": 43987,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    16,
+    48
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047793,
+   "nombre": "Hell - Gravel Se",
+   "npc_type": 16207,
+   "sprite": 43987,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    48
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047794,
+   "nombre": "Hell - Gravel Se",
+   "npc_type": 16207,
+   "sprite": 43987,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    16,
+    47
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047795,
+   "nombre": "Hell - Gravel Se",
+   "npc_type": 16207,
+   "sprite": 43987,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    24,
+    42
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047796,
+   "nombre": "Hell - Gravel Se",
+   "npc_type": 16207,
+   "sprite": 43987,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    16,
+    46
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047797,
+   "nombre": "Hell - Gravel Se",
+   "npc_type": 16207,
+   "sprite": 43987,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    69,
+    76
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047798,
+   "nombre": "Hell - Gravel Se",
+   "npc_type": 16207,
+   "sprite": 43987,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    42,
+    66
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047799,
+   "nombre": "Hell - Gravel Se",
+   "npc_type": 16207,
+   "sprite": 43987,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    75
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047800,
+   "nombre": "Hell - Gravel Se",
+   "npc_type": 16207,
+   "sprite": 43987,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    70,
+    74
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047801,
+   "nombre": "Hell - Gravel Se",
+   "npc_type": 16207,
+   "sprite": 43987,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    81,
+    68
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047802,
+   "nombre": "Hell - Gravel Se",
+   "npc_type": 16207,
+   "sprite": 43987,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    98,
+    55
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047803,
+   "nombre": "Hell - Gravel Se",
+   "npc_type": 16207,
+   "sprite": 43987,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    102,
+    56
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047804,
+   "nombre": "Hell - Gravel Se",
+   "npc_type": 16207,
+   "sprite": 43987,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    119,
+    61
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047805,
+   "nombre": "Hell - Gravel Se",
+   "npc_type": 16207,
+   "sprite": 43987,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    88,
+    46
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047806,
+   "nombre": "Hell - Gravel Se",
+   "npc_type": 16207,
+   "sprite": 43987,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    113,
+    68
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 243
+  },
+  {
+   "entity_id": 1047807,
+   "nombre": "Hell - Fiery Tor",
+   "npc_type": 16208,
+   "sprite": 43938,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    50,
+    108
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047808,
+   "nombre": "Hell - Fiery Tor",
+   "npc_type": 16208,
+   "sprite": 43938,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    101
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047809,
+   "nombre": "Hell - Fiery Tor",
+   "npc_type": 16208,
+   "sprite": 43938,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    42,
+    110
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047810,
+   "nombre": "Hell - Fiery Tor",
+   "npc_type": 16208,
+   "sprite": 43938,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    26,
+    116
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047811,
+   "nombre": "Hell - Fiery Tor",
+   "npc_type": 16208,
+   "sprite": 43938,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    35,
+    110
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047812,
+   "nombre": "Hell - Fiery Tor",
+   "npc_type": 16208,
+   "sprite": 43938,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    8,
+    107
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047813,
+   "nombre": "Hell - Fiery Tor",
+   "npc_type": 16208,
+   "sprite": 43938,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    27,
+    98
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047814,
+   "nombre": "Hell - Fiery Tor",
+   "npc_type": 16208,
+   "sprite": 43938,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    18,
+    111
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047815,
+   "nombre": "Hell - Fiery Tor",
+   "npc_type": 16208,
+   "sprite": 43938,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    15,
+    112
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047816,
+   "nombre": "Hell - Fiery Tor",
+   "npc_type": 16208,
+   "sprite": 43938,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    19,
+    88
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047817,
+   "nombre": "Hell - Fiery Tor",
+   "npc_type": 16208,
+   "sprite": 43938,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    42,
+    128
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047818,
+   "nombre": "Hell - Fiery Tor",
+   "npc_type": 16208,
+   "sprite": 43938,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    141
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047819,
+   "nombre": "Hell - Fiery Tor",
+   "npc_type": 16208,
+   "sprite": 43938,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    42,
+    121
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047820,
+   "nombre": "Hell - Fiery Tor",
+   "npc_type": 16208,
+   "sprite": 43938,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    38,
+    145
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047821,
+   "nombre": "Hell - Fiery Tor",
+   "npc_type": 16208,
+   "sprite": 43938,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    45,
+    146
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047822,
+   "nombre": "Hell - Fiery Tor",
+   "npc_type": 16208,
+   "sprite": 43938,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    19,
+    141
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047823,
+   "nombre": "Hell - Fiery Tor",
+   "npc_type": 16208,
+   "sprite": 43938,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    33,
+    146
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047824,
+   "nombre": "Hell - Fiery Tor",
+   "npc_type": 16208,
+   "sprite": 43938,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    143
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047825,
+   "nombre": "Hell - Fiery Tor",
+   "npc_type": 16208,
+   "sprite": 43938,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    42,
+    148
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047826,
+   "nombre": "Hell - Fiery Tor",
+   "npc_type": 16208,
+   "sprite": 43938,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    27,
+    150
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047827,
+   "nombre": "Hell - Deathly T",
+   "npc_type": 16209,
+   "sprite": 43990,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    88,
+    139
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047828,
+   "nombre": "Hell - Deathly T",
+   "npc_type": 16209,
+   "sprite": 43990,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    79,
+    149
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047829,
+   "nombre": "Hell - Deathly T",
+   "npc_type": 16209,
+   "sprite": 43990,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    88,
+    139
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047830,
+   "nombre": "Hell - Deathly T",
+   "npc_type": 16209,
+   "sprite": 43990,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    115,
+    126
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047831,
+   "nombre": "Hell - Deathly T",
+   "npc_type": 16209,
+   "sprite": 43990,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    90,
+    147
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047832,
+   "nombre": "Hell - Deathly T",
+   "npc_type": 16209,
+   "sprite": 43990,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    107,
+    167
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047833,
+   "nombre": "Hell - Deathly T",
+   "npc_type": 16209,
+   "sprite": 43990,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    124,
+    160
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047834,
+   "nombre": "Hell - Deathly T",
+   "npc_type": 16209,
+   "sprite": 43990,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    121,
+    170
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047835,
+   "nombre": "Hell - Deathly T",
+   "npc_type": 16209,
+   "sprite": 43990,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    120,
+    168
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047836,
+   "nombre": "Hell - Deathly T",
+   "npc_type": 16209,
+   "sprite": 43990,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    109,
+    160
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047837,
+   "nombre": "Hell - Deathly T",
+   "npc_type": 16209,
+   "sprite": 43990,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    157
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047838,
+   "nombre": "Hell - Deathly T",
+   "npc_type": 16209,
+   "sprite": 43990,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    160
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047839,
+   "nombre": "Hell - Deathly T",
+   "npc_type": 16209,
+   "sprite": 43990,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    71,
+    162
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047840,
+   "nombre": "Hell - Deathly T",
+   "npc_type": 16209,
+   "sprite": 43990,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    39,
+    156
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047841,
+   "nombre": "Hell - Deathly T",
+   "npc_type": 16209,
+   "sprite": 43990,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    89,
+    159
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047842,
+   "nombre": "Hell - Deathly T",
+   "npc_type": 16209,
+   "sprite": 43990,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    76,
+    144
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047843,
+   "nombre": "Hell - Deathly T",
+   "npc_type": 16209,
+   "sprite": 43990,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    139
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047844,
+   "nombre": "Hell - Deathly T",
+   "npc_type": 16209,
+   "sprite": 43990,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    142
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047845,
+   "nombre": "Hell - Deathly T",
+   "npc_type": 16209,
+   "sprite": 43990,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    143
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047846,
+   "nombre": "Hell - Deathly T",
+   "npc_type": 16209,
+   "sprite": 43990,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    74,
+    137
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 245
+  },
+  {
+   "entity_id": 1047847,
+   "nombre": "Hell - Lotus Elf",
+   "npc_type": 16210,
+   "sprite": 43947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    76,
+    88
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047848,
+   "nombre": "Hell - Lotus Elf",
+   "npc_type": 16210,
+   "sprite": 43947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    76,
+    83
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047849,
+   "nombre": "Hell - Lotus Elf",
+   "npc_type": 16210,
+   "sprite": 43947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    71,
+    83
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047850,
+   "nombre": "Hell - Lotus Elf",
+   "npc_type": 16210,
+   "sprite": 43947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    75
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047851,
+   "nombre": "Hell - Lotus Elf",
+   "npc_type": 16210,
+   "sprite": 43947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    66,
+    83
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047852,
+   "nombre": "Hell - Lotus Elf",
+   "npc_type": 16210,
+   "sprite": 43947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    90,
+    89
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047853,
+   "nombre": "Hell - Lotus Elf",
+   "npc_type": 16210,
+   "sprite": 43947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    95,
+    93
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047854,
+   "nombre": "Hell - Lotus Elf",
+   "npc_type": 16210,
+   "sprite": 43947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    88,
+    96
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047855,
+   "nombre": "Hell - Lotus Elf",
+   "npc_type": 16210,
+   "sprite": 43947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    104,
+    92
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047856,
+   "nombre": "Hell - Lotus Elf",
+   "npc_type": 16210,
+   "sprite": 43947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    100,
+    91
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047857,
+   "nombre": "Hell - Lotus Elf",
+   "npc_type": 16210,
+   "sprite": 43947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    147,
+    74
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047858,
+   "nombre": "Hell - Lotus Elf",
+   "npc_type": 16210,
+   "sprite": 43947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    83
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047859,
+   "nombre": "Hell - Lotus Elf",
+   "npc_type": 16210,
+   "sprite": 43947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    115,
+    92
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047860,
+   "nombre": "Hell - Lotus Elf",
+   "npc_type": 16210,
+   "sprite": 43947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    142,
+    70
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047861,
+   "nombre": "Hell - Lotus Elf",
+   "npc_type": 16210,
+   "sprite": 43947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    126,
+    71
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047862,
+   "nombre": "Hell - Lotus Elf",
+   "npc_type": 16210,
+   "sprite": 43947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    142,
+    100
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047863,
+   "nombre": "Hell - Lotus Elf",
+   "npc_type": 16210,
+   "sprite": 43947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    109,
+    88
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047864,
+   "nombre": "Hell - Lotus Elf",
+   "npc_type": 16210,
+   "sprite": 43947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    123,
+    95
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047865,
+   "nombre": "Hell - Lotus Elf",
+   "npc_type": 16210,
+   "sprite": 43947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    114,
+    89
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047866,
+   "nombre": "Hell - Lotus Elf",
+   "npc_type": 16210,
+   "sprite": 43947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    130,
+    93
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047867,
+   "nombre": "Hell - Lotus Elf",
+   "npc_type": 16210,
+   "sprite": 43947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    117,
+    64
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047868,
+   "nombre": "Hell - Lotus Elf",
+   "npc_type": 16210,
+   "sprite": 43947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    111,
+    56
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047869,
+   "nombre": "Hell - Lotus Elf",
+   "npc_type": 16210,
+   "sprite": 43947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    124,
+    71
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047870,
+   "nombre": "Hell - Lotus Elf",
+   "npc_type": 16210,
+   "sprite": 43947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    142,
+    69
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047871,
+   "nombre": "Hell - Lotus Elf",
+   "npc_type": 16210,
+   "sprite": 43947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    122,
+    68
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047872,
+   "nombre": "Hell - Floe Elf",
+   "npc_type": 16211,
+   "sprite": 110001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    138,
+    100
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047873,
+   "nombre": "Hell - Floe Elf",
+   "npc_type": 16211,
+   "sprite": 110001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    145,
+    102
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047874,
+   "nombre": "Hell - Floe Elf",
+   "npc_type": 16211,
+   "sprite": 110001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    111
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047875,
+   "nombre": "Hell - Floe Elf",
+   "npc_type": 16211,
+   "sprite": 110001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    99
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047876,
+   "nombre": "Hell - Floe Elf",
+   "npc_type": 16211,
+   "sprite": 110001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    93
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047877,
+   "nombre": "Hell - Floe Elf",
+   "npc_type": 16211,
+   "sprite": 110001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    119,
+    113
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047878,
+   "nombre": "Hell - Floe Elf",
+   "npc_type": 16211,
+   "sprite": 110001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    125,
+    111
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047879,
+   "nombre": "Hell - Floe Elf",
+   "npc_type": 16211,
+   "sprite": 110001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    121,
+    111
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047880,
+   "nombre": "Hell - Floe Elf",
+   "npc_type": 16211,
+   "sprite": 110001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    127,
+    129
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047881,
+   "nombre": "Hell - Floe Elf",
+   "npc_type": 16211,
+   "sprite": 110001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    118,
+    115
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047882,
+   "nombre": "Hell - Floe Elf",
+   "npc_type": 16211,
+   "sprite": 110001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    135
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047883,
+   "nombre": "Hell - Floe Elf",
+   "npc_type": 16211,
+   "sprite": 110001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    144,
+    133
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047884,
+   "nombre": "Hell - Floe Elf",
+   "npc_type": 16211,
+   "sprite": 110001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    144,
+    136
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047885,
+   "nombre": "Hell - Floe Elf",
+   "npc_type": 16211,
+   "sprite": 110001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    148,
+    138
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047886,
+   "nombre": "Hell - Floe Elf",
+   "npc_type": 16211,
+   "sprite": 110001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    131,
+    132
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047887,
+   "nombre": "Hell - Floe Elf",
+   "npc_type": 16211,
+   "sprite": 110001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    164,
+    114
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047888,
+   "nombre": "Hell - Floe Elf",
+   "npc_type": 16211,
+   "sprite": 110001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    156,
+    112
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047889,
+   "nombre": "Hell - Floe Elf",
+   "npc_type": 16211,
+   "sprite": 110001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    110
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047890,
+   "nombre": "Hell - Floe Elf",
+   "npc_type": 16211,
+   "sprite": 110001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    113
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047891,
+   "nombre": "Hell - Floe Elf",
+   "npc_type": 16211,
+   "sprite": 110001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    110
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047892,
+   "nombre": "Hell - Floe Elf",
+   "npc_type": 16211,
+   "sprite": 110001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    180,
+    106
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047893,
+   "nombre": "Hell - Floe Elf",
+   "npc_type": 16211,
+   "sprite": 110001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    186,
+    99
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047894,
+   "nombre": "Hell - Floe Elf",
+   "npc_type": 16211,
+   "sprite": 110001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    172,
+    115
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047895,
+   "nombre": "Hell - Floe Elf",
+   "npc_type": 16211,
+   "sprite": 110001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    188,
+    109
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047896,
+   "nombre": "Hell - Floe Elf",
+   "npc_type": 16211,
+   "sprite": 110001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    181,
+    111
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 247
+  },
+  {
+   "entity_id": 1047897,
+   "nombre": "Hell - Seamtress",
+   "npc_type": 16217,
+   "sprite": 43942,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    166,
+    41
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 249
+  },
+  {
+   "entity_id": 1047898,
+   "nombre": "Hell - Magician ",
+   "npc_type": 16218,
+   "sprite": 43939,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    100
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 252
+  },
+  {
+   "entity_id": 1047899,
+   "nombre": "Hell - Elf Rotus",
+   "npc_type": 16219,
+   "sprite": 43948,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    123,
+    66
+   ],
+   "direccion": 0,
+   "visible": 0,
+   "nivel": 254
+  }
+ ],
+ "recursos": [
+  {
+   "entity_id": 117942,
+   "capa": 2,
+   "px": [
+    9429,
+    126
+   ],
+   "medio": "0000000027000000000000001a000000",
+   "marca": 220,
+   "orient": 6,
+   "sprite": 60001,
+   "cola": "00004080030000",
+   "crudo": "b6cc010002000000d52400007e0000000000000027000000000000001a000000dc0661ea00004080030000",
+   "que_es": "tornado (portal)"
+  },
+  {
+   "entity_id": 117943,
+   "capa": 0,
+   "px": [
+    154,
+    119
+   ],
+   "medio": "0000000027000000000000001a000000",
+   "marca": 220,
+   "orient": 6,
+   "sprite": 60001,
+   "cola": "00004080030000",
+   "crudo": "b7cc0100000000009a000000770000000000000027000000000000001a000000dc0661ea00004080030000",
+   "que_es": "tornado (portal)"
+  },
+  {
+   "entity_id": 117944,
+   "capa": 0,
+   "px": [
+    9430,
+    5610
+   ],
+   "medio": "0000000027000000000000001a000000",
+   "marca": 220,
+   "orient": 6,
+   "sprite": 60001,
+   "cola": "00004080030000",
+   "crudo": "b8cc010000000000d6240000ea1500000000000027000000000000001a000000dc0661ea00004080030000",
+   "que_es": "tornado (portal)"
+  },
+  {
+   "entity_id": 117945,
+   "capa": 2,
+   "px": [
+    571,
+    1978
+   ],
+   "medio": "006f70706572284d2900000000000000",
+   "marca": 0,
+   "orient": 6,
+   "sprite": 60051,
+   "cola": "00002280140000",
+   "crudo": "b9cc0100020000003b020000ba070000006f70706572284d2900000000000000000693ea00002280140000",
+   "que_es": "Aurora Totem"
+  },
+  {
+   "entity_id": 117946,
+   "capa": 2,
+   "px": [
+    1338,
+    2364
+   ],
+   "medio": "00000000180000000000000000000000",
+   "marca": 220,
+   "orient": 6,
+   "sprite": 60052,
+   "cola": "00002280140000",
+   "crudo": "bacc0100020000003a0500003c09000000000000180000000000000000000000dc0694ea00002280140000",
+   "que_es": "Dark City Totem"
+  },
+  {
+   "entity_id": 117947,
+   "capa": 2,
+   "px": [
+    857,
+    2087
+   ],
+   "medio": "006f70706572284d2900000000000000",
+   "marca": 0,
+   "orient": 6,
+   "sprite": 60053,
+   "cola": "00002280140000",
+   "crudo": "bbcc0100020000005903000027080000006f70706572284d2900000000000000000695ea00002280140000",
+   "que_es": "Iron Totem"
+  },
+  {
+   "entity_id": 117948,
+   "capa": 2,
+   "px": [
+    1116,
+    2233
+   ],
+   "medio": "000000ba156f77650000000000000000",
+   "marca": 0,
+   "orient": 6,
+   "sprite": 60054,
+   "cola": "00002280140000",
+   "crudo": "bccc0100020000005c040000b9080000000000ba156f77650000000000000000000696ea00002280140000",
+   "que_es": "Breeze Totem"
+  }
+ ]
+}

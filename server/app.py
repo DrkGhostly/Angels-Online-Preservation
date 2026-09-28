@@ -219,7 +219,14 @@ def _portal_en(stage, tx, ty):
         # en el json para no perder su casilla y su entidad, pero con destino
         # en null. Devolverlos haria que el servidor intentara viajar al stage
         # None. Se saltan hasta que alguien capture el cruce.
-        if por.get('destino') is None:
+        #
+        # PERO los que PREGUNTAN tambien tienen el destino en null, y a
+        # proposito: el suyo lo decide la opcion que elija el jugador, no el
+        # tornado. Se colaban en este filtro y por eso los dos portales con
+        # menu que hay -- el de Shuwa Market a Siam Square y el de Bayan
+        # Village -- no abrian el cuadro NUNCA: el servidor ni siquiera los
+        # encontraba al pisarlos.
+        if por.get('destino') is None and not por.get('preguntar'):
             continue
         # Radio propio si lo trae. El radio 1 global pide estar justo encima,
         # y eso no vale para todos: el tornado de Mushroom hacia Jade Vale
@@ -1037,7 +1044,8 @@ def _armar_portal_al_llegar(ses, addr, destino_tile, casillas):
                         import dialogos as _dlg
                         _cfg = _portales()
                         _ops = p_act.get('opciones') or _cfg['opciones']
-                        sub = _dlg.armar_linea(p_act.get('msg') or _cfg['msg'], 0, _ops)
+                        sub = _dlg.armar_linea(p_act.get('msg') or _cfg['msg'], 0, _ops,
+                                               acciones=p_act.get('acciones'))
                         ses.dlg_ent = p_act.get('entity', 0)
                         ses.dlg_guion = [sub[2:]]
                         ses.dlg_paso = 1
@@ -1627,6 +1635,14 @@ class Servidor:
                                  oro=p.oro, sp=ses.sp, sp_max=bars))
             import combate as _cb
             ses.enviar(_cb.atributo(p.entity_id, ses.sp, _cb.KIND_SP))
+            # Creditos de rango. Van en su propio 0x0013, igual que los manda
+            # el servidor real al usar un objeto que los sube. El rango de la
+            # ficha lo decide el cliente a partir de este total.
+            import configuracion as _cf
+            _cred = p.creditos or getattr(_cf, 'CREDITOS_INICIALES', 0)
+            if _cred:
+                p.creditos = _cred
+                ses.enviar(_cb.atributo(p.entity_id, _cred, _cb.KIND_CREDITO))
             # El arbol de habilidades tambien al entrar, no solo al elegir
             # clase: si no, al reconectar el panel vuelve a salir lleno de
             # interrogantes.
@@ -3630,6 +3646,182 @@ class Servidor:
                          f"{_sk.nombre_rama(_dentro)} (Lv {_nv_rec}) "
                          f"-> clase={_p.class_id} ({len(_nuevos)} hechizos iniciales)")
                 return
+            if _contenedor == 14:
+                # EL BANCO. Medido en la captura de Edo City del 28/09/2026:
+                # [u8 14][u32 origen][u32 destino], con las casillas del
+                # almacen numeradas desde 1, y el servidor contesta DOS
+                # sub-mensajes 0x001B: uno diciendo que la casilla de origen
+                # quedo vacia y otro con lo que hay ahora en la de destino.
+                #
+                # OJO: en la captura solo hay movimientos DENTRO del almacen.
+                # Como numera el cliente un salto entre la mochila y el banco
+                # no se ha visto, asi que aqui solo se mueve dentro del banco
+                # y cualquier casilla que no exista se deja pasar sin tocar
+                # nada.
+                import inventario as _iv2
+                _ori, _dst = struct.unpack_from('<II', cuerpo, 1)
+                _p = ses.personaje
+                if _p.banco is None:
+                    _p.banco = {}
+                if _ori not in _p.banco or _dst in _p.banco:
+                    log.info(f"[{addr}] banco: movimiento {_ori} -> {_dst} "
+                             f"que no se puede resolver con lo que hay "
+                             f"guardado ({sorted(_p.banco)})")
+                    return
+                _v = _p.banco.pop(_ori)
+                _it, _cn = _v if isinstance(_v, tuple) else (_v, 1)
+                _p.banco[_dst] = (_it, _cn)
+                ses.enviar(_iv2.banco_vaciar_ranura(_ori),
+                           _iv2.banco_poner(_p.char_id, _dst, _it, _cn,
+                                            dueno=_p.entity_id))
+                log.info(f"[{addr}] banco: item {_it} de la casilla "
+                         f"{_ori} a la {_dst}")
+                return
+
+            if _contenedor == 23:
+                # ARRASTRAR con el boton izquierdo, a una casilla concreta.
+                #
+                # Las acciones 16 y 17 son las del boton derecho: mandan el
+                # destino en 0 y lo coloca el servidor donde quepa. Esta es la
+                # otra, y en la captura solo aparece UNA vez: el cliente mando
+                # `17 00000000 02000000` y el servidor saco de la casilla 70
+                # de la mochila para dejarlo en la 116 del almacen. O sea que
+                # los numeros de este mensaje NO son las casillas absolutas
+                # sino la posicion en la rejilla que se ve.
+                #
+                # Con una sola muestra no se puede sacar la correspondencia,
+                # asi que aqui se prueba el numero tal cual y, si ahi no hay
+                # nada, sumandole 20, que es donde empieza nuestra mochila. El
+                # sentido se decide por donde este el objeto, no por el
+                # mensaje: asi vale para guardar y para sacar.
+                import inventario as _iv5
+                _a, _b = struct.unpack_from('<II', cuerpo, 1)
+                _p = ses.personaje
+                _bolsa = getattr(ses, 'inventario', {})
+                if _p.banco is None:
+                    _p.banco = {}
+                _en_bolsa = _a if _a in _bolsa else (
+                    _a + 20 if _a + 20 in _bolsa else None)
+                if _en_bolsa is not None:
+                    _dst = _b if _b and _b not in _p.banco else next(
+                        (k for k in range(1, 25) if k not in _p.banco), None)
+                    if _dst is None:
+                        log.info(f"[{addr}] banco: lleno, no se guarda")
+                        return
+                    _it = _bolsa.pop(_en_bolsa)
+                    _cn = ses.cantidades.pop(_en_bolsa, 1)
+                    _p.banco[_dst] = (_it, _cn)
+                    ses.enviar(_iv5.vaciar_ranura(_p.entity_id, _en_bolsa),
+                               _stats_ses(ses),
+                               _iv5.banco_poner(_p.char_id, _dst, _it, _cn,
+                                                dueno=_p.entity_id))
+                    log.info(f"[{addr}] banco: arrastrado el item {_it} de la "
+                             f"mochila {_en_bolsa} (el cliente dijo {_a}) a la "
+                             f"casilla {_dst} del almacen")
+                    return
+                if _a in _p.banco:
+                    _dst = _b if _b and _b not in _bolsa else _ranura_libre(
+                        _bolsa, desde=20)
+                    _v = _p.banco.pop(_a)
+                    _it, _cn = _v if isinstance(_v, tuple) else (_v, 1)
+                    _bolsa[_dst] = _it
+                    if _cn > 1:
+                        ses.cantidades[_dst] = _cn
+                    ses.enviar(_iv5.banco_sacar(_p.char_id, _dst, _it, _cn,
+                                                dueno=_p.entity_id),
+                               _iv5.banco_vaciar_ranura(_a),
+                               _stats_ses(ses))
+                    log.info(f"[{addr}] banco: arrastrado el item {_it} de la "
+                             f"casilla {_a} del almacen a la mochila {_dst} "
+                             f"(el cliente pidio la {_b})")
+                    return
+                log.warning(f"[{addr}] banco: arrastre {_a} -> {_b} y en la "
+                            f"{_a} no hay nada. Mochila: {sorted(_bolsa)}; "
+                            f"almacen: {sorted(_p.banco)}")
+                return
+
+            if _contenedor == 16:
+                # SACAR DEL BANCO: del almacen a la mochila.
+                #
+                # [u8 16][u32 ranura del almacen][u32 ranura de la mochila],
+                # medido en la misma captura. El destino tambien llega como 0
+                # y quiere decir "donde quepa": el servidor real lo dejo en la
+                # casilla 39 de la bolsa.
+                #
+                # El orden de la respuesta es el CONTRARIO al de guardar:
+                # primero la entrada que llega a la mochila y despues la
+                # casilla del almacen que se vacia.
+                import inventario as _iv4
+                _ori, _dst = struct.unpack_from('<II', cuerpo, 1)
+                _p = ses.personaje
+                _bolsa = getattr(ses, 'inventario', {})
+                if _p.banco is None:
+                    _p.banco = {}
+                if _ori not in _p.banco:
+                    log.warning(f"[{addr}] banco: se pide sacar la casilla "
+                                f"{_ori} y ahi no hay nada. Guardado: "
+                                f"{sorted(_p.banco)}")
+                    return
+                if not _dst or _dst in _bolsa:
+                    _dst = _ranura_libre(_bolsa, desde=20)
+                _v = _p.banco.pop(_ori)
+                _it, _cn = _v if isinstance(_v, tuple) else (_v, 1)
+                _bolsa[_dst] = _it
+                if _cn > 1:
+                    ses.cantidades[_dst] = _cn
+                ses.enviar(_iv4.banco_sacar(_p.char_id, _dst, _it, _cn,
+                                            dueno=_p.entity_id),
+                           _iv4.banco_vaciar_ranura(_ori),
+                           _stats_ses(ses))
+                log.info(f"[{addr}] banco: sacado el item {_it} de la casilla "
+                         f"{_ori} del almacen a la mochila {_dst}")
+                return
+
+            if _contenedor == 17:
+                # GUARDAR EN EL BANCO: de la mochila al almacen.
+                #
+                # [u8 17][u32 ranura de la mochila][u32 ranura del almacen],
+                # medido en la captura de Edo City del 28/09/2026. La casilla
+                # de origen es la ABSOLUTA: el cliente mando 0x44, o sea 68, y
+                # el servidor contesto vaciando justo la 68.
+                #
+                # El destino llego SIEMPRE como 0 y el item aparecio en la
+                # primera libre: en un cruce fue la 1 y en el siguiente la 12.
+                # O sea que el 0 quiere decir "donde quepa" y lo decide el
+                # servidor.
+                #
+                # El servidor real contesta cinco cosas; aqui van las tres que
+                # importan: la casilla de la mochila que se vacia, los stats
+                # -- que cambian porque cambia el peso -- y la entrada nueva
+                # en el almacen.
+                import inventario as _iv3
+                _ori, _dst = struct.unpack_from('<II', cuerpo, 1)
+                _p = ses.personaje
+                _bolsa = getattr(ses, 'inventario', {})
+                if _p.banco is None:
+                    _p.banco = {}
+                if _ori not in _bolsa:
+                    log.warning(f"[{addr}] banco: se pide guardar la casilla "
+                                f"{_ori} y ahi no hay nada. Lleva: "
+                                f"{sorted(_bolsa)}")
+                    return
+                if not _dst or _dst in _p.banco:
+                    _dst = next((k for k in range(1, 25)
+                                 if k not in _p.banco), None)
+                    if _dst is None:
+                        log.info(f"[{addr}] banco: esta lleno, no se guarda")
+                        return
+                _it = _bolsa.pop(_ori)
+                _cuantas = ses.cantidades.pop(_ori, 1)
+                _p.banco[_dst] = (_it, _cuantas)
+                ses.enviar(_iv3.vaciar_ranura(_p.entity_id, _ori),
+                           _stats_ses(ses),
+                           _iv3.banco_poner(_p.char_id, _dst, _it, _cuantas,
+                                            dueno=_p.entity_id))
+                log.info(f"[{addr}] banco: guardado el item {_it} de la "
+                         f"mochila {_ori} en la casilla {_dst} del almacen")
+                return
+
             if _contenedor != 11:
                 log.info(f"[{addr}] 0x002F con contenedor {_contenedor}: no es "
                          f"la mochila ni el panel de hechizos, se ignora "
@@ -4004,6 +4196,36 @@ class Servidor:
                 return
             item_id = bolsa[ranura]
             cid = ses.personaje.char_id if ses.personaje else 4980
+
+            # Caso 0: objeto que da CREDITOS DE RANGO.
+            #
+            # Va delante de todo lo demas porque son materiales, y sin esto
+            # caerian en el caso de consumible o se quedarian sin hacer nada.
+            # La secuencia es la que manda el servidor real al usar uno: el
+            # 0x0013 con el atributo 49 y el total acumulado, y detras un
+            # 0x0282 con lo que se acaba de sumar escrito en ASCII.
+            _cred = inv.creditos_de(item_id)
+            if _cred and ses.personaje:
+                import combate as _cb
+                ses.personaje.creditos = (ses.personaje.creditos or 0) + _cred
+                _queda = ses.cantidades.get(ranura, 1) - 1
+                if _queda > 0:
+                    ses.cantidades[ranura] = _queda
+                else:
+                    bolsa.pop(ranura, None)
+                    ses.cantidades.pop(ranura, None)
+                salida = list(_refrescar(ses, [ranura]))
+                salida.append(_cb.atributo(ses.personaje.entity_id,
+                                           ses.personaje.creditos,
+                                           _cb.KIND_CREDITO))
+                # El cuerpo real lleva DOS ceros detras del numero, no uno:
+                # medido "013132303030300000" para 120000.
+                salida.append(struct.pack('<HB', 0x0282, 1)
+                              + str(_cred).encode('ascii') + b'\x00\x00')
+                log.info(f"[{addr}] creditos de rango: +{_cred} "
+                         f"(total {ses.personaje.creditos})")
+                ses.enviar(*salida)
+                return
 
             # Caso 1: Item equipable (clic derecho)
             if inv.es_equipo(ranura):
@@ -4734,6 +4956,23 @@ class Servidor:
                 if _st_ent and ses.personaje and (not getattr(ses.personaje, 'stage', 0) or ses.personaje.stage != _st_ent):
                     ses.personaje.stage = _st_ent
 
+                # VIAJE POR DIALOGO. Hay NPC que preguntan a donde quieres
+                # ir en vez de mandarte por un tornado: el primero medido es
+                # Brin, en Shuwa Market, que lleva a Siam Square. Va antes de
+                # respuesta_a porque lo que toca no es contestar otra linea
+                # sino cambiar de mapa.
+                _viaje = dialogos.VIAJES_POR_OPCION.get(
+                    (getattr(ses.personaje, 'stage', 0) if ses.personaje
+                     else 0, _el))
+                if _viaje and ses.personaje:
+                    _st, _tile = _viaje
+                    ses.enviar(struct.pack('<H', 0x0012) + dialogos.FIN)
+                    _viajar_por_portal(ses, addr,
+                                       {'destino': _st, 'llegada': _tile},
+                                       motivo='por el dialogo de %s'
+                                       % _nombre_entidad(ses, ent))
+                    return
+
                 submsgs = dialogos.respuesta_a(
                     _el, entidad=ent, val=val,
                     nombre=_nombre_entidad(ses, ent),
@@ -4741,6 +4980,23 @@ class Servidor:
                     if ses.personaje else 0,
                     nivel=getattr(ses.personaje, 'nivel', 0)
                     if ses.personaje else 0) if _el else (struct.pack('<H', 0x0012) + dialogos.FIN,)
+                # El almacen se arma AQUI, no en dialogos.py, porque hay que
+                # leer lo que el personaje tiene guardado. dialogos.py devuelve
+                # un 0x004E vacio de marcador y se sustituye por el de verdad.
+                if ses.personaje and any(m[:2] == struct.pack('<H', 0x004E) for m in submsgs):
+                    import inventario as _inv
+                    import configuracion as _cf
+                    _bco = ses.personaje.banco or getattr(
+                        _cf, 'ALMACEN_INICIAL', {}) or {}
+                    # Cada casilla guarda (item, cantidad); las viejas que
+                    # solo tienen el item se leen como una unidad.
+                    _guardado = [(r,) + (v if isinstance(v, tuple) else (v, 1))
+                                 for r, v in sorted(_bco.items())]
+                    _real = _inv.almacen(ses.personaje.char_id, _guardado,
+                                         ses.personaje.entity_id)
+                    submsgs = tuple(_real if m[:2] == struct.pack('<H', 0x004E) else m
+                                    for m in submsgs)
+
                 # Solo la PRIMERA linea de dialogo. El cliente espera una,
                 # pide "siguiente" con 0x000B valor 1, y recien entonces le
                 # llega la que sigue. Medido: al elegir "Quit the training"
@@ -5297,7 +5553,8 @@ class Servidor:
                     # del Lyceum usa el 5801 global, pero el nudo de
                     # Teddy Amusement trae el suyo, el 513008.
                     sub = _dlg.armar_linea(_por.get('msg') or _cfg['msg'],
-                                           0, _ops)
+                                           0, _ops,
+                                           acciones=_por.get('acciones'))
                     ses.dlg_ent = _por['entity']
                     ses.dlg_guion = [sub[2:]]
                     ses.dlg_paso = 1

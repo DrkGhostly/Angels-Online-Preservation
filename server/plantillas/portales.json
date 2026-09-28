@@ -1515,6 +1515,22 @@
     "dibujar": false,
     "preguntar": false,
     "nota": "Mariam Waterway -> Bayan Village (stage 259). ACTIVADO. Tornado capturado en (4,175). Medido DOS veces: los dos tramos acabaron en (5,174), a una casilla. Las llegadas fueron (282,11) y (289,16). Radio 3 con holgura: la llegada de vuelta desde Bayan Village es (9,171), a CINCO de aqui, asi que el techo es 4."
+   },
+   {
+    "entity": 117920,
+    "tile": [
+     294,
+     175
+    ],
+    "destino": 258,
+    "llegada": [
+     13,
+     9
+    ],
+    "radio": 3,
+    "dibujar": false,
+    "preguntar": false,
+    "nota": "Mariam Waterway -> Shuwa Market (stage 258). ACTIVADO. Con este quedan medidos los TRES tornados del mapa. Tornado 117920 en (294,175); se cruzo DOS veces, con tramos en (292,174) y (293,174), a dos y a una casilla. Celestia dejo en (13,8) la primera vez y en (13,9) la segunda; se usa (13,9). Las dos quedan a ocho del tornado de vuelta (5,3), asi que no rebota ninguna. Radio 3."
    }
   ],
   "2": [
@@ -7584,14 +7600,17 @@
      31,
      165
     ],
-    "destino": null,
-    "llegada": null,
+    "destino": 260,
+    "llegada": [
+     280,
+     13
+    ],
     "radio": 3,
     "dibujar": false,
     "preguntar": false,
     "sin_medir": true,
     "desactivado": true,
-    "nota": "Tornado de Bayan Village abajo a la izquierda. NO SE CRUZO, no se sabe adonde va."
+    "nota": "Bayan Village -> Deserted Ruins (stage 260). ACTIVADO. Era el tornado de abajo a la izquierda, que estaba sin cruzar. Tornado en (31,165); se cruzo DOS veces y los dos tramos acabaron en (32,164), a una casilla. Celestia dejo en (280,12) la primera vez y en (280,13) la segunda; se usa (280,13). La primera coincide con el punto del jumpmap. Las dos quedan lejos del tornado de vuelta (288,7), asi que no rebota ninguna."
    },
    {
     "entity": 117931,
@@ -7604,7 +7623,7 @@
     "radio": 3,
     "dibujar": false,
     "preguntar": true,
-    "nota": "Bayan Village -> SIAM SQUARE, por un PORTAL CON MENU. Al pisarlo el servidor manda el 0x0012 con el msg 125309 y TRES opciones: 125310 'Siam Square', 125311 'Elite Siam Square' y 125312 'Leave'; sus acciones son 1000001, 1000002 y 0. Solo esta medida la PRIMERA: se eligio Siam Square y se llego al stage 261 en (10,11). Elite Siam Square NO se ha cruzado, asi que su opcion no lleva destino y el servidor se la salta; en stage.xml existe 'Hell Siam Square' (262), que podria ser ese, pero no esta comprobado. El tornado esta en (272,148) y el tramo medido acabo en (274,149), a dos casillas.",
+    "nota": "Bayan Village -> Siam Square o Hell Siam Square, por un PORTAL CON MENU. Al pisarlo el servidor manda el 0x0012 con el mensaje 125309, 'Select the area you wish to enter', y tres opciones: Siam Square, Elite Siam Square y Leave. Medido el 28/09/2026: los tramos acabaron en (271,147) y (275,149), a una casilla del tornado. ADONDE lleva cada opcion NO se pone aqui sino en VIAJES_POR_OPCION, en dialogos.py, porque depende del mapa desde el que se pregunta: desde aqui la primera deja en (10,11) de Siam Square y la segunda en (17,7) de Hell, mientras que desde Shuwa Market, donde el mismo menu lo da un NPC, las dos dejan en (289,11). Por eso 'destino' se queda en nulo.",
     "msg": 125309,
     "opciones": [
      125310,
@@ -7619,7 +7638,12 @@
        11
       ]
      }
-    }
+    },
+    "acciones": [
+     1000001,
+     1000002,
+     0
+    ]
    }
   ],
   "261": [
@@ -7645,14 +7669,16 @@
      294,
      3
     ],
-    "destino": null,
-    "llegada": null,
+    "destino": 258,
+    "llegada": [
+     27,
+     172
+    ],
     "radio": 3,
     "dibujar": false,
     "preguntar": false,
-    "sin_medir": true,
     "desactivado": true,
-    "nota": "Tornado de Siam Square arriba a la derecha. NO SE CRUZO."
+    "nota": "Siam Square -> Shuwa Market (stage 258). ACTIVADO. Tornado en (294,3); el tramo acabo en (293,4), a una casilla. La llegada (27,172) SI esta medida: es donde empieza la sesion que sigue al cruce de vuelta desde Siam Square normal. Antes habia puesta (276,113), al lado de Brin, porque se creia que Brin era la entrada; no lo es, la entrada es el tornado de (19,175), y con aquella casilla el jugador aparecia en la otra punta del mapa. (27,172) queda a OCHO de ese tornado, que tiene radio 3, asi que no rebota y no se vuelve a abrir el menu al llegar."
    },
    {
     "entity": 117936,
@@ -9748,6 +9774,102 @@
     "sin_medir": true,
     "desactivado": true,
     "nota": "ENTRADA DE INSTANCIA de Deep Prison, avisada por el usuario. El jumpmap dice que el mapa tiene un punto 'Instance Entrance' en (111,116), y de los seis tornados del mapa este es el que le queda cerca, a veinte casillas. NO SE CRUZO, asi que la identificacion es POR CERCANIA y no esta confirmada. Queda DESACTIVADA como las demas del proyecto."
+   }
+  ],
+  "258": [
+   {
+    "entity": 117924,
+    "tile": [
+     5,
+     3
+    ],
+    "destino": 257,
+    "llegada": [
+     293,
+     169
+    ],
+    "radio": 3,
+    "dibujar": false,
+    "preguntar": false,
+    "nota": "Shuwa Market -> Mariam Waterway. ACTIVADO. Tornado 117924 en (5,3); el tramo acabo en (6,4), a una casilla, las DOS veces que se cruzo. La llegada (293,169) es la que mando Celestia las dos veces, medida, y queda a SEIS del tornado de ida (294,175), que tiene radio 3, asi que no rebota. Queda sin explorar el otro tornado del mapa: 117923 en (19,175)."
+   },
+   {
+    "entity": 117923,
+    "tile": [
+     19,
+     175
+    ],
+    "destino": null,
+    "llegada": null,
+    "radio": 3,
+    "dibujar": false,
+    "preguntar": true,
+    "msg": 125309,
+    "opciones": [
+     125310,
+     125311,
+     125312
+    ],
+    "nota": "Shuwa Market -> Siam Square o Hell Siam Square, por un PORTAL CON MENU, igual que el de (272,148) de Bayan Village. Al pisarlo el servidor manda el 0x0012 con el mensaje 125309, 'Select the area you wish to enter', y tres opciones. Medido el 28/09/2026: los dos saltos, el normal y el Elite, salieron con el tramo acabando en (20,174), al lado de este tornado. Se llego a creer que el menu era la segunda pagina del dialogo de Brin, que esta en (275,112), porque en la captura su dialogo aparece justo antes; era falso, y el tramo lo deja claro. ADONDE lleva cada opcion esta en VIAJES_POR_OPCION, en dialogos.py, porque depende del mapa desde el que se pregunta: desde aqui las dos dejan en (289,11).",
+    "acciones": [
+     1000001,
+     1000002,
+     0
+    ]
+   }
+  ],
+  "262": [
+   {
+    "entity": 117942,
+    "tile": [
+     294,
+     3
+    ],
+    "destino": 258,
+    "llegada": [
+     27,
+     172
+    ],
+    "radio": 3,
+    "dibujar": false,
+    "preguntar": false,
+    "sin_medir": true,
+    "nota": "Hell Siam Square -> Shuwa Market (stage 258). ACTIVADO. Tornado en (294,3); el tramo acabo en (293,4), a una casilla. La llegada (27,172) SI esta medida: es donde empieza la sesion que sigue al cruce de vuelta desde Siam Square normal. Antes habia puesta (276,113), al lado de Brin, porque se creia que Brin era la entrada; no lo es, la entrada es el tornado de (19,175), y con aquella casilla el jugador aparecia en la otra punta del mapa. (27,172) queda a OCHO de ese tornado, que tiene radio 3, asi que no rebota y no se vuelve a abrir el menu al llegar. Para Hell no hay sesion con MOVE_REQ detras, asi que se usa la misma casilla que la version normal: las dos salen por el mismo tornado de su mapa."
+   },
+   {
+    "entity": 117943,
+    "tile": [
+     4,
+     3
+    ],
+    "destino": 259,
+    "llegada": [
+     271,
+     142
+    ],
+    "radio": 3,
+    "dibujar": false,
+    "preguntar": false,
+    "sin_medir": true,
+    "nota": "Hell Siam Square -> Bayan Village (stage 259). Tornado 117943 en (4,3); el tramo acabo en (5,4), a una casilla, igual que el de Siam Square normal. LA LLEGADA NO ESTA MEDIDA: la sesion que empieza en Bayan Village no trae ni un MOVE_REQ. Se pone (271,142), que es donde deja la version normal, medida. Queda sin explorar el otro tornado del mapa: 117944 en (294,175), que por el jumpmap deberia ser la entrada de instancia."
+   }
+  ],
+  "260": [
+   {
+    "entity": 117932,
+    "tile": [
+     288,
+     7
+    ],
+    "destino": 259,
+    "llegada": [
+     37,
+     162
+    ],
+    "radio": 3,
+    "dibujar": false,
+    "preguntar": false,
+    "nota": "Deserted Ruins -> Bayan Village. ACTIVADO. Es el UNICO tornado que aparecio en la captura de este mapa. Tornado 117932 en (288,7); el tramo acabo en (287,8), a una casilla, las DOS veces que se cruzo. La llegada (37,162) es la que mando Celestia, medida, y queda a SEIS del tornado de ida (31,165), que tiene radio 3, asi que no rebota."
    }
   ]
  },

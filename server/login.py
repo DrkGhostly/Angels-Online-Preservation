@@ -71,6 +71,10 @@ class Personaje:
     nivel: int = 1
     exp: int = 0
     banco: dict = field(default_factory=dict)
+    # Creditos de rango, los que la ficha muestra como "Credit:". Suben con
+    # las quests y con los objetos de investitem.xml, que dan de cinco en
+    # cinco los mas baratos.
+    creditos: int = 0
     buffs: dict = field(default_factory=dict)
 
 
@@ -799,6 +803,7 @@ PLANTILLAS_POR_STAGE = {
     234 : 'sakura_valley.json',
     236 : 'fox_shrine.json',
     257 : 'mariam_waterway.json',
+    258 : 'shuwa_market.json',
     318 : 'emerald_coast.json',
     363 : 'deep_trench.json',
     364 : 'ancient_rift.json',
@@ -824,7 +829,9 @@ PLANTILLAS_POR_STAGE = {
     71  : 'underground_square.json',
     72  : 'hell_palace.json',
     259 : 'bayan_village.json',
+    260 : 'deserted_ruins.json',
     261 : 'siam_square.json',
+    262 : 'hell_siam_square.json',
     274 : 'sylvan_chaos.json',
     275 : 'rusty_pipe_lane.json',
     276 : 'joaquin.json',
