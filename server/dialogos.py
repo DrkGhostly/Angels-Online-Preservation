@@ -524,6 +524,42 @@ def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
     if 'Bowset Seller' in nombre:
         return [armar_linea(5180, npc_val or 107, [5190, 5191])[2:]]
 
+    # --- Lava Cave (Stage 69) & Flaming Door (Stage 70) ---
+    if 'Earth Life Mage' in nombre:
+        return [armar_linea(5166, npc_val or 34, [5190, 5191], acciones=[1000066, 0])[2:]]
+    if 'ChaosWraith Mage' in nombre:
+        return [armar_linea(5167, npc_val or 90, [5190, 5191], acciones=[1000067, 0])[2:]]
+    if 'Weapon Boffin' in nombre:
+        return [armar_linea(5168, npc_val or 162, [5190, 5191], acciones=[1000099, 0])[2:]]
+    if 'Bow Researcher' in nombre:
+        return [armar_linea(5826, npc_val or 164, [5190, 5191], acciones=[1000100, 0])[2:]]
+    if 'Rock Master' in nombre:
+        return [armar_linea(5261, npc_val or 17, [5190, 5191], acciones=[1000092, 0])[2:]]
+    if 'Rock Smith' in nombre:
+        return [armar_linea(5260, npc_val or 34, [5190, 5191], acciones=[1000091, 0])[2:]]
+    if 'Little Childe' in nombre:
+        return [armar_linea(64201, npc_val or 151, [])[2:]]
+    if "Cook's Assistant" in nombre:
+        return [armar_linea(75901, npc_val or 0, [])[2:]]
+    if 'Chef Fatz' in nombre:
+        return [armar_linea(60319, npc_val or 64, [])[2:]]
+    if 'Heavenly Officer' in nombre:
+        return [armar_linea(60301, npc_val or 46, [])[2:]]
+    if 'Vilo 3' in nombre:
+        return [armar_linea(60305, npc_val or 62, [])[2:]]
+    if 'Sick Zapo' in nombre:
+        return [armar_linea(60308, npc_val or 20, [])[2:]]
+    if 'Gustav' in nombre:
+        return [armar_linea(60312, npc_val or 92, [])[2:]]
+    if 'Ugly Saladan' in nombre:
+        return [armar_linea(60295, npc_val or 89, [])[2:]]
+    if 'Annoying Clerk' in nombre:
+        return [armar_linea(60296, npc_val or 125, [])[2:]]
+    if 'Trouble Student' in nombre:
+        return [armar_linea(60297, npc_val or 114, [])[2:]]
+    if 'Jamier' in nombre:
+        return [armar_linea(60298, npc_val or 152, [])[2:]]
+
     # Quest NPCs - Mysterious Wetland (Stage 15) & Dragon Graveyard (Stage 21)
     if 'Explorer Peter' in nombre:
         return [armar_linea(82601, npc_val or 11, [82602, 82603])[2:]]
@@ -671,6 +707,12 @@ TIENDAS_POR_NOMBRE = {
     'Art Saleman': 6,
     'Material Seller': 56,
     'Pet Expert': 69,
+    'Earth Life Mage': 66,
+    'ChaosWraith Mage': 67,
+    'Rock Smith': 91,
+    'Rock Master': 92,
+    'Weapon Boffin': 99,
+    'Bow Researcher': 100,
     'Weaponsmith': 2,         # Armas de guerrero hasta lv 35
     'Armorsmith': 3,          # Armaduras
     'A. Recipe Seller': 20,   # Recetas de armaduras (A. Plan)
@@ -883,6 +925,16 @@ TIENDAS_POR_ENTIDAD = {
     121803: 64, # Weapon Expert -> Shop 64 (Sword, Axe, Spear expert skills)
     121804: 62, # Earth Priest -> Shop 62 (Life & Earth magic skills)
     121805: 63, # Wraith Priest -> Shop 63 (Chaos & Wraith magic skills)
+
+    # --- Lava Cave (Stage 69) ---
+    122299: 91, # Rock Smith -> Shop 91
+    122300: 66, # Earth Life Mage -> Shop 66 (Earth & Life magic skills)
+    122301: 67, # ChaosWraith Mage -> Shop 67 (Chaos & Wraith magic skills)
+
+    # --- Flaming Door (Stage 70) ---
+    122308: 92,  # Rock Master -> Shop 92 (Rock Master recipes)
+    122310: 99,  # Weapon Boffin -> Shop 99 (Weapon expert skills)
+    122311: 100, # Bow Researcher -> Shop 100 (Bow expert skills)
 }
 
 # Opciones de dialogo que abren la ventana de tienda (WND_NPCSALE).
