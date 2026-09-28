@@ -959,64 +959,25 @@ def _viajar_dentro_del_mapa(ses, addr, por, motivo=''):
 
 
 def _sincronizar_cambio_mapa(ses, stage_id: int, x: int = None, y: int = None):
-    """Envia todos los paquetes de sincronizacion necesarios al cambiar de mapa:
-    0x0017 (mapa), 0x000E (monstruos/NPCs), 0x001C (arbol de habilidades),
-    0x001D (hechizos), 0x001D/0x0042 (stats/barras/nivel/exp), y 0x001D (apariencia visual)."""
+    """Actualiza el estado del servidor y manda solo 0x000C (cambiar mapa).
+
+    Todo lo demas (poblar, habilidades, stats) lo hace el handler de 0x0009
+    cuando el cliente contesta que ya cargo el mapa. Antes se mandaba TODO
+    aqui y luego otra vez en 0x0009, duplicando cientos de paquetes y
+    crasheando al cliente en mapas pesados como Raging Reefs (400+ spawns).
+    """
     p = getattr(ses, 'personaje', None)
     if not p:
         return
-    import clases as _cl, login as _lg, inventario as inv, combate as _cb
-    import struct
+    import clases as _cl
     p.stage = stage_id
     if x is not None and y is not None:
         p.tile_x, p.tile_y = x, y
     ses.monstruos = _monstruos_de(stage_id)
     ses.mapa_cambiado_en = time.time()
 
-    # 1. Cambiar mapa
+    # Unico paquete: decirle al cliente "carga este mapa"
     ses.enviar(_cl.cambiar_mapa(stage_id))
-
-    # 2. Poblar NPCs y monstruos del mapa destino
-    ses.enviar(*_lg.poblar(stage_id))
-
-    # 3. Arbol de habilidades y hechizos
-    if getattr(p, 'habilidades', None):
-        ses.enviar(_cl.arbol(p.habilidades, banco=getattr(p, 'banco_habilidades', None)))
-        _ids = [h[0] for h in p.habilidades]
-        _hech = _cl.hechizos_iniciales(_ids)
-        _todos_hech = [n for n, _ in _hech]
-        if getattr(p, 'hechizos_aprendidos', None):
-            _todos_hech = list(set(_todos_hech) | set(p.hechizos_aprendidos))
-        if _todos_hech:
-            ses.enviar(_cl.otorgar_hechizos(p.entity_id, _todos_hech))
-
-    # 4. Atributos, stats y barras de HP/MP/SP/EXP
-    bars, max_pts = _max_sp_info(p)
-    ses.sp = getattr(ses, 'sp', None) or max_pts
-    b = getattr(ses, 'inventario', None) or getattr(p, 'inventario', None) or {}
-    eff_hp_max = _vida_max(p, bolsa=b)
-    eff_mp_max = _mana_max(p, bolsa=b)
-    p.hp = min(eff_hp_max, max(1, p.hp))
-    p.mp = min(eff_mp_max, max(0, p.mp))
-    exp_sig = min(0xFFFFFFFF, _cb.exp_para_nivel(p.nivel + 1))
-    yo = p.entity_id
-
-    salida_stats = [
-        _cb.atributo(yo, p.hp, _cb.KIND_HP),
-        _cb.atributo(yo, p.mp, _cb.KIND_MP),
-        _cb.atributo(yo, ses.sp, _cb.KIND_SP),
-        struct.pack('<HIB', 0x001D, yo, 4) +
-        struct.pack('<BII', 29, p.nivel, 0) +
-        struct.pack('<BII', 30, min(0xFFFFFFFF, p.exp), 0) +
-        struct.pack('<BII', 31, exp_sig, 0) +
-        struct.pack('<BII', 32, min(0xFFFFFFFF, p.exp), 0),
-        inv.stats(b, p.habilidades,
-                  hp=p.hp, hp_max=p.hp_max,
-                  mp=p.mp, mp_max=p.mp_max,
-                  oro=getattr(ses, 'oro', p.oro), sp=ses.sp, sp_max=bars),
-        *_apariencia(ses)
-    ]
-    ses.enviar(*salida_stats)
 
     if getattr(ses, 'usuario', None):
         cuentas.guardar_mapa(ses.usuario, p.char_id, stage_id, p.tile_x, p.tile_y)
