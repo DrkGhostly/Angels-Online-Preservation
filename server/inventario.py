@@ -31,7 +31,9 @@ quinto stat, que el cliente muestra como Dfs: 5 sin la ropa y 15 con ella.
 import json
 import pathlib
 import re
+import sqlite3
 import struct
+import mascotas as _ms
 import time
 
 PLANTILLA = pathlib.Path(__file__).parent / 'plantillas' / 'inventario.json'
@@ -181,7 +183,10 @@ def es_equipo(ranura) -> bool:
         r = int(ranura)
     except (ValueError, TypeError):
         return False
-    return (r < PRIMERA_RANURA_BOLSA) or (167 <= r <= 174)
+    # La 175 es la insignia. Sin incluirla aqui, una insignia puesta no
+    # contaba como equipo y sus bonos no se sumaban a los stats: la Crystal
+    # Badge declara +3484 de ataque y no daba ni uno.
+    return (r < PRIMERA_RANURA_BOLSA) or (167 <= r <= 175)
 
 
 def es_fashion(ranura) -> bool:
@@ -840,6 +845,33 @@ def es_apilable(item_id: int) -> bool:
     return True
 
 
+def datos_mascota(item_id: int) -> dict:
+    """Nombre y sprite de una mascota, sacados de item.xml.
+
+    El sprite es el 動態資料1 y el nombre el 基本名稱. Se comprobo con las dos
+    mascotas cuyo nombre no llegaba cortado en las capturas: la Battlemaid
+    (item 20012, 動態資料1 3200) y la Hicalu (17060, 3474); en las dos el
+    numero de item.xml es el mismo que viajaba en la entrada.
+    """
+    if item_id in _PET_DATOS:
+        return _PET_DATOS[item_id]
+    d = {'nombre': 'Pet', 'sprite': 0}
+    try:
+        import sqlite3
+        db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
+        if db.exists():
+            row = fila_item(sqlite3.connect(db), '"基本名稱", "動態資料1"',
+                            item_id)
+            if row:
+                d = {'nombre': str(row[0] or 'Pet'),
+                     'sprite': int(row[1]) if str(row[1] or '').isdigit()
+                     else 0}
+    except Exception:
+        pass
+    _PET_DATOS[item_id] = d
+    return d
+
+
 def es_mascota(item_id: int) -> bool:
     """Si el item es una mascota o huevo de mascota (categoria '寵物').
     
@@ -853,6 +885,7 @@ def es_mascota(item_id: int) -> bool:
 
 _SLOT_CACHE = None
 _PET_SPRITE_CACHE = {}
+_PET_DATOS = {}
 
 def fila_item(con, columnas: str, item_id: int):
     """Busca un item en TODAS las tablas de items, no solo en la primera.
@@ -874,6 +907,132 @@ def fila_item(con, columnas: str, item_id: int):
 
 
 _VEL_MONTURA = {}
+
+
+# Donde va el "+N" de las mejoras dentro de una entrada de equipo.
+#
+# MEDIDO el 29/09/2026 sobre unas Boots Of Contempt: el byte 83 fue 6 -> 5 al
+# fallar una mejora, 5 -> 6 y 6 -> 7 al acertarlas, y 7 -> 6 al volver a
+# fallar. Coincide con lo que decian los carteles. Se habia etiquetado como
+# "intentos que quedan" y era el nivel de mejora.
+OFF_MEJORA = 83
+
+
+def marcar_mejora(entrada: bytes, veces: int) -> bytes:
+    """Escribe el +N en una entrada ya armada.
+
+    Sin esto el cliente no enseña ni el "+7" del nombre ni el "has been
+    intensified ( N ) times" del tooltip, porque ese dato viaja en la propia
+    entrada del inventario y no en ningun mensaje aparte.
+    """
+    # El offset es dentro de la ENTRADA, y lo que llega aqui es el paquete
+    # entero: dos bytes de opcode y cuatro de cuenta por delante.
+    base = 6 if entrada[:2] == struct.pack('<H', 0x001B) else 0
+    if not veces or len(entrada) <= base + OFF_MEJORA:
+        return entrada
+    b = bytearray(entrada)
+    b[base + OFF_MEJORA] = min(255, int(veces))
+    return bytes(b)
+
+
+# Los stats EXTRA de una pieza -- los que reparte el martillo verde -- viven
+# en la propia entrada, desde el offset 11, en registros de cuatro bytes:
+#
+#     [u16 valor][u8 0][u8 id]
+#
+# MEDIDO el 29/09/2026 con nueve tiradas seguidas sobre las mismas Boots Of
+# Contempt. Los ids se identificaron solos comparando cada valor con los
+# rangos que el cuadro del juego enseñaba -- HP 0-272, MP 0-184, Defense
+# 0-824, Spell Defense 0-145, Agility 0-27 --, porque cada numero solo cabia
+# en uno de ellos. La tirada que dio "HP 53, MP 178" salio como dos registros,
+# id 4 con 53 e id 12 con 178, que es lo que confirmo el mapa.
+# El 11 de los volcados era un offset del CUERPO del log, que no lleva el
+# opcode. Dentro de la entrada son 13.
+OFF_EXTRAS = 13
+TAM_EXTRA = 4
+# CINCO, y no seis. Los stats verdes van en registros de 4 bytes a partir
+# del 13, asi que el sexto caeria en el 33..36, que es justo donde vive el
+# CONTENEDOR (01+entidad para la mochila, 02+252 para el banco). Un martillo
+# verde que repartiera seis stats borraba el contenedor de la pieza y el
+# cliente se cerraba con "This program will be terminated".
+# En las capturas los huecos 0 a 4 salen cientos de veces cada uno (799, 692,
+# 597, 393 y 360) y el quinto se desploma a 2, que son bytes del contenedor
+# pareciendo un id. No hay sexto hueco.
+MAX_EXTRAS = 5
+
+# Los ids van de cuatro en cuatro. Los cinco primeros salieron de nueve
+# tiradas sobre unas botas y los cuatro ultimos de trece sobre una montura,
+# que ofrece otros stats: Attack 0-210, Defense 0-210, Spell Attack 0-210,
+# Spell Defense 0-210, Rigor 0-54, Agility 0-54, Movement Speed 0-40. Otra
+# vez cada valor solo cabia en un rango, y el 60 lo clavo: su maximo salio
+# 40, que es justo el tope de la velocidad.
+ID_EXTRA = {
+    'hp': 4,
+    'mp': 12,
+    'atk': 32,
+    'dfs': 40,
+    'matk': 44,
+    'mdef': 48,
+    'rigor': 52,
+    'agilidad': 56,
+    'velocidad': 60,
+}
+
+
+def marcar_extras(entrada: bytes, extras: dict) -> bytes:
+    """Escribe en la entrada los stats extra del martillo verde."""
+    base = 6 if entrada[:2] == struct.pack('<H', 0x001B) else 0
+    if not extras or len(entrada) < base + OFF_EXTRAS + TAM_EXTRA:
+        return entrada
+    b = bytearray(entrada)
+    hueco = 0
+    for nombre, valor in extras.items():
+        sid = ID_EXTRA.get(nombre)
+        if sid is None or not valor or hueco >= MAX_EXTRAS:
+            continue
+        o = base + OFF_EXTRAS + hueco * TAM_EXTRA
+        if o + TAM_EXTRA > len(b):
+            break
+        struct.pack_into('<H', b, o, min(0xFFFF, int(valor)))
+        b[o + 2] = 0
+        b[o + 3] = sid
+        hueco += 1
+    return bytes(b)
+
+
+def leer_extras(entrada: bytes) -> dict:
+    """Lo contrario: saca los stats extra de una entrada."""
+    base = 6 if entrada[:2] == struct.pack('<H', 0x001B) else 0
+    por_id = {v: k for k, v in ID_EXTRA.items()}
+    out = {}
+    for h in range(MAX_EXTRAS):
+        o = base + OFF_EXTRAS + h * TAM_EXTRA
+        if o + TAM_EXTRA > len(entrada):
+            break
+        valor = struct.unpack_from('<H', entrada, o)[0]
+        sid = entrada[o + 3]
+        if valor and sid in por_id:
+            out[por_id[sid]] = valor
+    return out
+
+
+def nivel_de_item(item_id: int) -> int:
+    """El nivel de la pieza, de 物品等級. Cero si no lo declara.
+
+    Lo usan las mejoras: cada mortero sirve "for gears under lvl N" y cada
+    gema exige un nivel minimo al arma, asi que sin esto no se puede decir ni
+    que si ni que no.
+    """
+    try:
+        db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
+        if not db.exists():
+            return 0
+        con = sqlite3.connect(db)
+        fila = fila_item(con, '物品等級', item_id)
+        con.close()
+        return int(fila[0]) if fila and fila[0] else 0
+    except Exception:
+        return 0
 
 
 def velocidad_de_montura(item_id: int) -> int:
@@ -922,11 +1081,29 @@ def es_arma_dual(item_id: int) -> bool:
 
 def es_ranura_valida(item_id: int, ranura: int) -> bool:
     """Verifica si un item puede colocarse en esa ranura especifica para evitar pisar armadura real con fashion."""
+    if ranura == RANURA_INSIGNIA:
+        # La 175 esta por encima del inicio de la mochila, asi que antes
+        # pasaba por "mochila" sin mirar nada. Es la ranura de la insignia y
+        # solo admite insignias.
+        return ranura_equipo_de(item_id) == RANURA_INSIGNIA
     if ranura >= PRIMERA_RANURA_BOLSA: # >= 20 (mochila siempre valida)
         return True
+    if es_mascota(item_id):
+        # UNA MASCOTA NO ES UN ACCESORIO. item.xml las resuelve a la ranura 9,
+        # que es el segundo Trinket, asi que desde que la 9 empezo a admitir
+        # accesorios se podian equipar como si fueran un anillo. Tienen su
+        # propia ranura, y ademas solo entran con 5 estrellas: la Battlemaid
+        # de la captura iba por 0.1. Hasta saber el numero de esa ranura no
+        # se equipan en ninguna, que es mejor que equiparlas en la que no es.
+        return False
     target = ranura_equipo_de(item_id)
     if target is None:
         return False
+    # Los accesorios valen en la 8 Y en la 9, los dos "Trinket". Se exigia
+    # ranura == target, asi que arrastrar un anillo al segundo hueco daba
+    # "ranura no valida" y el objeto se quedaba donde estaba.
+    if ranura in RANURAS_ACCESORIO and target in RANURAS_ACCESORIO:
+        return True
     # Pestaña Fashion (167..174):
     if es_fashion(ranura):
         if not es_item_fashion(item_id):
@@ -941,6 +1118,41 @@ def es_ranura_valida(item_id: int, ranura: int) -> bool:
         if target == 3 and ranura in (3, 4) and not es_arma_dos_manos(item_id):
             return True
         return ranura == target
+
+
+# Donde va la insignia. MEDIDO el 29/09/2026: al ponerse una Purple Seashell
+# Badge el servidor real la coloco en la 175, justo despues de las ranuras de
+# Fashion (167..174). No es la 11 como se habia supuesto.
+RANURA_INSIGNIA = 175
+
+# Los accesorios tienen DOS ranuras, no una: los dos "Trinket" de la ventana.
+# Se vio un Stealth Ring en la 9 mientras nuestro codigo mandaba todos los
+# accesorios a la 8, y por eso la segunda no aceptaba nada.
+RANURAS_ACCESORIO = (8, 9)
+
+
+def ranuras_posibles(item_id: int):
+    """Todas las ranuras donde cabe ese item, en orden de preferencia."""
+    r = ranura_equipo_de(item_id)
+    if r is None:
+        return []
+    if r in RANURAS_ACCESORIO:
+        return list(RANURAS_ACCESORIO)
+    return [r]
+
+
+def ranura_libre_equipo(item_id: int, bolsa):
+    """La ranura donde ponerlo: la primera suya que este libre.
+
+    Si todas estan ocupadas devuelve la primera, que es la que se cambia.
+    """
+    posibles = ranuras_posibles(item_id)
+    if not posibles:
+        return None
+    for r in posibles:
+        if r not in bolsa:
+            return r
+    return posibles[0]
 
 
 def ranura_equipo_de(item_id: int):
@@ -1013,6 +1225,16 @@ def ranura_equipo_de(item_id: int):
                     _SLOT_CACHE[iid] = 7
                 elif acc:
                     _SLOT_CACHE[iid] = 8
+                elif cat == '徽章':
+                    # INSIGNIAS. No declaran ninguna columna de equipo, asi
+                    # que se quedaban SIN RANURA: no se podian poner y por eso
+                    # sus bonos no llegaban nunca, aunque los leyeramos bien
+                    # (una Crystal Badge declara +3484 de ataque).
+                    #
+                    # Su ranura no se ha podido medir: en ninguna captura hay
+                    # una insignia equipada. Se usa la 11, la siguiente libre
+                    # despues de la montura, y se puede cambiar en un sitio.
+                    _SLOT_CACHE[iid] = RANURA_INSIGNIA
     return _SLOT_CACHE.get(item_id)
 
 _TWO_HAND_CACHE = {}
@@ -1175,16 +1397,25 @@ def _entrada(char_id: int, ranura: int, item_id: int, cant: int,
     struct.pack_into('<I', e, 34, dueno)
     struct.pack_into('<H', e, 38, ranura)
     struct.pack_into('<I', e, 40, cant)
-    if es_mascota(item_id) and not es_eq:
-        # Formatear datos de huevo de mascota para que no crashee el tooltip y no se vea muerta
-        nombres_elfos = {3396: b"Water Elf\x00", 3397: b"Fire Elf\x00",
-                         3398: b"Wind Elf\x00", 3399: b"Earth Elf\x00"}
-        nom_pet = nombres_elfos.get(item_id, b"Pet\x00")
-        e[13:13 + len(nom_pet)] = nom_pet
-        struct.pack_into('<I', e, OFF_DURABILIDAD, 100)
-        struct.pack_into('<I', e, OFF_DURABILIDAD + 4, 100)
-        struct.pack_into('<I', e, OFF_DURABILIDAD + 8, 100)
-        struct.pack_into('<I', e, OFF_DURABILIDAD + 12, 1)
+    # La mascota manda sobre lo demas: varias salen tambien como
+    # equipables en item.xml, y con el 'not es_eq' de antes se les
+    # armaba la entrada de 119 y volviamos al cierre del cliente.
+    if es_mascota(item_id):
+        # Una mascota no cabe en los 86 bytes normales: son 231, con nombre,
+        # nivel, vida, mana, experiencia, saciedad e intimidad dentro. Antes
+        # se le escribian datos en el offset 13, que es donde viven los stats
+        # verdes, y el cliente se cerraba al pasarle el raton por encima. El
+        # mapa bueno esta en mascotas.OFF_ENTRADA, sacado de 63 entradas de
+        # las capturas y comprobado contra las nueve fichas 0x0065.
+        d = datos_mascota(item_id)
+        base = bytearray(bytes.fromhex(p['mascota']))
+        base[1:9] = e[1:9]
+        struct.pack_into('<I', base, 9, item_id)
+        struct.pack_into('<I', base, 34, dueno)
+        struct.pack_into('<H', base, 38, ranura)
+        struct.pack_into('<I', base, 40, cant)
+        return _ms.entrada(bytes(base),
+                           _ms.recien_nacida(d['nombre'], d['sprite']))
     else:
         struct.pack_into('<I', e, OFF_DURABILIDAD, durabilidad(item_id))
     if es_eq:

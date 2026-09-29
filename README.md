@@ -405,6 +405,39 @@ The documentation is in Spanish. The code and the commit history are too.
 
 ## Known issues
 
+### Pets appear, but their window comes up empty
+
+A pet's inventory entry is 231 bytes, not the 86 of an ordinary item or the
+119 of an equippable one. Until that was mapped, hovering a pet closed the
+client outright. The entry is now built byte for byte -- all 63 captured
+entries round-trip identically -- so the tooltip works and the item no longer
+crashes anything.
+
+What still does not work:
+
+  - **The pet window is blank.** Level, sprite and every stat come up at
+    zero. The stats are not derived by the client, as was assumed at first;
+    they travel in `s2c 0x0065` and have to be read out of `petattrib`,
+    which is indexed by pet type and level. The item -> pet type mapping is
+    not solved.
+  - **A summoned pet cannot be put away.** Storing it sends the inventory
+    entry but never removes the world entity, so it stays on screen.
+  - **Nothing grants pet experience yet.** The level and exp fields are
+    stored and served correctly, but no code path raises them.
+
+Summoning itself is measured and implemented: `c2s 0x002E [slot][0]` takes
+the pet out and puts it away, `c2s 0x015E` shows or hides it, `c2s 0x003D`
+renames it, and `s2c 0x0050` is the creature in the world. A pet **never
+leaves the backpack** when summoned -- equipping one into the pet gear slot
+needs 5 stars and is a different thing that has not been captured.
+
+### A pierced hole is invisible, so the next one is unreachable
+
+The piercing pestle opens the first hole correctly and then refuses to open
+another until a gem is set, which is the real rule. But the hole itself is
+never sent to the client, so no gem socket is drawn and the condition can
+never be met. The item gets stuck after the first hole.
+
 ### The ID Card draws the character undressed
 
 The sprite walking around the world wears its gear correctly, but the figure

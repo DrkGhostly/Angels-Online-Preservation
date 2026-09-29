@@ -409,6 +409,40 @@ cosas se dieron por buenas con una sola muestra y resultaron falsas.
 
 ## Fallos conocidos
 
+### Las mascotas aparecen, pero su ventana sale vacía
+
+La entrada de inventario de una mascota mide 231 bytes, no los 86 de un
+objeto normal ni los 119 de uno que se equipa. Hasta que se mapeó, pasarle
+el ratón por encima cerraba el cliente. Ahora se construye byte a byte --
+las 63 entradas capturadas se reconstruyen idénticas -- así que el tooltip
+funciona y el objeto ya no tira nada.
+
+Lo que sigue sin funcionar:
+
+  - **La ventana de la mascota sale en blanco.** Nivel, sprite y todos los
+    stats salen a cero. No los calcula el cliente, como se supuso al
+    principio: viajan en el `s2c 0x0065` y hay que sacarlos de `petattrib`,
+    que va por tipo de mascota y nivel. La correspondencia item -> tipo no
+    está resuelta.
+  - **Una mascota invocada no se puede guardar.** Al guardarla se manda la
+    entrada del inventario pero no se quita la entidad del mundo, así que
+    se queda en pantalla.
+  - **Nada le da experiencia todavía.** El nivel y la experiencia se
+    guardan y se sirven bien, pero ningún sitio los sube.
+
+Invocarla sí está medido e implementado: `c2s 0x002E [casilla][0]` la saca y
+la guarda, `c2s 0x015E` la muestra u oculta, `c2s 0x003D` la renombra y el
+`s2c 0x0050` es la criatura en el mundo. Una mascota **nunca sale de la
+mochila** al invocarla -- equiparla en su ranura pide 5 estrellas y es otra
+cosa distinta, que no se ha capturado.
+
+### Un hueco perforado no se ve, así que el siguiente es inalcanzable
+
+El mortero de perforar abre bien el primer hueco y luego se niega a abrir
+otro hasta que se engarce una gema, que es la regla de verdad. Pero el hueco
+no se le manda nunca al cliente, así que no se dibuja el sitio de la gema y
+la condición no se puede cumplir. La pieza se queda atascada tras el primero.
+
 ### La ID Card dibuja al personaje desnudo
 
 El muñeco que camina por el mundo lleva su equipo bien, pero la figura del

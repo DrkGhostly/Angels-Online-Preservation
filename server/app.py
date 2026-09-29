@@ -563,9 +563,21 @@ def _refrescar(ses, ranuras, con_oro=False):
                                            _dueno(ses)))
     for r in sorted(set(int(x) for x in ranuras if x is not None)):
         if r in ses.inventario:
-            fuera.append(inv.actualizar_ranura(cid, r, int(ses.inventario[r]),
-                                               _cant_de(ses, r), _inst(ses, r),
-                                               _dueno(ses)))
+            _linea = inv.actualizar_ranura(cid, r, int(ses.inventario[r]),
+                                           _cant_de(ses, r), _inst(ses, r),
+                                           _dueno(ses))
+            # El "+N" de las mejoras viaja DENTRO de la entrada, en el byte
+            # 83. Si no se escribe, el cliente no enseña ni el "+7" pegado al
+            # nombre ni el "has been intensified ( N ) times" del tooltip,
+            # por mucho que el servidor lleve la cuenta.
+            _mej = (getattr(ses.personaje, 'mejoras', None) or {}).get(r)                 if ses.personaje else None
+            if _mej and _mej.get('veces'):
+                _linea = inv.marcar_mejora(_linea, _mej['veces'])
+            # Y los stats del martillo verde, que van en la misma entrada en
+            # registros de cuatro bytes desde el offset 13.
+            if _mej and _mej.get('extra'):
+                _linea = inv.marcar_extras(_linea, _mej['extra'])
+            fuera.append(_linea)
         else:
             dueno = ses.personaje.entity_id if ses.personaje else cid
             fuera.append(inv.vaciar_ranura(dueno, r))
@@ -593,6 +605,324 @@ def _nombre_item(item_id: int) -> str:
         return r[0] if r and r[0] else f'Item{item_id}'
     except Exception:
         return f'Item{item_id}'
+
+
+# ---------------------------------------------------------------------------
+# Comando de GM para dar objetos
+# ---------------------------------------------------------------------------
+# Los ids salen de items.html, el catalogo que lleva el repo. El comando no
+# inventa protocolo: reutiliza lo que ya usa el botin -- _meter para poner en
+# la mochila, _refrescar para el 0x001B de la casilla y clases.aviso para el
+# cartel de "obtuviste X".
+
+
+def _item_existe(item_id: int) -> bool:
+    """Si ese id existe en alguna de las tablas de items del cliente."""
+    import sqlite3
+    import inventario as _iv
+    db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
+    if not db.exists():
+        return False
+    try:
+        con = sqlite3.connect(db)
+        r = _iv.fila_item(con, 'id', item_id)
+        con.close()
+        return r is not None
+    except Exception:
+        return False
+
+
+def _gm_dar_item(ses, item_id: int, n: int = 1) -> str:
+    """Mete n unidades del item en la mochila de esa sesion."""
+    import clases as _cl
+    import inventario as _iv_gm
+    if getattr(ses, 'inventario', None) is None or not getattr(ses, 'personaje', None):
+        return 'no hay personaje en el mundo todavia'
+    item_id = int(item_id)
+    n = max(1, min(9999, int(n)))
+    if not _item_existe(item_id):
+        return 'el item %d no existe' % item_id
+    # LAS MASCOTAS TIRAN EL CLIENTE. Su entrada de inventario mide 235 bytes
+    # -- se vio al abrir un huevo en el servidor real -- y nuestro
+    # constructor solo sabe hacer las de 86 y 119. Dandole una mascota, el
+    # cliente recibe algo a medias y se cierra. Se niega hasta que la entrada
+    # de 235 este descifrada.
+    ranura = _meter(ses, item_id, n)
+    if ranura is None:
+        return 'la mochila esta llena'
+    nom = _nombre_item(item_id)
+    cartel = nom if n == 1 else '%dx %s' % (n, nom)
+    ses.enviar(_cl.aviso(cartel, tipo=0, msg_id=_cl.MSG_ITEM))
+    ses.enviar(*_refrescar(ses, [ranura]))
+    _guardar_bolsa(ses, ses.personaje.char_id)
+    return 'dado %dx %s (%d) en la casilla %d' % (n, nom, item_id, ranura)
+
+
+def _gm_texto(cuerpo: bytes):
+    """Saca un posible comando ASCII de un paquete C->S.
+
+    El opcode del chat no se conoce, asi que se husmea en los cuatro offsets
+    donde puede empezar el texto. Solo se da por bueno si empieza por barra o
+    si la primera palabra es una de las del comando: asi un paquete binario
+    cualquiera no se confunde con un comando.
+    """
+    if not cuerpo:
+        return None
+    for off in (0, 1, 2, 4):
+        if len(cuerpo) <= off:
+            continue
+        trozo = cuerpo[off:]
+        nul = trozo.find(b'\x00')
+        if nul >= 0:
+            trozo = trozo[:nul]
+        if not trozo or not all(32 <= b < 127 for b in trozo):
+            continue
+        t = trozo.decode('ascii').strip()
+        if t.startswith('/') or t.lower().split()[:1] in (['item'], ['give'],
+                                                          ['i'], ['help']):
+            return t
+    return None
+
+
+def _gm_parsear(texto: str):
+    """('item', id, cantidad), ('help',), ('err', motivo) o None."""
+    t = texto.strip()
+    if t.startswith('/'):
+        t = t[1:]
+    partes = t.split()
+    if not partes:
+        return None
+    cmd = partes[0].lower()
+    if cmd == 'help':
+        return ('help',)
+    if cmd not in ('item', 'give', 'i'):
+        return None
+    if len(partes) < 2:
+        return ('err', 'usage: /item <id> [qty]')
+    try:
+        iid = int(partes[1], 0)
+    except ValueError:
+        return ('err', 'el id tiene que ser un numero')
+    cant = 1
+    if len(partes) >= 3:
+        try:
+            cant = int(partes[2], 0)
+        except ValueError:
+            return ('err', 'la cantidad tiene que ser un numero')
+    return ('item', iid, cant)
+
+
+def _probar_gm(ses, cuerpo, addr) -> bool:
+    """True si el paquete era un comando de GM y ya se contesto."""
+    import clases as _cl
+    texto = _gm_texto(cuerpo)
+    if not texto:
+        return False
+    leido = _gm_parsear(texto)
+    if leido is None:
+        return False
+    if leido[0] == 'help':
+        ses.enviar(_cl.aviso('GM: /item <id> [qty]', tipo=0, msg_id=_cl.MSG_ITEM))
+        log.info('[%s] GM help' % (addr,))
+        return True
+    if leido[0] == 'err':
+        ses.enviar(_cl.aviso(leido[1], tipo=0, msg_id=_cl.MSG_ITEM))
+        log.info('[%s] GM %s' % (addr, leido[1]))
+        return True
+    _, iid, cant = leido
+    msg = _gm_dar_item(ses, iid, cant)
+    if not msg.startswith('dado '):
+        ses.enviar(_cl.aviso(msg, tipo=0, msg_id=_cl.MSG_ITEM))
+    log.info('[%s] GM %s' % (addr, msg))
+    return True
+
+
+def _pet_ficha(ses, ranura):
+    """La ficha guardada de la mascota de esa casilla, creandola si no hay.
+
+    Los stats de combate NO se guardan: el cliente los saca solo del sprite
+    y el nivel. Se vio con una Battlemaid de nivel 1 a la que el juego pinto
+    56 de ataque y 91 de defensa sin que nadie se los mandara.
+    """
+    import inventario as inv
+    import mascotas as _ms
+    todas = getattr(ses.personaje, 'mascota', None)
+    if todas and todas.get('ranura') == ranura:
+        return todas
+    item_id = ses.inventario[ranura]
+    d = inv.datos_mascota(item_id)
+    f = _ms.recien_nacida(d['nombre'], d['sprite'])
+    f['ranura'] = ranura
+    f['item'] = item_id
+    f['fuera'] = False
+    ses.personaje.mascota = f
+    return f
+
+
+def _pet_alternar(ses, addr, ranura):
+    """Saca la mascota al mundo, o la guarda si ya estaba fuera.
+
+    El servidor real contesta con la ficha (0x0065), la entrada del
+    inventario (0x001B) y la criatura (0x0050). El 0x017A que tambien manda
+    no se sabe que es y no se copia: son 80 bytes casi todos a cero.
+    """
+    import json as _json
+    import mascotas as _ms
+    f = _pet_ficha(ses, ranura)
+    f['fuera'] = not f.get('fuera')
+    p = ses.personaje
+    if not f['fuera']:
+        log.info('[%s] mascota guardada: %s' % (addr, f.get('nombre')))
+        ses.enviar(*_refrescar(ses, [ranura]))
+        return
+    # Cada vez que sale es una entidad NUEVA: en la captura fueron
+    # 0x1050c4, c5 y c6, una detras de otra.
+    f['entidad'] = _pet_siguiente_entidad(ses)
+    f['instancia'] = ranura
+    est = dict(f)
+    est.update({'x': getattr(p, 'x', 0), 'y': getattr(p, 'y', 0),
+                'dueno': p.entity_id, 'dueno_nombre': p.nombre,
+                'tipo': f.get('tipo', 0)})
+    ses.enviar(_ms.armar(f))
+    ses.enviar(*_refrescar(ses, [ranura]))
+    ses.enviar(_ms.entidad_mundo(_pet_plantilla(), est))
+    log.info('[%s] mascota fuera: %s (entidad %d)'
+             % (addr, f.get('nombre'), f['entidad']))
+
+
+_PET_ENT = [0x105000]
+
+
+def _pet_siguiente_entidad(ses):
+    _PET_ENT[0] += 1
+    return _PET_ENT[0]
+
+
+_PET_PL = [None]
+
+
+def _pet_plantilla():
+    if _PET_PL[0] is None:
+        import json as _json
+        import inventario as _iv
+        _PET_PL[0] = bytes.fromhex(_json.loads(
+            _iv.PLANTILLA_INI.read_text(encoding='utf-8'))['mascota_mundo'])
+    return _PET_PL[0]
+
+
+def _usar_mejora(ses, addr, ranura, objetivo) -> bool:
+    """Usa un objeto de mejora sobre la pieza de otra casilla.
+
+    Devuelve True si el paquete era eso y ya se contesto.
+
+    Lo que manda el servidor real, medido el 29/09/2026 sobre una montura:
+    la entrada del equipo actualizada (0x001B), el cartel del resultado
+    (0x000D), la pila del objeto gastada (0x001B), los stats (0x0042) y el
+    peso (0x0013). Los carteles son de string.xml:
+
+        1613  "Succeed in intensifying %s."      mortero o pienso, con exito
+        1614  "%s Failed to intensify"           fallo
+        2137  "%s Change the attribute succeeded."   el martillo verde
+
+    En el de exito el %s es el nombre CON su "+N" pegado detras, tal cual:
+    "Onyx- Galactic Moped+4".
+    """
+    import clases as _cl
+    import inventario as _iv
+    import mejoras as _mj
+    import configuracion as _cf
+
+    item = ses.inventario.get(ranura)
+    clase = _mj.clase_de(item)
+    if not clase:
+        return False
+    pieza = ses.inventario.get(objetivo)
+    if not pieza:
+        return False
+
+    p = ses.personaje
+    if getattr(p, 'mejoras', None) is None:
+        p.mejoras = {}
+    nivel_pieza = _iv.nivel_de_item(pieza) if hasattr(_iv, 'nivel_de_item') else 0
+    tipo = _tipo_de_pieza(pieza, objetivo)
+    seguro = getattr(_cf, 'MEJORAS_SIEMPRE_EXITO', False)
+
+    if clase == 'verde':
+        # El martillo verde no sube nada: REEMPLAZA los atributos extra por
+        # otros nuevos, sorteados dentro de sus rangos. Los rangos son los
+        # que el cliente enseña en su cuadro; con la bandera puesta sale el
+        # maximo de todos a la vez.
+        est = p.mejoras.setdefault(int(objetivo), {'veces': 0, 'gemas': [],
+                                                   'extra': {}, 'huecos': 0})
+        tope_v = _mj.tope_nivel(item)
+        if tope_v and nivel_pieza > tope_v:
+            ok, msg = False, 'sirve hasta nivel %d' % tope_v
+        else:
+            est['extra'] = _mj.tirar_verde(
+                _mj.RANGOS_VERDE,
+                todos=getattr(_cf, 'MARTILLO_VERDE_TODOS_LOS_STATS', False))
+            ok, msg = True, 'atributos nuevos: %s' % est['extra']
+    elif clase == 'perforar':
+        ok, msg = _mj.perforar(p.mejoras, objetivo, item, nivel_pieza, tipo,
+                               exito_seguro=seguro)
+    elif clase in ('gema', 'gema_mascota'):
+        ok, msg = _mj.engarzar(p.mejoras, objetivo, item, nivel_pieza, tipo)
+    else:
+        ok, msg = _mj.aplicar(p.mejoras, objetivo, item, nivel_pieza, tipo,
+                              exito_seguro=seguro)
+
+    nombre = _nombre_item(pieza)
+    veces = (p.mejoras.get(objetivo) or {}).get('veces', 0)
+    if clase == 'perforar':
+        if ok:
+            msg_id = _mj.MSG_HUECO_OK
+        elif 'nivel' in msg:
+            msg_id = _mj.MSG_HUECO_NIVEL
+        elif 'huecos' in msg:
+            msg_id = _mj.MSG_HUECO_TOPE
+        else:
+            msg_id = _mj.MSG_HUECO_FALLO
+        cartel = _cl.aviso(nombre, tipo=7, msg_id=msg_id)
+    elif ok and clase in ('mortero', 'pienso_montura', 'pienso_mascota'):
+        # El %s del 1613 lleva el "+N" pegado: "Onyx- Galactic Moped+4".
+        cartel = _cl.aviso('%s+%d' % (nombre, veces), tipo=7,
+                           msg_id=_mj.MSG_MEJORA_OK)
+    elif ok:
+        cartel = _cl.aviso(nombre, tipo=7, msg_id=_mj.MSG_ATRIBUTOS_OK)
+    else:
+        cartel = _cl.aviso(nombre, tipo=7, msg_id=_mj.MSG_MEJORA_FALLO)
+
+    # El objeto se gasta pase lo que pase: todas las descripciones dicen que
+    # un fallo no rompe la pieza pero si consume el intento.
+    quedan = ses.cantidades.get(ranura, 1) - 1
+    if quedan > 0:
+        ses.cantidades[ranura] = quedan
+    else:
+        ses.inventario.pop(ranura, None)
+        ses.cantidades.pop(ranura, None)
+
+    salida = list(_refrescar(ses, [objetivo]))
+    salida.append(cartel)
+    salida.extend(_refrescar(ses, [ranura]))
+    salida.append(_stats_ses(ses))
+    ses.enviar(*salida)
+    _guardar_bolsa(ses, p.char_id)
+    log.info('[%s] mejora: %s (%s) sobre %s -> %s'
+             % (addr, _nombre_item(item), clase, nombre, msg))
+    return True
+
+
+def _tipo_de_pieza(item_id, ranura):
+    """'arma', 'armadura', 'escudo', 'montura' o 'mascota'."""
+    import inventario as _iv
+    r = _iv.ranura_equipo_de(item_id) or ranura
+    if r in (10, 174):
+        return 'montura'
+    if r == 3:
+        return 'arma'
+    if r == 4:
+        return 'escudo'
+    return 'armadura'
 
 
 def _max_sp_info(p):
@@ -802,14 +1132,29 @@ def _velocidad_de(ses) -> int:
     try:
         import inventario as _inv
         bolsa = getattr(ses, 'inventario', None) or {}
-        item = bolsa.get(174) or bolsa.get(RANURA_MONTURA)
-        if not item:
+        # LA MONTURA DE FASHION NO QUITA VELOCIDAD.
+        #
+        # La ranura 174 es la montura de la pestaña Fashion y la 10 la de
+        # verdad. Antes se miraba la 174 PRIMERO y, si habia algo, se usaba
+        # esa y ya: `bolsa.get(174) or bolsa.get(RANURA_MONTURA)`.
+        #
+        # Lo de fashion es aspecto, no montura. La Shamrock Goldfish, el item
+        # 77099, es de categoria 紙娃娃 y su move_speed viene VACIO, asi que
+        # velocidad_de_montura devolvia 0 y se caia a la velocidad de a pie.
+        # Ponerse el aspecto te dejaba andando y quitarselo te la devolvia.
+        #
+        # Ahora SUMAN. Hay monturas de fashion que si dan velocidad, y en el
+        # juego se acumula con la de la montura de verdad; las que no dan
+        # nada, como la Shamrock Goldfish, suman cero y se quedan en aspecto.
+        ms_real = _inv.velocidad_de_montura(bolsa.get(RANURA_MONTURA) or 0)
+        ms_moda = _inv.velocidad_de_montura(bolsa.get(174) or 0)
+        if not ms_real and not ms_moda:
             return base
-        ms = _inv.velocidad_de_montura(item)
-        if not ms:
-            return base
-        if BONO_MONTURA:
-            ms = BONO_MONTURA
+        # BONO_MONTURA pisa lo que diga item.xml, pero solo para la montura de
+        # verdad: lo que aporte el aspecto se suma encima tal cual.
+        if BONO_MONTURA and ms_real:
+            ms_real = BONO_MONTURA
+        ms = ms_real + ms_moda
         return max(1, min(1000, int(round(base * (100 + ms) / 100.0))))
     except Exception:
         return base
@@ -1262,6 +1607,7 @@ class Servidor:
         self.wport = wport or (port + 1)
         self.desconocidos = collections.Counter()
         self.sesiones = 0
+        self.mundos = []          # sesiones de mundo vivas, para el GM
         # Traspaso login -> mundo. Son dos conexiones TCP distintas: cuando
         # el cliente pide entrar (0x0006) anotamos aca que personaje eligio,
         # y la conexion de mundo que llega despues lo levanta. Se indexa por
@@ -1341,11 +1687,18 @@ class Servidor:
             log.debug(f"patrulla lyceum detenida: {e}")
 
     async def _bucle_regeneracion(self, ses):
-        """Regeneracion pasiva de HP y MP:
-        - Sentado (tecla Insert): cada 1 segundo recupera +6 MP y +12 HP.
-        - Quieto de pie (al menos 2s quieto y sin combate): cada 2 segundos recupera +6 MP y +6 HP.
+        """Regeneracion pasiva de HP y MP.
+
+        Sentado (tecla Insert) el tick es cada segundo; de pie hay que llevar
+        dos segundos quieto y fuera de combate, y el tick es cada dos.
+
+        Cuanto se recupera lo decide configuracion.regenera(): un porcentaje
+        del maximo que sube con el nivel, no una cantidad fija. Antes eran +6
+        MP y +12 HP siempre, y a nivel 300, con 121.440 de MP, eso son cinco
+        horas y media de estar quieto para llenar la barra.
         """
         import combate as _cb
+        import configuracion
         try:
             while getattr(ses, 'conectado', True):
                 await asyncio.sleep(1.0)
@@ -1363,26 +1716,31 @@ class Servidor:
                 toca_regen = False
                 if sentado:
                     toca_regen = True
-                    rec_mp = 6
-                    rec_hp = 12
                 else:
                     if (ahora - ultimo_mov) >= 2.0 and not en_combate:
                         ultimo_tick = getattr(ses, 'ultimo_regen_tick', 0)
                         if (ahora - ultimo_tick) >= 2.0:
                             toca_regen = True
                             ses.ultimo_regen_tick = ahora
-                            rec_mp = 6
-                            rec_hp = 6
 
                 if toca_regen:
                     pkgs = []
                     bolsa_pj = getattr(ses, 'inventario', None)
                     eff_hp_max = _vida_max(p, bolsa=bolsa_pj)
                     eff_mp_max = _mana_max(p, bolsa=bolsa_pj)
+                    # Lo que se recupera es un PORCENTAJE del maximo y sube
+                    # con el nivel. Con la cantidad plana de antes, +6 MP por
+                    # tick, un personaje de nivel 300 tardaba cinco horas y
+                    # media en llenar su barra.
+                    _nv = getattr(p, 'nivel', 1) or 1
                     if p.mp < eff_mp_max:
+                        rec_mp = configuracion.regenera(eff_mp_max, _nv,
+                                                        sentado, False)
                         p.mp = min(eff_mp_max, p.mp + rec_mp)
                         pkgs.append(_cb.atributo(yo, p.mp, _cb.KIND_MP))
                     if p.hp < eff_hp_max:
+                        rec_hp = configuracion.regenera(eff_hp_max, _nv,
+                                                        sentado, True)
                         p.hp = min(eff_hp_max, p.hp + rec_hp)
                         pkgs.append(_cb.atributo(yo, p.hp, _cb.KIND_HP))
 
@@ -1406,6 +1764,11 @@ class Servidor:
         ses.writer = writer
         grab = Grabador(addr, self.port if rol == 'login' else self.wport, ses.key)
         ses.grab = grab
+        if rol == 'mundo':
+            # Para que el comando de GM por consola o por data/gm.txt sepa a
+            # quien darle el item: se usa la ultima sesion de mundo que tenga
+            # personaje dentro.
+            self.mundos.append(ses)
         ses.patrulla_task = asyncio.create_task(self._patrulla_lyceum(ses)) if rol == 'mundo' else None
         ses.regen_task = asyncio.create_task(self._bucle_regeneracion(ses)) if rol == 'mundo' else None
         log.info(f"[{addr}] conectado ({rol})  clave={ses.key.hex(' ')}")
@@ -1443,6 +1806,8 @@ class Servidor:
         except (ConnectionResetError, asyncio.IncompleteReadError):
             pass
         finally:
+            if ses in self.mundos:
+                self.mundos.remove(ses)
             if getattr(ses, 'patrulla_task', None):
                 ses.patrulla_task.cancel()
             if getattr(ses, 'regen_task', None):
@@ -1470,6 +1835,12 @@ class Servidor:
 
     def manejar(self, ses, opcode, m, d, addr, cuerpo=b''):
         """Login: responde MOTD + personajes + redirect. Mundo: entra al juego."""
+        # COMANDO DE GM. Va lo primero porque el opcode del chat no se conoce:
+        # se mira si el cuerpo trae texto ASCII que parezca un comando, y solo
+        # en ese caso se consume el paquete. Si no lo es, sigue su camino.
+        if (ses.rol == 'mundo' and getattr(ses, 'personaje', None)
+                and _probar_gm(ses, cuerpo, addr)):
+            return
         if opcode == 0x0002 and ses.rol == 'login':
             usuario = login_server.usuario_de_auth(cuerpo)
             ses.usuario = usuario
@@ -1640,6 +2011,11 @@ class Servidor:
             # ficha lo decide el cliente a partir de este total.
             import configuracion as _cf
             _cred = p.creditos or getattr(_cf, 'CREDITOS_INICIALES', 0)
+            # El rango va en la ficha, no en un atributo: se fija ANTES de
+            # armar la secuencia, en login._ficha(). Aqui solo se asegura de
+            # que el personaje lo lleve puesto.
+            if not getattr(p, 'rango', 0):
+                p.rango = getattr(_cf, 'RANGO_INICIAL', 1)
             if _cred:
                 p.creditos = _cred
                 ses.enviar(_cb.atributo(p.entity_id, _cred, _cb.KIND_CREDITO))
@@ -2763,6 +3139,14 @@ class Servidor:
                                 buff_entry['matk'] = mag.get('matk_bonus')
                             if mag.get('mdef_bonus'):
                                 buff_entry['mdef'] = mag.get('mdef_bonus')
+                            # % de dano de salida. Se leia de magic.xml -- el
+                            # 魔法傷害 y el 物理傷害 -- pero no lo usaba nadie:
+                            # un Soul Corral IV, que pone "Increase 10% spell
+                            # damage", no cambiaba el golpe ni un punto.
+                            if mag.get('mag_dmg_pct'):
+                                buff_entry['mag_dmg_pct'] = mag.get('mag_dmg_pct')
+                            if mag.get('phys_dmg_pct'):
+                                buff_entry['phys_dmg_pct'] = mag.get('phys_dmg_pct')
                             if mag.get('hp_bonus'):
                                 buff_entry['hp'] = mag.get('hp_bonus')
                             if mag.get('mp_bonus'):
@@ -3152,12 +3536,21 @@ class Servidor:
 
             # Modificadores porcentuales del equipo (ej. +30% spell damage de Snow Queen's Cufflink)
             mods_eq = _iv.modificadores_porcentuales_equipo(ses.inventario)
-            if is_magic_skill:
-                if mods_eq.get('mag_dmg_pct', 0) > 0:
-                    mult_spell *= (1.0 + mods_eq['mag_dmg_pct'] / 100.0)
-            else:
-                if mods_eq.get('phys_dmg_pct', 0) > 0:
-                    mult_spell *= (1.0 + mods_eq['phys_dmg_pct'] / 100.0)
+            _clave_pct = 'mag_dmg_pct' if is_magic_skill else 'phys_dmg_pct'
+            if mods_eq.get(_clave_pct, 0) > 0:
+                mult_spell *= (1.0 + mods_eq[_clave_pct] / 100.0)
+
+            # Y el de los BUFFS activos, que antes no contaba. Los anillos,
+            # las capas y las insignias si entraban, porque son equipo, pero
+            # un Soul Corral IV -- "Increase 10% spell damage" -- no hacia
+            # nada: el dato se leia de magic.xml y se quedaba guardado en el
+            # buff sin que nadie lo mirara. Suman entre ellos y se aplican
+            # encima del equipo, igual que el equipo se aplica encima de la
+            # habilidad.
+            _pct_buffs = _cb.pct_dano_buffs(
+                getattr(ses.personaje, 'buffs', None), is_magic_skill)
+            if _pct_buffs:
+                mult_spell *= (1.0 + _pct_buffs / 100.0)
 
             total_atk = ataque
             dano = m.recibir(total_atk, es_magico=is_magic_skill, mult=mult_spell, var_pct=var_pct)
@@ -3678,148 +4071,76 @@ class Servidor:
                          f"{_ori} a la {_dst}")
                 return
 
-            if _contenedor == 23:
-                # ARRASTRAR con el boton izquierdo, a una casilla concreta.
+            if _contenedor in (14, 16, 17, 23):
+                # BANCO. Los cuatro contenedores mueven cosas entre la
+                # mochila y el almacen, y NINGUNO dice el sentido: lo decide
+                # donde este el objeto.
                 #
-                # Las acciones 16 y 17 son las del boton derecho: mandan el
-                # destino en 0 y lo coloca el servidor donde quepa. Esta es la
-                # otra, y en la captura solo aparece UNA vez: el cliente mando
-                # `17 00000000 02000000` y el servidor saco de la casilla 70
-                # de la mochila para dejarlo en la 116 del almacen. O sea que
-                # los numeros de este mensaje NO son las casillas absolutas
-                # sino la posicion en la rejilla que se ve.
+                # Se creyo que el 17 era solo guardar y el 16 solo sacar, y
+                # es falso. En la captura del 29/09/2026 hay un "cont=17
+                # 44 -> 0" cuya respuesta VACIA EL BANCO y pone en la
+                # mochila. Con la lectura vieja ese movimiento no hacia nada.
                 #
-                # Con una sola muestra no se puede sacar la correspondencia,
-                # asi que aqui se prueba el numero tal cual y, si ahi no hay
-                # nada, sumandole 20, que es donde empieza nuestra mochila. El
-                # sentido se decide por donde este el objeto, no por el
-                # mensaje: asi vale para guardar y para sacar.
-                import inventario as _iv5
-                _a, _b = struct.unpack_from('<II', cuerpo, 1)
-                _p = ses.personaje
-                _bolsa = getattr(ses, 'inventario', {})
-                if _p.banco is None:
-                    _p.banco = {}
-                _en_bolsa = _a if _a in _bolsa else (
-                    _a + 20 if _a + 20 in _bolsa else None)
-                if _en_bolsa is not None:
-                    _dst = _b if _b and _b not in _p.banco else next(
-                        (k for k in range(1, 25) if k not in _p.banco), None)
-                    if _dst is None:
-                        log.info(f"[{addr}] banco: lleno, no se guarda")
-                        return
-                    _it = _bolsa.pop(_en_bolsa)
-                    _cn = ses.cantidades.pop(_en_bolsa, 1)
-                    _p.banco[_dst] = (_it, _cn)
-                    ses.enviar(_iv5.vaciar_ranura(_p.entity_id, _en_bolsa),
-                               _stats_ses(ses),
-                               _iv5.banco_poner(_p.char_id, _dst, _it, _cn,
-                                                dueno=_p.entity_id))
-                    log.info(f"[{addr}] banco: arrastrado el item {_it} de la "
-                             f"mochila {_en_bolsa} (el cliente dijo {_a}) a la "
-                             f"casilla {_dst} del almacen")
-                    return
-                if _a in _p.banco:
-                    _dst = _b if _b and _b not in _bolsa else _ranura_libre(
-                        _bolsa, desde=20)
-                    _v = _p.banco.pop(_a)
-                    _it, _cn = _v if isinstance(_v, tuple) else (_v, 1)
-                    _bolsa[_dst] = _it
-                    if _cn > 1:
-                        ses.cantidades[_dst] = _cn
-                    ses.enviar(_iv5.banco_sacar(_p.char_id, _dst, _it, _cn,
-                                                dueno=_p.entity_id),
-                               _iv5.banco_vaciar_ranura(_a),
-                               _stats_ses(ses))
-                    log.info(f"[{addr}] banco: arrastrado el item {_it} de la "
-                             f"casilla {_a} del almacen a la mochila {_dst} "
-                             f"(el cliente pidio la {_b})")
-                    return
-                log.warning(f"[{addr}] banco: arrastre {_a} -> {_b} y en la "
-                            f"{_a} no hay nada. Mochila: {sorted(_bolsa)}; "
-                            f"almacen: {sorted(_p.banco)}")
-                return
-
-            if _contenedor == 16:
-                # SACAR DEL BANCO: del almacen a la mochila.
-                #
-                # [u8 16][u32 ranura del almacen][u32 ranura de la mochila],
-                # medido en la misma captura. El destino tambien llega como 0
-                # y quiere decir "donde quepa": el servidor real lo dejo en la
-                # casilla 39 de la bolsa.
-                #
-                # El orden de la respuesta es el CONTRARIO al de guardar:
-                # primero la entrada que llega a la mochila y despues la
-                # casilla del almacen que se vacia.
-                import inventario as _iv4
-                _ori, _dst = struct.unpack_from('<II', cuerpo, 1)
-                _p = ses.personaje
-                _bolsa = getattr(ses, 'inventario', {})
-                if _p.banco is None:
-                    _p.banco = {}
-                if _ori not in _p.banco:
-                    log.warning(f"[{addr}] banco: se pide sacar la casilla "
-                                f"{_ori} y ahi no hay nada. Guardado: "
-                                f"{sorted(_p.banco)}")
-                    return
-                if not _dst or _dst in _bolsa:
-                    _dst = _ranura_libre(_bolsa, desde=20)
-                _v = _p.banco.pop(_ori)
-                _it, _cn = _v if isinstance(_v, tuple) else (_v, 1)
-                _bolsa[_dst] = _it
-                if _cn > 1:
-                    ses.cantidades[_dst] = _cn
-                ses.enviar(_iv4.banco_sacar(_p.char_id, _dst, _it, _cn,
-                                            dueno=_p.entity_id),
-                           _iv4.banco_vaciar_ranura(_ori),
-                           _stats_ses(ses))
-                log.info(f"[{addr}] banco: sacado el item {_it} de la casilla "
-                         f"{_ori} del almacen a la mochila {_dst}")
-                return
-
-            if _contenedor == 17:
-                # GUARDAR EN EL BANCO: de la mochila al almacen.
-                #
-                # [u8 17][u32 ranura de la mochila][u32 ranura del almacen],
-                # medido en la captura de Edo City del 28/09/2026. La casilla
-                # de origen es la ABSOLUTA: el cliente mando 0x44, o sea 68, y
-                # el servidor contesto vaciando justo la 68.
-                #
-                # El destino llego SIEMPRE como 0 y el item aparecio en la
-                # primera libre: en un cruce fue la 1 y en el siguiente la 12.
-                # O sea que el 0 quiere decir "donde quepa" y lo decide el
-                # servidor.
-                #
-                # El servidor real contesta cinco cosas; aqui van las tres que
-                # importan: la casilla de la mochila que se vacia, los stats
-                # -- que cambian porque cambia el peso -- y la entrada nueva
-                # en el almacen.
+                # El destino en 0 quiere decir "donde quepa". Y por debajo de
+                # 20 es la posicion de la rejilla que se ve, no la casilla:
+                # la mochila empieza en la 20 y de la 0 a la 19 esta el
+                # equipo, asi que aceptarlo tal cual metia lo que salia del
+                # banco en una ranura de equipo.
                 import inventario as _iv3
                 _ori, _dst = struct.unpack_from('<II', cuerpo, 1)
                 _p = ses.personaje
                 _bolsa = getattr(ses, 'inventario', {})
                 if _p.banco is None:
                     _p.banco = {}
-                if _ori not in _bolsa:
-                    log.warning(f"[{addr}] banco: se pide guardar la casilla "
-                                f"{_ori} y ahi no hay nada. Lleva: "
-                                f"{sorted(_bolsa)}")
-                    return
-                if not _dst or _dst in _p.banco:
-                    _dst = next((k for k in range(1, 25)
-                                 if k not in _p.banco), None)
-                    if _dst is None:
-                        log.info(f"[{addr}] banco: esta lleno, no se guarda")
+
+                def _en_bolsa(n):
+                    if n in _bolsa:
+                        return n
+                    return n + 20 if (n + 20) in _bolsa else None
+
+                _desde_bolsa = _en_bolsa(_ori)
+                if _desde_bolsa is not None:
+                    # MOCHILA -> BANCO
+                    _d = _dst if (_dst and _dst not in _p.banco) else next(
+                        (k for k in range(1, 25) if k not in _p.banco), None)
+                    if _d is None:
+                        log.info('[%s] banco lleno, no se guarda' % (addr,))
                         return
-                _it = _bolsa.pop(_ori)
-                _cuantas = ses.cantidades.pop(_ori, 1)
-                _p.banco[_dst] = (_it, _cuantas)
-                ses.enviar(_iv3.vaciar_ranura(_p.entity_id, _ori),
-                           _stats_ses(ses),
-                           _iv3.banco_poner(_p.char_id, _dst, _it, _cuantas,
-                                            dueno=_p.entity_id))
-                log.info(f"[{addr}] banco: guardado el item {_it} de la "
-                         f"mochila {_ori} en la casilla {_dst} del almacen")
+                    _it = _bolsa.pop(_desde_bolsa)
+                    _cn = ses.cantidades.pop(_desde_bolsa, 1)
+                    _p.banco[_d] = (_it, _cn)
+                    ses.enviar(_iv3.vaciar_ranura(_p.entity_id, _desde_bolsa),
+                               _stats_ses(ses),
+                               _iv3.banco_poner(_p.char_id, _d, _it, _cn,
+                                                dueno=_p.entity_id))
+                    log.info('[%s] banco: guardado el item %d de la mochila '
+                             '%d (el cliente dijo %d) en la casilla %d'
+                             % (addr, _it, _desde_bolsa, _ori, _d))
+                    return
+
+                if _ori in _p.banco:
+                    # BANCO -> MOCHILA
+                    _d = _dst + 20 if (_dst and _dst < 20) else _dst
+                    if not _d or _d in _bolsa or _d < 20:
+                        _d = _ranura_libre(_bolsa, desde=20)
+                    _v = _p.banco.pop(_ori)
+                    _it, _cn = _v if isinstance(_v, tuple) else (_v, 1)
+                    _bolsa[_d] = _it
+                    if _cn > 1:
+                        ses.cantidades[_d] = _cn
+                    ses.enviar(_iv3.banco_sacar(_p.char_id, _d, _it, _cn,
+                                                dueno=_p.entity_id),
+                               _iv3.banco_vaciar_ranura(_ori),
+                               _stats_ses(ses))
+                    log.info('[%s] banco: sacado el item %d de la casilla %d '
+                             'a la mochila %d (el cliente pidio la %d)'
+                             % (addr, _it, _ori, _d, _dst))
+                    return
+
+                log.warning('[%s] banco: movimiento %d -> %d y en la %d no '
+                            'hay nada. Mochila: %s; almacen: %s'
+                            % (addr, _ori, _dst, _ori, sorted(_bolsa),
+                               sorted(_p.banco)))
                 return
 
             if _contenedor != 11:
@@ -4187,13 +4508,79 @@ class Servidor:
                      f"Superwing de la casilla {ranura}")
             return
 
+        # MASCOTA: pedir su ficha (0x015E) y darle ordenes (0x003E).
+        #
+        # Medido el 29/09/2026. Al 0x015E el servidor real contesta con el
+        # 0x0065 de 200 bytes, que es la ficha entera; al 0x003E con un
+        # 0x001D del JUGADOR -- no de la mascota -- con el tipo 0x11 y el
+        # modo dentro. Se vieron los modos 0, 1, 2 y 4.
+        if opcode == 0x015E and ses.rol == 'mundo' and ses.personaje:
+            import mascotas as _ms
+            ficha = getattr(ses.personaje, 'mascota', None)
+            if ficha:
+                ses.enviar(_ms.armar(ficha))
+                log.info('[%s] ficha de la mascota %s' % (addr, ficha.get('nombre')))
+            return
+
+        if opcode == 0x003E and ses.rol == 'mundo' and ses.personaje and cuerpo:
+            import mascotas as _ms
+            modo = cuerpo[0]
+            ses.personaje.mascota_orden = modo
+            ses.enviar(_ms.paquete_orden(ses.personaje.entity_id, modo))
+            log.info('[%s] orden a la mascota: %d' % (addr, modo))
+            return
+
+        # RENOMBRAR LA MASCOTA: c2s 0x003D, el cuerpo es el nombre pelado.
+        # Medido: se mando "Battlemaids" y luego "Battle", y el servidor
+        # contesto remandando la entrada del inventario. Sin nombre propio
+        # se queda con el de su clase.
+        if opcode == 0x003D and ses.rol == 'mundo' and ses.personaje and cuerpo:
+            import mascotas as _ms
+            ficha = getattr(ses.personaje, 'mascota', None) or {}
+            nom = _ms.nombre_pedido(cuerpo)
+            if ficha and nom:
+                ficha['nombre'] = nom
+                ses.personaje.mascota = ficha
+                r = ficha.get('ranura')
+                if r is not None:
+                    ses.enviar(*_refrescar(ses, [r]))
+                log.info('[%s] mascota renombrada a %s' % (addr, nom))
+            return
+
         if opcode == 0x002E and ses.rol == 'mundo' and len(cuerpo) >= 4:
             import inventario as inv
             import clases as _c
-            ranura = struct.unpack_from('<I', cuerpo, 0)[0]
+            # DOS FORMAS del mismo mensaje. Cuando el cuerpo trae CINCO bytes
+            # es "usar la casilla X SOBRE la casilla Y": un byte de origen y
+            # un LE32 de destino. Es lo que manda el juego al hacer clic
+            # derecho en un mortero y luego clic izquierdo en el equipo.
+            # Medido el 29/09/2026: "252b000000" es la casilla 37 sobre la 43.
+            objetivo = None
+            if len(cuerpo) == 5:
+                ranura = cuerpo[0]
+                objetivo = struct.unpack_from('<I', cuerpo, 1)[0]
+            else:
+                ranura = struct.unpack_from('<I', cuerpo, 0)[0]
             bolsa = getattr(ses, 'inventario', None)
             if bolsa is None or ranura not in bolsa:
                 return
+
+            # SACAR O GUARDAR LA MASCOTA. Medido el 29/09/2026: el juego
+            # manda "2100000000", o sea la casilla 33 con destino cero, que
+            # es donde estaba la Battlemaid. No es una mejora ni se equipa:
+            # la mascota SIGUE EN LA MOCHILA y lo que pasa es que aparece
+            # como criatura al lado del jugador. Se vio entrar y salir tres
+            # veces sin moverse de la casilla 33.
+            if (inv.es_mascota(bolsa[ranura]) and ses.personaje
+                    and not objetivo):
+                _pet_alternar(ses, addr, ranura)
+                return
+
+            # MEJORAS: morteros, martillos, piensos y gemas.
+            if objetivo is not None and objetivo in bolsa and ses.personaje:
+                _res = _usar_mejora(ses, addr, ranura, objetivo)
+                if _res:
+                    return
             item_id = bolsa[ranura]
             cid = ses.personaje.char_id if ses.personaje else 4980
 
@@ -4266,7 +4653,11 @@ class Servidor:
                 if eq_slot == 169 and (169 in bolsa) and (170 not in bolsa) and inv.es_arma_dual(item_id):
                     dst = 170
                 else:
-                    dst = eq_slot
+                    # Los accesorios tienen DOS ranuras, los dos "Trinket" de
+                    # la ventana: la 8 y la 9. Se mandaban todos a la 8, asi
+                    # que el segundo hueco no aceptaba nada y el jugador no
+                    # podia ponerse dos anillos.
+                    dst = inv.ranura_libre_equipo(item_id, bolsa) or eq_slot
                 # Si se equipa un arma a dos manos (Lanza, Arco, etc.) en mano derecha (3):
                 # Desequipar la mano izquierda (4) si habia algo puesto
                 if dst == 3 and inv.es_arma_dos_manos(item_id) and 4 in bolsa:
@@ -5626,6 +6017,80 @@ class Servidor:
             log.info(f"[archivos {addr}] desconectado -> logs/sesiones/{base}_*.bin")
             writer.close()
 
+    def _sesion_mundo(self):
+        """La ultima sesion de mundo con personaje dentro, o None."""
+        for s in reversed(self.mundos):
+            if (getattr(s, 'personaje', None)
+                    and getattr(s, 'inventario', None) is not None):
+                return s
+        return None
+
+    def _gm_ejecutar_linea(self, linea: str) -> str:
+        """Ejecuta un comando venido de la consola o de data/gm.txt."""
+        import clases as _cl
+        leido = _gm_parsear(linea)
+        if leido is None:
+            t = linea.strip()
+            return ('GM no entiendo: %s  (prueba: item <id> [cant])' % t) if t else ''
+        if leido[0] == 'help':
+            return 'GM: item <id> [cant]'
+        if leido[0] == 'err':
+            return 'GM %s' % leido[1]
+        ses = self._sesion_mundo()
+        if ses is None:
+            return 'GM: no hay personaje en el mundo todavia'
+        _, iid, cant = leido
+        msg = _gm_dar_item(ses, iid, cant)
+        if not msg.startswith('dado '):
+            try:
+                ses.enviar(_cl.aviso(msg, tipo=0, msg_id=_cl.MSG_ITEM))
+            except Exception:
+                pass
+        return 'GM %s' % msg
+
+    async def _consola_gm(self):
+        """Lee comandos de la consola del servidor, si la hay."""
+        loop = asyncio.get_running_loop()
+        try:
+            if not sys.stdin or not sys.stdin.isatty():
+                return
+        except Exception:
+            return
+        while True:
+            try:
+                linea = await loop.run_in_executor(None, sys.stdin.readline)
+            except Exception:
+                return
+            if linea == '':
+                return
+            msg = self._gm_ejecutar_linea(linea)
+            if msg:
+                log.info(msg)
+
+    async def _cola_gm(self):
+        """Comandos por archivo: data/gm.txt, una linea por comando.
+
+        Es la via que funciona siempre. La consola solo sirve si el servidor
+        se arranco desde una terminal, y dentro del juego depende de que el
+        cuerpo del paquete de chat se pueda husmear.
+        """
+        ruta = pathlib.Path(__file__).parent.parent / 'data' / 'gm.txt'
+        while True:
+            await asyncio.sleep(0.5)
+            try:
+                if not ruta.exists():
+                    continue
+                texto = ruta.read_text(encoding='utf-8', errors='replace')
+                if not texto.strip():
+                    continue
+                ruta.write_text('', encoding='utf-8')
+                for linea in texto.splitlines():
+                    msg = self._gm_ejecutar_linea(linea)
+                    if msg:
+                        log.info(msg)
+            except Exception as e:
+                log.debug('cola GM: %s', e)
+
     async def correr(self):
         import functools
         srv = await asyncio.start_server(
@@ -5678,6 +6143,10 @@ class Servidor:
                 pass
         log.info("senuelos abiertos en los puertos vecinos")
         log.info("las sesiones se graban en logs/sesiones/ para poder analizarlas")
+        # El GM: por consola si se arranco desde una terminal, y por
+        # data/gm.txt siempre.
+        tareas.append(self._consola_gm())
+        tareas.append(self._cola_gm())
         await asyncio.gather(*tareas)
 
 

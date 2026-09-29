@@ -75,6 +75,15 @@ class Personaje:
     # las quests y con los objetos de investitem.xml, que dan de cinco en
     # cinco los mas baratos.
     creditos: int = 0
+    # El rango que enseña la ficha: 1 es "Growing Power" y 20 "God's
+    # Mouthpiece", los nombres 1700 a 1719 de string.xml.
+    rango: int = 1
+    # La mascota activa, tal como la lee mascotas.leer(): nombre, nivel,
+    # stats, saciedad... En vacio no hay ninguna invocada.
+    mascota: dict = field(default_factory=dict)
+    # Mejoras por casilla de equipo: {ranura: {'veces': N, 'huecos': N,
+    # 'gemas': [ids], 'extra': {stat: valor}}}. Lo llena mejoras.py.
+    mejoras: dict = field(default_factory=dict)
     buffs: dict = field(default_factory=dict)
 
 
@@ -994,6 +1003,21 @@ def _ficha(p, base):
         # [12..15] = 00 00 00 [nivel]. La exp va en offset 19 LE32.
         struct.pack_into('>I', u50, 12, max(1, p.nivel))
         struct.pack_into('<I', u50, 19, p.exp & 0xFFFFFFFF)
+        # EL RANGO Y LOS CREDITOS, pegados el uno al otro.
+        #
+        # Estan en el offset 93 y 94 del 0x0002: un byte con el rango y un
+        # LE32 con los creditos. Salieron comparando el relog del servidor
+        # real con nuestra plantilla: alli el byte valia 17 y los creditos
+        # 4.610.115, y en la nuestra 1 y 0 -- que es justo lo que la ficha
+        # del juego enseñaba, "Rank 1 Growing Power" con los creditos bien.
+        #
+        # El rango NO se calcula de los creditos: los cortes entre uno y otro
+        # no estan en ningun xml del cliente ni en los luas. Lo manda el
+        # servidor y punto, asi que aqui se manda el que lleve el personaje.
+        if len(u50) >= 48:
+            u50[43] = max(1, min(20, getattr(p, 'rango', 1) or 1))
+            struct.pack_into('<I', u50, 44,
+                             (getattr(p, 'creditos', 0) or 0) & 0xFFFFFFFF)
         d['unk_50'] = bytes(u50)
     # HP y MP. El campo 'stats' arranca en +102 de la ficha, asi que los
     # cuatro LE32 del principio son hp, hp_max, mp, mp_max (+102, +106,

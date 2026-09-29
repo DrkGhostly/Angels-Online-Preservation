@@ -52,20 +52,32 @@ def _leer(f):
     lineas = collections.defaultdict(list)
     respuestas = collections.defaultdict(list)
     act, eligio, opcion = None, False, None
+    porclic = {}
+    actual = None
     for r in regs:
         h = r.get('hex') or ''
         op = r.get('opcode')
         if r.get('dir') == 'c2s' and op == 5 and len(h) >= 8:
             act = struct.unpack_from('<I', bytes.fromhex(h), 0)[0]
             eligio, opcion = False, None
+            # Cada clic empieza el guion de cero. Sin esto, clicar al mismo
+            # NPC cuatro veces lo sacaba con cuatro paginas identicas: el
+            # Florentia Smith salia repetido cuatro veces.
+            actual = []
+            lineas.setdefault(act, [])
+            porclic.setdefault(act, []).append(actual)
         elif r.get('dir') == 'c2s' and op == 0x0b and h and act:
             v = int(h[:2], 16)
             if not dialogos.es_opcion(v):
                 continue                  # pedir la siguiente pagina
             eligio = True
-            prev = [b for b in lineas[act]] + [b for _, b in respuestas[act]
-                                               if b[:1] != b'']
-            todas = lineas[act] + [b for _, b in respuestas[act]]
+            # Las respuestas guardan (opcion, (opcode, bytes)), asi que hay
+            # que desempaquetar las dos capas. Cogiendolas de una sola, la
+            # ultima linea salia siendo una tupla y opciones_de() devolvia
+            # vacio: por eso las tiendas que se abren desde una SEGUNDA
+            # pagina, como las dos del Florentia Smith, no se detectaban.
+            todas = list(lineas[act]) + [bb for _, (o, bb) in respuestas[act]
+                                         if o == 0x12 and len(bb) >= 9]
             ops = dialogos.opciones_de(todas[-1]) if todas else []
             i = dialogos.indice_opcion(v)
             opcion = ops[i] if 0 <= i < len(ops) else None
@@ -77,6 +89,16 @@ def _leer(f):
                 respuestas[act].append((opcion, (op, b)))
             elif op == 0x12:
                 lineas[act].append(b)
+                # La MISMA linea repetida no es otra pagina: el servidor la
+                # remanda cuando se vuelve a clicar sin cerrar el cuadro.
+                if actual is not None and b not in actual:
+                    actual.append(b)
+    # De todos los clics a un mismo NPC vale el que trajo MAS paginas: es el
+    # que se dejo hablar hasta el final.
+    for ent, guiones in porclic.items():
+        mejor = max(guiones, key=len) if guiones else []
+        if mejor:
+            lineas[ent] = mejor
     return npcs, lineas, respuestas
 
 
@@ -134,20 +156,41 @@ def main():
             for b in ls:
                 print('            %s,' % _llamada(b, auto, '').lstrip())
             print('        ]')
-        for opc, (op, b) in respuestas[ent]:
+        for opc, (op, b) in dict.fromkeys(respuestas[ent]):
+            if opc is None:
+                continue
             if op == 0x34:
                 sid = struct.unpack_from('<H', b, 0)[0]
-                tiendas.append((ent, nom, opc, sid))
+                if (ent, nom, opc, sid) not in tiendas:
+                    tiendas.append((ent, nom, opc, sid))
             elif op == 0x12:
-                por_opcion.append((nom, opc, b))
+                if (nom, opc, b) not in por_opcion:
+                    por_opcion.append((nom, opc, b))
 
     if tiendas:
-        print('\n# ====== para TIENDAS_POR_ENTIDAD ======')
-        for ent, nom, opc, sid in tiendas:
-            print('    %d: %d, # %s (opcion %d)' % (ent, sid, nom, opc))
-        print('\n# ====== para TIENDAS_POR_NOMBRE ======')
-        for ent, nom, opc, sid in tiendas:
-            print("    '%s': %d," % (nom.strip(), sid))
+        # Un NPC puede abrir DOS tiendas, una por opcion: el Florentia Smith
+        # de Joaquin vende recetas de dos bandas de nivel. Esos no caben en
+        # TIENDAS_POR_ENTIDAD, que va por entidad sola, y hay que mirarlos a
+        # mano para saber cual es cual.
+        cuantas = collections.Counter(e for e, _, _, _ in tiendas)
+        dobles = [t for t in tiendas if cuantas[t[0]] > 1]
+        simples = [t for t in tiendas if cuantas[t[0]] == 1]
+        if dobles:
+            print()
+            print('# ====== OJO: NPC con MAS DE UNA tienda ======')
+            print('# Van en TIENDAS_POR_ENTIDAD_Y_OPCION, con la pareja')
+            print('# (entidad, opcion), y hay que revisarlos a mano.')
+            for ent, nom, opc, sid in dobles:
+                print('    (%d, %d): %d,   # %s' % (ent, opc, sid, nom))
+        if simples:
+            print()
+            print('# ====== para TIENDAS_POR_ENTIDAD ======')
+            for ent, nom, opc, sid in simples:
+                print('    %d: %d, # %s (opcion %d)' % (ent, sid, nom, opc))
+            print()
+            print('# ====== para TIENDAS_POR_NOMBRE ======')
+            for ent, nom, opc, sid in simples:
+                print("    '%s': %d," % (nom.strip(), sid))
     if por_opcion:
         print('\n# ====== opciones que contestan OTRA LINEA, para respuesta_a ======')
         for nom, opc, b in por_opcion:

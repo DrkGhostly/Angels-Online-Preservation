@@ -138,6 +138,28 @@ def equipar_visual(entity_id: int, ranura: int, item_id: int) -> bytes:
             + struct.pack('<BII', CODE_EQUIPAR, ranura, item_id))
 
 
+def pct_dano_buffs(buffs, es_magico: bool, ahora: float = None) -> int:
+    """El % de dano de salida que suman los buffs activos.
+
+    Sale del 魔法傷害 y el 物理傷害 de magic.xml. Se leia desde siempre y no
+    lo usaba nadie: un Soul Corral IV, que dice "Increase 10% spell damage",
+    no cambiaba el golpe ni un punto. El equipo si contaba, porque va por
+    otro camino, asi que la diferencia se notaba solo con los buffs puestos.
+
+    Los caducados no suman, y varios activos se acumulan.
+    """
+    if not buffs:
+        return 0
+    clave = 'mag_dmg_pct' if es_magico else 'phys_dmg_pct'
+    if ahora is None:
+        ahora = time.time()
+    total = 0
+    for b in buffs.values():
+        if isinstance(b, dict) and b.get('fin', 0) > ahora:
+            total += b.get(clave, 0) or 0
+    return total
+
+
 def atributo(entity_id: int, valor: int, kind: int = VIDA) -> bytes:
     """Sub-mensaje 0x0013: un atributo de una entidad cambio."""
     return struct.pack('<HIBBI', 0x0013, entity_id, 1, kind, valor)
@@ -340,14 +362,32 @@ class Monstruo:
                 else:
                     self.debuffs.pop(bid, None)
         defensa_target = self.mdef_efectiva if es_magico else self.defensa_efectiva
-        # Formula oficial de reduccion de dano: mitigacion suave por defensa (factor K=420)
-        # Contra Condor (DEF 329), Death Mummy 3 (ATK 249) pega ~140-143 exactos como en Celestia
-        # Contra Mane Boar (DEF 131), pega ~175-185
+        # LA DEFENSA SE APLICA DE DOS MANERAS Y VALE LA QUE MAS PEGUE.
+        #
+        # Habia una sola, la mitigacion suave con K=420, calibrada contra
+        # bichos de nivel bajo: Death Mummy 3 (ATK 249) contra un Condor (DEF
+        # 329) pega 140-143, y 249*420/749 da 140. Ahi clava.
+        #
+        # Pero esa curva se hunde cuando la defensa crece. Los bichos de
+        # Specter Village son de nivel 300 y tienen 34.797 de MDEF: el factor
+        # queda en 420/35217, un 1,2%. Un Forbidden Curse IV, que multiplica
+        # por 8,25, pasaba de 470.068 a 5.606. En el juego original ese mismo
+        # golpe hace unos 568.000, o sea CIEN VECES mas.
+        #
+        # Restando la defensa sale lo otro: 470.068 - 34.797 = 435.272, y con
+        # el 15% de la montura 500.562, que es del orden de los 568.000 que se
+        # midieron. Pero restar no sirve abajo: al Death Mummy le daria un
+        # numero negativo.
+        #
+        # Las dos mediciones se cumplen quedandose con la mayor. Abajo gana la
+        # mitigacion, arriba gana la resta, y no hace falta ninguna constante
+        # que dependa del nivel.
         if defensa_target > 0:
             factor_def = 420.0 / (defensa_target + 420.0)
         else:
             factor_def = 1.0
-        base_dano = max(1.0, ataque * factor_def * mult)
+        bruto = ataque * mult
+        base_dano = max(1.0, bruto * factor_def, bruto - defensa_target)
         spread = 1.0 + random.uniform(-var_pct, var_pct)
         d = max(1, int(round(base_dano * spread)))
         if mit_pct != 0:

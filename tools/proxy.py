@@ -19,6 +19,7 @@ import argparse
 import collections
 import os
 import re
+import socket
 import datetime
 import pathlib
 import struct
@@ -136,6 +137,56 @@ class Grab:
                 f.close()
             except Exception:
                 pass
+
+
+# Cuantas veces se reintenta la conexion al servidor real y cuanto se espera
+# entre intento e intento. El cliente del juego no reintenta: si el primer
+# connect falla cierra y hay que volver a la pantalla de login, asi que un
+# rechazo de un segundo costaba la sesion entera.
+INTENTOS = 5
+ESPERA = 1.5
+
+
+async def _conectar(host, puerto, etiqueta):
+    """open_connection, pero aguantando que el otro lado diga que no.
+
+    Un servidor que acaba de cerrar la sesion rechaza durante unos segundos
+    (en Windows sale como WinError 1225, "conexion rechazada"). Antes eso
+    era el final; ahora se espera y se vuelve a probar.
+    """
+    ultimo = None
+    for intento in range(1, INTENTOS + 1):
+        try:
+            return await asyncio.open_connection(host, puerto)
+        except OSError as e:
+            ultimo = e
+            if intento < INTENTOS:
+                log.warning('[%s] %s:%s no acepta (%s); intento %d de %d',
+                            etiqueta, host, puerto, e, intento, INTENTOS)
+                await asyncio.sleep(ESPERA)
+    raise ultimo
+
+
+def _keepalive(escritor):
+    """Pide al sistema que vigile la conexion aunque no pase nada por ella.
+
+    Las sesiones largas se caian solas: en la ultima se corto a los 1008 s
+    con las dos conexiones a la vez. Sin keepalive, un rato sin trafico y el
+    camino de en medio da la conexion por muerta sin avisar a nadie.
+    """
+    try:
+        sock = escritor.get_extra_info('socket')
+        if sock is None:
+            return
+        sock.setsockopt(socket.SOL_SOCKET, socket.SO_KEEPALIVE, 1)
+        sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
+        if hasattr(socket, 'TCP_KEEPIDLE'):      # linux
+            sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPIDLE, 60)
+            sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPINTVL, 15)
+        elif hasattr(sock, 'ioctl'):             # windows
+            sock.ioctl(socket.SIO_KEEPALIVE_VALS, (1, 60000, 15000))
+    except Exception as e:
+        log.debug('keepalive no se pudo poner: %s', e)
 
 
 def reescribir_redirect(datos, clave, host_nuevo, puerto_nuevo, aviso):
@@ -333,11 +384,13 @@ class Proxy:
         log.info('[%s] cliente %s -> %s:%s  (grabando %s)',
                  etiqueta, addr, host_destino, puerto_destino, grab.base)
         try:
-            rl, wl = await asyncio.open_connection(host_destino, puerto_destino)
+            rl, wl = await _conectar(host_destino, puerto_destino, etiqueta)
         except Exception as e:
             log.error('[%s] no se pudo conectar al servidor real: %s', etiqueta, e)
             escritor.close()
             return
+        for _s in (escritor, wl):
+            _keepalive(_s)
 
         def aviso(ip, pt, stage=None):
             self.mundo_real = (ip, pt)

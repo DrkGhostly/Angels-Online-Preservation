@@ -894,6 +894,43 @@ def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
     if nombre == 'Brin':
         return [armar_linea(126714, npc_val or 1285, [])[2:]]
 
+    # --- Joaquin (Stage 276 - Sylvan Chaos) ---
+    # La familia Florentia. Medido el 28/09/2026, y con dos novedades.
+    #
+    # UNA: el banquero NO usa la 5225 ni la 5236, que se habian tomado por
+    # compartidas entre ciudades. Aqui tiene las suyas, la 508053 y la 508062,
+    # con la misma forma -- tres opciones y luego dos -- pero otros numeros.
+    #
+    # DOS: el Smith y el Master tienen DOS tiendas cada uno. Su primera opcion
+    # abre una segunda pagina, la 508315, y ahi se elige banda de nivel: la
+    # 211-215 o la 221-225. Es el primer NPC del proyecto que vende dos cosas
+    # distintas segun lo que contestes.
+    if 'Florentia Smith' in nombre:
+        return [armar_linea(508045, npc_val or 1249, [508046, 508047],
+                            acciones=[1000122, 0])[2:]]
+    if 'Florentia Master' in nombre:
+        return [armar_linea(508048, npc_val or 1156, [508046, 508047],
+                            acciones=[1000123, 0])[2:]]
+    if 'Florentia Magic' in nombre:
+        return [armar_linea(508051, npc_val or 1290, [508052, 508047],
+                            acciones=[1000070, 0])[2:]]
+    if 'Florentia Melee' in nombre:
+        return [armar_linea(508049, npc_val or 1291, [508050, 508047],
+                            acciones=[1000071, 0])[2:]]
+    if 'Florentia Repair' in nombre:
+        return [armar_linea(508043, npc_val or 1292, [508044, 508047],
+                            acciones=[1000069, 0])[2:]]
+    if 'Florentia Banker' in nombre:
+        return [armar_linea(508053, npc_val or 1247,
+                            [508054, 508055, 508056],
+                            acciones=[1000062, 1000063, 0])[2:]]
+    if 'Young Greenie' in nombre:
+        return [armar_linea(128402, npc_val or 160, [])[2:],
+                armar_linea(128403, npc_val or 160, [128404, 128405],
+                            acciones=[1000012, 1000013])[2:]]
+    if 'Elite Raiden Wei' in nombre:
+        return [armar_linea(127911, npc_val or 1290, [])[2:]]
+
     if 'Prof. Stein' in nombre:
         return [armar_linea(37410, npc_val or 1122, [])[2:]]
     if 'Priest Eaglearch' in nombre:
@@ -1170,6 +1207,20 @@ TIENDAS_POR_NOMBRE = {
     'Shuwa Expert(W)': 152,   # Shuwa Market - Weapon skills
     'Shuwa Smith': 145,       # Shuwa Market - Smith recipes
     'Shuwa Master': 146,      # Shuwa Market - Master recipes
+}
+
+# UN MISMO NPC CON DOS TIENDAS, segun la opcion que se elija.
+#
+# Hasta Joaquin cada vendedor tenia una sola y bastaba con TIENDAS_POR_ENTIDAD.
+# El Florentia Smith y el Florentia Master abren una segunda pagina y ahi se
+# escoge banda de nivel, asi que la entidad sola no alcanza: hace falta la
+# pareja (entidad, opcion).
+TIENDAS_POR_ENTIDAD_Y_OPCION = {
+    # --- Joaquin (Stage 276) ---
+    (123498, 508316): 155,   # Florentia Smith  -> recetas nivel 211-215
+    (123498, 508317): 157,   # Florentia Smith  -> recetas nivel 221-225
+    (123499, 508316): 156,   # Florentia Master -> recetas nivel 211-215
+    (123499, 508317): 158,   # Florentia Master -> recetas nivel 221-225
 }
 
 # Tiendas especificas segun la entidad del NPC que vende
@@ -1478,6 +1529,14 @@ TIENDAS_POR_ENTIDAD = {
     123441: 152, # Shuwa Expert(W) -> Shop 152
     123442: 145, # Shuwa Smith -> Shop 145
     123443: 146, # Shuwa Master -> Shop 146
+
+    # --- Joaquin (Stage 276 - Sylvan Chaos) ---
+    # Las de skills se PREDIJERON por la banda de nivel antes de medirlas, y
+    # acertaron: los bichos de Joaquin son de 220 a 235 y estas dos venden de
+    # 220 a 250. El Smith y el Master no estan aqui porque tienen dos cada
+    # uno; van en TIENDAS_POR_ENTIDAD_Y_OPCION.
+    123496: 153, # Florentia Magic -> Shop 153 (Sacred Wrath...)
+    123497: 154, # Florentia Melee -> Shop 154 (Shield Wall...)
 }
 
 # Opciones de dialogo que abren la ventana de tienda (WND_NPCSALE).
@@ -1565,10 +1624,15 @@ def opciones_de(linea: bytes):
 def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
                 nombre: str = '', stage: int = 0, nivel: int = 0):
     """Devuelve tupla de sub-mensajes: apertura de tienda y/o cierre/continuacion de dialogo."""
-    if opcion_id in (5190, 5270, 7535, 7932, 7982, 7986, 7988, 12103) or opcion_id in TIENDAS_POR_OPCION:
+    if (opcion_id in (5190, 5270, 7535, 7932, 7982, 7986, 7988, 12103,
+                      508050, 508052, 508316, 508317)
+            or opcion_id in TIENDAS_POR_OPCION):
         shop_id = 0
+        # 0. Lo primero: los NPC que venden DOS cosas segun la opcion.
+        if (entidad, opcion_id) in TIENDAS_POR_ENTIDAD_Y_OPCION:
+            shop_id = TIENDAS_POR_ENTIDAD_Y_OPCION[(entidad, opcion_id)]
         # 1. Prioridad: por entity_id exacto (garantiza tienda correcta por ciudad)
-        if entidad in TIENDAS_POR_ENTIDAD:
+        elif entidad in TIENDAS_POR_ENTIDAD:
             shop_id = TIENDAS_POR_ENTIDAD[entidad]
         # 2. Vendedores de monturas segun ciudad (stage) si no vino en TIENDAS_POR_ENTIDAD
         elif 'Ride Seller C' in nombre:
@@ -1703,12 +1767,28 @@ def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
                             acciones=[1000094, 1000095, 1000096, 1000097,
                                       1000098]),)
 
+    # --- Joaquin: la segunda pagina del Smith y del Master ---
+    # La primera opcion de los dos abre esta, donde se elige la banda de
+    # nivel. Que tienda abre cada una depende del NPC, no de la opcion: por
+    # eso va en TIENDAS_POR_ENTIDAD_Y_OPCION y no aqui.
+    if opcion_id == 508046:
+        # Las acciones son distintas en cada uno de los dos, medidas: el
+        # Smith manda 1000121 y 1000072, y el Master 1000124 y 1000073.
+        acc = ([1000124, 1000073] if 'Master' in (nombre or '')
+               else [1000121, 1000072])
+        return (armar_linea(508315, val, [508316, 508317], acciones=acc),)
+
+    # El banquero de Joaquin: sus mensajes son propios, no los 5225/5236.
+    if opcion_id == 508055:
+        return (armar_linea(508062, val, [508063, 508064],
+                            acciones=[1000067, 1000068]),)
+
     if opcion_id == 5032:
         return (armar_linea(5236, val, [5237, 5238],
                             acciones=ACCIONES_ALMACEN.get(entidad, [])),)
 
     # Almacen / Banco (Bao Clerk y Chief Director)
-    if opcion_id in (5030, 5237):
+    if opcion_id in (5030, 5237, 508054, 508063):
         # Abrir almacen personal: WND_WAREHOUSE (opcode 0x002B)
         pkg_cierre = struct.pack('<H', 0x0012) + FIN
         # El almacen es el 0x004E, NO el 0x002B.
@@ -1743,7 +1823,7 @@ def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
         return (pkg_prof, pkg_cierre)
 
     # Reparacion de equipo (Repair Angel: 5101 / Repair Expert: 5227 / Repair Robot: 7990) -> abre WND_REPAIR (opcode 0x004F)
-    if opcion_id in (5101, 5227, 7990, 112016, 117123, 121017):
+    if opcion_id in (5101, 5227, 7990, 112016, 117123, 121017, 508044):
         pkg_cierre = struct.pack('<H', 0x0012) + FIN
         # Los dos bytes van 00 01, no 01 00. Estaban del reves desde siempre
         # y no se habia notado porque nadie comparo el paquete con la captura:
@@ -1784,7 +1864,7 @@ def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
     # Village; sin ellos el dialogo se quedaba abierto al decir que no.
     if opcion_id in (5012, 5191, 5242, 5046, 5059, 5064, 5271, 7536, 5238, 7933, 7983, 7991,
                      5278, 5371, 112004, 5033, 5020, 121004,
-                     8387):  # Quit / cerrar
+                     8387, 508047, 508056, 508064):  # Quit / cerrar
         return (struct.pack('<H', 0x0012) + FIN,)
 
     # Angel Raphael (Fighting Palace): 5063 "I'm ready to go to the Angel Lyceum."
