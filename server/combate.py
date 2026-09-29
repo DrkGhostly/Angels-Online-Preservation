@@ -30,6 +30,12 @@ VIDA = 0                    # kind 0 del 0x0013: HP (o % en monstruos)
 KIND_HP = 0                 # HP actual del jugador / % del monstruo
 KIND_MP = 2                 # MP actual del jugador (medido en 70/70 capturas de AngelWar)
 KIND_SP = 4                 # Puntos de SP acumulados del jugador (0..max_sp*1000)
+
+# El SP siempre sube en multiplos de 25: en las capturas no hay ni una
+# subida que no lo sea. Una lampara son 1000 puntos, segun el SP Power
+# Scroll ("Increase 2000 SP ... recover 2 SP lamps").
+SP_POR_GOLPE = 25
+SP_POR_LAMPARA = 1000
 KIND_EXP = 4                # Alias retrocompatible
 # Creditos de rango. Medido el 28/09/2026 en la captura de Edo City: al usar
 # uno de los objetos que dan creditos, el servidor real manda este mismo
@@ -99,11 +105,47 @@ def _cargar_curva_nivel():
     return _CURVA_NIVEL or {}
 
 
+# El tope de nivel. El juego tecnicamente llega a 600, pero la curva de
+# level.xml acaba en 471 y de ahi en adelante no hay datos: se queda en 471,
+# que es hasta donde se puede saber cuanta experiencia pide cada nivel.
+NIVEL_MAXIMO = 471
+
+
+def nivel_maximo() -> int:
+    """El nivel mas alto al que se puede subir."""
+    return NIVEL_MAXIMO
+
+
 def exp_para_nivel(nv: int) -> int:
+    """La experiencia ACUMULADA que pide ese nivel, sin recortar.
+
+    NO se recorta a 0xFFFFFFFF aqui. Se hacia, y desde el nivel 299 en
+    adelante devolvia siempre el mismo tope; el bucle que sube de nivel
+    comparaba contra ese numero y, con la experiencia por encima, subia de
+    nivel para siempre. El servidor se quedaba colgado al matar un bicho.
+    El recorte va donde se empaqueta, que es donde hace falta.
+    """
     curva = _cargar_curva_nivel()
-    val = curva.get(nv, nv * 120)
-    # Limitar a 0xFFFFFFFF (32-bit max) para asegurar compatibilidad total con empaquetado <BII y <I
-    return min(int(val), 0xFFFFFFFF)
+    if nv in curva:
+        return int(curva[nv])
+    if not curva:
+        return int(nv * 120)
+    ultimo = max(curva)
+    if nv > ultimo:
+        # La curva de level.xml acaba en 471 y el tope del juego es 600. El
+        # respaldo que habia (nivel * 120) daba 72.000 para el nivel 600,
+        # o sea que se subia de golpe. Se extrapola con el salto de los dos
+        # ultimos niveles, que es lo unico que se puede hacer sin datos.
+        anterior = max(k for k in curva if k < ultimo)
+        salto = int(curva[ultimo]) - int(curva[anterior])
+        paso = max(1, salto // max(1, ultimo - anterior))
+        return int(curva[ultimo]) + paso * (nv - ultimo)
+    return int(nv * 120)
+
+
+def exp_para_nivel_u32(nv: int) -> int:
+    """Lo mismo, recortado para meterlo en un campo de 32 bits."""
+    return min(exp_para_nivel(nv), 0xFFFFFFFF)
 
 
 def calcular_exp(npc_type: int, buffs: dict = None) -> int:
@@ -161,8 +203,18 @@ def pct_dano_buffs(buffs, es_magico: bool, ahora: float = None) -> int:
 
 
 def atributo(entity_id: int, valor: int, kind: int = VIDA) -> bytes:
-    """Sub-mensaje 0x0013: un atributo de una entidad cambio."""
-    return struct.pack('<HIBBI', 0x0013, entity_id, 1, kind, valor)
+    """Sub-mensaje 0x0013: un atributo de una entidad cambio.
+
+    El valor se RECORTA al rango del campo. Por aqui pasan todos los
+    atributos, y basta con que uno se salga -- la experiencia de un nivel
+    alto son 25.478.672.000, que no caben en 32 bits -- para que el
+    struct.error suba hasta el bucle de asyncio y tire la sesion. Paso al
+    entrar al juego, antes de poder moverse.
+    """
+    return struct.pack('<HIBBI', 0x0013,
+                       max(0, min(int(entity_id or 0), 0xFFFFFFFF)), 1,
+                       max(0, min(int(kind or 0), 0xFF)),
+                       max(0, min(int(valor or 0), 0xFFFFFFFF)))
 
 
 def empieza_ataque(atacante: int) -> bytes:
@@ -491,6 +543,20 @@ def botin_items(npc_type: int) -> list:
 _MAGIC_CACHE = {}
 
 
+def _palabra(clave: str, texto: str) -> bool:
+    """Si `clave` aparece como PALABRA, no como trozo de otra.
+
+    Buscando 'harm' suelto, "Lava Charm" daba positivo y Erosion IV --
+    que dice "Cannot be used with [Lava Charm]" -- dejaba de contar como
+    buff. El servidor lo tomaba por ataque y pedia un objetivo, asi que el
+    self buff no se podia lanzar.
+    """
+    import re as _re
+    borde = chr(92) + 'b'
+    return bool(_re.search(borde + _re.escape(clave) + borde,
+                           texto or ''))
+
+
 def datos_magia(magic_id: int) -> dict:
     """Informacion del hechizo/skill desde magic.xml."""
     global _MAGIC_CACHE
@@ -516,7 +582,15 @@ def datos_magia(magic_id: int) -> dict:
 
                 res['mp'] = _num(d.get('消耗MP'), 0)
                 res['cost_sp'] = _num(d.get('消耗SP燈') or d.get('cost_sp'), 0)
+                # OJO: son DOS cosas distintas y se llamaban igual.
+                #   消耗SP燈  lo que CUESTA en lamparas (Strangle Strike: 2000)
+                #   SP        lo que DA (Bloody Storm: 1000, Energy Recharge:
+                #             de 500 a 2000)
+                # 'sp' guardaba el coste, asi que las habilidades que
+                # recuperan SP no daban nada: el guerrero no tenia de donde
+                # sacarlo salvo pegando.
                 res['sp'] = res['cost_sp']
+                res['sp_gana'] = _num(d.get('SP'), 0)
                 res['efecto'] = _num(d.get('特效編號'), EFECTO_GOLPE)
                 res['hp'] = _num(d.get('hp'), 0)
                 res['cd_ms'] = _num(d.get('後置時間'), 1000)
@@ -642,7 +716,7 @@ def datos_magia(magic_id: int) -> dict:
                     res['crit_rate'] > 0 or
                     res['phys_mit'] > 0 or
                     ('within the effective time' in desc_l or 'increase' in desc_l or 'raises' in desc_l or 'enhances' in desc_l)
-                ) and not (d.get('攻擊型') == '是' or 'harm' in desc_l) and not res['es_cura']
+                ) and not (d.get('攻擊型') == '是' or _palabra('harm', desc_l))                     and not res['es_cura']
 
                 # Habilidad ofensiva de ataque (dano a enemigo, estun, etc.)
                 res['es_ataque'] = (not res['es_invocacion']) and (not res['es_encanto']) and (not res['es_panico']) and (not res['es_debuff']) and (not res['es_cura']) and (not res['es_buff']) and (
@@ -1573,7 +1647,31 @@ def ataque(source: int, target: int, animacion: int = 0,
 TIPO_DANO = 1
 TIPO_DANO_CRITICO = 2
 TIPO_DANO_ALT = 2      # alias historico
-TIPO_DANO_ESTADO = 4   # DoT (veneno / sangrado) medido en Celestia (tipo 4)
+
+# LOS NUMEROS DE RECUPERACION TIENEN SU PROPIO TIPO, y no son daño.
+# Medido cruzando 0x000B con el 0x0013 que le sigue en diez capturas:
+#
+#   tipo 3  MP  el numero AZUL. Se vio con 6400 al usar Rejuvenation.
+#   tipo 4  HP  el numero VERDE. El HP sube 4916 veces y baja 46, asi que
+#               no hay duda. Se vio con 8000.
+#   tipo 7  SP  el de las lamparas.
+#
+# El 4 estaba puesto como "DoT (veneno / sangrado)", que es justo lo
+# contrario: por eso las curaciones se veian como si fueran daño. El
+# sangrado usa el tipo 1 como cualquier otro daño.
+TIPO_CURA_MP = 3
+TIPO_CURA_HP = 4
+TIPO_CURA_SP = 7
+TIPO_DANO_ESTADO = 1   # el DoT es daño normal, no el 4
+
+# La vida que se paga por ganar SP (Hot Blooded, Bloody Storm) usa el MISMO
+# tipo que el daño. Se ve blanca y no roja porque el numero cae sobre uno
+# mismo, no sobre el enemigo: el color lo decide el cliente segun de quien
+# sea la entidad, no el tipo.
+#
+# MEDIDO: con 138344 de vida maxima, Bloody Storm V (hp=-9) mando 12450, y
+# el 9% de 138344 son 12451. Salio 32 veces con ese numero.
+TIPO_COSTE_VIDA = TIPO_DANO
 
 
 def numero_flotante(entity_id: int, cantidad: int, tipo: int = TIPO_DANO) -> bytes:

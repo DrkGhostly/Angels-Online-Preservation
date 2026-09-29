@@ -1044,6 +1044,74 @@ def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
         return [armar_linea(70003, npc_val or 3, [5190, 5191])[2:]]
     if any(s in nombre for s in ['Art Salesman', 'Art Saleman']):
         return [armar_linea(70004, npc_val or 3, [5190, 5191])[2:]]
+    # --- Whitefang Village (Stage 288 - Magma Flux) ---
+    # Los Vulcan. Medido en mundo_165036_535764_orden.jsonl, nueve clics.
+    #
+    # Aqui se repite lo de Joaquin y va a mas: el Merchant tiene DOS tiendas
+    # y el Smith y el Master abren cada uno una segunda pagina, la 509136,
+    # que es la MISMA para los tres. Lo que cambia son sus acciones, asi que
+    # esa pagina no se puede meter en una tabla por opcion a secas: va por
+    # cual fue la opcion que la abrio.
+    #
+    # La 508869 sale como ultima opcion en casi todos y nadie la pulso: por
+    # su sitio es el "adios" de siempre.
+    if 'Vulcan Master' in nombre:
+        return [armar_linea(508870, npc_val or 1307, [508871, 508869],
+                            acciones=[1000035, 0])[2:]]
+    if 'Vulcan Smith' in nombre:
+        return [armar_linea(508867, npc_val or 1194, [508868, 508869],
+                            acciones=[1000036, 0])[2:]]
+    if 'Vulcan Repairer' in nombre:
+        return [armar_linea(508865, npc_val or 1301, [508866, 508869],
+                            acciones=[1000037, 0])[2:]]
+    if 'Vulcan Merchant' in nombre:
+        # Su retrato es el 1006 FIJO. El que sale del sprite da 1007, y es
+        # el unico de la ciudad en el que la cuenta automatica no acierta.
+        return [armar_linea(509042, 1006, [509043, 509044],
+                            acciones=[1000090, 0])[2:]]
+    if 'Vulcan Banker' in nombre:
+        return [armar_linea(508876, npc_val or 1295,
+                            [508877, 508878, 508879],
+                            acciones=[1000038, 1000042, 0])[2:]]
+    if 'Vulcan Magic Dev' in nombre:
+        return [armar_linea(508874, npc_val or 1306, [508875, 508869],
+                            acciones=[1000045, 0])[2:]]
+    if 'Vulcan Melee Dev' in nombre:
+        return [armar_linea(508872, npc_val or 1308, [508873, 508869],
+                            acciones=[1000046, 0])[2:]]
+    if 'Firefae Sammi' in nombre:
+        return [armar_linea(130911, npc_val or 1309, [])[2:]]
+
+    # --- Coo Village (Stage 298) ---
+    # Los Magikale. Medido en mundo_170658_001641_orden.jsonl, siete clics.
+    # Misma forma que Whitefang: cada oficio con una opcion y el adios, el
+    # banquero con tres, y el Merchant con una segunda pagina de dos tiendas.
+    #
+    # El 509773 es el adios compartido y el 509770 (la opcion del Worker) se
+    # pulso pero no llego respuesta en la captura, asi que no se cablea.
+    if 'Magikale Instruc' in nombre:
+        return [armar_linea(509774, npc_val or 1146, [509775, 509773],
+                            acciones=[1000011, 0])[2:]]
+    if 'Magikale Master' in nombre:
+        return [armar_linea(509771, npc_val or 1164, [509772, 509773],
+                            acciones=[1000012, 0])[2:]]
+    if 'Magikale Worker' in nombre:
+        return [armar_linea(509769, npc_val or 1196, [509770, 509773],
+                            acciones=[1000008, 0])[2:]]
+    if 'Magikale Bank Em' in nombre:
+        return [armar_linea(509780, npc_val or 1239,
+                            [509781, 509782, 509783],
+                            acciones=[1000001, 1000005, 0])[2:]]
+    if 'Magikale Spell R' in nombre:
+        return [armar_linea(509778, npc_val or 1323, [509779, 509773],
+                            acciones=[1000009, 0])[2:]]
+    if 'Magikale Tactici' in nombre:
+        return [armar_linea(509776, npc_val or 1322, [509777, 509773],
+                            acciones=[1000010, 0])[2:]]
+    if 'Magikale Merchan' in nombre:
+        return [armar_linea(509810, npc_val or 1259, [509811, 509812],
+                            acciones=[1000013, 0])[2:]]
+
     d = _propios().get(nombre)
     if not d:
         return None
@@ -1087,6 +1155,14 @@ RESPUESTAS = {
 
 # Mapeo por nombre de NPC a su Shop ID correspondiente
 TIENDAS_POR_NOMBRE = {
+    # --- Whitefang Village (Stage 288) ---
+    'Vulcan Magic Dev': 160,
+    'Vulcan Melee Dev': 161,
+    # --- Coo Village (Stage 298) ---
+    'Magikale Instruc': 171,
+    'Magikale Master': 170,
+    'Magikale Spell R': 169,
+    'Magikale Tactici': 168,
     'Sword Expert': 36,
     'Axe Expert': 39,
     'Spear Expert': 40,
@@ -1221,10 +1297,30 @@ TIENDAS_POR_ENTIDAD_Y_OPCION = {
     (123498, 508317): 157,   # Florentia Smith  -> recetas nivel 221-225
     (123499, 508316): 156,   # Florentia Master -> recetas nivel 211-215
     (123499, 508317): 158,   # Florentia Master -> recetas nivel 221-225
+    # --- Whitefang Village (Stage 288) ---
+    # El Merchant abre una segunda pagina y ahi se elige tienda.
+    (123581, 509139): 3,     # Vulcan Merchant -> tienda 3
+    (123581, 509140): 35,    # Vulcan Merchant -> tienda 35
+    # El Smith y el Master comparten la pagina 509136 y por tanto sus dos
+    # opciones, asi que la tienda tiene que salir de la PAREJA. Del Smith
+    # esta medida la primera; las otras tres no se pulsaron.
+    (123578, 509137): 162,   # Vulcan Smith -> tienda 162
+    # --- Coo Village (Stage 298) ---
+    (123623, 509813): 3,     # Magikale Merchant -> tienda 3
+    (123623, 509814): 35,    # Magikale Merchant -> tienda 35
 }
 
 # Tiendas especificas segun la entidad del NPC que vende
 TIENDAS_POR_ENTIDAD = {
+    # --- Whitefang Village (Stage 288 - Magma Flux) ---
+    123575: 160,   # Vulcan Magic Dev (opcion 508875)
+    123576: 161,   # Vulcan Melee Dev (opcion 508873)
+    # --- Coo Village (Stage 298) ---
+    123621: 171,   # Magikale Instructor (opcion 509775)
+    123622: 170,   # Magikale Master     (opcion 509772)
+    123619: 169,   # Magikale Spell R    (opcion 509779)
+    123620: 168,   # Magikale Tactician  (opcion 509777)
+
     # --- Lyceum (Stage 41) ---
     11: 17,    # Scroll Seller -> Shop 17 (Crazy Roar, Recovery Shield, etc.)
     19: 18,    # Magic Seller -> Shop 18 (Shock Wave, Cure Spell, etc.)
@@ -1625,7 +1721,12 @@ def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
                 nombre: str = '', stage: int = 0, nivel: int = 0):
     """Devuelve tupla de sub-mensajes: apertura de tienda y/o cierre/continuacion de dialogo."""
     if (opcion_id in (5190, 5270, 7535, 7932, 7982, 7986, 7988, 12103,
-                      508050, 508052, 508316, 508317)
+                      508050, 508052, 508316, 508317,
+                      # Whitefang Village (288): los dos Dev venden directo
+                      # y el Merchant lo hace desde su segunda pagina.
+                      508875, 508873, 509139, 509140, 509137, 509138,
+                      # Coo Village (298)
+                      509775, 509772, 509779, 509777, 509813, 509814)
             or opcion_id in TIENDAS_POR_OPCION):
         shop_id = 0
         # 0. Lo primero: los NPC que venden DOS cosas segun la opcion.
@@ -1778,6 +1879,46 @@ def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
                else [1000121, 1000072])
         return (armar_linea(508315, val, [508316, 508317], acciones=acc),)
 
+    # --- Whitefang Village (288): la segunda pagina ---
+    #
+    # El Smith, el Master y el Merchant abren LA MISMA linea, la 509136, y
+    # lo unico que cambia son sus acciones. Por eso no vale una tabla por
+    # opcion a secas: hay que mirar cual fue la opcion que la abrio.
+    PAGINA2_WHITEFANG = {
+        508871: [1000107, 1000108],   # Vulcan Master
+        508868: [1000105, 1000106],   # Vulcan Smith
+        509043: [1000103, 1000104],   # Vulcan Merchant
+        509139: [1000103, 1000104],   # Merchant, al volver a la pagina
+    }
+    if opcion_id in PAGINA2_WHITEFANG:
+        # Las opciones de la pagina tambien cambian: el Merchant elige entre
+        # sus dos tiendas y los otros dos entre dos bandas de recetas.
+        es_merchant = opcion_id in (509043, 509139)
+        ops = [509139, 509140] if es_merchant else [509137, 509138]
+        # El Merchant arrastra su retrato fijo tambien a la segunda pagina.
+        v = 1006 if es_merchant else val
+        return (armar_linea(509136, v, ops,
+                            acciones=PAGINA2_WHITEFANG[opcion_id]),)
+
+    # --- Coo Village (298): las segundas paginas ---
+    PAGINA2_COO = {
+        509811: [1000014, 1000015],   # Magikale Merchant
+        509813: [1000014, 1000015],   # al volver a la pagina
+    }
+    if opcion_id in PAGINA2_COO:
+        return (armar_linea(509810, val, [509813, 509814],
+                            acciones=PAGINA2_COO[opcion_id]),)
+
+    # El banquero de Coo: su segunda pagina.
+    if opcion_id == 509782:
+        return (armar_linea(509789, val, [509790, 509791],
+                            acciones=[1000006, 1000007]),)
+
+    # El banquero Vulcan: como el de Joaquin, con sus propios numeros.
+    if opcion_id == 508878:
+        return (armar_linea(508885, val, [508886, 508887],
+                            acciones=[1000043, 1000044]),)
+
     # El banquero de Joaquin: sus mensajes son propios, no los 5225/5236.
     if opcion_id == 508055:
         return (armar_linea(508062, val, [508063, 508064],
@@ -1823,7 +1964,13 @@ def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
         return (pkg_prof, pkg_cierre)
 
     # Reparacion de equipo (Repair Angel: 5101 / Repair Expert: 5227 / Repair Robot: 7990) -> abre WND_REPAIR (opcode 0x004F)
-    if opcion_id in (5101, 5227, 7990, 112016, 117123, 121017, 508044):
+    # El 508866 es el del Vulcan Repairer de Whitefang: estaba pulsado en la
+    # captura y el extractor se lo salto, pero contesta igual que los demas.
+    # El 509770 es el Magikale Worker de Coo Village, que pese al nombre es
+    # el reparador de la ciudad. Su clic quedo sin respuesta en la captura y
+    # va aqui por lo que hace, no por lo medido.
+    if opcion_id in (5101, 5227, 7990, 112016, 117123, 121017, 508044,
+                     508866, 509770):
         pkg_cierre = struct.pack('<H', 0x0012) + FIN
         # Los dos bytes van 00 01, no 01 00. Estaban del reves desde siempre
         # y no se habia notado porque nadie comparo el paquete con la captura:

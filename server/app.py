@@ -11,6 +11,7 @@ import asyncio
 import argparse
 import os
 import logging
+import logging.handlers
 import random
 import sys
 import pathlib
@@ -1009,6 +1010,75 @@ def _tipo_de_pieza(item_id, ranura):
     return 'armadura'
 
 
+def _coste_vida(ses, yo, mag, addr=''):
+    """Cobra la vida que cuesta una habilidad de las que dan SP.
+
+    El campo 'hp' de esas habilidades es un PORCENTAJE del maximo, no un
+    numero plano, y viene en negativo. Lo dicen sus descripciones:
+      Bloody Storm V   hp = -9   -> "Reduce 9% HP, Increase 1000SP"
+      Hot Blooded V    hp = -5   -> "Reduces HP to gain 2 SP"
+    El codigo lo trataba como una curacion plana, asi que en vez de
+    costarte el 9% te curaba diez puntos.
+    """
+    import combate as _cb
+    pct = (mag or {}).get('hp', 0)
+    if pct >= 0 or not (mag or {}).get('sp_gana') or not ses.personaje:
+        return []
+    tope = _vida_max(ses.personaje)
+    vida = getattr(ses.personaje, 'hp', None)
+    if not tope or vida is None:
+        return []
+    coste = max(1, int(round(tope * abs(pct) / 100.0)))
+    # Nunca mata: como poco deja un punto.
+    coste = min(coste, max(0, vida - 1))
+    if coste <= 0:
+        return []
+    ses.personaje.hp -= coste
+    log.info('[%s] %s cuesta %d de vida (%d%% de %d)'
+             % (addr, mag.get('nombre', '?'), coste, abs(pct), tope))
+    return [_cb.atributo(yo, ses.personaje.hp, _cb.KIND_HP),
+            _cb.numero_flotante(yo, coste, _cb.TIPO_COSTE_VIDA)]
+
+
+def _u32(v) -> int:
+    """Recorta un numero al rango de un campo de 32 bits.
+
+    La experiencia de un nivel alto son 25.478.672.000 y no cabe. Cada vez
+    que uno de estos se escapaba, el struct.error subia hasta el bucle de
+    asyncio y tiraba la sesion: al jugador se le caia el juego al matar un
+    bicho o al entrar.
+    """
+    try:
+        return max(0, min(int(v or 0), 0xFFFFFFFF))
+    except (TypeError, ValueError):
+        return 0
+
+
+def _dar_sp(ses, yo, mag, addr=''):
+    """Suma el SP que REGALA una habilidad, si es que regala alguno.
+
+    Son dos columnas distintas del hechizo y se llamaban igual:
+        消耗SP燈   lo que CUESTA   (Strangle Strike V: 2000, o sea 2 lamparas)
+        SP         lo que DA       (Bloody Storm: 1000, Energy Recharge: 500
+                                    a 2000 a cambio de vida)
+    Solo se leia la primera, asi que un guerrero no tenia de donde sacar SP
+    salvo pegando, y los pergaminos y los buffs de recarga no hacian nada.
+    """
+    import combate as _cb
+    da = (mag or {}).get('sp_gana', 0)
+    if da <= 0 or not getattr(ses, 'personaje', None):
+        return
+    for _p in _coste_vida(ses, yo, mag, addr):
+        ses.enviar(_p)
+    _, tope = _max_sp_info(ses.personaje)
+    antes = getattr(ses, 'sp', 0) or 0
+    ses.sp = min(tope, antes + da)
+    if ses.sp != antes:
+        ses.enviar(_cb.atributo(yo, ses.sp, _cb.KIND_SP))
+        log.info('[%s] %s da %d de SP: %d -> %d'
+                 % (addr, mag.get('nombre', '?'), da, antes, ses.sp))
+
+
 def _max_sp_info(p):
     """Devuelve (barras_sp, max_puntos_sp). Por defecto 2 barras (2000 puntos).
     La habilidad pasiva Reserve (15) otorga +1 barra cada 25 niveles."""
@@ -1094,7 +1164,16 @@ def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
         p = ses.personaje
         p.exp += exp_ganada
         subio_nivel = False
-        while True:
+        # ESTE BUCLE COLGABA EL SERVIDOR. exp_para_nivel() recortaba a
+        # 0xFFFFFFFF, asi que del nivel 299 en adelante devolvia siempre el
+        # mismo numero; con la experiencia por encima de ese tope la
+        # condicion no dejaba de cumplirse nunca y subia de nivel para
+        # siempre. Ahora la curva va sin recortar, hay tope de nivel, y
+        # ademas un limite de vueltas por si algun dia la curva llega rota.
+        _tope_nivel = _cb.nivel_maximo()
+        for _ in range(1000):
+            if p.nivel >= _tope_nivel:
+                break
             exp_siguiente = _cb.exp_para_nivel(p.nivel + 1)
             if exp_siguiente > 0 and p.exp >= exp_siguiente:
                 p.nivel += 1
@@ -1109,13 +1188,13 @@ def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
             salida_combate.append(_cl.aviso(f"Level Up! Reached Level {p.nivel}!", tipo=0, msg_id=_cl.MSG_ITEM))
             salida_combate.append(_cb.atributo(yo, p.hp, _cb.KIND_HP))
             salida_combate.append(_cb.atributo(yo, p.mp, _cb.KIND_MP))
-            exp_sig = _cb.exp_para_nivel(p.nivel + 1)
+            exp_sig = _cb.exp_para_nivel_u32(p.nivel + 1)
             salida_combate.append(
                 struct.pack('<HIB', 0x001D, yo, 4) +
                 struct.pack('<BII', 29, p.nivel, 0) +
-                struct.pack('<BII', 30, p.exp, 0) +
-                struct.pack('<BII', 31, exp_sig, 0) +
-                struct.pack('<BII', 32, p.exp, 0)
+                struct.pack('<BII', 30, _u32(p.exp), 0) +
+                struct.pack('<BII', 31, _u32(exp_sig), 0) +
+                struct.pack('<BII', 32, _u32(p.exp), 0)
             )
             salida_combate.append(_cb.efecto_level_up(yo, es_skill=False))
             salida_combate.append(_stats_ses(ses))
@@ -1124,7 +1203,8 @@ def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
         salida_combate.append(_cl.aviso_doble(_cl.MSG_EXP,
                                               str(exp_ganada),
                                               str(exp_ganada), tipo=0))
-        salida_combate.append(struct.pack('<HIBBII', 0x001D, yo, 1, 32, p.exp, 0))
+        salida_combate.append(
+            struct.pack('<HIBBII', 0x001D, yo, 1, 32, _u32(p.exp), 0))
 
         if getattr(ses, 'usuario', None):
             cuentas.guardar_progreso(ses.usuario, p.char_id, p.nivel, p.exp,
@@ -2792,6 +2872,7 @@ class Servidor:
                         return
                     ses.sp -= cost_sp
                     ses.enviar(_cb.atributo(yo, ses.sp, _cb.KIND_SP))
+                _dar_sp(ses, yo, mag, addr)
 
                 cd_ms = mag.get('cd_ms', 2000)
                 cast_time = _cb.calcular_cast_time(
@@ -2908,6 +2989,7 @@ class Servidor:
                         return
                     ses.sp -= cost_sp
                     ses.enviar(_cb.atributo(yo, ses.sp, _cb.KIND_SP))
+                _dar_sp(ses, yo, mag, addr)
 
                 mp_coste = mag.get('mp', 0)
                 if ses.personaje and mp_coste > 0:
@@ -3104,6 +3186,7 @@ class Servidor:
                             return
                         ses.sp -= cost_sp
                         ses.enviar(_cb.atributo(yo, ses.sp, _cb.KIND_SP))
+                    _dar_sp(ses, yo, mag, addr)
 
                     mp_coste = mag.get('mp', 0)
                     if ses.personaje and mp_coste > 0:
@@ -3137,8 +3220,11 @@ class Servidor:
                                                    ses.personaje.hp + _tic['hp'])
                             sanado = ses.personaje.hp - antes
                             if sanado > 0:
+                                # VERDE, que es una cura. Iba con el tipo
+                                # 1 y salia como si te estuvieran pegando.
                                 ses.enviar_inmediato(
-                                    _cb.numero_flotante(yo, sanado, 1),
+                                    _cb.numero_flotante(yo, sanado,
+                                                        _cb.TIPO_CURA_HP),
                                     _cb.atributo(yo, ses.personaje.hp, _cb.KIND_HP))
                             if n + 1 < _tic['tics']:
                                 try:
@@ -3376,6 +3462,7 @@ class Servidor:
                         return
                     ses.sp -= cost_sp
                     ses.enviar(_cb.atributo(yo, ses.sp, _cb.KIND_SP))
+                _dar_sp(ses, yo, mag, addr)
 
                 mp_coste = mag.get('mp', 0)
                 if ses.personaje and mp_coste > 0:
@@ -3446,6 +3533,7 @@ class Servidor:
                         return
                     ses.sp -= cost_sp
                     ses.enviar(_cb.atributo(yo, ses.sp, _cb.KIND_SP))
+                _dar_sp(ses, yo, mag, addr)
 
                 mp_coste = mag.get('mp', 0)
                 if ses.personaje and mp_coste > 0:
@@ -3539,6 +3627,7 @@ class Servidor:
                         return
                     ses.sp -= cost_sp
                     ses.enviar(_cb.atributo(yo, ses.sp, _cb.KIND_SP))
+                _dar_sp(ses, yo, mag, addr)
 
                 mp_coste = mag.get('mp', 0)
                 if ses.personaje and mp_coste > 0:
@@ -3683,12 +3772,16 @@ class Servidor:
                     ses.personaje.hp = min(_vida_max(ses.personaje),
                                           ses.personaje.hp + _hp_gain)
                     _pkgs_drain.append(_cb.atributo(yo, ses.personaje.hp, _cb.KIND_HP))
-                    _pkgs_drain.append(_cb.numero_flotante(yo, _hp_gain, 1))
+                    _pkgs_drain.append(_cb.numero_flotante(yo, _hp_gain,
+                                                           _cb.TIPO_CURA_HP))
                 if _mp_drain > 0:
                     _mp_gain = max(1, int(round(dano * (_mp_drain / 100.0))))
                     ses.personaje.mp = min(_mana_max(ses.personaje),
                                           ses.personaje.mp + _mp_gain)
                     _pkgs_drain.append(_cb.atributo(yo, ses.personaje.mp, _cb.KIND_MP))
+                    # El mana absorbido tambien tiene su numero, en AZUL.
+                    _pkgs_drain.append(_cb.numero_flotante(yo, _mp_gain,
+                                                           _cb.TIPO_CURA_MP))
             m.en_combate_con = yo
             m.ultimo_ataque = time.time()
             if not getattr(m, 'encantado', False):
@@ -3705,7 +3798,18 @@ class Servidor:
                     if (h[0] if isinstance(h, (list, tuple)) else h) == 15:
                         res_rank = h[1] if isinstance(h, (list, tuple)) and len(h) > 1 else 1
                         break
-            sp_gain = 303 + res_rank * 5
+            # CUANTO SP DA UN GOLPE. Medido en el proxy: un personaje con
+            # Reserve 262 gano 175 EXACTOS ciento veinticuatro veces
+            # seguidas, y Strangle Strike IV le costo 2000 justos. La
+            # formula que habia (303 + rango*5) daba 1613, casi diez veces
+            # de mas.
+            #
+            # Todas las subidas vistas en todas las capturas son multiplos
+            # de 25, y las dos bandas medidas son 150 y 175. De ahi sale
+            # esto. OJO: son DOS puntos, asi que la pendiente no esta
+            # comprobada -- hoy ya han fallado dos ajustes hechos con dos
+            # puntos. Lo seguro es el 175 con Reserve 262.
+            sp_gain = _cb.SP_POR_GOLPE * (2 + res_rank // 50)
             ant_bars = getattr(ses, 'sp', 0) // 1000
             ses.sp = min(max_pts, getattr(ses, 'sp', 0) + sp_gain)
             curr_bars = ses.sp // 1000
@@ -6353,9 +6457,27 @@ def main():
                     help='puerto del servidor de archivos (fport en server.xml)')
     ap.add_argument('-v', '--verbose', action='store_true')
     a = ap.parse_args()
-    logging.basicConfig(
-        level=logging.DEBUG if a.verbose else logging.INFO,
-        format='%(asctime)s [%(name)s] %(levelname)s: %(message)s')
+    # El log iba SOLO a la consola, asi que en cuanto pasaba algo raro habia
+    # que pedirle al usuario que copiara y pegara lineas a mano. Ahora ademas
+    # se escribe en logs/hestia.log, que rota a los 20 MB y guarda tres.
+    _fmt = logging.Formatter(
+        '%(asctime)s [%(name)s] %(levelname)s: %(message)s')
+    _nivel = logging.DEBUG if a.verbose else logging.INFO
+    _raiz = logging.getLogger()
+    _raiz.setLevel(_nivel)
+    _con = logging.StreamHandler()
+    _con.setFormatter(_fmt)
+    _raiz.addHandler(_con)
+    try:
+        _dir = pathlib.Path(__file__).parent.parent / 'logs'
+        _dir.mkdir(parents=True, exist_ok=True)
+        _fh = logging.handlers.RotatingFileHandler(
+            _dir / 'hestia.log', maxBytes=20 * 1024 * 1024, backupCount=3,
+            encoding='utf-8')
+        _fh.setFormatter(_fmt)
+        _raiz.addHandler(_fh)
+    except Exception as _e:
+        log.warning('no se pudo abrir el log de fichero: %s', _e)
     try:
         asyncio.run(Servidor(a.host, a.port, a.fport, a.wport).correr())
     except KeyboardInterrupt:

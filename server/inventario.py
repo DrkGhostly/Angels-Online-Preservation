@@ -755,24 +755,35 @@ def stats(bolsa=None, habilidades: list = None,
                 if 'mp' in b_data:
                     mp_max_eff += b_data['mp']
 
-    struct.pack_into('<I', b, 0, hp_eff)
-    struct.pack_into('<I', b, 4, hp_max_eff)
-    struct.pack_into('<I', b, 8, mp_eff)
-    struct.pack_into('<I', b, 12, mp_max_eff)
-    struct.pack_into('<HH', b, 16, eq_load, load_max)
-    struct.pack_into('<I', b, 20, c_atk_base)
-    struct.pack_into('<I', b, 24, r_atk_eff)
-    struct.pack_into('<I', b, 28, l_atk_eff)
-    struct.pack_into('<I', b, 32, c_def_base)
-    struct.pack_into('<I', b, 36, dfs_eff)
-    struct.pack_into('<I', b, 40, c_matk_base)
-    struct.pack_into('<I', b, 44, matk_eff)
-    struct.pack_into('<I', b, 48, c_mdef_base)
-    struct.pack_into('<I', b, 52, mdef_eff)
-    struct.pack_into('<HH', b, 56, c_rigor_base, rigor_eff)
-    struct.pack_into('<HH', b, 60, c_agi_base, agi_eff)
-    struct.pack_into('<HH', b, 64, base_crit, crit_eff)
-    struct.pack_into('<HH', b, 68, sp_bars_current, sp_max_bars)
+    # TODO lo que va aqui se recorta al rango del campo. Sin esto, un solo
+    # numero fuera de sitio -- un debuff que deje un stat en negativo, o un
+    # tope de vida desbordado -- levantaba un struct.error que se llevaba la
+    # sesion entera por delante y al jugador se le quedaba el juego colgado.
+    # Paso de verdad con la Eerie Curse, que resta 18432 de ataque.
+    def _u32(v):
+        return max(0, min(int(v or 0), 0xFFFFFFFF))
+
+    def _u16(v):
+        return max(0, min(int(v or 0), 0xFFFF))
+
+    struct.pack_into('<I', b, 0, _u32(hp_eff))
+    struct.pack_into('<I', b, 4, _u32(hp_max_eff))
+    struct.pack_into('<I', b, 8, _u32(mp_eff))
+    struct.pack_into('<I', b, 12, _u32(mp_max_eff))
+    struct.pack_into('<HH', b, 16, _u16(eq_load), _u16(load_max))
+    struct.pack_into('<I', b, 20, _u32(c_atk_base))
+    struct.pack_into('<I', b, 24, _u32(r_atk_eff))
+    struct.pack_into('<I', b, 28, _u32(l_atk_eff))
+    struct.pack_into('<I', b, 32, _u32(c_def_base))
+    struct.pack_into('<I', b, 36, _u32(dfs_eff))
+    struct.pack_into('<I', b, 40, _u32(c_matk_base))
+    struct.pack_into('<I', b, 44, _u32(matk_eff))
+    struct.pack_into('<I', b, 48, _u32(c_mdef_base))
+    struct.pack_into('<I', b, 52, _u32(mdef_eff))
+    struct.pack_into('<HH', b, 56, _u16(c_rigor_base), _u16(rigor_eff))
+    struct.pack_into('<HH', b, 60, _u16(c_agi_base), _u16(agi_eff))
+    struct.pack_into('<HH', b, 64, _u16(base_crit), _u16(crit_eff))
+    struct.pack_into('<HH', b, 68, _u16(sp_bars_current), _u16(sp_max_bars))
     # Peso. El orden no es el que parecia: en la captura de Celestia los
     # offsets 92 y 96 llevan los dos el tope y el 100 lleva lo que se carga
     # ahora (sube de a uno segun se recoge botin). Antes escribiamos el oro

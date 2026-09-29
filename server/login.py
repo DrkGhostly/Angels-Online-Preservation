@@ -219,12 +219,17 @@ def secuencia(p: Personaje):
     # llena y con el numero de un personaje de nivel 1. Es el mismo 0x001D
     # compuesto que se manda al subir de nivel.
     #   kind 29 nivel, 30 exp actual, 31 exp del siguiente nivel, 32 la barra
+    # Todo esto va en campos de 32 bits y la experiencia de un nivel alto los
+    # desborda de largo: el nivel 300 pide 801.133.037.724.519. Se recorta
+    # aqui, que es donde se empaqueta, y no en exp_para_nivel(): recortandolo
+    # alli el bucle que sube de nivel se volvia infinito.
+    _u32 = lambda v: max(0, min(int(v or 0), 0xFFFFFFFF))
     salida.append(
         struct.pack('<HIB', 0x001D, p.entity_id, 4)
-        + struct.pack('<BII', 29, p.nivel, 0)
-        + struct.pack('<BII', 30, p.exp, 0)
-        + struct.pack('<BII', 31, _cb_ini.exp_para_nivel(p.nivel + 1), 0)
-        + struct.pack('<BII', 32, p.exp, 0))
+        + struct.pack('<BII', 29, _u32(p.nivel), 0)
+        + struct.pack('<BII', 30, _u32(p.exp), 0)
+        + struct.pack('<BII', 31, _cb_ini.exp_para_nivel_u32(p.nivel + 1), 0)
+        + struct.pack('<BII', 32, _u32(p.exp), 0))
     return salida
 
 

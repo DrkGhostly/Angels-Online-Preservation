@@ -144,6 +144,287 @@ def test_los_buffs_de_dano_cuentan():
     assert combate.pct_dano_buffs({}, True) == 0
 
 
+def test_los_stats_nunca_revientan_el_paquete():
+    """Un numero fuera de rango no puede tumbar la sesion.
+
+    Paso de verdad: la Eerie Curse resta 18432 de ataque, y al expirar el
+    buff el recalculo dejo un campo fuera del rango de su <I>. El
+    struct.error subio hasta el bucle de asyncio, mato la sesion y al
+    jugador se le quedo el juego colgado.
+
+    Ahora cada campo se recorta a su rango, asi que lo peor que puede pasar
+    es que se vea un cero.
+    """
+    import sys as _s
+    _s.path.insert(0, str(RAIZ / 'server'))
+    import inventario as inv
+    bolsa = {3: 58790}
+    casos = [
+        {'x': {'atk': -99999999, 'fin': 9e18}},
+        {'x': {'hp': -99999999, 'fin': 9e18}},
+        {'x': {'hp': 10 ** 12, 'atk': 10 ** 12, 'fin': 9e18}},
+        {'x': {'def': -10 ** 9, 'mdef': -10 ** 9, 'fin': 9e18}},
+    ]
+    normal = inv.stats(bolsa, None, hp=100, hp_max=100, mp=10, mp_max=10)
+    for b in casos:
+        p = inv.stats(bolsa, None, hp=100, hp_max=100, mp=10, mp_max=10,
+                      buffs=b)
+        assert len(p) == len(normal), (len(p), len(normal))
+
+
+def test_el_sp_que_cuesta_y_el_que_da_son_columnas_distintas():
+    """El guerrero no tenia de donde sacar SP salvo pegando.
+
+    Son dos columnas del hechizo y el codigo leia solo una:
+        消耗SP燈   lo que CUESTA  (Strangle Strike V: 2000, dos lamparas)
+        SP         lo que DA      (Bloody Storm: 1000, Energy Recharge:
+                                   de 500 a 2000)
+    'sp' guardaba el coste, asi que las habilidades de recarga daban cero.
+    Una lampara son 1000 puntos, segun el SP Power Scroll: "Increase 2000 SP
+    ... recover 2 SP lamps".
+    """
+    import sys as _s
+    _s.path.insert(0, str(RAIZ / 'server'))
+    _s.path.insert(0, str(RAIZ / 'proto'))
+    import combate as cb
+    import app
+
+    esperado = {655: (0, 1000), 15591: (0, 2000), 5850: (2000, 0)}
+    for mid, (cuesta, da) in esperado.items():
+        mag = cb.datos_magia(mid)
+        if not mag:
+            return                  # sin content.db no hay nada que probar
+        assert mag.get('cost_sp', 0) == cuesta, (mid, mag.get('cost_sp'))
+        assert mag.get('sp_gana', 0) == da, (mid, mag.get('sp_gana'))
+
+    class Ses:
+        def __init__(self):
+            self.sp = 0
+            self.personaje = type('P', (), {'nivel': 300,
+                                            'habilidades': [(15, 300)]})()
+            self.out = []
+
+        def enviar(self, *m):
+            self.out.extend(m)
+
+    ses = Ses()
+    app._dar_sp(ses, 286, cb.datos_magia(655), 't')
+    assert ses.sp == 1000, ses.sp
+    # No pasa del tope, que con Reserve a 300 son 14 lamparas.
+    ses.sp = 13500
+    app._dar_sp(ses, 286, cb.datos_magia(15591), 't')
+    assert ses.sp == 14000, ses.sp
+    # Y una habilidad que solo cuesta no regala nada.
+    ses.sp = 0
+    app._dar_sp(ses, 286, cb.datos_magia(5850), 't')
+    assert ses.sp == 0
+
+
+def test_las_curaciones_no_se_ven_como_dano():
+    """El numero flotante lleva un tipo, y ese tipo es el color.
+
+    Medido cruzando 0x000B con el 0x0013 que le sigue, en diez capturas:
+        tipo 3  MP   el AZUL   -- se vio con 6400 usando Rejuvenation
+        tipo 4  HP   el VERDE  -- se vio con 8000
+        tipo 7  SP   el de las lamparas
+    El 4 estaba puesto como "DoT (veneno/sangrado)", que es justo lo
+    contrario: el HP sube 4916 veces con ese tipo y baja 46. Por eso las
+    curaciones salian pintadas como si fueran golpes.
+    """
+    import sys as _s
+    _s.path.insert(0, str(RAIZ / 'server'))
+    import combate as cb
+    assert (cb.TIPO_CURA_MP, cb.TIPO_CURA_HP, cb.TIPO_CURA_SP) == (3, 4, 7)
+    # El daño por veneno es daño normal, no el 4.
+    assert cb.TIPO_DANO_ESTADO == cb.TIPO_DANO == 1
+    # Y el byte del tipo va donde toca.
+    p = cb.numero_flotante(286, 8000, cb.TIPO_CURA_HP)
+    assert p[6] == 4 and p[7:11] == (8000).to_bytes(4, 'little'), p.hex()
+    p = cb.numero_flotante(286, 6400, cb.TIPO_CURA_MP)
+    assert p[6] == 3 and p[7:11] == (6400).to_bytes(4, 'little'), p.hex()
+
+
+def test_las_habilidades_de_sp_cuestan_un_porcentaje_de_vida():
+    """El campo 'hp' de esas habilidades es un PORCENTAJE, no un numero.
+
+    Bloody Storm V lleva hp=-9 y su descripcion dice "Reduce 9% HP,
+    Increase 1000SP". Hot Blooded V lleva hp=-5. El codigo lo trataba como
+    una curacion plana, asi que en vez de costarte el 9% te curaba diez
+    puntos.
+
+    MEDIDO: con 138344 de vida maxima el servidor real mando 12450, y el 9%
+    de 138344 son 12451. Salio 32 veces.
+    """
+    import sys as _s
+    _s.path.insert(0, str(RAIZ / 'server'))
+    _s.path.insert(0, str(RAIZ / 'proto'))
+    import app
+    import combate as cb
+
+    class Ses:
+        def __init__(self, vida):
+            self.sp = 0
+            self.out = []
+            self.personaje = type('P', (), {
+                'nivel': 300, 'habilidades': [(15, 262)],
+                'hp': vida, 'hp_max': vida, 'inventario': {}})()
+
+        def enviar(self, *m):
+            self.out.extend(m)
+
+    mag = cb.datos_magia(655)
+    if not mag:
+        return
+    ses = Ses(138344)
+    app._dar_sp(ses, 286, mag, 't')
+    coste = 138344 - ses.personaje.hp
+    assert coste == 12451, coste          # el real mando 12450
+    assert ses.sp == 1000, ses.sp
+    # Nunca te mata: deja al menos un punto.
+    ses = Ses(100)
+    ses.personaje.hp = 5
+    app._dar_sp(ses, 286, mag, 't')
+    assert ses.personaje.hp >= 1, ses.personaje.hp
+
+
+def test_subir_de_nivel_no_se_queda_en_bucle():
+    """El bucle que sube de nivel colgaba el servidor entero.
+
+    exp_para_nivel() recortaba a 0xFFFFFFFF, asi que del nivel 299 en
+    adelante devolvia SIEMPRE el mismo numero. Con la experiencia por encima
+    de ese tope la condicion no dejaba de cumplirse y el personaje subia de
+    nivel para siempre: al matar un bicho el servidor se quedaba clavado y
+    al jugador se le colgaba el juego.
+
+    El recorte va donde se empaqueta, no donde se decide.
+    """
+    import sys as _s
+    _s.path.insert(0, str(RAIZ / 'server'))
+    import combate as cb
+
+    curva = cb._cargar_curva_nivel()
+    if not curva:
+        return
+    # La curva ya no se recorta: los niveles altos piden mas de 32 bits.
+    assert cb.exp_para_nivel(300) > 0xFFFFFFFF, cb.exp_para_nivel(300)
+    # Y son distintos entre si, que es lo que el bucle necesita.
+    assert cb.exp_para_nivel(300) != cb.exp_para_nivel(301)
+    # La version para empaquetar si cabe.
+    assert cb.exp_para_nivel_u32(300) <= 0xFFFFFFFF
+
+    # El caso real: nivel 300 con 25.478.672.000 de experiencia.
+    nivel, exp = 300, 25478672000
+    tope = cb.nivel_maximo()
+    assert tope >= 300, tope
+    vueltas = 0
+    for _ in range(1000):
+        if nivel >= tope:
+            break
+        siguiente = cb.exp_para_nivel(nivel + 1)
+        if siguiente > 0 and exp >= siguiente:
+            nivel += 1
+            vueltas += 1
+        else:
+            break
+    assert vueltas < 1000, 'sigue sin terminar'
+    assert nivel == 300, nivel
+
+
+def test_la_curva_de_niveles_es_la_del_parche_nuevo():
+    """La experiencia por nivel cambio con cada parche.
+
+    En data1 la tabla llegaba al nivel 80; en UPDATE13 al 301 y en update26
+    al 471. La del nivel 300 lleva fija en 801.133.037.724.519 desde el
+    UPDATE13. Hay que usar la mas nueva, que es la que esta en content.db.
+
+    El tope se queda en 471 aunque el juego llegue tecnicamente a 600: de
+    ahi en adelante no hay datos de cuanta experiencia pide cada nivel, y el
+    respaldo que habia (nivel * 120) daba 72.000 para el 600, o sea que se
+    subia de golpe.
+    """
+    import sys as _s
+    _s.path.insert(0, str(RAIZ / 'server'))
+    import combate as cb
+    curva = cb._cargar_curva_nivel()
+    if not curva:
+        return
+    assert max(curva) == 471, max(curva)
+    assert cb.nivel_maximo() == 471
+    assert cb.exp_para_nivel(300) == 801133037724519
+    # Y siempre crece, que es lo que el bucle de subir de nivel necesita.
+    for n in range(2, 471):
+        assert cb.exp_para_nivel(n) < cb.exp_para_nivel(n + 1), n
+
+
+def test_matar_un_bicho_con_la_experiencia_alta():
+    """La funcion que se caia, llamada entera con datos de verdad.
+
+    Con 25.478.672.000 de experiencia, empaquetarla en un campo de 32 bits
+    levantaba un struct.error que subia hasta el bucle de asyncio y tiraba
+    la sesion. Salio tres veces seguidas en sitios distintos -- al entrar,
+    al expirar un buff y al matar -- porque el recorte se ponia a mano en
+    cada sitio y siempre faltaba alguno.
+
+    Esta prueba llama a _procesar_muerte_monstruo() de verdad.
+    """
+    import json
+    import sys as _s
+    import time
+    _s.path.insert(0, str(RAIZ / 'server'))
+    _s.path.insert(0, str(RAIZ / 'proto'))
+    import app
+    import cuentas
+
+    if not cuentas.ARCHIVO.exists():
+        return
+    d = json.loads(cuentas.ARCHIVO.read_text(encoding='utf-8'))
+    cuenta = next(iter(d.get('cuentas', {}).values()), None)
+    if not cuenta or not cuenta.get('personajes'):
+        return
+    p = cuentas.personaje_de(cuenta, 0)
+    if not p:
+        return
+    p.exp = 25478672000
+
+    class Ses:
+        rol = 'mundo'
+        usuario = None
+        sp = 0
+        oro = 0
+
+        def __init__(self):
+            self.personaje = p
+            self.inventario = dict(p.inventario)
+            self.cantidades = {}
+            self.instancias = {}
+            self.monstruos = []
+            self.enviados = []
+
+        def enviar(self, *m):
+            self.enviados.extend(m)
+
+        def enviar_inmediato(self, *m):
+            self.enviados.extend(m)
+
+    class Mob:
+        entity_id = 99
+        npc_type = 17573
+        nombre = 'Viridian Lady'
+        hp = 0
+        hp_max = 1189011
+        vivo = False
+        tile_x = 193
+        tile_y = 93
+        stage = 288
+        nivel = 50
+
+        def __init__(self):
+            self.muerto_en = time.time()
+
+    # Si esto lanza, el servidor se cae en cuanto matas algo.
+    app._procesar_muerte_monstruo(Ses(), Mob(), 286, 'test', espera=0.0)
+
+
 if __name__ == '__main__':
     fallos = 0
     for nombre, fn in sorted(globals().items()):
