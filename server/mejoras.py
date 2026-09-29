@@ -38,6 +38,8 @@ todavia, asi que este modulo es el motor -- las reglas y las cuentas -- y la
 parte de red se enchufa cuando haya una captura.
 """
 import pathlib
+import json
+import pathlib
 import random
 import re
 import sqlite3
@@ -52,6 +54,10 @@ MAX_MEJORA = 15
 # Cuantos stats verdes caben en la entrada del inventario. Ver el comentario
 # de inventario.MAX_EXTRAS: el sexto pisaria el contenedor de la pieza.
 MAX_EXTRAS_ENTRADA = 5
+# Los stats que solo da un tipo de pieza. Cuando no caben todos, estos se
+# quedan: una montura sin velocidad o una mochila sin ranuras no se
+# distinguirian de cualquier otra cosa.
+EXCLUSIVOS = ('velocidad', 'peso', 'ranuras')
 
 # Cuantos huecos de gema admite una pieza. Lo dijo el usuario: cinco.
 MAX_HUECOS = 5
@@ -414,7 +420,12 @@ RANGOS_POR_TIPO = {
     'montura': {'velocidad': (0, 40), 'atk': (0, 200), 'matk': (0, 105),
                 'dfs': (0, 192), 'mdef': (0, 137), 'rigor': (0, 20),
                 'agilidad': (0, 40)},
-    'mochila': {'hp': (0, 29), 'mp': (0, 31), 'dfs': (0, 14)},
+    # Una mochila da ademas PESO y RANURAS, que no los da ninguna otra
+    # pieza. Medido en una Green Beetle Bag de nivel 45: peso hasta 278
+    # y 9 casillas. El cuadro del juego los lista como "Maximum Weight"
+    # y "Backpack slots".
+    'mochila': {'hp': (0, 29), 'mp': (0, 32), 'dfs': (0, 22),
+                'peso': (0, 278), 'ranuras': (0, 9)},
     'capa': {'hp': (0, 45), 'mp': (0, 31), 'dfs': (0, 23),
              'mdef': (0, 10), 'agilidad': (0, 6)},
     'accesorio': {'dfs': (0, 74), 'mdef': (0, 9), 'rigor': (0, 25),
@@ -431,25 +442,70 @@ CATEGORIAS_VERDE = {
 }
 
 
-def _topes(nivel):
-    """Los topes del martillo verde para una pieza de ese nivel.
+# LOS RANGOS VERDES SALEN DE adv.xml, volcado por tools/verdes_de_adv_xml.py
+# a plantillas/verdes.json. No hay formula: es una tabla de 2645 filas, por
+# PARTE y NIVEL, con el minimo y el maximo de cada stat.
+#
+# Aqui hubo antes dos intentos de deducir una formula (primero un tope fijo
+# por categoria, luego 5*nivel-60) y los dos estaban mal. Lo que los tumbo
+# fue usar el mismo martillo en dos piezas y ver que daban rangos distintos.
+#
+# Comprobado contra el juego sin una sola discrepancia:
+#   武器杖 nv300  HP 344, atk 2428, matk 697, agilidad 30
+#   座騎 nv45     combate 17, rigor/agi 13, velocidad 14
+#   座騎 nv90     combate 50, rigor/agi/velocidad 22
+#   背包 nv45     defensa 24, peso 50-325, ranuras 10
+TABLA_VERDES = (pathlib.Path(__file__).parent / 'plantillas' / 'verdes.json')
 
-    MEDIDO en dos cuadros del juego, que los enseña antes de usarlo:
-      nivel 22 -> Attack 0-50, Rigor 0-22, Agility 0-22, Speed 0-22
-      nivel 70 -> Attack 0-290, Rigor 0-70, Agility 0-70, Speed 0-40
-    De ahi salen las tres reglas: los de combate van a 5*nivel-60, rigor y
-    agilidad son el nivel tal cual, y la velocidad es el nivel con tope 40.
-    OJO: son dos puntos, no veinte. La recta pasa por los dos exactamente,
-    pero si aparece una pieza que no cuadre hay que volver aqui.
-    """
-    n = max(1, int(nivel or 1))
-    combate = max(1, 5 * n - 60)
-    return {'combate': combate, 'nivel': n, 'velocidad': min(n, 40),
-            'vida': max(1, n * 4)}
+# La categoria de item.xml -> la parte de adv.xml, para lo que no necesita
+# saber si es ligera, pesada o tunica.
+PARTE_POR_CATEGORIA = {
+    '劍': '武器刀劍', '刀': '武器刀劍',
+    '斧': '武器斧锤', '锤': '武器斧锤',
+    '弓箭': '武器弓彈', '槍': '武器槍',
+    '杖': '武器杖', '影刃': '武器影刃',
+    '盾': '盾牌', '座騎': '座騎',
+    '背包': '背包', '披風': '披風',
+    '飾品': '飾品', '機甲': '機甲',
+}
+
+# Las que si lo necesitan: se les pega 袍, 輕 o 重 detras.
+CATEGORIAS_CON_PESO = {
+    '衣服': '衣服', '頭飾': '頭飾',
+    '手套': '手套', '鞋子': '鞋子',
+}
+PESOS = ('袍', '輕', '重')     # tunica, ligera, pesada
+
+_VERDES = {}
+
+
+def _tabla_verdes():
+    if _VERDES:
+        return _VERDES
+    try:
+        _VERDES.update(json.loads(TABLA_VERDES.read_text(encoding='utf-8')))
+    except Exception:
+        pass
+    return _VERDES
+
+
+def _fila_verde(parte, nivel):
+    """La fila de esa parte para ese nivel; adv.xml va de cinco en cinco."""
+    t = _tabla_verdes().get(parte) or {}
+    if not t:
+        return None
+    niveles = sorted(int(x) for x in t)
+    elegido = niveles[0]
+    for n in niveles:
+        if n <= nivel:
+            elegido = n
+        else:
+            break
+    return t[str(elegido)]
 
 
 def nivel_de_pieza(item_id):
-    """El 物品等級 del item, que es de donde salen los topes."""
+    """El 物品等級 del item, que es con el que se entra en adv.xml."""
     import inventario as _inv
     try:
         return int(_inv.nivel_de_item(item_id) or 1)
@@ -457,30 +513,64 @@ def nivel_de_pieza(item_id):
         return 1
 
 
-def rangos_verde(item_id):
-    """Los rangos que le tocan a esa pieza por su categoria."""
+def parte_de(item_id):
+    """A que fila de adv.xml le toca esa pieza.
+
+    Las armaduras se parten en tunica, ligera y pesada, y en item.xml solo
+    esta la marca de tunica (身體袍). Las otras dos se distinguen por la
+    proporcion entre su defensa y su defensa magica, que las separa de
+    sobra: a nivel 80 la tunica va 64/64, la ligera 126/20 y la pesada
+    190/18.
+    """
     import inventario as _inv
     cat = _inv.categoria_item(item_id) or ''
-    tipo = CATEGORIAS_VERDE.get(cat)
-    if tipo is None:
-        # Lo que no se reconoce se trata como armadura, que es el reparto
-        # mas inofensivo: vida, mana y defensas.
-        tipo = 'armadura'
-    # QUE stats da lo dice la categoria; HASTA CUANTO lo dice el nivel de la
-    # pieza. Antes habia un tope fijo por tipo, y por eso una montura de
-    # nivel 22 ofrecia lo mismo que una de nivel 70.
-    t = _topes(nivel_de_pieza(item_id))
-    topes = {'hp': t['vida'], 'mp': t['vida'],
-             'atk': t['combate'], 'dfs': t['combate'],
-             'matk': t['combate'], 'mdef': t['combate'],
-             'rigor': t['nivel'], 'agilidad': t['nivel'],
-             'velocidad': t['velocidad']}
-    return {st: (0, topes[st]) for st in RANGOS_POR_TIPO[tipo]}
+    if cat in PARTE_POR_CATEGORIA:
+        return PARTE_POR_CATEGORIA[cat]
+    base = CATEGORIAS_CON_PESO.get(cat)
+    if not base:
+        return None
+    d, m = _defensas(item_id)
+    if not d and not m:
+        return base + PESOS[1]
+    razon = (d / m) if m else 99.0
+    nivel = nivel_de_pieza(item_id)
+    mejor, dist = None, None
+    for peso in PESOS:
+        f = _fila_verde(base + peso, nivel)
+        if not f or not f.get('dfs') or not f.get('mdef'):
+            continue
+        r = f['dfs'][1] / max(1, f['mdef'][1])
+        if dist is None or abs(r - razon) < dist:
+            mejor, dist = base + peso, abs(r - razon)
+    return mejor or (base + PESOS[1])
 
 
-# Se deja el nombre viejo apuntando a la armadura para no romper lo que ya
-# lo usaba, pero lo bueno es rangos_verde().
-RANGOS_VERDE = RANGOS_POR_TIPO['armadura']
+def _defensas(item_id):
+    """(defensa, defensa magica) del propio objeto, de item.xml."""
+    try:
+        import sqlite3
+        import inventario as _inv
+        db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
+        if not db.exists():
+            return (0, 0)
+        row = _inv.fila_item(sqlite3.connect(db), '"def", "mdef"', item_id)
+        if not row:
+            return (0, 0)
+        return (int(row[0] or 0) if str(row[0] or '').isdigit() else 0,
+                int(row[1] or 0) if str(row[1] or '').isdigit() else 0)
+    except Exception:
+        return (0, 0)
+
+
+def rangos_verde(item_id):
+    """Los rangos de stats verdes de esa pieza, tal cual los da el juego."""
+    parte = parte_de(item_id)
+    fila = _fila_verde(parte, nivel_de_pieza(item_id)) if parte else None
+    if not fila:
+        # Sin la tabla no se inventa nada: mejor no dar verdes que dar
+        # numeros de mas, que es lo que cerraba el cliente.
+        return {}
+    return {st: (v[0], v[1]) for st, v in fila.items() if v[1] > 0}
 
 
 def tirar_verde(rangos, todos: bool = False, rng=None):
@@ -503,7 +593,12 @@ def tirar_verde(rangos, todos: bool = False, rng=None):
     # 40 y el ataque 200, asi que cortando por valor se perdia justo lo que
     # distingue a una montura.
     if len(out) > MAX_EXTRAS_ENTRADA:
-        out = dict(list(out.items())[:MAX_EXTRAS_ENTRADA])
+        # Los que solo da una clase de pieza van primero: la velocidad es de
+        # las monturas y el peso y las ranuras de las mochilas. Cortando por
+        # el orden de la tabla se perdia justo lo que distingue a la pieza.
+        orden = sorted(out, key=lambda k: (k not in EXCLUSIVOS,
+                                           list(out).index(k)))
+        out = {k: out[k] for k in orden[:MAX_EXTRAS_ENTRADA]}
     return out
 
 
@@ -554,3 +649,33 @@ def probabilidad(veces: int) -> float:
     if veces <= 3:
         return 1.0
     return max(0.20, 1.0 - (veces - 3) * 0.07)
+
+
+def pct_por_mejoras(tipo: str, veces: int) -> dict:
+    """Los porcentajes que da llevar `veces` mejoras en una pieza de ese tipo.
+
+    No hace falta saber con que mortero se hizo: la pieza solo guarda cuantas
+    veces. Los porcentajes son los de BONOS_POR_DEFECTO, y el 6% de las armas
+    esta comprobado contra el juego -- un arma a +15 con 19373 de ataque base
+    enseñaba "+18885", que quitando el verde es el 90,05% de la base.
+    """
+    base = BONOS_POR_DEFECTO.get(tipo) or {}
+    if tipo == 'montura':
+        base = BONOS_MONTURA
+    return {k: v * int(veces or 0) for k, v in base.items()}
+
+
+def tipo_de_ranura(ranura):
+    """'arma', 'escudo', 'montura' o 'armadura' segun donde este puesta.
+
+    Es lo mismo que hace app._tipo_de_pieza pero sin necesitar el item, para
+    poder llamarlo desde inventario.bonos_de_equipo al sumar el "+N".
+    """
+    r = int(ranura)
+    if r in (10, 174):
+        return 'montura'
+    if r == 3 or r == 169:
+        return 'arma'
+    if r == 4 or r == 170:
+        return 'escudo'
+    return 'armadura'

@@ -388,7 +388,7 @@ def _final_tutorial(ses, addr):
         ses.enviar(clases.aviso(_nombre_item(item_id), tipo=0,
                                 msg_id=clases.MSG_ITEM))
         ses.enviar(*inv.entregar(cid, item_id, ranura))
-    ses.enviar(inv.stats(bolsa))
+    ses.enviar(inv.stats(bolsa, mejoras=_mejoras_de(ses)))
     # Y al Lyceum.
     ses.personaje.stage = clases.STAGE_LYCEUM
     ses.personaje.tile_x, ses.personaje.tile_y = clases.TILE_LYCEUM
@@ -430,7 +430,10 @@ def _premio(srv, ses, addr, etapa):
         # entrada de la ranura 0 y no hay un mensaje de "cambio de oro"
         # identificado.
         if r['oro']:
-            ses.enviar(inv.completo(cid, _con_oro(ses), _dueno(ses)))
+            ses.enviar(inv.completo(
+                cid, _con_oro(ses), _dueno(ses),
+                getattr(ses.personaje, 'mejoras', None)
+                if ses.personaje else None))
         if getattr(ses, 'usuario', None):
             cuentas.guardar_inventario(ses.usuario, cid, ses.inventario,
                                    _cantidades(ses))
@@ -471,11 +474,32 @@ def _inst(ses, ranura: int) -> bytes:
 
 
 def _mover_inst(ses, origen: int, destino: int):
-    """La instancia viaja con el item cuando cambia de casilla."""
+    """La instancia Y LAS MEJORAS viajan con el item al cambiar de casilla.
+
+    Las mejoras se guardan por CASILLA, no por objeto. Mientras el arma no
+    se moviera daba igual, pero en cuanto se quitaba del cuerpo y caia en la
+    mochila, el "+N" y los stats verdes se quedaban en la casilla vieja y la
+    pieza aparecia limpia. Aqui se mueven con ella, y si la casilla de
+    destino ya tenia algo se INTERCAMBIAN, que es lo que hace el juego al
+    arrastrar una pieza encima de otra.
+    """
+    o, d = int(origen), int(destino)
     m = _instancias(ses)
-    v = m.pop(int(origen), None)
+    v = m.pop(o, None)
+    w = m.pop(d, None)
     if v is not None:
-        m[int(destino)] = v
+        m[d] = v
+    if w is not None:
+        m[o] = w
+    mej = getattr(ses.personaje, 'mejoras', None) if ses.personaje else None
+    if mej is None:
+        return
+    a = mej.pop(o, None)
+    b = mej.pop(d, None)
+    if a is not None:
+        mej[d] = a
+    if b is not None:
+        mej[o] = b
 
 
 def _meter(ses, item_id: int, n: int = 1) -> int:
@@ -577,6 +601,12 @@ def _refrescar(ses, ranuras, con_oro=False):
             # registros de cuatro bytes desde el offset 13.
             if _mej and _mej.get('extra'):
                 _linea = inv.marcar_extras(_linea, _mej['extra'])
+            # Y LOS HUECOS con sus gemas, que van en el 82 y del 62 al 81.
+            # Sin esto el cliente no dibujaba donde meter la gema, asi que
+            # tras abrir el primer hueco la pieza se quedaba atascada.
+            if _mej and (_mej.get('huecos') or _mej.get('gemas')):
+                _linea = inv.marcar_huecos(_linea, _mej.get('huecos') or 0,
+                                           _mej.get('gemas'))
             fuera.append(_linea)
         else:
             dueno = ses.personaje.entity_id if ses.personaje else cid
@@ -584,8 +614,29 @@ def _refrescar(ses, ranuras, con_oro=False):
     return fuera
 
 
+def _mejoras_de(ses):
+    """Las mejoras del personaje de esa sesion, o None.
+
+    Existe para que NINGUNA llamada a inventario.completo() se quede sin
+    ellas: habia seis repartidas por el fichero que mandaban el inventario
+    entero sin el "+N" ni los stats verdes, y bastaba con que saltara una
+    para que el arma volviera a salir limpia en el cliente.
+    """
+    p = getattr(ses, 'personaje', None)
+    return getattr(p, 'mejoras', None) if p else None
+
+
 def _guardar_bolsa(ses, cid):
-    """Guarda inventario y cantidades juntos."""
+    """Guarda inventario, cantidades Y MEJORAS juntos.
+
+    Las mejoras se guardaban solo al mejorar. Como ahora viajan con el item
+    al cambiar de casilla, hay que dejarlas en disco tambien al moverlo: si
+    no, se quitaba el arma, se salia, y volvia con las mejoras en la casilla
+    de antes.
+    """
+    if getattr(ses, 'usuario', None) and getattr(ses, 'personaje', None):
+        cuentas.guardar_mejoras(ses.usuario, cid,
+                                getattr(ses.personaje, 'mejoras', None))
     if getattr(ses, 'usuario', None):
         cuentas.guardar_inventario(ses.usuario, cid, ses.inventario,
                                    _cantidades(ses))
@@ -751,12 +802,26 @@ def _pet_ficha(ses, ranura):
         return todas
     item_id = ses.inventario[ranura]
     d = inv.datos_mascota(item_id)
-    f = _ms.recien_nacida(d['nombre'], d['sprite'])
+    import configuracion as _cf
+    f = _ms.recien_nacida(d['nombre'], d['sprite'],
+                          nivel=max(1, getattr(_cf, 'MASCOTA_NIVEL_INICIAL', 1)))
     f['ranura'] = ranura
     f['item'] = item_id
     f['fuera'] = False
     ses.personaje.mascota = f
     return f
+
+
+def _pet_subir(ficha, nivel):
+    """Pone la mascota a ese nivel y le recalcula los stats.
+
+    Los stats no se guardan sueltos: se vuelven a sacar de petattrib con el
+    nivel nuevo, que es como los da el juego.
+    """
+    import mascotas as _ms
+    ficha['nivel'] = max(1, int(nivel))
+    ficha.update(_ms.stats_de(ficha.get('sprite'), ficha['nivel']))
+    return ficha
 
 
 def _pet_alternar(ses, addr, ranura):
@@ -772,6 +837,13 @@ def _pet_alternar(ses, addr, ranura):
     f['fuera'] = not f.get('fuera')
     p = ses.personaje
     if not f['fuera']:
+        # HAY QUE QUITARLA DEL MUNDO. Antes solo se remandaba la entrada del
+        # inventario y la criatura se quedaba pegada en pantalla, asi que no
+        # habia manera de guardarla.
+        if f.get('entidad'):
+            ses.enviar(_ms.quitar(f['entidad']))
+            ses.enviar(_ms.enlazar(p.entity_id, 0))
+        f['entidad'] = None
         log.info('[%s] mascota guardada: %s' % (addr, f.get('nombre')))
         ses.enviar(*_refrescar(ses, [ranura]))
         return
@@ -783,6 +855,9 @@ def _pet_alternar(ses, addr, ranura):
     est.update({'x': getattr(p, 'x', 0), 'y': getattr(p, 'y', 0),
                 'dueno': p.entity_id, 'dueno_nombre': p.nombre,
                 'tipo': f.get('tipo', 0)})
+    # El orden es el de la captura: primero el enlace, luego la ficha, la
+    # entrada del inventario y por ultimo la criatura.
+    ses.enviar(_ms.enlazar(p.entity_id, f['entidad']))
     ses.enviar(_ms.armar(f))
     ses.enviar(*_refrescar(ses, [ranura]))
     ses.enviar(_ms.entidad_mundo(_pet_plantilla(), est))
@@ -858,8 +933,13 @@ def _usar_mejora(ses, addr, ranura, objetivo) -> bool:
         if tope_v and nivel_pieza > tope_v:
             ok, msg = False, 'sirve hasta nivel %d' % tope_v
         else:
+            # Los rangos salen de la PIEZA que se mejora, no de una tabla
+            # fija: que stats da lo dice su categoria (un arma nunca da
+            # defensa) y hasta cuanto lo dice su nivel. Aqui seguia la tabla
+            # plana de antes, asi que una montura de nivel 22 ofrecia lo
+            # mismo que una de 70.
             est['extra'] = _mj.tirar_verde(
-                _mj.RANGOS_VERDE,
+                _mj.rangos_verde(pieza),
                 todos=getattr(_cf, 'MARTILLO_VERDE_TODOS_LOS_STATS', False))
             ok, msg = True, 'atributos nuevos: %s' % est['extra']
     elif clase == 'perforar':
@@ -907,6 +987,10 @@ def _usar_mejora(ses, addr, ranura, objetivo) -> bool:
     salida.append(_stats_ses(ses))
     ses.enviar(*salida)
     _guardar_bolsa(ses, p.char_id)
+    # Y las mejoras, que iban SOLO en memoria: al reconectar se perdia todo
+    # lo mejorado. Se guardan aqui, que es el unico sitio que las toca.
+    if getattr(ses, 'usuario', None):
+        cuentas.guardar_mejoras(ses.usuario, p.char_id, p.mejoras)
     log.info('[%s] mejora: %s (%s) sobre %s -> %s'
              % (addr, _nombre_item(item), clase, nombre, msg))
     return True
@@ -1471,7 +1555,9 @@ def _vida_max(p, bolsa=None) -> int:
         b = getattr(p, 'inventario', None)
     if b is None and hasattr(p, 'ses'):
         b = getattr(p.ses, 'inventario', None)
-    return inv.vida_maxima(getattr(p, 'hp_max', 0), getattr(p, 'habilidades', None), bolsa=b)
+    return inv.vida_maxima(getattr(p, 'hp_max', 0),
+                           getattr(p, 'habilidades', None), bolsa=b,
+                           mejoras=getattr(p, 'mejoras', None))
 
 
 def _mana_max(p, bolsa=None) -> int:
@@ -1483,7 +1569,9 @@ def _mana_max(p, bolsa=None) -> int:
         b = getattr(p, 'inventario', None)
     if b is None and hasattr(p, 'ses'):
         b = getattr(p.ses, 'inventario', None)
-    return inv.mana_maximo(getattr(p, 'mp_max', 0), getattr(p, 'habilidades', None), bolsa=b)
+    return inv.mana_maximo(getattr(p, 'mp_max', 0),
+                           getattr(p, 'habilidades', None), bolsa=b,
+                           mejoras=getattr(p, 'mejoras', None))
 
 
 def _cb_alcance(ses) -> int:
@@ -1507,7 +1595,9 @@ def _stats_ses(ses):
     buffs = getattr(p, 'buffs', None)
     bars, max_pts = _max_sp_info(p)
     sp = getattr(ses, 'sp', None)
-    return inv.stats(bolsa, habs, hp=hp, hp_max=hp_max, mp=mp, mp_max=mp_max, oro=oro, buffs=buffs, sp=sp, sp_max=bars)
+    return inv.stats(bolsa, habs, hp=hp, hp_max=hp_max, mp=mp, mp_max=mp_max,
+                     oro=oro, buffs=buffs, sp=sp, sp_max=bars,
+                     mejoras=getattr(p, 'mejoras', None) if p else None)
 
 
 def _otorgar_skill_exp(ses, p, yo, arma_puesta=0, magic_id=0, accion=None):
@@ -2003,7 +2093,8 @@ class Servidor:
             ses.enviar(inv.stats(ses.inventario, p.habilidades,
                                  hp=p.hp, hp_max=p.hp_max,
                                  mp=p.mp, mp_max=p.mp_max,
-                                 oro=p.oro, sp=ses.sp, sp_max=bars))
+                                 oro=p.oro, sp=ses.sp, sp_max=bars,
+                                 mejoras=_mejoras_de(ses)))
             import combate as _cb
             ses.enviar(_cb.atributo(p.entity_id, ses.sp, _cb.KIND_SP))
             # Creditos de rango. Van en su propio 0x0013, igual que los manda
@@ -2577,7 +2668,7 @@ class Servidor:
                     inv.stats(b, p.habilidades,
                               hp=p.hp, hp_max=p.hp_max,
                               mp=p.mp, mp_max=p.mp_max,
-                              oro=getattr(ses, 'oro', p.oro), sp=ses.sp, sp_max=bars),
+                              oro=getattr(ses, 'oro', p.oro), sp=ses.sp, sp_max=bars, mejoras=_mejoras_de(ses)),
                     *_apariencia(ses)
                 ]
                 ses.enviar(*salida)
@@ -2888,7 +2979,7 @@ class Servidor:
                     if blancos:
                         habs = ses.personaje.habilidades if ses.personaje else None
                         buffs_activos = getattr(ses.personaje, 'buffs', None)
-                        st = _iv.stats(ses.inventario, habs, buffs=buffs_activos)
+                        st = _iv.stats(ses.inventario, habs, buffs=buffs_activos, mejoras=_mejoras_de(ses))
                         if is_magic_skill:
                             ataque = struct.unpack_from('<I', st, 2 + 44)[0]
                             dano_base = mag.get('dano_base', 0)
@@ -3430,7 +3521,7 @@ class Servidor:
             import skills as _sk_mod
             habs = ses.personaje.habilidades if ses.personaje else None
             buffs_activos = getattr(ses.personaje, 'buffs', None)
-            st = _iv.stats(ses.inventario, habs, buffs=buffs_activos)
+            st = _iv.stats(ses.inventario, habs, buffs=buffs_activos, mejoras=_mejoras_de(ses))
             is_magic_skill = bool(tipo != _cb.ATAQUE_NORMAL and (_sk_mod.skill_de_magia(tipo) in (1, 2, 3, 4)))
             if is_magic_skill:
                 ataque = struct.unpack_from('<I', st, 2 + 44)[0]
@@ -3624,7 +3715,8 @@ class Servidor:
                                          hp=ses.personaje.hp, hp_max=ses.personaje.hp_max,
                                          mp=ses.personaje.mp, mp_max=ses.personaje.mp_max,
                                          oro=ses.personaje.oro, buffs=buffs_activos,
-                                         sp=ses.sp, sp_max=bars))
+                                         sp=ses.sp, sp_max=bars,
+                                         mejoras=_mejoras_de(ses)))
 
             ses.esfuerzo = max(0, getattr(ses, 'esfuerzo', 900) - _cb.COSTE_GOLPE)
             pkgs_sk = _otorgar_skill_exp(ses, ses.personaje, yo, arma_puesta=arma_puesta,
@@ -3736,7 +3828,7 @@ class Servidor:
                     _prev_eid = prev_eid
                     habs = ses.personaje.habilidades if ses.personaje else None
                     buffs_act = getattr(ses.personaje, 'buffs', None)
-                    st = _iv.stats(ses.inventario, habs, buffs=buffs_act)
+                    st = _iv.stats(ses.inventario, habs, buffs=buffs_act, mejoras=_mejoras_de(ses))
                     ataque_j = struct.unpack_from('<I', st, 2 + 44)[0]
                     _sub_mult = ((_sub_dano_base / float(_sub_denom))
                                  if _sub_dano_base > 0 else 1.0)
@@ -4204,7 +4296,7 @@ class Servidor:
                 item_del = bolsa[slot]
                 del bolsa[slot]
                 nom_it = _nombre_item(item_del)
-                ses.enviar(_iv.completo(cid, _con_oro(ses), _dueno(ses)),
+                ses.enviar(_iv.completo(cid, _con_oro(ses), _dueno(ses), _mejoras_de(ses)),
                            _c.aviso(f"Destroyed {nom_it}", tipo=0, msg_id=_c.MSG_ITEM))
                 if getattr(ses, 'usuario', None):
                     cuentas.guardar_inventario(ses.usuario, cid, bolsa,
@@ -4225,7 +4317,7 @@ class Servidor:
                     bolsa[s2] = it1
                 if it2 is not None:
                     bolsa[s1] = it2
-                ses.enviar(_iv.completo(cid, _con_oro(ses), _dueno(ses)))
+                ses.enviar(_iv.completo(cid, _con_oro(ses), _dueno(ses), _mejoras_de(ses)))
                 if getattr(ses, 'usuario', None):
                     cuentas.guardar_inventario(ses.usuario, cid, bolsa,
                                    _cantidades(ses))
@@ -4279,7 +4371,7 @@ class Servidor:
                     if item_id not in items_vistos:
                         items_vistos.add(item_id)
                         salida.append(clases.aviso(_nombre_item(item_id), tipo=0, msg_id=clases.MSG_ITEM))
-                salida.append(_iv.completo(cid, _con_oro(ses), _dueno(ses)))
+                salida.append(_iv.completo(cid, _con_oro(ses), _dueno(ses), _mejoras_de(ses)))
 
             # Actualizar stats para Swordsman: Max HP = 304, MP = 154
             if ses.personaje:
@@ -4293,8 +4385,8 @@ class Servidor:
                     hp=ses.personaje.hp, hp_max=ses.personaje.hp_max,
                     mp=ses.personaje.mp, mp_max=ses.personaje.mp_max,
                     oro=ses.personaje.oro,
-                    sp=ses.sp, sp_max=bars
-                ))
+                    sp=ses.sp, sp_max=bars,
+                    mejoras=_mejoras_de(ses)))
                 import combate as _cb
                 salida.append(_cb.atributo(ses.personaje.entity_id, ses.sp, _cb.KIND_SP))
 
@@ -4332,14 +4424,19 @@ class Servidor:
         if opcode == 0x0044 and ses.rol == 'mundo' and len(cuerpo) >= 7:
             # Asignacion de hotkey en la barra (F1..F8, 1..8)
             slot = cuerpo[1]
+            # El byte 2 es el TIPO: 1 hechizo, 2 OBJETO, 0 vaciar. Se
+            # tiraba, asi que los objetos de la barra volvian marcados como
+            # hechizos y el cliente los quitaba al entrar.
+            tipo = cuerpo[2]
             mid = struct.unpack_from('<I', cuerpo, 3)[0]
             if ses.personaje:
                 while len(ses.personaje.barra) <= slot:
                     ses.personaje.barra.append(0)
-                ses.personaje.barra[slot] = mid
+                ses.personaje.barra[slot] = [tipo, mid] if mid else 0
                 if getattr(ses, 'usuario', None):
                     cuentas.guardar_barra(ses.usuario, ses.personaje.char_id, ses.personaje.barra)
-            log.info(f"[{addr}] barra slot {slot} asignada a magic/item {mid}")
+            log.info(f"[{addr}] barra slot {slot}: "
+                     f"{'objeto' if tipo == 2 else 'hechizo'} {mid}")
             return
 
         # --- equipar y desequipar --------------------------------------
@@ -4525,6 +4622,23 @@ class Servidor:
         if opcode == 0x003E and ses.rol == 'mundo' and ses.personaje and cuerpo:
             import mascotas as _ms
             modo = cuerpo[0]
+            # EL MISMO MENSAJE HACE DOS COSAS. Con 0, 1 o 2 es una orden;
+            # con 4, 5 o 6 es la respuesta al cuadro de crianza, que el
+            # cliente saca de su petaspect.xml sin pedirsela al servidor.
+            if _ms.es_respuesta_crianza(modo):
+                f = getattr(ses.personaje, 'mascota', None)
+                if not f:
+                    return
+                # No se sabe QUE escena salio -- el cliente la elige y no la
+                # manda -- asi que se apunta la respuesta y se suma cero.
+                # Para cuadrar el valor habria que ver la escena.
+                _suma, _total = _ms.responder_crianza(f, None, modo)
+                ent = f.get('entidad') or ses.personaje.entity_id
+                ses.enviar(_ms.efecto(ses.personaje.entity_id, ent))
+                ses.enviar(_ms.armar(f))
+                log.info('[%s] crianza: opcion %d, crianza %+d -> %d'
+                         % (addr, _ms.opcion_de(modo), _suma, _total))
+                return
             ses.personaje.mascota_orden = modo
             ses.enviar(_ms.paquete_orden(ses.personaje.entity_id, modo))
             log.info('[%s] orden a la mascota: %d' % (addr, modo))
@@ -4591,6 +4705,82 @@ class Servidor:
             # La secuencia es la que manda el servidor real al usar uno: el
             # 0x0013 con el atributo 49 y el total acumulado, y detras un
             # 0x0282 con lo que se acaba de sumar escrito en ASCII.
+            # Caso 0: CONSUMIBLE DE MASCOTA (使用目標="目標寵物").
+            #
+            # El propio item dice que va a la mascota, asi que no hay lista
+            # a mano. Dos medidos:
+            #   3376 Pet Feed              動態資料1=500  -> saciedad
+            #   3460 Pet's Double EXP Card 常駐法術=1866 -> 1800 s, +100% exp
+            _pet_uso = inv.uso_en_mascota(item_id)
+            if _pet_uso and ses.personaje:
+                import clases as _clp
+                import mascotas as _msp
+                _f = getattr(ses.personaje, 'mascota', None)
+                if not _f:
+                    ses.enviar(_clp.aviso('no tienes ninguna mascota', tipo=0))
+                    return
+                if 'saciedad' in _pet_uso:
+                    _val, _puede = _msp.alimentar(_f, _pet_uso['saciedad'])
+                    _txt = 'saciedad %d' % _val
+                else:
+                    _msp.poner_buff_exp(_f, _pet_uso['segundos'],
+                                        _pet_uso['exp_pct'])
+                    _txt = ('x%.1f de experiencia durante %d s'
+                            % (1 + _pet_uso['exp_pct'] / 100.0,
+                               _pet_uso['segundos']))
+                _queda = ses.cantidades.get(ranura, 1) - 1
+                if _queda > 0:
+                    ses.cantidades[ranura] = _queda
+                else:
+                    ses.inventario.pop(ranura, None)
+                    ses.cantidades.pop(ranura, None)
+                ses.enviar(_msp.armar(_f))
+                ses.enviar(*_refrescar(ses, [ranura]))
+                _guardar_bolsa(ses, cid)
+                log.info('[%s] a la mascota %s: %s'
+                         % (addr, _f.get('nombre'), _txt))
+                return
+
+
+            # Caso 0: VALE DE EXPERIENCIA (categoria 經驗卷).
+            #
+            # Son 188 en el cliente y cada uno lleva a quien va y cuanto da:
+            # 動態資料1 es el destino (1 personaje, 2 habilidad, 3 honor,
+            # 4 MASCOTA) y 動態資料2 la cantidad. El 28939 que se probo es
+            # del 4 con 100.000.000, y el juego lo describe como "increase
+            # the current pet's exp by 100,000,000".
+            _vale = inv.vale_de_exp(item_id)
+            if _vale and ses.personaje:
+                _dest, _cuanto = _vale
+                if _dest == inv.VALE_MASCOTA:
+                    import mascotas as _msv
+                    _f = getattr(ses.personaje, 'mascota', None)
+                    if not _f:
+                        import clases as _clv
+                        ses.enviar(_clv.aviso('no tienes ninguna mascota',
+                                              tipo=0))
+                        return
+                    _sub = _msv.dar_exp(_f, _cuanto)
+                    _queda = ses.cantidades.get(ranura, 1) - 1
+                    if _queda > 0:
+                        ses.cantidades[ranura] = _queda
+                    else:
+                        ses.inventario.pop(ranura, None)
+                        ses.cantidades.pop(ranura, None)
+                    ses.enviar(_msv.armar(_f))
+                    ses.enviar(*_refrescar(ses, [ranura]))
+                    _guardar_bolsa(ses, cid)
+                    log.info('[%s] vale de mascota: +%d exp, %s sube %d '
+                             'nivel(es) hasta %d'
+                             % (addr, _cuanto, _f.get('nombre'), _sub,
+                                _f.get('nivel')))
+                    return
+                # Los otros tres destinos todavia no se aplican; se dice en
+                # el log para no perderlos de vista.
+                log.info('[%s] vale de experiencia sin implementar: '
+                         'destino %d, %d puntos' % (addr, _dest, _cuanto))
+
+
             _cred = inv.creditos_de(item_id)
             if _cred and ses.personaje:
                 import combate as _cb
@@ -5651,7 +5841,7 @@ class Servidor:
                 ses.inventario[s_shoe] = 30
                 ses.enviar(*_iv.entregar(cid, 28, s_glov),
                            *_iv.entregar(cid, 30, s_shoe),
-                           _iv.completo(cid, _con_oro(ses), _dueno(ses)),
+                           _iv.completo(cid, _con_oro(ses), _dueno(ses), _mejoras_de(ses)),
                            _cls.aviso("Students' Gloves\x00Students' shoes", tipo=0, msg_id=493))
                 if getattr(ses, 'usuario', None):
                     cuentas.guardar_inventario(ses.usuario, cid, ses.inventario,
@@ -5728,11 +5918,13 @@ class Servidor:
                                 bars, max_pts = _max_sp_info(ses.personaje)
                                 ses.enviar(struct.pack('<HIBBI', 0x0013, ses.personaje.entity_id, 1, 6, 10),
                                            _cls.aviso("10 Gold", tipo=0, msg_id=_cls.MSG_PAGO),
-                                           _iv.completo(ses.personaje.char_id, _con_oro(ses)),
+                                           _iv.completo(ses.personaje.char_id, _con_oro(ses), None,
+                                               _mejoras_de(ses)),
                                            _iv.stats(ses.inventario, ses.personaje.habilidades,
                                                      hp=ses.personaje.hp, hp_max=ses.personaje.hp_max,
                                                      mp=ses.personaje.mp, mp_max=ses.personaje.mp_max,
-                                                     oro=10, sp=getattr(ses, 'sp', None), sp_max=bars))
+                                                     oro=10, sp=getattr(ses, 'sp', None), sp_max=bars,
+                                                     mejoras=_mejoras_de(ses)))
                                 if getattr(ses, 'usuario', None):
                                     cuentas.guardar_oro(ses.usuario, ses.personaje.char_id, 10)
                             log.info(f"[{addr}] Raphael: fin etapa 2 -> 10 de oro otorgados")
@@ -5743,7 +5935,8 @@ class Servidor:
                                 del ses.inventario[slot_1386]
                             import inventario as _iv
                             import clases as _cls
-                            ses.enviar(_iv.completo(ses.personaje.char_id, _con_oro(ses)))
+                            ses.enviar(_iv.completo(ses.personaje.char_id, _con_oro(ses), None,
+                                               _mejoras_de(ses)))
                             ses.personaje.tutorial = 3
                             if getattr(ses, 'usuario', None):
                                 cuentas.guardar_inventario(ses.usuario, ses.personaje.char_id, ses.inventario,

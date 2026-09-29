@@ -407,41 +407,58 @@ cosas se dieron por buenas con una sola muestra y resultaron falsas.
 
 ---
 
+## Las cuatro tablas que estaban escondidas en el cliente
+
+Cuatro sistemas se estuvieron adivinando durante días hasta que el dato
+aparecio dentro de los `.pak` del propio cliente. Ninguno necesitaba una
+formula: son tablas, y las suposiciones estaban todas mal.
+
+**`adv.xml` -- lo que puede dar el martillo verde.** 2645 filas, por parte y
+nivel, con un minimo y un maximo de cada stat. Antes de esto se ajustaron
+dos formulas a unas capturas de pantalla y las dos estaban mal; lo que las
+tumbo fue usar el mismo martillo en dos piezas y ver que daban rangos
+distintos. La tabla cuadra exacta con el juego: un baston de nivel 300
+ofrece 344 de HP, 2428 de ataque, 697 de ataque magico y 30 de agilidad,
+que es justo lo que enseñaba el cuadro del cliente. Y ademas fija la forma
+del asunto: un arma nunca saca defensa, una armadura nunca saca ataque,
+solo una montura saca velocidad, y solo una mochila saca peso y casillas.
+
+**`pet.xml` -- 1751 mascotas.** Sprite, id de tipo, nombre, con que clase de
+`petattrib` se sacan sus stats, su etapa de evolucion y sus dos ramas. El id
+de tipo iba en cero, y sin el el cliente no sabe que mascota esta mirando:
+la ventana salia sin nivel y sin dibujo. Las trece parejas sprite/tipo que
+se vieron en las capturas cuadran todas.
+
+**`petaspect.xml` -- las escenas de crianza.** 107, con tres opciones cada
+una, de -3 a +3. El texto cuadra con el del juego palabra por palabra.
+
+**`jeweleffect.xml` -- que hace una gema.** 870 filas. Los numeros estan en
+la propia gema y esta tabla dice sobre que stat caen, y eso depende de donde
+se engarce: la misma runa da ataque magico en un arma y defensa magica en
+una armadura.
+
 ## Fallos conocidos
 
-### Las mascotas aparecen, pero su ventana sale vacía
+### La ficha de la mascota no se guarda
 
-La entrada de inventario de una mascota mide 231 bytes, no los 86 de un
-objeto normal ni los 119 de uno que se equipa. Hasta que se mapeó, pasarle
-el ratón por encima cerraba el cliente. Ahora se construye byte a byte --
-las 63 entradas capturadas se reconstruyen idénticas -- así que el tooltip
-funciona y el objeto ya no tira nada.
+Todo lo demás de las mascotas funciona: la entrada de inventario de 231
+bytes, la ventana con sus stats de verdad, sacarla y guardarla, renombrarla,
+la experiencia, subir de nivel y el árbol de evoluciones entero. Pero su
+ficha vive solo en memoria, así que vuelve al nivel 1 en cada reconexión. El
+objeto de la mochila sí persiste; lo que la mascota se ha vuelto, no.
 
-Lo que sigue sin funcionar:
+### El contador de crianza no se puede leer
 
-  - **La ventana de la mascota sale en blanco.** Nivel, sprite y todos los
-    stats salen a cero. No los calcula el cliente, como se supuso al
-    principio: viajan en el `s2c 0x0065` y hay que sacarlos de `petattrib`,
-    que va por tipo de mascota y nivel. La correspondencia item -> tipo no
-    está resuelta.
-  - **Una mascota invocada no se puede guardar.** Al guardarla se manda la
-    entrada del inventario pero no se quita la entidad del mundo, así que
-    se queda en pantalla.
-  - **Nada le da experiencia todavía.** El nivel y la experiencia se
-    guardan y se sirven bien, pero ningún sitio los sube.
+Cuando la mascota sube de nivel el cliente enseña una escena con tres
+opciones y avisa de que "(Your act affects Pet's growth)". Ese texto no
+viaja por la red: el cliente saca la escena de su propio `petaspect.xml` y
+de vuelta solo llega la opción elegida, en el `c2s 0x003E` con los valores
+4, 5 y 6 -- el mismo mensaje que lleva las órdenes con 0, 1 y 2.
 
-Invocarla sí está medido e implementado: `c2s 0x002E [casilla][0]` la saca y
-la guarda, `c2s 0x015E` la muestra u oculta, `c2s 0x003D` la renombra y el
-`s2c 0x0050` es la criatura en el mundo. Una mascota **nunca sale de la
-mochila** al invocarla -- equiparla en su ranura pide 5 estrellas y es otra
-cosa distinta, que no se ha capturado.
-
-### Un hueco perforado no se ve, así que el siguiente es inalcanzable
-
-El mortero de perforar abre bien el primer hueco y luego se niega a abrir
-otro hasta que se engarce una gema, que es la regla de verdad. Pero el hueco
-no se le manda nunca al cliente, así que no se dibuja el sitio de la gema y
-la condición no se puede cumplir. La pieza se queda atascada tras el primero.
+Así que el servidor nunca se entera de a qué escena se respondió, y por eso
+no puede saber cuánto valía la respuesta. Cada una de las 107 escenas tiene
+sus tres valores, de -3 a +3. Para cerrarlo, el servidor tiene que elegir él
+la escena y recordarla, en vez de dejar que la elija el cliente.
 
 ### La ID Card dibuja al personaje desnudo
 

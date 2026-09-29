@@ -181,7 +181,8 @@ def secuencia(p: Personaje):
                        p.oro if int(r) == _inv.RANURA_ORO
                        else max(1, int((p.cantidades or {}).get(int(r), 1))))
                       for r, it in p.inventario.items()]
-            salida.append(_inv.completo(p.char_id, _items))
+            salida.append(_inv.completo(p.char_id, _items,
+                                        mejoras=getattr(p, 'mejoras', None)))
 
         elif op == 0x0008:
             # En Guide Palace (stage 51), asegurar las coordenadas exactas de AngelWar:
@@ -1065,10 +1066,33 @@ def _quests(p, base):
     return m.build(n=len(qs), quests=qs)
 
 
+def entrada_barra(x):
+    """Normaliza una ranura de la barra a (tipo, id).
+
+    El campo que se llamaba 'usada' es en realidad el TIPO: 1 es un hechizo
+    y 2 es un OBJETO. Medido en un 0x005B real, donde la ranura 7 llevaba
+    "02" con el id 47382, que es un mortero. Guardando solo el id, los
+    objetos de la barra volvian marcados como hechizos y el cliente los
+    quitaba al entrar.
+
+    Se aceptan los dos formatos para no romper lo ya guardado: un numero
+    suelto es un hechizo de toda la vida.
+    """
+    if isinstance(x, (list, tuple)):
+        if len(x) >= 2:
+            return int(x[0]), int(x[1])
+        x = x[0] if x else 0
+    x = int(x or 0)
+    return (1 if x else 0), x
+
+
 def _barra(p, base):
     m = Msg.registry[(0x005B, 's2c', 'privado')]
     if not p.barra:
         return struct.pack('<H', 0x005B) + base
-    r = [{'usada': 1, 'magic_id': mid, 'resto': b'\x00' * 6} for mid in p.barra[:24]]
-    r += [{'usada': 0, 'magic_id': 0, 'resto': b'\x00' * 6}] * (24 - len(r))
+    r = []
+    for x in p.barra[:24]:
+        tipo, mid = entrada_barra(x)
+        r.append({'usada': tipo, 'magic_id': mid, 'resto': bytes(6)})
+    r += [{'usada': 0, 'magic_id': 0, 'resto': bytes(6)}] * (24 - len(r))
     return m.build(ranuras=r)

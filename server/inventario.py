@@ -392,7 +392,7 @@ def bonos_de_habilidades(habilidades):
     }
 
 
-def bonos_de_equipo(bolsa) -> dict:
+def bonos_de_equipo(bolsa, mejoras: dict = None) -> dict:
     """Calcula la suma de atributos que otorgan los items equipados en la bolsa (Gear 1..10 y Fashion 167..174)."""
     eq = {'def': 0, 'accuracy': 0, 'agility': 0, 'atk_r': 0, 'atk_l': 0, 'matk': 0, 'mdef': 0, 'hp': 0, 'mp': 0}
     if not bolsa:
@@ -410,7 +410,50 @@ def bonos_de_equipo(bolsa) -> dict:
             continue
         if not es_equipo(r) or r == RANURA_ORO:
             continue
-        x = _bonus(iid)
+        x = dict(_bonus(iid))
+        # LOS STATS DEL MARTILLO VERDE. Se guardaban y se enseñaban en el
+        # tooltip, pero no entraban aqui, asi que no subian nada de verdad.
+        # Los nombres son los nuestros y los de _bonus() no son los mismos:
+        # 'rigor' es 'accuracy' y 'dfs' es 'def'.
+        _ex = (mejoras or {}).get(r) or {}
+        # EL "+N" TAMBIEN SUMA, y en porcentaje sobre la propia pieza. Se
+        # llevaba la cuenta y se enseñaba en el tooltip, pero no entraba en
+        # los stats. Sale de la cuenta del propio juego: un arma a +15 con
+        # 19373 de ataque base enseñaba "+18885", y quitando el verde queda
+        # el 90,05% de la base -- o sea un 6% por mejora, que es justo lo
+        # que dice BONOS_POR_DEFECTO. El ataque magico da el 90,1%, igual.
+        # La vida, el mana y el rigor no reciben nada: solo su verde.
+        _veces = int(_ex.get('veces') or 0)
+        if _veces:
+            try:
+                import mejoras as _mj
+                _pct = _mj.pct_por_mejoras(_mj.tipo_de_ranura(r), _veces)
+            except Exception:
+                _pct = {}
+            for _k, _p in (_pct or {}).items():
+                _orig = {'rigor': 'accuracy', 'dfs': 'def',
+                         'agilidad': 'agility'}.get(_k, _k)
+                _b = x.get('atk' if _orig == 'atk' else _orig, 0)
+                if _b:
+                    x[_orig] = _b + int(_b * _p / 100.0)
+        # LAS GEMAS ENGARZADAS. Cada una da un stat distinto segun donde
+        # este la pieza -- en un arma ataque magico y en una armadura
+        # defensa magica, por ejemplo -- y eso lo dice jeweleffect.xml.
+        for _g in (_ex.get('gemas') or []):
+            if not _g:
+                continue
+            for _k, _v in bono_gema(_g, r).items():
+                _dest = {'rigor': 'accuracy', 'dfs': 'def',
+                         'agilidad': 'agility'}.get(_k, _k)
+                if _dest in ('def', 'accuracy', 'agility', 'matk', 'mdef',
+                             'hp', 'mp', 'atk'):
+                    x[_dest] = x.get(_dest, 0) + int(_v)
+        for _k, _v in (_ex.get('extra') or {}).items():
+            _dest = {'rigor': 'accuracy', 'dfs': 'def',
+                     'agilidad': 'agility'}.get(_k, _k)
+            if _dest in ('def', 'accuracy', 'agility', 'matk', 'mdef',
+                         'hp', 'mp', 'atk'):
+                x[_dest] = x.get(_dest, 0) + int(_v)
         eq['def'] += x.get('def', 0)
         eq['accuracy'] += x.get('accuracy', 0)
         eq['agility'] += x.get('agility', 0)
@@ -441,15 +484,19 @@ def bonos_de_equipo(bolsa) -> dict:
     return eq
 
 
-def vida_maxima(hp_max, habilidades, bolsa=None):
-    """El tope de vida de verdad: el guardado mas lo que dan las pasivas y el equipo."""
-    eq_hp = bonos_de_equipo(bolsa)['hp'] if bolsa else 0
+def vida_maxima(hp_max, habilidades, bolsa=None, mejoras=None):
+    """El tope de vida: el guardado mas las pasivas, el equipo y sus verdes.
+
+    Sin `mejoras` la vida que dan los stats verdes no subia el tope, asi que
+    una pieza con +344 de HP verde se veia en el tooltip y no servia.
+    """
+    eq_hp = bonos_de_equipo(bolsa, mejoras)['hp'] if bolsa else 0
     return int(hp_max or 0) + bonos_de_habilidades(habilidades)['hp'] + eq_hp
 
 
-def mana_maximo(mp_max, habilidades, bolsa=None):
-    """El tope de mana de verdad: el guardado mas lo que dan las pasivas y el equipo."""
-    eq_mp = bonos_de_equipo(bolsa)['mp'] if bolsa else 0
+def mana_maximo(mp_max, habilidades, bolsa=None, mejoras=None):
+    """Igual que vida_maxima, para el mana."""
+    eq_mp = bonos_de_equipo(bolsa, mejoras)['mp'] if bolsa else 0
     return int(mp_max or 0) + bonos_de_habilidades(habilidades)['mp'] + eq_mp
 
 
@@ -618,7 +665,8 @@ def stats(bolsa=None, habilidades: list = None,
           mp: int = None, mp_max: int = None,
           oro: int = None,
           buffs: dict = None,
-          sp: int = None, sp_max: int = None) -> bytes:
+          sp: int = None, sp_max: int = None,
+          mejoras: dict = None) -> bytes:
     """Sub-mensaje 0x0042 con los stats del personaje segun lo que lleva puesto y habilidades pasivas.
 
     El array que empieza en +20 alterna valor base y valor efectivo:
@@ -662,7 +710,7 @@ def stats(bolsa=None, habilidades: list = None,
     else:
         sp_bars_current = sp_max_bars
 
-    eq = bonos_de_equipo(bolsa)
+    eq = bonos_de_equipo(bolsa, mejoras)
     eq_def = eq['def']
     eq_r_atk = eq['atk_r']
     eq_l_atk = eq['atk_l']
@@ -976,6 +1024,14 @@ ID_EXTRA = {
     'rigor': 52,
     'agilidad': 56,
     'velocidad': 60,
+    # Los dos de las MOCHILAS, medidos el 29/09/2026 en una Green Beetle Bag
+    # (item 1869, nivel 45). El cuadro que enseña el juego antes de usar el
+    # martillo lista "Maximum Weight" y "Backpack slots" junto a HP, MP y
+    # Defense, y en la entrada salieron los ids 28 y 192 al lado del 40
+    # (defensa) y el 12 (mana). El 192 llevaba dias apuntado como
+    # desconocido: es el numero de casillas que suma la mochila.
+    'peso': 28,
+    'ranuras': 192,
 }
 
 
@@ -1441,16 +1497,31 @@ def _entrada(char_id: int, ranura: int, item_id: int, cant: int,
     return bytes(e)
 
 
-def completo(char_id: int, items, dueno: int = None) -> bytes:
+def completo(char_id: int, items, dueno: int = None, mejoras=None) -> bytes:
     """Sub-mensaje 0x001A con todo el inventario.
 
     items: iterable de (ranura, item_id[, cantidad[, instancia]]).
+
+    `mejoras` es {ranura: {'veces': N, 'extra': {...}}}. SIN ESTO el "+N" y
+    los stats verdes solo se veian mientras durase la sesion: actualizar_ranura
+    los sellaba, pero este mensaje -- que es el que se manda AL ENTRAR -- no,
+    asi que al reconectar el arma volvia a salir limpia aunque el servidor
+    llevase la cuenta bien y la tuviera guardada en disco.
     """
+    mejoras = mejoras or {}
     lista = []
     for it in sorted(items, key=lambda x: int(x[0])):
-        lista.append(_entrada(char_id, int(it[0]), int(it[1]),
-                              int(it[2]) if len(it) > 2 else 1,
-                              it[3] if len(it) > 3 else None, dueno))
+        _e = _entrada(char_id, int(it[0]), int(it[1]),
+                       int(it[2]) if len(it) > 2 else 1,
+                       it[3] if len(it) > 3 else None, dueno)
+        _m = mejoras.get(int(it[0]))
+        if _m and _m.get('veces'):
+            _e = marcar_mejora(_e, _m['veces'])
+        if _m and _m.get('extra'):
+            _e = marcar_extras(_e, _m['extra'])
+        if _m and (_m.get('huecos') or _m.get('gemas')):
+            _e = marcar_huecos(_e, _m.get('huecos') or 0, _m.get('gemas'))
+        lista.append(_e)
     fuera = struct.pack('<I', len(lista)) + b''.join(lista)
     return struct.pack('<H', 0x001A) + fuera
 
@@ -1810,3 +1881,265 @@ def creditos_de(item_id: int) -> int:
                     _INVERSION[int(mid.group(1))] = int(mcr.group(1))
     return _INVERSION.get(int(item_id), 0)
 
+
+
+# Los vales de experiencia, categoria 經驗卷. Son 188 en el cliente y cada
+# uno dice a quien va y cuanto da, asi que no hace falta ninguna lista a
+# mano: 動態資料1 es el destino y 動態資料2 la cantidad.
+#
+#   1  experiencia del personaje     "EXP Voucher"
+#   2  experiencia de habilidad      "Skill Bonus Voucher"
+#   3  honor / merito                "Honor Bonus Voucher"
+#   4  experiencia de MASCOTA        "Pet Bonus Voucher"
+#
+# Medido con el 28939, que el juego describe como "increase the current
+# pet's exp by 100,000,000" y que en la tabla es destino 4 con 100000000.
+CAT_VALE = '\u7d93\u9a57\u5377'
+VALE_PERSONAJE = 1
+VALE_HABILIDAD = 2
+VALE_HONOR = 3
+VALE_MASCOTA = 4
+
+_VALES = {}
+
+
+def vale_de_exp(item_id: int):
+    """(destino, cantidad) si el item es un vale de experiencia, o None."""
+    item_id = int(item_id)
+    if item_id in _VALES:
+        return _VALES[item_id]
+    r = None
+    try:
+        import sqlite3
+        db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
+        if db.exists():
+            fila = fila_item(sqlite3.connect(db),
+                             '"物品類別", "動態資料1", "動態資料2"', item_id)
+            if fila and str(fila[0] or '') == CAT_VALE:
+                d1 = str(fila[1] or '')
+                d2 = str(fila[2] or '')
+                if d1.isdigit() and d2.lstrip('-').isdigit():
+                    r = (int(d1), int(d2))
+    except Exception:
+        pass
+    _VALES[item_id] = r
+    return r
+
+
+# Los consumibles que se usan SOBRE LA MASCOTA. El item lo dice el mismo, en
+# 使用目標="目標寵物", asi que no hace falta ninguna lista:
+#
+#   3376  Pet Feed                 動態資料1=500   saciedad que da
+#   3460  Pet's Double EXP Card    常駐法術=1866   buff de 1800 s y +100% exp
+#
+# Se devuelve lo que haga falta para aplicarlo sin volver a mirar la base.
+OBJETIVO_MASCOTA = '\u76ee\u6a19\u5bf5\u7269'
+
+
+def uso_en_mascota(item_id: int):
+    """{'saciedad': N} o {'buff': id, 'segundos': N, 'exp_pct': N}, o None."""
+    try:
+        import sqlite3
+        db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
+        if not db.exists():
+            return None
+        con = sqlite3.connect(db)
+        fila = fila_item(con, '"使用目標", "動態資料1", "常駐法術"', item_id)
+        if not fila or str(fila[0] or '') != OBJETIVO_MASCOTA:
+            return None
+        hechizo = str(fila[2] or '')
+        if hechizo.isdigit() and int(hechizo):
+            r = con.execute('select 持續時間,經驗加倍 from magic where id=?',
+                            (hechizo,)).fetchone()
+            seg = int(r[0]) if r and str(r[0] or '').isdigit() else 0
+            pct = int(r[1]) if r and str(r[1] or '').isdigit() else 0
+            return {'buff': int(hechizo), 'segundos': seg, 'exp_pct': pct}
+        d1 = str(fila[1] or '')
+        if d1.isdigit() and int(d1):
+            return {'saciedad': int(d1)}
+    except Exception:
+        pass
+    return None
+
+
+# Los multiplicadores de experiencia y botin. Cada carta lleva un 常駐法術 y
+# es el HECHIZO el que dice a que afecta y cuanto:
+#
+#   經驗加倍        experiencia del personaje
+#   技能經驗加倍     experiencia de habilidad
+#   掉寶加倍        botin
+#
+# El porcentaje es lo que SUMA: 100 es el doble y 400 es x5, que es el tope
+# que existe. Y a quien va lo dice el ITEM en 使用目標: si pone 目標寵物 es
+# para la mascota, y si no, para el personaje. Por eso el 3460 dobla la
+# experiencia de la mascota y el 190 y el 2017 -- que usan el mismo tipo de
+# hechizo, el 1830 -- doblan la del personaje.
+BONO_EXP = 'exp'
+BONO_SKILL = 'skill'
+BONO_BOTIN = 'botin'
+
+_BONOS = {}
+
+
+def bonificador(item_id: int):
+    """{'a': 'personaje'|'mascota', 'tipo': ..., 'pct': N, 'segundos': N}."""
+    item_id = int(item_id)
+    if item_id in _BONOS:
+        return _BONOS[item_id]
+    r = None
+    try:
+        import sqlite3
+        db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
+        if db.exists():
+            con = sqlite3.connect(db)
+            fila = fila_item(con, '"使用目標", "常駐法術"', item_id)
+            hechizo = str((fila or [None, None])[1] or '')
+            if hechizo.isdigit() and int(hechizo):
+                m = con.execute('select 持續時間,經驗加倍,技能經驗加倍,掉寶加倍 '
+                                'from magic where id=?', (hechizo,)).fetchone()
+                if m:
+                    def _n(x):
+                        return int(x) if str(x or '').isdigit() else 0
+                    for col, tipo in ((1, BONO_EXP), (2, BONO_SKILL),
+                                      (3, BONO_BOTIN)):
+                        if _n(m[col]) > 0:
+                            r = {'a': ('mascota'
+                                       if str(fila[0] or '') == OBJETIVO_MASCOTA
+                                       else 'personaje'),
+                                 'tipo': tipo, 'pct': _n(m[col]),
+                                 'segundos': _n(m[0]), 'hechizo': int(hechizo)}
+                            break
+    except Exception:
+        pass
+    _BONOS[item_id] = r
+    return r
+
+
+# LOS HUECOS Y SUS GEMAS, dentro de la misma entrada del inventario.
+#
+# Medido el 29/09/2026 perforando tres veces la misma pieza y comparando la
+# entrada byte a byte. Solo cambiaron estos:
+#
+#   offset 82           el NUMERO DE HUECOS: fue 1 -> 2 -> 3
+#   offsets 62, 66, 70  la gema de cada hueco, u16 con el id del item
+#
+# Las gemas que salieron fueron 3113 Sapphire, 3118 Purple Gem y 3093 Ruby,
+# las tres de categoria 寶石. Y las cuentas cuadran solas: 62 + 5 huecos de
+# 4 bytes = 82, que es justo donde empieza el contador. O sea CINCO huecos,
+# ni uno mas.
+#
+# Sin esto el cliente no dibujaba ningun sitio donde meter la gema, asi que
+# el mortero de perforar abria el primer hueco, pedia una gema para seguir,
+# y no habia forma de ponerla: la pieza se quedaba atascada.
+OFF_GEMAS = 62
+TAM_GEMA = 4
+OFF_HUECOS = 82
+MAX_HUECOS_ENTRADA = 5
+
+
+def marcar_huecos(entrada: bytes, huecos: int, gemas=None) -> bytes:
+    """Escribe en la entrada cuantos huecos tiene y que gema lleva cada uno."""
+    base = 6 if entrada[:2] == struct.pack('<H', 0x001B) else 0
+    if len(entrada) < base + OFF_HUECOS + 1:
+        return entrada
+    b = bytearray(entrada)
+    n = max(0, min(MAX_HUECOS_ENTRADA, int(huecos or 0)))
+    b[base + OFF_HUECOS] = n
+    for i in range(MAX_HUECOS_ENTRADA):
+        o = base + OFF_GEMAS + i * TAM_GEMA
+        if o + 2 > len(b):
+            break
+        g = (gemas or [])[i] if i < len(gemas or []) else 0
+        struct.pack_into('<H', b, o, int(g or 0) & 0xFFFF)
+    return bytes(b)
+
+
+def leer_huecos(entrada: bytes):
+    """(cuantos huecos, [gema de cada uno])."""
+    base = 6 if entrada[:2] == struct.pack('<H', 0x001B) else 0
+    if len(entrada) < base + OFF_HUECOS + 1:
+        return (0, [])
+    n = entrada[base + OFF_HUECOS]
+    gemas = []
+    for i in range(min(n, MAX_HUECOS_ENTRADA)):
+        o = base + OFF_GEMAS + i * TAM_GEMA
+        if o + 2 > len(entrada):
+            break
+        gemas.append(struct.unpack_from('<H', entrada, o)[0])
+    return (n, gemas)
+
+
+# EL BONO DE LAS GEMAS. La gema lleva los NUMEROS en sus propias columnas y
+# jeweleffect.xml dice QUE STAT da segun donde se engarce. El Broken Purple
+# Lunar Rune (54573) lo enseña en su descripcion: en un arma da 1320 de
+# ataque magico y en armadura o escudo 260 de defensa magica; en su fila de
+# jeweleffect pone 魔攻 para el arma y 魔防 para todo lo demas, y en el item
+# estan matk=1320 y mdef=260.
+GEMAS = pathlib.Path(__file__).parent / 'plantillas' / 'gemas.json'
+
+_GEM = {}
+_GEM_VAL = {}
+
+
+def _tabla_gemas():
+    if _GEM:
+        return _GEM
+    try:
+        _GEM.update(json.loads(GEMAS.read_text(encoding='utf-8')))
+    except Exception:
+        pass
+    return _GEM
+
+
+def _valores_gema(item_id: int) -> dict:
+    """Los numeros que lleva la propia gema, de item.xml."""
+    item_id = int(item_id)
+    if item_id in _GEM_VAL:
+        return _GEM_VAL[item_id]
+    d = {}
+    try:
+        import sqlite3
+        db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
+        if db.exists():
+            fila = fila_item(sqlite3.connect(db),
+                             '"動態資料1", "atk_avg", "def", "matk", "mdef", '
+                             '"hp", "mp", "accuracy", "agility"', item_id)
+            if fila:
+                nombres = ('efecto', 'atk', 'dfs', 'matk', 'mdef', 'hp', 'mp',
+                           'rigor', 'agilidad')
+                for k, v in zip(nombres, fila):
+                    if str(v or '').isdigit():
+                        d[k] = int(v)
+    except Exception:
+        pass
+    _GEM_VAL[item_id] = d
+    return d
+
+
+def bono_gema(item_id: int, ranura: int) -> dict:
+    """{stat: valor} que aporta esa gema puesta en esa ranura.
+
+    El arma es la 3 y el escudo la 4; lo demas son piezas de armadura y usan
+    su propio numero de ranura dentro de jeweleffect.
+    """
+    val = _valores_gema(item_id)
+    efecto = val.get('efecto')
+    if not efecto:
+        return {}
+    fila = _tabla_gemas().get(str(efecto))
+    if not fila:
+        return {}
+    r = int(ranura)
+    if r == RANURA_DERECHA:
+        cuales = fila.get('arma') or []
+    elif r == RANURA_IZQUIERDA:
+        cuales = fila.get('escudo') or []
+    else:
+        equipo = fila.get('equipo') or {}
+        cuales = equipo.get(str(r)) or equipo.get('2') or []
+    out = {}
+    for stat in cuales:
+        v = val.get(stat)
+        if v:
+            out[stat] = out.get(stat, 0) + v
+    return out

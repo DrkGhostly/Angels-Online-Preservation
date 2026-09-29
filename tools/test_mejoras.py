@@ -328,23 +328,243 @@ def test_cada_pieza_reparte_lo_suyo():
     for otra in (25670, 32763, 1869, 1873, 1784):
         assert 'velocidad' not in m.tirar_verde(m.rangos_verde(otra),
                                                 todos=True), otra
-    # La mochila solo da vida, mana y defensa.
-    assert set(m.tirar_verde(m.rangos_verde(1869), todos=True)) == \
-        {'hp', 'mp', 'dfs'}
+    # La mochila da vida, mana y defensa, y ademas PESO y RANURAS, que no
+    # los da ninguna otra pieza. Medidos en una Green Beetle Bag: los ids
+    # 28 y 192 de la entrada, que el juego enseña como "Maximum Weight" y
+    # "Backpack slots".
+    bolso = m.tirar_verde(m.rangos_verde(1869), todos=True)
+    assert set(bolso) == {'hp', 'mp', 'dfs', 'peso', 'ranuras'}, bolso
+    for otra in (25670, 32763, 4159, 1873, 1784):
+        sale = m.tirar_verde(m.rangos_verde(otra), todos=True)
+        assert 'peso' not in sale and 'ranuras' not in sale, (otra, sale)
 
 
-def test_los_topes_salen_del_nivel_de_la_pieza():
-    """Los dos cuadros que enseña el juego antes de usar el martillo.
+def test_los_topes_salen_de_adv_xml():
+    """Los rangos son una TABLA, no una formula.
 
-    Nivel 22: Attack 0-50, Rigor 0-22, Agility 0-22, Speed 0-22.
-    Nivel 70: Attack 0-290, Rigor 0-70, Agility 0-70, Speed 0-40.
-    Antes el tope era fijo por tipo y una montura de nivel 22 ofrecia lo
-    mismo que una de 70.
+    Aqui hubo dos intentos de deducirla -- un tope fijo por categoria y
+    luego 5*nivel-60 -- y los dos estaban mal. Lo que los tumbo fue usar el
+    mismo martillo en dos piezas y ver que daban rangos distintos. El dato
+    bueno es adv.xml, y estos cuatro se comprobaron contra el juego:
     """
-    a = m._topes(22)
-    assert (a['combate'], a['nivel'], a['velocidad']) == (50, 22, 22), a
-    b = m._topes(70)
-    assert (b['combate'], b['nivel'], b['velocidad']) == (290, 70, 40), b
+    esperado = {
+        58790: {'hp': 344, 'atk': 2428, 'matk': 697, 'agilidad': 30},
+        500: {'atk': 17, 'dfs': 17, 'rigor': 13, 'velocidad': 14},
+        6851: {'atk': 50, 'dfs': 50, 'rigor': 22, 'velocidad': 22},
+        1869: {'dfs': 24, 'peso': 325, 'ranuras': 10},
+    }
+    if not m.rangos_verde(6851):
+        return                      # sin los paks no hay nada que probar
+    for item, topes in esperado.items():
+        r = m.rangos_verde(item)
+        for stat, tope in topes.items():
+            assert stat in r, (item, stat, r)
+            assert r[stat][1] == tope, (item, stat, r[stat], tope)
+
+
+def test_la_armadura_se_parte_en_tres():
+    """Tunica, ligera y pesada tienen rangos muy distintos.
+
+    En item.xml solo esta la marca de tunica (身體袍); las otras dos se
+    separan por la proporcion entre su defensa y su defensa magica. El
+    Spring Gown es tunica, y se sabe porque llego a 53 de defensa magica
+    cuando la ligera topa en 20 y la pesada en 18.
+    """
+    if not m.rangos_verde(4112):
+        return
+    assert m.parte_de(4112) == '衣服袍', m.parte_de(4112)
+    assert m.rangos_verde(4112)['mdef'][1] >= 53
+
+
+def test_las_mejoras_sobreviven_a_reconectar():
+    """El +N, las gemas y los stats verdes tienen que ir a disco.
+
+    Vivian solo en memoria: se mejoraba un arma a +15, se salia, y al volver
+    a entrar estaba limpia. Se guardan aparte del inventario porque hay
+    veinte sitios que guardan la bolsa y solo uno que toca las mejoras.
+    """
+    import json as _json
+    import os
+    import shutil
+    import sys as _s
+    import tempfile
+    _s.path.insert(0, str(RAIZ / 'server'))
+    import cuentas
+
+    if not cuentas.ARCHIVO.exists():
+        return
+    bak = os.path.join(tempfile.gettempdir(), 'test_mejoras_cuentas.bak')
+    shutil.copy(str(cuentas.ARCHIVO), bak)
+    try:
+        d = _json.loads(cuentas.ARCHIVO.read_text(encoding='utf-8'))
+        usuario = sorted(d['cuentas'])[0]
+        pjs = d['cuentas'][usuario].get('personajes') or []
+        if not pjs:
+            return
+        cid = pjs[0]['char_id']
+        antes = {6: {'veces': 15, 'gemas': [3001], 'huecos': 1,
+                     'extra': {'atk': 210, 'hp': 240}},
+                 9: {'veces': 0, 'gemas': [], 'extra': {}}}
+        cuentas.guardar_mejoras(usuario, cid, antes)
+        d2 = _json.loads(cuentas.ARCHIVO.read_text(encoding='utf-8'))
+        p = cuentas.personaje_de(d2['cuentas'][usuario], 0)
+        despues = getattr(p, 'mejoras', None) or {}
+        assert despues.get(6) == antes[6], despues
+        # Las claves vuelven como numeros, no como el texto del JSON.
+        assert all(isinstance(k, int) for k in despues), list(despues)
+        # Una casilla sin nada no ocupa sitio en el guardado.
+        assert 9 not in despues, despues
+    finally:
+        shutil.copy(bak, str(cuentas.ARCHIVO))
+
+
+def test_ninguna_llamada_manda_el_inventario_sin_las_mejoras():
+    """Nadie puede mandar inventario ni stats sin las mejoras.
+
+    Habia SEIS llamadas a completo() y NUEVE a stats() que no las pasaban.
+    Bastaba con que saltara una -- cambiar de mapa, pelear, un buff, subir
+    de nivel -- para que el cliente recibiera el inventario limpio o los
+    stats sin el "+15" del arma, y todo volviera a desaparecer.
+
+    Se mira el ARBOL del fuente, no el texto: al corregirlo a mano el
+    "mejoras=" se colo en el enviar() en vez de en el stats() de dentro, y
+    eso compila pero tira el servidor en cuanto se usa. Un regex no lo
+    habria visto; el arbol si.
+    """
+    import ast
+    fuente = (RAIZ / 'server' / 'app.py').read_text(encoding='utf-8')
+    malas = []
+    for n in ast.walk(ast.parse(fuente)):
+        if not isinstance(n, ast.Call):
+            continue
+        f = n.func
+        nom = getattr(f, "attr", None) or getattr(f, "id", "")
+        kw = [k.arg for k in n.keywords]
+        if nom in ('completo', 'stats', 'vida_maxima', 'mana_maximo'):
+            if 'mejoras' not in kw and len(n.args) < 4:
+                malas.append('linea %d: %s() sin mejoras' % (n.lineno, nom))
+        if nom == 'enviar' and 'mejoras' in kw:
+            malas.append('linea %d: el mejoras= se colo en enviar()'
+                         % n.lineno)
+    assert not malas, malas
+
+
+def test_los_huecos_y_sus_gemas_viajan_en_la_entrada():
+    """El numero de huecos en el 82 y las gemas del 62 al 81.
+
+    Medido perforando tres veces la misma pieza y comparando la entrada
+    byte a byte: solo cambiaron el 82 (1 -> 2 -> 3) y los pares 62/63,
+    66/67 y 70/71, con los ids 3113 Sapphire, 3118 Purple Gem y 3093 Ruby.
+
+    Las cuentas cuadran solas: 62 + 5 huecos de 4 bytes = 82, que es donde
+    empieza el contador. O sea CINCO huecos, ni uno mas. Y el tooltip lo
+    dice igual: "a diamond has been set ( 1 / 2 )".
+    """
+    import sys as _s
+    _s.path.insert(0, str(RAIZ / 'server'))
+    import inventario as inv
+
+    fin = inv.OFF_GEMAS + inv.MAX_HUECOS_ENTRADA * inv.TAM_GEMA
+    assert fin == inv.OFF_HUECOS, (fin, inv.OFF_HUECOS)
+    e = inv._entrada(4794, 3, 58790, 1, None, 286)
+    m = inv.marcar_huecos(e, 3, [3113, 3118, 3093])
+    assert inv.leer_huecos(m) == (3, [3113, 3118, 3093])
+    # El "+N" vive en el 83 y no se pisa.
+    con_mas = inv.marcar_mejora(m, 15)
+    assert inv.leer_huecos(con_mas) == (3, [3113, 3118, 3093])
+    assert con_mas[inv.OFF_MEJORA] == 15
+    # Y no se pasa de cinco.
+    lleno = inv.marcar_huecos(e, 9, [1, 2, 3, 4, 5, 6, 7])
+    assert inv.leer_huecos(lleno)[0] == 5
+
+
+def test_el_ciclo_de_perforar_y_engarzar():
+    """Cinco huecos, cada uno con su gema antes de abrir el siguiente."""
+    est = {}
+    for paso in range(1, 6):
+        ok, _ = m.perforar(est, 3, 6914, 100, 'arma', exito_seguro=True)
+        assert ok, paso
+        assert est[3]['huecos'] == paso
+        ok2, _ = m.engarzar(est, 3, 3113, 100, 'arma')
+        assert ok2, paso
+        assert len(est[3]['gemas']) == paso
+    ok, motivo = m.perforar(est, 3, 6914, 100, 'arma', exito_seguro=True)
+    assert not ok and '5' in motivo, motivo
+
+
+def test_los_huecos_leidos_de_una_captura_de_verdad():
+    """Los God's Grip de la sesion, contra lo que enseñaba el tooltip.
+
+    En pantalla ponia "has been intensified ( 1 ) times" y "a diamond has
+    been set ( 1 / 2 )" con un Ruby debajo. En la captura la entrada de ese
+    guante pasa por cuatro estados y el ultimo es exactamente ese: +1, dos
+    huecos, el primero con el Ruby y el segundo vacio.
+    """
+    import glob
+    import json
+    import struct
+    import sys as _s
+    _s.path.insert(0, str(RAIZ / 'server'))
+    import inventario as inv
+
+    vistos = []
+    for f in glob.glob(str(RAIZ / 'logs' / 'proxy' / 'mundo_*.jsonl')):
+        for linea in open(f, encoding='utf-8'):
+            try:
+                r = json.loads(linea)
+            except Exception:
+                continue
+            if r.get('dir') != 's2c' or r.get('opcode') != 0x1B:
+                continue
+            h = r.get('hex') or ''
+            if len(h) < 170:
+                continue
+            e = bytes.fromhex(h)[4:]
+            if len(e) < 84:
+                continue
+            if struct.unpack_from('<I', e, 9)[0] != 1985:
+                continue
+            vistos.append((e[83],) + inv.leer_huecos(e))
+    if not vistos:
+        return                      # sin esa captura no hay nada que probar
+    # 3093 es el Ruby. El estado final estaba en la captura.
+    assert (1, 2, [3093, 0]) in vistos, vistos[:6]
+
+
+def test_la_gema_da_un_stat_distinto_segun_donde_este():
+    """El Broken Purple Lunar Rune, contra su propia descripcion.
+
+    El item 54573 dice: "Weapon: Spell Attack +1320 / Armor: Spell Defense
+    +260 / Shield: Spell Defense +260". Los NUMEROS estan en sus columnas
+    (matk 1320, mdef 260) y el REPARTO en jeweleffect.xml, que para su fila
+    pone 魔攻 en el arma y 魔防 en escudo y armadura.
+    """
+    import sys as _s
+    _s.path.insert(0, str(RAIZ / 'server'))
+    import inventario as inv
+    if not inv.bono_gema(54573, 3):
+        return                      # sin los paks no hay nada que probar
+    assert inv.bono_gema(54573, 3) == {'matk': 1320}, 'en el arma'
+    assert inv.bono_gema(54573, 4) == {'mdef': 260}, 'en el escudo'
+    assert inv.bono_gema(54573, 6) == {'mdef': 260}, 'en las botas'
+    # La Purple Gem lleva matk 20 y mdef 5; en armadura solo cuenta el mdef.
+    assert inv.bono_gema(3118, 6) == {'mdef': 5}
+    assert inv.bono_gema(3118, 3) == {'matk': 20}
+    # Lo que no es una gema no da nada.
+    assert inv.bono_gema(3001, 6) == {}
+
+
+def test_las_gemas_suman_a_los_stats_del_personaje():
+    """Dos runas en el arma tienen que dar 2640 de ataque magico."""
+    import sys as _s
+    _s.path.insert(0, str(RAIZ / 'server'))
+    import inventario as inv
+    if not inv.bono_gema(54573, 3):
+        return
+    bolsa = {3: 58790}
+    sin = inv.bonos_de_equipo(bolsa, {3: {'gemas': []}})
+    con = inv.bonos_de_equipo(bolsa, {3: {'gemas': [54573, 54573]}})
+    assert con['matk'] - sin['matk'] == 2640, (sin['matk'], con['matk'])
 
 
 if __name__ == '__main__':

@@ -180,3 +180,14 @@ MARTILLO_VERDE_TODOS_LOS_STATS = True
 # cliente, asi que lo decide el servidor.
 RANGO_INICIAL = 1
 
+
+
+# A que nivel sale una mascota nueva. Los stats los saca de petattrib con su
+# clase y este nivel, y estan comprobados: una Battlemaid (item 20012) a
+# nivel 246 da 12100 de ataque, 15755 de defensa, 3137 de ataque magico,
+# 4431 de defensa magica, 1947 de rigor, 1127 de agilidad, 18775 de vida y
+# 9074 de mana, que es exactamente la ficha que enseñaba el juego.
+#
+# A nivel 1 la mascota es inservible, asi que aqui se pone a que nivel
+# quieres que aparezcan las que da el comando /item.
+MASCOTA_NIVEL_INICIAL = 1

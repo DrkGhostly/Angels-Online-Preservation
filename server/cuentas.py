@@ -139,6 +139,10 @@ def personaje_de(cuenta, indice=0):
         mp=p.get('mp', 154), mp_max=p.get('mp_max', 154),
         # Las claves de JSON siempre son texto; las ranuras son numeros.
         inventario={int(k): v for k, v in p.get('inventario', {}).items()},
+        # Las mejoras van por CASILLA: el +N, las gemas y los stats verdes
+        # de la pieza que hay en esa ranura. Se guardaban solo en memoria,
+        # asi que al reconectar se perdia todo lo mejorado.
+        mejoras={int(k): v for k, v in (p.get('mejoras') or {}).items()},
         checkpoint_stage=int((p.get('checkpoint') or {}).get('stage', 0)),
         checkpoint_x=int(((p.get('checkpoint') or {}).get('tile') or [0, 0])[0]),
         checkpoint_y=int(((p.get('checkpoint') or {}).get('tile') or [0, 0])[1]),
@@ -179,7 +183,7 @@ def borrar_personaje(usuario: str, ranura: int):
 
 
 def guardar_inventario(usuario: str, char_id: int, bolsa: dict,
-                       cantidades: dict = None):
+                       cantidades=None, mejoras=None):
     """Deja el inventario en disco tras mover un item.
 
     Las cantidades van aparte para no cambiar el formato de 'inventario',
@@ -192,10 +196,38 @@ def guardar_inventario(usuario: str, char_id: int, bolsa: dict,
     for p in c.get('personajes', []):
         if p.get('char_id') == char_id:
             p['inventario'] = {str(k): v for k, v in sorted(bolsa.items())}
+            if mejoras is not None:
+                p['mejoras'] = {str(k): v
+                                for k, v in sorted(mejoras.items())
+                                if v and (v.get('veces') or v.get('gemas')
+                                          or v.get('extra'))}
             if cantidades is not None:
                 p['cantidades'] = {str(k): int(v)
                                    for k, v in sorted(cantidades.items())
                                    if int(v) > 1 and int(k) in bolsa}
+            ARCHIVO.write_text(json.dumps(d, indent=2, ensure_ascii=False),
+                               encoding='utf-8')
+            return
+
+
+def guardar_mejoras(usuario: str, char_id: int, mejoras: dict):
+    """Deja en disco el +N, las gemas y los stats verdes de cada casilla.
+
+    Iban solo en memoria, asi que al reconectar se perdia todo lo mejorado.
+    Se guarda aparte del inventario porque hay veinte sitios que guardan la
+    bolsa y solo uno que toca las mejoras.
+    """
+    if not usuario:
+        return
+    d = json.loads(ARCHIVO.read_text(encoding='utf-8'))
+    c = d['cuentas'].get(usuario)
+    if not c:
+        return
+    for p in c.get('personajes', []):
+        if p.get('char_id') == char_id:
+            p['mejoras'] = {str(k): v for k, v in sorted((mejoras or {}).items())
+                            if v and (v.get('veces') or v.get('gemas')
+                                      or v.get('extra'))}
             ARCHIVO.write_text(json.dumps(d, indent=2, ensure_ascii=False),
                                encoding='utf-8')
             return

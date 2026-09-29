@@ -403,40 +403,58 @@ The documentation is in Spanish. The code and the commit history are too.
 
 ---
 
+## The four tables that were hiding in the client
+
+Four systems were guessed at for days before the data turned up inside the
+client's own `.pak` files. None of them needed a formula: they are tables,
+and the guesses were all wrong.
+
+**`adv.xml` -- what the green hammer can give.** 2645 rows, by part and
+level, with a floor and a ceiling for every stat. Two formulas had been
+fitted to screenshots before this and both were wrong; what killed them was
+using the same hammer on two pieces and getting different ranges. The table
+matches the game exactly: a level 300 staff offers HP 344, attack 2428,
+spell attack 697 and agility 30 -- which is what the client's own preview
+box showed. It also settles the shape of the thing: a weapon never rolls
+defence, armour never rolls attack, only a mount rolls movement speed, and
+only a backpack rolls carry weight and extra slots.
+
+**`pet.xml` -- 1751 pets.** Sprite, type id, name, which `petattrib` class
+its stats come from, its evolution stage and its two branches. The type id
+was going out as zero, and without it the client cannot tell which pet it is
+looking at: the window came up with no level and no picture. The thirteen
+sprite/type pairs seen in captures all match.
+
+**`petaspect.xml` -- the breeding scenes.** 107 of them, three options each,
+worth between -3 and +3. The text matches the game word for word.
+
+**`jeweleffect.xml` -- what a gem does.** 870 rows. The numbers live on the
+gem itself and this table says which stat they land on, and that depends on
+where the gem is set: the same rune gives spell attack in a weapon and spell
+defence in armour.
+
 ## Known issues
 
-### Pets appear, but their window comes up empty
+### The pet's own record is not saved
 
-A pet's inventory entry is 231 bytes, not the 86 of an ordinary item or the
-119 of an equippable one. Until that was mapped, hovering a pet closed the
-client outright. The entry is now built byte for byte -- all 63 captured
-entries round-trip identically -- so the tooltip works and the item no longer
-crashes anything.
+Everything else about pets works: the 231-byte inventory entry, the window
+with its real stats, summoning and putting away, renaming, experience,
+levelling and the whole evolution tree. But the pet's record lives only in
+memory, so it resets to level 1 on every reconnect. The bag item persists;
+what the pet has become does not.
 
-What still does not work:
+### The breeding counter cannot be read
 
-  - **The pet window is blank.** Level, sprite and every stat come up at
-    zero. The stats are not derived by the client, as was assumed at first;
-    they travel in `s2c 0x0065` and have to be read out of `petattrib`,
-    which is indexed by pet type and level. The item -> pet type mapping is
-    not solved.
-  - **A summoned pet cannot be put away.** Storing it sends the inventory
-    entry but never removes the world entity, so it stays on screen.
-  - **Nothing grants pet experience yet.** The level and exp fields are
-    stored and served correctly, but no code path raises them.
+When a pet levels up the client shows a scene with three options and says
+"(Your act affects Pet's growth)". That text is not sent over the wire: the
+client picks the scene from its own `petaspect.xml` and only the chosen
+option travels back, in `c2s 0x003E` with the values 4, 5 and 6 -- the same
+message that carries pet orders with 0, 1 and 2.
 
-Summoning itself is measured and implemented: `c2s 0x002E [slot][0]` takes
-the pet out and puts it away, `c2s 0x015E` shows or hides it, `c2s 0x003D`
-renames it, and `s2c 0x0050` is the creature in the world. A pet **never
-leaves the backpack** when summoned -- equipping one into the pet gear slot
-needs 5 stars and is a different thing that has not been captured.
-
-### A pierced hole is invisible, so the next one is unreachable
-
-The piercing pestle opens the first hole correctly and then refuses to open
-another until a gem is set, which is the real rule. But the hole itself is
-never sent to the client, so no gem socket is drawn and the condition can
-never be met. The item gets stuck after the first hole.
+So the server never learns which scene the player answered, and therefore
+cannot tell what the answer was worth. Each of the 107 scenes has its own
+three values, from -3 to +3. To close this the server has to pick the scene
+itself and remember it, instead of letting the client choose.
 
 ### The ID Card draws the character undressed
 

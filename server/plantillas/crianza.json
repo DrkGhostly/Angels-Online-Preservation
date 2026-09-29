@@ -1,0 +1,1928 @@
+{
+ "1": {
+  "tipo": 1,
+  "texto": "/c$2%2/c* is rolling in circles&#xA;excitedly around /c$2%1/c*.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Run after it.",
+    "valor": 1
+   },
+   {
+    "texto": "Watch it moving around in circles.",
+    "valor": 0
+   },
+   {
+    "texto": "Forbid it to move in circles.",
+    "valor": -1
+   }
+  ]
+ },
+ "2": {
+  "tipo": 1,
+  "texto": "/c$2%2/c* is crying at its owner&#xA;/c$2%1/c* unhappily.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Teach it a strict lesson.",
+    "valor": -2
+   },
+   {
+    "texto": "Cover its ears.",
+    "valor": 0
+   },
+   {
+    "texto": "Comfort it in low voice.",
+    "valor": 1
+   }
+  ]
+ },
+ "3": {
+  "tipo": 1,
+  "texto": "/c$2%2/c* is rolling around the place&#xA;acting shamelessly.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Let it act this way until it tires out.",
+    "valor": -2
+   },
+   {
+    "texto": "Hold it tenderly.",
+    "valor": 1
+   },
+   {
+    "texto": "Punish it slightly.",
+    "valor": -1
+   }
+  ]
+ },
+ "4": {
+  "tipo": 1,
+  "texto": "/c$2%2/c* is wagging right and left&#xA;toward /c$2%1/c* acting cute.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Let it be, ignore it.",
+    "valor": -1
+   },
+   {
+    "texto": "Give it a parental peck on the cheek.",
+    "valor": 2
+   },
+   {
+    "texto": "Pet its head and praise it.",
+    "valor": 1
+   }
+  ]
+ },
+ "5": {
+  "tipo": 1,
+  "texto": "/c$2%2/c* put it's head out when its&#xA; owner wasn't watching it.&#xA; (Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Pretend to turn around casually.",
+    "valor": 0
+   },
+   {
+    "texto": "Can't stand watching it.",
+    "valor": -1
+   },
+   {
+    "texto": "Whistle and pretend to see nothing.",
+    "valor": 1
+   }
+  ]
+ },
+ "6": {
+  "tipo": 1,
+  "texto": "/c$2%2/c* cries towards its owner&#xA;/c$2%1/c* in a shy fashion.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Pat it's head and give it a slight smile.",
+    "valor": 0
+   },
+   {
+    "texto": "Hug it tightly.",
+    "valor": 3
+   },
+   {
+    "texto": "Not to dote on it. Ignore it.",
+    "valor": -2
+   }
+  ]
+ },
+ "7": {
+  "tipo": 1,
+  "texto": "/c$2%2/c* fell down onto the ground&#xA;and began to cry.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Get up by itself after fell.",
+    "valor": -1
+   },
+   {
+    "texto": "Console it in low and gentle voice.",
+    "valor": 1
+   },
+   {
+    "texto": "Help it up carefully.",
+    "valor": 0
+   }
+  ]
+ },
+ "8": {
+  "tipo": 2,
+  "texto": "/c$2%2/c* is pathetically staring at&#xA;its owner /c$2%1/c*.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Give it a big hug.",
+    "valor": 1
+   },
+   {
+    "texto": "Being stared at makes you feel lazy.",
+    "valor": 0
+   },
+   {
+    "texto": "Glare back with severe eyes.",
+    "valor": -1
+   }
+  ]
+ },
+ "9": {
+  "tipo": 2,
+  "texto": "/c$2%2/c* is naughtily splashing&#xA; water at its owner /c$2%1/c*.&#xA; (Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Splash water back in fun.",
+    "valor": 1
+   },
+   {
+    "texto": "Lecture it severely.",
+    "valor": -1
+   },
+   {
+    "texto": "Smile helplessly at it's soaking body.",
+    "valor": 0
+   }
+  ]
+ },
+ "10": {
+  "tipo": 2,
+  "texto": "/c$2%2/c* hides itself shyly under the&#xA;water.(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Patiently persuade it to come out.",
+    "valor": -1
+   },
+   {
+    "texto": "Give it a gentle and shining smile.",
+    "valor": 1
+   },
+   {
+    "texto": "Pretend to be anxious to find it.",
+    "valor": 2
+   }
+  ]
+ },
+ "11": {
+  "tipo": 2,
+  "texto": "/c$2%2/c* puffed lots of bubbles&#xA;towards its owner /c$2%1/c*.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Blow away the bubbles.",
+    "valor": 1
+   },
+   {
+    "texto": "Catch and break all of the bubbles.",
+    "valor": -1
+   },
+   {
+    "texto": "Slip on the bubbles.",
+    "valor": 2
+   }
+  ]
+ },
+ "12": {
+  "tipo": 2,
+  "texto": "/c$2%2/c* lost it's temper and made&#xA;water splash everywhere.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Give it a grown up talking to.",
+    "valor": -2
+   },
+   {
+    "texto": "Comfort it, patiently, in a low voice.",
+    "valor": 1
+   },
+   {
+    "texto": "Avoid the water splashes.",
+    "valor": 0
+   }
+  ]
+ },
+ "13": {
+  "tipo": 2,
+  "texto": "/c$2%2/c* is so ashamed it has been&#xA;reduced to tears.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Enthusiastically inspire it to try again.",
+    "valor": 0
+   },
+   {
+    "texto": "Wipe the tear on it's face with a towel.",
+    "valor": 1
+   },
+   {
+    "texto": "Crying is part of growing up.",
+    "valor": -1
+   }
+  ]
+ },
+ "14": {
+  "tipo": 2,
+  "texto": "/c$2%2/c* is ignoring it's owner and&#xA;playing with vermins instead.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Watch it play quietly.",
+    "valor": 0
+   },
+   {
+    "texto": "Insects have pathogens. Get rid of them.",
+    "valor": -2
+   },
+   {
+    "texto": "Shout to draw its attention.",
+    "valor": 1
+   }
+  ]
+ },
+ "15": {
+  "tipo": 2,
+  "texto": "/c$2%2/c*'s temperature is rising&#xA;high. Got a fever?&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Don't play water in Winter again.",
+    "valor": -1
+   },
+   {
+    "texto": "Give it some ice blocks to make it cool.",
+    "valor": 0
+   },
+   {
+    "texto": "Give it endless care.",
+    "valor": 1
+   }
+  ]
+ },
+ "16": {
+  "tipo": 2,
+  "texto": "/c$2%2/c* is leisurely swimming around&#xA;its owner /c$2%1/c*.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Tickle it with your fingers.",
+    "valor": 1
+   },
+   {
+    "texto": "Gaze at it softly.",
+    "valor": 0
+   },
+   {
+    "texto": "Order it to swim another 3000 metres.",
+    "valor": -2
+   }
+  ]
+ },
+ "17": {
+  "tipo": 3,
+  "texto": "The flame on /c$2%2/c* seems to be&#xA;getting smaller.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Encourage and inspire it.",
+    "valor": 0
+   },
+   {
+    "texto": "Excite it to stir up the inner flame.",
+    "valor": -2
+   },
+   {
+    "texto": "Give it an enthusiastic hug.",
+    "valor": 2
+   }
+  ]
+ },
+ "18": {
+  "tipo": 3,
+  "texto": "/c$2%2/c* is full of angry flames.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Amuse it and calm it's anger.",
+    "valor": 1
+   },
+   {
+    "texto": "Cook meat with the flame.",
+    "valor": 0
+   },
+   {
+    "texto": "Too dangerous. Put out the fire.",
+    "valor": -2
+   }
+  ]
+ },
+ "19": {
+  "tipo": 3,
+  "texto": "/c$2%2/c* angrily jumps up and down&#xA;on the spot.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Let it be, until it calms down by itself.",
+    "valor": -1
+   },
+   {
+    "texto": "Make it calm down softly.",
+    "valor": 1
+   },
+   {
+    "texto": "Blame it severely.",
+    "valor": 0
+   }
+  ]
+ },
+ "20": {
+  "tipo": 3,
+  "texto": "/c$2%2/c* enthusiastically hugs its&#xA;owner.(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Refrain from hugging it back.",
+    "valor": 3
+   },
+   {
+    "texto": "Refuse to hug it for justifiable reasons.",
+    "valor": 0
+   },
+   {
+    "texto": "Refuse it hug for unjustified reasons",
+    "valor": -1
+   }
+  ]
+ },
+ "21": {
+  "tipo": 3,
+  "texto": "/c$2%2/c* is getting angry. It has&#xA;taken to spying on it's owner.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Swash next time it spies on you.",
+    "valor": 1
+   },
+   {
+    "texto": "Continue to be cold to it.",
+    "valor": -1
+   },
+   {
+    "texto": "Leave it alone and mind own business.",
+    "valor": 0
+   }
+  ]
+ },
+ "22": {
+  "tipo": 3,
+  "texto": "/c$2%2/c* pulls /c$2%1/c*'s clothes in&#xA;order to draw your attention.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Pull your clothing back hard.",
+    "valor": -1
+   },
+   {
+    "texto": "Ignore it.",
+    "valor": 0
+   },
+   {
+    "texto": "Turn around and give it a loving look.",
+    "valor": 1
+   }
+  ]
+ },
+ "23": {
+  "tipo": 3,
+  "texto": "/c$2%2/c* is playing with fire at the&#xA;side of road.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Stop it from playing with fire.",
+    "valor": 0
+   },
+   {
+    "texto": "Go and care for it.",
+    "valor": 1
+   },
+   {
+    "texto": "Put out the fire.",
+    "valor": -1
+   }
+  ]
+ },
+ "24": {
+  "tipo": 3,
+  "texto": "/c$2%2/c* performs some bumbling poses&#xA;to try to be handsome.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Laugh at it.",
+    "valor": -1
+   },
+   {
+    "texto": "Flatter it.",
+    "valor": 1
+   },
+   {
+    "texto": "Try to act cooler than it.",
+    "valor": 0
+   }
+  ]
+ },
+ "25": {
+  "tipo": 3,
+  "texto": "/c$2%2/c* is glaring at /c$2%1/c* and&#xA;stamping feet to show its anger.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Glare back.",
+    "valor": -2
+   },
+   {
+    "texto": "Tell it off.",
+    "valor": -1
+   },
+   {
+    "texto": "Try to change it's mood by talking to it.",
+    "valor": 1
+   }
+  ]
+ },
+ "26": {
+  "tipo": 4,
+  "texto": "/c$2%2/c* is jumping and dancing&#xA;excitedly around /c$2%1/c*.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Whistle happily.",
+    "valor": 1
+   },
+   {
+    "texto": "Wave to stop it.",
+    "valor": -1
+   },
+   {
+    "texto": "Tease it.",
+    "valor": 1
+   }
+  ]
+ },
+ "27": {
+  "tipo": 4,
+  "texto": "/c$2%2/c* places itself tightly around&#xA;its owner /c$2%1/c* and coquets.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Touch it's head.",
+    "valor": 0
+   },
+   {
+    "texto": "Hug it.",
+    "valor": 2
+   },
+   {
+    "texto": "Push it away.",
+    "valor": -2
+   }
+  ]
+ },
+ "28": {
+  "tipo": 4,
+  "texto": "/c$2%2/c* looks up at the sky blankly.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Cry out to frighten it.",
+    "valor": -1
+   },
+   {
+    "texto": "Look up to see the same thing as it does.",
+    "valor": 0
+   },
+   {
+    "texto": "Go and care for it.",
+    "valor": 1
+   }
+  ]
+ },
+ "29": {
+  "tipo": 4,
+  "texto": "/c$2%2/c* performs a difficult&#xA;continuous back flip.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Root for it.",
+    "valor": 2
+   },
+   {
+    "texto": "Correct its actions.",
+    "valor": -2
+   },
+   {
+    "texto": "Clap for it.",
+    "valor": 1
+   }
+  ]
+ },
+ "30": {
+  "tipo": 4,
+  "texto": "/c$2%2/c* naughtily plays with the&#xA;hair of it's owner /c$2%1/c*.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Show impatience.",
+    "valor": -1
+   },
+   {
+    "texto": "Follow it and play.",
+    "valor": 1
+   },
+   {
+    "texto": "Wave head slightly.",
+    "valor": 0
+   }
+  ]
+ },
+ "31": {
+  "tipo": 4,
+  "texto": "/c$2%2/c* tickles it's owner&#xA;/c$2%1/c*'s body.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Guffaw madly.",
+    "valor": 1
+   },
+   {
+    "texto": "Use all your strength to throw it off.",
+    "valor": -2
+   },
+   {
+    "texto": "Turn back to scratch it's itches.",
+    "valor": 0
+   }
+  ]
+ },
+ "32": {
+  "tipo": 4,
+  "texto": "/c$2%2/c* sticks out it's tongue&#xA;towards /c$2%1/c* making faces.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Smile back at it.",
+    "valor": 0
+   },
+   {
+    "texto": "Grimace back at it.",
+    "valor": 2
+   },
+   {
+    "texto": "Give it a blank facial expression.",
+    "valor": -2
+   }
+  ]
+ },
+ "33": {
+  "tipo": 4,
+  "texto": "/c$2%2/c* is sighing and swooning to&#xA;the left and to the right.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Show it concern.",
+    "valor": 0
+   },
+   {
+    "texto": "Ignore it.",
+    "valor": -1
+   },
+   {
+    "texto": "Cheer it up.",
+    "valor": 1
+   }
+  ]
+ },
+ "34": {
+  "tipo": 4,
+  "texto": "/c$2%2/c* scratches it's owner&#xA;/c$2%1/c*'s face for no reason.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Blame it angrily.",
+    "valor": -2
+   },
+   {
+    "texto": "Ignore its scratching.",
+    "valor": 1
+   },
+   {
+    "texto": "Draw it away.",
+    "valor": -1
+   }
+  ]
+ },
+ "35": {
+  "tipo": 5,
+  "texto": "/c$2%2/c* digs out a stone and happily&#xA; presents it to /c$2%1/c*.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Throw away the stones.",
+    "valor": -2
+   },
+   {
+    "texto": "Accept the stones.",
+    "valor": 1
+   },
+   {
+    "texto": "Pretend not to see.",
+    "valor": -1
+   }
+  ]
+ },
+ "36": {
+  "tipo": 5,
+  "texto": "/c$2%2/c* excitedly knocks and strikes&#xA; at the ground. &#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Strike it the same way.",
+    "valor": 1
+   },
+   {
+    "texto": "Show it that you are impatient.",
+    "valor": -1
+   },
+   {
+    "texto": "Stop it from striking the ground.",
+    "valor": 0
+   }
+  ]
+ },
+ "37": {
+  "tipo": 5,
+  "texto": "/c$2%2/c* is sitting on the floor&#xA;blankly staring into space.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Cry out to frighten it.",
+    "valor": -1
+   },
+   {
+    "texto": "Look at it blankly.",
+    "valor": 0
+   },
+   {
+    "texto": "Give it a massage to invigorate it.",
+    "valor": 2
+   }
+  ]
+ },
+ "38": {
+  "tipo": 5,
+  "texto": "/c$2%2/c* accidentally fell asleep.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Cry out to wake it up.",
+    "valor": 0
+   },
+   {
+    "texto": "Wake it up in a low voice.",
+    "valor": 1
+   },
+   {
+    "texto": "Pour water onto it to wake it up.",
+    "valor": -1
+   }
+  ]
+ },
+ "39": {
+  "tipo": 5,
+  "texto": "/c$2%2/c* looks at it's owner&#xA;/c$2%1/c* giggling.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Look at it, smiling.",
+    "valor": 1
+   },
+   {
+    "texto": "Watch it, simpering.",
+    "valor": 0
+   },
+   {
+    "texto": "Look at it, sneering.",
+    "valor": -2
+   }
+  ]
+ },
+ "40": {
+  "tipo": 5,
+  "texto": "/c$2%2/c* is kneeling down on the&#xA;ground piling up stones.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Push the stones piles over.",
+    "valor": -2
+   },
+   {
+    "texto": "Pull it up from the ground.",
+    "valor": 0
+   },
+   {
+    "texto": "Squat down to pile up stones together.",
+    "valor": 1
+   }
+  ]
+ },
+ "41": {
+  "tipo": 5,
+  "texto": "/c$2%2/c* is rolling in the mud.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Pick it up.",
+    "valor": 2
+   },
+   {
+    "texto": "Secretly run away from it.",
+    "valor": 0
+   },
+   {
+    "texto": "Clean it with water.",
+    "valor": -1
+   }
+  ]
+ },
+ "42": {
+  "tipo": 5,
+  "texto": "/c$2%2/c* turned it's back to you,&#xA; showing solitude and loneliness.&#xA; (Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Wait silently.",
+    "valor": 0
+   },
+   {
+    "texto": "Hug it tightly.",
+    "valor": 1
+   },
+   {
+    "texto": "Doodle on it's back.",
+    "valor": -1
+   }
+  ]
+ },
+ "43": {
+  "tipo": 5,
+  "texto": "/c$2%2/c* disgruntled, it thumps the ground.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Go and care for it.",
+    "valor": 2
+   },
+   {
+    "texto": "Ignore it.",
+    "valor": -1
+   },
+   {
+    "texto": "Lecture it.",
+    "valor": 0
+   }
+  ]
+ },
+ "44": {
+  "tipo": 6,
+  "texto": "/c$2%2/c* is excitedly licking its&#xA;owner /c$2%1/c*'s face.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Scratch it tenderly.",
+    "valor": 1
+   },
+   {
+    "texto": "Wipe it's face with a towel.",
+    "valor": -1
+   },
+   {
+    "texto": "Pat it's head gently.",
+    "valor": 0
+   }
+  ]
+ },
+ "45": {
+  "tipo": 6,
+  "texto": "/c$2%2/c* is playfully leaning on its&#xA; owner /c$2%1/c*'s back.&#xA; (Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Play tricks with it.",
+    "valor": 0
+   },
+   {
+    "texto": "Pat it quietly.",
+    "valor": 1
+   },
+   {
+    "texto": "Leave it alone.",
+    "valor": -1
+   }
+  ]
+ },
+ "46": {
+  "tipo": 6,
+  "texto": "/c$2%2/c* is downheartedly grovelling&#xA;on the ground.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Keep an eye on it far away.",
+    "valor": 0
+   },
+   {
+    "texto": "Sit beside it petting it.",
+    "valor": 3
+   },
+   {
+    "texto": "Cheer it up.",
+    "valor": 1
+   }
+  ]
+ },
+ "47": {
+  "tipo": 6,
+  "texto": "/c$2%2/c* lays down with it's belly&#xA;facing it's owner /c$2%1/c*.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Smile at it's belly.",
+    "valor": -1
+   },
+   {
+    "texto": "Pat it's belly gently.",
+    "valor": 2
+   },
+   {
+    "texto": "Only pat it once on the belly.",
+    "valor": 1
+   }
+  ]
+ },
+ "48": {
+  "tipo": 6,
+  "texto": "/c$2%2/c* ruins it's owner's boots.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Accept the bad luck and dry yourself.",
+    "valor": 0
+   },
+   {
+    "texto": "Tell it off, angrily.",
+    "valor": -2
+   },
+   {
+    "texto": "Ignore it.",
+    "valor": 1
+   }
+  ]
+ },
+ "49": {
+  "tipo": 6,
+  "texto": "/c$2%2/c* suddenly cries out towards&#xA;something in the distance.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Order it to be quiet.",
+    "valor": -1
+   },
+   {
+    "texto": "Don't bother about it.",
+    "valor": 0
+   },
+   {
+    "texto": "See the direction it is snarling towards",
+    "valor": 1
+   }
+  ]
+ },
+ "50": {
+  "tipo": 6,
+  "texto": "/c$2%2/c* gives a big yawn.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Copy it by having a big yawn yourself.",
+    "valor": 0
+   },
+   {
+    "texto": "Give it a massage to invigorate it.",
+    "valor": 1
+   },
+   {
+    "texto": "Cover its mouth.",
+    "valor": -1
+   }
+  ]
+ },
+ "51": {
+  "tipo": 6,
+  "texto": "/c$2%2/c* randomly scratches itself.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Help it to shower with hot water.",
+    "valor": 2
+   },
+   {
+    "texto": "Get it to wash itself.",
+    "valor": -2
+   },
+   {
+    "texto": "Scratch the itches for it.",
+    "valor": 1
+   }
+  ]
+ },
+ "52": {
+  "tipo": 6,
+  "texto": "/c$2%2/c* grovels with it's owner&#xA;/c$2%1/c*, to play with it.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Let it keep grovelling on the ground.",
+    "valor": 1
+   },
+   {
+    "texto": "Push it away due to its heavy weight.",
+    "valor": -3
+   },
+   {
+    "texto": "Play with it .",
+    "valor": 2
+   }
+  ]
+ },
+ "53": {
+  "tipo": 6,
+  "texto": "/c$2%2/c* is scampering about in a&#xA;high spirits.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Feel happy for it.",
+    "valor": 0
+   },
+   {
+    "texto": "Play happily with it.",
+    "valor": 1
+   },
+   {
+    "texto": "Order it to be quiet.",
+    "valor": -1
+   }
+  ]
+ },
+ "54": {
+  "tipo": 6,
+  "texto": "/c$2%2/c* is staring at it's owner&#xA;/c$2%1/c* with begging eyes.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Shake your head seriously.",
+    "valor": -1
+   },
+   {
+    "texto": "Avoid making eye contact.",
+    "valor": 0
+   },
+   {
+    "texto": "Give it a dessert to cheer it up.",
+    "valor": 1
+   }
+  ]
+ },
+ "55": {
+  "tipo": 6,
+  "texto": "/c$2%2/c* is crying at it's owner&#xA;/c$2%1/c* unhappily.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Order it to stop crying.",
+    "valor": -1
+   },
+   {
+    "texto": "Stare at it calmly.",
+    "valor": 0
+   },
+   {
+    "texto": "Capture it and teach it a lesson.",
+    "valor": -2
+   }
+  ]
+ },
+ "56": {
+  "tipo": 7,
+  "texto": "/c$2%2/c* is dancing a strange dance&#xA;around its owner /c$2%1/c*.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Dance after it in the same fashion.",
+    "valor": 2
+   },
+   {
+    "texto": "Sing to the beat of it's dance.",
+    "valor": 0
+   },
+   {
+    "texto": "Tired of watching it, you fell asleep.",
+    "valor": -1
+   }
+  ]
+ },
+ "57": {
+  "tipo": 7,
+  "texto": "Some Vermins are found on /c$2%2/c*'s&#xA;body.(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Vermins deserve respection as lives.",
+    "valor": -2
+   },
+   {
+    "texto": "Splash pesticide onto it.",
+    "valor": 0
+   },
+   {
+    "texto": "Carefully get rid of the Vermins.",
+    "valor": 1
+   }
+  ]
+ },
+ "58": {
+  "tipo": 7,
+  "texto": "Some parts of /c$2%2/c*'s body are&#xA;injured.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Cut off the damaged parts.",
+    "valor": 2
+   },
+   {
+    "texto": "Bind up the injureded part.",
+    "valor": 0
+   },
+   {
+    "texto": "Keep it as a showy scar.",
+    "valor": -2
+   }
+  ]
+ },
+ "59": {
+  "tipo": 7,
+  "texto": "/c$2%2/c* is giving off a great deal&#xA;of Phytonicidene.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Encourage it to breathe deeply.",
+    "valor": 1
+   },
+   {
+    "texto": "Expel the carbon dioxide from it's mouth.",
+    "valor": 2
+   },
+   {
+    "texto": "Keep a careful eye on it.",
+    "valor": 0
+   }
+  ]
+ },
+ "60": {
+  "tipo": 7,
+  "texto": "/c$2%2/c* is leaning on it's owner's&#xA;/c$2%1/c*'s feet softly.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Ignore it to toughen it up purposely.",
+    "valor": -2
+   },
+   {
+    "texto": "So cute that cann't help petting it.",
+    "valor": 2
+   },
+   {
+    "texto": "Why is it behaving so creepy?",
+    "valor": 0
+   }
+  ]
+ },
+ "61": {
+  "tipo": 7,
+  "texto": "/c$2%2/c* is staring at its owner&#xA;/c$2%1/c* pathetically.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "So cute that you cann't help holding it.",
+    "valor": 1
+   },
+   {
+    "texto": "Touch it's head.",
+    "valor": 0
+   },
+   {
+    "texto": "Glare back fiercely.",
+    "valor": -1
+   }
+  ]
+ },
+ "62": {
+  "tipo": 7,
+  "texto": "/c$2%2/c* has buried half of its body&#xA;into the earth to absorb nutrients.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Wait silently beside it.",
+    "valor": 0
+   },
+   {
+    "texto": "Pull out the surrounding weed.",
+    "valor": 1
+   },
+   {
+    "texto": "Help it fertilize and water the soil.",
+    "valor": 2
+   }
+  ]
+ },
+ "63": {
+  "tipo": 7,
+  "texto": "/c$2%2/c* hides itself in the earth&#xA;because it is angry with /c$2%1/c*.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Start to dig it out from the earth.",
+    "valor": -1
+   },
+   {
+    "texto": "Wait until it can stand up by itself.",
+    "valor": 0
+   },
+   {
+    "texto": "Make efforts to persuade it out.",
+    "valor": 1
+   }
+  ]
+ },
+ "64": {
+  "tipo": 8,
+  "texto": "/c$2%2/c* kisses its owner&#xA;/c$2%1/c* softly on the face.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Gently kiss it's cheek.",
+    "valor": 1
+   },
+   {
+    "texto": "Wipe it's face in a detatched way.",
+    "valor": 1
+   },
+   {
+    "texto": "Blush due to embarrassment.",
+    "valor": 0
+   }
+  ]
+ },
+ "65": {
+  "tipo": 8,
+  "texto": "/c$2%2/c* embraces its owner&#xA;/c$2%1/c* wrapping its arms around&#xA;him.(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Push her away shyly.",
+    "valor": 2
+   },
+   {
+    "texto": "Hug her gently.",
+    "valor": 1
+   },
+   {
+    "texto": "Throw her off gently.",
+    "valor": -1
+   }
+  ]
+ },
+ "66": {
+  "tipo": 8,
+  "texto": "/c$2%2/c* angrily spanks its owner&#xA;/c$2%1/c*.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Become angry with her.",
+    "valor": -2
+   },
+   {
+    "texto": "Endure the pain of the spank quietly.",
+    "valor": -1
+   },
+   {
+    "texto": "Ask for the reason of her anger.",
+    "valor": 1
+   }
+  ]
+ },
+ "67": {
+  "tipo": 8,
+  "texto": "/c$2%2/c* smiles at its owner&#xA;/c$2%1/c* smugly.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Pretend to be cool and indifferent.",
+    "valor": -1
+   },
+   {
+    "texto": "Smile back at it.",
+    "valor": 0
+   },
+   {
+    "texto": "The smile makes you blush a little.",
+    "valor": 2
+   }
+  ]
+ },
+ "68": {
+  "tipo": 8,
+  "texto": "/c$2%2/c* is heavy-heartedly looking&#xA;somewhere into the distance.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Stay beside her, and do as she do.",
+    "valor": 2
+   },
+   {
+    "texto": "Wait at her side, silently.",
+    "valor": 0
+   },
+   {
+    "texto": "Move over and shoot the breeze with her.",
+    "valor": 1
+   }
+  ]
+ },
+ "69": {
+  "tipo": 8,
+  "texto": "/c$2%2/c* grumbles into its owner&#xA;/c$2%1/c*'s ears.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "You can't bare it and shut her up.",
+    "valor": -2
+   },
+   {
+    "texto": "Listen to her croak patiently.",
+    "valor": 1
+   },
+   {
+    "texto": "Argue with it.",
+    "valor": -1
+   }
+  ]
+ },
+ "70": {
+  "tipo": 8,
+  "texto": "/c$2%2/c* is dancing beautifully in&#xA;the sky.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Focus on the enemies all around.",
+    "valor": -1
+   },
+   {
+    "texto": "Watch it become possessed.",
+    "valor": 0
+   },
+   {
+    "texto": "Hum songs to the beat of her dancing.",
+    "valor": 1
+   }
+  ]
+ },
+ "71": {
+  "tipo": 8,
+  "texto": "/c$2%2/c* stares at its owner&#xA;/c$2%1/c*.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Your heart is beating faster and faster.",
+    "valor": 1
+   },
+   {
+    "texto": "Pretend to ignore it.",
+    "valor": -1
+   },
+   {
+    "texto": "Strive to not let feelings run amok.",
+    "valor": 0
+   }
+  ]
+ },
+ "72": {
+  "tipo": 8,
+  "texto": "/c$2%2/c* makes many kinds of gestures&#xA;in front of the mirror.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Lightly flatter her.",
+    "valor": 1
+   },
+   {
+    "texto": "Flatter her a great deal.",
+    "valor": -2
+   },
+   {
+    "texto": "Look at her blankly.",
+    "valor": -1
+   }
+  ]
+ },
+ "73": {
+  "tipo": 9,
+  "texto": "/c$2%2/c* stretches out its neck to&#xA;look around vigilantly.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "So funny that you cann't help laugh.",
+    "valor": -1
+   },
+   {
+    "texto": "Look around with it.",
+    "valor": 1
+   },
+   {
+    "texto": "It has no manners, strike it on the head.",
+    "valor": -2
+   }
+  ]
+ },
+ "74": {
+  "tipo": 9,
+  "texto": "/c$2%2/c* is wagging its tail at its&#xA;owner /c$2%1/c*.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Tease it happily.",
+    "valor": 1
+   },
+   {
+    "texto": "Pat it's head gently.",
+    "valor": 0
+   },
+   {
+    "texto": "Leave it alone.",
+    "valor": -1
+   }
+  ]
+ },
+ "75": {
+  "tipo": 9,
+  "texto": "/c$2%2/c* angrily emits thick black&#xA;smoke from its mouth and nose.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Tell it some old jokes to comfort it.",
+    "valor": -1
+   },
+   {
+    "texto": "Pour water on its head to calm it down.",
+    "valor": -3
+   },
+   {
+    "texto": "Let it vent it's anger.",
+    "valor": 1
+   }
+  ]
+ },
+ "76": {
+  "tipo": 9,
+  "texto": "/c$2%2/c* behaves rebelliously toward&#xA;its owner /c$2%1/c*.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Avoid confronting it face to face.",
+    "valor": 0
+   },
+   {
+    "texto": "Take a strict approach with it.",
+    "valor": -1
+   },
+   {
+    "texto": "Be humble when you make up with it.",
+    "valor": 3
+   }
+  ]
+ },
+ "77": {
+  "tipo": 9,
+  "texto": "/c$2%2/c* bellows madly all around.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Stop it by any means necessary.",
+    "valor": -2
+   },
+   {
+    "texto": "Stop it calmly.",
+    "valor": 1
+   },
+   {
+    "texto": "For your own security, leave it alone.",
+    "valor": 0
+   }
+  ]
+ },
+ "78": {
+  "tipo": 9,
+  "texto": "/c$2%2/c* snarls at the small animals&#xA;around it.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Give it food so it will stop snarling.",
+    "valor": 0
+   },
+   {
+    "texto": "Ignore its snarling.",
+    "valor": 1
+   },
+   {
+    "texto": "Force it to stop snarling.",
+    "valor": -1
+   }
+  ]
+ },
+ "79": {
+  "tipo": 9,
+  "texto": "/c$2%2/c* cuddled itself up, finally&#xA;fell asleep on the ground.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Stay beside and comfort it.",
+    "valor": 1
+   },
+   {
+    "texto": "Remind it to prepare for fighting.",
+    "valor": -2
+   },
+   {
+    "texto": "Let it have a good rest.",
+    "valor": 0
+   }
+  ]
+ },
+ "80": {
+  "tipo": 9,
+  "texto": "/c$2%2/c* turns around to scratch the&#xA;squamae on it's back with its claws.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Help it to scratch squamae on its back.",
+    "valor": 0
+   },
+   {
+    "texto": "Clean the parasites behind the squamaes.",
+    "valor": 2
+   },
+   {
+    "texto": "Make it have a bath.",
+    "valor": -1
+   }
+  ]
+ },
+ "81": {
+  "tipo": 9,
+  "texto": "/c$2%2/c* lowers its head towards its&#xA;owner /c$2%1/c*, calling gently.&#xA;(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Hold it with two hands.",
+    "valor": 2
+   },
+   {
+    "texto": "Reject it's flirtations.",
+    "valor": -1
+   },
+   {
+    "texto": "Pat its head.",
+    "valor": 0
+   }
+  ]
+ },
+ "82": {
+  "tipo": 10,
+  "texto": "/c$2%2/c* happily dance in front of its master /c$2%1/c*. (Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Gently hold its hand.",
+    "valor": 1
+   },
+   {
+    "texto": "You are shocked.",
+    "valor": -1
+   },
+   {
+    "texto": "Just move away.",
+    "valor": 0
+   }
+  ]
+ },
+ "83": {
+  "tipo": 10,
+  "texto": "/c$2%2/c* rolls around its master /c$2%1/c*.(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Tell it how to roll with your gestures.",
+    "valor": 0
+   },
+   {
+    "texto": "Roll following it.",
+    "valor": -1
+   },
+   {
+    "texto": "You feel sick",
+    "valor": -2
+   }
+  ]
+ },
+ "84": {
+  "tipo": 10,
+  "texto": "/c$2%2/c* seems angry and jumps here and there.(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Let it jump.",
+    "valor": 0
+   },
+   {
+    "texto": "Try to know its purpose.",
+    "valor": 1
+   },
+   {
+    "texto": "Pick up your weapon to stop it.",
+    "valor": -1
+   }
+  ]
+ },
+ "85": {
+  "tipo": 10,
+  "texto": "/c$2%2/c* pays no attention to its master's call. (Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Throw a stone near it.",
+    "valor": -2
+   },
+   {
+    "texto": "Leave it alone.",
+    "valor": 0
+   },
+   {
+    "texto": "Go to lift it.",
+    "valor": -3
+   }
+  ]
+ },
+ "86": {
+  "tipo": 10,
+  "texto": "/c$2%2/c* continually rubs on a stone in the open air. (Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Have no idea what it is doing.",
+    "valor": 1
+   },
+   {
+    "texto": "Go to help it.",
+    "valor": 2
+   },
+   {
+    "texto": "Just ignore it.",
+    "valor": -1
+   }
+  ]
+ },
+ "87": {
+  "tipo": 10,
+  "texto": "/c$2%2/c* sneakily follows its master /c$2%1/c*.(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Turn around and scare it.",
+    "valor": 0
+   },
+   {
+    "texto": "Just let it follow you.",
+    "valor": 1
+   },
+   {
+    "texto": "Carry it and move forward.",
+    "valor": 2
+   }
+  ]
+ },
+ "88": {
+  "tipo": 10,
+  "texto": "/c$2%2/c* flies into the sky and then dives to scare others. (Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Play jokes with it together.",
+    "valor": 1
+   },
+   {
+    "texto": "Stop it and ask why.",
+    "valor": 0
+   },
+   {
+    "texto": "Yell at it loudly.",
+    "valor": -1
+   }
+  ]
+ },
+ "89": {
+  "tipo": 10,
+  "texto": "/c$2%2/c* keeps knocking on something to make noise.(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Run away because it is too noisy.",
+    "valor": -1
+   },
+   {
+    "texto": "Sing loudly with it together.",
+    "valor": 2
+   },
+   {
+    "texto": "Ask it not to shout any more.",
+    "valor": 1
+   }
+  ]
+ },
+ "90": {
+  "tipo": 10,
+  "texto": "/c$2%2/c* lies low on the ground and doesn't want to move any more.(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Go to show it some consideration.",
+    "valor": 0
+   },
+   {
+    "texto": "Lie low together to enjoy the scenery.",
+    "valor": 1
+   },
+   {
+    "texto": "Urge it to prepare for the battle.",
+    "valor": -2
+   }
+  ]
+ },
+ "91": {
+  "tipo": 11,
+  "texto": "/c$2%2/c* chuckles near its master.(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "You are too tired.",
+    "valor": -3
+   },
+   {
+    "texto": "Go to ask why.",
+    "valor": 1
+   },
+   {
+    "texto": "Laugh happily together.",
+    "valor": 2
+   }
+  ]
+ },
+ "92": {
+  "tipo": 11,
+  "texto": "/c$2%2/c* gazes at its master /c$2%1/c* and wants to be hugged.(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Open your eyes and look at it.",
+    "valor": 0
+   },
+   {
+    "texto": "Hug it in your arms.",
+    "valor": 1
+   },
+   {
+    "texto": "Ask it to be obedient and there is no more hug.",
+    "valor": -2
+   }
+  ]
+ },
+ "93": {
+  "tipo": 11,
+  "texto": "/c$2%2/c* is so angry that it throws things everywhere.(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Loudly shout at it and ask it to stop.",
+    "valor": -1
+   },
+   {
+    "texto": "Help it tidy things up.",
+    "valor": 0
+   },
+   {
+    "texto": "Try to comfort it.",
+    "valor": 1
+   }
+  ]
+ },
+ "94": {
+  "tipo": 11,
+  "texto": "/c$2%2/c* is looking at a small flower and loses in thought. (Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Pluck the flower for it.",
+    "valor": 3
+   },
+   {
+    "texto": "Gently tell it that you will leave.",
+    "valor": 0
+   },
+   {
+    "texto": "Scare it from its back.",
+    "valor": -1
+   }
+  ]
+ },
+ "95": {
+  "tipo": 11,
+  "texto": "/c$2%2/c* has a sound sleep now. (Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Fall asleep near it.",
+    "valor": 0
+   },
+   {
+    "texto": "Sing lullabies in front of it.",
+    "valor": -1
+   },
+   {
+    "texto": "Wake it up.",
+    "valor": -2
+   }
+  ]
+ },
+ "96": {
+  "tipo": 11,
+  "texto": "/c$2%2/c* loses its temper and shouts at its master /c$2%1/c*.(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Help it wipe its tear away.",
+    "valor": 1
+   },
+   {
+    "texto": "You are so upset.",
+    "valor": -2
+   },
+   {
+    "texto": "Pull faces at it.",
+    "valor": -1
+   }
+  ]
+ },
+ "97": {
+  "tipo": 11,
+  "texto": "/c$2%2/c* puts everything it finds into its mouth.(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Grab the item from its mouth.",
+    "valor": 0
+   },
+   {
+    "texto": "Force it to spit out.",
+    "valor": -1
+   },
+   {
+    "texto": "Give it a warning.",
+    "valor": 1
+   }
+  ]
+ },
+ "98": {
+  "tipo": 11,
+  "texto": "/c$2%2/c* wants to kiss its master /c$2%1/c*.(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Let it kiss your face.",
+    "valor": 2
+   },
+   {
+    "texto": "Turn around and neglect it.",
+    "valor": -2
+   },
+   {
+    "texto": "Lift it up.",
+    "valor": 0
+   }
+  ]
+ },
+ "99": {
+  "tipo": 11,
+  "texto": "/c$2%2/c* hides itself in a corner and says nothing.(Your act affects Pet's growth)",
+  "opciones": [
+   {
+    "texto": "Give it a warm hug from its back.",
+    "valor": 0
+   },
+   {
+    "texto": "Leave it alone.",
+    "valor": -1
+   },
+   {
+    "texto": "Ask it what's going on.",
+    "valor": 1
+   }
+  ]
+ },
+ "100": {
+  "tipo": 12,
+  "texto": "/c$2%2/c* is pacing around with a lonely expression on its face.(Your actions will affect a Pet's growth.)",
+  "opciones": [
+   {
+    "texto": "Stay clear of the pet",
+    "valor": -1
+   },
+   {
+    "texto": "Summon the pet to get a move on.",
+    "valor": 0
+   },
+   {
+    "texto": "Ask the pet.",
+    "valor": 1
+   }
+  ]
+ },
+ "101": {
+  "tipo": 12,
+  "texto": "/c$2%2/c*is getting too excited because its owner /c$2%1/c* is babbling on about something.(Your actions affect a Pet's growth.)",
+  "opciones": [
+   {
+    "texto": "Listen carefully to the pet",
+    "valor": 2
+   },
+   {
+    "texto": "Stop the pet from babbling on and on.",
+    "valor": -2
+   },
+   {
+    "texto": "Pretend to listen to it.",
+    "valor": -1
+   }
+  ]
+ },
+ "102": {
+  "tipo": 12,
+  "texto": "/c$2%2/c* is looking at the sky, lost in thought. (Your actions affect a Pet's growth.)",
+  "opciones": [
+   {
+    "texto": "Accompany the pet in silence.",
+    "valor": 0
+   },
+   {
+    "texto": "Check out what the pet is looking at.",
+    "valor": 1
+   },
+   {
+    "texto": "Let the pet know it's boring.",
+    "valor": -1
+   }
+  ]
+ },
+ "103": {
+  "tipo": 12,
+  "texto": "/c$2%2/c* is filled with pride after defeating a particularly tough monster.(Your actions affect a Pet's growth.)",
+  "opciones": [
+   {
+    "texto": "Flatter the pet.",
+    "valor": 2
+   },
+   {
+    "texto": "Tell the pet that it's no big deal!",
+    "valor": -2
+   },
+   {
+    "texto": "Ignore it.",
+    "valor": -1
+   }
+  ]
+ },
+ "104": {
+  "tipo": 12,
+  "texto": "/c$2%2/c* gets up bravely when its feeling down.(Your actions affect a Pet's growth.)",
+  "opciones": [
+   {
+    "texto": "Praise the pet.",
+    "valor": 1
+   },
+   {
+    "texto": "Turn around and move forward.",
+    "valor": -1
+   },
+   {
+    "texto": "Pet it and praise it.",
+    "valor": 3
+   }
+  ]
+ },
+ "105": {
+  "tipo": 12,
+  "texto": "/c$2%2/c* is arguing with an otherwise amicable creature.(Your actions affect a Pet's growth.)",
+  "opciones": [
+   {
+    "texto": "Stop the pet from arguing.",
+    "valor": 0
+   },
+   {
+    "texto": "Help the pet argue.",
+    "valor": 2
+   },
+   {
+    "texto": "Blame it.",
+    "valor": -1
+   }
+  ]
+ },
+ "106": {
+  "tipo": 12,
+  "texto": "/c$2%2/c* is curiously watching its owner, /c$2%1/c*, handle weapons.(Your actions affect a Pet's growth.)",
+  "opciones": [
+   {
+    "texto": "Pick up a weapon to scare the pet.",
+    "valor": -2
+   },
+   {
+    "texto": "Lend the weapon to the pet for fun.",
+    "valor": 1
+   },
+   {
+    "texto": "Tell the pet that weapons are dangerous.",
+    "valor": 0
+   }
+  ]
+ },
+ "107": {
+  "tipo": 12,
+  "texto": "/c$2%2/c* seems very happy and is jumping around excitedly.(Your actions affect a Pet's growth.)",
+  "opciones": [
+   {
+    "texto": "Be happy with the pet.",
+    "valor": 0
+   },
+   {
+    "texto": "Jump around with the pet.",
+    "valor": 1
+   },
+   {
+    "texto": "Ask the pet to stop.",
+    "valor": -1
+   }
+  ]
+ }
+}
