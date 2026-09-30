@@ -567,6 +567,32 @@ def test_las_gemas_suman_a_los_stats_del_personaje():
     assert con['matk'] - sin['matk'] == 2640, (sin['matk'], con['matk'])
 
 
+def test_la_mano_izquierda_cuenta_segun_lo_que_lleve():
+    """La ranura 4 puede llevar ESCUDO o, con duales, otra ESPADA.
+
+    Se decidia por la ranura, asi que la misma runa daba 1650 de ataque en
+    la derecha y 630 de defensa en la izquierda: con armas duales esa mano
+    perdia todo el ataque de sus gemas. Ahora manda la PIEZA.
+    """
+    import sys as _s
+    _s.path.insert(0, str(RAIZ / 'server'))
+    import inventario as inv
+    if not inv.bono_gema(54569, 3):
+        return                      # sin los paks no hay nada que probar
+    espada, escudo = 58786, 9
+    assert inv.bono_gema(54569, 3, espada) == {'atk': 1650}
+    assert inv.bono_gema(54569, 4, espada) == {'atk': 1650}, 'dual'
+    assert inv.bono_gema(54569, 4, escudo) == {'dfs': 630}, 'con escudo'
+
+    # Y las dos manos suman lo mismo con duales iguales.
+    bolsa = {3: espada, 4: espada}
+    gemas = {'gemas': [54569] * 5, 'extra': {}, 'veces': 0}
+    sin = inv.bonos_de_equipo(bolsa, {3: {'gemas': []}, 4: {'gemas': []}})
+    con = inv.bonos_de_equipo(bolsa, {3: dict(gemas), 4: dict(gemas)})
+    assert con['atk_r'] - sin['atk_r'] == 8250, (sin['atk_r'], con['atk_r'])
+    assert con['atk_l'] - sin['atk_l'] == 8250, (sin['atk_l'], con['atk_l'])
+
+
 if __name__ == '__main__':
     fallos = 0
     for nombre, fn in sorted(globals().items()):

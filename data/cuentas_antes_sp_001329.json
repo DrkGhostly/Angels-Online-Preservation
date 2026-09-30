@@ -1,0 +1,1358 @@
+{
+  "cuentas": {
+    "karma": {
+      "password": "123456",
+      "personajes": [
+        {
+          "nombre": "Karma",
+          "char_id": 1001,
+          "ranura": 0,
+          "nivel": 300,
+          "class_id": 16,
+          "stage_id": 298,
+          "hp": 172216,
+          "hp_max": 8000,
+          "mp": 135506,
+          "mp_max": 4800,
+          "apariencia": [
+            0,
+            0,
+            0,
+            8,
+            8
+          ],
+          "tile_x": 181,
+          "tile_y": 117,
+          "habilidades": [
+            [
+              8,
+              301,
+              64
+            ],
+            [
+              3,
+              301,
+              54
+            ],
+            [
+              2,
+              301,
+              50
+            ],
+            [
+              7,
+              301,
+              56
+            ],
+            [
+              5,
+              301,
+              58
+            ],
+            [
+              34,
+              301,
+              48
+            ]
+          ],
+          "barra": [
+            5120,
+            [
+              1,
+              13333
+            ],
+            5184,
+            138,
+            5124,
+            101,
+            128,
+            118,
+            [
+              2,
+              47392
+            ],
+            [
+              2,
+              47402
+            ],
+            249,
+            293
+          ],
+          "quests": [],
+          "inventario": {
+            "0": 1,
+            "1": 58807,
+            "2": 58808,
+            "3": 58790,
+            "5": 58809,
+            "6": 58810,
+            "7": 64849,
+            "8": 59798,
+            "9": 40911,
+            "10": 64629,
+            "20": 54537,
+            "21": 1951,
+            "22": 20104,
+            "23": 25832,
+            "24": 2849,
+            "25": 5293,
+            "26": 21404,
+            "27": 47392,
+            "28": 47252,
+            "29": 25832,
+            "30": 47382,
+            "31": 47402,
+            "32": 7094,
+            "33": 54573,
+            "40": 82275,
+            "41": 82658,
+            "167": 82418,
+            "168": 82419,
+            "169": 82675,
+            "170": 82423,
+            "171": 82672,
+            "172": 82421,
+            "173": 82422,
+            "174": 77099,
+            "175": 78355,
+            "176": 82424,
+            "177": 82429,
+            "178": 82674,
+            "179": 82670,
+            "180": 82671,
+            "181": 82435,
+            "182": 77093,
+            "183": 82431,
+            "184": 82600,
+            "185": 82673,
+            "186": 82430,
+            "187": 82434,
+            "188": 82432,
+            "189": 82433,
+            "190": 82420,
+            "196": 82415,
+            "197": 82414,
+            "198": 82417,
+            "199": 82416,
+            "276": 5933,
+            "277": 7361
+          },
+          "tutorial": 1,
+          "oro": 1978574244,
+          "exp": 5262832438,
+          "faction": "Beasts",
+          "cantidades": {
+            "23": 169,
+            "24": 2,
+            "27": 160,
+            "28": 181,
+            "29": 200,
+            "30": 91,
+            "31": 169,
+            "32": 49,
+            "276": 5
+          },
+          "hablo_michael": false,
+          "checkpoint": {
+            "stage": 18,
+            "tile": [
+              173,
+              45
+            ]
+          },
+          "banco_habilidades": {
+            "11": [
+              300,
+              0
+            ],
+            "12": [
+              6,
+              9
+            ],
+            "1": [
+              5,
+              7
+            ],
+            "10": [
+              300,
+              0
+            ],
+            "16": [
+              300,
+              0
+            ],
+            "15": [
+              300,
+              0
+            ],
+            "33": [
+              7,
+              0
+            ],
+            "34": [
+              301,
+              48
+            ],
+            "2": [
+              301,
+              50
+            ],
+            "8": [
+              301,
+              64
+            ],
+            "3": [
+              301,
+              54
+            ],
+            "7": [
+              301,
+              56
+            ],
+            "5": [
+              301,
+              58
+            ]
+          },
+          "hechizos_aprendidos": [
+            5120,
+            5124,
+            5125,
+            5129,
+            13323,
+            5134,
+            12304,
+            13840,
+            13328,
+            5139,
+            12309,
+            13333,
+            5144,
+            13338,
+            5149,
+            5154,
+            5159,
+            5164,
+            5169,
+            5179,
+            5180,
+            5184,
+            5189,
+            5204,
+            5209,
+            5214,
+            610,
+            5219,
+            5224,
+            621,
+            5229,
+            111,
+            5234,
+            115,
+            117,
+            118,
+            5239,
+            5244,
+            128,
+            5249,
+            5254,
+            138,
+            5259,
+            5264,
+            5269,
+            151,
+            164,
+            165,
+            5284,
+            168,
+            5289,
+            196,
+            198,
+            712,
+            723,
+            217,
+            226,
+            233,
+            249,
+            262,
+            265,
+            266,
+            783,
+            788,
+            798,
+            287,
+            291,
+            292,
+            293,
+            294,
+            810,
+            812,
+            13104,
+            13109,
+            823,
+            13114,
+            13119,
+            12104,
+            12109,
+            402,
+            5104,
+            5106,
+            5114,
+            5119
+          ],
+          "mejoras": {
+            "1": {
+              "veces": 15,
+              "gemas": [
+                54573,
+                54573,
+                54573,
+                54573,
+                54573
+              ],
+              "extra": {
+                "hp": 344,
+                "mp": 220,
+                "dfs": 1327,
+                "mdef": 184,
+                "agilidad": 30
+              },
+              "huecos": 5
+            },
+            "2": {
+              "veces": 15,
+              "gemas": [
+                54573,
+                54573,
+                54573,
+                54573,
+                54573
+              ],
+              "extra": {
+                "hp": 344,
+                "mp": 220,
+                "dfs": 1281,
+                "mdef": 410,
+                "agilidad": 30
+              },
+              "huecos": 5
+            },
+            "3": {
+              "veces": 15,
+              "gemas": [
+                54573,
+                54573,
+                54573,
+                54573,
+                54573
+              ],
+              "extra": {
+                "hp": 344,
+                "mp": 220,
+                "atk": 2428,
+                "matk": 697,
+                "agilidad": 30
+              },
+              "huecos": 5
+            },
+            "5": {
+              "veces": 15,
+              "gemas": [
+                54573,
+                54573,
+                54573,
+                54573,
+                54573
+              ],
+              "extra": {
+                "hp": 344,
+                "mp": 220,
+                "dfs": 741,
+                "mdef": 501,
+                "agilidad": 30
+              },
+              "huecos": 5
+            },
+            "7": {
+              "veces": 0,
+              "gemas": [],
+              "extra": {
+                "hp": 320,
+                "mp": 214,
+                "dfs": 24,
+                "peso": 2700,
+                "ranuras": 10
+              },
+              "huecos": 0
+            },
+            "8": {
+              "veces": 0,
+              "gemas": [],
+              "extra": {
+                "dfs": 353,
+                "mdef": 22,
+                "rigor": 76,
+                "agilidad": 58
+              },
+              "huecos": 0
+            },
+            "9": {
+              "veces": 0,
+              "gemas": [],
+              "extra": {
+                "dfs": 229,
+                "mdef": 18,
+                "rigor": 57,
+                "agilidad": 42
+              },
+              "huecos": 0
+            },
+            "10": {
+              "veces": 15,
+              "gemas": [],
+              "extra": {
+                "velocidad": 40,
+                "atk": 260,
+                "dfs": 260,
+                "matk": 260,
+                "mdef": 260
+              },
+              "huecos": 0
+            },
+            "35": {
+              "veces": 15,
+              "gemas": [
+                3001,
+                54573,
+                54573,
+                54573,
+                54573
+              ],
+              "extra": {
+                "hp": 344,
+                "mp": 220,
+                "dfs": 741,
+                "mdef": 501,
+                "agilidad": 30
+              },
+              "huecos": 5
+            },
+            "36": {
+              "veces": 15,
+              "gemas": [
+                54573,
+                54573,
+                54573,
+                54573,
+                54573
+              ],
+              "extra": {},
+              "huecos": 5
+            }
+          },
+          "sp": 0,
+          "buffs": {
+            "5159": {
+              "fin": 1790737994.3721058,
+              "mag": {
+                "id": 5159,
+                "nombre": "Demonic Counter IV",
+                "mp": 2411,
+                "sp": 0,
+                "efecto": 368,
+                "hp": 0,
+                "cd_ms": 2000,
+                "dur_ms": 450000,
+                "cast_time": 1000,
+                "crit_rate": 0,
+                "phys_mit": 0,
+                "mag_mit": 0,
+                "es_auto": true,
+                "es_cura": false,
+                "es_buff": true,
+                "es_ataque": false,
+                "es_pasiva": false,
+                "cost_sp": 0,
+                "sp_gana": 0,
+                "rango": 1,
+                "dano_base": 0,
+                "dano_var": 0,
+                "dano_coef": 0,
+                "formula": 1,
+                "accion": "施法動作",
+                "target": "自己",
+                "area": 0,
+                "es_terreno": false,
+                "es_self_aoe": false,
+                "es_aoe": false,
+                "invoca_npc": 3028,
+                "dur_invoca": 303,
+                "es_invocacion": false,
+                "es_encanto": false,
+                "es_panico": false,
+                "es_transformacion": false,
+                "trans_sprite": 3028,
+                "def_bonus": 0,
+                "atk_bonus": 0,
+                "matk_bonus": 0,
+                "mdef_bonus": 0,
+                "move_speed_bonus": 0,
+                "atk_speed_bonus": 0,
+                "hp_bonus": 0,
+                "mp_bonus": 0,
+                "cast_redux": 0,
+                "atk_mod": 0,
+                "def_mod": 0,
+                "phys_dmg_pct": 0,
+                "mag_dmg_pct": 0,
+                "phys_mit_pct": 0,
+                "mag_mit_pct": 0,
+                "vel_mov_mod": 0,
+                "es_debuff": false
+              },
+              "es_transform": false
+            },
+            "203": {
+              "fin": 1790737845.0415175,
+              "mag": {
+                "id": 203,
+                "nombre": "Sage Blessing I",
+                "mp": 17,
+                "sp": 0,
+                "efecto": 71,
+                "hp": 0,
+                "cd_ms": 2000,
+                "dur_ms": 300000,
+                "cast_time": 2000,
+                "crit_rate": 0,
+                "phys_mit": 0,
+                "mag_mit": 0,
+                "es_auto": true,
+                "es_cura": false,
+                "es_buff": true,
+                "es_ataque": false,
+                "es_pasiva": false,
+                "cost_sp": 0,
+                "sp_gana": 0,
+                "rango": 12,
+                "dano_base": 0,
+                "dano_var": 0,
+                "dano_coef": 0,
+                "formula": 1,
+                "accion": "施法動作",
+                "target": "角色",
+                "area": 0,
+                "es_terreno": false,
+                "es_self_aoe": false,
+                "es_aoe": false,
+                "invoca_npc": 0,
+                "dur_invoca": 3600,
+                "es_invocacion": false,
+                "es_encanto": false,
+                "es_panico": false,
+                "es_transformacion": false,
+                "trans_sprite": 0,
+                "def_bonus": 0,
+                "atk_bonus": 0,
+                "matk_bonus": 0,
+                "mdef_bonus": 0,
+                "move_speed_bonus": 0,
+                "atk_speed_bonus": 0,
+                "hp_bonus": 0,
+                "mp_bonus": 0,
+                "cast_redux": 0,
+                "atk_mod": 0,
+                "def_mod": 0,
+                "phys_dmg_pct": 0,
+                "mag_dmg_pct": 5,
+                "phys_mit_pct": 0,
+                "mag_mit_pct": 0,
+                "vel_mov_mod": 0,
+                "es_debuff": false
+              },
+              "es_transform": false,
+              "mag_dmg_pct": 5
+            },
+            "5224": {
+              "fin": 1790737846.0409307,
+              "mag": {
+                "id": 5224,
+                "nombre": "Merlin's Circle IV",
+                "mp": 2366,
+                "sp": 0,
+                "efecto": 306,
+                "hp": 0,
+                "cd_ms": 2000,
+                "dur_ms": 300000,
+                "cast_time": 2000,
+                "crit_rate": 0,
+                "phys_mit": 0,
+                "mag_mit": 0,
+                "es_auto": true,
+                "es_cura": false,
+                "es_buff": true,
+                "es_ataque": false,
+                "es_pasiva": false,
+                "cost_sp": 0,
+                "sp_gana": 0,
+                "rango": 1,
+                "dano_base": 0,
+                "dano_var": 0,
+                "dano_coef": 0,
+                "formula": 1,
+                "accion": "施法動作",
+                "target": "自己",
+                "area": 0,
+                "es_terreno": false,
+                "es_self_aoe": false,
+                "es_aoe": false,
+                "invoca_npc": 5930,
+                "dur_invoca": 3600,
+                "es_invocacion": false,
+                "es_encanto": false,
+                "es_panico": false,
+                "es_transformacion": false,
+                "trans_sprite": 5930,
+                "def_bonus": 0,
+                "atk_bonus": 0,
+                "matk_bonus": 0,
+                "mdef_bonus": 0,
+                "move_speed_bonus": 0,
+                "atk_speed_bonus": 0,
+                "hp_bonus": 0,
+                "mp_bonus": 0,
+                "cast_redux": 0,
+                "atk_mod": 0,
+                "def_mod": 0,
+                "phys_dmg_pct": 0,
+                "mag_dmg_pct": 0,
+                "phys_mit_pct": 0,
+                "mag_mit_pct": 0,
+                "vel_mov_mod": 0,
+                "es_debuff": false
+              },
+              "es_transform": false
+            },
+            "5239": {
+              "fin": 1790737637.0276833,
+              "mag": {
+                "id": 5239,
+                "nombre": "Ice AgeIV",
+                "mp": 2191,
+                "sp": 0,
+                "efecto": 332,
+                "hp": 0,
+                "cd_ms": 6000,
+                "dur_ms": 90000,
+                "cast_time": 2000,
+                "crit_rate": 0,
+                "phys_mit": 0,
+                "mag_mit": 0,
+                "es_auto": true,
+                "es_cura": false,
+                "es_buff": true,
+                "es_ataque": false,
+                "es_pasiva": false,
+                "cost_sp": 0,
+                "sp_gana": 0,
+                "rango": 1,
+                "dano_base": 0,
+                "dano_var": 0,
+                "dano_coef": 0,
+                "formula": 1,
+                "accion": "施法動作",
+                "target": "自己",
+                "area": 0,
+                "es_terreno": false,
+                "es_self_aoe": false,
+                "es_aoe": false,
+                "invoca_npc": 0,
+                "dur_invoca": 3600,
+                "es_invocacion": false,
+                "es_encanto": false,
+                "es_panico": false,
+                "es_transformacion": false,
+                "trans_sprite": 0,
+                "def_bonus": 0,
+                "atk_bonus": 0,
+                "matk_bonus": 0,
+                "mdef_bonus": 0,
+                "move_speed_bonus": 0,
+                "atk_speed_bonus": 0,
+                "hp_bonus": 0,
+                "mp_bonus": 0,
+                "cast_redux": 0,
+                "atk_mod": 0,
+                "def_mod": 0,
+                "phys_dmg_pct": 0,
+                "mag_dmg_pct": 0,
+                "phys_mit_pct": 0,
+                "mag_mit_pct": 0,
+                "vel_mov_mod": 0,
+                "es_debuff": false
+              },
+              "es_transform": false
+            }
+          }
+        },
+        {
+          "nombre": "KarmaV2",
+          "char_id": 1002,
+          "ranura": 1,
+          "nivel": 300,
+          "class_id": 5,
+          "stage_id": 285,
+          "hp": 189728,
+          "hp_max": 8000,
+          "mp": 141024,
+          "mp_max": 4800,
+          "apariencia": [
+            0,
+            0,
+            0,
+            8,
+            8
+          ],
+          "tile_x": 20,
+          "tile_y": 126,
+          "habilidades": [
+            [
+              9,
+              300,
+              85
+            ],
+            [
+              12,
+              300,
+              85
+            ],
+            [
+              13,
+              300,
+              85
+            ],
+            [
+              15,
+              300,
+              85
+            ],
+            [
+              16,
+              300,
+              85
+            ],
+            [
+              33,
+              300,
+              85
+            ]
+          ],
+          "barra": [
+            601,
+            602,
+            603,
+            [
+              1,
+              5850
+            ],
+            0,
+            0,
+            0,
+            0,
+            0,
+            [
+              2,
+              4457
+            ],
+            [
+              2,
+              47382
+            ],
+            [
+              2,
+              47392
+            ]
+          ],
+          "quests": [],
+          "inventario": {
+            "0": 1,
+            "1": 58802,
+            "2": 58803,
+            "3": 58786,
+            "4": 58786,
+            "5": 58804,
+            "6": 58805,
+            "7": 64850,
+            "8": 67878,
+            "9": 59797,
+            "10": 64629,
+            "20": 47392,
+            "21": 47252,
+            "22": 47382,
+            "23": 54569,
+            "24": 25832,
+            "25": 3696,
+            "26": 1228,
+            "27": 2,
+            "28": 5933,
+            "167": 82418,
+            "168": 82419,
+            "169": 82423,
+            "170": 82424,
+            "171": 82420,
+            "172": 82421,
+            "173": 82422,
+            "175": 78448
+          },
+          "tutorial": 1,
+          "oro": 88989020,
+          "exp": 451743782,
+          "cantidades": {
+            "24": 199,
+            "26": 2,
+            "27": 3
+          },
+          "banco_habilidades": {
+            "9": [
+              300,
+              85
+            ],
+            "12": [
+              300,
+              85
+            ],
+            "13": [
+              300,
+              85
+            ],
+            "15": [
+              300,
+              85
+            ],
+            "16": [
+              300,
+              85
+            ],
+            "33": [
+              300,
+              85
+            ]
+          },
+          "mejoras": {
+            "1": {
+              "veces": 15,
+              "gemas": [
+                54569,
+                54569,
+                54569,
+                54569,
+                54569
+              ],
+              "extra": {
+                "hp": 344,
+                "mp": 220,
+                "dfs": 1327,
+                "mdef": 184,
+                "agilidad": 30
+              },
+              "huecos": 5
+            },
+            "2": {
+              "veces": 15,
+              "gemas": [
+                54569,
+                54569,
+                54569,
+                54569,
+                54569
+              ],
+              "extra": {
+                "hp": 344,
+                "mp": 220,
+                "dfs": 1281,
+                "mdef": 410,
+                "agilidad": 30
+              },
+              "huecos": 5
+            },
+            "3": {
+              "veces": 15,
+              "gemas": [
+                54569,
+                54569,
+                54569,
+                54569,
+                54569
+              ],
+              "extra": {},
+              "huecos": 5
+            },
+            "4": {
+              "veces": 15,
+              "gemas": [
+                54569,
+                54569,
+                54569,
+                54569,
+                54569
+              ],
+              "extra": {},
+              "huecos": 5
+            },
+            "5": {
+              "veces": 15,
+              "gemas": [
+                54569,
+                54569,
+                54569,
+                54569,
+                54569
+              ],
+              "extra": {
+                "hp": 344,
+                "mp": 220,
+                "dfs": 1112,
+                "mdef": 394,
+                "agilidad": 30
+              },
+              "huecos": 5
+            },
+            "6": {
+              "veces": 15,
+              "gemas": [
+                54569,
+                54569,
+                54569,
+                54569,
+                54569
+              ],
+              "extra": {
+                "hp": 344,
+                "mp": 220,
+                "dfs": 1112,
+                "mdef": 473,
+                "agilidad": 30
+              },
+              "huecos": 5
+            },
+            "7": {
+              "veces": 0,
+              "gemas": [],
+              "extra": {
+                "hp": 330,
+                "mp": 220,
+                "dfs": 24,
+                "peso": 2800,
+                "ranuras": 10
+              },
+              "huecos": 0
+            },
+            "10": {
+              "veces": 15,
+              "gemas": [],
+              "extra": {
+                "velocidad": 40,
+                "atk": 260,
+                "dfs": 260,
+                "matk": 260,
+                "mdef": 260
+              }
+            }
+          },
+          "hechizos_aprendidos": [
+            655,
+            5850,
+            855
+          ],
+          "sp": 14000,
+          "buffs": {
+            "602": {
+              "fin": 1790738152.7419991,
+              "mag": {
+                "id": 602,
+                "nombre": "Swiftness Song I",
+                "mp": 15,
+                "sp": 0,
+                "efecto": 133,
+                "hp": 0,
+                "cd_ms": 2000,
+                "dur_ms": 300000,
+                "cast_time": 100,
+                "crit_rate": 0,
+                "phys_mit": 0,
+                "mag_mit": 0,
+                "es_auto": true,
+                "es_cura": false,
+                "es_buff": true,
+                "es_ataque": false,
+                "es_pasiva": false,
+                "cost_sp": 0,
+                "sp_gana": 0,
+                "rango": 1,
+                "dano_base": 0,
+                "dano_var": 0,
+                "dano_coef": 0,
+                "formula": 1,
+                "accion": "攻擊動作",
+                "target": "自己",
+                "area": 0,
+                "es_terreno": false,
+                "es_self_aoe": false,
+                "es_aoe": false,
+                "invoca_npc": 0,
+                "dur_invoca": 3600,
+                "es_invocacion": false,
+                "es_encanto": false,
+                "es_panico": false,
+                "es_transformacion": false,
+                "trans_sprite": 0,
+                "def_bonus": 0,
+                "atk_bonus": 0,
+                "matk_bonus": 0,
+                "mdef_bonus": 0,
+                "move_speed_bonus": 0,
+                "atk_speed_bonus": 5,
+                "hp_bonus": 0,
+                "mp_bonus": 0,
+                "cast_redux": 0,
+                "atk_mod": 0,
+                "def_mod": 0,
+                "phys_dmg_pct": 0,
+                "mag_dmg_pct": 0,
+                "phys_mit_pct": 0,
+                "mag_mit_pct": 0,
+                "vel_mov_mod": 0,
+                "es_debuff": false
+              },
+              "es_transform": false
+            },
+            "655": {
+              "fin": 1790738210.460023,
+              "mag": {
+                "id": 655,
+                "nombre": "Bloody Storm V",
+                "mp": 93,
+                "sp": 0,
+                "efecto": 145,
+                "hp": -9,
+                "cd_ms": 2000,
+                "dur_ms": 0,
+                "cast_time": 100,
+                "crit_rate": 0,
+                "phys_mit": 0,
+                "mag_mit": 0,
+                "es_auto": true,
+                "es_cura": false,
+                "es_buff": true,
+                "es_ataque": false,
+                "es_pasiva": false,
+                "cost_sp": 0,
+                "sp_gana": 1000,
+                "rango": 1,
+                "dano_base": 0,
+                "dano_var": 0,
+                "dano_coef": 0,
+                "formula": 1,
+                "accion": "攻擊動作",
+                "target": "自己",
+                "area": 0,
+                "es_terreno": false,
+                "es_self_aoe": false,
+                "es_aoe": false,
+                "invoca_npc": 0,
+                "dur_invoca": 3600,
+                "es_invocacion": false,
+                "es_encanto": false,
+                "es_panico": false,
+                "es_transformacion": false,
+                "trans_sprite": 0,
+                "def_bonus": 0,
+                "atk_bonus": 0,
+                "matk_bonus": 0,
+                "mdef_bonus": 0,
+                "move_speed_bonus": 0,
+                "atk_speed_bonus": 0,
+                "hp_bonus": -9,
+                "mp_bonus": 0,
+                "cast_redux": 0,
+                "atk_mod": 0,
+                "def_mod": 0,
+                "phys_dmg_pct": 0,
+                "mag_dmg_pct": 0,
+                "phys_mit_pct": 0,
+                "mag_mit_pct": 0,
+                "vel_mov_mod": 0,
+                "es_debuff": false
+              },
+              "es_transform": false,
+              "hp": -9
+            },
+            "603": {
+              "fin": 1790738015.7335832,
+              "mag": {
+                "id": 603,
+                "nombre": "Injury Cure I",
+                "mp": 15,
+                "sp": 0,
+                "efecto": 146,
+                "hp": 15,
+                "cd_ms": 2000,
+                "dur_ms": 11000,
+                "cast_time": 100,
+                "crit_rate": 0,
+                "phys_mit": 0,
+                "mag_mit": 0,
+                "es_auto": true,
+                "es_cura": false,
+                "es_buff": true,
+                "es_ataque": false,
+                "es_pasiva": false,
+                "cost_sp": 0,
+                "sp_gana": 0,
+                "rango": 1,
+                "dano_base": 0,
+                "dano_var": 0,
+                "dano_coef": 0,
+                "formula": 1,
+                "accion": "攻擊動作",
+                "target": "自己",
+                "area": 0,
+                "es_terreno": false,
+                "es_self_aoe": false,
+                "es_aoe": false,
+                "invoca_npc": 0,
+                "dur_invoca": 3600,
+                "es_invocacion": false,
+                "es_encanto": false,
+                "es_panico": false,
+                "es_transformacion": false,
+                "trans_sprite": 0,
+                "def_bonus": 0,
+                "atk_bonus": 0,
+                "matk_bonus": 0,
+                "mdef_bonus": 0,
+                "move_speed_bonus": 0,
+                "atk_speed_bonus": 0,
+                "hp_bonus": 15,
+                "mp_bonus": 0,
+                "cast_redux": 0,
+                "atk_mod": 0,
+                "def_mod": 0,
+                "phys_dmg_pct": 0,
+                "mag_dmg_pct": 0,
+                "phys_mit_pct": 0,
+                "mag_mit_pct": 0,
+                "vel_mov_mod": 0,
+                "es_debuff": false
+              },
+              "es_transform": false,
+              "hp": 15
+            }
+          }
+        },
+        {
+          "nombre": "KarmaV2",
+          "char_id": 1003,
+          "ranura": 2,
+          "nivel": 12,
+          "class_id": 7,
+          "stage_id": 41,
+          "hp": 807,
+          "hp_max": 579,
+          "mp": 243,
+          "mp_max": 319,
+          "apariencia": [
+            0,
+            0,
+            0,
+            8,
+            8
+          ],
+          "tile_x": 121,
+          "tile_y": 80,
+          "habilidades": [
+            [
+              9,
+              9,
+              63
+            ],
+            [
+              12,
+              11,
+              9
+            ],
+            [
+              13,
+              10,
+              26
+            ],
+            [
+              15,
+              10,
+              24
+            ],
+            [
+              16,
+              10,
+              58
+            ],
+            [
+              33,
+              10,
+              66
+            ]
+          ],
+          "barra": [
+            601,
+            602,
+            603
+          ],
+          "quests": [],
+          "oro": 8542,
+          "inventario": {
+            "0": 1,
+            "1": 1840,
+            "2": 1841,
+            "3": 4,
+            "4": 4,
+            "5": 1838,
+            "6": 95,
+            "20": 5933,
+            "24": 1841,
+            "35": 25832
+          },
+          "exp": 16174,
+          "tutorial": 3,
+          "cantidades": {
+            "35": 200
+          }
+        }
+      ]
+    },
+    "karmakandav3": {
+      "password": "",
+      "personajes": [
+        {
+          "nombre": "Karma",
+          "char_id": 1001,
+          "ranura": 0,
+          "nivel": 1,
+          "class_id": 0,
+          "stage_id": 51,
+          "hp": 296,
+          "hp_max": 296,
+          "mp": 218,
+          "mp_max": 218,
+          "apariencia": [
+            0,
+            0,
+            0,
+            8,
+            8
+          ],
+          "tile_x": 82,
+          "tile_y": 83,
+          "habilidades": [],
+          "barra": [],
+          "quests": [],
+          "inventario": {
+            "0": 1,
+            "2": 26,
+            "20": 25832
+          },
+          "tutorial": 0,
+          "oro": 0,
+          "cantidades": {
+            "20": 200
+          }
+        }
+      ]
+    },
+    "karmakanda": {
+      "password": "",
+      "personajes": []
+    },
+    "karmaV3": {
+      "password": "",
+      "personajes": [
+        {
+          "nombre": "KarmaV4",
+          "char_id": 1001,
+          "ranura": 0,
+          "nivel": 1,
+          "class_id": 0,
+          "stage_id": 41,
+          "hp": 296,
+          "hp_max": 296,
+          "mp": 218,
+          "mp_max": 218,
+          "apariencia": [
+            0,
+            0,
+            0,
+            8,
+            8
+          ],
+          "tile_x": 161,
+          "tile_y": 74,
+          "habilidades": [
+            [
+              10,
+              1,
+              0
+            ],
+            [
+              12,
+              1,
+              0
+            ],
+            [
+              13,
+              1,
+              0
+            ],
+            [
+              15,
+              1,
+              0
+            ],
+            [
+              16,
+              1,
+              0
+            ],
+            [
+              33,
+              1,
+              0
+            ]
+          ],
+          "barra": [],
+          "quests": [],
+          "inventario": {
+            "0": 1,
+            "2": 26,
+            "3": 19832,
+            "5": 28,
+            "6": 30,
+            "20": 1948,
+            "21": 1949,
+            "22": 1951,
+            "23": 19966,
+            "24": 20044,
+            "25": 20055,
+            "27": 20074,
+            "28": 20075,
+            "29": 20104,
+            "30": 25832,
+            "26": 3397
+          },
+          "tutorial": 1,
+          "cantidades": {
+            "30": 200
+          }
+        }
+      ]
+    }
+  }
+}

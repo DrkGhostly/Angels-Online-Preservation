@@ -162,6 +162,14 @@ Path`, `Third Spirit`, `Limit Breaker`, `Shadow Meld`, `Killer Intent`) y la
   - **Lava Cave (Stage 69) y Flaming Door (Stage 70)**: recetas de herrería y artesanía nv 60-70 (Rock Smith
     y Rock Master), investigadores avanzados de armas y arcos, y entrenadores de magias (Earth Life Mage
     y ChaosWraith Mage)
+  - **Once ciudades verificadas byte a byte** contra lo que manda el servidor real, con sus
+    vendedores, banco, reparación y tiendas: Whitefang Village, Coo Village, Rainbow Town,
+    Twinkle Town, Specter Village, Teddy Amusement, Galaxia Square, Desolate Sea, Chilly
+    Village (región de Celestia) y Busy Market (región de Warring Realm)
+  - **Floral Alley (Stage 398, región de Sun Sea Maze)**: única poblada **sin captura**. Los
+    diálogos salen de `msg.xml` (bloque 516188-516210) y las tiendas de `shop.xml`, donde cada
+    ciudad añade un par y el impar son espadas y el par magias: el `Researcher (C)` abre la 221
+    (Edge Guard I) y el `Researcher (S)` la 222 (Astro Impact I), ambas de nivel 310
   - **Poblados de facción y puestos**: Cherry Village, Memory Cave, Mysterious Garden, Gebuer Vale,
     Dragon Graveyard, Mysterious Wetland, etc.
 
@@ -190,7 +198,8 @@ Path`, `Third Spirit`, `Limit Breaker`, `Shadow Meld`, `Killer Intent`) y la
 **No funciona**
 
 - La ID Card dibuja al personaje en ropa interior, aunque el muñeco del mundo
-  sí sale vestido (más abajo)
+  sí sale vestido. El `0x0179`, que era el último sospechoso, quedó
+  descartado: sus ids son martillos, no ropa (más abajo)
 - Los recursos no se recolectan, así que las nueve habilidades de recolección
   y producción no suben nunca
 - Faltan cinco NPC del Lyceum que nunca se capturaron
@@ -466,14 +475,23 @@ El muñeco que camina por el mundo lleva su equipo bien, pero la figura del
 panel de la ID Card sale en ropa interior. Ahí el arma y los zapatos **sí**
 se dibujan; la que no se aplica es la prenda del cuerpo.
 
-Tres candidatos quedaron descartados por medición, para que nadie los repita:
-el `0x0149` es byte a byte idéntico siempre, el `0x0179` sale igual después
-de cada equipado sin importar qué te pongas, y la ficha `0x0002` no contiene
-ningún id del equipo — dos logins del **mismo** personaje con equipo distinto
-se diferencian en sólo 56 bytes, y todos son stats y nivel.
+**El último candidato quedó descartado (30/09/2026).** El `0x0179` se
+llevaba tiempo arrastrando como el mensaje que faltaba por mandar, con sus
+ids `40287..40295` tomados por sprites de ropa. No lo son: esos nueve
+números están literales en `setting/pet_inlay.xml`, con el mismo orden y la
+misma agrupación de tres en tres, y el ALIAS del archivo los llama
+`ItemID` con `Priority1/2/3`. Cruzados contra `item.xml` resultan ser
+**martillos** — Hammer, Attribute Hammer y Value Hammer, con sus variantes
+normal, untradable y de un día. El `0x0179` es una lista de objetos por
+prioridad para engarzar, es una tabla estática igual para todos, y no
+dibuja nada.
 
-Lo que lo resolvería es una captura hecha con la ID Card **abierta**,
-quitándose y poniéndose una prenda del cuerpo.
+Con eso caen los cuatro candidatos que había: `0x0149`, `0x0179`, la ficha
+`0x0002` y la correlación del requisito de habilidad. El mensaje que
+redibuja la figura **no está en nada de lo capturado hasta hoy**, así que
+sigue haciendo falta una captura con la ID Card **abierta** quitándose y
+poniéndose una prenda del cuerpo. Lo que ya no hace falta es buscar la
+tabla item → sprite: no existía.
 
 ### La fórmula de daño se va a nivel alto
 
@@ -575,7 +593,8 @@ Dos consejos que costaron varias rondas aprender:
 Lo que haría falta ahora, por orden de utilidad:
 
 1. **Equipar una prenda del cuerpo con la ID Card abierta**, para aislar el
-   mensaje que redibuja la figura.
+   mensaje que redibuja la figura. Sigue siendo la primera de la lista: con
+   el `0x0179` ya descartado no queda ningún candidato en lo capturado.
 2. **Elegir opciones de diálogo** en varios NPC distintos. Con cinco o seis
    casos se llenan los 35 NPC del Lyceum que siguen sin texto.
 3. **Recolectar un recurso** con la herramienta equipada. De eso dependen

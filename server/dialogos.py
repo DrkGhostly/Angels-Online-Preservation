@@ -351,11 +351,101 @@ ANGELES_FACCION = {
 }
 
 
+# La linea de Cupid cambia de ciudad en ciudad. Se indexa por ENTIDAD y no
+# por stage: la entidad es unica por ciudad y llega siempre, tambien cuando
+# quien pregunta no sabe en que mapa esta.
+# {entidad: (mensaje, opciones, acciones)}. Lo que no este aqui usa la
+# generica, la 5745 con tres opciones.
+CUPID_POR_ENTIDAD = {
+    123721: (511112, [5746, 5747], [1000071, 1000072]),   # Twinkle Town
+    123791: (511763, [5746, 5747], [1000080, 1000081]),   # Specter Village
+}
+
+
 def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
            visto_michael: bool = False, stage: int = 0,
            registrado: bool = False, entidad: int = 0, val: int = 0):
     """Una linea de dialogo para ese NPC, o None si no se le conoce ninguna."""
     npc_val = val or (val_por_entidad(entidad, 0) if entidad else 0)
+
+    # --- Busy Market (region de Warring Realm) ---
+    # Medido en mundo_131157_254492_orden.jsonl, seis clics. Misma forma
+    # que Yatiss y Chilly: banco, tecnico que repara, mercader con dos
+    # tiendas y los dos investigadores. Tampoco hay vendedores de productor.
+    #
+    # Por entidad: esta es la CUARTA pareja de Spell/Skill Researcher.
+    if entidad == 123988:   # Bank Staff
+        return [armar_linea(515831, npc_val or 1526, [515832, 515833],
+                            acciones=[1000016, 1000020])[2:]]
+    if entidad == 123991:   # Market Technician -- el reparador
+        return [armar_linea(515843, npc_val or 1387, [515844, 515834],
+                            acciones=[1000023, 0])[2:]]
+    if entidad == 123993:   # Market Merchant
+        return [armar_linea(515849, npc_val or 1063, [515850, 515851],
+                            acciones=[1000026, 0])[2:]]
+    if entidad == 123987:   # Spell Researcher
+        return [armar_linea(515845, npc_val or 1527, [515846, 515851],
+                            acciones=[1000024, 0])[2:]]
+    if entidad == 123992:   # Skill Researcher
+        return [armar_linea(515847, npc_val or 115, [515848, 515834],
+                            acciones=[1000025, 0])[2:]]
+    if entidad == 123989:   # Athena
+        return [armar_linea(153805, npc_val or 1515, [])[2:]]
+
+    # --- Chilly Village (region de Celestia) / los Elf ---
+    # Medido en mundo_130629_352397_orden.jsonl, cinco clics. Calcado a
+    # Yatiss: banco con respuesta de cinco lineas, un tecnico que repara,
+    # mercader con dos tiendas y los dos investigadores. Tampoco hay
+    # vendedores de productor.
+    #
+    # Por entidad, que esta es la TERCERA pareja de Spell/Skill Researcher
+    # del juego -- las otras dos estan en Desolate Sea.
+    if entidad == 123967:   # Banker Elf
+        return [armar_linea(515188, npc_val or 1247, [515189, 515190],
+                            acciones=[1000009, 1000010])[2:]]
+    if entidad == 123968:   # Technician Elf -- el reparador
+        return [armar_linea(515200, npc_val or 1292, [515201, 515191],
+                            acciones=[1000016, 0])[2:]]
+    if entidad == 123969:   # Merchant Elf
+        return [armar_linea(515206, npc_val or 34, [515207, 515208],
+                            acciones=[1000019, 0])[2:]]
+    if entidad == 123971:   # Spell Researcher
+        return [armar_linea(515202, npc_val or 1306, [515203, 515208],
+                            acciones=[1000017, 0])[2:]]
+    if entidad == 123970:   # Skill Researcher
+        return [armar_linea(515204, npc_val or 1307, [515205, 515208],
+                            acciones=[1000018, 0])[2:]]
+
+    # --- Desolate Sea / Yatiss ---
+    # Medido en mundo_125556_957230_orden.jsonl, ocho clics. Aqui NO hay
+    # vendedores de productor: ni Smith ni Master de recetas. Lo que hay es
+    # banco, dos investigadores, mercader y un tecnico que es el reparador.
+    #
+    # Va TODO por entidad y no por nombre porque 'Spell Researcher' y
+    # 'Skill Researcher' ya existen en Atlantis Blue Ocean con otras lineas
+    # y otras tiendas (89 y 90); por nombre ganaria Atlantis.
+    if entidad == 123912:   # Yatiss Banker
+        return [armar_linea(514636, npc_val or 187, [514637, 514638, 514639],
+                            acciones=[1000055, 1000056, 0])[2:]]
+    if entidad == 123910:   # Spell Researcher
+        return [armar_linea(514650, npc_val or 186, [514651, 514656],
+                            acciones=[1000062, 0])[2:]]
+    if entidad == 123911:   # Skill Researcher
+        return [armar_linea(514652, npc_val or 186, [514653, 514656],
+                            acciones=[1000063, 0])[2:]]
+    if entidad == 123913:   # Yatiss Merchant
+        return [armar_linea(514654, npc_val or 183, [514655, 514656],
+                            acciones=[1000065, 0])[2:]]
+    if entidad == 123914:   # Yatiss Technician -- el reparador
+        return [armar_linea(514648, npc_val or 181, [514649, 514639],
+                            acciones=[1000064, 0])[2:]]
+    if entidad == 123908:   # Manager Pete
+        return [armar_linea(150101, npc_val or 1466, [150102, 150103],
+                            acciones=[1000041, 0])[2:]]
+    if entidad == 123916:   # Pierre
+        return [armar_linea(150504, npc_val or 1463, [])[2:]]
+    if entidad == 123932:   # Biologist Boris
+        return [armar_linea(150804, npc_val or 1496, [])[2:]]
 
     # Prioridad por id de entidad exacto de NPC de ciudad
     # --- Aurora City (Stage 3) ---
@@ -416,6 +506,14 @@ def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
     if 'Repair Angel' in nombre:
         return [armar_linea(5100, 4, [5101, 12105])[2:]]
     if 'Cupid' in nombre:
+        # CUPID TIENE SU PROPIA LINEA EN CADA CIUDAD. La generica es la
+        # 5745 con tres opciones, medida en Angelic Cave; en Twinkle Town
+        # usa la 511112 con solo dos. Se mira el stage antes de caer en la
+        # generica.
+        propia = CUPID_POR_ENTIDAD.get(int(entidad or 0))
+        if propia:
+            mid, ops, acc = propia
+            return [armar_linea(mid, 6, ops, acciones=acc)[2:]]
         # Las acciones salieron de la captura de Angelic Cave del 28/09/2026.
         # Antes se mandaba la linea sin ellas y el cliente la aceptaba igual,
         # pero el servidor real las manda y ahora la linea sale identica.
@@ -594,11 +692,18 @@ def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
     if 'Pyalu' in nombre:
         return [armar_linea(70707, npc_val or 56, [])[2:]]
 
-    # Atlantis - Blue Ocean (Stage 90)
+    # --- Desolate Sea, la otra pareja de investigadores ---
+    # Medido en mundo_112545_412238_orden.jsonl. Son de la region de
+    # Desolate Sea, no de Atlantis: estaban mal etiquetados. Otras
+    # entidades que los de Yatiss (122411/122412 frente a 123910/123911)
+    # y otras tiendas, asi que van por nombre; los de Yatiss se resuelven
+    # antes por entidad y no se los comen.
     if 'Spell Researcher' in nombre:
-        return [armar_linea(7533, npc_val or 158, [7535, 7536])[2:]]
+        return [armar_linea(7533, npc_val or 158, [7535, 7536],
+                            acciones=[1000050, 0])[2:]]
     if 'Skill Researcher' in nombre:
-        return [armar_linea(7534, npc_val or 108, [7535, 7536])[2:]]
+        return [armar_linea(7534, npc_val or 108, [7535, 7536],
+                            acciones=[1000051, 0])[2:]]
     if 'Scholar Lubo' in nombre:
         return [armar_linea(70705, npc_val or 56, [])[2:]]
     if 'Watt. Lightening' in nombre:
@@ -1112,6 +1217,220 @@ def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
         return [armar_linea(509810, npc_val or 1259, [509811, 509812],
                             acciones=[1000013, 0])[2:]]
 
+    # --- Rainbow Town (Stage 308) ---
+    # Los Chrono. Medido en mundo_121453_667578_orden.jsonl, siete clics.
+    # Aqui se complica: el Instructor y el Smith abren LA MISMA segunda
+    # pagina, la 510422, con seis opciones, y cada uno con sus acciones. El
+    # Instructor tiene ademas una TERCERA pagina detras de la opcion 5366.
+    # El 510101 es el adios compartido.
+    if 'Chrono Worker' in nombre:
+        return [armar_linea(510097, npc_val or 192, [510098, 510101],
+                            acciones=[1000030, 0])[2:]]
+    if 'Chrono Smith' in nombre:
+        return [armar_linea(510099, npc_val or 1337, [510100, 510101],
+                            acciones=[1000056, 0])[2:]]
+    if 'Chrono Instructo' in nombre:
+        return [armar_linea(510102, npc_val or 1338, [510103, 510101],
+                            acciones=[1000057, 0])[2:]]
+    if 'Chrono Tactician' in nombre:
+        return [armar_linea(510104, npc_val or 1336, [510105, 510101],
+                            acciones=[1000033, 0])[2:]]
+    if 'Chrono Researche' in nombre:
+        return [armar_linea(510106, npc_val or 188, [510107, 510101],
+                            acciones=[1000034, 0])[2:]]
+    if 'Chrono Banker' in nombre:
+        return [armar_linea(510108, npc_val or 10, [510109, 510110],
+                            acciones=[1000035, 1000039])[2:]]
+    if 'Chrono Merchant' in nombre:
+        # Retrato 1007 FIJO: el que sale del sprite da 1008. Le pasa lo
+        # mismo que al Vulcan Merchant de Whitefang.
+        return [armar_linea(510138, 1007, [510139, 510140],
+                            acciones=[1000062, 0])[2:]]
+
+    # --- Twinkle Town (Stage 320) ---
+    # Medido en mundo_122145_779758_orden.jsonl, diez clics. Misma forma que
+    # Rainbow: el Smith y el Instructor abren la MISMA pagina, la 511118, y
+    # hasta comparten la opcion que abre tienda (511574), asi que ahi la
+    # tienda tiene que salir de la pareja (entidad, opcion).
+    # El 511076 es el adios compartido.
+    if 'Twinkle Worker' in nombre:
+        return [armar_linea(511072, npc_val or 1372, [511073, 511076],
+                            acciones=[1000075, 0])[2:]]
+    if 'Twinkle Smith' in nombre:
+        return [armar_linea(511074, npc_val or 1206, [511075, 511076],
+                            acciones=[1000076, 0])[2:]]
+    if 'Twinkle Instruct' in nombre:
+        return [armar_linea(511077, npc_val or 1305, [511078, 511076],
+                            acciones=[1000079, 0])[2:]]
+    if 'Twinkle Tacticia' in nombre:
+        return [armar_linea(511079, npc_val or 1316, [511080, 511076],
+                            acciones=[1000082, 0])[2:]]
+    if 'Twinkle Research' in nombre:
+        return [armar_linea(511081, npc_val or 1328, [511082, 511076],
+                            acciones=[1000083, 0])[2:]]
+    if 'Twinkle Banker' in nombre:
+        return [armar_linea(511083, npc_val or 1374,
+                            [511084, 511085, 511086],
+                            acciones=[1000084, 1000085, 0])[2:]]
+    if 'Twinkle Merchant' in nombre:
+        return [armar_linea(511113, npc_val or 1193, [511114, 511115],
+                            acciones=[1000105, 0])[2:]]
+    if 'Whisp Clerk' in nombre:
+        # Dos paginas: el cliente las pide una a una.
+        return [
+            armar_linea(511095, npc_val or 5, [])[2:],
+            armar_linea(510761, npc_val or 5, [511571, 511572],
+                        acciones=[1000091, 1000117])[2:],
+        ]
+    if 'Rich Bill' in nombre:
+        return [armar_linea(140501, npc_val or 1375, [140502, 140503],
+                            acciones=[1000068, 0])[2:]]
+    if 'Adored Henri' in nombre:
+        return [armar_linea(140408, npc_val or 1248, [])[2:]]
+
+    # --- Specter Village (Stage 335) ---
+    # Medido en mundo_123002_293264_orden.jsonl, nueve clics. El 511727 es
+    # el adios compartido. El Crystal Guard suelta CUATRO paginas seguidas.
+    if 'Specter Worker' in nombre:
+        return [armar_linea(511723, npc_val or 1392, [511724, 511727],
+                            acciones=[1000050, 0])[2:]]
+    if 'Specter Smith' in nombre:
+        return [armar_linea(511725, npc_val or 1300, [511726, 511727],
+                            acciones=[1000051, 0])[2:]]
+    if 'Specter Instruct' in nombre:
+        return [armar_linea(511728, npc_val or 1288, [511729, 511727],
+                            acciones=[1000054, 0])[2:]]
+    if 'Specter Tacticia' in nombre:
+        return [armar_linea(511730, npc_val or 1395, [511731, 511727],
+                            acciones=[1000057, 0])[2:]]
+    if 'Specter Research' in nombre:
+        return [armar_linea(511732, npc_val or 1332, [511733, 511727],
+                            acciones=[1000058, 0])[2:]]
+    if 'Specter Banker' in nombre:
+        return [armar_linea(511734, npc_val or 1383,
+                            [511735, 511736, 511737],
+                            acciones=[1000059, 1000060, 0])[2:]]
+    if 'Specter Merchant' in nombre:
+        return [armar_linea(511764, npc_val or 1398, [511765, 511766],
+                            acciones=[1000084, 0])[2:]]
+    if 'Crystal Guard' in nombre:
+        return [
+            armar_linea(511746, npc_val or 5, [])[2:],
+            armar_linea(511747, npc_val or 5, [])[2:],
+            armar_linea(511748, npc_val or 5, [])[2:],
+            armar_linea(511749, npc_val or 5, [511750, 511751],
+                        acciones=[1000069, 0])[2:],
+        ]
+
+    # --- Teddy Amusement (Stage 347) ---
+    # Medido en mundo_123802_521873_orden.jsonl, ocho clics. Dos novedades:
+    # el Merchant tiene TRES tiendas (la 3, la 35 y la 210) y el banquero
+    # encadena una TERCERA pagina. El 512962 es el adios de los oficios y
+    # el 512972 el del banquero y el worker.
+    if 'Park Worker' in nombre:
+        # Retrato 33 FIJO: el que sale del sprite da 143.
+        return [armar_linea(512958, 33, [512959, 512972],
+                            acciones=[1000099, 0])[2:]]
+    if 'Park Smith' in nombre:
+        return [armar_linea(512960, npc_val or 1196, [512961, 512962],
+                            acciones=[1000117, 0])[2:]]
+    if 'Park Instructor' in nombre:
+        return [armar_linea(512963, npc_val or 1170, [512964, 512962],
+                            acciones=[1000114, 0])[2:]]
+    if 'Park Tactician' in nombre:
+        return [armar_linea(512965, npc_val or 1060, [512966, 512962],
+                            acciones=[1000113, 0])[2:]]
+    if 'Park Researcher' in nombre:
+        return [armar_linea(512967, npc_val or 1181, [512968, 512962],
+                            acciones=[1000112, 0])[2:]]
+    if 'Park Banker' in nombre:
+        return [armar_linea(512969, npc_val or 1165,
+                            [512970, 512971, 512972],
+                            acciones=[1000105, 1000106, 0])[2:]]
+    if 'Park Merchant' in nombre:
+        return [armar_linea(512999, npc_val or 1189, [513000, 513001],
+                            acciones=[1000100, 0])[2:]]
+    if 'Beary Manager' in nombre:
+        return [
+            armar_linea(512981, npc_val or 5, [])[2:],
+            armar_linea(512982, npc_val or 5, [])[2:],
+            armar_linea(512983, npc_val or 5, [])[2:],
+            armar_linea(512984, npc_val or 5, [512985, 512986],
+                        acciones=[1000088, 0])[2:],
+        ]
+
+    # --- Floral Alley (stage 398, region de Sun Sea Maze) ---
+    # Este mapa NO viene de una captura: se poblo desde el cliente oficial
+    # de Taiwan y sus NPC estaban mudos. Las lineas salen de msg.xml
+    # (bloque 516188-516210) y la forma del menu se copia de Chilly
+    # Village, que si esta medida y usa exactamente el mismo reparto de
+    # cadenas un millar mas abajo.
+    #
+    # Sin acciones a proposito: no las podemos saber sin captura y los
+    # dialogos de tienda funcionan sin ellas, asi que van vacias en vez de
+    # inventadas. La ultima opcion de cada menu es la 516201, "me voy".
+    #
+    # Va al FINAL de propio(), por debajo de todas las comprobaciones
+    # por entidad: 'Bank Staff' y 'Merchant' son tambien los nombres de
+    # NPC de Busy Market y de media ciudad mas, y arriba del todo este
+    # bloque se los comia.
+    #
+    # Por nombre EXACTO y no por entidad: el entity_id de la plantilla es
+    # el de la sesion de Taiwan y no sobrevive a la conexion. Exacto y no
+    # 'in' porque 'Merchant' y 'Repairman' son subcadenas de media docena
+    # de NPC de otras ciudades.
+    if nombre == 'Researcher (S)':      # el de las magias
+        return [armar_linea(516188, npc_val or 4, [516189, 516201])[2:]]
+    if nombre == 'Researcher (C)':      # el de las de guerrero
+        return [armar_linea(516190, npc_val or 4, [516191, 516201])[2:]]
+    if nombre == 'Repairman':
+        return [armar_linea(516192, npc_val or 4, [516193, 516201])[2:]]
+    if nombre == 'Merchant':
+        return [armar_linea(516194, npc_val or 4, [516195, 516201])[2:]]
+    if nombre == 'Bank Staff':
+        return [armar_linea(516198, npc_val or 4,
+                            [516199, 516200, 516201])[2:]]
+
+    # --- Galaxia Square (Stage 355) ---
+    # Medido en mundo_124443_082465_orden.jsonl, nueve clics. Dos cosas que
+    # no salen en otras ciudades:
+    #   - el banquero contesta a UNA opcion con CINCO lineas seguidas
+    #   - el Researcher y el Tactician tienen TRES opciones y comparten la
+    #     514279, que nadie pulso: por su sitio es la de invocaciones
+    if 'Star Worker' in nombre:
+        return [armar_linea(514110, npc_val or 127, [514111, 514101],
+                            acciones=[1000045, 0])[2:]]
+    if 'Star Master' in nombre:
+        return [armar_linea(514116, npc_val or 1184, [514117, 514120],
+                            acciones=[1000048, 0])[2:]]
+    if 'Star Smith' in nombre:
+        return [armar_linea(514118, npc_val or 1370, [514119, 514120],
+                            acciones=[1000049, 0])[2:]]
+    if 'Star Tactician' in nombre:
+        return [armar_linea(514114, npc_val or 116,
+                            [514279, 514115, 514120],
+                            acciones=[1000082, 1000047, 0])[2:]]
+    if 'Star Researcher' in nombre:
+        return [armar_linea(514112, npc_val or 1169,
+                            [514279, 514113, 514120],
+                            acciones=[1000079, 1000046, 0])[2:]]
+    if 'Star Banker' in nombre:
+        return [armar_linea(514098, npc_val or 1181, [514099, 514100],
+                            acciones=[1000038, 1000042])[2:]]
+    if 'Star Merchant' in nombre:
+        return [armar_linea(514124, npc_val or 1132, [514125, 514126],
+                            acciones=[1000050, 0])[2:]]
+    if 'Starry Manager' in nombre:
+        return [
+            armar_linea(514130, npc_val or 5, [])[2:],
+            armar_linea(514131, npc_val or 5, [])[2:],
+            armar_linea(514132, npc_val or 5, [])[2:],
+            armar_linea(514133, npc_val or 5, [514134, 514135],
+                        acciones=[1000068, 0])[2:],
+        ]
+    if 'Floren' in nombre:
+        return [armar_linea(147510, npc_val or 1432, [])[2:]]
+
     d = _propios().get(nombre)
     if not d:
         return None
@@ -1158,6 +1477,28 @@ TIENDAS_POR_NOMBRE = {
     # --- Whitefang Village (Stage 288) ---
     'Vulcan Magic Dev': 160,
     'Vulcan Melee Dev': 161,
+    # --- Galaxia Square (Stage 355) ---
+    'Star Tactician': 211,
+    'Star Researcher': 212,
+    # --- Floral Alley (stage 398) ---
+    # El par que le toca por orden de ciudad: 215/216 Desolate Sea,
+    # 217/218 Chilly, 219/220 Busy Market, 221/222 Floral Alley. En
+    # shop.xml el impar son espadas y el par magias, y estas dos son las
+    # de nivel 310 (Edge Guard I y Astro Impact I).
+    'Researcher (C)': 221,   # guerrero
+    'Researcher (S)': 222,   # magias
+    # --- Teddy Amusement (Stage 347) ---
+    'Park Tactician': 208,
+    'Park Researcher': 209,
+    # --- Specter Village (Stage 335) ---
+    'Specter Tacticia': 201,
+    'Specter Research': 202,
+    # --- Twinkle Town (Stage 320) ---
+    'Twinkle Tacticia': 190,
+    'Twinkle Research': 191,
+    # --- Rainbow Town (Stage 308) ---
+    'Chrono Tactician': 176,
+    'Chrono Researche': 177,
     # --- Coo Village (Stage 298) ---
     'Magikale Instruc': 171,
     'Magikale Master': 170,
@@ -1231,8 +1572,8 @@ TIENDAS_POR_NOMBRE = {
     'Art Clerk': 21,         # Recetas de artesania
     'Sewing Clerk': 22,      # Recetas de sastreria
     'Cooking Clerk': 23,     # Recetas de cocina
-    'Spell Researcher': 89,  # Atlantis Blue Ocean - Spells (Action Sealed IV, Power Shield I-II, Anti-locked Shield I-III)
-    'Skill Researcher': 90,  # Atlantis Blue Ocean - Skills (Dream Slaughter IV, Silence IV, Defence Wall II-IV, Speedup Attack II-IV, Anti-locked Tactics I-III)
+    'Spell Researcher': 89,  # Desolate Sea - Spells (Action Sealed IV, Power Shield I-II, Anti-locked Shield I-III)
+    'Skill Researcher': 90,  # Desolate Sea - Skills (Dream Slaughter IV, Silence IV, Defence Wall II-IV, Speedup Attack II-IV, Anti-locked Tactics I-III)
     'Water Expert(W)': 96,   # Waterfall Camp - Weapon skills lv 90-100
     'Desert Expert(W)': 96,  # Desert Racetrack - Weapon skills lv 90-100
     'Water Expert(S)': 95,   # Waterfall Camp - Spell skills lv 90-100
@@ -1308,6 +1649,43 @@ TIENDAS_POR_ENTIDAD_Y_OPCION = {
     # --- Coo Village (Stage 298) ---
     (123623, 509813): 3,     # Magikale Merchant -> tienda 3
     (123623, 509814): 35,    # Magikale Merchant -> tienda 35
+    # --- Rainbow Town (Stage 308) ---
+    (123661, 510423): 171,   # Chrono Instructor -> tienda 171
+    (123661, 510875): 185,   # Chrono Instructor -> tienda 185
+    (123667, 510141): 3,     # Chrono Merchant   -> tienda 3
+    (123667, 510142): 35,    # Chrono Merchant   -> tienda 35
+    # --- Twinkle Town (Stage 320) ---
+    # El Smith y el Instructor comparten la opcion 511574 y cada uno abre
+    # su tienda, asi que aqui no vale la opcion sola.
+    (123719, 511574): 194,   # Twinkle Smith
+    (123718, 511574): 195,   # Twinkle Instructor
+    (123720, 511116): 3,     # Twinkle Merchant
+    (123720, 511117): 35,    # Twinkle Merchant
+    # --- Specter Village (Stage 335) ---
+    # El Smith y el Instructor abren la misma pagina con las mismas dos
+    # opciones, asi que la tienda sale de la pareja.
+    (123788, 511121): 198,   # Specter Instructor
+    (123790, 511122): 199,   # Specter Smith
+    (123786, 511767): 3,     # Specter Merchant
+    (123786, 511768): 35,    # Specter Merchant
+    # --- Teddy Amusement (Stage 347) ---
+    (123847, 513005): 205,   # Park Instructor
+    (123845, 513006): 206,   # Park Smith
+    (123844, 513002): 3,     # Park Merchant
+    (123844, 513003): 35,    # Park Merchant
+    (123844, 513007): 210,   # Park Merchant -- este tiene TRES
+    # --- Busy Market (region de Warring Realm) ---
+    (123993, 515852): 3,     # Market Merchant
+    (123993, 515853): 35,    # Market Merchant, su segunda tienda
+    # --- Chilly Village (region de Celestia) / los Elf ---
+    (123969, 515209): 3,     # Merchant Elf
+    (123969, 515210): 35,    # Merchant Elf, su segunda tienda
+    # --- Desolate Sea / Yatiss ---
+    (123913, 514657): 3,     # Yatiss Merchant
+    (123913, 514658): 35,    # Yatiss Merchant, su segunda tienda
+    # --- Galaxia Square (Stage 355) ---
+    (123873, 514122): 207,   # Star Master
+    (123874, 514123): 213,   # Star Smith
 }
 
 # Tiendas especificas segun la entidad del NPC que vende
@@ -1315,6 +1693,33 @@ TIENDAS_POR_ENTIDAD = {
     # --- Whitefang Village (Stage 288 - Magma Flux) ---
     123575: 160,   # Vulcan Magic Dev (opcion 508875)
     123576: 161,   # Vulcan Melee Dev (opcion 508873)
+    # --- Busy Market (region de Warring Realm) ---
+    123987: 220,   # Spell Researcher (opcion 515846)
+    123992: 219,   # Skill Researcher (opcion 515848)
+    # --- Chilly Village (region de Celestia) / los Elf ---
+    123971: 218,   # Spell Researcher (opcion 515203)
+    123970: 217,   # Skill Researcher (opcion 515205)
+    # --- Desolate Sea / Yatiss ---
+    # Ni estos ni los de Chilly van en TIENDAS_POR_NOMBRE: el nombre
+    # 'Spell/Skill Researcher' lo repiten TRES zonas con tiendas distintas.
+    123910: 216,   # Spell Researcher (opcion 514651)
+    123911: 215,   # Skill Researcher (opcion 514653)
+    # --- Galaxia Square (Stage 355) ---
+    123871: 211,   # Star Tactician (opcion 514115)
+    123876: 212,   # Star Researcher (opcion 514113)
+    123875: 3,     # Star Merchant (opcion 514127)
+    # --- Teddy Amusement (Stage 347) ---
+    123842: 208,   # Park Tactician (opcion 512966)
+    123846: 209,   # Park Researcher (opcion 512968)
+    # --- Specter Village (Stage 335) ---
+    123785: 201,   # Specter Tactician (opcion 511731)
+    123787: 202,   # Specter Researcher (opcion 511733)
+    # --- Twinkle Town (Stage 320) ---
+    123717: 190,   # Twinkle Tactician (opcion 511080)
+    123716: 191,   # Twinkle Researcher (opcion 511082)
+    # --- Rainbow Town (Stage 308) ---
+    123666: 176,   # Chrono Tactician (opcion 510105)
+    123663: 177,   # Chrono Researcher (opcion 510107)
     # --- Coo Village (Stage 298) ---
     123621: 171,   # Magikale Instructor (opcion 509775)
     123622: 170,   # Magikale Master     (opcion 509772)
@@ -1638,6 +2043,11 @@ TIENDAS_POR_ENTIDAD = {
 # Opciones de dialogo que abren la ventana de tienda (WND_NPCSALE).
 # Medido en sub_605190/sub_656E70 del cliente: opcode S->C 0x0034 [LE16 shop_id].
 TIENDAS_POR_OPCION = {
+    # --- Floral Alley (stage 398) ---
+    # El mercader no tiene entidad estable, asi que sus dos tiendas van por
+    # opcion. Los numeros son los de siempre: flechas la 3 y pociones la 35.
+    516196: 3,   # 箭矢, flechas
+    516197: 35,  # 藥水、雜貨, pociones y varios
     12103: 1,    # Default compra/venta
     5190: 1,     # "I wish to look at your goods" (Skills & gear)
     5270: 56,    # "Let me see." (StuffShop / Material Seller)
@@ -1726,7 +2136,25 @@ def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
                       # y el Merchant lo hace desde su segunda pagina.
                       508875, 508873, 509139, 509140, 509137, 509138,
                       # Coo Village (298)
-                      509775, 509772, 509779, 509777, 509813, 509814)
+                      509775, 509772, 509779, 509777, 509813, 509814,
+                      # Rainbow Town (308)
+                      510105, 510107, 510423, 510875, 510141, 510142,
+                      # Twinkle Town (320)
+                      511080, 511082, 511574, 511116, 511117,
+                      # Specter Village (335)
+                      511731, 511733, 511121, 511122, 511767, 511768,
+                      # Teddy Amusement (347)
+                      512966, 512968, 513005, 513006, 513002, 513003, 513007,
+                      # Galaxia Square (355)
+                      514115, 514113, 514122, 514123, 514127, 514128,
+                      # Desolate Sea / Yatiss
+                      514651, 514653, 514657, 514658,
+                      # Chilly Village
+                      515203, 515205, 515209, 515210,
+                      # Busy Market
+                      515846, 515848, 515852, 515853,
+                      # Floral Alley
+                      516189, 516191, 516196, 516197)
             or opcion_id in TIENDAS_POR_OPCION):
         shop_id = 0
         # 0. Lo primero: los NPC que venden DOS cosas segun la opcion.
@@ -1879,6 +2307,93 @@ def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
                else [1000121, 1000072])
         return (armar_linea(508315, val, [508316, 508317], acciones=acc),)
 
+    # --- Floral Alley: las segundas paginas ---
+    # Copiadas de Chilly Village: el banquero explica en cuatro lineas y
+    # vuelve al menu, y el mercader abre la 513011 con sus dos tiendas.
+    if opcion_id == 516199:
+        return (armar_linea(516202, val, []),
+                armar_linea(516203, val, []),
+                armar_linea(516204, val, []),
+                armar_linea(516205, val, []),
+                armar_linea(516198, val, [516199, 516200, 516201]))
+    if opcion_id == 516200:
+        return (armar_linea(516207, val, [516208, 516209]),)
+    if opcion_id in (516195, 516196):             # Merchant
+        return (armar_linea(513011, val, [516196, 516197]),)
+
+    # --- Busy Market: las segundas paginas ---
+    # El Bank Staff NO tiene la respuesta de cinco lineas: cada opcion suya
+    # da una sola. La 515832 acaba sin opciones, la 515833 sigue.
+    if opcion_id == 515832:
+        return (armar_linea(515835, val, []),)
+    if opcion_id == 515833:
+        return (armar_linea(515840, val, [515841, 515842],
+                            acciones=[1000021, 1000022]),)
+    if opcion_id in (515850, 515852):             # Market Merchant
+        return (armar_linea(513011, val, [515852, 515853],
+                            acciones=[1000027, 1000028]),)
+
+    # --- Chilly Village (region de Celestia): las segundas paginas ---
+    # El Banker Elf contesta a la 515189 con CINCO lineas, igual que el
+    # banquero de Galaxia: cuatro de explicacion y la quinta vuelve al menu.
+    if opcion_id == 515189:
+        return (armar_linea(515192, val, []),
+                armar_linea(515193, val, []),
+                armar_linea(515194, val, []),
+                armar_linea(515195, val, []),
+                armar_linea(515188, val, [515189, 515190],
+                            acciones=[1000009, 1000010]))
+    if opcion_id == 515190:
+        return (armar_linea(515197, val, [515198, 515199],
+                            acciones=[1000014, 1000015]),)
+    if opcion_id in (515207, 515209):             # Merchant Elf
+        return (armar_linea(513011, val, [515209, 515210],
+                            acciones=[1000020, 1000021]),)
+
+    # --- Desolate Sea / Yatiss: las segundas paginas ---
+    if opcion_id == 514638:                       # Yatiss Banker
+        return (armar_linea(514645, val, [514646, 514647],
+                            acciones=[1000060, 1000061]),)
+    if opcion_id == 150102:                       # Manager Pete
+        return (armar_linea(150104, val, []),)
+    # El Merchant reusa la 513011, la misma linea que los de Teddy y Galaxia,
+    # con sus dos tiendas. La segunda opcion vuelve a la misma pagina.
+    if opcion_id in (514655, 514657):
+        return (armar_linea(513011, val, [514657, 514658],
+                            acciones=[1000066, 1000067]),)
+
+    # --- Galaxia Square (355): las segundas paginas ---
+    #
+    # El Smith y el Master comparten la 514121 con las mismas dos opciones,
+    # igual que en Specter; la tienda sale de la pareja (entidad, opcion).
+    PAGINA2_GALAXIA = {
+        514119: [1000053, 1000054],   # Star Smith
+        514117: [1000055, 1000056],   # Star Master
+    }
+    if opcion_id in PAGINA2_GALAXIA:
+        return (armar_linea(514121, val, [514122, 514123],
+                            acciones=PAGINA2_GALAXIA[opcion_id]),)
+
+    # El Merchant de Galaxia, con sus dos tiendas.
+    if opcion_id == 514125:
+        return (armar_linea(513011, val, [514127, 514128],
+                            acciones=[1000051, 1000052]),)
+
+    # El banquero de Galaxia. La opcion 514100 abre su segunda pagina,
+    # pero la 514099 contesta con CINCO lineas de corrido: cuatro de
+    # explicacion y la quinta vuelve al menu con sus dos opciones. No pasa
+    # en ninguna de las otras seis ciudades.
+    if opcion_id == 514100:
+        return (armar_linea(514107, val, [514108, 514109],
+                            acciones=[1000043, 1000044]),)
+    if opcion_id == 514099:
+        return (armar_linea(514102, val, []),
+                armar_linea(514103, val, []),
+                armar_linea(514104, val, []),
+                armar_linea(514105, val, []),
+                armar_linea(514098, val, [514099, 514100],
+                            acciones=[1000038, 1000042]))
+
     # --- Whitefang Village (288): la segunda pagina ---
     #
     # El Smith, el Master y el Merchant abren LA MISMA linea, la 509136, y
@@ -1899,6 +2414,111 @@ def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
         v = 1006 if es_merchant else val
         return (armar_linea(509136, v, ops,
                             acciones=PAGINA2_WHITEFANG[opcion_id]),)
+
+    # --- Teddy Amusement (347): las paginas encadenadas ---
+    PAGINA2_TEDDY = {
+        512961: [1000118, 1000119],   # Park Smith
+        512964: [1000115, 1000116],   # Park Instructor
+    }
+    if opcion_id in PAGINA2_TEDDY:
+        return (armar_linea(513004, val, [513005, 513006],
+                            acciones=PAGINA2_TEDDY[opcion_id]),)
+
+    # El Merchant de Teddy: TRES tiendas en su segunda pagina.
+    if opcion_id in (513000, 513002):
+        return (armar_linea(513011, val, [513002, 513003, 513007, 5020],
+                            acciones=[1000128, 1000129, 1000130, 0]),)
+
+    # El banquero de Teddy, con su tercera pagina.
+    if opcion_id == 512971:
+        return (armar_linea(512978, val, [512979, 512980],
+                            acciones=[1000110, 1000111]),)
+    if opcion_id == 512979:
+        return (armar_linea(513008, val, [513009, 513010],
+                            acciones=[1000131, 1000132]),)
+
+    # --- Specter Village (335): las segundas paginas ---
+    #
+    # El Smith y el Instructor abren la misma 511769 con las mismas dos
+    # opciones y distintas acciones; la tienda sale luego de la pareja
+    # (entidad, opcion).
+    PAGINA2_SPECTER = {
+        511726: [1000052, 1000053],   # Specter Smith
+        511729: [1000055, 1000056],   # Specter Instructor
+    }
+    if opcion_id in PAGINA2_SPECTER:
+        return (armar_linea(511769, val, [511121, 511122],
+                            acciones=PAGINA2_SPECTER[opcion_id]),)
+
+    # El Merchant de Specter, con sus dos tiendas.
+    if opcion_id in (511765, 511767):
+        return (armar_linea(511764, val, [511767, 511768, 5020],
+                            acciones=[1000085, 1000086, 0]),)
+
+    # El banquero de Specter.
+    if opcion_id == 511736:
+        return (armar_linea(511743, val, [511744, 511745],
+                            acciones=[1000064, 1000065]),)
+
+    # --- Twinkle Town (320): las segundas paginas ---
+    #
+    # El Smith y el Instructor abren la misma 511118 con las mismas cuatro
+    # opciones y distintas acciones; la tienda de la 511574 sale luego de
+    # la pareja (entidad, opcion).
+    PAGINA2_TWINKLE = {
+        511075: [1000077, 1000078, 1000133, 1000134],   # Twinkle Smith
+        511078: [1000080, 1000081, 1000131, 1000132],   # Twinkle Instructor
+    }
+    if opcion_id in PAGINA2_TWINKLE:
+        return (armar_linea(511118, val, [511126, 511127, 511573, 511574],
+                            acciones=PAGINA2_TWINKLE[opcion_id]),)
+
+    # El Merchant de Twinkle, con sus dos tiendas.
+    if opcion_id in (511114, 511116):
+        return (armar_linea(510422, val, [511116, 511117, 511115],
+                            acciones=[1000106, 1000107, 0]),)
+
+    # El banquero de Twinkle.
+    if opcion_id == 511085:
+        return (armar_linea(511092, val, [511093, 511094],
+                            acciones=[1000089, 1000090]),)
+
+    # Rich Bill: su opcion contesta una linea suelta, sin opciones.
+    if opcion_id == 140502:
+        return (armar_linea(140504, val, []),)
+
+    # --- Rainbow Town (308): las paginas encadenadas ---
+    #
+    # El Instructor y el Smith abren LA MISMA linea, la 510422, con las
+    # mismas seis opciones, y lo unico distinto son sus acciones. Como en
+    # Whitefang, hay que mirar que opcion la abrio y no solo cual es.
+    #
+    # Y el Instructor tiene una tercera pagina detras de la 5366, con otras
+    # cuatro opciones.
+    PAGINA2_RAINBOW = {
+        510103: [1000074, 1000032, 1000117, 1000118, 1000137, 0],  # Instructor
+        510423: [1000074, 1000032, 1000117, 1000118, 1000137, 0],  # al volver
+        510100: [1000073, 1000031, 1000115, 1000116, 1000138, 0],  # Smith
+    }
+    if opcion_id in PAGINA2_RAINBOW:
+        return (armar_linea(510422, val,
+                            [510423, 510424, 510766, 510767, 5366, 5020],
+                            acciones=PAGINA2_RAINBOW[opcion_id]),)
+
+    # La TERCERA pagina del Instructor.
+    if opcion_id == 5366:
+        return (armar_linea(510422, val, [510874, 510875, 5367, 5020],
+                            acciones=[1000135, 1000136, 1000057, 0]),)
+
+    # El Merchant de Rainbow, con sus dos tiendas.
+    if opcion_id in (510139, 510141):
+        return (armar_linea(510138, 1007, [510141, 510142, 5020],
+                            acciones=[1000063, 1000064, 0]),)
+
+    # El banquero de Rainbow.
+    if opcion_id == 510110:
+        return (armar_linea(510117, val, [510118, 510119],
+                            acciones=[1000040, 1000041]),)
 
     # --- Coo Village (298): las segundas paginas ---
     PAGINA2_COO = {
@@ -1929,7 +2549,7 @@ def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
                             acciones=ACCIONES_ALMACEN.get(entidad, [])),)
 
     # Almacen / Banco (Bao Clerk y Chief Director)
-    if opcion_id in (5030, 5237, 508054, 508063):
+    if opcion_id in (5030, 5237, 508054, 508063, 516208):
         # Abrir almacen personal: WND_WAREHOUSE (opcode 0x002B)
         pkg_cierre = struct.pack('<H', 0x0012) + FIN
         # El almacen es el 0x004E, NO el 0x002B.
@@ -1966,11 +2586,11 @@ def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
     # Reparacion de equipo (Repair Angel: 5101 / Repair Expert: 5227 / Repair Robot: 7990) -> abre WND_REPAIR (opcode 0x004F)
     # El 508866 es el del Vulcan Repairer de Whitefang: estaba pulsado en la
     # captura y el extractor se lo salto, pero contesta igual que los demas.
-    # El 509770 es el Magikale Worker de Coo Village, que pese al nombre es
-    # el reparador de la ciudad. Su clic quedo sin respuesta en la captura y
+    # El 509770 es el Magikale Worker de Coo Village y el 510098 el Chrono
+    # Worker de Rainbow: los dos, pese al nombre, son el reparador. Su clic quedo sin respuesta en la captura y
     # va aqui por lo que hace, no por lo medido.
     if opcion_id in (5101, 5227, 7990, 112016, 117123, 121017, 508044,
-                     508866, 509770):
+                     508866, 509770, 510098, 511073, 511724, 512959, 514111, 514649, 515201, 515844, 516193):
         pkg_cierre = struct.pack('<H', 0x0012) + FIN
         # Los dos bytes van 00 01, no 01 00. Estaban del reves desde siempre
         # y no se habia notado porque nadie comparo el paquete con la captura:

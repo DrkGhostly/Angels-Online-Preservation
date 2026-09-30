@@ -84,6 +84,9 @@ class Personaje:
     # Mejoras por casilla de equipo: {ranura: {'veces': N, 'huecos': N,
     # 'gemas': [ids], 'extra': {stat: valor}}}. Lo llena mejoras.py.
     mejoras: dict = field(default_factory=dict)
+    # Las lamparas de SP. Se guardan: costaba un rato llenarlas y se perdian
+    # al salir.
+    sp: int = 0
     buffs: dict = field(default_factory=dict)
 
 
@@ -213,7 +216,20 @@ def secuencia(p: Personaje):
     hp_val = 280 if (not p.habilidades and p.nivel == 1 and p.hp <= 205) else p.hp
     salida.append(_cb_ini.atributo(p.entity_id, hp_val, _cb_ini.KIND_HP))
     salida.append(_cb_ini.atributo(p.entity_id, p.mp, _cb_ini.KIND_MP))
-    salida.append(_cb_ini.atributo(p.entity_id, p.exp, _cb_ini.KIND_EXP))
+    # AQUI SE MANDABA LA EXPERIENCIA EN EL HUECO DEL SP. KIND_EXP vale 4 y
+    # KIND_SP tambien: son el mismo campo, y el 4 es el SP. Al entrar el
+    # cliente recibia 322.674.302 "puntos de SP" -- la experiencia -- y la
+    # barra de lamparas se quedaba muerta: por mucho que luego subiera de
+    # 175 en 175, partia de un numero imposible.
+    #
+    # La experiencia YA va bien en el 0x001D de abajo, con los sub-campos
+    # 29 a 32, que es como la manda el servidor real. Aqui va el SP, que al
+    # entrar empieza a cero.
+    # El SP guardado del personaje, no un cero fijo: si saliste con cinco
+    # lamparas tienes que entrar con cinco.
+    salida.append(_cb_ini.atributo(p.entity_id,
+                                   max(0, int(getattr(p, 'sp', 0) or 0)),
+                                   _cb_ini.KIND_SP))
     # La barra de experiencia necesita los cuatro valores, no solo el actual:
     # sin el "cuanto falta para el siguiente nivel" el cliente la dibujaba
     # llena y con el numero de un personaje de nivel 1. Es el mismo 0x001D

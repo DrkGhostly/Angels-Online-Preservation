@@ -211,10 +211,11 @@ def atributo(entity_id: int, valor: int, kind: int = VIDA) -> bytes:
     struct.error suba hasta el bucle de asyncio y tire la sesion. Paso al
     entrar al juego, antes de poder moverse.
     """
+    _k = max(0, min(int(kind or 0), 0xFF))
+    _v = max(0, min(int(valor or 0), 0xFFFFFFFF))
     return struct.pack('<HIBBI', 0x0013,
                        max(0, min(int(entity_id or 0), 0xFFFFFFFF)), 1,
-                       max(0, min(int(kind or 0), 0xFF)),
-                       max(0, min(int(valor or 0), 0xFFFFFFFF)))
+                       _k, _v)
 
 
 def empieza_ataque(atacante: int) -> bytes:
@@ -557,6 +558,16 @@ def _palabra(clave: str, texto: str) -> bool:
                            texto or ''))
 
 
+# Cuanto multiplica el ataque cada FORMULA de habilidad, para las que no
+# traen 平均傷害. Medido con R.Atk 96663 en el proxy; son un punto por
+# formula y el numero ya lleva restada la defensa del bicho.
+RATIO_POR_FORMULA = {
+    '40': 2.84,   # Strangle Strike IV: 274747
+    '15': 0.76,   # Thunder Sword III:   73866
+}
+RATIO_FORMULA_DEFECTO = 1.0
+
+
 def datos_magia(magic_id: int) -> dict:
     """Informacion del hechizo/skill desde magic.xml."""
     global _MAGIC_CACHE
@@ -602,6 +613,32 @@ def datos_magia(magic_id: int) -> dict:
                 res['phys_mit'] = _num(d.get('物理傷害抵銷'), 0)
                 res['mag_mit'] = _num(d.get('魔法傷害抵銷'), 0)
                 res['dano_base'] = _num(d.get('平均傷害'), 0)
+                # EL 73% DE LAS HABILIDADES DE ATAQUE NO TRAE 平均傷害
+                # (6531 de 9003), y nuestro multiplicador salia de ahi: se
+                # quedaban todas en CERO. Es justo lo que le pasa a las
+                # fisicas de guerrero, que pegaban menos que un golpe
+                # normal aun con mas ataque.
+                #
+                # Lo que manda en esas es el 公式 (la formula). Medido en el
+                # proxy con R.Atk 96663:
+                #   Strangle Strike IV  公式 40  ->  274747  (x2.84)
+                #   Thunder Sword III   公式 15  ->   73866  (x0.76)
+                # Los dos tienen 高權位 ~300 y el daño se diferencia en
+                # cuatro veces, asi que el multiplicador es del 公式 y no
+                # del 高權位.
+                #
+                # OJO: es UN punto por formula y el numero incluye la
+                # defensa del bicho, asi que el multiplicador de verdad es
+                # algo mayor. Sirve para no quedarse en cero; para afinarlo
+                # hacen falta varias muestras de la misma habilidad contra
+                # bichos de distinta defensa.
+                if not res['dano_base']:
+                    _f = str(d.get('公式') or '')
+                    _r = RATIO_POR_FORMULA.get(_f, RATIO_FORMULA_DEFECTO)
+                    # El multiplicador es dano_base/base_denom, y el
+                    # denominador por defecto son 200.
+                    res['dano_base'] = int(round(_r * 200))
+                    res['ratio_formula'] = _r
                 res['dano_var'] = _num(d.get('傷害變數'), 0)
                 res['dano_coef'] = _num(d.get('傷害係數'), 0)
                 res['formula'] = _num(d.get('公式'), 0)

@@ -442,7 +442,7 @@ def bonos_de_equipo(bolsa, mejoras: dict = None) -> dict:
         for _g in (_ex.get('gemas') or []):
             if not _g:
                 continue
-            for _k, _v in bono_gema(_g, r).items():
+            for _k, _v in bono_gema(_g, r, iid).items():
                 _dest = {'rigor': 'accuracy', 'dfs': 'def',
                          'agilidad': 'agility'}.get(_k, _k)
                 if _dest in ('def', 'accuracy', 'agility', 'matk', 'mdef',
@@ -466,6 +466,13 @@ def bonos_de_equipo(bolsa, mejoras: dict = None) -> dict:
 
         if r == RANURA_DERECHA: # 3 (Arma Gear mano derecha)
             r_weap_atk += item_atk + x.get('accuracy', 0)
+            # UN ARMA DE DOS MANOS CUENTA EN LAS DOS. La lleva la ranura 3
+            # y la 4 se queda vacia, asi que el L.Atk se quedaba solo con
+            # lo que dieran las armaduras: ni el ataque del arma ni sus
+            # stats verdes ni su "+N" llegaban a esa mano. Con un baston o
+            # un mandoble se notaba muchisimo.
+            if es_arma_dos_manos(iid):
+                l_weap_atk += item_atk + x.get('accuracy', 0)
         elif r == RANURA_IZQUIERDA: # 4 (Escudo / Arma Gear mano izquierda)
             l_weap_atk += item_atk + x.get('accuracy', 0)
         elif r == 169: # Arma Fashion (derecha / principal)
@@ -2127,11 +2134,19 @@ def _valores_gema(item_id: int) -> dict:
     return d
 
 
-def bono_gema(item_id: int, ranura: int) -> dict:
-    """{stat: valor} que aporta esa gema puesta en esa ranura.
+# Las categorias de escudo. Todo lo demas que se lleve en la mano es un
+# arma, aunque vaya en la ranura izquierda.
+CATEGORIAS_ESCUDO = ('盾',)
 
-    El arma es la 3 y el escudo la 4; lo demas son piezas de armadura y usan
-    su propio numero de ranura dentro de jeweleffect.
+
+def bono_gema(item_id: int, ranura: int, pieza: int = 0) -> dict:
+    """{stat: valor} que aporta esa gema puesta en esa pieza.
+
+    `pieza` es el item que lleva la gema. Hace falta porque la ranura sola
+    no basta: la 4 es la mano izquierda, y ahi puede ir un ESCUDO o, con
+    armas duales, otra ESPADA. Mirando solo la ranura, la misma runa daba
+    1650 de ataque en la derecha y 630 de defensa en la izquierda, asi que
+    con duales la mano izquierda perdia todo el ataque de sus gemas.
     """
     val = _valores_gema(item_id)
     efecto = val.get('efecto')
@@ -2141,7 +2156,12 @@ def bono_gema(item_id: int, ranura: int) -> dict:
     if not fila:
         return {}
     r = int(ranura)
-    if r == RANURA_DERECHA:
+    if r == RANURA_IZQUIERDA and pieza:
+        # Decide la PIEZA, no la ranura: una espada en la izquierda cuenta
+        # como arma.
+        es_escudo = (categoria_item(pieza) or '') in CATEGORIAS_ESCUDO
+        cuales = fila.get('escudo' if es_escudo else 'arma') or []
+    elif r == RANURA_DERECHA:
         cuales = fila.get('arma') or []
     elif r == RANURA_IZQUIERDA:
         cuales = fila.get('escudo') or []
@@ -2154,3 +2174,27 @@ def bono_gema(item_id: int, ranura: int) -> dict:
         if v:
             out[stat] = out.get(stat, 0) + v
     return out
+
+
+def sp_de_item(item_id: int) -> int:
+    """Cuanto SP recupera ese objeto, o 0.
+
+    El objeto no lleva el numero: lleva un 常駐法術 y es el HECHIZO el que
+    trae la columna SP. El SP Power Scroll (3696) apunta al 1871, que tiene
+    SP=2000 -- las "2 SP lamps" de su descripcion, porque una lampara son
+    1000 puntos.
+    """
+    try:
+        import sqlite3
+        db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
+        if not db.exists():
+            return 0
+        con = sqlite3.connect(db)
+        fila = fila_item(con, '"常駐法術"', item_id)
+        h = str((fila or [None])[0] or '')
+        if not h.isdigit() or not int(h):
+            return 0
+        r = con.execute('select SP from magic where id=?', (h,)).fetchone()
+        return int(r[0]) if r and str(r[0] or '').isdigit() else 0
+    except Exception:
+        return 0

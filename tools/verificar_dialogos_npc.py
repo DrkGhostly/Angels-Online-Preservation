@@ -113,6 +113,11 @@ def verificar(f):
         nom = npcs.get(ent, '?')
         val = dialogos.val_por_entidad(ent) or 4
         ya = set()
+        # Una opcion puede contestarse con VARIAS lineas seguidas -- el
+        # banquero de Galaxia manda cinco. Se agrupan los paquetes seguidos
+        # de una misma opcion y se comparan en orden contra la respuesta,
+        # que si no solo se miraba la primera linea y las demas no casaban.
+        grupos = []
         for op, b, opc in dict.fromkeys(ps):
             # Un mismo paquete puede quedar apuntado a dos opciones cuando se
             # contesta dos veces seguidas y el servidor no manda nada nuevo:
@@ -121,16 +126,29 @@ def verificar(f):
             if opc is None or (op, b) in ya:
                 continue
             ya.add((op, b))
-            r = dialogos.respuesta_a(opc, entidad=ent, val=val, nombre=nom) or ()
-            esperado = struct.pack('<H', op) + b
-            mio = next((x for x in r if x[:2] == struct.pack('<H', op)), None)
-            ok = (mio == esperado)
-            mal += 0 if ok else 1
-            print(('  OK   ' if ok else '  MAL  ')
-                  + 'op %-7d %-20r %-8s %s'
-                  % (opc, nom, VENTANAS.get(op, 'dialogo'), b.hex()))
-            if not ok:
-                print('        mio :', mio.hex() if mio else None)
+            if grupos and grupos[-1][0] == opc:
+                grupos[-1][1].append((op, b))
+            else:
+                grupos.append((opc, [(op, b)]))
+
+        for opc, paquetes in grupos:
+            r = list(dialogos.respuesta_a(opc, entidad=ent, val=val,
+                                          nombre=nom) or ())
+            j = 0
+            for op, b in paquetes:
+                cab = struct.pack('<H', op)
+                while j < len(r) and r[j][:2] != cab:
+                    j += 1
+                mio = r[j] if j < len(r) else None
+                j += 1
+                esperado = cab + b
+                ok = (mio == esperado)
+                mal += 0 if ok else 1
+                print(('  OK   ' if ok else '  MAL  ')
+                      + 'op %-7d %-20r %-8s %s'
+                      % (opc, nom, VENTANAS.get(op, 'dialogo'), b.hex()))
+                if not ok:
+                    print('        mio :', mio.hex() if mio else None)
 
     print('  fallos:', mal)
     return mal

@@ -157,6 +157,15 @@ a guess, it says so.
   - **Lava Cave (Stage 69) & Flaming Door (Stage 70)**: level 60-70 smith and master
     crafting recipes (Rock Smith & Rock Master), advanced weapon and bow researchers,
     and magic trainers (Earth Life Mage & ChaosWraith Mage)
+  - **Eleven cities verified byte-for-byte** against what the real server sends, with their
+    vendors, bank, repair and shops: Whitefang Village, Coo Village, Rainbow Town, Twinkle
+    Town, Specter Village, Teddy Amusement, Galaxia Square, Desolate Sea, Chilly Village
+    (Celestia region) and Busy Market (Warring Realm region)
+  - **Floral Alley (Stage 398, Sun Sea Maze region)**: the only one populated **without a
+    capture**. The dialogue comes from `msg.xml` (block 516188-516210) and the shops from
+    `shop.xml`, where every city adds a pair and the odd id is sword skills while the even one
+    is spells: `Researcher (C)` opens shop 221 (Edge Guard I) and `Researcher (S)` opens 222
+    (Astro Impact I), both level 310
   - **Faction Hubs & Outposts**: Cherry Village, Memory Cave, Mysterious Garden,
     Gebuer Vale, Dragon Graveyard, Mysterious Wetland, etc.
 
@@ -186,7 +195,8 @@ a guess, it says so.
 **Does not work**
 
 - The ID Card draws the character in their underwear, even though the sprite
-  in the world is dressed correctly (see below)
+  in the world is dressed correctly. `0x0179`, the last suspect, was ruled
+  out: its ids are hammers, not clothing (see below)
 - Resources can't be gathered, so the nine skills tied to gathering and
   crafting never level up
 - Five of the Lyceum's NPCs were never captured and are missing
@@ -462,15 +472,22 @@ The sprite walking around the world wears its gear correctly, but the figure
 inside the ID Card panel shows the character in their underwear. The weapon
 and the boots _are_ drawn there; it is the body garment that never applies.
 
-Three candidates were ruled out by measurement, so nobody needs to repeat
-them: `0x0149` is byte-for-byte identical every single time, `0x0179` comes
-out the same after every equip regardless of what you put on, and the
-character record `0x0002` contains none of the equipped item ids — two logins
-of the _same_ character with different gear differ in only 56 bytes, all of
-them stats and level.
+**The last candidate was ruled out (2026-09-30).** `0x0179` had been carried
+for a while as the message we were failing to send, with its ids
+`40287..40295` taken for clothing sprites. They are not: those nine numbers
+sit verbatim in `setting/pet_inlay.xml`, in the same order and the same
+groups of three, and the file's own ALIAS calls them `ItemID` with
+`Priority1/2/3`. Cross-referenced against `item.xml` they turn out to be
+**hammers** — Hammer, Attribute Hammer and Value Hammer, each in a normal,
+untradable and one-day variant. `0x0179` is a priority list of items for
+socketing, a static table identical for everyone, and it draws nothing.
 
-What would settle it is a capture taken with the ID Card **open** while
-taking a body garment off and putting it back on.
+That closes out all four candidates: `0x0149`, `0x0179`, the character
+record `0x0002`, and the skill-requirement correlation. The message that
+redraws the figure **is not in anything captured so far**, so a capture
+taken with the ID Card **open** while taking a body garment off and putting
+it back on is still needed. What is no longer needed is the hunt for an
+item → sprite table: there never was one.
 
 ### The damage formula drifts at high level
 
@@ -571,7 +588,8 @@ Two lessons that took several rounds to learn:
 What would help right now, most useful first:
 
 1. **Equipping a body garment with the ID Card open**, so the message that
-   redraws the figure can be isolated.
+   redraws the figure can be isolated. Still first on the list: with `0x0179`
+   ruled out there is no candidate left in anything captured.
 2. **Picking dialogue options** on several different NPCs. Five or six cases
    would fill in the 35 Lyceum NPCs that still have no text.
 3. **Gathering a resource** with the right tool equipped. Nine skills depend

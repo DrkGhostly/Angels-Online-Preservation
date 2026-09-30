@@ -210,10 +210,10 @@ def test_el_sp_que_cuesta_y_el_que_da_son_columnas_distintas():
     ses = Ses()
     app._dar_sp(ses, 286, cb.datos_magia(655), 't')
     assert ses.sp == 1000, ses.sp
-    # No pasa del tope, que con Reserve a 300 son 14 lamparas.
-    ses.sp = 13500
+    # No pasa del tope, que son DIEZ lamparas por mucho Reserve que tengas.
+    ses.sp = 9500
     app._dar_sp(ses, 286, cb.datos_magia(15591), 't')
-    assert ses.sp == 14000, ses.sp
+    assert ses.sp == 10000, ses.sp
     # Y una habilidad que solo cuesta no regala nada.
     ses.sp = 0
     app._dar_sp(ses, 286, cb.datos_magia(5850), 't')
@@ -423,6 +423,163 @@ def test_matar_un_bicho_con_la_experiencia_alta():
 
     # Si esto lanza, el servidor se cae en cuanto matas algo.
     app._procesar_muerte_monstruo(Ses(), Mob(), 286, 'test', espera=0.0)
+
+
+def test_los_combos_pegan_todos_sus_golpes():
+    """combo_de() sacaba bien los golpes y no lo llamaba nadie.
+
+    Son 475 habilidades con combo en magic.xml, no solo Strangle Strike, y
+    todas pegaban una sola vez. La tabla lo trae de dos formas:
+      - directa, 連擊次數 golpes en el propio hechizo (376 asi)
+      - encadenada, por 轉嫁法術 a un hijo marcado 單體多次攻擊 con el numero
+        de golpes en el 動態參數2 del padre (99 asi, entre ellas Strangle
+        Strike)
+    """
+    import sys as _s
+    _s.path.insert(0, str(RAIZ / 'server'))
+    import combate as cb
+
+    if not cb._magic_xml():
+        return                      # sin los paks no hay nada que probar
+    esperado = {5850: 9, 5849: 6, 605: 2}
+    for mid, golpes in esperado.items():
+        c = cb.combo_de(mid)
+        assert c, mid
+        assert c['golpes'] == golpes, (mid, c['golpes'], golpes)
+        assert c['intervalo_ms'] > 0, c
+
+    # Y el ataque normal no es un combo.
+    assert cb.combo_de(cb.ATAQUE_NORMAL) in (None, False) or \
+        (cb.combo_de(cb.ATAQUE_NORMAL) or {}).get('golpes', 1) <= 1
+
+    # El servidor tiene que llamarla: si nadie lo hace, solo sale un golpe.
+    fuente = (RAIZ / 'server' / 'app.py').read_text(encoding='utf-8')
+    assert 'combo_de(' in fuente, 'nadie usa combo_de en app.py'
+
+
+def test_al_entrar_no_se_manda_la_experiencia_como_sp():
+    """KIND_EXP y KIND_SP son el MISMO campo, el 4, y el 4 es el SP.
+
+    Al entrar se mandaba atributo(entidad, p.exp, KIND_EXP), asi que el
+    cliente recibia la experiencia -- 322.674.302 -- como si fueran puntos
+    de SP. La barra de lamparas partia de un numero imposible y se quedaba
+    muerta por mucho que luego subiera de 175 en 175 al pegar.
+
+    La experiencia va en el 0x001D con los sub-campos 29 a 32, que es como
+    la manda el servidor real.
+    """
+    import json
+    import struct
+    import sys as _s
+    _s.path.insert(0, str(RAIZ / 'server'))
+    _s.path.insert(0, str(RAIZ / 'proto'))
+    import combate as cb
+    import cuentas
+    import login
+
+    if not cuentas.ARCHIVO.exists():
+        return
+    d = json.loads(cuentas.ARCHIVO.read_text(encoding='utf-8'))
+    cuenta = next(iter(d.get('cuentas', {}).values()), None)
+    if not cuenta or not cuenta.get('personajes'):
+        return
+    p = cuentas.personaje_de(cuenta, 0)
+    if not p:
+        return
+    p.exp = 322674302
+
+    vistos = []
+    for m in login.secuencia(p):
+        if struct.unpack_from('<H', m, 0)[0] == 0x13 and len(m) >= 12:
+            if m[7] == cb.KIND_SP:
+                vistos.append(struct.unpack_from('<I', m, 8)[0])
+    assert vistos, 'no se manda ningun SP al entrar'
+    for v in vistos:
+        assert v != p.exp, 'se sigue mandando la experiencia como SP'
+        # Y nunca por encima del tope real, que son 14 lamparas.
+        assert v <= 600 * 1000, v
+
+
+def test_el_sp_a_cero_no_se_convierte_en_el_maximo():
+    """'or max_pts' rellenaba la barra entera cuando el SP valia 0.
+
+    El cero es falso en Python, asi que "getattr(ses,'sp',None) or max_pts"
+    daba el maximo en vez de cero. Al entrar o al cambiar de mapa la barra
+    se llenaba sola, y el jugador veia las lamparas aparecer de golpe y
+    vaciarse con un solo ataque.
+
+    Solo debe rellenarse cuando NO hay valor todavia, es decir None.
+    """
+    fuente = (RAIZ / 'server' / 'app.py').read_text(encoding='utf-8')
+    assert "'sp', None) or max_pts" not in fuente, \
+        'vuelve a estar el or que convierte el 0 en el maximo'
+
+    # Y el comportamiento: 0 se queda en 0, None pasa al maximo.
+    for actual, esperado in ((0, 0), (None, 14000), (500, 500)):
+        sp = 14000 if actual is None else actual
+        assert sp == esperado, (actual, sp, esperado)
+
+
+def test_el_pergamino_de_sp_recupera_lo_que_dice():
+    """El objeto no trae el numero: lo trae su hechizo.
+
+    El SP Power Scroll (3696) apunta al 常駐法術 1871, y ese hechizo lleva
+    SP=2000 -- las "2 SP lamps" de su descripcion, porque una lampara son
+    1000 puntos. No se detectaba de ninguna forma, asi que el objeto ni se
+    gastaba ni hacia nada.
+    """
+    import sys as _s
+    _s.path.insert(0, str(RAIZ / 'server'))
+    import inventario as inv
+    if not inv.sp_de_item(3696):
+        return                      # sin content.db no hay nada que probar
+    assert inv.sp_de_item(3696) == 2000
+    # Un objeto que no recupera SP da cero.
+    assert inv.sp_de_item(10) == 0
+    # Y el servidor lo usa.
+    fuente = (RAIZ / 'server' / 'app.py').read_text(encoding='utf-8')
+    assert 'sp_de_item(' in fuente, 'nadie usa sp_de_item en app.py'
+
+
+def test_el_sp_empieza_a_cero_y_no_al_maximo():
+    """La barra de SP salia llena y por eso no podia subir.
+
+    Lo canto el log: "_dar_sp(Bloody Storm V): sp_gana=1000 sp_actual=14000".
+    La habilidad SI llegaba y SI daba sus 1000, pero el SP ya estaba en el
+    tope y min(14000, 15000) no mueve nada.
+
+    Venia de "getattr(ses,'sp',None) or max_pts": la sesion nace sin ese
+    atributo, asi que devolvia None y se rellenaba entera. Cambiarlo a
+    comprobar None no bastaba, porque None es justo lo que devolvia.
+    El SP se gana peleando, asi que empieza a cero.
+    """
+    import re
+    fuente = (RAIZ / 'server' / 'app.py').read_text(encoding='utf-8')
+    # Solo el codigo: en los comentarios se explica el fallo y ahi la frase
+    # tiene que poder aparecer.
+    codigo = chr(10).join(
+        re.sub(r'#.*$', '', l) for l in fuente.split(chr(10)))
+    assert 'or max_pts' not in codigo, 'vuelve a rellenar la barra al entrar'
+    assert 'ses.sp = max_pts' not in codigo, 'alguien la pone al maximo'
+
+
+def test_el_tope_de_lamparas_son_diez():
+    """Reserve da una lampara cada 25 niveles, pero el juego topa en DIEZ.
+
+    Sin tope, a nivel 300 salian catorce y la barra pedia 14.000 puntos.
+    Ademas quedo guardado un sp=14000 de cuando se llenaba sola, asi que al
+    cargar tambien se recorta.
+    """
+    import sys as _s
+    _s.path.insert(0, str(RAIZ / 'server'))
+    _s.path.insert(0, str(RAIZ / 'proto'))
+    import app
+    assert app.MAX_LAMPARAS_SP == 10
+    for rango, esperado in ((1, 2), (50, 4), (200, 10), (300, 10)):
+        bars, pts = app._max_sp_info(
+            type('P', (), {'habilidades': [(15, rango)]})())
+        assert bars == esperado, (rango, bars, esperado)
+        assert pts == bars * 1000
 
 
 if __name__ == '__main__':

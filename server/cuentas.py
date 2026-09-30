@@ -122,6 +122,11 @@ def guardar_muestra_auth(bloque: bytes, nota: str = ""):
         (MUESTRAS / f"auth_{marca}.txt").write_text(nota, encoding='utf-8')
 
 
+def _ahora():
+    import time
+    return time.time()
+
+
 def personaje_de(cuenta, indice=0):
     from login import Personaje
     if indice >= len(cuenta.get('personajes', [])):
@@ -139,6 +144,9 @@ def personaje_de(cuenta, indice=0):
         mp=p.get('mp', 154), mp_max=p.get('mp_max', 154),
         # Las claves de JSON siempre son texto; las ranuras son numeros.
         inventario={int(k): v for k, v in p.get('inventario', {}).items()},
+        # Recortado a diez lamparas: hubo un fallo que llenaba la barra
+        # sola y dejo guardados valores imposibles como 14000.
+        sp=max(0, min(int(p.get('sp') or 0), 10 * 1000)),
         # Las mejoras van por CASILLA: el +N, las gemas y los stats verdes
         # de la pieza que hay en esa ranura. Se guardaban solo en memoria,
         # asi que al reconectar se perdia todo lo mejorado.
@@ -154,7 +162,11 @@ def personaje_de(cuenta, indice=0):
         nivel=p.get('nivel', 1),
         exp=p.get('exp', 0),
         banco={int(k): v for k, v in p.get('banco', {}).items()},
-        buffs=p.get('buffs', {}),
+        # Con su hora de caducidad. Los ya vencidos se tiran al cargar: no
+        # tiene sentido devolver un buff de hace tres dias, y las claves
+        # vuelven como numeros porque en JSON son texto.
+        buffs={int(k): v for k, v in (p.get('buffs') or {}).items()
+               if isinstance(v, dict) and v.get('fin', 0) > _ahora()},
         class_id=p.get('class_id', 0),
         banco_habilidades={int(k): list(v) for k, v in p.get('banco_habilidades', {}).items()},
         hechizos_aprendidos=set(p.get('hechizos_aprendidos', [])),
@@ -391,8 +403,13 @@ def guardar_faccion(usuario: str, char_id: int, faccion: str):
 
 def guardar_progreso(usuario: str, char_id: int, nivel: int, exp: int,
                      hp: int = None, mp: int = None, habilidades: list = None,
-                     hp_max: int = None, mp_max: int = None):
-    """Guarda nivel, exp, hp, mp, hp_max, mp_max y habilidades tras combate."""
+                     hp_max: int = None, mp_max: int = None, sp: int = None,
+                     buffs: dict = None):
+    """Guarda nivel, exp, hp, mp, hp_max, mp_max, habilidades y SP.
+
+    El SP no se guardaba: al salir y entrar se perdian las lamparas que
+    costaba un rato llenar. Se conserva, igual que la experiencia.
+    """
     d = json.loads(ARCHIVO.read_text(encoding='utf-8'))
     c = d['cuentas'].get(usuario)
     if not c:
@@ -401,6 +418,14 @@ def guardar_progreso(usuario: str, char_id: int, nivel: int, exp: int,
         if p.get('char_id') == char_id:
             p['nivel'] = int(nivel)
             p['exp'] = int(exp)
+            if sp is not None:
+                p['sp'] = max(0, int(sp))
+            if buffs is not None:
+                # Se guarda la hora ABSOLUTA de caducidad, asi un buff de 30
+                # minutos sigue corriendo aunque salgas: la carta de doble
+                # experiencia dura lo que dura, no lo que estes conectado.
+                p['buffs'] = {str(k): v for k, v in (buffs or {}).items()
+                              if isinstance(v, dict) and v.get('fin', 0) > 0}
             if hp is not None:
                 p['hp'] = int(hp)
             if hp_max is not None:

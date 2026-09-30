@@ -2322,15 +2322,44 @@ encajaba sin excepcion en diez piezas, pero con esto pasa a ser probablemente
 **una coincidencia**, no la causa. No merece mas tiempo hasta descartar el
 0x0179.
 
-### Lo que falta
+### CERRADO: los 40287..40295 no son sprites, son MARTILLOS (30/09/2026)
 
-Saber de donde sale cada sprite. Los ids 40287..40295 no son los item_id ni
-el `原型外觀` de `item.xml` (que son numeros de tres cifras), asi que hay
-una tabla intermedia por encontrar. Los items que ese personaje llevaba
-puestos en las ranuras 1, 2, 5, 6 y 10 -- 32760, 32761, 32762, 32763 y
-40441 -- **no estan en el item.xml de los paks extraidos**, asi que son de
-un update mas nuevo. Hace falta una captura con ropa que si este en los
-paks para poder cruzar item -> sprite.
+La tabla intermedia que faltaba aparecio, y lo que dice descarta el
+`0x0179` en vez de confirmarlo.
+
+Los nueve ids estan LITERALES en `setting/pet_inlay.xml`, en sus filas
+`道具編號`, con el mismo orden y la misma agrupacion de tres en tres que
+salio en la captura:
+
+    <道具編號 優先度1="40289" 優先度2="40288" 優先度3="40287"/>
+    <道具編號 優先度1="40292" 優先度2="40291" 優先度3="40290"/>
+    <道具編號 優先度1="40295" 優先度2="40294" 優先度3="40293"/>
+
+El ALIAS del propio archivo los nombra: `ItemID`, `Priority1`, `Priority2`,
+`Priority3`. Son **item_id**, no sprites, y van en orden de prioridad.
+
+Cruzados contra `item.xml` (UPDATE12) los nueve son martillos, tres
+variantes de cada uno:
+
+    40287/40288/40289   Hammer            normal / untradable / 1 day
+    40290/40291/40292   Attribute Hammer  normal / untradable x2
+    40293/40294/40295   Value Hammer      normal / untradable x2
+
+y el `6144` suelto del grupo 4 es `Pirate Treasure Map Piece 6`.
+
+Es decir: el `0x0179` es una lista de objetos por prioridad -- que martillo
+gastar primero al engarzar -- y **no tiene nada que ver con la apariencia
+del personaje**. El nombre `APARIENCIA` que lleva en `proto/messages.py`
+esta mal puesto y conviene cambiarlo.
+
+Con esto se cae tambien lo que se habia anotado de que "esos ids cambian
+segun la ropa y el Fashion": son una tabla ESTATICA del cliente, identica
+para todo el mundo.
+
+Los tres candidatos del apartado anterior siguen descartados, asi que el
+mensaje que redibuja la figura de la ID Card **sigue sin aparecer** en lo
+capturado hasta ahora. Lo que ya no hace falta es buscar la tabla
+item -> sprite: no existia.
 
 ## EL "ONLINE": QUE PASA CUANDO ENTRA OTRO JUGADOR (24/09/2026)
 

@@ -1066,6 +1066,12 @@ def _dar_sp(ses, yo, mag, addr=''):
     """
     import combate as _cb
     da = (mag or {}).get('sp_gana', 0)
+    # Se apunta SIEMPRE, tambien cuando no da nada: asi el log dice si la
+    # habilidad llego hasta aqui o si se quedo por el camino, que es justo
+    # lo que no se sabia.
+    log.debug('[%s] _dar_sp(%s): sp_gana=%s sp_actual=%s'
+              % (addr, (mag or {}).get('nombre', '?'), da,
+                 getattr(ses, 'sp', None)))
     if da <= 0 or not getattr(ses, 'personaje', None):
         return
     for _p in _coste_vida(ses, yo, mag, addr):
@@ -1079,9 +1085,18 @@ def _dar_sp(ses, yo, mag, addr=''):
                  % (addr, mag.get('nombre', '?'), da, antes, ses.sp))
 
 
+# El tope de lamparas son DIEZ. Reserve da una cada 25 niveles empezando
+# desde dos, lo que a nivel 300 daria catorce, pero el juego no pasa de
+# diez. Sin este tope la barra pedia 14.000 puntos para llenarse.
+MAX_LAMPARAS_SP = 10
+
+
 def _max_sp_info(p):
-    """Devuelve (barras_sp, max_puntos_sp). Por defecto 2 barras (2000 puntos).
-    La habilidad pasiva Reserve (15) otorga +1 barra cada 25 niveles."""
+    """Devuelve (lamparas, puntos maximos). Una lampara son 1000 puntos.
+
+    Reserve (15) da una lampara cada 25 niveles sobre las dos de partida,
+    con el tope de MAX_LAMPARAS_SP.
+    """
     res_rank = 1
     if p and getattr(p, 'habilidades', None):
         for h in p.habilidades:
@@ -1089,7 +1104,7 @@ def _max_sp_info(p):
             if sid == 15:
                 res_rank = h[1] if isinstance(h, (list, tuple)) and len(h) > 1 else 1
                 break
-    bars = 2 + (res_rank // 25)
+    bars = min(MAX_LAMPARAS_SP, 2 + (res_rank // 25))
     return bars, bars * 1000
 
 
@@ -1209,7 +1224,7 @@ def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
         if getattr(ses, 'usuario', None):
             cuentas.guardar_progreso(ses.usuario, p.char_id, p.nivel, p.exp,
                                      p.hp, p.mp, p.habilidades,
-                                     hp_max=p.hp_max, mp_max=p.mp_max)
+                                     hp_max=p.hp_max, mp_max=p.mp_max, sp=getattr(ses, "sp", None), buffs=getattr(ses.personaje, "buffs", None) if ses.personaje else None)
             cuentas.guardar_oro(ses.usuario, p.char_id, ses.oro)
 
     salida_combate.append(_cl.aviso(f'{oro} Gold', tipo=0, msg_id=_cl.MSG_ITEM))
@@ -1766,7 +1781,7 @@ def _otorgar_skill_exp(ses, p, yo, arma_puesta=0, magic_id=0, accion=None):
     if getattr(ses, 'usuario', None):
         cuentas.guardar_progreso(ses.usuario, p.char_id, p.nivel, p.exp,
                                  p.hp, p.mp, p.habilidades,
-                                 hp_max=p.hp_max, mp_max=p.mp_max)
+                                 hp_max=p.hp_max, mp_max=p.mp_max, sp=getattr(ses, "sp", None), buffs=getattr(ses.personaje, "buffs", None) if ses.personaje else None)
     return pkgs
 
 
@@ -1919,7 +1934,7 @@ class Servidor:
                         if getattr(ses, 'usuario', None):
                             cuentas.guardar_progreso(ses.usuario, p.char_id, p.nivel, p.exp,
                                                      p.hp, p.mp, p.habilidades,
-                                                     hp_max=p.hp_max, mp_max=p.mp_max)
+                                                     hp_max=p.hp_max, mp_max=p.mp_max, sp=getattr(ses, "sp", None), buffs=getattr(ses.personaje, "buffs", None) if ses.personaje else None)
         except asyncio.CancelledError:
             pass
         except Exception as e:
@@ -2169,7 +2184,12 @@ class Servidor:
             ses.oro = p.oro
             ses.monstruos = _monstruos_de(p.stage)
             bars, max_pts = _max_sp_info(p)
-            ses.sp = getattr(ses, 'sp', None) or max_pts
+            # Ver arriba: empieza a cero, no al maximo.
+            # El SP viene del personaje guardado. Empieza a cero solo la
+            # primera vez: se gana peleando y se conserva al salir.
+            ses.sp = getattr(ses, 'sp', None)
+            if ses.sp is None:
+                ses.sp = max(0, int(getattr(p, 'sp', 0) or 0))
             ses.enviar(inv.stats(ses.inventario, p.habilidades,
                                  hp=p.hp, hp_max=p.hp_max,
                                  mp=p.mp, mp_max=p.mp_max,
@@ -2594,7 +2614,7 @@ class Servidor:
                                                     pj.nivel, pj.exp, 0, pj.mp,
                                                     pj.habilidades,
                                                     hp_max=pj.hp_max,
-                                                    mp_max=pj.mp_max)
+                                                    mp_max=pj.mp_max, sp=getattr(ses, "sp", None), buffs=getattr(ses.personaje, "buffs", None) if ses.personaje else None)
                                             log.info(f"[{addr}] jugador muerto "
                                                      f"por {m.nombre} (IA)")
 
@@ -2728,7 +2748,18 @@ class Servidor:
                     if _todos_hech:
                         ses.enviar(_cl.otorgar_hechizos(p.entity_id, _todos_hech))
                 bars, max_pts = _max_sp_info(p)
-                ses.sp = getattr(ses, 'sp', None) or max_pts
+                # El SP EMPIEZA A CERO. Se gana peleando, no se regala al
+                # entrar. Antes habia un "or max_pts" que ademas convertia
+                # el cero en el maximo -- el 0 es falso en Python -- y al
+                # cambiarlo por None el problema siguio: la sesion nace sin
+                # el atributo, o sea None, asi que tambien daba el maximo.
+                # El log lo canto: "sp_gana=1000 sp_actual=14000", con la
+                # barra llena de salida y sin sitio para subir.
+                # El SP viene del personaje guardado. Empieza a cero solo la
+                # primera vez: se gana peleando y se conserva al salir.
+                ses.sp = getattr(ses, 'sp', None)
+                if ses.sp is None:
+                    ses.sp = max(0, int(getattr(p, 'sp', 0) or 0))
                 b = getattr(ses, 'inventario', None) or getattr(p, 'inventario', None) or {}
                 eff_hp_max = _vida_max(p, bolsa=b)
                 eff_mp_max = _mana_max(p, bolsa=b)
@@ -2972,7 +3003,7 @@ class Servidor:
                                              ses.personaje.nivel, ses.personaje.exp,
                                              ses.personaje.hp, ses.personaje.mp,
                                              ses.personaje.habilidades,
-                                             hp_max=ses.personaje.hp_max, mp_max=ses.personaje.mp_max)
+                                             hp_max=ses.personaje.hp_max, mp_max=ses.personaje.mp_max, sp=getattr(ses, "sp", None), buffs=getattr(ses.personaje, "buffs", None) if ses.personaje else None)
                 log.info(f"[{addr}] invocacion {info_inv['nombre']} (npc_type {npc_t}, sprite {info_inv['sprite']}) invocada para jugador {yo} en ({stx},{sty})")
                 return
 
@@ -3120,7 +3151,7 @@ class Servidor:
                                                  ses.personaje.nivel, ses.personaje.exp,
                                                  ses.personaje.hp, ses.personaje.mp,
                                                  ses.personaje.habilidades,
-                                                 hp_max=ses.personaje.hp_max, mp_max=ses.personaje.mp_max)
+                                                 hp_max=ses.personaje.hp_max, mp_max=ses.personaje.mp_max, sp=getattr(ses, "sp", None), buffs=getattr(ses.personaje, "buffs", None) if ses.personaje else None)
 
                 if cast_time <= 0:
                     ses.enviar(
@@ -3260,7 +3291,7 @@ class Servidor:
                                                              ses.personaje.nivel, ses.personaje.exp,
                                                              ses.personaje.hp, ses.personaje.mp,
                                                              ses.personaje.habilidades,
-                                                             hp_max=ses.personaje.hp_max, mp_max=ses.personaje.mp_max)
+                                                             hp_max=ses.personaje.hp_max, mp_max=ses.personaje.mp_max, sp=getattr(ses, "sp", None), buffs=getattr(ses.personaje, "buffs", None) if ses.personaje else None)
                         asyncio.get_event_loop().call_later(max(0.1, cast_time / 1000.0), _fin_cura)
                         log.info(f"[{addr}] habilidad curativa {tipo} curó {cura} HP ({ses.personaje.hp}/{ses.personaje.hp_max})")
                     else:
@@ -3366,7 +3397,7 @@ class Servidor:
                                                      ses.personaje.nivel, ses.personaje.exp,
                                                      ses.personaje.hp, ses.personaje.mp,
                                                      ses.personaje.habilidades,
-                                                     hp_max=ses.personaje.hp_max, mp_max=ses.personaje.mp_max)
+                                                     hp_max=ses.personaje.hp_max, mp_max=ses.personaje.mp_max, sp=getattr(ses, "sp", None), buffs=getattr(ses.personaje, "buffs", None) if ses.personaje else None)
                         log.info(f"[{addr}] buff {tipo} ({mag.get('nombre')}) ejecutado (efecto {ef}, dur={dur_ms}ms, cd={cd_ms}ms)")
                     return
                 log.debug(f"[{addr}] ataque a la entidad {objetivo}: no es un monstruo conocido")
@@ -3449,7 +3480,7 @@ class Servidor:
                                              ses.personaje.nivel, ses.personaje.exp,
                                              ses.personaje.hp, ses.personaje.mp,
                                              ses.personaje.habilidades,
-                                             hp_max=ses.personaje.hp_max, mp_max=ses.personaje.mp_max)
+                                             hp_max=ses.personaje.hp_max, mp_max=ses.personaje.mp_max, sp=getattr(ses, "sp", None), buffs=getattr(ses.personaje, "buffs", None) if ses.personaje else None)
                 log.info(f"[{addr}] encanto {tipo} ({mag.get('nombre')}) exitoso sobre {m.nombre} (dur={dur_s}s)")
                 return
 
@@ -3520,7 +3551,7 @@ class Servidor:
                                              ses.personaje.nivel, ses.personaje.exp,
                                              ses.personaje.hp, ses.personaje.mp,
                                              ses.personaje.habilidades,
-                                             hp_max=ses.personaje.hp_max, mp_max=ses.personaje.mp_max)
+                                             hp_max=ses.personaje.hp_max, mp_max=ses.personaje.mp_max, sp=getattr(ses, "sp", None), buffs=getattr(ses.personaje, "buffs", None) if ses.personaje else None)
                 log.info(f"[{addr}] panico {tipo} ({mag.get('nombre')}) exitoso sobre {m.nombre} (dur={dur_s}s)")
                 return
 
@@ -3600,7 +3631,7 @@ class Servidor:
                                              ses.personaje.nivel, ses.personaje.exp,
                                              ses.personaje.hp, ses.personaje.mp,
                                              ses.personaje.habilidades,
-                                             hp_max=ses.personaje.hp_max, mp_max=ses.personaje.mp_max)
+                                             hp_max=ses.personaje.hp_max, mp_max=ses.personaje.mp_max, sp=getattr(ses, "sp", None), buffs=getattr(ses.personaje, "buffs", None) if ses.personaje else None)
                 log.info(f"[{addr}] maldicion {tipo} ({mag.get('nombre')}) exitosa sobre {m.nombre} (dur={dur_s}s)")
                 return
 
@@ -3908,6 +3939,51 @@ class Servidor:
                     bucle.call_later(
                         _ret + _cb.RETRASO_SEGUNDA_MANO,
                         lambda p=_pkgs_dano2: ses.enviar_inmediato(*p))
+                # EL COMBO. Strangle Strike V pega NUEVE veces y el IV seis;
+                # combo_de() lo sacaba bien de magic.xml pero no lo llamaba
+                # nadie, asi que solo salia el primer golpe. Son dos formas
+                # distintas en la tabla: 連擊次數 directo en el hechizo, o
+                # encadenado por 轉嫁法術 a un hijo marcado 單體多次攻擊 con
+                # el numero de golpes en el 動態參數2 del padre.
+                _combo = (_cb.combo_de(tipo)
+                          if tipo != _cb.ATAQUE_NORMAL else None)
+                if _combo and _combo.get('golpes', 1) > 1:
+                    _sep = max(0.05, _combo.get('intervalo_ms', 200) / 1000.0)
+                    for _k in range(1, _combo['golpes']):
+                        def _golpe(n=_k):
+                            if not getattr(m, 'vivo', False):
+                                return
+                            _d = m.recibir(total_atk)
+                            if not _d:
+                                return
+                            _c = random.random() < crit_prob
+                            if _c:
+                                _d = int(round(_d * 1.5))
+                            ses.enviar_inmediato(
+                                _cb.atributo(objetivo, m.porcentaje),
+                                _cb.numero_flotante(
+                                    objetivo, _d,
+                                    _cb.TIPO_DANO_CRITICO if _c
+                                    else _cb.TIPO_DANO))
+                            # SI MUERE EN UN GOLPE DEL COMBO HAY QUE
+                            # PROCESARLO AQUI. El primer golpe va por el
+                            # camino normal, que si mira la muerte, pero
+                            # estos son callbacks aparte: sin esto el bicho
+                            # se quedaba de pie con la vida a cero, sin
+                            # soltar botin ni dar experiencia.
+                            if m.hp <= 0 or not getattr(m, 'vivo', True):
+                                m.vivo = False
+                                try:
+                                    _procesar_muerte_monstruo(ses, m, yo, addr)
+                                except Exception:
+                                    log.exception(
+                                        '[%s] fallo al matar con el combo'
+                                        % addr)
+                        bucle.call_later(_ret + _sep * _k, _golpe)
+                    log.info('[%s] %s: combo de %d golpes cada %d ms'
+                             % (addr, mag.get('nombre', tipo),
+                                _combo['golpes'],
+                                _combo.get('intervalo_ms', 200)))
             except Exception:
                 ses.enviar(*_pkgs_dano)
                 if _pkgs_dano2:
@@ -4483,7 +4559,13 @@ class Servidor:
                     ses.personaje.hp_max = 304
                     ses.personaje.hp = 304
                 bars, max_pts = _max_sp_info(ses.personaje)
-                ses.sp = max_pts
+                # Un personaje recien hecho tampoco empieza con la barra
+                # llena: el SP se gana peleando.
+                # El SP viene del personaje guardado. Empieza a cero solo la
+                # primera vez: se gana peleando y se conserva al salir.
+                ses.sp = getattr(ses, 'sp', None)
+                if ses.sp is None:
+                    ses.sp = max(0, int(getattr(p, 'sp', 0) or 0))
                 salida.append(_iv.stats(
                     ses.inventario, [(sid, 1, 0) for sid in ids],
                     hp=ses.personaje.hp, hp_max=ses.personaje.hp_max,
@@ -4511,7 +4593,7 @@ class Servidor:
                     cuentas.guardar_progreso(
                         ses.usuario, cid, ses.personaje.nivel, ses.personaje.exp,
                         ses.personaje.hp, ses.personaje.mp, ses.personaje.habilidades,
-                        ses.personaje.hp_max, ses.personaje.mp_max)
+                        ses.personaje.hp_max, ses.personaje.mp_max, sp=getattr(ses, "sp", None), buffs=getattr(ses.personaje, "buffs", None) if ses.personaje else None)
 
             log.info(f"[{addr}] CLASE ELEGIDA: "
                      + ', '.join(f'{clases.nombre(i)}({i})' for i in ids)
@@ -4809,6 +4891,36 @@ class Servidor:
             # La secuencia es la que manda el servidor real al usar uno: el
             # 0x0013 con el atributo 49 y el total acumulado, y detras un
             # 0x0282 con lo que se acaba de sumar escrito en ASCII.
+            # Caso 0: OBJETO QUE RECUPERA SP (SP Power Scroll y compania).
+            #
+            # El objeto no trae el numero: trae un 常駐法術 y es el HECHIZO
+            # el que lleva la columna SP. El 3696 apunta al 1871, que tiene
+            # SP=2000 -- las "2 SP lamps" de su descripcion, porque una
+            # lampara son 1000 puntos. No se detectaba de ninguna forma, asi
+            # que el objeto ni se gastaba ni hacia nada.
+            _sp_item = inv.sp_de_item(item_id)
+            if _sp_item > 0 and ses.personaje:
+                import combate as _cbsp
+                _bars, _tope = _max_sp_info(ses.personaje)
+                _antes = getattr(ses, 'sp', 0) or 0
+                ses.sp = min(_tope, _antes + _sp_item)
+                _queda = ses.cantidades.get(ranura, 1) - 1
+                if _queda > 0:
+                    ses.cantidades[ranura] = _queda
+                else:
+                    ses.inventario.pop(ranura, None)
+                    ses.cantidades.pop(ranura, None)
+                ses.enviar(_cbsp.atributo(yo, ses.sp, _cbsp.KIND_SP),
+                           _cbsp.numero_flotante(yo, ses.sp - _antes,
+                                                 _cbsp.TIPO_CURA_SP))
+                ses.enviar(*_refrescar(ses, [ranura]))
+                _guardar_bolsa(ses, cid)
+                log.info('[%s] %s: +%d de SP (%d -> %d)'
+                         % (addr, _nombre_item(item_id), _sp_item,
+                            _antes, ses.sp))
+                return
+
+
             # Caso 0: CONSUMIBLE DE MASCOTA (使用目標="目標寵物").
             #
             # El propio item dice que va a la mascota, asi que no hay lista
@@ -5172,7 +5284,7 @@ class Servidor:
                 if getattr(ses, 'usuario', None):
                     cuentas.guardar_progreso(ses.usuario, cid, ses.personaje.nivel, ses.personaje.exp,
                                              ses.personaje.hp, ses.personaje.mp,
-                                             hp_max=ses.personaje.hp_max, mp_max=ses.personaje.mp_max)
+                                             hp_max=ses.personaje.hp_max, mp_max=ses.personaje.mp_max, sp=getattr(ses, "sp", None), buffs=getattr(ses.personaje, "buffs", None) if ses.personaje else None)
                     cuentas.guardar_inventario(ses.usuario, cid, bolsa,
                                    _cantidades(ses))
                 log.info(f"[{addr}] consumible usado: {item_id} (ranura {ranura}) -> {ef_con}")
@@ -5228,7 +5340,7 @@ class Servidor:
                 if getattr(ses, 'usuario', None):
                     cuentas.guardar_progreso(ses.usuario, cid, p.nivel, p.exp,
                                              p.hp, p.mp, p.habilidades,
-                                             hp_max=p.hp_max, mp_max=p.mp_max)
+                                             hp_max=p.hp_max, mp_max=p.mp_max, sp=getattr(ses, "sp", None), buffs=getattr(ses.personaje, "buffs", None) if ses.personaje else None)
                     cuentas.guardar_inventario(ses.usuario, cid, bolsa, _cantidades(ses))
                 log.info(f"[{addr}] {p.nombre} uso Advancement Stone {item_id} -> SUBIO A NIVEL {p.nivel}!")
                 return
@@ -5273,7 +5385,7 @@ class Servidor:
                 if getattr(ses, 'usuario', None):
                     cuentas.guardar_progreso(ses.usuario, cid, p.nivel, p.exp,
                                              p.hp, p.mp, p.habilidades,
-                                             hp_max=p.hp_max, mp_max=p.mp_max)
+                                             hp_max=p.hp_max, mp_max=p.mp_max, sp=getattr(ses, "sp", None), buffs=getattr(ses.personaje, "buffs", None) if ses.personaje else None)
                     cuentas.guardar_inventario(ses.usuario, cid, bolsa, _cantidades(ses))
                 log.info(f"[{addr}] {p.nombre} uso Skill Leveling Stone {item_id} -> HABILIDADES SUBIDAS A NIVEL {target_sk_lv}!")
                 return
@@ -6092,7 +6204,7 @@ class Servidor:
                 _sincronizar_cambio_mapa(ses, p2.stage, rev_x, rev_y)
                 if getattr(ses, 'usuario', None):
                     cuentas.guardar_progreso(ses.usuario, p2.char_id,
-                                             p2.nivel, p2.exp, p2.hp, p2.mp)
+                                             p2.nivel, p2.exp, p2.hp, p2.mp, sp=getattr(ses, "sp", None), buffs=getattr(ses.personaje, "buffs", None) if ses.personaje else None)
                 log.info(f"[{addr}] revive en stage {p2.stage} ({rev_x},{rev_y})")
                 return
             if accion == 4 and ses.personaje:
