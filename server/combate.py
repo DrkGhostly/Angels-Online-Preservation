@@ -618,7 +618,8 @@ def datos_magia(magic_id: int) -> dict:
                 res['hp'] = _num(d.get('hp'), 0)
                 res['cd_ms'] = _num(d.get('後置時間'), 1000)
                 dur_val = _num(d.get('持續時間'), 0)
-                res['dur_ms'] = (dur_val * 1000) if (0 < dur_val < 1000) else dur_val
+                #res['dur_ms'] = (dur_val * 1000) if (0 < dur_val < 1000) else dur_val
+                res['dur_ms'] = dur_val * 1000 if dur_val > 0 else 0
                 res['cast_time'] = _num(d.get('前置時間'), 100)
                 res['rango'] = _num(d.get('射程'), 1)
                 res['crit_rate'] = _num(d.get('crit_rate'), 0)
