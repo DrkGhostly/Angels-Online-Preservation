@@ -29,6 +29,7 @@ OBJETIVO_FIJADO = 0x03060001
 VIDA = 0                    # kind 0 del 0x0013: HP (o % en monstruos)
 KIND_HP = 0                 # HP actual del jugador / % del monstruo
 KIND_MP = 2                 # MP actual del jugador (medido en 70/70 capturas de AngelWar)
+KIND_TRANSFORM = 33         # Sprite temporal del personaje (forma transformada)
 KIND_SP = 4                 # Puntos de SP acumulados del jugador (0..max_sp*1000)
 
 # El SP siempre sube en multiplos de 25: en las capturas no hay ni una
@@ -146,6 +147,17 @@ def exp_para_nivel(nv: int) -> int:
 def exp_para_nivel_u32(nv: int) -> int:
     """Lo mismo, recortado para meterlo en un campo de 32 bits."""
     return min(exp_para_nivel(nv), 0xFFFFFFFF)
+
+
+def exp_para_barra(nivel: int, exp: int) -> tuple:
+    """(exp_actual, exp_siguiente) representables en la barra del cliente."""
+    tope = 0xFFFFFFFF
+    siguiente = exp_para_nivel(nivel + 1)
+    actual = max(0, min(int(exp or 0), siguiente))
+    if siguiente > tope:
+        actual = (actual * tope + siguiente // 2) // siguiente
+        siguiente = tope
+    return actual, siguiente
 
 
 def calcular_exp(npc_type: int, buffs: dict = None) -> int:
@@ -613,6 +625,7 @@ def datos_magia(magic_id: int) -> dict:
                 res['phys_mit'] = _num(d.get('物理傷害抵銷'), 0)
                 res['mag_mit'] = _num(d.get('魔法傷害抵銷'), 0)
                 res['dano_base'] = _num(d.get('平均傷害'), 0)
+                res['base_denom'] = _num(d.get('高權位'), 200) or 200
                 # EL 73% DE LAS HABILIDADES DE ATAQUE NO TRAE 平均傷害
                 # (6531 de 9003), y nuestro multiplicador salia de ahi: se
                 # quedaban todas en CERO. Es justo lo que le pasa a las
@@ -635,9 +648,9 @@ def datos_magia(magic_id: int) -> dict:
                 if not res['dano_base']:
                     _f = str(d.get('公式') or '')
                     _r = RATIO_POR_FORMULA.get(_f, RATIO_FORMULA_DEFECTO)
-                    # El multiplicador es dano_base/base_denom, y el
-                    # denominador por defecto son 200.
-                    res['dano_base'] = int(round(_r * 200))
+                    # Conserva el multiplicador deducido de la formula al
+                    # normalizarlo al denominador real del hechizo.
+                    res['dano_base'] = int(round(_r * res['base_denom']))
                     res['ratio_formula'] = _r
                 res['dano_var'] = _num(d.get('傷害變數'), 0)
                 res['dano_coef'] = _num(d.get('傷害係數'), 0)
@@ -984,27 +997,29 @@ def combo_de(magic_id: int):
 
 
 def cura_por_tics(magic_id: int):
-    """{'hp', 'intervalo', 'dur_ms', 'tics'} si el hechizo cura poco a poco.
+    """Tics de HP/MP de una habilidad con duracion e intervalo.
 
     Injury Cure I (603) es 對象="自己" HP="15" 作用間隔="5" 持續時間="11":
-    quince de vida cada cinco segundos durante once. La heuristica de
-    datos_magia lo marcaba como buff y no curaba nada, porque solo miraba el
-    HP y no el intervalo.
+    quince de vida cada cinco segundos durante once. Earth Blessing (302)
+    usa 對象="角色" y Energy Source (305) restaura MP, asi que tambien se
+    reconocen objetivos de personaje y el campo MP.
     """
     d = _magic_xml().get(int(magic_id or 0))
-    if not d or d.get('對象') != '自己':
+    if not d or str(d.get('對象') or '').strip() not in ('自己', '角色'):
         return None
     def _n(v, x=0):
         try: return int(float(v)) if v not in (None, '') else x
         except (TypeError, ValueError): return x
     hp = _n(d.get('HP'))
+    mp = _n(d.get('MP'))
     intervalo = _n(d.get('作用間隔'))
     dur = _n(d.get('持續時間'))
-    if hp <= 0 or intervalo <= 0 or dur <= 0:
+    if (hp <= 0 and mp <= 0) or intervalo <= 0 or dur <= 0:
         return None
-    # El primer tic es al lanzarla, asi que en 11 s con intervalo de 5 caben
-    # tres (0, 5 y 10), no dos: con la division a secas se perdia el ultimo.
-    return {'hp': hp, 'intervalo': intervalo, 'dur_ms': dur * 1000,
+    # El primer tic es al lanzarla: en 11 s con intervalo de 5 caben
+    # tres (0, 5 y 10), no dos.
+    return {'hp': max(0, hp), 'mp': max(0, mp),
+            'intervalo': intervalo, 'dur_ms': dur * 1000,
             'tics': max(1, dur // intervalo + 1)}
 
 

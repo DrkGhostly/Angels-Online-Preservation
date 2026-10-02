@@ -12,9 +12,9 @@ import datetime
 # =====================================================================
 # 1.0 = Experiencia normal oficial
 # 2.0 = Doble experiencia, etc.
-TASA_EXP_BASE = 2.0           # Multiplicador de EXP de personaje
-TASA_SKILL_EXP_BASE = 2.0     # Multiplicador de EXP de habilidades (stamina/skills)
-TASA_DROP_BASE = 2.5          # Multiplicador de probabilidad de drop de items
+TASA_EXP_BASE = 2000.0           # Multiplicador de EXP de personaje
+TASA_SKILL_EXP_BASE = 2000.0     # Multiplicador de EXP de habilidades (stamina/skills)
+TASA_DROP_BASE = 10.5          # Multiplicador de probabilidad de drop de items
 TASA_ORO_BASE = 7.5           # Multiplicador de oro obtenido de monstruos
 
 # =====================================================================
@@ -29,7 +29,7 @@ EVENTO_DOBLE_EXP_FORZADO = False
 
 # Multiplicador adicional que se aplica durante el evento
 BONUS_EVENTO_EXP = 2.0
-BONUS_EVENTO_SKILL = 50000.0
+BONUS_EVENTO_SKILL = 2.0
 
 
 def es_fin_de_semana() -> bool:

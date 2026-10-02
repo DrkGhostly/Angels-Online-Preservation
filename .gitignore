@@ -10,7 +10,10 @@ logs/
 
 # Corpus derivado de las capturas y del cliente (544 MB). Se regenera con
 # tools/build_corpus2.py y tools/extract_content.py a partir de los paks.
-corpus/
+corpus/captura_nueva
+corpus/igg_sesionA
+corpus/igg_streams
+corpus/pcap_streams
 
 # El cliente descompilado (17 MB). Es material con copyright de IGG: se usa
 # como referencia para entender el protocolo, pero no se redistribuye.

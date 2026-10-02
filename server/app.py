@@ -1054,6 +1054,45 @@ def _u32(v) -> int:
         return 0
 
 
+def _sp_por_golpe(ses) -> int:
+    """SP de un impacto segun el rango de Reserve."""
+    import combate as _cb
+    res_rank = 1
+    p = getattr(ses, 'personaje', None)
+    for h in getattr(p, 'habilidades', None) or []:
+        if (h[0] if isinstance(h, (list, tuple)) else h) == 15:
+            res_rank = h[1] if isinstance(h, (list, tuple)) and len(h) > 1 else 1
+            break
+    return _cb.SP_POR_GOLPE * (2 + res_rank // 50)
+
+
+def _sumar_sp(ses, yo, cantidad, addr='') -> int:
+    """Suma SP y refresca las barras visibles al cruzar una lampara."""
+    import combate as _cb, inventario as _iv
+    p = getattr(ses, 'personaje', None)
+    if not p:
+        return 0
+    _, tope = _max_sp_info(p)
+    antes = max(0, int(getattr(ses, 'sp', 0) or 0))
+    despues = min(tope, antes + max(0, int(cantidad or 0)))
+    if despues == antes:
+        return 0
+    ses.sp = despues
+    p.sp = despues
+    paquetes = [_cb.atributo(yo, despues, _cb.KIND_SP)]
+    if antes // _cb.SP_POR_LAMPARA != despues // _cb.SP_POR_LAMPARA:
+        bars, _ = _max_sp_info(p)
+        paquetes.append(_iv.stats(
+            getattr(ses, 'inventario', None), getattr(p, 'habilidades', None),
+            hp=p.hp, hp_max=p.hp_max, mp=p.mp, mp_max=p.mp_max,
+            oro=getattr(ses, 'oro', getattr(p, 'oro', 0)),
+            buffs=getattr(p, 'buffs', None), sp=despues, sp_max=bars,
+            mejoras=_mejoras_de(ses)))
+    ses.enviar(*paquetes)
+    log.debug('[%s] SP %d -> %d (+%d)', addr, antes, despues, despues - antes)
+    return despues - antes
+
+
 def _dar_sp(ses, yo, mag, addr=''):
     """Suma el SP que REGALA una habilidad, si es que regala alguno.
 
@@ -1072,17 +1111,20 @@ def _dar_sp(ses, yo, mag, addr=''):
     log.debug('[%s] _dar_sp(%s): sp_gana=%s sp_actual=%s'
               % (addr, (mag or {}).get('nombre', '?'), da,
                  getattr(ses, 'sp', None)))
-    if da <= 0 or not getattr(ses, 'personaje', None):
+    if not getattr(ses, 'personaje', None):
         return
-    for _p in _coste_vida(ses, yo, mag, addr):
-        ses.enviar(_p)
-    _, tope = _max_sp_info(ses.personaje)
-    antes = getattr(ses, 'sp', 0) or 0
-    ses.sp = min(tope, antes + da)
-    if ses.sp != antes:
-        ses.enviar(_cb.atributo(yo, ses.sp, _cb.KIND_SP))
+    antes = max(0, int(getattr(ses, 'sp', 0) or 0))
+    ganado = 0
+    if da > 0:
+        for _p in _coste_vida(ses, yo, mag, addr):
+            ses.enviar(_p)
+        ganado = _sumar_sp(ses, yo, da, addr)
+        if not ganado:
+            ses.enviar(_cb.atributo(yo, getattr(ses, 'sp', 0) or 0,
+                                    _cb.KIND_SP), _stats_ses(ses))
+    if ganado:
         log.info('[%s] %s da %d de SP: %d -> %d'
-                 % (addr, mag.get('nombre', '?'), da, antes, ses.sp))
+                 % (addr, mag.get('nombre', '?'), ganado, antes, ses.sp))
 
 
 # El tope de lamparas son DIEZ. Reserve da una cada 25 niveles empezando
@@ -1197,19 +1239,19 @@ def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
                 subio_nivel = True
             else:
                 break
+        exp_actual_ui, exp_siguiente_ui = _cb.exp_para_barra(p.nivel, p.exp)
         if subio_nivel:
             p.hp = _vida_max(p)
-            p.mp = p.mp_max
+            p.mp = _mana_max(p, ses.inventario)
             salida_combate.append(_cl.aviso(f"Level Up! Reached Level {p.nivel}!", tipo=0, msg_id=_cl.MSG_ITEM))
             salida_combate.append(_cb.atributo(yo, p.hp, _cb.KIND_HP))
             salida_combate.append(_cb.atributo(yo, p.mp, _cb.KIND_MP))
-            exp_sig = _cb.exp_para_nivel_u32(p.nivel + 1)
             salida_combate.append(
                 struct.pack('<HIB', 0x001D, yo, 4) +
                 struct.pack('<BII', 29, p.nivel, 0) +
-                struct.pack('<BII', 30, _u32(p.exp), 0) +
-                struct.pack('<BII', 31, _u32(exp_sig), 0) +
-                struct.pack('<BII', 32, _u32(p.exp), 0)
+                struct.pack('<BII', 30, exp_actual_ui, 0) +
+                struct.pack('<BII', 31, exp_siguiente_ui, 0) +
+                struct.pack('<BII', 32, exp_actual_ui, 0)
             )
             salida_combate.append(_cb.efecto_level_up(yo, es_skill=False))
             salida_combate.append(_stats_ses(ses))
@@ -1219,7 +1261,7 @@ def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
                                               str(exp_ganada),
                                               str(exp_ganada), tipo=0))
         salida_combate.append(
-            struct.pack('<HIBBII', 0x001D, yo, 1, 32, _u32(p.exp), 0))
+            struct.pack('<HIBBII', 0x001D, yo, 1, 32, exp_actual_ui, 0))
 
         if getattr(ses, 'usuario', None):
             cuentas.guardar_progreso(ses.usuario, p.char_id, p.nivel, p.exp,
@@ -1306,11 +1348,19 @@ BONO_MONTURA = int(os.environ.get('AO_MONTURA_BONO', '150'))
 
 
 def _velocidad_de(ses) -> int:
-    """La velocidad del 0x0005: la de a pie, o con el bono de la montura."""
+    """Velocidad del 0x0005, con monturas y buffs activos de movimiento."""
     base = VELOCIDAD_JUGADOR
     try:
         import inventario as _inv
         bolsa = getattr(ses, 'inventario', None) or {}
+        ahora = time.time()
+        bono_buff = 0.0
+        for buff in (getattr(getattr(ses, 'personaje', None), 'buffs', None) or {}).values():
+            if not isinstance(buff, dict) or buff.get('fin', 0) <= ahora:
+                continue
+            mag = buff.get('mag')
+            if isinstance(mag, dict):
+                bono_buff += float(mag.get('move_speed_bonus', 0) or 0)
         # LA MONTURA DE FASHION NO QUITA VELOCIDAD.
         #
         # La ranura 174 es la montura de la pestaña Fashion y la 10 la de
@@ -1327,13 +1377,13 @@ def _velocidad_de(ses) -> int:
         # nada, como la Shamrock Goldfish, suman cero y se quedan en aspecto.
         ms_real = _inv.velocidad_de_montura(bolsa.get(RANURA_MONTURA) or 0)
         ms_moda = _inv.velocidad_de_montura(bolsa.get(174) or 0)
-        if not ms_real and not ms_moda:
+        if not ms_real and not ms_moda and not bono_buff:
             return base
         # BONO_MONTURA pisa lo que diga item.xml, pero solo para la montura de
         # verdad: lo que aporte el aspecto se suma encima tal cual.
         if BONO_MONTURA and ms_real:
             ms_real = BONO_MONTURA
-        ms = ms_real + ms_moda
+        ms = ms_real + ms_moda + bono_buff
         return max(1, min(1000, int(round(base * (100 + ms) / 100.0))))
     except Exception:
         return base
@@ -1770,13 +1820,14 @@ def _otorgar_skill_exp(ses, p, yo, arma_puesta=0, magic_id=0, accion=None):
         nuevas_habs.append((sid, slv, sexp))
 
     p.habilidades = nuevas_habs
-    if pkgs:
-        # El arbol va en CADA ganancia, no solo al subir: es el mensaje que
-        # lleva la experiencia de cada habilidad y por lo tanto el porcentaje
-        # que muestra el panel.
-        pkgs.append(_cl.arbol(p.habilidades))
     if subio_alguna:
-        pkgs.append(_stats_ses(ses))
+        # Los porcentajes se actualizan con los 0x001D individuales; el arbol
+        # completo solo hace falta cuando cambia el rango de una habilidad.
+        pkgs.append(_cl.arbol(p.habilidades))
+    if magic_id:
+        pkgs.extend((_cb.atributo(yo, getattr(ses, 'sp', 0) or 0,
+                                  _cb.KIND_SP),
+                     _stats_ses(ses)))
 
     if getattr(ses, 'usuario', None):
         cuentas.guardar_progreso(ses.usuario, p.char_id, p.nivel, p.exp,
@@ -2765,7 +2816,7 @@ class Servidor:
                 eff_mp_max = _mana_max(p, bolsa=b)
                 p.hp = min(eff_hp_max, max(1, p.hp))
                 p.mp = min(eff_mp_max, max(0, p.mp))
-                exp_sig = min(0xFFFFFFFF, _cb.exp_para_nivel(p.nivel + 1))
+                exp_actual_ui, exp_sig = _cb.exp_para_barra(p.nivel, p.exp)
                 yo = p.entity_id
                 salida = [
                     _cb.atributo(yo, p.hp, _cb.KIND_HP),
@@ -2773,9 +2824,9 @@ class Servidor:
                     _cb.atributo(yo, ses.sp, _cb.KIND_SP),
                     struct.pack('<HIB', 0x001D, yo, 4) +
                     struct.pack('<BII', 29, p.nivel, 0) +
-                    struct.pack('<BII', 30, min(0xFFFFFFFF, p.exp), 0) +
+                    struct.pack('<BII', 30, exp_actual_ui, 0) +
                     struct.pack('<BII', 31, exp_sig, 0) +
-                    struct.pack('<BII', 32, min(0xFFFFFFFF, p.exp), 0),
+                    struct.pack('<BII', 32, exp_actual_ui, 0),
                     inv.stats(b, p.habilidades,
                               hp=p.hp, hp_max=p.hp_max,
                               mp=p.mp, mp_max=p.mp_max,
@@ -3246,17 +3297,39 @@ class Servidor:
                         def _curar_tic(n=0):
                             if not ses.personaje or getattr(ses, 'muerto', False):
                                 return
-                            antes = ses.personaje.hp
-                            ses.personaje.hp = min(_vida_max(ses.personaje),
-                                                   ses.personaje.hp + _tic['hp'])
-                            sanado = ses.personaje.hp - antes
-                            if sanado > 0:
+                            antes_hp = ses.personaje.hp
+                            antes_mp = ses.personaje.mp
+                            hp_tope = _vida_max(ses.personaje, ses.inventario)
+                            mp_tope = _mana_max(ses.personaje, ses.inventario)
+                            ses.personaje.hp = min(
+                                hp_tope,
+                                ses.personaje.hp + _tic['hp'])
+                            ses.personaje.mp = min(
+                                mp_tope,
+                                ses.personaje.mp + _tic['mp'])
+                            sanado_hp = ses.personaje.hp - antes_hp
+                            sanado_mp = ses.personaje.mp - antes_mp
+                            log.debug(
+                                f"[{addr}] {mag.get('nombre')} tic "
+                                f"{n + 1}/{_tic['tics']}: "
+                                f"HP {antes_hp}->{ses.personaje.hp}/{hp_tope} "
+                                f"(+{sanado_hp}), MP {antes_mp}->"
+                                f"{ses.personaje.mp}/{mp_tope} (+{sanado_mp})")
+                            pkgs_tic = []
+                            if sanado_hp > 0:
                                 # VERDE, que es una cura. Iba con el tipo
                                 # 1 y salia como si te estuvieran pegando.
-                                ses.enviar_inmediato(
-                                    _cb.numero_flotante(yo, sanado,
+                                pkgs_tic.extend((
+                                    _cb.numero_flotante(yo, sanado_hp,
                                                         _cb.TIPO_CURA_HP),
-                                    _cb.atributo(yo, ses.personaje.hp, _cb.KIND_HP))
+                                    _cb.atributo(yo, ses.personaje.hp, _cb.KIND_HP)))
+                            if sanado_mp > 0:
+                                pkgs_tic.extend((
+                                    _cb.numero_flotante(yo, sanado_mp,
+                                                        _cb.TIPO_CURA_MP),
+                                    _cb.atributo(yo, ses.personaje.mp, _cb.KIND_MP)))
+                            if pkgs_tic:
+                                ses.enviar_inmediato(*pkgs_tic)
                             if n + 1 < _tic['tics']:
                                 try:
                                     asyncio.get_event_loop().call_later(
@@ -3265,11 +3338,17 @@ class Servidor:
                                 except Exception:
                                     pass
                         _curar_tic()
-                        log.info(f"[{addr}] {mag.get('nombre')}: cura {_tic['hp']} "
-                                 f"HP x{_tic['tics']} cada {_tic['intervalo']}s")
+                        _detalle_tics = []
+                        if _tic['hp']:
+                            _detalle_tics.append(f"{_tic['hp']} HP")
+                        if _tic['mp']:
+                            _detalle_tics.append(f"{_tic['mp']} MP")
+                        log.info(f"[{addr}] {mag.get('nombre')}: recupera "
+                                 f"{' y '.join(_detalle_tics)} x{_tic['tics']} "
+                                 f"cada {_tic['intervalo']}s")
 
                     # 2. Habilidad de curacion real (Cure Spell de mago, etc.)
-                    if mag.get('es_cura') and ses.personaje:
+                    if mag.get('es_cura') and ses.personaje and not _tic:
                         cura = max(10, abs(mag.get('hp', 0)))
                         ses.personaje.hp = min(_vida_max(ses.personaje), ses.personaje.hp + cura)
                         ses.enviar(_cb.efecto_curacion_inicio(yo, yo, cura, efecto=ef), _cb.gcd_paquete())
@@ -3311,6 +3390,7 @@ class Servidor:
                             ses.personaje.buffs.pop(tipo, None)
                             ses.enviar(
                                 struct.pack('<HIBBII', 0x001D, yo, 1, 4, tipo, 0),
+                                _cb.atributo(yo, 0, _cb.KIND_TRANSFORM),
                                 _stats_ses(ses)
                             )
                             log.info(f"[{addr}] transformacion {tipo} ({mag.get('nombre')}) cancelada / reinstaurada")
@@ -3321,7 +3401,8 @@ class Servidor:
                             for prev_bid, prev_bdata in list(ses.personaje.buffs.items()):
                                 if prev_bdata.get('es_transform'):
                                     ses.personaje.buffs.pop(prev_bid, None)
-                                    ses.enviar(struct.pack('<HIBBII', 0x001D, yo, 1, 4, prev_bid, 0))
+                                    ses.enviar(struct.pack('<HIBBII', 0x001D, yo, 1, 4, prev_bid, 0),
+                                               _cb.atributo(yo, 0, _cb.KIND_TRANSFORM))
 
                         # Registrar buff en el personaje (duracion, bono de critico, % mitigacion de dano, stats de transformacion)
                         if ses.personaje:
@@ -3377,13 +3458,28 @@ class Servidor:
 
                             if dur_ms > 0:
                                 pkgs_buff.append(struct.pack('<HIBBII', 0x001D, yo, 1, 4, tipo, dur_ms))
-                                def _expirar_buff(sk_id=tipo):
-                                    if ses.personaje and getattr(ses.personaje, 'buffs', None):
-                                        ses.personaje.buffs.pop(sk_id, None)
-                                        ses.enviar_inmediato(
-                                            struct.pack('<HIBBII', 0x001D, yo, 1, 4, sk_id, 0),
-                                            _stats_ses(ses)
-                                        )
+                                if mag.get('es_transformacion') and mag.get('trans_sprite'):
+                                    pkgs_buff.extend((
+                                        _cb.atributo(yo, mag['trans_sprite'],
+                                                     _cb.KIND_TRANSFORM),
+                                        _stats_ses(ses)))
+
+                                def _expirar_buff(sk_id=tipo,
+                                                  fin=buff_entry['fin']):
+                                    buffs_activos = getattr(ses.personaje, 'buffs', None)
+                                    actual = buffs_activos.get(sk_id) if buffs_activos else None
+                                    if not actual or actual.get('fin') != fin:
+                                        return
+                                    buffs_activos.pop(sk_id, None)
+                                    pkgs_expirar = [
+                                        struct.pack('<HIBBII', 0x001D, yo, 1, 4,
+                                                    sk_id, 0)]
+                                    if actual.get('es_transform'):
+                                        pkgs_expirar.append(
+                                            _cb.atributo(yo, 0,
+                                                         _cb.KIND_TRANSFORM))
+                                    pkgs_expirar.append(_stats_ses(ses))
+                                    ses.enviar_inmediato(*pkgs_expirar)
                                 asyncio.get_event_loop().call_later(dur_ms / 1000.0, _expirar_buff)
 
                             pkgs_buff.extend(_otorgar_skill_exp(ses, ses.personaje, yo, magic_id=tipo))
@@ -3843,6 +3939,7 @@ class Servidor:
             sp_gain = _cb.SP_POR_GOLPE * (2 + res_rank // 50)
             ant_bars = getattr(ses, 'sp', 0) // 1000
             ses.sp = min(max_pts, getattr(ses, 'sp', 0) + sp_gain)
+            ses.personaje.sp = ses.sp
             curr_bars = ses.sp // 1000
             pkgs_sp = [_cb.atributo(yo, ses.sp, _cb.KIND_SP)]
             if curr_bars != ant_bars:
@@ -3956,6 +4053,7 @@ class Servidor:
                             _d = m.recibir(total_atk)
                             if not _d:
                                 return
+                            _sumar_sp(ses, yo, _sp_por_golpe(ses), addr)
                             _c = random.random() < crit_prob
                             if _c:
                                 _d = int(round(_d * 1.5))
@@ -4901,20 +4999,28 @@ class Servidor:
             _sp_item = inv.sp_de_item(item_id)
             if _sp_item > 0 and ses.personaje:
                 import combate as _cbsp
+                yo = ses.personaje.entity_id
                 _bars, _tope = _max_sp_info(ses.personaje)
                 _antes = getattr(ses, 'sp', 0) or 0
-                ses.sp = min(_tope, _antes + _sp_item)
+                _ganado = _sumar_sp(ses, yo, _sp_item, addr)
                 _queda = ses.cantidades.get(ranura, 1) - 1
                 if _queda > 0:
                     ses.cantidades[ranura] = _queda
                 else:
                     ses.inventario.pop(ranura, None)
                     ses.cantidades.pop(ranura, None)
-                ses.enviar(_cbsp.atributo(yo, ses.sp, _cbsp.KIND_SP),
-                           _cbsp.numero_flotante(yo, ses.sp - _antes,
+                ses.enviar(_cbsp.numero_flotante(yo, _ganado,
                                                  _cbsp.TIPO_CURA_SP))
                 ses.enviar(*_refrescar(ses, [ranura]))
                 _guardar_bolsa(ses, cid)
+                if getattr(ses, 'usuario', None):
+                    cuentas.guardar_progreso(
+                        ses.usuario, cid, ses.personaje.nivel,
+                        ses.personaje.exp, ses.personaje.hp, ses.personaje.mp,
+                        ses.personaje.habilidades,
+                        hp_max=ses.personaje.hp_max,
+                        mp_max=ses.personaje.mp_max, sp=ses.sp,
+                        buffs=getattr(ses.personaje, 'buffs', None))
                 log.info('[%s] %s: +%d de SP (%d -> %d)'
                          % (addr, _nombre_item(item_id), _sp_item,
                             _antes, ses.sp))
@@ -5321,7 +5427,7 @@ class Servidor:
                 p.mp_max = max(p.mp_max, 300 + p.nivel * 15)
                 p.hp = _vida_max(p)
                 p.mp = _mana_max(p)
-                exp_sig = min(0xFFFFFFFF, _cb.exp_para_nivel(p.nivel + 1))
+                exp_actual_ui, exp_sig = _cb.exp_para_barra(p.nivel, p.exp)
 
                 salida = [
                     _cl.aviso(f"Level Up! Advanced to Level {p.nivel}!", tipo=0, msg_id=_cl.MSG_ITEM),
@@ -5329,9 +5435,9 @@ class Servidor:
                     _cb.atributo(yo, p.mp, _cb.KIND_MP),
                     struct.pack('<HIB', 0x001D, yo, 4) +
                     struct.pack('<BII', 29, p.nivel, 0) +
-                    struct.pack('<BII', 30, min(0xFFFFFFFF, p.exp), 0) +
+                    struct.pack('<BII', 30, exp_actual_ui, 0) +
                     struct.pack('<BII', 31, exp_sig, 0) +
-                    struct.pack('<BII', 32, min(0xFFFFFFFF, p.exp), 0),
+                    struct.pack('<BII', 32, exp_actual_ui, 0),
                     _cb.efecto_level_up(yo, es_skill=False),
                     *_refrescar(ses, [ranura]),
                     _stats_ses(ses)

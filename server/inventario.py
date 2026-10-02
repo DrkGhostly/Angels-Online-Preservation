@@ -698,7 +698,7 @@ def stats(bolsa=None, habilidades: list = None,
     base_crit = 5
     crit_eff = 5
     load_max = _b['carga']
-    sp_max_bars = _b['barras_sp']
+    sp_max_bars = min(10, _b['barras_sp'])
     hp_bonus, mp_bonus = _b['hp'], _b['mp']
     sk_atk, sk_def, sk_rigor = _b['atk'], _b['def'], _b['rigor']
     sk_agi, sk_matk, sk_mdef = _b['agi'], _b['matk'], _b['mdef']
@@ -711,7 +711,7 @@ def stats(bolsa=None, habilidades: list = None,
     c_mdef_base = base_mdef + sk_mdef
 
     if sp_max is not None:
-        sp_max_bars = max(sp_max_bars, sp_max)
+        sp_max_bars = min(10, max(sp_max_bars, sp_max))
     if sp is not None:
         sp_bars_current = min(sp_max_bars, max(0, sp // 1000))
     else:
