@@ -34,10 +34,21 @@ SALIDA = RAIZ / 'server' / 'plantillas' / 'mascotas.json'
 
 CAMPOS = {'編號': 'sprite', '圖號1': 'tipo', '名稱': 'nombre',
           '寵物類型': 'clase', '階段': 'etapa',
+          '經驗等級表': 'exp_tipo',
           '升階變化1': 'rama1', '升階變化2': 'rama2',
           '條件成長值': 'crianza', '移動速度': 'velocidad',
+          '攻擊速度': 'vel_ataque', '攻擊範圍': 'rango_ataque',
           '頭像編號': 'retrato',
-          '技能1階級表': 'sk1', '技能2階級表': 'sk2', '技能3階級表': 'sk3'}
+          '技能1階級表': 'sk1', '技能2階級表': 'sk2', '技能3階級表': 'sk3',
+          'HP': 'hp_min', 'HP上限': 'hp_max',
+          'MP': 'mp_min', 'MP上限': 'mp_max',
+          '平均攻擊': 'atk_min', '平均攻擊上限': 'atk_max',
+          '防禦': 'dfs_min', '防禦上限': 'dfs_max',
+          '魔攻': 'matk_min', '魔攻上限': 'matk_max',
+          '魔防': 'mdef_min', '魔防上限': 'mdef_max',
+          '精準': 'rigor_min', '精準上限': 'rigor_max',
+          '靈敏': 'agilidad_min', '靈敏上限': 'agilidad_max'}
+
 
 
 def _orden(p):
@@ -142,6 +153,38 @@ def crianza(raiz=None):
     return out
 
 
+ATRIBUTOS = RAIZ / 'server' / 'plantillas' / 'petattrib.json'
+
+
+def petattrib(raiz=None):
+    """La tabla petattrib.xml volcada a JSON compacto {clase: {nivel: [hp,mp,atk,dfs,matk,mdef,rigor,agilidad]}}."""
+    raiz = pathlib.Path(raiz or RAIZ)
+    fs = []
+    for pat in ('extracted_paks/*/setting/*/petattrib.xml',
+                'extracted_paks/*/setting/petattrib.xml'):
+        fs += sorted(raiz.glob(pat), key=_orden)
+    out = {}
+    for f in fs:
+        txt = f.read_text(encoding='utf-8', errors='replace')
+        for trozo in re.findall(r'<petattrib\s([^>]*?)/>', txt):
+            a = dict(re.findall(r'(\S+?)="([^"]*)"', trozo))
+            clase = a.get('寵物類型')
+            lv = a.get('等級')
+            if not clase or not lv or not lv.isdigit():
+                continue
+            out.setdefault(clase, {})[str(int(lv))] = [
+                int(float(a.get('HP') or 0)),
+                int(float(a.get('MP') or 0)),
+                int(float(a.get('平均攻擊') or 0)),
+                int(float(a.get('防禦') or 0)),
+                int(float(a.get('魔攻') or 0)),
+                int(float(a.get('魔防') or 0)),
+                int(float(a.get('精準') or 0)),
+                int(float(a.get('靈敏') or 0)),
+            ]
+    return out
+
+
 def main():
     sys.stdout.reconfigure(encoding='utf-8')
     idx = cargar()
@@ -157,10 +200,15 @@ def main():
     sks = habilidades()
     HABILIDADES.write_text(json.dumps(sks, ensure_ascii=False, indent=1),
                            encoding='utf-8')
+    attr = petattrib()
+    ATRIBUTOS.write_text(json.dumps(attr, ensure_ascii=False, separators=(',', ':')),
+                         encoding='utf-8')
     print('%d situaciones de crianza -> %s'
           % (len(asp), ASPECTOS.relative_to(RAIZ)))
     print('%d tablas de habilidades -> %s'
           % (len(sks), HABILIDADES.relative_to(RAIZ)))
+    print('%d clases de petattrib -> %s'
+          % (len(attr), ATRIBUTOS.relative_to(RAIZ)))
     etapas = collections.Counter(d.get('etapa') for d in idx.values())
     print('%d mascotas -> %s' % (len(idx), SALIDA.relative_to(RAIZ)))
     print('etapas:', dict(etapas))
@@ -170,3 +218,4 @@ def main():
 
 if __name__ == '__main__':
     sys.exit(main())
+

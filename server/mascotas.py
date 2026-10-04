@@ -145,11 +145,121 @@ def cargar_pet_star():
                 pass
     return _PET_STAR_TABLE
 
-def bonos_estrellas(nivel_estrella: int) -> dict:
-    """Devuelve los bonos de stats dados por el nivel de estrella (1..80).
-    1 = 0.1 estrellas, 2 = 0.2 estrellas, ..., 10 = 1.0 estrellas."""
+STATS_BONO = ('hp', 'mp', 'atk', 'dfs', 'matk', 'mdef', 'rigor', 'agilidad')
+
+
+def estrella_de_bono(valor: int, stat_key: str) -> int:
+    """Equivalente exacto de sub_716B10 en Angel.exe: busca en pet_star.xml
+    el nivel de estrella (1..80) que corresponde al bono verde de ese stat."""
+    v = int(valor or 0)
+    if v <= 0:
+        return 0
     tabla = cargar_pet_star()
-    return tabla.get(max(1, int(nivel_estrella or 1)), {})
+    res = 1
+    for i in range(1, 81):
+        req = (tabla.get(i) or {}).get(stat_key, 0)
+        if req <= v:
+            res = i
+        else:
+            break
+    return res
+
+
+def calcular_estrellas_total(bonos: dict) -> int:
+    """Media entera de las estrellas de los 8 stats (medido en las 5 mascotas de mundo_130439)."""
+    if not bonos:
+        return 1
+    total = sum(estrella_de_bono(bonos.get(k, 0), k) for k in STATS_BONO)
+    return max(1, total // 8)
+
+
+def rangos_bonos_de(sprite: int) -> dict:
+    """Devuelve {stat: (lo, hi)} de pet.xml para los stats que esa mascota tiene."""
+    d = ficha_de_sprite(sprite)
+    out = {}
+    for k in STATS_BONO:
+        lo = d.get(f'{k}_min')
+        hi = d.get(f'{k}_max')
+        if lo is not None and hi is not None and int(hi) > 0:
+            out[k] = (int(lo), int(hi))
+    if out:
+        return out
+    # Si es un huevo (原型) y aun no tiene rangos en su propia fila, mirar su primera evolucion
+    for r_key in ('rama1', 'rama2'):
+        r_sp = d.get(r_key)
+        if r_sp:
+            dr = ficha_de_sprite(r_sp)
+            for k in STATS_BONO:
+                lo = dr.get(f'{k}_min')
+                hi = dr.get(f'{k}_max')
+                if lo is not None and hi is not None and int(hi) > 0:
+                    out[k] = (int(lo), int(hi))
+            if out:
+                return out
+    # Si es una mascota 頂階 sin rangos propios, buscar otra de su misma clase (寵物類型)
+    clase = d.get('clase') or TIPO_POR_DEFECTO
+    for v in _tabla().values():
+        if v.get('clase') == clase:
+            for k in STATS_BONO:
+                lo = v.get(f'{k}_min')
+                hi = v.get(f'{k}_max')
+                if lo is not None and hi is not None and int(hi) > 0:
+                    out[k] = (int(lo), int(hi))
+            if out:
+                return out
+    return {'hp': (51, 62), 'mp': (28, 34), 'atk': (27, 33), 'dfs': (23, 43)}
+
+
+def sortear_bonos(sprite: int) -> dict:
+    """Sortea los bonos verdes iniciales dentro del rango [lo, hi] de pet.xml."""
+    import random
+    rangos = rangos_bonos_de(sprite)
+    return {k: random.randint(min(lo, hi), max(lo, hi)) for k, (lo, hi) in rangos.items()}
+
+
+def bonos_estrellas(nivel_estrella: int, sprite: int = None, estado: dict = None) -> dict:
+    """Devuelve los bonos verdes de una mascota.
+    Si `estado` ya tiene `bonos` por stat (varia segun la mascota), usa esos."""
+    if isinstance(estado, dict) and isinstance(estado.get('bonos'), dict):
+        return estado['bonos']
+    st = max(1, int(nivel_estrella or 1))
+    if sprite:
+        d = ficha_de_sprite(sprite)
+        if d.get('etapa') == '原型' and st <= 1 and not (isinstance(estado, dict) and estado.get('mejoras')):
+            return {}
+        rangos = rangos_bonos_de(sprite)
+        tabla = cargar_pet_star()
+        fila_st = tabla.get(st, {})
+        out = {}
+        for idx_k, (k, (lo, hi)) in enumerate(rangos.items()):
+            # Escalar segun el nivel de estrella manteniendo variacion entre stats
+            var_st = max(1, min(80, st + ((idx_k % 3) - 1 if st > 1 else 0)))
+            v_star = (tabla.get(var_st) or fila_st).get(k, 0)
+            out[k] = max(lo, v_star) if st > 1 else (lo + hi) // 2
+        return out
+    if st <= 1:
+        return {}
+    tabla = cargar_pet_star()
+    return tabla.get(st, {})
+
+
+def bonos_de_ficha(estado: dict) -> dict:
+    """Obtiene o inicializa el diccionario de bonos por stat de la mascota."""
+    if not isinstance(estado, dict):
+        return {}
+    bonos = estado.get('bonos')
+    if isinstance(bonos, dict):
+        return bonos
+    sp = int(estado.get('sprite') or 0)
+    st = max(1, int(estado.get('estrellas') or 1))
+    mej = int(estado.get('mejoras') or 0)
+    d = ficha_de_sprite(sp)
+    if d.get('etapa') == '原型' and st <= 1 and mej <= 0:
+        return {}
+    calc = bonos_estrellas(st, sprite=sp, estado=estado)
+    if calc:
+        estado['bonos'] = calc
+    return calc
 
 
 def armar(estado: dict) -> bytes:
@@ -157,20 +267,21 @@ def armar(estado: dict) -> bytes:
     b = bytearray(TAM)
     nv = max(1, int(estado.get('nivel') or 1))
     sp = int(estado.get('sprite') or 0)
-    st_lvl = max(1, int(estado.get('estrellas') or 1))
-    b_star = bonos_estrellas(st_lvl)
+    b_star = bonos_de_ficha(estado)
+    st_lvl = max(1, int(estado.get('estrellas') or calcular_estrellas_total(b_star)))
+    mej = max(0, int(estado.get('mejoras') or 0))
 
     hp_max = max(1, int(estado.get('hp_max') or estado.get('hp') or 127))
     hp = max(1, int(estado.get('hp') or hp_max))
     mp_max = max(0, int(estado.get('mp_max') or estado.get('mp') or 70))
     mp = max(0, int(estado.get('mp') if estado.get('mp') is not None else mp_max))
     exp = max(0, int(estado.get('exp') or 0))
-    exp_max = max(1, int(estado.get('exp_max') or exp_para_subir(nv)))
+    exp_max = max(1, int(estado.get('exp_max') or exp_para_subir(nv, sp)))
 
-    hp_eff = hp + b_star.get('hp', 0)
-    mp_eff = mp + b_star.get('mp', 0)
-    hp_max_eff = hp_max + b_star.get('hp', 0)
-    mp_max_eff = mp_max + b_star.get('mp', 0)
+    hp_eff = hp + int(b_star.get('hp', 0))
+    mp_eff = mp + int(b_star.get('mp', 0))
+    hp_max_eff = hp_max + int(b_star.get('hp', 0))
+    mp_max_eff = mp_max + int(b_star.get('mp', 0))
 
     for campo, off in OFF.items():
         v = estado.get(campo)
@@ -187,7 +298,7 @@ def armar(estado: dict) -> bytes:
             continue
         else:
             base_v = int(v)
-            eff_v = base_v + b_star.get(campo, 0)
+            eff_v = base_v + int(b_star.get(campo, 0))
             struct.pack_into('<I', b, off, base_v & 0xFFFFFFFF)
             if campo in DOBLES:
                 struct.pack_into('<I', b, off + 4, eff_v & 0xFFFFFFFF)
@@ -204,7 +315,12 @@ def armar(estado: dict) -> bytes:
     struct.pack_into('<IIIIII', b, 59, hp_eff, mp_eff, hp_max, hp_max_eff, mp_max, mp_max_eff)
 
     # Resistencias elementales (+131..+163) y Sta / Soul (+163..+171)
-    struct.pack_into('<16H', b, 131, *DEFENSAS_ELEM_BASE)
+    # Si la mascota tiene mejoras (+N), sus defensas elementales efectivas suben +N (sub_63EF40)
+    elem_vals = list(DEFENSAS_ELEM_BASE)
+    if mej > 0:
+        for idx_def in (3, 7, 11, 15):
+            elem_vals[idx_def] = min(0xFFFF, elem_vals[idx_def] + mej)
+    struct.pack_into('<16H', b, 131, *elem_vals)
     struct.pack_into('<4H', b, 163, STA_BASE, STA_BASE, SOUL_BASE, SOUL_BASE)
 
     # Las 3 habilidades de la mascota (+171..+177)
@@ -314,11 +430,55 @@ OFF_BONUS_ENTRADA = {
 
 
 def subir_estrella(ficha: dict, cantidad: int = 1) -> int:
-    """Sube el nivel de estrella de la mascota (1..80, 10 = 1.0 estrellas, 80 = 8.0 estrellas)."""
-    actual = max(1, int(ficha.get('estrellas') or 1))
-    nuevo = min(80, actual + cantidad)
+    """Sube el nivel de estrella de la mascota (1..80, 10 = 1.0 estrellas, 80 = 8.0 estrellas)
+    actualizando los bonos verdes especificos de los stats que esa mascota posee."""
+    import random
+    sp = int(ficha.get('sprite') or 0)
+    rangos = rangos_bonos_de(sp)
+    bonos = dict(ficha.get('bonos') or {})
+    tabla = cargar_pet_star()
+    if not bonos:
+        bonos = sortear_bonos(sp)
+    for k, (lo, hi) in rangos.items():
+        cur_val = int(bonos.get(k, 0))
+        cur_st = max(1, estrella_de_bono(cur_val, k))
+        # Pequeña variacion por stat si se sube con Star-up Card (+10)
+        delta = max(1, cantidad + (random.randint(-1, 1) if cantidad >= 5 else 0))
+        new_st = min(80, cur_st + delta)
+        req_lo = (tabla.get(new_st) or {}).get(k, cur_val + 1)
+        req_hi = (tabla.get(min(80, new_st + 1)) or {}).get(k, req_lo + 5)
+        if req_hi > req_lo + 1:
+            bonos[k] = random.randint(req_lo, req_hi - 1)
+        else:
+            bonos[k] = max(cur_val + 1, req_lo)
+    ficha['bonos'] = bonos
+    nuevo = max(min(80, max(1, int(ficha.get('estrellas') or 1)) + cantidad), calcular_estrellas_total(bonos))
     ficha['estrellas'] = nuevo
     return nuevo
+
+
+def mejorar_mascota(ficha: dict) -> tuple:
+    """Aplica un Improved Pet Feed (寵物強化): sube el contador de intensificacion (+1..+15,
+    que el cliente muestra como 'has been intensified ( N ) times' en e[83] y +N en defensas
+    elementales) y mejora los bonos verdes de los stats especificos de la mascota."""
+    import random
+    sp = int(ficha.get('sprite') or 0)
+    mej = int(ficha.get('mejoras') or 0)
+    if mej >= 15:
+        return False, mej
+    mej += 1
+    ficha['mejoras'] = mej
+    rangos = rangos_bonos_de(sp)
+    bonos = dict(ficha.get('bonos') or {})
+    if not bonos:
+        bonos = sortear_bonos(sp)
+    else:
+        for k, (lo, hi) in rangos.items():
+            inc = max(1, random.randint(max(1, lo // 2), max(2, hi // 2)))
+            bonos[k] = int(bonos.get(k, 0)) + inc
+    ficha['bonos'] = bonos
+    ficha['estrellas'] = max(int(ficha.get('estrellas') or 1), calcular_estrellas_total(bonos))
+    return True, mej
 
 
 def entrada(plantilla: bytes, estado: dict) -> bytes:
@@ -332,8 +492,9 @@ def entrada(plantilla: bytes, estado: dict) -> bytes:
     if len(e) != TAM_ENTRADA:
         e = (e + bytes(TAM_ENTRADA))[:TAM_ENTRADA]
     nv = max(1, int(estado.get('nivel') or 1))
-    st_lvl = max(1, int(estado.get('estrellas') or 1))
-    b_star = bonos_estrellas(st_lvl)
+    sp = int(estado.get('sprite') or 0)
+    b_star = bonos_de_ficha(estado)
+    st_lvl = max(1, int(estado.get('estrellas') or calcular_estrellas_total(b_star)))
     for campo, off in OFF_ENTRADA.items():
         v = estado.get(campo)
         if v is None:
@@ -346,25 +507,26 @@ def entrada(plantilla: bytes, estado: dict) -> bytes:
         elif campo == 'intimidad':
             e[off] = min(0xFF, max(0, int(v)))
         elif campo in ('exp', 'exp_max'):
-            val_q = int(v) if int(v or 0) > 0 else (exp_para_subir(nv) if campo == 'exp_max' else 0)
+            val_q = int(v) if int(v or 0) > 0 else (exp_para_subir(nv, sp) if campo == 'exp_max' else 0)
             struct.pack_into('<Q', e, off, max(0, val_q))
         elif campo in ('hp_max', 'mp_max'):
-            val_eff = int(v) + b_star.get('hp' if campo == 'hp_max' else 'mp', 0)
+            val_eff = int(v) + int(b_star.get('hp' if campo == 'hp_max' else 'mp', 0))
             struct.pack_into('<I', e, off, int(val_eff) & 0xFFFFFFFF)
         elif campo in ('hp', 'mp'):
-            val_eff = int(v) + b_star.get('hp' if campo == 'hp' else 'mp', 0)
+            val_eff = int(v) + int(b_star.get('hp' if campo == 'hp' else 'mp', 0))
             struct.pack_into('<I', e, off, int(val_eff) & 0xFFFFFFFF)
         else:
             struct.pack_into('<I', e, off, int(v) & 0xFFFFFFFF)
-    # Byte 83 es solo para armas/armaduras/monturas (en mascotas siempre va en 0)
-    e[83] = 0
+    # Byte 83 (a3+82 en sub_514180 / sub_644B40 / sub_63EF40): numero de veces que la mascota
+    # ha sido intensificada con Improved Pet Feed (0 al comprarla; >0 enseña "has been intensified ( N ) times")
+    e[83] = max(0, min(255, int(estado.get('mejoras') or 0)))
     # Byte 118: 1 si la mascota esta invocada (fuera), 0 si esta guardada
     e[118] = 1 if estado.get('fuera') else 0
-    # Offsets 148..180: bonos verdes de estrellas (HP, MP, Atk, Dfs, MAtk, MDef, Rigor, Agilidad)
+    # Offsets 148..180: bonos verdes de cada stat (0 si la mascota no tiene bono en ese stat)
     for stat_k, off_b in OFF_BONUS_ENTRADA.items():
         bono_val = int(b_star.get(stat_k, 0)) & 0xFFFFFFFF
         struct.pack_into('<I', e, off_b, bono_val)
-    # Offset 222: nivel de estrellas (1 = 0.1 estrellas)
+    # Offset 222: nivel de estrellas general (1 = 0.1 estrellas)
     struct.pack_into('<I', e, 222, st_lvl & 0xFFFFFFFF)
     return bytes(e)
 
@@ -378,13 +540,19 @@ def recien_nacida(nombre: str, sprite: int, nivel: int = 1,
     """
     d = ficha_de_sprite(sprite)
     nv = max(1, int(nivel or 1))
-    st = max(1, int(estrellas or 1))
+    # Al comprar un huevo (原型), nace con 0 mejoras y sin bonos verdes (bonos={});
+    # si nace ya evolucionada o es de etapa mayor, sortea sus bonos propios de pet.xml.
+    es_huevo = (d.get('etapa') == '原型')
+    bonos_ini = {} if es_huevo else sortear_bonos(sprite)
+    st = max(1, int(estrellas or 1)) if es_huevo else calcular_estrellas_total(bonos_ini)
     f = {'nombre': d.get('nombre') or nombre, 'sprite': sprite,
          'tipo': d.get('tipo', 0), 'nivel': nv,
          'hp': hp, 'hp_max': hp, 'mp': mp, 'mp_max': mp,
-         'exp': 0, 'exp_max': exp_para_subir(nv),
+         'exp': 0, 'exp_max': exp_para_subir(nv, sprite),
          'saciedad': 100, 'intimidad': 60,
          'estrellas': st,
+         'mejoras': 0,
+         'bonos': bonos_ini,
          'skills': list(skills_de(sprite, nv))}
     # Los stats de combate salen de petattrib. Sin esto la ventana de la
     # mascota sale entera en blanco, que es lo que pasaba: se creia que el
@@ -558,9 +726,26 @@ def skills_de(sprite, nivel: int = 1) -> tuple:
 
 
 def _petattrib():
-    """{(clase, nivel): fila} leido de una vez."""
+    """{(clase, nivel): fila} leido de una vez (primero petattrib.json de update26, y si no, content.db)."""
     if _TABLA:
         return _TABLA
+    f_json = pathlib.Path(__file__).parent / 'plantillas' / 'petattrib.json'
+    if f_json.exists():
+        try:
+            raw = json.loads(f_json.read_text(encoding='utf-8'))
+            for clase, d_lv in raw.items():
+                for lv_s, vals in d_lv.items():
+                    if len(vals) >= 8:
+                        _TABLA[(clase, int(lv_s))] = {
+                            'hp_max': int(vals[0]), 'mp_max': int(vals[1]),
+                            'atk': int(vals[2]), 'dfs': int(vals[3]),
+                            'matk': int(vals[4]), 'mdef': int(vals[5]),
+                            'rigor': int(vals[6]), 'agilidad': int(vals[7]),
+                        }
+            if _TABLA:
+                return _TABLA
+        except Exception:
+            pass
     import sqlite3
     db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
     if not db.exists():
@@ -596,7 +781,7 @@ def stats_de(sprite, nivel: int) -> dict:
         d['hp'] = d['hp_max']
     if 'mp_max' in d:
         d['mp'] = d['mp_max']
-    d['exp_max'] = exp_para_subir(nv)
+    d['exp_max'] = exp_para_subir(nv, sprite)
     d['skills'] = list(skills_de(sprite, nv))
     return d
 
@@ -691,6 +876,14 @@ def evolucionar(ficha: dict, rama: str) -> dict:
     if d.get('nombre'):
         ficha['nombre'] = d['nombre']
     ficha.update(stats_de(ficha['sprite'], ficha.get('nivel', 1)))
+    # Al evolucionar, actualizar o sortear los bonos verdes propios de la nueva etapa
+    nuevos_bonos = sortear_bonos(ficha['sprite'])
+    bonos_ant = ficha.get('bonos') or {}
+    for k, v in nuevos_bonos.items():
+        bonos_ant[k] = max(int(bonos_ant.get(k, 0)), v)
+    # Limpiar stats que no pertenezcan a la nueva etapa si aun estaban en 0
+    ficha['bonos'] = {k: v for k, v in bonos_ant.items() if v > 0}
+    ficha['estrellas'] = max(int(ficha.get('estrellas') or 1), calcular_estrellas_total(ficha['bonos']))
     return ficha
 
 

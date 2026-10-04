@@ -670,9 +670,6 @@ def datos_magia(magic_id: int) -> dict:
            'es_auto': False, 'es_cura': False, 'es_buff': False,
            'es_ataque': False, 'es_pasiva': False}
     d = {}
-    d_xml = _magic_xml().get(int(magic_id or 0))
-    if d_xml:
-        d.update(d_xml)
     if db.exists():
         try:
             con = sqlite3.connect(db)
@@ -685,9 +682,12 @@ def datos_magia(magic_id: int) -> dict:
                         d[k_col] = v_col
         except Exception:
             pass
+    d_xml = _magic_xml().get(int(magic_id or 0))
+    if d_xml:
+        d.update(d_xml)
     if d:
         try:
-            res['nombre'] = d.get('name') or d.get('名稱') or ''
+            res['nombre'] = d.get('名稱') or d.get('name') or ''
             def _num(val, default=0):
                 try: return int(float(val)) if val is not None and str(val).strip() else default
                 except (ValueError, TypeError): return default

@@ -1048,9 +1048,15 @@ def _usar_mejora(ses, addr, ranura, objetivo) -> bool:
         import mascotas as _ms_app
         f_pet = _pet_ficha(ses, objetivo)
         if f_pet:
-            incremento = 10 if 'Star-up' in _nombre_item(item) else 1
-            nueva_st = _ms_app.subir_estrella(f_pet, incremento)
-            ok, msg = True, 'star level -> %0.1f' % (nueva_st / 10.0)
+            nom_it_l = (_nombre_item(item) or '').lower()
+            if 'star-up' in nom_it_l or 'star up' in nom_it_l or item in (5902, 5903, 3379):
+                incremento = 10 if ('card' in nom_it_l or item in (5902, 5903)) else 1
+                nueva_st = _ms_app.subir_estrella(f_pet, incremento)
+                veces_pet = int(f_pet.get('mejoras') or 0)
+                ok, msg = True, 'star level -> %0.1f' % (nueva_st / 10.0)
+            else:
+                ok, veces_pet = _ms_app.mejorar_mascota(f_pet)
+                msg = 'mejora mascota +%d (star %0.1f)' % (veces_pet, f_pet.get('estrellas', 1) / 10.0) if ok else 'tope de 15 mejoras alcanzado'
         else:
             ok, msg = False, 'mascota no encontrada'
     elif clase == 'verde':
@@ -1095,8 +1101,9 @@ def _usar_mejora(ses, addr, ranura, objetivo) -> bool:
             msg_id = _mj.MSG_HUECO_FALLO
         cartel = _cl.aviso(nombre, tipo=7, msg_id=msg_id)
     elif ok and _iv.es_mascota(pieza):
-        cartel = _cl.aviso('%s+%d' % (nombre, nueva_st if 'nueva_st' in locals() else veces), tipo=7,
-                           msg_id=_mj.MSG_MEJORA_OK)
+        _v_pet = locals().get('veces_pet', 0)
+        cartel = _cl.aviso('%s+%d' % (nombre, _v_pet) if _v_pet > 0 else nombre,
+                           tipo=7, msg_id=_mj.MSG_MEJORA_OK)
     elif ok and clase in ('mortero', 'pienso_montura', 'pienso_mascota'):
         # El %s del 1613 lleva el "+N" pegado: "Onyx- Galactic Moped+4".
         cartel = _cl.aviso('%s+%d' % (nombre, veces), tipo=7,
@@ -2967,9 +2974,9 @@ class Servidor:
                                 dy_p = pet_targ.tile_y - pet_y
                                 dist_pet = max(abs(dx_p), abs(dy_p))
                                 r_pet = 2
-                                b_star = _ms.bonos_estrellas(f_pet.get('estrellas', 1))
-                                agi_total = int(f_pet.get('agilidad', 15)) + b_star.get('agilidad', 0)
-                                cadencia_pet = max(0.8, min(1.5, 1.5 - agi_total * 0.003))
+                                b_star = _ms.bonos_de_ficha(f_pet)
+                                agi_total = int(f_pet.get('agilidad', 15)) + int(b_star.get('agilidad', 0))
+                                cadencia_pet = max(1.6, min(2.2, 2.2 - agi_total * 0.0015))
                                 if dist_pet <= r_pet:
                                     if ahora - f_pet.get('ultimo_ataque', 0) >= cadencia_pet:
                                         f_pet['ultimo_ataque'] = ahora
@@ -2977,8 +2984,8 @@ class Servidor:
                                         sks = f_pet.get('skills') or list(_ms.skills_de(f_pet.get('sprite', 3001), int(f_pet.get('nivel', 1))))
                                         sk_cands = [s for s in sks if s and s > 0]
                                         sk_usada = random.choice(sk_cands) if sk_cands and random.random() < 0.65 else None
-                                        base_atk_pet = int(f_pet.get('atk', 100)) + b_star.get('atk', 0)
-                                        base_matk_pet = int(f_pet.get('matk', 100)) + b_star.get('matk', 0)
+                                        base_atk_pet = int(f_pet.get('atk', 100)) + int(b_star.get('atk', 0))
+                                        base_matk_pet = int(f_pet.get('matk', 100)) + int(b_star.get('matk', 0))
 
                                         if sk_usada:
                                             sk_datos = _cb.datos_magia(sk_usada)
@@ -3037,8 +3044,8 @@ class Servidor:
                                                     )
                                 else:
                                     if ahora >= f_pet.get('proximo_paso', 0):
-                                        spd_p = max(75, _velocidad_de(ses))
-                                        pasos_dar = min(max(1, dist_pet - 1), 3)
+                                        spd_p = 55
+                                        pasos_dar = min(max(1, dist_pet - 1), 2)
                                         cur_px, cur_py = pet_x * 32, pet_y * 32
                                         nx_p, ny_p = pet_x, pet_y
                                         for _ in range(pasos_dar):
@@ -3050,24 +3057,24 @@ class Servidor:
                                         f_pet['y'] = ny_p
                                         ses.pet_tile = [nx_p, ny_p]
                                         dst_px, dst_py = nx_p * 32, ny_p * 32
-                                        f_pet['proximo_paso'] = ahora + (32.0 * pasos_dar / float(spd_p))
+                                        f_pet['proximo_paso'] = ahora + (32.0 * pasos_dar / float(spd_p)) + 0.15
                                         ses.enviar(MOVE.build(entity_id=pet_eid, cur_x=cur_px, cur_y=cur_py, dst_x=dst_px, dst_y=dst_py, speed=spd_p))
                             else:
                                 dp_x = p.tile_x - pet_x
                                 dp_y = p.tile_y - pet_y
                                 dist_jug = max(abs(dp_x), abs(dp_y))
-                                spd_p = max(75, _velocidad_de(ses))
+                                spd_p = 55
                                 if dist_jug > 15:
                                     f_pet['x'] = p.tile_x + 1
                                     f_pet['y'] = p.tile_y
                                     ses.pet_tile = [f_pet['x'], f_pet['y']]
                                     cur_px, cur_py = f_pet['x'] * 32, f_pet['y'] * 32
                                     ses.enviar(
-                                        struct.pack('<HIii', 0x0003, pet_eid, cur_px, cur_py),
+                                        struct.pack('<HIII', 0x0003, pet_eid, f_pet['x'], f_pet['y']),
                                         MOVE.build(entity_id=pet_eid, cur_x=cur_px, cur_y=cur_py, dst_x=cur_px, dst_y=cur_py, speed=spd_p)
                                     )
                                 elif dist_jug > 1 and ahora >= f_pet.get('proximo_paso', 0):
-                                    pasos_dar = min(dist_jug - 1, 3)
+                                    pasos_dar = min(dist_jug - 1, 2)
                                     cur_px, cur_py = pet_x * 32, pet_y * 32
                                     nx_j, ny_j = pet_x, pet_y
                                     for _ in range(pasos_dar):
@@ -3079,7 +3086,7 @@ class Servidor:
                                     f_pet['y'] = ny_j
                                     ses.pet_tile = [nx_j, ny_j]
                                     dst_px, dst_py = nx_j * 32, ny_j * 32
-                                    f_pet['proximo_paso'] = ahora + (32.0 * pasos_dar / float(spd_p))
+                                    f_pet['proximo_paso'] = ahora + (32.0 * pasos_dar / float(spd_p)) + 0.15
                                     ses.enviar(MOVE.build(entity_id=pet_eid, cur_x=cur_px, cur_y=cur_py, dst_x=dst_px, dst_y=dst_py, speed=spd_p))
 
                         # AL FINAL DE CADA TICK, A LA RED. Sin esto el paseo
@@ -3523,8 +3530,16 @@ class Servidor:
                     target_ent = 0
                     cx = tx
                     cy = ty
-                    tile_ef_x = tx
-                    tile_ef_y = ty
+                    if (cx <= 0 or cy <= 0) and ses.personaje:
+                        _px, _py = ses.personaje.tile_x, ses.personaje.tile_y
+                        _cercanos = [b for b in bichos.values() if b.vivo and max(abs(b.tile_x - _px), abs(b.tile_y - _py)) <= max(12, mag.get('rango', 12))]
+                        if _cercanos:
+                            _b_min = min(_cercanos, key=lambda b: max(abs(b.tile_x - _px), abs(b.tile_y - _py)))
+                            cx, cy = _b_min.tile_x, _b_min.tile_y
+                        else:
+                            cx, cy = _px, _py
+                    tile_ef_x = cx
+                    tile_ef_y = cy
 
                 area = max(1, mag.get('area', 1))
                 _ef2 = _cb.efecto_secundario(tipo)
@@ -3538,14 +3553,14 @@ class Servidor:
                                                es_magia=is_magic_skill, tile_x=tile_ef_x, tile_y=tile_ef_y)
                         )
 
-                    # Dimension Shift (13595..13599): Teletransportacion instantanea y explosion de impacto
+                    # Dimension Shift (13595..13599): Teletransportacion instantanea (en tiles!) y explosion electrica de impacto
                     if 13595 <= tipo <= 13599 and cx > 0 and cy > 0 and ses.personaje:
                         ses.personaje.tile_x, ses.personaje.tile_y = cx, cy
                         MOVE_P = Msg.registry[(0x0005, 's2c', '*')]
                         _ef_ds = mag.get('sub_efecto', 519)
                         _sub_id = 13600 + (tipo - 13595)
                         ses.enviar_inmediato(
-                            struct.pack('<HIii', 0x0003, yo, cx * 32, cy * 32),
+                            struct.pack('<HIII', 0x0003, yo, cx, cy),
                             MOVE_P.build(entity_id=yo, cur_x=cx * 32, cur_y=cy * 32, dst_x=cx * 32, dst_y=cy * 32, speed=1000),
                             _cb.numero_de_dano(yo, yo, dano=0, ataque=_sub_id, efecto=_ef_ds, cast_time=0, es_magia=True),
                             _cb.cierre_de_dano(yo, yo, ataque=_sub_id, efecto=_ef_ds, es_magia=True),
@@ -4251,12 +4266,14 @@ class Servidor:
             crit_prob = min(0.90, (critico_jugador(ses) + extra_crit) / 100.0)
             es_crit = (random.random() < crit_prob)
 
-            # Ember Brand (13841..13845) / Holy Brand (15241..15245) - Formula 65:
-            # Comprobar si el objetivo ya tiene una marca activa para detonar Fase 2 (AOE)
+            # Ember Brand (13841..13845) / Holy Brand (15241..15245) / Formula 65:
+            # Fase 1 golpea y marca al enemigo; Fase 2 detona la explosion AOE (14036..14040, radio 5, efecto 546)
             _brand_detona = False
             _brand_prev_id = 0
             _brand_aoe_mag = None
             if tipo != _cb.ATAQUE_NORMAL and mag.get('es_brand'):
+                if mag.get('brand_aoe_id'):
+                    _brand_aoe_mag = _cb.datos_magia(mag['brand_aoe_id'])
                 _now_br = time.time()
                 _ef_act = getattr(m, 'efectos_activos', None) or {}
                 for _b_cand in (mag.get('brand_dot_id', 0), *range(13976, 13981), *range(15251, 15256)):
@@ -4264,10 +4281,9 @@ class Servidor:
                         _brand_detona = True
                         _brand_prev_id = _b_cand
                         break
-                if _brand_detona and mag.get('brand_aoe_id'):
-                    _brand_aoe_mag = _cb.datos_magia(mag['brand_aoe_id'])
-                    if _brand_aoe_mag.get('efecto'):
-                        atk_efecto = _brand_aoe_mag['efecto']
+                if _brand_detona and _brand_aoe_mag and _brand_aoe_mag.get('efecto'):
+                    atk_efecto = _brand_aoe_mag['efecto']
+
 
             mult_spell = 1.0
             var_pct = 0.05
@@ -4513,33 +4529,48 @@ class Servidor:
                         _ret + _cb.RETRASO_SEGUNDA_MANO,
                         lambda p=_pkgs_dano2: ses.enviar_inmediato(*p))
 
-                # Si Ember/Holy Brand detono Fase 2 (AOE explosion), golpear a los monstruos cercanos en radio 5
-                if _brand_detona and _brand_aoe_mag:
+                # Ember Brand / Holy Brand / Formula 65: detonar explosion AOE (14036..14040, radio 5, efecto 546)
+                # sobre los enemigos circundantes y reproducir el efecto visual de explosion en area
+                if mag.get('es_brand') and _brand_aoe_mag:
                     _area_br = max(1, _brand_aoe_mag.get('area', 5))
                     _cx_br, _cy_br = m.tile_x, m.tile_y
+                    _aoe_id = int(mag.get('brand_aoe_id') or tipo)
+                    _aoe_ef = int(_brand_aoe_mag.get('efecto') or atk_efecto or 546)
+                    _ef2_aoe = _cb.efecto_secundario(_aoe_id) or _ef2
                     def _detonar_brand_aoe():
                         if not ses.personaje or getattr(ses, 'muerto', False):
                             return
+                        # Reproducir el efecto visual de la explosion AOE sobre el epicentro
+                        ses.enviar_inmediato(
+                            _cb.numero_de_dano(yo, m.entity_id, 0, ataque=_aoe_id, efecto=_aoe_ef,
+                                               cast_time=0, es_magia=is_magic_skill, tile_x=_cx_br, tile_y=_cy_br),
+                            _cb.cierre_de_dano(yo, m.entity_id, ataque=_aoe_id, efecto=_aoe_ef,
+                                               es_magia=is_magic_skill, tile_x=_cx_br, tile_y=_cy_br),
+                        )
                         for _bm in list(bichos.values()):
                             if _bm.entity_id == m.entity_id or not _bm.vivo or getattr(_bm, 'encantado', False):
                                 continue
                             if max(abs(_bm.tile_x - _cx_br), abs(_bm.tile_y - _cy_br)) <= _area_br:
                                 _c_br = random.random() < crit_prob
-                                _d_br = _bm.recibir(total_atk, es_magico=True, mult=mult_base_combo * (1.5 if _c_br else 1.0), var_pct=var_pct)
+                                _d_br = _bm.recibir(total_atk, es_magico=is_magic_skill, mult=mult_base_combo * (1.5 if _c_br else 1.0), var_pct=var_pct)
                                 _pkgs_br = [
+                                    _cb.numero_de_dano(yo, _bm.entity_id, _d_br, ataque=_aoe_id, efecto=_aoe_ef,
+                                                       cast_time=0, es_magia=is_magic_skill),
+                                    _cb.cierre_de_dano(yo, _bm.entity_id, ataque=_aoe_id, efecto=_aoe_ef,
+                                                       es_magia=is_magic_skill),
                                     _cb.atributo(_bm.entity_id, _bm.porcentaje),
                                     _cb.numero_flotante(_bm.entity_id, _d_br, _cb.TIPO_DANO_CRITICO if _c_br else _cb.TIPO_DANO),
                                 ]
-                                if _ef2 and random.random() * 100 < _ef2.get('prob', 100):
-                                    _bm.aplicar_efecto(_ef2)
-                                    if _ef2.get('magia') and _ef2.get('dur_ms'):
-                                        _pkgs_br.append(struct.pack('<HIBBII', 0x001D, _bm.entity_id, 1, 4, _ef2['magia'], _ef2['dur_ms']))
+                                if _ef2_aoe and random.random() * 100 < _ef2_aoe.get('prob', 100):
+                                    _bm.aplicar_efecto(_ef2_aoe)
+                                    if _ef2_aoe.get('magia') and _ef2_aoe.get('dur_ms'):
+                                        _pkgs_br.append(struct.pack('<HIBBII', 0x001D, _bm.entity_id, 1, 4, _ef2_aoe['magia'], _ef2_aoe['dur_ms']))
                                 ses.enviar_inmediato(*_pkgs_br)
                                 if not _bm.vivo:
                                     _procesar_muerte_monstruo(ses, _bm, yo, addr, espera=0.0)
                                 elif _bm.en_combate_con != yo:
                                     _bm.en_combate_con = yo
-                    bucle.call_later(_ret, _detonar_brand_aoe)
+                    bucle.call_later(_ret + (0.05 if _brand_detona else 0.25), _detonar_brand_aoe)
 
                 # EL COMBO. Strangle Strike V pega NUEVE veces y el IV seis;
                 # todos los golpes usan mult_base_combo (habilidad + equipo + buffs)
