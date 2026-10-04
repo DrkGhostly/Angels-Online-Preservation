@@ -468,14 +468,10 @@ def guardar_progreso(usuario: str, char_id: int, nivel: int, exp: int,
                 p['hp'] = int(hp)
             if hp_max is not None:
                 p['hp_max'] = int(hp_max)
-            elif hp is not None and hp > p.get('hp_max', 0):
-                p['hp_max'] = int(hp)
             if mp is not None:
                 p['mp'] = int(mp)
             if mp_max is not None:
                 p['mp_max'] = int(mp_max)
-            elif mp is not None and mp > p.get('mp_max', 0):
-                p['mp_max'] = int(mp)
             if habilidades is not None:
                 p['habilidades'] = [list(h) for h in habilidades]
                 banco = p.setdefault('banco_habilidades', {})

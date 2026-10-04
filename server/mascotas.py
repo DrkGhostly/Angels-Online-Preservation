@@ -278,10 +278,16 @@ def armar(estado: dict) -> bytes:
     exp = max(0, int(estado.get('exp') or 0))
     exp_max = max(1, int(estado.get('exp_max') or exp_para_subir(nv, sp)))
 
+    satiado = int(estado.get('saciedad') or 0) > 100
     hp_eff = hp + int(b_star.get('hp', 0))
     mp_eff = mp + int(b_star.get('mp', 0))
     hp_max_eff = hp_max + int(b_star.get('hp', 0))
     mp_max_eff = mp_max + int(b_star.get('mp', 0))
+    if satiado:
+        hp_max_eff = int(round(hp_max_eff * 3.5))
+        mp_max_eff = int(round(mp_max_eff * 3.5))
+        hp_eff = min(hp_max_eff, int(round(hp_eff * 3.5)))
+        mp_eff = min(mp_max_eff, int(round(mp_eff * 3.5)))
 
     for campo, off in OFF.items():
         v = estado.get(campo)
@@ -299,6 +305,11 @@ def armar(estado: dict) -> bytes:
         else:
             base_v = int(v)
             eff_v = base_v + int(b_star.get(campo, 0))
+            if satiado and campo in DOBLES:
+                if campo in ('atk', 'matk', 'dfs', 'mdef'):
+                    eff_v = int(round(eff_v * 1.4))
+                elif campo in ('rigor', 'agilidad'):
+                    eff_v = int(round(eff_v * 1.2))
             struct.pack_into('<I', b, off, base_v & 0xFFFFFFFF)
             if campo in DOBLES:
                 struct.pack_into('<I', b, off + 4, eff_v & 0xFFFFFFFF)
@@ -337,14 +348,10 @@ def armar(estado: dict) -> bytes:
 
 
 def alimentar(estado: dict, cantidad: int = SACIEDAD_POR_PIENSO) -> tuple:
-    """El Pet Feed normal: sube la saciedad, no los stats.
-
-    Su descripcion lo separa bien: el pienso corriente da saciedad, y es la
-    saciedad la que deja que la mascota mejore. El que sube stats de verdad
-    es el Improved Pet Feed, que va por mejoras.py.
-    """
-    antes = estado.get('saciedad', 0)
+    """El Pet Feed normal: sube la saciedad (hasta 600) y recupera intimidad."""
+    antes = int(estado.get('saciedad', 0))
     estado['saciedad'] = min(SACIEDAD_MAXIMA, antes + cantidad)
+    estado['intimidad'] = min(100, int(estado.get('intimidad', 60)) + 5)
     return estado['saciedad'], estado['saciedad'] >= SACIEDAD_PARA_MEJORAR
 
 
@@ -511,9 +518,13 @@ def entrada(plantilla: bytes, estado: dict) -> bytes:
             struct.pack_into('<Q', e, off, max(0, val_q))
         elif campo in ('hp_max', 'mp_max'):
             val_eff = int(v) + int(b_star.get('hp' if campo == 'hp_max' else 'mp', 0))
+            if int(estado.get('saciedad') or 0) > 100:
+                val_eff = int(round(val_eff * 3.5))
             struct.pack_into('<I', e, off, int(val_eff) & 0xFFFFFFFF)
         elif campo in ('hp', 'mp'):
             val_eff = int(v) + int(b_star.get('hp' if campo == 'hp' else 'mp', 0))
+            if int(estado.get('saciedad') or 0) > 100:
+                val_eff = int(round(val_eff * 3.5))
             struct.pack_into('<I', e, off, int(val_eff) & 0xFFFFFFFF)
         else:
             struct.pack_into('<I', e, off, int(v) & 0xFFFFFFFF)

@@ -431,7 +431,7 @@ def bonos_de_equipo(bolsa, mejoras: dict = None) -> dict:
         if _veces:
             try:
                 import mejoras as _mj
-                _pct = _mj.pct_por_mejoras(_mj.tipo_de_ranura(r), _veces)
+                _pct = _mj.pct_por_mejoras(_mj.tipo_de_ranura(r, iid), _veces)
             except Exception:
                 _pct = {}
             for _k, _p in (_pct or {}).items():
@@ -468,24 +468,22 @@ def bonos_de_equipo(bolsa, mejoras: dict = None) -> dict:
 
         item_atk = x.get('atk', 0)
 
-        if r == RANURA_DERECHA: # 3 (Arma Gear mano derecha)
+        if r == RANURA_DERECHA: # 3 (Arma Gear mano derecha: 1H, 2H, Shadow Blade, etc. -> solo R.Atk)
             r_weap_atk += item_atk + x.get('accuracy', 0)
-            # UN ARMA DE DOS MANOS CUENTA EN LAS DOS. La lleva la ranura 3
-            # y la 4 se queda vacia, asi que el L.Atk se quedaba solo con
-            # lo que dieran las armaduras: ni el ataque del arma ni sus
-            # stats verdes ni su "+N" llegaban a esa mano. Con un baston o
-            # un mandoble se notaba muchisimo.
-            if es_arma_dos_manos(iid):
+        elif r == RANURA_IZQUIERDA: # 4 (Escudo / Arma Dual Gear mano izquierda)
+            if es_arma_dual(iid):
                 l_weap_atk += item_atk + x.get('accuracy', 0)
-        elif r == RANURA_IZQUIERDA: # 4 (Escudo / Arma Gear mano izquierda)
-            l_weap_atk += item_atk + x.get('accuracy', 0)
+            elif item_atk > 0:
+                # El escudo solo da defensa, salvo que sea uno especial que declare ataque propio
+                l_weap_atk += item_atk
         elif r == 169: # Arma Fashion (derecha / principal)
             r_weap_atk += item_atk
-            # Solo si la ranura izquierda 170 esta vacia se clona el arma dual
-            if es_arma_dual(iid) and not (bolsa.get(170) or bolsa.get('170')):
+            # Solo si la ranura izquierda 170 esta vacia y lleva duales o arma en la 4 se suma en fashion
+            if es_arma_dual(iid) and not (bolsa.get(170) or bolsa.get('170')) and (bolsa.get(4) or bolsa.get('4')) and es_arma_dual(int(bolsa.get(4) or bolsa.get('4') or 0)):
                 l_weap_atk += item_atk
         elif r == 170: # Arma/Escudo Fashion (izquierda)
-            l_weap_atk += item_atk
+            if item_atk > 0:
+                l_weap_atk += item_atk
         else:
             # Armaduras Gear (1, 2, 5, 6, 7, 8) y Prendas Fashion (167, 168, 171, 172, 173)
             # Si dan ataque, se suma a AMBOS (R.Atk y L.Atk)
@@ -810,10 +808,10 @@ def stats(bolsa=None, habilidades: list = None,
                     matk_eff += b_data['matk']
                 if 'mdef' in b_data:
                     mdef_eff += b_data['mdef']
-                if 'hp' in b_data:
-                    hp_max_eff += b_data['hp']
-                if 'mp' in b_data:
-                    mp_max_eff += b_data['mp']
+                if b_data.get('hp_bonus'):
+                    hp_max_eff += b_data['hp_bonus']
+                if b_data.get('mp_bonus'):
+                    mp_max_eff += b_data['mp_bonus']
 
     # TODO lo que va aqui se recorta al rango del campo. Sin esto, un solo
     # numero fuera de sitio -- un debuff que deje un stat en negativo, o un
@@ -1271,8 +1269,8 @@ def es_ranura_valida(item_id: int, ranura: int) -> bool:
     else:
         if es_item_fashion(item_id):
             return False # Un item de Fashion NUNCA va en la pestaña de Gear!
-        if target == 3 and ranura in (3, 4) and not es_arma_dos_manos(item_id):
-            return True
+        if target == 3 and ranura in (3, 4):
+            return ranura == 3 or es_arma_dual(item_id)
         return ranura == target
 
 
@@ -1338,10 +1336,13 @@ def ranura_equipo_de(item_id: int):
                     continue
             for fila in filas:
                 iid = int(fila[0])
-                cat = fila[1]
+                cat = str(fila[1] or '')
                 rhand, lhand, head, acc, body, hands, feet, back, pet = [v == '是' for v in fila[2:]]
                 if rhand and lhand:
-                    _DUAL_CACHE[iid] = True
+                    # Solo Espadas (劍, 刀) y Hachas/Mazas (斧, 錘, 锤) o Fashion duales se pueden equipar en ambas manos.
+                    # Shadow Blade (影刃) es de 1 mano (permite escudo en la 4), pero NO se puede llevar en duales.
+                    if cat == '紙娃娃' or any(k in cat for k in ('劍', '刀', '斧', '錘', '锤')):
+                        _DUAL_CACHE[iid] = True
                 if cat == '紙娃娃':
                     _FASHION_CACHE[iid] = True
                     # Items de Fashion (Paper Doll) se equipan en las ranuras de la pestaña Fashion (167..174)
@@ -1396,7 +1397,7 @@ def ranura_equipo_de(item_id: int):
 _TWO_HAND_CACHE = {}
 
 def es_arma_dos_manos(item_id: int) -> bool:
-    """Si el arma requiere ambas manos (Lanza, Arco, etc.)."""
+    """Si el arma requiere ambas manos (Bastón/Staff, Lanza/Spear, Arco/Bow, etc.)."""
     global _TWO_HAND_CACHE
     if not item_id:
         return False
@@ -1411,7 +1412,7 @@ def es_arma_dos_manos(item_id: int) -> bool:
             row = fila_item(con, '"物品類別"', item_id)
             if row and row[0]:
                 cat = str(row[0])
-                res = any(k in cat for k in ('槍', '弓', '雙手'))
+                res = any(k in cat for k in ('槍', '弓', '杖', '雙手'))
         except Exception:
             pass
     _TWO_HAND_CACHE[item_id] = res

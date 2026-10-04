@@ -662,11 +662,12 @@ def pct_por_mejoras(tipo: str, veces: int) -> dict:
     return {k: v * int(veces or 0) for k, v in base.items()}
 
 
-def tipo_de_ranura(ranura):
+def tipo_de_ranura(ranura, item_id=None):
     """'arma', 'escudo', 'montura' o 'armadura' segun donde este puesta.
 
-    Es lo mismo que hace app._tipo_de_pieza pero sin necesitar el item, para
-    poder llamarlo desde inventario.bonos_de_equipo al sumar el "+N".
+    Si en la mano izquierda (ranura 4 o 170) se lleva un arma dual (espada o
+    hacha) en lugar de un escudo, sus mejoras "+N" son de 'arma' (+6% atk/matk
+    por mejora) para que el L.Atk coincida con el R.Atk.
     """
     r = int(ranura)
     if r in (10, 174):
@@ -674,5 +675,12 @@ def tipo_de_ranura(ranura):
     if r == 3 or r == 169:
         return 'arma'
     if r == 4 or r == 170:
+        if item_id:
+            try:
+                import inventario as _iv
+                if _iv.es_arma_dual(int(item_id)) or _iv.ranura_equipo_de(int(item_id)) in (3, 169):
+                    return 'arma'
+            except Exception:
+                pass
         return 'escudo'
     return 'armadura'

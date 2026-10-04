@@ -1153,10 +1153,10 @@ def _tipo_de_pieza(item_id, ranura):
     r = _iv.ranura_equipo_de(item_id) or ranura
     if r in (10, 174):
         return 'montura'
-    if r == 3:
+    if r in (3, 169):
         return 'arma'
-    if r == 4:
-        return 'escudo'
+    if r in (4, 170):
+        return 'arma' if _iv.es_arma_dual(item_id) else 'escudo'
     return 'armadura'
 
 
@@ -1441,7 +1441,7 @@ def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
 
     salida_combate.append(_cl.aviso(f'{oro} Gold', tipo=0, msg_id=_cl.MSG_ITEM))
 
-    drops = _cb.botin_items(m.npc_type)
+    drops = _cb.botin_items(m.npc_type, nombre=getattr(m, 'nombre', ''), nivel=getattr(m, 'nivel', 0))
     bolsa = getattr(ses, 'inventario', {})
     max_ranura = _tope_bolsa(bolsa)
 
@@ -2145,6 +2145,50 @@ class Servidor:
                             cuentas.guardar_progreso(ses.usuario, p.char_id, p.nivel, p.exp,
                                                      p.hp, p.mp, p.habilidades,
                                                      hp_max=p.hp_max, mp_max=p.mp_max, sp=getattr(ses, "sp", None), buffs=getattr(ses.personaje, "buffs", None) if ses.personaje else None)
+
+                # --- Decaimiento periodico de saciedad e intimidad de la mascota invocada ---
+                f_pet = getattr(p, 'mascota', None)
+                if isinstance(f_pet, dict) and f_pet.get('fuera'):
+                    import mascotas as _ms_reg
+                    ult_sac = float(f_pet.get('ultimo_tick_saciedad') or ahora)
+                    ult_int = float(f_pet.get('ultimo_tick_intimidad') or ahora)
+                    if 'ultimo_tick_saciedad' not in f_pet:
+                        f_pet['ultimo_tick_saciedad'] = ahora
+                    if 'ultimo_tick_intimidad' not in f_pet:
+                        f_pet['ultimo_tick_intimidad'] = ahora
+                    cambio_pet = False
+                    sac_antes = int(f_pet.get('saciedad', 100))
+                    if (ahora - ult_sac) >= 30.0:
+                        f_pet['ultimo_tick_saciedad'] = ahora
+                        if sac_antes > 0:
+                            f_pet['saciedad'] = max(0, sac_antes - 1)
+                            cambio_pet = True
+                        else:
+                            # Si tiene 0 de saciedad, pierde 1 de intimidad (nunca baja de 40 para que no escape)
+                            int_ant = int(f_pet.get('intimidad', 60))
+                            if int_ant > 40:
+                                f_pet['intimidad'] = max(40, int_ant - 1)
+                                cambio_pet = True
+                    if (ahora - ult_int) >= 60.0:
+                        f_pet['ultimo_tick_intimidad'] = ahora
+                        int_ant = int(f_pet.get('intimidad', 60))
+                        if int_ant > 40:
+                            f_pet['intimidad'] = max(40, int_ant - 1)
+                            cambio_pet = True
+                    if cambio_pet:
+                        _r_p = f_pet.get('ranura')
+                        pkgs_pet_dec = [_ms_reg.armar(f_pet)]
+                        if _r_p is not None:
+                            if getattr(p, 'mascotas', None) is not None:
+                                p.mascotas[str(_r_p)] = f_pet
+                            pkgs_pet_dec.extend(_refrescar(ses, [_r_p]))
+                        pet_eid = getattr(ses, 'pet_entity_id', None) or f_pet.get('entidad')
+                        if sac_antes > 100 and int(f_pet.get('saciedad', 0)) <= 100 and pet_eid:
+                            # Quitar icono de buff 3796 (Pet's Satiation) cuando baja de 101 a 100
+                            pkgs_pet_dec.append(struct.pack('<HIBBII', 0x001D, int(pet_eid), 1, 4, 3796, 0))
+                        ses.enviar_inmediato(*pkgs_pet_dec)
+                        if getattr(ses, 'usuario', None):
+                            cuentas.guardar_mascota(ses.usuario, p.char_id, f_pet, getattr(p, 'mascotas', None))
         except asyncio.CancelledError:
             pass
         except Exception as e:
@@ -2207,15 +2251,23 @@ class Servidor:
                 ses.patrulla_task.cancel()
             if getattr(ses, 'regen_task', None):
                 ses.regen_task.cancel()
-            # Guardar donde quedo el personaje, para que al volver a entrar
-            # aparezca ahi y no en el punto de aparicion.
+            # Guardar donde quedo el personaje y su progreso/buffs, para que al
+            # volver a entrar conserve su posicion, HP/MP, SP y buffs activos.
             if getattr(ses, 'personaje', None) and getattr(ses, 'usuario', None):
                 try:
-                    cuentas.guardar_posicion(ses.usuario, ses.personaje.char_id,
-                                             ses.personaje.tile_x,
-                                             ses.personaje.tile_y)
-                    log.info(f"[{addr}] posicion guardada: "
-                             f"({ses.personaje.tile_x},{ses.personaje.tile_y})")
+                    p_fin = ses.personaje
+                    cuentas.guardar_posicion(ses.usuario, p_fin.char_id,
+                                             p_fin.tile_x,
+                                             p_fin.tile_y)
+                    cuentas.guardar_progreso(ses.usuario, p_fin.char_id,
+                                             p_fin.nivel, p_fin.exp,
+                                             p_fin.hp, p_fin.mp,
+                                             p_fin.habilidades,
+                                             hp_max=p_fin.hp_max, mp_max=p_fin.mp_max,
+                                             sp=getattr(ses, 'sp', None),
+                                             buffs=getattr(p_fin, 'buffs', None))
+                    log.info(f"[{addr}] posicion y progreso guardados: "
+                             f"({p_fin.tile_x},{p_fin.tile_y})")
                 except Exception as e:
                     log.warning(f"[{addr}] no se pudo guardar la posicion: {e}")
             base, nc, ns = grab.cerrar()
@@ -2403,10 +2455,23 @@ class Servidor:
             ses.enviar(inv.stats(ses.inventario, p.habilidades,
                                  hp=p.hp, hp_max=p.hp_max,
                                  mp=p.mp, mp_max=p.mp_max,
-                                 oro=p.oro, sp=ses.sp, sp_max=bars,
+                                 oro=p.oro, buffs=getattr(p, 'buffs', None),
+                                 sp=ses.sp, sp_max=bars,
                                  mejoras=_mejoras_de(ses)))
             import combate as _cb
             ses.enviar(_cb.atributo(p.entity_id, ses.sp, _cb.KIND_SP))
+            if getattr(p, 'buffs', None):
+                _now_b = time.time()
+                for _b_id, _b_data in list(p.buffs.items()):
+                    if isinstance(_b_data, dict):
+                        _rem_s = _b_data.get('fin', 0) - _now_b
+                        if _rem_s > 0:
+                            ses.enviar(struct.pack('<HIBBII', 0x001D, p.entity_id, 1, 4, int(_b_id), int(_rem_s * 1000)))
+                            if _b_data.get('es_transform') and (_b_data.get('trans_sprite') or _b_data.get('mag', {}).get('trans_sprite')):
+                                _ts = _b_data.get('trans_sprite') or _b_data.get('mag', {}).get('trans_sprite')
+                                ses.enviar(_cb.atributo(p.entity_id, _ts, _cb.KIND_TRANSFORM))
+                        else:
+                            p.buffs.pop(_b_id, None)
             # Creditos de rango. Van en su propio 0x0013, igual que los manda
             # el servidor real al usar un objeto que los sube. El rango de la
             # ficha lo decide el cliente a partir de este total.
@@ -2829,12 +2894,35 @@ class Servidor:
                                                         m.en_combate_con = None
                                                 elif f_pet and teid == pet_eid:
                                                     f_pet['hp'] = max(0, int(f_pet.get('hp', 100)) - suyo)
-                                                    ses.enviar_inmediato(
-                                                        _cb.numero_de_dano(m.entity_id, pet_eid, suyo, ataque=656, efecto=ef_atk),
-                                                        _cb.numero_flotante(pet_eid, suyo),
-                                                        _ms.armar(f_pet))
                                                     if f_pet['hp'] <= 0:
+                                                        # Si muere la mascota, baja su intimidad (-10 puntos, pero nunca menos de 40 para que no escape) y se guarda
+                                                        f_pet['intimidad'] = max(40, int(f_pet.get('intimidad', 60)) - 10)
+                                                        f_pet['fuera'] = False
+                                                        f_pet['entidad'] = 0
+                                                        f_pet['hp'] = max(1, int(f_pet.get('hp_max') or 100))
+                                                        ses.pet_entity_id = None
+                                                        ses.pet_objetivo = None
                                                         m.en_combate_con = yo
+                                                        _r_p = f_pet.get('ranura')
+                                                        pkgs_pet_muerte = [
+                                                            _cb.numero_de_dano(m.entity_id, pet_eid, suyo, ataque=656, efecto=ef_atk),
+                                                            _cb.numero_flotante(pet_eid, suyo),
+                                                            _ms.quitar(pet_eid),
+                                                            _ms.enlazar(yo, 0),
+                                                            _ms.armar(f_pet),
+                                                        ]
+                                                        if _r_p is not None:
+                                                            if getattr(ses.personaje, 'mascotas', None) is not None:
+                                                                ses.personaje.mascotas[str(_r_p)] = f_pet
+                                                            pkgs_pet_muerte.extend(_refrescar(ses, [_r_p]))
+                                                        ses.enviar_inmediato(*pkgs_pet_muerte)
+                                                        if getattr(ses, 'usuario', None) and ses.personaje:
+                                                            cuentas.guardar_mascota(ses.usuario, ses.personaje.char_id, f_pet, getattr(ses.personaje, 'mascotas', None))
+                                                    else:
+                                                        ses.enviar_inmediato(
+                                                            _cb.numero_de_dano(m.entity_id, pet_eid, suyo, ataque=656, efecto=ef_atk),
+                                                            _cb.numero_flotante(pet_eid, suyo),
+                                                            _ms.armar(f_pet))
                                                 elif getattr(ses, 'invocacion', None) and teid == ses.invocacion.get('entity_id'):
                                                     ses.invocacion['hp'] = max(0, ses.invocacion.get('hp', 1) - suyo)
                                                     ses.enviar_inmediato(
@@ -3044,8 +3132,8 @@ class Servidor:
                                                     )
                                 else:
                                     if ahora >= f_pet.get('proximo_paso', 0):
-                                        spd_p = 55
-                                        pasos_dar = min(max(1, dist_pet - 1), 2)
+                                        spd_p = 105 if f_pet.get('saciedad', 0) > 100 else 85
+                                        pasos_dar = min(max(1, dist_pet - 1), 3)
                                         cur_px, cur_py = pet_x * 32, pet_y * 32
                                         nx_p, ny_p = pet_x, pet_y
                                         for _ in range(pasos_dar):
@@ -3057,13 +3145,13 @@ class Servidor:
                                         f_pet['y'] = ny_p
                                         ses.pet_tile = [nx_p, ny_p]
                                         dst_px, dst_py = nx_p * 32, ny_p * 32
-                                        f_pet['proximo_paso'] = ahora + (32.0 * pasos_dar / float(spd_p)) + 0.15
+                                        f_pet['proximo_paso'] = ahora + (32.0 * pasos_dar / float(spd_p))
                                         ses.enviar(MOVE.build(entity_id=pet_eid, cur_x=cur_px, cur_y=cur_py, dst_x=dst_px, dst_y=dst_py, speed=spd_p))
                             else:
                                 dp_x = p.tile_x - pet_x
                                 dp_y = p.tile_y - pet_y
                                 dist_jug = max(abs(dp_x), abs(dp_y))
-                                spd_p = 55
+                                spd_p = 105 if f_pet.get('saciedad', 0) > 100 else 85
                                 if dist_jug > 15:
                                     f_pet['x'] = p.tile_x + 1
                                     f_pet['y'] = p.tile_y
@@ -3074,7 +3162,7 @@ class Servidor:
                                         MOVE.build(entity_id=pet_eid, cur_x=cur_px, cur_y=cur_py, dst_x=cur_px, dst_y=cur_py, speed=spd_p)
                                     )
                                 elif dist_jug > 1 and ahora >= f_pet.get('proximo_paso', 0):
-                                    pasos_dar = min(dist_jug - 1, 2)
+                                    pasos_dar = min(dist_jug - 1, 3)
                                     cur_px, cur_py = pet_x * 32, pet_y * 32
                                     nx_j, ny_j = pet_x, pet_y
                                     for _ in range(pasos_dar):
@@ -3086,7 +3174,7 @@ class Servidor:
                                     f_pet['y'] = ny_j
                                     ses.pet_tile = [nx_j, ny_j]
                                     dst_px, dst_py = nx_j * 32, ny_j * 32
-                                    f_pet['proximo_paso'] = ahora + (32.0 * pasos_dar / float(spd_p)) + 0.15
+                                    f_pet['proximo_paso'] = ahora + (32.0 * pasos_dar / float(spd_p))
                                     ses.enviar(MOVE.build(entity_id=pet_eid, cur_x=cur_px, cur_y=cur_py, dst_x=dst_px, dst_y=dst_py, speed=spd_p))
 
                         # AL FINAL DE CADA TICK, A LA RED. Sin esto el paseo
@@ -3129,13 +3217,6 @@ class Servidor:
                     if _todos_hech:
                         ses.enviar(_cl.otorgar_hechizos(p.entity_id, _todos_hech))
                 bars, max_pts = _max_sp_info(p)
-                # El SP EMPIEZA A CERO. Se gana peleando, no se regala al
-                # entrar. Antes habia un "or max_pts" que ademas convertia
-                # el cero en el maximo -- el 0 es falso en Python -- y al
-                # cambiarlo por None el problema siguio: la sesion nace sin
-                # el atributo, o sea None, asi que tambien daba el maximo.
-                # El log lo canto: "sp_gana=1000 sp_actual=14000", con la
-                # barra llena de salida y sin sitio para subir.
                 # El SP viene del personaje guardado. Empieza a cero solo la
                 # primera vez: se gana peleando y se conserva al salir.
                 ses.sp = getattr(ses, 'sp', None)
@@ -3162,9 +3243,42 @@ class Servidor:
                     inv.stats(b, p.habilidades,
                               hp=p.hp, hp_max=p.hp_max,
                               mp=p.mp, mp_max=p.mp_max,
-                              oro=getattr(ses, 'oro', p.oro), sp=ses.sp, sp_max=bars, mejoras=_mejoras_de(ses)),
+                              oro=getattr(ses, 'oro', p.oro), buffs=getattr(p, 'buffs', None),
+                              sp=ses.sp, sp_max=bars, mejoras=_mejoras_de(ses)),
                     *_apariencia(ses)
                 ]
+                # Restauracion de buffs activos al entrar al mundo (relog)
+                now_t = time.time()
+                if getattr(p, 'buffs', None):
+                    for b_id, b_data in list(p.buffs.items()):
+                        if isinstance(b_data, dict):
+                            rem_s = b_data.get('fin', 0) - now_t
+                            if rem_s > 0:
+                                rem_ms = int(rem_s * 1000)
+                                salida.append(struct.pack('<HIBBII', 0x001D, yo, 1, 4, int(b_id), rem_ms))
+                                _ts = b_data.get('trans_sprite') or b_data.get('mag', {}).get('trans_sprite')
+                                if b_data.get('es_transform') and _ts:
+                                    salida.append(_cb.atributo(yo, _ts, _cb.KIND_TRANSFORM))
+                                def _expirar_login(sk_id=int(b_id), fin=b_data['fin']):
+                                    buffs_act = getattr(p, 'buffs', None)
+                                    act = buffs_act.get(sk_id) if buffs_act else None
+                                    if not act or act.get('fin') != fin:
+                                        return
+                                    buffs_act.pop(sk_id, None)
+                                    p.hp = min(p.hp, _vida_max(p, bolsa=b))
+                                    p.mp = min(p.mp, _mana_max(p, bolsa=b))
+                                    pks = [
+                                        struct.pack('<HIBBII', 0x001D, yo, 1, 4, sk_id, 0),
+                                        _cb.atributo(yo, p.hp, _cb.KIND_HP),
+                                        _cb.atributo(yo, p.mp, _cb.KIND_MP),
+                                    ]
+                                    if act.get('es_transform'):
+                                        pks.append(_cb.atributo(yo, 0, _cb.KIND_TRANSFORM))
+                                    pks.append(_stats_ses(ses))
+                                    ses.enviar_inmediato(*pks)
+                                asyncio.get_event_loop().call_later(rem_s, _expirar_login)
+                            else:
+                                p.buffs.pop(b_id, None)
                 f_pet = getattr(p, 'mascota', None)
                 if isinstance(f_pet, dict) and f_pet.get('fuera'):
                     import mascotas as _pet
@@ -3853,6 +3967,10 @@ class Servidor:
                                 ses.personaje.buffs = {}
                             buff_dur_s = (dur_ms / 1000.0) if dur_ms > 0 else 300.0
                             buff_entry = dict(mag)
+                            # OJO: mag['mp'] es el coste de mana de lanzar el hechizo y mag['hp'] puede ser un tick;
+                            # no deben quedar como 'mp'/'hp' planos en buff_entry o inflaran el Max MP/HP!
+                            buff_entry.pop('mp', None)
+                            buff_entry.pop('hp', None)
                             buff_entry['fin'] = time.time() + buff_dur_s
                             buff_entry['mag'] = mag
                             buff_entry['es_transform'] = mag.get('es_transformacion', False)
@@ -3875,9 +3993,9 @@ class Servidor:
                             if mag.get('phys_dmg_pct'):
                                 buff_entry['phys_dmg_pct'] = mag.get('phys_dmg_pct')
                             if mag.get('hp_bonus'):
-                                buff_entry['hp'] = mag.get('hp_bonus')
+                                buff_entry['hp_bonus'] = mag.get('hp_bonus')
                             if mag.get('mp_bonus'):
-                                buff_entry['mp'] = mag.get('mp_bonus')
+                                buff_entry['mp_bonus'] = mag.get('mp_bonus')
                             if mag.get('cast_redux'):
                                 buff_entry['cast_redux'] = mag.get('cast_redux')
                             ses.personaje.buffs[tipo] = buff_entry
@@ -3896,15 +4014,17 @@ class Servidor:
 
                             if dur_ms > 0:
                                 pkgs_buff.append(struct.pack('<HIBBII', 0x001D, yo, 1, 4, tipo, dur_ms))
-                                if mag.get('es_transformacion'):
+                                if mag.get('es_transformacion') or mag.get('hp_bonus') or mag.get('hp_pct'):
                                     ses.personaje.hp = _vida_max(ses.personaje, ses.inventario)
-                                    pkgs_buff.append(_cb.atributo(yo, ses.personaje.hp, _cb.KIND_HP))
-                                    pkgs_buff.append(_cb.atributo(yo, ses.personaje.mp, _cb.KIND_MP))
-                                    if mag.get('trans_sprite'):
-                                        pkgs_buff.extend((
-                                            _cb.atributo(yo, mag['trans_sprite'],
-                                                         _cb.KIND_TRANSFORM),
-                                            _stats_ses(ses)))
+                                if mag.get('mp_bonus') or mag.get('mp_pct'):
+                                    ses.personaje.mp = _mana_max(ses.personaje, ses.inventario)
+                                pkgs_buff.append(_cb.atributo(yo, ses.personaje.hp, _cb.KIND_HP))
+                                pkgs_buff.append(_cb.atributo(yo, ses.personaje.mp, _cb.KIND_MP))
+                                if mag.get('es_transformacion') and mag.get('trans_sprite'):
+                                    pkgs_buff.extend((
+                                        _cb.atributo(yo, mag['trans_sprite'],
+                                                     _cb.KIND_TRANSFORM),
+                                        _stats_ses(ses)))
 
                                 def _expirar_buff(sk_id=tipo,
                                                   fin=buff_entry['fin']):
@@ -4420,6 +4540,68 @@ class Servidor:
                     # El mana absorbido tambien tiene su numero, en AZUL.
                     _pkgs_drain.append(_cb.numero_flotante(yo, _mp_gain,
                                                            _cb.TIPO_CURA_MP))
+
+            # --- Procs de Trinkets / Equipo (Formula 47: Sword-Shiny Flower Basket, Scripts, etc.) ---
+            if dano > 0 and ses.personaje:
+                _procs_eq = _cb.procs_de_equipo(ses.inventario, es_skill=(tipo != _cb.ATAQUE_NORMAL))
+                for _pinfo in _procs_eq:
+                    if random.random() * 100.0 < _pinfo.get('prob', 10):
+                        _pid = int(_pinfo['proc_id'])
+                        _pef = int(_pinfo.get('efecto') or 251)
+                        _pdur = int(_pinfo.get('dur_ms') or 0)
+                        _pmag = _pinfo.get('mag') or {}
+                        if _pinfo.get('hp_cura', 0) > 0:
+                            _hc = int(_pinfo['hp_cura'])
+                            ses.personaje.hp = min(_vida_max(ses.personaje), ses.personaje.hp + _hc)
+                            _pkgs_drain.append(_cb.atributo(yo, ses.personaje.hp, _cb.KIND_HP))
+                            _pkgs_drain.append(_cb.numero_flotante(yo, _hc, _cb.TIPO_CURA_HP))
+                        if _pinfo.get('mp_cura', 0) > 0:
+                            _mc = int(_pinfo['mp_cura'])
+                            ses.personaje.mp = min(_mana_max(ses.personaje), ses.personaje.mp + _mc)
+                            _pkgs_drain.append(_cb.atributo(yo, ses.personaje.mp, _cb.KIND_MP))
+                            _pkgs_drain.append(_cb.numero_flotante(yo, _mc, _cb.TIPO_CURA_MP))
+                        _pkgs_drain.append(_cb.efecto_magia_self_fin(yo, _pef, _pid))
+                        if _pdur > 0:
+                            if not hasattr(ses.personaje, 'buffs') or ses.personaje.buffs is None:
+                                ses.personaje.buffs = {}
+                            _pfin = time.time() + (_pdur / 1000.0)
+                            _b_proc = dict(_pmag)
+                            _b_proc.pop('mp', None)
+                            _b_proc.pop('hp', None)
+                            _b_proc['fin'] = _pfin
+                            _b_proc['mag'] = _pmag
+                            if _pmag.get('crit_rate'):
+                                _b_proc['crit'] = _pmag.get('crit_rate')
+                            if _pmag.get('def_bonus'):
+                                _b_proc['def'] = _pmag.get('def_bonus')
+                            if _pmag.get('atk_bonus'):
+                                _b_proc['atk'] = _pmag.get('atk_bonus')
+                            if _pmag.get('matk_bonus'):
+                                _b_proc['matk'] = _pmag.get('matk_bonus')
+                            if _pmag.get('mdef_bonus'):
+                                _b_proc['mdef'] = _pmag.get('mdef_bonus')
+                            if _pmag.get('phys_dmg_pct'):
+                                _b_proc['phys_dmg_pct'] = _pmag.get('phys_dmg_pct')
+                            if _pmag.get('mag_dmg_pct'):
+                                _b_proc['mag_dmg_pct'] = _pmag.get('mag_dmg_pct')
+                            ses.personaje.buffs[_pid] = _b_proc
+                            _pkgs_drain.append(struct.pack('<HIBBII', 0x001D, yo, 1, 4, _pid, _pdur))
+                            _pkgs_drain.append(_stats_ses(ses))
+                            def _expirar_proc(sk_id=_pid, fin=_pfin):
+                                b_act = getattr(ses.personaje, 'buffs', None) if ses.personaje else None
+                                act = b_act.get(sk_id) if b_act else None
+                                if not act or act.get('fin') != fin:
+                                    return
+                                b_act.pop(sk_id, None)
+                                ses.enviar_inmediato(
+                                    struct.pack('<HIBBII', 0x001D, yo, 1, 4, sk_id, 0),
+                                    _stats_ses(ses),
+                                )
+                            try:
+                                asyncio.get_event_loop().call_later(_pdur / 1000.0, _expirar_proc)
+                            except Exception:
+                                pass
+
             m.en_combate_con = yo
             m.ultimo_ataque = time.time()
             if not getattr(m, 'encantado', False):
@@ -5334,7 +5516,28 @@ class Servidor:
                 log.warning(f"[{addr}] mover {org} -> {dst}: ranura no valida para item {it_org}")
                 ses.enviar(*_refrescar(ses, [org]))
                 return
+            # Si intenta poner un arma dual (espada o hacha) en la mano izquierda (4), exige Finesse (skill 16)
+            if dst == 4 and inv.es_arma_dual(it_org):
+                _tiene_finesse = any((h[0] if isinstance(h, (list, tuple)) else h) == 16 for h in (getattr(ses.personaje, 'habilidades', None) or []))
+                if not _tiene_finesse:
+                    import clases as _clf
+                    ses.enviar(_clf.aviso("Requires Finesse skill to dual-wield weapons.", tipo=0), *_refrescar(ses, [org]))
+                    return
             cid = ses.personaje.char_id if ses.personaje else 4980
+            # Si equipa un arma de 2 manos (Staff, Spear, Bow) en la 3 y lleva algo en la 4, desequipar la 4 a la mochila
+            _extra_tocadas = []
+            if dst == 3 and inv.es_arma_dos_manos(it_org) and 4 in bolsa and org != 4:
+                _it_lh = bolsa.pop(4)
+                _lib_lh = _ranura_libre(bolsa, desde=20)
+                bolsa[_lib_lh] = _it_lh
+                _mover_inst(ses, 4, _lib_lh)
+                _extra_tocadas.extend([4, _lib_lh])
+            elif dst == 4 and 3 in bolsa and inv.es_arma_dos_manos(bolsa[3]) and org != 3:
+                _it_rh = bolsa.pop(3)
+                _lib_rh = _ranura_libre(bolsa, desde=20)
+                bolsa[_lib_rh] = _it_rh
+                _mover_inst(ses, 3, _lib_rh)
+                _extra_tocadas.extend([3, _lib_rh])
             if dst in bolsa:
                 it_dst = bolsa[dst]
                 if not inv.es_ranura_valida(it_dst, org):
@@ -5366,6 +5569,8 @@ class Servidor:
                     (dst, it_org, _c_org, _inst(ses, dst)),
                     (org, it_dst, _c_dst, _inst(ses, org)),
                 ], _dueno(ses), mascota=_masc_p)]
+                if _extra_tocadas:
+                    salida.extend(_refrescar(ses, _extra_tocadas))
                 if inv.es_equipo(org) or inv.es_equipo(dst):
                     if ses.personaje:
                         import combate as _cb
@@ -5397,7 +5602,7 @@ class Servidor:
             if getattr(ses.personaje, 'mascotas', None) and str(org) in ses.personaje.mascotas:
                 ses.personaje.mascotas[str(dst)] = ses.personaje.mascotas.pop(str(org))
             salida = [inv.acuse_movimiento(org)]
-            salida.extend(_refrescar(ses, [org, dst]))
+            salida.extend(_refrescar(ses, [org, dst] + _extra_tocadas))
             if inv.es_equipo(org) or inv.es_equipo(dst):
                 if ses.personaje:
                     import combate as _cb
@@ -5762,14 +5967,17 @@ class Servidor:
                     ses.inventario.pop(ranura, None)
                     ses.cantidades.pop(ranura, None)
                 _r_pet = _f.get('ranura')
+                if _r_pet is not None and getattr(ses.personaje, 'mascotas', None) is not None:
+                    ses.personaje.mascotas[str(_r_pet)] = _f
                 salida_pet = list(_refrescar(ses, [ranura] + ([_r_pet] if _r_pet is not None else [])))
-                if _f.get('fuera') and _f.get('entidad'):
-                    salida_pet.append(_msp.armar(_f))
-                pet_eid = getattr(ses, 'pet_entity_id', None)
+                salida_pet.append(_msp.armar(_f))
+                pet_eid = getattr(ses, 'pet_entity_id', None) or _f.get('entidad')
                 if pet_eid and _f.get('fuera') and _f.get('saciedad', 0) > 100:
-                    salida_pet.append(struct.pack('<HIBBII', 0x001D, pet_eid, 1, 4, 3796, 3436877059))
+                    salida_pet.append(struct.pack('<HIBBII', 0x001D, int(pet_eid), 1, 4, 3796, 3436877059))
                 ses.enviar(*salida_pet)
                 _guardar_bolsa(ses, cid)
+                if getattr(ses, 'usuario', None) and ses.personaje:
+                    cuentas.guardar_mascota(ses.usuario, cid, _f, getattr(ses.personaje, 'mascotas', None))
                 log.info('[%s] a la mascota %s: %s'
                          % (addr, _f.get('nombre'), _txt))
                 return
@@ -5874,27 +6082,35 @@ class Servidor:
 
             eq_slot = inv.ranura_equipo_de(item_id)
             if eq_slot is not None:
+                _tiene_finesse = any((h[0] if isinstance(h, (list, tuple)) else h) == 16 for h in (getattr(ses.personaje, 'habilidades', None) or []))
                 # Si es un arma dual de fashion y 169 ya esta ocupado pero 170 esta libre:
                 if eq_slot == 169 and (169 in bolsa) and (170 not in bolsa) and inv.es_arma_dual(item_id):
                     dst = 170
+                elif eq_slot == 3 and (3 in bolsa) and (4 not in bolsa) and inv.es_arma_dual(item_id) and _tiene_finesse and inv.es_arma_dual(bolsa[3]):
+                    dst = 4
                 else:
                     # Los accesorios tienen DOS ranuras, los dos "Trinket" de
                     # la ventana: la 8 y la 9. Se mandaban todos a la 8, asi
                     # que el segundo hueco no aceptaba nada y el jugador no
                     # podia ponerse dos anillos.
                     dst = inv.ranura_libre_equipo(item_id, bolsa) or eq_slot
-                # Si se equipa un arma a dos manos (Lanza, Arco, etc.) en mano derecha (3):
+                # Si se equipa un arma a dos manos (Staff, Lanza, Arco, etc.) en mano derecha (3):
                 # Desequipar la mano izquierda (4) si habia algo puesto
+                _extra_tocadas_2e = []
                 if dst == 3 and inv.es_arma_dos_manos(item_id) and 4 in bolsa:
                     it_lhand = bolsa.pop(4)
                     libre = _ranura_libre(bolsa, desde=20)
                     bolsa[libre] = it_lhand
+                    _mover_inst(ses, 4, libre)
+                    _extra_tocadas_2e.extend([4, libre])
                     log.info(f"[{addr}] arma a dos manos: desequipando mano izquierda {it_lhand} -> bolsa {libre}")
                 elif dst == 4 and 3 in bolsa and inv.es_arma_dos_manos(bolsa[3]):
-                    # Si intenta equipar mano izquierda y tiene lanza a 2 manos puesta, desequipar la lanza
+                    # Si intenta equipar mano izquierda y tiene arma a 2 manos puesta, desequipar el arma a 2 manos
                     it_rhand = bolsa.pop(3)
                     libre = _ranura_libre(bolsa, desde=20)
                     bolsa[libre] = it_rhand
+                    _mover_inst(ses, 3, libre)
+                    _extra_tocadas_2e.extend([3, libre])
                     log.info(f"[{addr}] equipando mano izquierda: desequipando arma a dos manos {it_rhand} -> bolsa {libre}")
 
                 if dst in bolsa:
@@ -5911,7 +6127,7 @@ class Servidor:
 
                 # Sin acuse: en la captura el 0x002E (usar) no recibe
                 # ninguno, solo el 0x0012 de arrastrar.
-                salida = list(_refrescar(ses, [ranura, dst]))
+                salida = list(_refrescar(ses, [ranura, dst] + _extra_tocadas_2e))
                 salida.append(_stats_ses(ses))
                 salida.extend(_apariencia(ses))
                 if ses.personaje:

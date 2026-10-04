@@ -593,34 +593,99 @@ def botin(nivel_monstruo: int = 1) -> int:
 
 
 _DROPS_CACHE = {}
+_DROPS_PLANTILLA = None
+_MON_INFO_CACHE = {}
 
 
-def botin_items(npc_type: int) -> list:
-    """Items que suelta el monstruo de drop_table con multiplicador de drops."""
-    global _DROPS_CACHE
+def _cargar_drops_plantilla() -> dict:
+    global _DROPS_PLANTILLA
+    if _DROPS_PLANTILLA is None:
+        p = pathlib.Path(__file__).parent / 'plantillas' / 'drops_monstruos.json'
+        if p.exists():
+            try:
+                _DROPS_PLANTILLA = json.loads(p.read_text(encoding='utf-8'))
+            except Exception:
+                _DROPS_PLANTILLA = {}
+        else:
+            _DROPS_PLANTILLA = {}
+    return _DROPS_PLANTILLA
+
+
+def botin_items(npc_type: int, nombre: str = '', nivel: int = 0) -> list:
+    """Items que suelta el monstruo de drops_monstruos.json o content.db con multiplicador de drops."""
+    global _DROPS_CACHE, _MON_INFO_CACHE
     if npc_type in _DROPS_CACHE:
         candidatos = _DROPS_CACHE[npc_type]
     else:
-        db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
         candidatos = []
-        if db.exists():
-            try:
-                con = sqlite3.connect(db)
-                mrow = con.execute('select drop_id from monster where id=?', (str(npc_type),)).fetchone()
-                if mrow and mrow[0]:
-                    did = str(mrow[0]).strip()
-                    dt = con.execute('select * from drop_table where id=?', (did,)).fetchone()
-                    if dt:
-                        cols = [c[1] for c in con.execute('pragma table_info(drop_table)').fetchall()]
-                        row_dict = dict(zip(cols, dt))
-                        for i in range(1, 21):
-                            it = row_dict.get(f'item{i}')
-                            cnt = row_dict.get(f'count{i}')
-                            if it and str(it).isdigit() and int(it) > 0:
-                                c_val = int(cnt) if cnt and str(cnt).isdigit() else 1
-                                candidatos.append((int(it), c_val))
-            except Exception:
-                pass
+        plantilla = _cargar_drops_plantilla()
+        drops_por_id = plantilla.get('drops') or {}
+        drops_por_nom = plantilla.get('por_nombre') or {}
+        drops_por_nv = plantilla.get('por_nivel') or {}
+
+        # 1. Buscar por npc_type directo en drops_monstruos.json
+        lista_raw = drops_por_id.get(str(npc_type))
+
+        # Consultar nombre, nivel y drop_id en content.db si hace falta
+        mon_nom = nombre
+        mon_nv = nivel
+        mon_did = None
+        if npc_type in _MON_INFO_CACHE:
+            mon_did, db_nom, db_nv = _MON_INFO_CACHE[npc_type]
+            if not mon_nom:
+                mon_nom = db_nom
+            if not mon_nv:
+                mon_nv = db_nv
+        else:
+            db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
+            if db.exists():
+                try:
+                    con = sqlite3.connect(db)
+                    mrow = con.execute('select drop_id, name, level from monster where id=?', (str(npc_type),)).fetchone()
+                    if mrow:
+                        mon_did = str(mrow[0] or '').strip()
+                        mon_nom = mon_nom or str(mrow[1] or '').strip()
+                        mon_nv = mon_nv or int(mrow[2] or 1)
+                        _MON_INFO_CACHE[npc_type] = (mon_did, mon_nom, mon_nv)
+                        if not lista_raw and mon_did:
+                            lista_raw = drops_por_id.get(mon_did)
+                        if not lista_raw and mon_did:
+                            dt = con.execute('select * from drop_table where id=?', (mon_did,)).fetchone()
+                            if dt:
+                                cols = [c[1] for c in con.execute('pragma table_info(drop_table)').fetchall()]
+                                row_dict = dict(zip(cols, dt))
+                                for i in range(1, 21):
+                                    it = row_dict.get(f'item{i}')
+                                    cnt = row_dict.get(f'count{i}')
+                                    if it and str(it).isdigit() and int(it) > 0:
+                                        c_val = int(cnt) if cnt and str(cnt).isdigit() else 1
+                                        candidatos.append((int(it), c_val))
+                except Exception:
+                    pass
+
+        # 2. Fallback por nombre del monstruo en serv_drop.xml / drop.xml
+        if not lista_raw and not candidatos and mon_nom:
+            nom_k = mon_nom.strip().lower()
+            lista_raw = drops_por_nom.get(nom_k)
+            if not lista_raw:
+                for pref in ('the ', 'violent ', 'wild ', 'mutated ', 'elite ', 'young ', 'giant '):
+                    if nom_k.startswith(pref) and nom_k[len(pref):] in drops_por_nom:
+                        lista_raw = drops_por_nom[nom_k[len(pref):]]
+                        break
+
+        # 3. Fallback por bucket de nivel para regiones nuevas (Forest, Desert, Candy, Floating, etc.)
+        if not lista_raw and not candidatos and drops_por_nv:
+            nv_b = max(0, min(300, ((int(mon_nv or 30) // 10) * 10)))
+            for b_try in (nv_b, nv_b - 10, nv_b + 10, 60, 50):
+                if str(b_try) in drops_por_nv and drops_por_nv[str(b_try)]:
+                    lista_raw = drops_por_nv[str(b_try)]
+                    break
+
+        if lista_raw and not candidatos:
+            for par in lista_raw:
+                if isinstance(par, (list, tuple)) and len(par) >= 2:
+                    candidatos.append((int(par[0]), max(1, int(par[1]))))
+
         _DROPS_CACHE[npc_type] = candidatos
 
     import configuracion
@@ -810,19 +875,23 @@ def datos_magia(magic_id: int) -> dict:
             res['mdef_bonus'] = _num(d.get('mdef') or d.get('magic_defend') or d.get('魔防'), 0)
             res['move_speed_bonus'] = _num(d.get('move_speed') or d.get('移動速度'), 0)
             res['atk_speed_bonus'] = _num(d.get('atk_speed') or d.get('攻擊速度'), 0)
-            res['hp_bonus'] = _num(d.get('hp') if d.get('hp') is not None else d.get('HP'), 0)
-            res['mp_bonus'] = _num(d.get('mp') if d.get('mp') is not None else d.get('MP'), 0)
-
-            # Definicion de % de HP / MP (e.g. Life Blessing V: +30% Max HP, Shark Shift: +130% Max MP -> Max HP)
+            # Definicion de HP / MP:
+            #   '最大值'       -> bono plano a Max HP / Max MP (hp_bonus / mp_bonus)
+            #   '最大值百分比' -> bono porcentual a Max HP / Max MP (hp_pct / mp_pct)
+            #   '數值'         -> curacion / regeneracion por tick (NO sube el tope!)
             hp_def = str(d.get('HP定義') or '')
             mp_def = str(d.get('MP定義') or '')
+            raw_hp_val = _num(d.get('hp') if d.get('hp') is not None else d.get('HP'), 0)
+            raw_mp_val = _num(d.get('mp') if d.get('mp') is not None else d.get('MP'), 0)
+            res['hp_bonus'] = raw_hp_val if hp_def == '最大值' else 0
+            res['mp_bonus'] = raw_mp_val if mp_def == '最大值' else 0
             if '百分比' in hp_def or hp_def == '最大值百分比':
-                res['hp_pct'] = _num(d.get('hp') if d.get('hp') is not None else d.get('HP'), 0)
+                res['hp_pct'] = raw_hp_val
             if '百分比' in mp_def or mp_def == '最大值百分比':
                 if res['es_transformacion']:
-                    res['mp_to_hp_pct'] = _num(d.get('mp') if d.get('mp') is not None else d.get('MP'), 0)
+                    res['mp_to_hp_pct'] = raw_mp_val
                 else:
-                    res['mp_pct'] = _num(d.get('mp') if d.get('mp') is not None else d.get('MP'), 0)
+                    res['mp_pct'] = raw_mp_val
 
             if res['es_transformacion']:
                 res['matk_pct'] = _num(d.get('matk') or d.get('magic_attack') or d.get('魔攻'), 0)
@@ -2059,3 +2128,132 @@ def efecto_magia_self(yo: int, ef: int, tipo: int, cast_time: int = 100):
     """Efecto visual 0x0011 al castear un buff sobre si mismo (ambas fases retrocompatible)."""
     return [efecto_magia_self_inicio(yo, ef, tipo, cast_time),
             efecto_magia_self_fin(yo, ef, tipo)]
+
+
+_ITEM_PROC_CACHE = {}
+
+
+def _fila_magia_dict(con, mid: int) -> dict:
+    d = {}
+    try:
+        cols = [c[1] for c in con.execute('pragma table_info(magic)').fetchall()]
+        row = con.execute('select * from magic where id=?', (str(mid),)).fetchone()
+        if row:
+            for k_col, v_col in zip(cols, row):
+                if v_col is not None and str(v_col).strip() != '':
+                    d[k_col] = v_col
+    except Exception:
+        pass
+    d_xml = _magic_xml().get(int(mid or 0))
+    if d_xml:
+        d.update(d_xml)
+    return d
+
+
+def proc_de_item(item_id: int) -> dict:
+    """Devuelve la definicion del proc Formula 47 (常駐法術) de un item equipado, o {}."""
+    global _ITEM_PROC_CACHE
+    if not item_id:
+        return {}
+    iid = int(item_id)
+    if iid in _ITEM_PROC_CACHE:
+        return _ITEM_PROC_CACHE[iid]
+    res = {}
+    db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
+    if db.exists():
+        try:
+            import inventario as _iv
+            con = sqlite3.connect(db)
+            row = _iv.fila_item(con, '"常駐法術","物品類別"', iid)
+            if row and row[0] and str(row[0]).strip().isdigit():
+                res_mid = int(str(row[0]).strip())
+                d = _fila_magia_dict(con, res_mid)
+                if d and str(d.get('公式') or '') == '47':
+                    prob_s = str(d.get('動態參數1') or '10').strip()
+                    proc_id_s = str(d.get('動態參數2') or '').strip()
+                    if proc_id_s.isdigit():
+                        proc_id = int(proc_id_s)
+                        prob = int(float(prob_s)) if prob_s else 10
+                        weap_req = str(d.get('武器限制') or d.get('裝備限制1') or '').strip()
+                        trig_atk = str(d.get('法術觸發1') or '') == '1'
+                        trig_sk = str(d.get('法術觸發2') or '') == '1'
+                        proc_d = _fila_magia_dict(con, proc_id)
+                        # Si el hechizo intermedio es Formula 49 (verificador de arma equipada),
+                        # recoge su restriccion de arma y salta al hechizo de efecto real en 動態參數2!
+                        if str(proc_d.get('公式') or '') == '49':
+                            if not weap_req:
+                                weap_req = str(proc_d.get('裝備限制1') or proc_d.get('武器限制') or '').strip()
+                            sub_id_s = str(proc_d.get('動態參數2') or '').strip()
+                            if sub_id_s.isdigit():
+                                proc_id = int(sub_id_s)
+                                proc_d = _fila_magia_dict(con, proc_id)
+                        proc_mag = datos_magia(proc_id)
+                        hp_def = str(proc_d.get('HP定義') or '')
+                        mp_def = str(proc_d.get('MP定義') or '')
+                        hp_val = int(float(proc_d.get('hp') or proc_d.get('HP') or 0)) if str(proc_d.get('hp') or proc_d.get('HP') or '').lstrip('-').isdigit() else 0
+                        mp_val = int(float(proc_d.get('mp') or proc_d.get('MP') or 0)) if str(proc_d.get('mp') or proc_d.get('MP') or '').lstrip('-').isdigit() else 0
+                        atk_val = int(float(proc_d.get('atk') or proc_d.get('攻擊') or proc_d.get('攻擊力') or 0)) if str(proc_d.get('atk') or proc_d.get('攻擊') or proc_d.get('攻擊力') or '').lstrip('-').isdigit() else 0
+                        if atk_val and not proc_mag.get('atk_bonus'):
+                            proc_mag = dict(proc_mag)
+                            proc_mag['atk_bonus'] = atk_val
+                        res = {
+                            'res_id': res_mid,
+                            'proc_id': proc_id,
+                            'prob': max(1, min(100, prob)),
+                            'weap_req': weap_req,
+                            'trig_atk': trig_atk or (not trig_sk),
+                            'trig_sk': trig_sk,
+                            'hp_cura': hp_val if hp_def == '數值' and hp_val > 0 else 0,
+                            'mp_cura': mp_val if mp_def == '數值' and mp_val > 0 else 0,
+                            'dur_ms': int(proc_mag.get('dur_ms') or 0),
+                            'efecto': int(proc_mag.get('efecto') or 251),
+                            'mag': proc_mag,
+                        }
+        except Exception:
+            pass
+    _ITEM_PROC_CACHE[iid] = res
+    return res
+
+
+def procs_de_equipo(bolsa: dict, es_skill: bool = False) -> list:
+    """Lista de procs Formula 47 activos en el equipo del personaje que cumplen la restriccion de arma."""
+    if not bolsa:
+        return []
+    import inventario as _iv
+    arma_id = int(bolsa.get(3) or bolsa.get('3') or 0)
+    arma_cat = _iv.categoria_item(arma_id) if arma_id else ''
+    activos = []
+    for r, iid in bolsa.items():
+        try:
+            rn = int(r)
+        except (TypeError, ValueError):
+            continue
+        if not _iv.es_equipo(rn) or not iid:
+            continue
+        pinfo = proc_de_item(int(iid))
+        if not pinfo:
+            continue
+        if es_skill and not pinfo.get('trig_sk'):
+            continue
+        if (not es_skill) and not pinfo.get('trig_atk'):
+            continue
+        wreq = pinfo.get('weap_req') or ''
+        if wreq:
+            # Mapear sinonimos de categoria de arma (e.g. 劍/刀, 斧/錘, 弓/弓箭)
+            if wreq == '劍' and not any(k in arma_cat for k in ('劍', '刀')):
+                continue
+            elif wreq == '斧' and not any(k in arma_cat for k in ('斧', '錘', '锤')):
+                continue
+            elif wreq == '槍' and '槍' not in arma_cat:
+                continue
+            elif wreq == '弓' and '弓' not in arma_cat:
+                continue
+            elif wreq == '杖' and '杖' not in arma_cat:
+                continue
+            elif wreq == '影刃' and '影刃' not in arma_cat:
+                continue
+            elif wreq not in arma_cat:
+                continue
+        activos.append(pinfo)
+    return activos
+
