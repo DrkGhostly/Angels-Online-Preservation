@@ -97,39 +97,54 @@ def _cargar_curva_nivel():
         _CURVA_NIVEL = {}
         _CURVA_SKILL = {}
         _CURVA_PET = {'A': {}, 'B': {}, 'C': {}, 'D': {}}
+        f_json = pathlib.Path(__file__).parent / 'plantillas' / 'level_curves.json'
+        if f_json.exists():
+            try:
+                raw = json.loads(f_json.read_text(encoding='utf-8'))
+                for lv, v in (raw.get('curva_nivel') or {}).items():
+                    _CURVA_NIVEL[int(lv)] = int(v)
+                for k_sk, v in (raw.get('curva_skill') or {}).items():
+                    lv_s, sid_s = k_sk.split(',')
+                    _CURVA_SKILL[(int(lv_s), int(sid_s))] = int(v)
+                for k_p, d_p in (raw.get('curva_pet') or {}).items():
+                    if k_p in _CURVA_PET:
+                        _CURVA_PET[k_p] = {int(lv): int(v) for lv, v in d_p.items()}
+            except Exception:
+                pass
         raiz = pathlib.Path(__file__).parent.parent
-        for cand in (
-            raiz / 'extracted_paks' / 'update26' / 'setting' / 'level.xml',
-            pathlib.Path('G:/extracted_paks/update26/setting/level.xml'),
-            raiz / 'extracted_paks' / 'UPDATE19' / 'setting' / 'level.xml',
-            raiz / 'extracted_paks' / 'data1' / 'setting' / 'level.xml',
-        ):
-            if cand.exists():
-                try:
-                    import xml.etree.ElementTree as ET
-                    tree = ET.parse(cand)
-                    for e in tree.getroot().findall('exp'):
-                        lv = int(e.attrib.get('等級', 0) or 0)
-                        if lv <= 0:
-                            continue
-                        if len(e) > 0 and e[0].text:
-                            _CURVA_NIVEL[lv] = int(e[0].text)
-                        for sid in range(1, 37):
-                            if sid < len(e) and e[sid].text:
-                                try:
-                                    _CURVA_SKILL[(lv, sid)] = int(e[sid].text)
-                                except ValueError:
-                                    pass
-                        for idx, k in ((38, 'A'), (39, 'B'), (40, 'C'), (41, 'D')):
-                            if idx < len(e) and e[idx].text:
-                                try:
-                                    _CURVA_PET[k][lv] = int(e[idx].text)
-                                except ValueError:
-                                    pass
-                    if _CURVA_NIVEL:
-                        break
-                except Exception:
-                    pass
+        if not _CURVA_NIVEL:
+            for cand in (
+                raiz / 'extracted_paks' / 'update26' / 'setting' / 'level.xml',
+                pathlib.Path('G:/extracted_paks/update26/setting/level.xml'),
+                raiz / 'extracted_paks' / 'UPDATE19' / 'setting' / 'level.xml',
+                raiz / 'extracted_paks' / 'data1' / 'setting' / 'level.xml',
+            ):
+                if cand.exists():
+                    try:
+                        import xml.etree.ElementTree as ET
+                        tree = ET.parse(cand)
+                        for e in tree.getroot().findall('exp'):
+                            lv = int(e.attrib.get('等級', 0) or 0)
+                            if lv <= 0:
+                                continue
+                            if len(e) > 0 and e[0].text:
+                                _CURVA_NIVEL[lv] = int(e[0].text)
+                            for sid in range(1, 37):
+                                if sid < len(e) and e[sid].text:
+                                    try:
+                                        _CURVA_SKILL[(lv, sid)] = int(e[sid].text)
+                                    except ValueError:
+                                        pass
+                            for idx, k in ((38, 'A'), (39, 'B'), (40, 'C'), (41, 'D')):
+                                if idx < len(e) and e[idx].text:
+                                    try:
+                                        _CURVA_PET[k][lv] = int(e[idx].text)
+                                    except ValueError:
+                                        pass
+                        if _CURVA_NIVEL:
+                            break
+                    except Exception:
+                        pass
         if not _CURVA_NIVEL:
             db = raiz / 'corpus' / 'content.db'
             if db.exists():
@@ -654,218 +669,232 @@ def datos_magia(magic_id: int) -> dict:
            'cast_time': 100, 'crit_rate': 0, 'phys_mit': 0, 'mag_mit': 0,
            'es_auto': False, 'es_cura': False, 'es_buff': False,
            'es_ataque': False, 'es_pasiva': False}
+    d = {}
+    d_xml = _magic_xml().get(int(magic_id or 0))
+    if d_xml:
+        d.update(d_xml)
     if db.exists():
         try:
             con = sqlite3.connect(db)
             cols = [c[1] for c in con.execute('pragma table_info(magic)').fetchall()]
             row = con.execute('select * from magic where id=?', (str(magic_id),)).fetchone()
+            con.close()
             if row:
-                d = dict(zip(cols, row))
-                res['nombre'] = d.get('name') or ''
-                def _num(val, default=0):
-                    try: return int(float(val)) if val is not None and str(val).strip() else default
-                    except (ValueError, TypeError): return default
+                for k_col, v_col in zip(cols, row):
+                    if v_col is not None and str(v_col).strip() != '':
+                        d[k_col] = v_col
+        except Exception:
+            pass
+    if d:
+        try:
+            res['nombre'] = d.get('name') or d.get('名稱') or ''
+            def _num(val, default=0):
+                try: return int(float(val)) if val is not None and str(val).strip() else default
+                except (ValueError, TypeError): return default
 
-                res['mp'] = _num(d.get('消耗MP'), 0)
-                res['cost_sp'] = _num(d.get('消耗SP燈') or d.get('cost_sp'), 0)
-                # OJO: son DOS cosas distintas y se llamaban igual.
-                #   消耗SP燈  lo que CUESTA en lamparas (Strangle Strike: 2000)
-                #   SP        lo que DA (Bloody Storm: 1000, Energy Recharge:
-                #             de 500 a 2000)
-                # 'sp' guardaba el coste, asi que las habilidades que
-                # recuperan SP no daban nada: el guerrero no tenia de donde
-                # sacarlo salvo pegando.
-                res['sp'] = res['cost_sp']
-                res['sp_gana'] = _num(d.get('SP'), 0)
-                res['efecto'] = _num(d.get('特效編號'), EFECTO_GOLPE)
-                res['hp'] = _num(d.get('hp'), 0)
-                res['cd_ms'] = _num(d.get('後置時間'), 1000)
-                dur_val = _num(d.get('持續時間'), 0)
-                #res['dur_ms'] = (dur_val * 1000) if (0 < dur_val < 1000) else dur_val
-                res['dur_ms'] = dur_val * 1000 if dur_val > 0 else 0
-                res['cast_time'] = _num(d.get('前置時間'), 100)
-                res['rango'] = _num(d.get('射程'), 1)
-                res['crit_rate'] = _num(d.get('crit_rate'), 0)
-                res['phys_mit'] = _num(d.get('物理傷害抵銷'), 0)
-                res['mag_mit'] = _num(d.get('魔法傷害抵銷'), 0)
-                res['dano_base'] = _num(d.get('平均傷害'), 0)
-                res['base_denom'] = _num(d.get('高權位'), 200) or 200
-                # EL 73% DE LAS HABILIDADES DE ATAQUE NO TRAE 平均傷害
-                # (6531 de 9003), y nuestro multiplicador salia de ahi: se
-                # quedaban todas en CERO. Es justo lo que le pasa a las
-                # fisicas de guerrero, que pegaban menos que un golpe
-                # normal aun con mas ataque.
-                #
-                # Lo que manda en esas es el 公式 (la formula). Medido en el
-                # proxy con R.Atk 96663:
-                #   Strangle Strike IV  公式 40  ->  274747  (x2.84)
-                #   Thunder Sword III   公式 15  ->   73866  (x0.76)
-                # Los dos tienen 高權位 ~300 y el daño se diferencia en
-                # cuatro veces, asi que el multiplicador es del 公式 y no
-                # del 高權位.
-                #
-                # OJO: es UN punto por formula y el numero incluye la
-                # defensa del bicho, asi que el multiplicador de verdad es
-                # algo mayor. Sirve para no quedarse en cero; para afinarlo
-                # hacen falta varias muestras de la misma habilidad contra
-                # bichos de distinta defensa.
-                if not res['dano_base']:
-                    _f = str(d.get('公式') or '')
-                    _r = RATIO_POR_FORMULA.get(_f, RATIO_FORMULA_DEFECTO)
-                    # Conserva el multiplicador deducido de la formula al
-                    # normalizarlo al denominador real del hechizo.
-                    res['dano_base'] = int(round(_r * res['base_denom']))
-                    res['ratio_formula'] = _r
-                res['dano_var'] = _num(d.get('傷害變數'), 0)
-                res['dano_coef'] = _num(d.get('傷害係數'), 0)
-                res['formula'] = _num(d.get('公式'), 0)
+            res['mp'] = _num(d.get('消耗MP'), 0)
+            res['cost_sp'] = _num(d.get('消耗SP燈') or d.get('cost_sp'), 0)
+            res['sp'] = res['cost_sp']
+            res['sp_gana'] = _num(d.get('SP'), 0)
+            res['efecto'] = _num(d.get('特效編號'), EFECTO_GOLPE)
+            res['hp'] = _num(d.get('hp') if d.get('hp') is not None else d.get('HP'), 0)
+            res['cd_ms'] = _num(d.get('後置時間'), 1000)
+            dur_val = _num(d.get('持續時間'), 0)
+            res['dur_ms'] = dur_val * 1000 if dur_val > 0 else 0
+            res['cast_time'] = _num(d.get('前置時間'), 100)
+            res['rango'] = _num(d.get('射程'), 1)
+            res['crit_rate'] = _num(d.get('crit_rate') if d.get('crit_rate') is not None else d.get('爆擊率'), 0)
+            res['phys_mit'] = _num(d.get('物理傷害抵銷'), 0)
+            res['mag_mit'] = _num(d.get('魔法傷害抵銷'), 0)
+            res['dano_base'] = _num(d.get('平均傷害'), 0)
+            res['base_denom'] = _num(d.get('高權位'), 200) or 200
+            if not res['dano_base']:
+                _f = str(d.get('公式') or '')
+                _r = RATIO_POR_FORMULA.get(_f, RATIO_FORMULA_DEFECTO)
+                res['dano_base'] = int(round(_r * res['base_denom']))
+                res['ratio_formula'] = _r
+            res['dano_var'] = _num(d.get('傷害變數'), 0)
+            res['dano_coef'] = _num(d.get('傷害係數'), 0)
+            res['formula'] = _num(d.get('公式'), 0)
 
-                target = str(d.get('對象') or '')
-                desc = str(d.get('desc') or '')
-                act = str(d.get('施展動作') or '')
-                res['accion'] = act
-                res['target'] = target
-                res['area'] = _num(d.get('範圍'), 0)
-                res['es_terreno'] = (target == '地面')
-                nom_l = res['nombre'].lower()
-                desc_l = desc.lower()
-                res['es_self_aoe'] = (target == '自己' and res['area'] > 0 and (d.get('攻擊型') == '是' or 'trap' in nom_l or 'trap' in desc_l))
-                res['es_aoe'] = res['es_terreno'] or res['es_self_aoe']
+            target = str(d.get('對象') or '')
+            desc = str(d.get('desc') or d.get('說明') or '')
+            act = str(d.get('施展動作') or '')
+            res['accion'] = act
+            res['target'] = target
+            res['area'] = _num(d.get('範圍'), 0)
+            res['es_terreno'] = (target == '地面')
+            nom_l = res['nombre'].lower()
+            desc_l = desc.lower()
+            res['es_self_aoe'] = (target == '自己' and res['area'] > 0 and (d.get('攻擊型') == '是' or 'trap' in nom_l or 'trap' in desc_l))
+            res['es_aoe'] = res['es_terreno'] or res['es_self_aoe']
 
-                # Deteccion de invocaciones (Summon Skeleton, Summon Mummy, Ghostly Swordsman, etc.)
-                res['invoca_npc'] = _num(d.get('動態參數1'), 0)
-                dur_inv = _num(d.get('動態參數2'), 0)
-                res['dur_invoca'] = dur_inv if dur_inv > 0 else 3600
-                is_real_summon = (
-                    d.get('召喚型') == '是' or
-                    any(nom_l.startswith(k) for k in ('summon ', 'lvl 60 summon', 'lvl 90 summon', 'lvl 120 summon')) or
-                    any(k in nom_l for k in ('ghostly swordsman', 'shadow clone', 'avatar', 'titan', 'putridox', 'minotaur', 'leech', 'azrael', 'muncher'))
-                ) and d.get('魔法狀態') != '靈魂護盾' and not ('soul shield' in nom_l)
-                res['es_invocacion'] = bool(res['invoca_npc'] > 0 and is_real_summon)
+            # Dimension Shift I..V (13595..13599, formula 7 con hijo 13600..13604 en 動態參數1):
+            # hereda el radio (5) y el dano magico del sub-hechizo de impacto.
+            if 13595 <= magic_id <= 13599:
+                _sub_ds = _num(d.get('動態參數1'), 0)
+                _d_sub = _magic_xml().get(_sub_ds) or {}
+                if _d_sub:
+                    res['area'] = max(res['area'], _num(_d_sub.get('範圍'), 5))
+                    res['dano_base'] = _num(_d_sub.get('平均傷害'), res['dano_base'])
+                    res['dano_var'] = _num(_d_sub.get('傷害變數'), res['dano_var'])
+                    res['dano_coef'] = _num(_d_sub.get('傷害係數'), res['dano_coef'])
+                    res['base_denom'] = _num(_d_sub.get('高權位'), res['base_denom']) or 200
+                    res['sub_efecto'] = _num(_d_sub.get('特效編號'), 519)
 
-                # Robos de HP y MP (Forbidden Curse / Formula 39)
-                if res['formula'] == 39 or (5116 <= magic_id <= 5120) or ('forbidden curse' in nom_l):
-                    res['drain_hp_pct'] = _num(d.get('動態參數2'), 25)
-                    res['drain_mp_pct'] = _num(d.get('動態參數3'), 3)
+            # Ember Brand I..V (13841..13845) & Holy Brand I..V (15241..15245) - Formula 65:
+            # Fase 1: golpe individual (狀態參數: 13846..13850 / 15246..15250) + marca DoT (動態參數1: 13976..13980 / 15251..15255)
+            # Fase 2 (si el enemigo ya tiene la marca activa): consume la marca y detona AOE (動態參數2: 14036..14040 / 15256..15260)
+            if res['formula'] == 65 or (13841 <= magic_id <= 13845) or (15241 <= magic_id <= 15245):
+                res['es_brand'] = True
+                _b_hit = _num(d.get('狀態參數'), 0)
+                _b_dot = _num(d.get('動態參數1'), 0)
+                _b_aoe = _num(d.get('動態參數2'), 0)
+                res['brand_hit_id'] = _b_hit
+                res['brand_dot_id'] = _b_dot
+                res['brand_aoe_id'] = _b_aoe
+                _d_hit = _magic_xml().get(_b_hit) or {}
+                if _d_hit:
+                    res['dano_base'] = _num(_d_hit.get('平均傷害'), res['dano_base'])
+                    res['dano_var'] = _num(_d_hit.get('傷害變數'), res['dano_var'])
+                    res['dano_coef'] = _num(_d_hit.get('傷害係數'), res['dano_coef'])
+                    res['base_denom'] = _num(_d_hit.get('高權位'), res['base_denom']) or 200
+                    res['efecto'] = _num(_d_hit.get('特效編號'), res['efecto'])
 
-                # Saltos de rebote (Chain Lightning / Formula 42)
-                if res['formula'] == 42 or (5226 <= magic_id <= 5230) or ('chain lightning' in nom_l):
-                    res['chain_jumps'] = _num(d.get('動態參數1'), 5)
-                    res['sub_spell'] = _num(d.get('轉嫁法術'), 0)
+            # Deteccion de invocaciones (Summon Skeleton, Summon Mummy, Ghostly Swordsman, etc.)
+            res['invoca_npc'] = _num(d.get('動態參數1'), 0)
+            dur_inv = _num(d.get('動態參數2'), 0)
+            res['dur_invoca'] = dur_inv if dur_inv > 0 else 3600
+            is_real_summon = (
+                d.get('召喚型') == '是' or
+                any(nom_l.startswith(k) for k in ('summon ', 'lvl 60 summon', 'lvl 90 summon', 'lvl 120 summon')) or
+                any(k in nom_l for k in ('ghostly swordsman', 'shadow clone', 'avatar', 'titan', 'putridox', 'minotaur', 'leech', 'azrael', 'muncher'))
+            ) and d.get('魔法狀態') != '靈魂護盾' and not ('soul shield' in nom_l) and not res.get('es_brand') and not (13595 <= magic_id <= 13599)
+            res['es_invocacion'] = bool(res['invoca_npc'] > 0 and is_real_summon)
 
-                if res['es_invocacion']:
-                    res['es_terreno'] = False
-                    res['es_self_aoe'] = False
-                    res['es_aoe'] = False
+            # Robos de HP y MP (Forbidden Curse / Formula 39)
+            if res['formula'] == 39 or (5116 <= magic_id <= 5120) or ('forbidden curse' in nom_l):
+                res['drain_hp_pct'] = _num(d.get('動態參數2'), 25)
+                res['drain_mp_pct'] = _num(d.get('動態參數3'), 3)
 
-                # Hechizo de encanto / control de monstruos (Shining Charm I..V, Creature Charm, etc.)
-                res['es_encanto'] = (d.get('魔法狀態') == '媚惑' or 'charm' in nom_l) and not res['es_invocacion']
+            # Saltos de rebote (Chain Lightning / Formula 42)
+            if res['formula'] == 42 or (5226 <= magic_id <= 5230) or ('chain lightning' in nom_l):
+                res['chain_jumps'] = _num(d.get('動態參數1'), 5)
+                res['sub_spell'] = _num(d.get('轉嫁法術'), 0)
 
-                # Hechizo de panico / miedo (Soul Entangle I..V, Crazy Roar I..XXVII, etc.)
-                res['es_panico'] = (not res['es_invocacion']) and (
-                    d.get('魔法狀態') in ('恐懼', '恐慌') or
-                    'frighten' in desc_l or
-                    'fear' in desc_l or
-                    'panic' in desc_l
-                )
+            if res['es_invocacion']:
+                res['es_terreno'] = False
+                res['es_self_aoe'] = False
+                res['es_aoe'] = False
 
-                # Hechizo de transformacion / shapeshift (Wolf Shift, Bear Shift, Unicorn Shift, Shark Shift, etc.)
-                res['es_transformacion'] = (not res['es_invocacion']) and (
-                    d.get('變身型') == '是' or
-                    ('shift' in nom_l and target == '自己')
-                )
-                res['trans_sprite'] = _num(d.get('動態參數1'), 0)
-                res['def_bonus'] = _num(d.get('防禦力') or d.get('def'), 0)
-                res['atk_bonus'] = _num(d.get('攻擊力') or d.get('atk'), 0)
-                res['matk_bonus'] = _num(d.get('matk') or d.get('magic_attack'), 0)
-                res['mdef_bonus'] = _num(d.get('mdef') or d.get('magic_defend'), 0)
-                res['move_speed_bonus'] = _num(d.get('move_speed'), 0)
-                res['atk_speed_bonus'] = _num(d.get('atk_speed') or d.get('攻擊速度'), 0)
-                res['hp_bonus'] = _num(d.get('hp'), 0)
-                res['mp_bonus'] = _num(d.get('mp'), 0)
+            # Hechizo de encanto / control de monstruos (Shining Charm I..V, Creature Charm, etc.)
+            res['es_encanto'] = (d.get('魔法狀態') == '媚惑' or 'charm' in nom_l) and not res['es_invocacion']
 
-                # Definicion de % de HP / MP (e.g. Life Blessing V: +30% Max HP, Shark Shift: +130% Max MP -> Max HP)
-                hp_def = str(d.get('HP定義') or '')
-                mp_def = str(d.get('MP定義') or '')
-                if '百分比' in hp_def or hp_def == '最大值百分比':
-                    res['hp_pct'] = _num(d.get('hp'), 0)
-                if '百分比' in mp_def or mp_def == '最大值百分比':
-                    if res['es_transformacion']:
-                        res['mp_to_hp_pct'] = _num(d.get('mp'), 0)
-                    else:
-                        res['mp_pct'] = _num(d.get('mp'), 0)
+            # Hechizo de panico / miedo (Soul Entangle I..V, Crazy Roar I..XXVII, etc.)
+            res['es_panico'] = (not res['es_invocacion']) and (
+                d.get('魔法狀態') in ('恐懼', '恐慌') or
+                'frighten' in desc_l or
+                'fear' in desc_l or
+                'panic' in desc_l
+            )
 
+            # Hechizo de transformacion / shapeshift (Wolf Shift, Bear Shift, Unicorn Shift, Shark Shift, etc.)
+            res['es_transformacion'] = (not res['es_invocacion']) and (
+                d.get('變身型') == '是' or
+                ('shift' in nom_l and target == '自己')
+            )
+            res['trans_sprite'] = _num(d.get('動態參數1'), 0)
+            res['def_bonus'] = _num(d.get('防禦力') or d.get('def'), 0)
+            res['atk_bonus'] = _num(d.get('攻擊力') or d.get('atk'), 0)
+            res['matk_bonus'] = _num(d.get('matk') or d.get('magic_attack') or d.get('魔攻'), 0)
+            res['mdef_bonus'] = _num(d.get('mdef') or d.get('magic_defend') or d.get('魔防'), 0)
+            res['move_speed_bonus'] = _num(d.get('move_speed') or d.get('移動速度'), 0)
+            res['atk_speed_bonus'] = _num(d.get('atk_speed') or d.get('攻擊速度'), 0)
+            res['hp_bonus'] = _num(d.get('hp') if d.get('hp') is not None else d.get('HP'), 0)
+            res['mp_bonus'] = _num(d.get('mp') if d.get('mp') is not None else d.get('MP'), 0)
+
+            # Definicion de % de HP / MP (e.g. Life Blessing V: +30% Max HP, Shark Shift: +130% Max MP -> Max HP)
+            hp_def = str(d.get('HP定義') or '')
+            mp_def = str(d.get('MP定義') or '')
+            if '百分比' in hp_def or hp_def == '最大值百分比':
+                res['hp_pct'] = _num(d.get('hp') if d.get('hp') is not None else d.get('HP'), 0)
+            if '百分比' in mp_def or mp_def == '最大值百分比':
                 if res['es_transformacion']:
-                    res['matk_pct'] = _num(d.get('matk') or d.get('magic_attack'), 0)
-                    res['mdef_pct'] = _num(d.get('mdef') or d.get('magic_defend'), 0)
-                    res['atk_pct'] = _num(d.get('atk') or d.get('攻擊力'), 0)
-                    res['def_pct'] = _num(d.get('def') or d.get('防禦力'), 0)
-                    res['es_melee_trans'] = (d.get('魔法狀態') == '近戰化' or 'shark' in nom_l)
+                    res['mp_to_hp_pct'] = _num(d.get('mp') if d.get('mp') is not None else d.get('MP'), 0)
+                else:
+                    res['mp_pct'] = _num(d.get('mp') if d.get('mp') is not None else d.get('MP'), 0)
 
-                res['cast_redux'] = _num(d.get('動態參數3'), 0)
-                if not res['cast_redux'] and 'limit breaker' in nom_l:
-                    lb_ranks = {'limit breaker i': 500, 'limit breaker ii': 600, 'limit breaker iii': 700, 'limit breaker iv': 800, 'limit breaker v': 1000}
-                    for k, v in lb_ranks.items():
-                        if k in nom_l:
-                            res['cast_redux'] = v
-                            break
+            if res['es_transformacion']:
+                res['matk_pct'] = _num(d.get('matk') or d.get('magic_attack') or d.get('魔攻'), 0)
+                res['mdef_pct'] = _num(d.get('mdef') or d.get('magic_defend') or d.get('魔防'), 0)
+                res['atk_pct'] = _num(d.get('atk') or d.get('攻擊力'), 0)
+                res['def_pct'] = _num(d.get('def') or d.get('防禦力'), 0)
+                res['es_melee_trans'] = (d.get('魔法狀態') == '近戰化' or 'shark' in nom_l)
 
-                res['atk_mod'] = _num(d.get('atk') or d.get('攻擊力'), 0)
-                res['def_mod'] = _num(d.get('def') or d.get('防禦力'), 0)
-                res['phys_dmg_pct'] = _num(d.get('物理傷害'), 0)
-                res['mag_dmg_pct'] = _num(d.get('魔法傷害'), 0)
-                res['phys_mit_pct'] = _num(d.get('物理傷害抵銷'), 0)
-                res['mag_mit_pct'] = _num(d.get('魔法傷害抵銷'), 0)
-                res['vel_mov_mod'] = _num(d.get('move_speed'), 0)
+            res['cast_redux'] = _num(d.get('動態參數3'), 0)
+            if not res['cast_redux'] and 'limit breaker' in nom_l:
+                lb_ranks = {'limit breaker i': 500, 'limit breaker ii': 600, 'limit breaker iii': 700, 'limit breaker iv': 800, 'limit breaker v': 1000}
+                for k, v in lb_ranks.items():
+                    if k in nom_l:
+                        res['cast_redux'] = v
+                        break
 
-                # Hechizo de debuff / maldicion a enemigos (Exhaustion Curse, Weak Curse, Blind Curse, Slow Curse, Tough Break, etc.)
-                res['es_debuff'] = (not res['es_invocacion']) and (not res['es_encanto']) and (not res['es_panico']) and (
-                    res['dur_ms'] > 0 and target != '自己' and (
-                        res['atk_mod'] < 0 or
-                        res['def_mod'] < 0 or
-                        res['phys_dmg_pct'] < 0 or
-                        res['mag_dmg_pct'] < 0 or
-                        res['phys_mit_pct'] < 0 or
-                        res['mag_mit_pct'] < 0 or
-                        res['vel_mov_mod'] < 0 or
-                        'curse' in nom_l or
-                        'melody' in nom_l or
-                        d.get('魔法狀態') in ('閃紫色', '閃黃色', '暗灰色')
-                    )
+            res['atk_mod'] = _num(d.get('atk') or d.get('攻擊力'), 0)
+            res['def_mod'] = _num(d.get('def') or d.get('防禦力'), 0)
+            res['phys_dmg_pct'] = _num(d.get('物理傷害'), 0)
+            res['mag_dmg_pct'] = _num(d.get('魔法傷害'), 0)
+            res['phys_mit_pct'] = _num(d.get('物理傷害抵銷'), 0)
+            res['mag_mit_pct'] = _num(d.get('魔法傷害抵銷'), 0)
+            res['vel_mov_mod'] = _num(d.get('move_speed') or d.get('移動速度'), 0)
+
+            # Hechizo de debuff / maldicion a enemigos (Exhaustion Curse, Weak Curse, Blind Curse, Slow Curse, Tough Break, etc.)
+            res['es_debuff'] = (not res['es_invocacion']) and (not res['es_encanto']) and (not res['es_panico']) and (not res.get('es_brand')) and (
+                res['dur_ms'] > 0 and target != '自己' and (
+                    res['atk_mod'] < 0 or
+                    res['def_mod'] < 0 or
+                    res['phys_dmg_pct'] < 0 or
+                    res['mag_dmg_pct'] < 0 or
+                    res['phys_mit_pct'] < 0 or
+                    res['mag_mit_pct'] < 0 or
+                    res['vel_mov_mod'] < 0 or
+                    'curse' in nom_l or
+                    'melody' in nom_l or
+                    d.get('魔法狀態') in ('閃紫色', '閃黃色', '暗灰色')
                 )
+            )
 
-                # Curacion directa solo si es un hechizo curativo real (ej. Cure Spell, Holy Light, Angel Prayer, Tears of Life)
-                # Las habilidades basicas como Injury Cure son buffs con regeneracion, no curas directas verdes
-                res['es_cura'] = (not res['es_invocacion']) and (not res['es_encanto']) and (not res['es_panico']) and (not res['es_debuff']) and (
-                    any(k in nom_l for k in ('cure spell', 'holy light', 'angel prayer', 'tears of life')) or
-                    ('restores hp' in desc_l and 'speed' not in desc_l and 'injury' not in nom_l and 'song' not in nom_l)
-                ) and d.get('攻擊型') != '是'
+            # Curacion directa solo si es un hechizo curativo real (ej. Cure Spell, Holy Light, Angel Prayer, Tears of Life)
+            res['es_cura'] = (not res['es_invocacion']) and (not res['es_encanto']) and (not res['es_panico']) and (not res['es_debuff']) and (not res.get('es_brand')) and (
+                any(k in nom_l for k in ('cure spell', 'holy light', 'angel prayer', 'tears of life')) or
+                ('restores hp' in desc_l and 'speed' not in desc_l and 'injury' not in nom_l and 'song' not in nom_l)
+            ) and d.get('攻擊型') != '是'
 
-                # Buff temporal (aumenta defensa, velocidad, critico, % reduccion de dano, etc.)
-                res['es_buff'] = (not res['es_invocacion']) and (not res['es_encanto']) and (not res['es_panico']) and (not res['es_debuff']) and (
-                    res['dur_ms'] > 0 or
-                    target == '自己' or
-                    res['es_transformacion'] or
-                    res['crit_rate'] > 0 or
-                    res['phys_mit'] > 0 or
-                    ('within the effective time' in desc_l or 'increase' in desc_l or 'raises' in desc_l or 'enhances' in desc_l)
-                ) and not (d.get('攻擊型') == '是' or _palabra('harm', desc_l))                     and not res['es_cura']
+            # Buff temporal (aumenta defensa, velocidad, critico, % reduccion de dano, etc.)
+            res['es_buff'] = (not res['es_invocacion']) and (not res['es_encanto']) and (not res['es_panico']) and (not res['es_debuff']) and (not res.get('es_brand')) and (
+                res['dur_ms'] > 0 or
+                target == '自己' or
+                res['es_transformacion'] or
+                res['crit_rate'] > 0 or
+                res['phys_mit'] > 0 or
+                ('within the effective time' in desc_l or 'increase' in desc_l or 'raises' in desc_l or 'enhances' in desc_l)
+            ) and not (d.get('攻擊型') == '是' or _palabra('harm', desc_l)) and not res['es_cura']
 
-                # Habilidad ofensiva de ataque (dano a enemigo, estun, etc.)
-                res['es_ataque'] = (not res['es_invocacion']) and (not res['es_encanto']) and (not res['es_panico']) and (not res['es_debuff']) and (not res['es_cura']) and (not res['es_buff']) and (
-                    d.get('攻擊型') == '是' or
-                    any(k in desc_l for k in ('attack', 'attacks', 'harm', 'laceration', 'damage', 'shoot', 'strike', 'repulse', 'stun', 'pierce')) or
-                    any(k in nom_l for k in ('hit', 'attack', 'chop', 'beating', 'slash', 'wave', 'bomb', 'shot', 'thrust', 'strike', 'killing'))
-                )
+            # Habilidad ofensiva de ataque (dano a enemigo, estun, etc.)
+            res['es_ataque'] = (not res['es_invocacion']) and (not res['es_encanto']) and (not res['es_panico']) and (not res['es_debuff']) and (not res['es_cura']) and (not res['es_buff']) and (
+                bool(res.get('es_brand')) or
+                d.get('攻擊型') == '是' or
+                any(k in desc_l for k in ('attack', 'attacks', 'harm', 'laceration', 'damage', 'shoot', 'strike', 'repulse', 'stun', 'pierce')) or
+                any(k in nom_l for k in ('hit', 'attack', 'chop', 'beating', 'slash', 'wave', 'bomb', 'shot', 'thrust', 'strike', 'killing', 'brand'))
+            )
 
-                # Se puede usar sobre uno mismo si es curacion, buff, invocacion o self-aoe
-                res['es_auto'] = res['es_cura'] or res['es_buff'] or res['es_invocacion'] or res['es_self_aoe']
+            # Se puede usar sobre uno mismo si es curacion, buff, invocacion o self-aoe
+            res['es_auto'] = res['es_cura'] or res['es_buff'] or res['es_invocacion'] or res['es_self_aoe']
 
-                res['es_pasiva'] = (not res['es_invocacion']) and (
-                    d.get('被動') == '是' or
-                    (act in ('無動作', '', 'None') and not res['es_ataque'] and not res['es_cura'] and not res['es_auto']) or
-                    any(k in nom_l for k in ('enhance', 'grapple', 'reserve', 'finesse', 'garment', 'mastery'))
-                )
+            res['es_pasiva'] = (not res['es_invocacion']) and (
+                d.get('被動') == '是' or
+                (act in ('無動作', '', 'None') and not res['es_ataque'] and not res['es_cura'] and not res['es_auto']) or
+                any(k in nom_l for k in ('enhance', 'grapple', 'reserve', 'finesse', 'garment', 'mastery'))
+            )
         except Exception:
             pass
     _MAGIC_CACHE[magic_id] = res
@@ -1028,23 +1057,35 @@ _MAGIC_XML = None
 def _magic_xml():
     """magic.xml crudo, indexado por numero. content.db no sirve para esto:
     se construyo de una version sin las columnas 轉嫁法術 / 魔法狀態."""
-    global _MAGIC_XML
+    global _MAGIC_XML, _EFECTOS_DISPONIBLES
     if _MAGIC_XML is not None:
         return _MAGIC_XML
     import re as _re
     _MAGIC_XML = {}
-    raiz = pathlib.Path('G:/extracted_paks')
-    for pak in ('update26', 'UPDATE18', 'data1'):
-        f = raiz / pak / 'setting' / 'eng' / 'magic.xml'
-        if not f.exists():
-            continue
-        for l in f.read_text(encoding='utf-8', errors='replace').splitlines():
-            m = _re.search(r'編號="(\d+)"', l)
-            if m:
-                _MAGIC_XML[int(m.group(1))] = dict(
-                    _re.findall(r'(\S+?)="([^"]*)"', l))
-        if _MAGIC_XML:
-            break
+    f_json = pathlib.Path(__file__).parent / 'plantillas' / 'client_tables.json'
+    if f_json.exists():
+        try:
+            raw = json.loads(f_json.read_text(encoding='utf-8'))
+            for k, v in (raw.get('magic_xml') or {}).items():
+                _MAGIC_XML[int(k)] = v
+            if _EFECTOS_DISPONIBLES is None and raw.get('efectos_disponibles'):
+                _EFECTOS_DISPONIBLES = set(int(x) for x in raw['efectos_disponibles'])
+            if _MAGIC_XML:
+                return _MAGIC_XML
+        except Exception:
+            pass
+    for raiz in (pathlib.Path(__file__).parent.parent / 'extracted_paks', pathlib.Path('G:/extracted_paks')):
+        for pak in ('update26', 'UPDATE18', 'data1'):
+            f = raiz / pak / 'setting' / 'eng' / 'magic.xml'
+            if not f.exists():
+                continue
+            for l in f.read_text(encoding='utf-8', errors='replace').splitlines():
+                m = _re.search(r'編號="(\d+)"', l)
+                if m:
+                    _MAGIC_XML[int(m.group(1))] = dict(
+                        _re.findall(r'(\S+?)="([^"]*)"', l))
+            if _MAGIC_XML:
+                return _MAGIC_XML
     return _MAGIC_XML
 
 
@@ -1152,12 +1193,15 @@ def efecto_existe(numero: int) -> bool:
     """
     global _EFECTOS_DISPONIBLES
     if _EFECTOS_DISPONIBLES is None:
+        _magic_xml()
+    if _EFECTOS_DISPONIBLES is None:
         _EFECTOS_DISPONIBLES = set()
-        d = pathlib.Path('G:/extracted_paks/data1/shape/magic')
-        if d.is_dir():
-            for sub in d.iterdir():
-                if sub.is_dir() and sub.name.isdigit():
-                    _EFECTOS_DISPONIBLES.add(int(sub.name))
+        for raiz in (pathlib.Path(__file__).parent.parent / 'extracted_paks', pathlib.Path('G:/extracted_paks')):
+            d = raiz / 'data1' / 'shape' / 'magic'
+            if d.is_dir():
+                for sub in d.iterdir():
+                    if sub.is_dir() and sub.name.isdigit():
+                        _EFECTOS_DISPONIBLES.add(int(sub.name))
     return not _EFECTOS_DISPONIBLES or int(numero) in _EFECTOS_DISPONIBLES
 
 
@@ -1171,6 +1215,12 @@ def efecto_de_ataque(magic_id: int) -> int:
     if (196 <= magic_id <= 200) or (1262 <= magic_id <= 1266) or (4676 <= magic_id <= 4680):
         _EFECTOS_CACHE[magic_id] = 195
         return 195
+
+    d_xml = _magic_xml().get(int(magic_id or 0))
+    if d_xml and str(d_xml.get('特效編號', '')).isdigit():
+        val = int(d_xml['特效編號'])
+        _EFECTOS_CACHE[magic_id] = val
+        return val
 
     db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
     if db.exists():

@@ -102,9 +102,19 @@ def cargar_pet_star():
     global _PET_STAR_TABLE
     if _PET_STAR_TABLE:
         return _PET_STAR_TABLE
-    import re
+    import json, re
+    f_json = pathlib.Path(__file__).parent / 'plantillas' / 'pet_star.json'
+    if f_json.exists():
+        try:
+            raw = json.loads(f_json.read_text(encoding='utf-8'))
+            for k, v in raw.items():
+                _PET_STAR_TABLE[int(k)] = v
+            if _PET_STAR_TABLE:
+                return _PET_STAR_TABLE
+        except Exception:
+            pass
     base_dir = pathlib.Path(__file__).parent.parent / 'extracted_paks'
-    files = list(base_dir.glob('**/pet_star.xml'))
+    files = list(base_dir.glob('**/pet_star.xml')) if base_dir.exists() else []
     def _up_num(p):
         m = re.search(r'update(\d+)', str(p), re.IGNORECASE)
         return int(m.group(1)) if m else 0
@@ -129,6 +139,7 @@ def cargar_pet_star():
                             'agilidad': int(node.get('靈敏', 0)),
                         }
                 if _PET_STAR_TABLE:
+                    _PET_STAR_TABLE[1] = {'hp': 3, 'mp': 2, 'atk': 4, 'dfs': 2, 'matk': 2, 'mdef': 2, 'rigor': 2, 'agilidad': 1}
                     break
             except Exception:
                 pass
@@ -345,8 +356,8 @@ def entrada(plantilla: bytes, estado: dict) -> bytes:
             struct.pack_into('<I', e, off, int(val_eff) & 0xFFFFFFFF)
         else:
             struct.pack_into('<I', e, off, int(v) & 0xFFFFFFFF)
-    # Byte 83: nivel de intensificado para tooltip (has been intensified N times)
-    e[83] = min(255, int(st_lvl))
+    # Byte 83 es solo para armas/armaduras/monturas (en mascotas siempre va en 0)
+    e[83] = 0
     # Byte 118: 1 si la mascota esta invocada (fuera), 0 si esta guardada
     e[118] = 1 if estado.get('fuera') else 0
     # Offsets 148..180: bonos verdes de estrellas (HP, MP, Atk, Dfs, MAtk, MDef, Rigor, Agilidad)
@@ -429,8 +440,11 @@ def entidad_mundo(plantilla: bytes, estado: dict) -> bytes:
         else:
             struct.pack_into('<I', b, off, int(v) & 0xFFFFFFFF)
     # La instancia y la entidad van repetidas.
-    if estado.get('instancia') is not None:
-        inst_v = int(estado['instancia']) & 0xFFFFFFFF
+    inst_raw = estado.get('instancia')
+    if inst_raw is None and estado.get('ranura') is not None:
+        inst_raw = 1000 + int(estado['ranura'])
+    if inst_raw is not None:
+        inst_v = int(inst_raw) & 0xFFFFFFFF
         struct.pack_into('<II', b, 63, inst_v, inst_v)
     if estado.get('entidad') is not None:
         struct.pack_into('<I', b, 71, int(estado['entidad']) & 0xFFFFFFFF)
@@ -805,9 +819,19 @@ def cargar_tablas_exp():
     global _PET_EXP_TABLES
     if _PET_EXP_TABLES:
         return _PET_EXP_TABLES
-    import re, xml.etree.ElementTree as ET
+    import json, re, xml.etree.ElementTree as ET
+    f_json = pathlib.Path(__file__).parent / 'plantillas' / 'level_curves.json'
+    if f_json.exists():
+        try:
+            raw = json.loads(f_json.read_text(encoding='utf-8'))
+            for tag, d in (raw.get('pet_exp_tables') or {}).items():
+                _PET_EXP_TABLES[tag] = {int(lv): int(v) for lv, v in d.items()}
+            if _PET_EXP_TABLES:
+                return _PET_EXP_TABLES
+        except Exception:
+            pass
     base_dir = pathlib.Path(__file__).parent.parent / 'extracted_paks'
-    files = list(base_dir.glob('**/level.xml'))
+    files = list(base_dir.glob('**/level.xml')) if base_dir.exists() else []
     def _up_num(p):
         m = re.search(r'update(\d+)', str(p), re.IGNORECASE)
         return int(m.group(1)) if m else 0

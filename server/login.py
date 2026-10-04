@@ -170,7 +170,10 @@ def secuencia(p: Personaje):
             # Atributos de entidad. La plantilla trae el entity_id del
             # personaje que se grabo, asi que habia que reescribirlo: se
             # estaban anunciando los atributos de una entidad ajena.
-            salida.append(struct.pack('<HI', 0x001D, p.entity_id) + base[4:])
+            b1d = bytearray(base)
+            if len(b1d) >= 19 and b1d[4] == 3 and b1d[14] == 0x2A:
+                struct.pack_into('<I', b1d, 15, 0)
+            salida.append(struct.pack('<HI', 0x001D, p.entity_id) + bytes(b1d[4:]))
         elif op == 0x001A:
             # El inventario. Antes se mandaba la plantilla tal cual, o sea el
             # inventario del personaje que se grabo; ahora se arma con el del
@@ -504,16 +507,25 @@ def sprite_de(npc_type: int, por_defecto: int = 40001) -> int:
     if _SPRITES_NPC is None:
         import re as _re
         _SPRITES_NPC = {}
-        raiz = pathlib.Path('G:/extracted_paks')
-        for pak in ('update26', 'UPDATE18', 'data1'):
-            f = raiz / pak / 'setting' / 'eng' / 'npc.xml'
-            if not f.exists():
-                continue
-            for m in _re.finditer(r'<npc 編號="(\d+)" 圖號="(\d+)"',
-                                  f.read_text(encoding='utf-8', errors='replace')):
-                _SPRITES_NPC.setdefault(int(m.group(1)), int(m.group(2)))
-            if _SPRITES_NPC:
-                break
+        f_json = PLANTILLAS / 'client_tables.json'
+        if f_json.exists():
+            try:
+                raw = json.loads(f_json.read_text(encoding='utf-8'))
+                for k, v in (raw.get('npc_sprites') or {}).items():
+                    _SPRITES_NPC[int(k)] = int(v)
+            except Exception:
+                pass
+        if not _SPRITES_NPC:
+            for raiz in (pathlib.Path(__file__).parent.parent / 'extracted_paks', pathlib.Path('G:/extracted_paks')):
+                for pak in ('update26', 'UPDATE18', 'data1'):
+                    f = raiz / pak / 'setting' / 'eng' / 'npc.xml'
+                    if not f.exists():
+                        continue
+                    for m in _re.finditer(r'<npc 編號="(\d+)" 圖號="(\d+)"',
+                                          f.read_text(encoding='utf-8', errors='replace')):
+                        _SPRITES_NPC.setdefault(int(m.group(1)), int(m.group(2)))
+                    if _SPRITES_NPC:
+                        break
     return _SPRITES_NPC.get(npc_type, por_defecto)
 
 

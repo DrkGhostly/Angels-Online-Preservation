@@ -43,7 +43,18 @@ def _cargar():
     global _SKILLS
     if _SKILLS is not None:
         return _SKILLS
+    import json
     _SKILLS = {}
+    f_json = pathlib.Path(__file__).parent / 'plantillas' / 'client_tables.json'
+    if f_json.exists():
+        try:
+            raw = json.loads(f_json.read_text(encoding='utf-8'))
+            for k, v in (raw.get('skill_names') or {}).items():
+                _SKILLS[int(k)] = v
+            if _SKILLS:
+                return _SKILLS
+        except Exception:
+            pass
     for pak in ('UPDATE18', 'UPDATE13', 'data1'):
         f = PAKS / pak / 'setting' / 'eng' / 'skill.xml'
         if not f.exists():
@@ -103,7 +114,18 @@ def _cargar_hechizos():
     global _HECHIZOS
     if _HECHIZOS is not None:
         return _HECHIZOS
+    import json
     _HECHIZOS = {}
+    f_json = pathlib.Path(__file__).parent / 'plantillas' / 'client_tables.json'
+    if f_json.exists():
+        try:
+            raw = json.loads(f_json.read_text(encoding='utf-8'))
+            for rama, lst in (raw.get('hechizos_nivel_1') or {}).items():
+                _HECHIZOS[rama] = [(int(x[0]), str(x[1])) for x in lst]
+            if _HECHIZOS:
+                return _HECHIZOS
+        except Exception:
+            pass
     for pak in ('update26', 'UPDATE18', 'data1'):
         f = PAKS / pak / 'setting' / 'eng' / 'magic.xml'
         if not f.exists():

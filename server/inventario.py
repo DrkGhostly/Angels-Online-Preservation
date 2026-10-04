@@ -1579,7 +1579,7 @@ def _entrada(char_id: int, ranura: int, item_id: int, cant: int,
         inst_id = int(est_pet.get('instancia') or (1000 + int(ranura))) & 0xFFFFFFFF
         struct.pack_into('<II', base, 1, inst_id, inst_id)
         struct.pack_into('<I', base, 9, item_id)
-        struct.pack_into('<I', base, 34, char_id if char_id else (dueno or 0))
+        struct.pack_into('<I', base, 34, dueno)
         struct.pack_into('<H', base, 38, ranura)
         struct.pack_into('<I', base, 40, cant)
         base[51] = 0x91
@@ -1640,22 +1640,18 @@ def completo(char_id: int, items, dueno: int = None, mejoras=None,
                 pet_spec = mascotas[str(ran)]
             elif ran in mascotas:
                 pet_spec = mascotas[ran]
-            elif isinstance(mascota, dict) and (mascota.get('ranura') == ran or mascota.get('item') == iid):
+            elif isinstance(mascota, dict) and (mascota.get('ranura') == ran or (mascota.get('ranura') is None and mascota.get('item') == iid)):
                 pet_spec = mascota
-            else:
-                for _k, _vp in mascotas.items():
-                    if isinstance(_vp, dict) and _vp.get('item') == iid:
-                        pet_spec = _vp
-                        break
 
         _e = _entrada(char_id, ran, iid, cnt, ins, dueno, mascota=pet_spec)
-        _m = mejoras.get(ran)
-        if _m and _m.get('veces'):
-            _e = marcar_mejora(_e, _m['veces'])
-        if _m and _m.get('extra'):
-            _e = marcar_extras(_e, _m['extra'])
-        if _m and (_m.get('huecos') or _m.get('gemas')):
-            _e = marcar_huecos(_e, _m.get('huecos') or 0, _m.get('gemas'))
+        if not es_mascota(iid):
+            _m = mejoras.get(ran)
+            if _m and _m.get('veces'):
+                _e = marcar_mejora(_e, _m['veces'])
+            if _m and _m.get('extra'):
+                _e = marcar_extras(_e, _m['extra'])
+            if _m and (_m.get('huecos') or _m.get('gemas')):
+                _e = marcar_huecos(_e, _m.get('huecos') or 0, _m.get('gemas'))
         lista.append(_e)
     fuera = struct.pack('<I', len(lista)) + b''.join(lista)
     return struct.pack('<H', 0x001A) + fuera
@@ -2009,15 +2005,24 @@ def creditos_de(item_id: int) -> int:
     global _INVERSION
     if _INVERSION is None:
         _INVERSION = {}
-        f = (pathlib.Path(__file__).parent.parent / 'extracted_paks' / 'data1'
-             / 'setting' / 'eng' / 'investitem.xml')
-        if f.exists():
-            txt = f.read_text(encoding='utf-8', errors='replace')
-            for trozo in re.findall(r'<投資物品[^>]*>', txt):
-                mid = re.search(r'編號="(\d+)"', trozo)
-                mcr = re.search(r'功勳="(\d+)"', trozo)
-                if mid and mcr:
-                    _INVERSION[int(mid.group(1))] = int(mcr.group(1))
+        f_json = pathlib.Path(__file__).parent / 'plantillas' / 'client_tables.json'
+        if f_json.exists():
+            try:
+                raw = json.loads(f_json.read_text(encoding='utf-8'))
+                for k, v in (raw.get('invest_items') or {}).items():
+                    _INVERSION[int(k)] = int(v)
+            except Exception:
+                pass
+        if not _INVERSION:
+            f = (pathlib.Path(__file__).parent.parent / 'extracted_paks' / 'data1'
+                 / 'setting' / 'eng' / 'investitem.xml')
+            if f.exists():
+                txt = f.read_text(encoding='utf-8', errors='replace')
+                for trozo in re.findall(r'<投資物品[^>]*>', txt):
+                    mid = re.search(r'編號="(\d+)"', trozo)
+                    mcr = re.search(r'功勳="(\d+)"', trozo)
+                    if mid and mcr:
+                        _INVERSION[int(mid.group(1))] = int(mcr.group(1))
     return _INVERSION.get(int(item_id), 0)
 
 
