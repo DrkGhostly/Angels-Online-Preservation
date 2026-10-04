@@ -659,6 +659,10 @@ def entidad_mundo(plantilla: bytes, estado: dict) -> bytes:
         struct.pack_into('<I', b, 71, int(estado['entidad']) & 0xFFFFFFFF)
     if estado.get('dueno') is not None:
         struct.pack_into('<I', b, 75, int(estado['dueno']) & 0xFFFFFFFF)
+    # Offset 53 (a2+55 -> v5+996 en sub_607C90): nivel de estrellas sobre la cabeza al pasar el raton
+    b_star_m = bonos_de_ficha(estado)
+    st_lvl_m = max(1, int(estado.get('estrellas') or calcular_estrellas_total(b_star_m)))
+    struct.pack_into('<I', b, 53, st_lvl_m & 0xFFFFFFFF)
     # Offset 95: HP efectivo de la mascota en el mundo
     hp_val = hp_eff(estado) & 0xFFFFFFFF
     struct.pack_into('<I', b, 95, hp_val)

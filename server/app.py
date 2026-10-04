@@ -1138,8 +1138,10 @@ def _usar_mejora(ses, addr, ranura, objetivo) -> bool:
                 p.mascotas[str(objetivo)] = f_pet
             if f_pet.get('fuera') and f_pet.get('entidad'):
                 pet_eid_m = int(f_pet['entidad'])
+                st_m = max(1, int(f_pet.get('estrellas') or _ms_app.calcular_estrellas_total(_ms_app.bonos_de_ficha(f_pet))))
                 salida.append(_ms_app.armar(f_pet))
                 salida.append(_cb_app.atributo(pet_eid_m, _ms_app.hp_eff(f_pet), _cb_app.KIND_HP))
+                salida.append(_st_app.pack('<HIBBI', 0x0013, pet_eid_m, 1, 0x42, st_m))
                 if int(f_pet.get('saciedad', 0)) > 100:
                     salida.append(_st_app.pack('<HIBBII', 0x001D, pet_eid_m, 1, 4, 3796, max(60000, (int(f_pet['saciedad']) - 100) * 60000)))
             if getattr(ses, 'usuario', None):
@@ -5966,6 +5968,7 @@ class Servidor:
                     _peid_st = int(_f['entidad'])
                     salida_st.append(_msst.armar(_f))
                     salida_st.append(_cbst.atributo(_peid_st, _msst.hp_eff(_f), _cbst.KIND_HP))
+                    salida_st.append(struct.pack('<HIBBI', 0x0013, _peid_st, 1, 0x42, max(1, int(_nueva_st))))
                     if int(_f.get('saciedad', 0)) > 100:
                         salida_st.append(struct.pack('<HIBBII', 0x001D, _peid_st, 1, 4, 3796, max(60000, (int(_f['saciedad']) - 100) * 60000)))
                 salida_st.append(_clst.aviso(f"Pet star level upgraded! ({_nueva_st / 10.0:.1f} Stars)", tipo=0, msg_id=_clst.MSG_ITEM))
