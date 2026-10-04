@@ -248,7 +248,7 @@ def secuencia(p: Personaje):
     salida.append(
         struct.pack('<HIB', 0x001D, p.entity_id, 4)
         + struct.pack('<BQ', 29, _u64(p.nivel))
-        + struct.pack('<BQ', 30, 0)
+        + struct.pack('<BQ', 30, _u64(_cb_ini.exp_para_nivel(p.nivel)))
         + struct.pack('<BQ', 31, _u64(exp_siguiente_ui))
         + struct.pack('<BQ', 32, _u64(exp_actual_ui)))
     return salida

@@ -1413,7 +1413,7 @@ def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
             salida_combate.append(
                 struct.pack('<HIB', 0x001D, yo, 4) +
                 struct.pack('<BQ', 29, _u64(p.nivel)) +
-                struct.pack('<BQ', 30, 0) +
+                struct.pack('<BQ', 30, max(0, int(_cb.exp_para_nivel(p.nivel)))) +
                 struct.pack('<BQ', 31, _u64(exp_siguiente_ui)) +
                 struct.pack('<BQ', 32, _u64(exp_actual_ui))
             )
@@ -3275,7 +3275,7 @@ class Servidor:
                     _cb.atributo(yo, ses.sp, _cb.KIND_SP),
                     struct.pack('<HIB', 0x001D, yo, 4) +
                     struct.pack('<BQ', 29, _u64(p.nivel)) +
-                    struct.pack('<BQ', 30, 0) +
+                    struct.pack('<BQ', 30, max(0, int(_cb.exp_para_nivel(p.nivel)))) +
                     struct.pack('<BQ', 31, _u64(exp_sig)) +
                     struct.pack('<BQ', 32, _u64(exp_actual_ui)),
                     inv.stats(b, p.habilidades,
@@ -6525,7 +6525,7 @@ class Servidor:
                     _cb.atributo(yo, p.mp, _cb.KIND_MP),
                     struct.pack('<HIB', 0x001D, yo, 4) +
                     struct.pack('<BQ', 29, _u64(p.nivel)) +
-                    struct.pack('<BQ', 30, 0) +
+                    struct.pack('<BQ', 30, max(0, int(_cb.exp_para_nivel(p.nivel)))) +
                     struct.pack('<BQ', 31, _u64(exp_sig)) +
                     struct.pack('<BQ', 32, _u64(exp_actual_ui)),
                     _cb.efecto_level_up(yo, es_skill=False),
