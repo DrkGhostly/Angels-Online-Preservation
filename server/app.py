@@ -3128,7 +3128,7 @@ class Servidor:
                                 agi_total = int(f_pet.get('agilidad', 15)) + int(b_star.get('agilidad', 0))
                                 if sac_buff:
                                     agi_total = int(round(agi_total * 1.2))
-                                cadencia_pet = max(1.6, min(2.2, 2.2 - agi_total * 0.0015))
+                                cadencia_pet = max(0.95 if sac_buff else 1.15, min(1.55, 1.55 - agi_total * 0.002))
                                 if dist_pet <= r_pet:
                                     if ahora - f_pet.get('ultimo_ataque', 0) >= cadencia_pet:
                                         f_pet['ultimo_ataque'] = ahora
@@ -3168,8 +3168,8 @@ class Servidor:
                                             _procesar_muerte_monstruo(ses, pet_targ, yo, addr, espera=0.1)
                                 else:
                                     if ahora >= f_pet.get('proximo_paso', 0):
-                                        spd_p = 105 if f_pet.get('saciedad', 0) > 100 else 85
-                                        pasos_dar = min(max(1, dist_pet - 1), 3)
+                                        spd_p = 140 if int(f_pet.get('saciedad', 0)) > 100 else 105
+                                        pasos_dar = min(max(1, dist_pet - 1), 4)
                                         cur_px, cur_py = pet_x * 32, pet_y * 32
                                         nx_p, ny_p = pet_x, pet_y
                                         for _ in range(pasos_dar):
@@ -3187,7 +3187,7 @@ class Servidor:
                                 dp_x = p.tile_x - pet_x
                                 dp_y = p.tile_y - pet_y
                                 dist_jug = max(abs(dp_x), abs(dp_y))
-                                spd_p = 105 if f_pet.get('saciedad', 0) > 100 else 85
+                                spd_p = 140 if int(f_pet.get('saciedad', 0)) > 100 else 105
                                 if dist_jug > 15:
                                     f_pet['x'] = p.tile_x + 1
                                     f_pet['y'] = p.tile_y
@@ -3198,7 +3198,7 @@ class Servidor:
                                         MOVE.build(entity_id=pet_eid, cur_x=cur_px, cur_y=cur_py, dst_x=cur_px, dst_y=cur_py, speed=spd_p)
                                     )
                                 elif dist_jug > 1 and ahora >= f_pet.get('proximo_paso', 0):
-                                    pasos_dar = min(dist_jug - 1, 3)
+                                    pasos_dar = min(dist_jug - 1, 4)
                                     cur_px, cur_py = pet_x * 32, pet_y * 32
                                     nx_j, ny_j = pet_x, pet_y
                                     for _ in range(pasos_dar):
