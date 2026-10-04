@@ -170,8 +170,19 @@ Path`, `Third Spirit`, `Limit Breaker`, `Shadow Meld`, `Killer Intent`) y la
     diálogos salen de `msg.xml` (bloque 516188-516210) y las tiendas de `shop.xml`, donde cada
     ciudad añade un par y el impar son espadas y el par magias: el `Researcher (C)` abre la 221
     (Edge Guard I) y el `Researcher (S)` la 222 (Astro Impact I), ambas de nivel 310
-  - **Poblados de facción y puestos**: Cherry Village, Memory Cave, Mysterious Garden, Gebuer Vale,
-    Dragon Graveyard, Mysterious Wetland, etc.
+- **Sistema Integral de Mascotas (Pets al 85-90% de desarrollo)**:
+  - **Invocación y Gestión de Barra**: Invocación con clic derecho en mochila, compatibilidad total con accesos rápidos F1-F12 y alternancia de múltiples mascotas. Al cambiar de mascota se despawnea y desvincula limpiamente la anterior sin dejar entidades fantasma (`0x000E`, `0x001B`, `0x015E`).
+  - **Evolución y Etapas de Crecimiento**: Rompimiento del huevo automático a nivel 15 pasando a Junior Pet, y evoluciones por certificados (Medium Blood Certificate a nivel 35, Advanced Blood Certificate a nivel 55) con regeneración limpia de entidad y modelo.
+  - **Alimentación y Saciedad**: Uso de `Pet Feed` (+500 de saciedad hasta 1000 máximo). Superar los 100 puntos de saciedad activa el bufo oficial `Pet's Satiation` (ID 3796) sobre el retrato de la mascota.
+  - **Sistema Oficial de Estrellas (`pet_star.xml`)**: Integración completa de los 80 niveles de estrellas (0.1 a 8.0 estrellas). La mejora con `Improved Pet Feed` o `Star-up Cards` incrementa dinámicamente los bonos de todos los atributos según la tabla oficial.
+  - **Tooltips Detallados de Inventario (231 bytes)**: Muestra el desglose de stats base y bono verde (`Attack 606 (444 + 162) Star Level: 0.4`), el nivel global `Star Level: 0.4` y el contador `has been intensified ( N ) times`.
+  - **Ficha de Estado (`0x0065`)**: Muestra los atributos de combate efectivos resaltados en verde, valores base, 3 casillas de habilidades de mascota, resistencias elementales y estrellas.
+  - **Órdenes e IA de Mascota (`0x003E` / `0x001D`)**: Compatibilidad con órdenes de Quieta (0), Seguir (1) y Atacar (2).
+- **Sistema de SP (Holy Power / Lámparas de SP)**:
+  - Acumulación de puntos de SP en combate hasta el tope (2000 SP / 4 lámparas), con persistencia completa al reconectar.
+  - Ejecución de habilidades instantáneas de SP (`Earth Blessing V`, `Shark Shift V`, `Angel Protection`, etc.) con temporizadores de tics, regeneración de HP/MP y aumento de estadísticas.
+- **Motor de Bufos, HoT y DoT**:
+  - Gestión de duración de bufos, tics de curación en el tiempo (HoT de Earth Blessing HP/MP), efectos de pociones y cartas de larga duración.
 
 **A medias**
 
@@ -184,8 +195,6 @@ Path`, `Third Spirit`, `Limit Breaker`, `Shadow Meld`, `Killer Intent`) y la
 - La fórmula de daño físico y mágico ahora escala con mitigación lineal de
   defensa y atributos elementales, pero a niveles extremos (300+) o contra
   monstruos con estadísticas atípicas puede requerir ajustes finos de calibración
-- Mascotas (Pets): se pueden equipar y muestran su sprite en el mapa, pero el
-  sistema de combate e IA de mascotas y la alimentación automática están en desarrollo
 - Los combos se leen de `magic.xml` pero no se ejecutan
 - El efecto de lentitud se registra pero no cambia la velocidad de movimiento
 - El bastón y el hacha usan la animación de ataque de la espada hasta que

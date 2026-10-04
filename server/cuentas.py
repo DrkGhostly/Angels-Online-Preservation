@@ -170,7 +170,45 @@ def personaje_de(cuenta, indice=0):
         class_id=p.get('class_id', 0),
         banco_habilidades={int(k): list(v) for k, v in p.get('banco_habilidades', {}).items()},
         hechizos_aprendidos=set(p.get('hechizos_aprendidos', [])),
+        mascota=_cargar_mascota(p.get('mascota')),
+        mascotas=_cargar_mascotas(p),
     )
+
+
+def _cargar_mascotas(p: dict) -> dict:
+    res = {}
+    for k, v in (p.get('mascotas') or {}).items():
+        if isinstance(v, dict) and v.get('sprite'):
+            res[str(k)] = _cargar_mascota(v)
+    if p.get('mascota') and isinstance(p.get('mascota'), dict) and p['mascota'].get('sprite'):
+        m_act = _cargar_mascota(p['mascota'])
+        r_k = str(m_act.get('ranura') if m_act.get('ranura') is not None else m_act.get('item', '0'))
+        if r_k not in res:
+            res[r_k] = m_act
+    return res
+
+
+def _cargar_mascota(m) -> dict:
+    if not isinstance(m, dict) or not m.get('sprite'):
+        return {}
+    import mascotas as _ms
+    f = dict(m)
+    f['fuera'] = False
+    f['entidad'] = None
+    sp = int(f.get('sprite') or 0)
+    nv = max(1, int(f.get('nivel') or 1))
+    d = _ms.ficha_de_sprite(sp)
+    if d.get('tipo'):
+        f['tipo'] = d['tipo']
+    st = _ms.stats_de(sp, nv)
+    for k, v in st.items():
+        if k in ('hp', 'mp') and f.get(k, 0) > 0:
+            continue
+        f[k] = v
+    f.setdefault('saciedad', 100)
+    f.setdefault('intimidad', 60)
+    f.setdefault('estrellas', 1)
+    return f
 
 
 def borrar_personaje(usuario: str, ranura: int):
@@ -475,4 +513,36 @@ def guardar_buffs(usuario: str, char_id: int, buffs: dict):
             ARCHIVO.write_text(json.dumps(d, indent=2, ensure_ascii=False),
                                encoding='utf-8')
             return
+
+
+def guardar_mascota(usuario: str, char_id: int, mascota: dict, mascotas: dict = None):
+    """Guarda la ficha de la mascota del personaje y el catalogo de mascotas."""
+    if not usuario:
+        return
+    d = json.loads(ARCHIVO.read_text(encoding='utf-8'))
+    c = d['cuentas'].get(usuario)
+    if not c:
+        return
+    for p in c.get('personajes', []):
+        if p.get('char_id') == char_id:
+            m_dict = p.setdefault('mascotas', {})
+            if mascotas and isinstance(mascotas, dict):
+                for k, v in mascotas.items():
+                    if isinstance(v, dict) and v.get('sprite'):
+                        clean_v = {ck: cv for ck, cv in v.items() if ck not in ('entidad',)}
+                        clean_v['fuera'] = False
+                        m_dict[str(k)] = clean_v
+            if mascota and isinstance(mascota, dict) and mascota.get('sprite'):
+                limpia = {k: v for k, v in mascota.items()
+                          if k not in ('entidad',)}
+                limpia['fuera'] = False
+                p['mascota'] = limpia
+                r_key = str(limpia.get('ranura') if limpia.get('ranura') is not None else limpia.get('item', '0'))
+                m_dict[r_key] = limpia
+            else:
+                p.pop('mascota', None)
+            ARCHIVO.write_text(json.dumps(d, indent=2, ensure_ascii=False),
+                               encoding='utf-8')
+            return
+
 

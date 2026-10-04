@@ -87,23 +87,86 @@ def _datos(npc_type: int):
 
 
 _CURVA_NIVEL = None
+_CURVA_SKILL = None
+_CURVA_PET = None
+
 
 def _cargar_curva_nivel():
-    global _CURVA_NIVEL
+    global _CURVA_NIVEL, _CURVA_SKILL, _CURVA_PET
     if _CURVA_NIVEL is None:
-        db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
         _CURVA_NIVEL = {}
-        if db.exists():
-            try:
-                con = sqlite3.connect(db)
-                for lv, exp in con.execute('select level, exp_char from level'):
-                    try:
-                        _CURVA_NIVEL[int(lv)] = int(exp)
-                    except ValueError:
-                        pass
-            except Exception:
-                pass
+        _CURVA_SKILL = {}
+        _CURVA_PET = {'A': {}, 'B': {}, 'C': {}, 'D': {}}
+        raiz = pathlib.Path(__file__).parent.parent
+        for cand in (
+            raiz / 'extracted_paks' / 'update26' / 'setting' / 'level.xml',
+            pathlib.Path('G:/extracted_paks/update26/setting/level.xml'),
+            raiz / 'extracted_paks' / 'UPDATE19' / 'setting' / 'level.xml',
+            raiz / 'extracted_paks' / 'data1' / 'setting' / 'level.xml',
+        ):
+            if cand.exists():
+                try:
+                    import xml.etree.ElementTree as ET
+                    tree = ET.parse(cand)
+                    for e in tree.getroot().findall('exp'):
+                        lv = int(e.attrib.get('等級', 0) or 0)
+                        if lv <= 0:
+                            continue
+                        if len(e) > 0 and e[0].text:
+                            _CURVA_NIVEL[lv] = int(e[0].text)
+                        for sid in range(1, 37):
+                            if sid < len(e) and e[sid].text:
+                                try:
+                                    _CURVA_SKILL[(lv, sid)] = int(e[sid].text)
+                                except ValueError:
+                                    pass
+                        for idx, k in ((38, 'A'), (39, 'B'), (40, 'C'), (41, 'D')):
+                            if idx < len(e) and e[idx].text:
+                                try:
+                                    _CURVA_PET[k][lv] = int(e[idx].text)
+                                except ValueError:
+                                    pass
+                    if _CURVA_NIVEL:
+                        break
+                except Exception:
+                    pass
+        if not _CURVA_NIVEL:
+            db = raiz / 'corpus' / 'content.db'
+            if db.exists():
+                try:
+                    con = sqlite3.connect(db)
+                    for lv, exp in con.execute('select level, exp_char from level'):
+                        try:
+                            _CURVA_NIVEL[int(lv)] = int(exp)
+                        except ValueError:
+                            pass
+                except Exception:
+                    pass
     return _CURVA_NIVEL or {}
+
+
+def exp_para_skill(nv: int, sid: int = 1) -> int:
+    """EXP requerida en level.xml para subir la habilidad `sid` (1..36) del nivel `nv` al `nv + 1`."""
+    _cargar_curva_nivel()
+    sid_i = max(1, min(36, int(sid or 1)))
+    target_lv = max(2, min(NIVEL_MAXIMO, int(nv or 1) + 1))
+    val = (_CURVA_SKILL or {}).get((target_lv, sid_i))
+    if val is not None and val > 0:
+        return int(val)
+    val_1 = (_CURVA_SKILL or {}).get((target_lv, 1))
+    if val_1 is not None and val_1 > 0:
+        return int(val_1)
+    return max(3, int(nv or 1) * 15)
+
+
+def exp_para_mascota(nv: int, tipo: str = 'A') -> int:
+    """EXP acumulada requerida en level.xml para una mascota de tipo A/B/C/D en nivel `nv`."""
+    _cargar_curva_nivel()
+    tabla = (_CURVA_PET or {}).get(str(tipo or 'A').upper()) or (_CURVA_PET or {}).get('A') or {}
+    lv = max(1, min(NIVEL_MAXIMO, int(nv or 1)))
+    if lv in tabla:
+        return int(tabla[lv])
+    return int(exp_para_nivel(lv) * 6 // 10)
 
 
 # El tope de nivel. El juego tecnicamente llega a 600, pero la curva de
@@ -150,14 +213,14 @@ def exp_para_nivel_u32(nv: int) -> int:
 
 
 def exp_para_barra(nivel: int, exp: int) -> tuple:
-    """(exp_actual, exp_siguiente) representables en la barra del cliente."""
-    tope = 0xFFFFFFFF
+    """(exp_actual, exp_siguiente) de 64 bits segun level.xml, sin truncar a 32 bits."""
+    base = exp_para_nivel(nivel)
     siguiente = exp_para_nivel(nivel + 1)
-    actual = max(0, min(int(exp or 0), siguiente))
-    if siguiente > tope:
-        actual = (actual * tope + siguiente // 2) // siguiente
-        siguiente = tope
+    actual = max(base, int(exp or 0))
+    if siguiente > 0:
+        actual = min(actual, siguiente)
     return actual, siguiente
+
 
 
 def calcular_exp(npc_type: int, buffs: dict = None) -> int:
@@ -535,10 +598,10 @@ def botin_items(npc_type: int) -> list:
                     if dt:
                         cols = [c[1] for c in con.execute('pragma table_info(drop_table)').fetchall()]
                         row_dict = dict(zip(cols, dt))
-                        for i in range(1, 9):
+                        for i in range(1, 21):
                             it = row_dict.get(f'item{i}')
                             cnt = row_dict.get(f'count{i}')
-                            if it and str(it).isdigit():
+                            if it and str(it).isdigit() and int(it) > 0:
                                 c_val = int(cnt) if cnt and str(cnt).isdigit() else 1
                                 candidatos.append((int(it), c_val))
             except Exception:
@@ -706,7 +769,7 @@ def datos_magia(magic_id: int) -> dict:
                     'panic' in desc_l
                 )
 
-                # Hechizo de transformacion / shapeshift (Wolf Shift, Bear Shift, Unicorn Shift, etc.)
+                # Hechizo de transformacion / shapeshift (Wolf Shift, Bear Shift, Unicorn Shift, Shark Shift, etc.)
                 res['es_transformacion'] = (not res['es_invocacion']) and (
                     d.get('變身型') == '是' or
                     ('shift' in nom_l and target == '自己')
@@ -717,9 +780,28 @@ def datos_magia(magic_id: int) -> dict:
                 res['matk_bonus'] = _num(d.get('matk') or d.get('magic_attack'), 0)
                 res['mdef_bonus'] = _num(d.get('mdef') or d.get('magic_defend'), 0)
                 res['move_speed_bonus'] = _num(d.get('move_speed'), 0)
-                res['atk_speed_bonus'] = _num(d.get('atk_speed'), 0)
+                res['atk_speed_bonus'] = _num(d.get('atk_speed') or d.get('攻擊速度'), 0)
                 res['hp_bonus'] = _num(d.get('hp'), 0)
                 res['mp_bonus'] = _num(d.get('mp'), 0)
+
+                # Definicion de % de HP / MP (e.g. Life Blessing V: +30% Max HP, Shark Shift: +130% Max MP -> Max HP)
+                hp_def = str(d.get('HP定義') or '')
+                mp_def = str(d.get('MP定義') or '')
+                if '百分比' in hp_def or hp_def == '最大值百分比':
+                    res['hp_pct'] = _num(d.get('hp'), 0)
+                if '百分比' in mp_def or mp_def == '最大值百分比':
+                    if res['es_transformacion']:
+                        res['mp_to_hp_pct'] = _num(d.get('mp'), 0)
+                    else:
+                        res['mp_pct'] = _num(d.get('mp'), 0)
+
+                if res['es_transformacion']:
+                    res['matk_pct'] = _num(d.get('matk') or d.get('magic_attack'), 0)
+                    res['mdef_pct'] = _num(d.get('mdef') or d.get('magic_defend'), 0)
+                    res['atk_pct'] = _num(d.get('atk') or d.get('攻擊力'), 0)
+                    res['def_pct'] = _num(d.get('def') or d.get('防禦力'), 0)
+                    res['es_melee_trans'] = (d.get('魔法狀態') == '近戰化' or 'shark' in nom_l)
+
                 res['cast_redux'] = _num(d.get('動態參數3'), 0)
                 if not res['cast_redux'] and 'limit breaker' in nom_l:
                     lb_ranks = {'limit breaker i': 500, 'limit breaker ii': 600, 'limit breaker iii': 700, 'limit breaker iv': 800, 'limit breaker v': 1000}

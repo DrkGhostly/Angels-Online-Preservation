@@ -661,12 +661,9 @@ def skills_que_suben(accion: str, skills_arma=()):
 EXP_POR_NIVEL_SKILL = [3, 6, 8, 12, 16, 30, 40, 55, 70, 85]
 
 
-def exp_requerida_skill(nivel: int) -> int:
-    if nivel < 1:
-        return EXP_POR_NIVEL_SKILL[0]
-    if nivel > len(EXP_POR_NIVEL_SKILL):
-        return EXP_POR_NIVEL_SKILL[-1]
-    return EXP_POR_NIVEL_SKILL[nivel - 1]
+def exp_requerida_skill(nivel: int, sid: int = 1) -> int:
+    import combate as _cb
+    return _cb.exp_para_skill(nivel, sid)
 
 
 def arbol(ids, banco=None) -> bytes:
@@ -704,10 +701,12 @@ def arbol(ids, banco=None) -> bytes:
     for puesto, sid in enumerate(elegidas + resto):
         r = bytearray(a['regs'][sid])
         nv = max(1, min(500, niveles.get(sid, 1)))
+        req = max(1, exp_requerida_skill(nv, sid))
+        sexp = max(0, min(req, int(exps.get(sid, 0) or 0)))
         struct.pack_into('<H', r, 1, nv)
         struct.pack_into('<H', r, 3, nv)
-        struct.pack_into('<H', r, 5, max(0, min(65535, exps.get(sid, 0))))
-        r[9] = min(255, exp_requerida_skill(nv))
+        struct.pack_into('<I', r, 5, sexp & 0xFFFFFFFF)
+        struct.pack_into('<I', r, 9, req & 0xFFFFFFFF)
         r[13] = puesto + 1 if puesto < len(elegidas) else 0
         salida += r
     return struct.pack('<H', 0x001C) + bytes(salida)

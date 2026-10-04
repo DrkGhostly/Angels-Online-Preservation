@@ -265,11 +265,8 @@ BONOS_POR_DEFECTO = {
 # Y lo que sube un pienso de montura, que si lo dicen todos.
 BONOS_MONTURA = {'atk': 8, 'matk': 8, 'velocidad': 2}
 
-# El pienso de mascota tampoco da numeros: "Enhances the attack power of pet".
-# Se le da el mismo 8% de ataque que el de montura, que es lo unico parecido
-# que hay medido, y queda pendiente de comprobar con uno de verdad. En
-# Celestia no se venden, asi que no se ha podido ver.
-BONOS_MASCOTA = {'atk': 8}
+BONOS_MASCOTA = {'atk': 8, 'matk': 8, 'dfs': 5, 'mdef': 5, 'hp': 50}
+
 
 
 def puede_perforar(item_id, nivel_equipo: int, tipo: str):

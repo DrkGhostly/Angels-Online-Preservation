@@ -36,7 +36,8 @@ CAMPOS = {'編號': 'sprite', '圖號1': 'tipo', '名稱': 'nombre',
           '寵物類型': 'clase', '階段': 'etapa',
           '升階變化1': 'rama1', '升階變化2': 'rama2',
           '條件成長值': 'crianza', '移動速度': 'velocidad',
-          '頭像編號': 'retrato'}
+          '頭像編號': 'retrato',
+          '技能1階級表': 'sk1', '技能2階級表': 'sk2', '技能3階級表': 'sk3'}
 
 
 def _orden(p):
@@ -81,6 +82,7 @@ def cargar(raiz=None):
 
 
 ASPECTOS = RAIZ / 'server' / 'plantillas' / 'crianza.json'
+HABILIDADES = RAIZ / 'server' / 'plantillas' / 'petskills.json'
 
 
 def _mezclar(raiz, patron, etiqueta):
@@ -94,6 +96,19 @@ def _mezclar(raiz, patron, etiqueta):
             if a.get('編號', '').isdigit():
                 idx[int(a['編號'])] = a
     return idx
+
+
+def habilidades(raiz=None):
+    """Las tablas de habilidades de mascota de petskill.xml (niveles 1 a 26)."""
+    raiz = pathlib.Path(raiz or RAIZ)
+    idx = {}
+    for pat in ('extracted_paks/*/setting/*/petskill.xml',
+                'extracted_paks/*/setting/petskill.xml'):
+        idx.update(_mezclar(raiz, pat, 'petskill'))
+    out = {}
+    for n, a in sorted(idx.items()):
+        out[str(n)] = [int(a.get('技能%d級' % k) or 0) for k in range(1, 27)]
+    return out
 
 
 def crianza(raiz=None):
@@ -139,8 +154,13 @@ def main():
     asp = crianza()
     ASPECTOS.write_text(json.dumps(asp, ensure_ascii=False, indent=1),
                         encoding='utf-8')
+    sks = habilidades()
+    HABILIDADES.write_text(json.dumps(sks, ensure_ascii=False, indent=1),
+                           encoding='utf-8')
     print('%d situaciones de crianza -> %s'
           % (len(asp), ASPECTOS.relative_to(RAIZ)))
+    print('%d tablas de habilidades -> %s'
+          % (len(sks), HABILIDADES.relative_to(RAIZ)))
     etapas = collections.Counter(d.get('etapa') for d in idx.values())
     print('%d mascotas -> %s' % (len(idx), SALIDA.relative_to(RAIZ)))
     print('etapas:', dict(etapas))

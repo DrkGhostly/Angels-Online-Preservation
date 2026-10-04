@@ -167,7 +167,19 @@ a guess, it says so.
     is spells: `Researcher (C)` opens shop 221 (Edge Guard I) and `Researcher (S)` opens 222
     (Astro Impact I), both level 310
   - **Faction Hubs & Outposts**: Cherry Village, Memory Cave, Mysterious Garden,
-    Gebuer Vale, Dragon Graveyard, Mysterious Wetland, etc.
+- **Comprehensive Pet System (85-90% Complete)**:
+  - **Summoning & Hotkey Management**: Right-click bag summoning, hotkey bar (F1-F12) activation, and multi-pet management. Switching pets cleanly despawns the previous entity without leaving ghost duplicates (`0x000E`, `0x001B`, `0x015E`).
+  - **Evolution & Growth Stages**: Automatic form progression from Egg to Junior Pet at level 15, and certificate-driven evolutions (Medium Blood Certificate at Lvl 35, Advanced Blood Certificate at Lvl 55) with instant model/sprite refresh.
+  - **Feeding & Satiation**: Consuming `Pet Feed` adds 500 satiation (up to 1,000 max). Reaching >100 Satiation Degree triggers the official `Pet's Satiation` buff (ID 3796) above the pet portrait.
+  - **Pet Star System (`pet_star.xml`)**: Full integration of all 80 star levels (0.1 to 8.0 stars). Enhancing pets with `Improved Pet Feed` or `Star-up Cards` grants official stat bonuses across all attributes.
+  - **Complete 231-Byte Inventory Tooltips**: Displays individual base and green star bonuses (`Attack 606 (444 + 162) Star Level: 0.4`), overall `Star Level: 0.4`, and `has been intensified ( N ) times`.
+  - **Pet Status Window (`0x0065`)**: Displays green highlighted effective combat stats, base values, active pet skill slots, elemental resistances, and star ratings.
+  - **Pet AI & Commands (`0x003E` / `0x001D`)**: Full support for Quiet (0), Follow (1), and Attack (2) companion modes.
+- **SP System (Holy Power / SP Lamps)**:
+  - SP point generation from combat actions up to maximum capacity (2000 SP / 4 lamps). Full session persistence across logouts.
+  - Instant SP skill execution (e.g., `Earth Blessing V`, `Shark Shift V`, `Angel Protection`) with tick timers, HP/MP recovery, and stat enhancements.
+- **Buffs, HoT & DoT Tick Engine**:
+  - Timed buff management for self-buffs, regeneration ticks (Earth Blessing HP/MP HoT), potion effects, and long-duration utility cards.
 
 **Partly**
 
@@ -181,8 +193,6 @@ a guess, it says so.
 - Physical and spell damage formulas now scale with linear defense mitigation
   and elemental stats, though extreme high levels (300+) or monsters with outlier
   attributes may still need fine calibration against packet captures
-- Pets: can be equipped and show their world sprite, but autonomous pet combat AI
-  and automatic feeding systems are still in development
 - Combos are read from `magic.xml` but never executed
 - The slow effect is registered but doesn't change movement speed
 - The staff and the axe use the sword's attack animation until someone

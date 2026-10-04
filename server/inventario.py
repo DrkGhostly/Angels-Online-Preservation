@@ -174,6 +174,10 @@ def ranura_de_instancia(instancias, instancia: bytes, bolsa=None,
         for ranura, item_id in bolsa.items():
             if instancia_de(char_id, int(item_id)) == instancia[:8]:
                 return int(ranura)
+            if es_mascota(int(item_id)):
+                _pi = 1000 + int(ranura)
+                if struct.pack('<II', _pi, _pi) == instancia[:8]:
+                    return int(ranura)
     return None
 
 
@@ -477,7 +481,8 @@ def bonos_de_equipo(bolsa, mejoras: dict = None) -> dict:
             l_weap_atk += item_atk + x.get('accuracy', 0)
         elif r == 169: # Arma Fashion (derecha / principal)
             r_weap_atk += item_atk
-            if es_arma_dual(iid):
+            # Solo si la ranura izquierda 170 esta vacia se clona el arma dual
+            if es_arma_dual(iid) and not (bolsa.get(170) or bolsa.get('170')):
                 l_weap_atk += item_atk
         elif r == 170: # Arma/Escudo Fashion (izquierda)
             l_weap_atk += item_atk
@@ -491,20 +496,37 @@ def bonos_de_equipo(bolsa, mejoras: dict = None) -> dict:
     return eq
 
 
-def vida_maxima(hp_max, habilidades, bolsa=None, mejoras=None):
-    """El tope de vida: el guardado mas las pasivas, el equipo y sus verdes.
-
-    Sin `mejoras` la vida que dan los stats verdes no subia el tope, asi que
-    una pieza con +344 de HP verde se veia en el tooltip y no servia.
-    """
+def vida_maxima(hp_max, habilidades, bolsa=None, mejoras=None, buffs=None, mp_max=0):
+    """El tope de vida: el guardado mas las pasivas, el equipo y sus verdes."""
     eq_hp = bonos_de_equipo(bolsa, mejoras)['hp'] if bolsa else 0
-    return int(hp_max or 0) + bonos_de_habilidades(habilidades)['hp'] + eq_hp
+    total = int(hp_max or 0) + bonos_de_habilidades(habilidades)['hp'] + eq_hp
+    if buffs:
+        now = time.time()
+        for b_id, b_data in buffs.items():
+            if isinstance(b_data, dict) and b_data.get('fin', 0) > now:
+                if 'hp_pct' in b_data and b_data['hp_pct'] > 0:
+                    total += int(round(total * (b_data['hp_pct'] / 100.0)))
+                if 'hp_bonus' in b_data and b_data['hp_bonus'] > 0:
+                    total += int(b_data['hp_bonus'])
+                if 'mp_to_hp_pct' in b_data and b_data['mp_to_hp_pct'] > 0:
+                    base_mp = mana_maximo(mp_max, habilidades, bolsa=bolsa, mejoras=mejoras)
+                    total += int(round(base_mp * (b_data['mp_to_hp_pct'] / 100.0)))
+    return total
 
 
-def mana_maximo(mp_max, habilidades, bolsa=None, mejoras=None):
+def mana_maximo(mp_max, habilidades, bolsa=None, mejoras=None, buffs=None):
     """Igual que vida_maxima, para el mana."""
     eq_mp = bonos_de_equipo(bolsa, mejoras)['mp'] if bolsa else 0
-    return int(mp_max or 0) + bonos_de_habilidades(habilidades)['mp'] + eq_mp
+    total = int(mp_max or 0) + bonos_de_habilidades(habilidades)['mp'] + eq_mp
+    if buffs:
+        now = time.time()
+        for b_id, b_data in buffs.items():
+            if isinstance(b_data, dict) and b_data.get('fin', 0) > now:
+                if 'mp_pct' in b_data and b_data['mp_pct'] > 0:
+                    total += int(round(total * (b_data['mp_pct'] / 100.0)))
+                if 'mp_bonus' in b_data and b_data['mp_bonus'] > 0:
+                    total += int(b_data['mp_bonus'])
+    return total
 
 
 _RESIDENT_MAGIC_CACHE = {}
@@ -712,10 +734,11 @@ def stats(bolsa=None, habilidades: list = None,
 
     if sp_max is not None:
         sp_max_bars = min(10, max(sp_max_bars, sp_max))
+    sp_max_pts = sp_max_bars * 1000
     if sp is not None:
-        sp_bars_current = min(sp_max_bars, max(0, sp // 1000))
+        sp_pts = min(sp_max_pts, max(0, int(sp)))
     else:
-        sp_bars_current = sp_max_bars
+        sp_pts = 0
 
     eq = bonos_de_equipo(bolsa, mejoras)
     eq_def = eq['def']
@@ -723,7 +746,6 @@ def stats(bolsa=None, habilidades: list = None,
     eq_l_atk = eq['atk_l']
     eq_rigor = eq['accuracy']
     eq_agi = eq['agility']
-    eq_load = 0
     eq_matk = eq['matk']
     eq_mdef = eq['mdef']
     eq_hp = eq['hp']
@@ -746,6 +768,37 @@ def stats(bolsa=None, habilidades: list = None,
         now = time.time()
         for b_id, b_data in buffs.items():
             if isinstance(b_data, dict) and b_data.get('fin', 0) > now:
+                # 1. Multiplicadores porcentuales (% sobre stats totales equipados)
+                if 'hp_pct' in b_data and b_data['hp_pct'] > 0:
+                    hp_max_eff += int(round(hp_max_eff * (b_data['hp_pct'] / 100.0)))
+                if 'mp_pct' in b_data and b_data['mp_pct'] > 0:
+                    mp_max_eff += int(round(mp_max_eff * (b_data['mp_pct'] / 100.0)))
+                if 'mp_to_hp_pct' in b_data and b_data['mp_to_hp_pct'] > 0:
+                    # e.g. Shark Shift: +130% de Max MP se suma a Max HP
+                    hp_max_eff += int(round(mp_max_eff * (b_data['mp_to_hp_pct'] / 100.0)))
+
+                # 2. Transformaciones de combate cuerpo a cuerpo (近戰化 / Shark Shift)
+                # Traspasa el poder magico (Spl Atk / Spl Dfs) transformado a ataque fisico R.Atk/L.Atk y defensa Dfs
+                if b_data.get('es_melee_trans'):
+                    trans_atk_pct = b_data.get('matk_pct', 150)
+                    trans_atk = int(round(matk_eff * (trans_atk_pct / 100.0)))
+                    r_atk_eff += trans_atk
+                    l_atk_eff += trans_atk
+                    trans_def_pct = b_data.get('mdef_pct', 200)
+                    trans_def = int(round(mdef_eff * (trans_def_pct / 100.0)))
+                    dfs_eff += trans_def
+                else:
+                    if 'matk_pct' in b_data and b_data['matk_pct'] > 0:
+                        matk_eff += int(round(matk_eff * (b_data['matk_pct'] / 100.0)))
+                    if 'mdef_pct' in b_data and b_data['mdef_pct'] > 0:
+                        mdef_eff += int(round(mdef_eff * (b_data['mdef_pct'] / 100.0)))
+                    if 'atk_pct' in b_data and b_data['atk_pct'] > 0:
+                        r_atk_eff += int(round(r_atk_eff * (b_data['atk_pct'] / 100.0)))
+                        l_atk_eff += int(round(l_atk_eff * (b_data['atk_pct'] / 100.0)))
+                    if 'def_pct' in b_data and b_data['def_pct'] > 0:
+                        dfs_eff += int(round(dfs_eff * (b_data['def_pct'] / 100.0)))
+
+                # 3. Sumas directas
                 if 'crit' in b_data:
                     crit_eff += b_data['crit']
                 if 'def' in b_data:
@@ -777,7 +830,10 @@ def stats(bolsa=None, habilidades: list = None,
     struct.pack_into('<I', b, 4, _u32(hp_max_eff))
     struct.pack_into('<I', b, 8, _u32(mp_eff))
     struct.pack_into('<I', b, 12, _u32(mp_max_eff))
-    struct.pack_into('<HH', b, 16, _u16(eq_load), _u16(load_max))
+    # En Angel.exe (sub_5EB130), +16 y +18 son los puntos actuales y maximos de SP
+    # (*(_DWORD *)(v3 + 648) = *(_WORD *)(a2 + 18); *(_DWORD *)(v3 + 668) = *(_WORD *)(a2 + 20)).
+    # Antes se escribia eq_load=0 aqui, borrando el SP del jugador en cada 0x0042.
+    struct.pack_into('<HH', b, 16, _u16(sp_pts), _u16(sp_max_pts))
     struct.pack_into('<I', b, 20, _u32(c_atk_base))
     struct.pack_into('<I', b, 24, _u32(r_atk_eff))
     struct.pack_into('<I', b, 28, _u32(l_atk_eff))
@@ -790,7 +846,7 @@ def stats(bolsa=None, habilidades: list = None,
     struct.pack_into('<HH', b, 56, _u16(c_rigor_base), _u16(rigor_eff))
     struct.pack_into('<HH', b, 60, _u16(c_agi_base), _u16(agi_eff))
     struct.pack_into('<HH', b, 64, _u16(base_crit), _u16(crit_eff))
-    struct.pack_into('<HH', b, 68, _u16(sp_bars_current), _u16(sp_max_bars))
+    struct.pack_into('<HH', b, 68, 0, 5)
     # Peso. El orden no es el que parecia: en la captura de Celestia los
     # offsets 92 y 96 llevan los dos el tope y el 100 lleva lo que se carga
     # ahora (sube de a uno segun se recoge botin). Antes escribiamos el oro
@@ -921,7 +977,7 @@ def datos_mascota(item_id: int) -> dict:
     """
     if item_id in _PET_DATOS:
         return _PET_DATOS[item_id]
-    d = {'nombre': 'Pet', 'sprite': 0}
+    d = {'nombre': 'Pet', 'sprite': 0, 'estrellas': 1}
     try:
         import sqlite3
         db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
@@ -931,7 +987,8 @@ def datos_mascota(item_id: int) -> dict:
             if row:
                 d = {'nombre': str(row[0] or 'Pet'),
                      'sprite': int(row[1]) if str(row[1] or '').isdigit()
-                     else 0}
+                     else 0,
+                     'estrellas': 1}
     except Exception:
         pass
     _PET_DATOS[item_id] = d
@@ -947,6 +1004,31 @@ def es_mascota(item_id: int) -> bool:
     if item_id in (3396, 3397, 3398, 3399):
         return True
     return categoria_item(item_id) == '寵物'
+
+
+def es_certificado_sangre(item_id: int) -> int:
+    """Devuelve 2 para Medium Blood Certificate (Lvl 35), 3 para Advanced (Lvl 55), o 0."""
+    item_id = int(item_id or 0)
+    if item_id in (3377, 20405, 22189, 76888):
+        return 2
+    if item_id in (3378, 22188, 76889):
+        return 3
+    try:
+        import sqlite3
+        db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
+        if db.exists():
+            row = fila_item(sqlite3.connect(db), '"基本名稱", "動態資料1"', item_id)
+            if row:
+                nom = str(row[0] or '')
+                d1 = str(row[1] or '')
+                if 'Certificate' in nom or '血統證明書' in nom or 'Blood' in nom:
+                    if d1 == '2':
+                        return 2
+                    elif d1 == '3':
+                        return 3
+    except Exception:
+        pass
+    return 0
 
 
 _SLOT_CACHE = None
@@ -1449,7 +1531,8 @@ def durabilidad(item_id: int) -> int:
 
 
 def _entrada(char_id: int, ranura: int, item_id: int, cant: int,
-             inst: bytes = None, dueno: int = None) -> bytes:
+             inst: bytes = None, dueno: int = None,
+             mascota: dict = None) -> bytes:
     """Los bytes que describen lo que hay en una casilla.
 
     Son 86 para lo que no se equipa y 119 para lo que si. 'dueno' es la
@@ -1483,13 +1566,28 @@ def _entrada(char_id: int, ranura: int, item_id: int, cant: int,
         # las capturas y comprobado contra las nueve fichas 0x0065.
         d = datos_mascota(item_id)
         base = bytearray(bytes.fromhex(p['mascota']))
-        base[1:9] = e[1:9]
+        if (isinstance(mascota, dict)
+                and (mascota.get('ranura') == ranura
+                     or (mascota.get('ranura') is None
+                         and mascota.get('item') == item_id))):
+            est_pet = dict(mascota)
+        else:
+            import configuracion as _cf
+            est_pet = _ms.recien_nacida(
+                d['nombre'], d['sprite'],
+                nivel=max(1, getattr(_cf, 'MASCOTA_NIVEL_INICIAL', 1)))
+        inst_id = int(est_pet.get('instancia') or (1000 + int(ranura))) & 0xFFFFFFFF
+        struct.pack_into('<II', base, 1, inst_id, inst_id)
         struct.pack_into('<I', base, 9, item_id)
-        struct.pack_into('<I', base, 34, dueno)
+        struct.pack_into('<I', base, 34, char_id if char_id else (dueno or 0))
         struct.pack_into('<H', base, 38, ranura)
         struct.pack_into('<I', base, 40, cant)
-        return _ms.entrada(bytes(base),
-                           _ms.recien_nacida(d['nombre'], d['sprite']))
+        base[51] = 0x91
+        struct.pack_into('<I', base, 53, char_id if char_id else (dueno or 0))
+        base[57] = 0
+        base[58] = 0
+        struct.pack_into('<H', base, 84, inst_id & 0xFFFF)
+        return _ms.entrada(bytes(base), est_pet)
     else:
         struct.pack_into('<I', e, OFF_DURABILIDAD, durabilidad(item_id))
     if es_eq:
@@ -1502,7 +1600,7 @@ def _entrada(char_id: int, ranura: int, item_id: int, cant: int,
         # enteraba de que la prenda estaba PUESTA y seguia dibujando al
         # personaje en ropa interior.
         puesta = es_equipo(ranura)
-        struct.pack_into('<I', e, 53, dueno if puesta else 0)
+        struct.pack_into('<I', e, 53, char_id if char_id else (dueno or 0))
         e[57] = 2 if puesta else 3
         e[58] = 1
         # Offset 51 (0x33) es el campo que le indica al cliente que esta entrada
@@ -1515,7 +1613,8 @@ def _entrada(char_id: int, ranura: int, item_id: int, cant: int,
     return bytes(e)
 
 
-def completo(char_id: int, items, dueno: int = None, mejoras=None) -> bytes:
+def completo(char_id: int, items, dueno: int = None, mejoras=None,
+             mascota: dict = None, mascotas: dict = None) -> bytes:
     """Sub-mensaje 0x001A con todo el inventario.
 
     items: iterable de (ranura, item_id[, cantidad[, instancia]]).
@@ -1527,12 +1626,30 @@ def completo(char_id: int, items, dueno: int = None, mejoras=None) -> bytes:
     llevase la cuenta bien y la tuviera guardada en disco.
     """
     mejoras = mejoras or {}
+    mascotas = mascotas or {}
     lista = []
     for it in sorted(items, key=lambda x: int(x[0])):
-        _e = _entrada(char_id, int(it[0]), int(it[1]),
-                       int(it[2]) if len(it) > 2 else 1,
-                       it[3] if len(it) > 3 else None, dueno)
-        _m = mejoras.get(int(it[0]))
+        ran = int(it[0])
+        iid = int(it[1])
+        cnt = int(it[2]) if len(it) > 2 else 1
+        ins = it[3] if len(it) > 3 else None
+        
+        pet_spec = None
+        if es_mascota(iid):
+            if str(ran) in mascotas:
+                pet_spec = mascotas[str(ran)]
+            elif ran in mascotas:
+                pet_spec = mascotas[ran]
+            elif isinstance(mascota, dict) and (mascota.get('ranura') == ran or mascota.get('item') == iid):
+                pet_spec = mascota
+            else:
+                for _k, _vp in mascotas.items():
+                    if isinstance(_vp, dict) and _vp.get('item') == iid:
+                        pet_spec = _vp
+                        break
+
+        _e = _entrada(char_id, ran, iid, cnt, ins, dueno, mascota=pet_spec)
+        _m = mejoras.get(ran)
         if _m and _m.get('veces'):
             _e = marcar_mejora(_e, _m['veces'])
         if _m and _m.get('extra'):
@@ -1666,7 +1783,8 @@ def acuse_movimiento(ranura: int, accion: int = 0x0012) -> bytes:
     return struct.pack('<HHH', 0x0006, accion, ranura)
 
 
-def actualizar_ranuras(char_id: int, entradas, dueno: int = None) -> bytes:
+def actualizar_ranuras(char_id: int, entradas, dueno: int = None,
+                       mascota: dict = None) -> bytes:
     """0x001B con varias casillas de una vez.
 
     Es lo que manda el servidor al equipar: en la captura, mover la prenda
@@ -1677,13 +1795,15 @@ def actualizar_ranuras(char_id: int, entradas, dueno: int = None) -> bytes:
 
     entradas: iterable de (ranura, item_id, cantidad, instancia).
     """
-    lista = [_entrada(char_id, int(r), int(i), int(c), ins, dueno)
+    lista = [_entrada(char_id, int(r), int(i), int(c), ins, dueno,
+                      mascota=mascota)
              for r, i, c, ins in entradas]
     return (struct.pack('<HI', 0x001B, len(lista)) + b''.join(lista))
 
 
 def actualizar_ranura(char_id: int, ranura: int, item_id: int, cant: int,
-                      inst: bytes = None, dueno: int = None) -> bytes:
+                      inst: bytes = None, dueno: int = None,
+                      mascota: dict = None) -> bytes:
     """0x001B de 90 bytes: como queda UNA casilla.
 
     Es lo que manda el servidor real despues de comprar, vender, usar o
@@ -1692,7 +1812,8 @@ def actualizar_ranura(char_id: int, ranura: int, item_id: int, cant: int,
     pintado y los items vendidos seguian viendose en la mochila.
     """
     return (struct.pack('<HI', 0x001B, 1)
-            + _entrada(char_id, ranura, item_id, cant, inst, dueno))
+            + _entrada(char_id, ranura, item_id, cant, inst, dueno,
+                       mascota=mascota))
 
 
 # ------------------------------------------------- entrega de un item
@@ -1956,6 +2077,8 @@ OBJETIVO_MASCOTA = '\u76ee\u6a19\u5bf5\u7269'
 
 def uso_en_mascota(item_id: int):
     """{'saciedad': N} o {'buff': id, 'segundos': N, 'exp_pct': N}, o None."""
+    if es_certificado_sangre(item_id):
+        return None
     try:
         import sqlite3
         db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'

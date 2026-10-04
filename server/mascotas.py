@@ -47,6 +47,7 @@ OFF = {
     'exp': 35,
     'exp_max': 51,
     'hp': 59,
+    'mp': 63,
     'hp_max': 71,
     'mp_max': 79,
     'atk': 83,
@@ -56,11 +57,15 @@ OFF = {
     'rigor': 115,
     'agilidad': 123,
     'saciedad': 177,     # u16
-    'intimidad': 179,
+    'intimidad': 179,    # u8
+    'estrellas': 196,    # u32 (1 = 0.1 estrellas)
 }
 
 # Los que van repetidos: primero el base y cuatro bytes despues el efectivo.
 DOBLES = ('atk', 'dfs', 'matk', 'mdef', 'rigor', 'agilidad')
+
+# Defensas elementales por defecto en Celestia (T.Atk/Dfs, F.Atk/Dfs, I.Atk/Dfs, R.Atk/Dfs)
+DEFENSAS_ELEM_BASE = (0, 0, 60, 60, 0, 0, 60, 60, 0, 0, 60, 60, 0, 0, 60, 60)
 
 # Cuanta saciedad hace falta para que la mascota mejore. Lo dice el Pet Feed:
 # "Increases the satiation degree by 500. (The pet can enhance its abilities
@@ -77,35 +82,130 @@ def leer(cuerpo: bytes) -> dict:
     d = {}
     for campo, off in OFF.items():
         if campo == 'nombre':
-            d[campo] = cuerpo[off:off + 16].split(b'\0')[0].decode(
+            d[campo] = cuerpo[off:off + 13].split(b'\0')[0].decode(
                 'latin1', 'replace')
         elif campo in ('saciedad', 'sprite'):
             d[campo] = struct.unpack_from('<H', cuerpo, off)[0]
+        elif campo == 'intimidad':
+            d[campo] = cuerpo[off]
+        elif campo in ('exp', 'exp_max'):
+            d[campo] = struct.unpack_from('<Q', cuerpo, off)[0]
         else:
             d[campo] = struct.unpack_from('<I', cuerpo, off)[0]
+    d['skills'] = list(struct.unpack_from('<3H', cuerpo, 171))
     return d
 
 
-def armar(estado: dict) -> bytes:
-    """El 0x0065 con el estado de una mascota.
+_PET_STAR_TABLE = {}
 
-    Lo que no se conoce se deja en cero: el bloque es de tamaño fijo, asi que
-    un campo sin descifrar no corre a los demas de sitio.
-    """
+def cargar_pet_star():
+    global _PET_STAR_TABLE
+    if _PET_STAR_TABLE:
+        return _PET_STAR_TABLE
+    import re
+    base_dir = pathlib.Path(__file__).parent.parent / 'extracted_paks'
+    files = list(base_dir.glob('**/pet_star.xml'))
+    def _up_num(p):
+        m = re.search(r'update(\d+)', str(p), re.IGNORECASE)
+        return int(m.group(1)) if m else 0
+    files.sort(key=_up_num, reverse=True)
+    for p in files:
+        if p.exists():
+            try:
+                import xml.etree.ElementTree as ET
+                tree = ET.parse(p)
+                root = tree.getroot()
+                for node in root.findall('寵物星等'):
+                    idx = int(node.get('星等編號', 0))
+                    if idx:
+                        _PET_STAR_TABLE[idx] = {
+                            'hp': int(node.get('HP', 0)),
+                            'mp': int(node.get('MP', 0)),
+                            'atk': int(node.get('攻擊', 0)),
+                            'dfs': int(node.get('防禦', 0)),
+                            'matk': int(node.get('魔攻', 0)),
+                            'mdef': int(node.get('魔防', 0)),
+                            'rigor': int(node.get('精準', 0)),
+                            'agilidad': int(node.get('靈敏', 0)),
+                        }
+                if _PET_STAR_TABLE:
+                    break
+            except Exception:
+                pass
+    return _PET_STAR_TABLE
+
+def bonos_estrellas(nivel_estrella: int) -> dict:
+    """Devuelve los bonos de stats dados por el nivel de estrella (1..80).
+    1 = 0.1 estrellas, 2 = 0.2 estrellas, ..., 10 = 1.0 estrellas."""
+    tabla = cargar_pet_star()
+    return tabla.get(max(1, int(nivel_estrella or 1)), {})
+
+
+def armar(estado: dict) -> bytes:
+    """El 0x0065 con el estado de una mascota (sub_60ADC0 en Angel.exe)."""
     b = bytearray(TAM)
+    nv = max(1, int(estado.get('nivel') or 1))
+    sp = int(estado.get('sprite') or 0)
+    st_lvl = max(1, int(estado.get('estrellas') or 1))
+    b_star = bonos_estrellas(st_lvl)
+
+    hp_max = max(1, int(estado.get('hp_max') or estado.get('hp') or 127))
+    hp = max(1, int(estado.get('hp') or hp_max))
+    mp_max = max(0, int(estado.get('mp_max') or estado.get('mp') or 70))
+    mp = max(0, int(estado.get('mp') if estado.get('mp') is not None else mp_max))
+    exp = max(0, int(estado.get('exp') or 0))
+    exp_max = max(1, int(estado.get('exp_max') or exp_para_subir(nv)))
+
+    hp_eff = hp + b_star.get('hp', 0)
+    mp_eff = mp + b_star.get('mp', 0)
+    hp_max_eff = hp_max + b_star.get('hp', 0)
+    mp_max_eff = mp_max + b_star.get('mp', 0)
+
     for campo, off in OFF.items():
         v = estado.get(campo)
         if v is None:
             continue
         if campo == 'nombre':
-            nom = str(v).encode('latin1', 'replace')[:15]
+            nom = str(v).encode('latin1', 'replace')[:12]
             b[off:off + len(nom)] = nom
         elif campo in ('saciedad', 'sprite'):
-            struct.pack_into('<H', b, off, min(0xFFFF, int(v)))
+            struct.pack_into('<H', b, off, min(0xFFFF, max(0, int(v))))
+        elif campo == 'intimidad':
+            b[off] = min(0xFF, max(0, int(v)))
+        elif campo in ('exp', 'exp_max', 'hp', 'mp', 'hp_max', 'mp_max'):
+            continue
         else:
-            struct.pack_into('<I', b, off, int(v) & 0xFFFFFFFF)
-        if campo in DOBLES:
-            struct.pack_into('<I', b, off + 4, int(v) & 0xFFFFFFFF)
+            base_v = int(v)
+            eff_v = base_v + b_star.get(campo, 0)
+            struct.pack_into('<I', b, off, base_v & 0xFFFFFFFF)
+            if campo in DOBLES:
+                struct.pack_into('<I', b, off + 4, eff_v & 0xFFFFFFFF)
+
+    # La instancia del item en la mochila se repite en +8 y +12
+    inst = int(estado.get('instancia') or 0) & 0xFFFFFFFF
+    struct.pack_into('<II', b, 8, inst, inst)
+
+    # Nivel y experiencia en 64 bits (+35 exp, +43 flag=1, +51 exp_max)
+    struct.pack_into('<I', b, 31, nv)
+    struct.pack_into('<QQQ', b, 35, exp, 1, exp_max)
+
+    # Vida y mana actuales + base + maximos (+59..+83)
+    struct.pack_into('<IIIIII', b, 59, hp_eff, mp_eff, hp_max, hp_max_eff, mp_max, mp_max_eff)
+
+    # Resistencias elementales (+131..+163) y Sta / Soul (+163..+171)
+    struct.pack_into('<16H', b, 131, *DEFENSAS_ELEM_BASE)
+    struct.pack_into('<4H', b, 163, STA_BASE, STA_BASE, SOUL_BASE, SOUL_BASE)
+
+    # Las 3 habilidades de la mascota (+171..+177)
+    sks = estado.get('skills') or skills_de(sp, nv)
+    if len(sks) >= 3:
+        struct.pack_into('<3H', b, 171,
+                         int(sks[0] or 0) & 0xFFFF,
+                         int(sks[1] or 0) & 0xFFFF,
+                         int(sks[2] or 0) & 0xFFFF)
+
+    # Estrellas (+196, 1 = Star Level 0.1)
+    struct.pack_into('<I', b, 196, st_lvl & 0xFFFFFFFF)
     return struct.pack('<H', 0x0065) + bytes(b)
 
 
@@ -181,14 +281,33 @@ OFF_ENTRADA = {
     'nombre': 106,      # 12 bytes, no 16 como en el 0x0065
     'hp_max': 119,
     'mp_max': 123,
-    'mp': 127,          # el MP actual, que en el 0x0065 no aparecia
+    'mp': 127,          # el MP actual, que en el 0x0065 va en +63
     'sprite': 131,      # u16; es el 動態資料1 del item
     'nivel': 133,
     'saciedad': 137,    # u16
-    'intimidad': 139,
+    'intimidad': 139,   # u8
 }
 LARGO_NOMBRE = 12
 _U16 = ('sprite', 'saciedad')
+
+OFF_BONUS_ENTRADA = {
+    'hp': 148,
+    'mp': 152,
+    'atk': 156,
+    'dfs': 160,
+    'matk': 164,
+    'mdef': 168,
+    'rigor': 172,
+    'agilidad': 176,
+}
+
+
+def subir_estrella(ficha: dict, cantidad: int = 1) -> int:
+    """Sube el nivel de estrella de la mascota (1..80, 10 = 1.0 estrellas, 80 = 8.0 estrellas)."""
+    actual = max(1, int(ficha.get('estrellas') or 1))
+    nuevo = min(80, actual + cantidad)
+    ficha['estrellas'] = nuevo
+    return nuevo
 
 
 def entrada(plantilla: bytes, estado: dict) -> bytes:
@@ -201,40 +320,65 @@ def entrada(plantilla: bytes, estado: dict) -> bytes:
     e = bytearray(plantilla)
     if len(e) != TAM_ENTRADA:
         e = (e + bytes(TAM_ENTRADA))[:TAM_ENTRADA]
+    nv = max(1, int(estado.get('nivel') or 1))
+    st_lvl = max(1, int(estado.get('estrellas') or 1))
+    b_star = bonos_estrellas(st_lvl)
     for campo, off in OFF_ENTRADA.items():
         v = estado.get(campo)
         if v is None:
             continue
         if campo == 'nombre':
-            # Los 12 bytes se llenan ENTEROS cuando hace falta: "Civet
-            # Guardi" y "Dragon's Egg" ocupan los doce y no llevan el cero
-            # final. Reservando sitio para el terminador se perdia la ultima
-            # letra en doce de las sesenta y tres entradas capturadas.
             nom = str(v).encode('latin1', 'replace')[:LARGO_NOMBRE]
             e[off:off + LARGO_NOMBRE] = nom + bytes(LARGO_NOMBRE - len(nom))
         elif campo in _U16:
-            struct.pack_into('<H', e, off, min(0xFFFF, int(v)))
+            struct.pack_into('<H', e, off, min(0xFFFF, max(0, int(v))))
+        elif campo == 'intimidad':
+            e[off] = min(0xFF, max(0, int(v)))
+        elif campo in ('exp', 'exp_max'):
+            val_q = int(v) if int(v or 0) > 0 else (exp_para_subir(nv) if campo == 'exp_max' else 0)
+            struct.pack_into('<Q', e, off, max(0, val_q))
+        elif campo in ('hp_max', 'mp_max'):
+            val_eff = int(v) + b_star.get('hp' if campo == 'hp_max' else 'mp', 0)
+            struct.pack_into('<I', e, off, int(val_eff) & 0xFFFFFFFF)
+        elif campo in ('hp', 'mp'):
+            val_eff = int(v) + b_star.get('hp' if campo == 'hp' else 'mp', 0)
+            struct.pack_into('<I', e, off, int(val_eff) & 0xFFFFFFFF)
         else:
             struct.pack_into('<I', e, off, int(v) & 0xFFFFFFFF)
+    # Byte 83: nivel de intensificado para tooltip (has been intensified N times)
+    e[83] = min(255, int(st_lvl))
+    # Byte 118: 1 si la mascota esta invocada (fuera), 0 si esta guardada
+    e[118] = 1 if estado.get('fuera') else 0
+    # Offsets 148..180: bonos verdes de estrellas (HP, MP, Atk, Dfs, MAtk, MDef, Rigor, Agilidad)
+    for stat_k, off_b in OFF_BONUS_ENTRADA.items():
+        bono_val = int(b_star.get(stat_k, 0)) & 0xFFFFFFFF
+        struct.pack_into('<I', e, off_b, bono_val)
+    # Offset 222: nivel de estrellas (1 = 0.1 estrellas)
+    struct.pack_into('<I', e, 222, st_lvl & 0xFFFFFFFF)
     return bytes(e)
 
 
 def recien_nacida(nombre: str, sprite: int, nivel: int = 1,
-                  hp: int = 127, mp: int = 70) -> dict:
+                  hp: int = 127, mp: int = 70, estrellas: int = 1) -> dict:
     """Una mascota de ese sprite, con su tipo, nombre y stats de pet.xml.
 
     El 'tipo' (el 圖號1) es imprescindible: dejandolo en cero el cliente no
     sabe que mascota es y la ventana sale sin nivel y sin dibujo.
     """
     d = ficha_de_sprite(sprite)
+    nv = max(1, int(nivel or 1))
+    st = max(1, int(estrellas or 1))
     f = {'nombre': d.get('nombre') or nombre, 'sprite': sprite,
-         'tipo': d.get('tipo', 0), 'nivel': nivel,
+         'tipo': d.get('tipo', 0), 'nivel': nv,
          'hp': hp, 'hp_max': hp, 'mp': mp, 'mp_max': mp,
-         'exp': 0, 'exp_max': 0, 'saciedad': 0, 'intimidad': 0}
+         'exp': 0, 'exp_max': exp_para_subir(nv),
+         'saciedad': 100, 'intimidad': 60,
+         'estrellas': st,
+         'skills': list(skills_de(sprite, nv))}
     # Los stats de combate salen de petattrib. Sin esto la ventana de la
     # mascota sale entera en blanco, que es lo que pasaba: se creia que el
     # cliente los calculaba solo y no lo hace.
-    f.update(stats_de(sprite, nivel))
+    f.update(stats_de(sprite, nv))
     return f
 
 
@@ -257,10 +401,10 @@ OFF_MUNDO = {
     'nombre': 16,       # 13 bytes
     'tipo': 34,
     'sprite': 45,       # u16
-    'instancia': 62,    # la del item en la mochila, repetida en el 66
-    'entidad2': 70,     # la suya otra vez
-    'dueno': 74,        # LA ENTIDAD DEL JUGADOR
-    'dueno_nombre': 78,  # 8 bytes
+    'instancia': 63,    # la del item en la mochila, repetida en el 67 (a2+65 en Angel.exe)
+    'entidad2': 71,     # la suya otra vez (a2+73 en Angel.exe)
+    'dueno': 75,        # LA ENTIDAD DEL JUGADOR (a2+77 en Angel.exe)
+    'dueno_nombre': 79,  # 8 bytes (a2+81 en Angel.exe)
 }
 LARGO_NOMBRE_MUNDO = 13
 LARGO_DUENO = 8
@@ -284,11 +428,17 @@ def entidad_mundo(plantilla: bytes, estado: dict) -> bytes:
             struct.pack_into('<H', b, off, int(v) & 0xFFFF)
         else:
             struct.pack_into('<I', b, off, int(v) & 0xFFFFFFFF)
-    # La instancia y la entidad van repetidas cuatro bytes mas alla.
+    # La instancia y la entidad van repetidas.
     if estado.get('instancia') is not None:
-        struct.pack_into('<I', b, 66, int(estado['instancia']) & 0xFFFFFFFF)
+        inst_v = int(estado['instancia']) & 0xFFFFFFFF
+        struct.pack_into('<II', b, 63, inst_v, inst_v)
     if estado.get('entidad') is not None:
-        struct.pack_into('<I', b, 70, int(estado['entidad']) & 0xFFFFFFFF)
+        struct.pack_into('<I', b, 71, int(estado['entidad']) & 0xFFFFFFFF)
+    if estado.get('dueno') is not None:
+        struct.pack_into('<I', b, 75, int(estado['dueno']) & 0xFFFFFFFF)
+    # Offset 95: HP de la mascota en el mundo
+    hp_val = int(estado.get('hp') or estado.get('hp_max') or 1) & 0xFFFFFFFF
+    struct.pack_into('<I', b, 95, hp_val)
     return struct.pack('<H', 0x0050) + bytes(b)
 
 
@@ -334,6 +484,7 @@ def nombre_pedido(cuerpo: bytes) -> str:
 #            la wiki y la 2 la "nice"
 #   crianza  el 條件成長值 que hace falta para pasar de etapa
 TABLA = pathlib.Path(__file__).parent / 'plantillas' / 'mascotas.json'
+TABLA_SKILLS = pathlib.Path(__file__).parent / 'plantillas' / 'petskills.json'
 TIPO_POR_DEFECTO = '平均型'
 
 # Sta y Soul salen fijos en todas las fichas vistas y no estan en petattrib.
@@ -342,6 +493,7 @@ SOUL_BASE = 60
 
 _MASC = {}
 _TABLA = {}
+_SKILLS = {}
 
 
 def _tabla():
@@ -356,8 +508,39 @@ def _tabla():
     return _MASC
 
 
+def _petskills():
+    """{table_id: [lv1..lv26]} de petskill.xml, leido una sola vez."""
+    if _SKILLS:
+        return _SKILLS
+    try:
+        for k, v in json.loads(TABLA_SKILLS.read_text(encoding='utf-8')).items():
+            _SKILLS[int(k)] = v
+    except Exception:
+        pass
+    return _SKILLS
+
+
 def ficha_de_sprite(sprite) -> dict:
     return _tabla().get(int(sprite or 0)) or {}
+
+
+def skills_de(sprite, nivel: int = 1) -> tuple:
+    """Devuelve los 3 magic_id de la mascota segun su sprite y nivel.
+
+    En pet.xml cada mascota declara hasta tres tablas (技能1..3階級表) que
+    cruzan contra petskill.xml. El escalon sube cada 10 niveles (nivel // 10,
+    con minimo 1 y maximo 26), comprobado contra todas las mascotas de las
+    capturas de Celestia (niveles 1, 20, 66, 86, 94, 217 y 246).
+    """
+    d = ficha_de_sprite(sprite)
+    tablas = _petskills()
+    rango = max(1, min(26, int(nivel or 1) // 10)) - 1
+    out = []
+    for k in ('sk1', 'sk2', 'sk3'):
+        tid = d.get(k)
+        fila = tablas.get(int(tid)) if tid else None
+        out.append(int(fila[rango]) if fila and 0 <= rango < len(fila) else 0)
+    return tuple(out)
 
 
 def _petattrib():
@@ -392,12 +575,15 @@ def tipo_de(sprite) -> str:
 
 def stats_de(sprite, nivel: int) -> dict:
     """Los stats que le tocan a esa mascota a ese nivel."""
-    t = _petattrib().get((tipo_de(sprite), max(1, int(nivel or 1))))
-    if not t:
-        return {}
-    d = dict(t)
-    d['hp'] = d['hp_max']
-    d['mp'] = d['mp_max']
+    nv = max(1, int(nivel or 1))
+    t = _petattrib().get((tipo_de(sprite), nv))
+    d = dict(t) if t else {}
+    if 'hp_max' in d:
+        d['hp'] = d['hp_max']
+    if 'mp_max' in d:
+        d['mp'] = d['mp_max']
+    d['exp_max'] = exp_para_subir(nv)
+    d['skills'] = list(skills_de(sprite, nv))
     return d
 
 
@@ -612,11 +798,59 @@ RAMA_NICE_NOMBRE = 'nice'
 # que cada mascota usa una tabla distinta, todas las capturadas comparten el
 # mismo exp_max a igual nivel, asi que la curva es una sola.
 FACTOR_EXP = 36
+_PET_EXP_TABLES = {}
 
 
-def exp_para_subir(nivel: int) -> int:
-    """La experiencia que pide ese nivel para pasar al siguiente."""
+def cargar_tablas_exp():
+    global _PET_EXP_TABLES
+    if _PET_EXP_TABLES:
+        return _PET_EXP_TABLES
+    import re, xml.etree.ElementTree as ET
+    base_dir = pathlib.Path(__file__).parent.parent / 'extracted_paks'
+    files = list(base_dir.glob('**/level.xml'))
+    def _up_num(p):
+        m = re.search(r'update(\d+)', str(p), re.IGNORECASE)
+        return int(m.group(1)) if m else 0
+    files.sort(key=_up_num, reverse=True)
+    if files and files[0].exists():
+        try:
+            tree = ET.parse(files[0])
+            for node in tree.getroot():
+                lv = int(node.attrib.get('等級', 0))
+                if not lv:
+                    continue
+                for c in node:
+                    tag = c.tag
+                    if tag not in _PET_EXP_TABLES:
+                        _PET_EXP_TABLES[tag] = {}
+                    try:
+                        _PET_EXP_TABLES[tag][lv] = int(c.text.strip())
+                    except Exception:
+                        pass
+        except Exception:
+            pass
+    return _PET_EXP_TABLES
+
+
+def exp_para_subir(nivel: int, sprite: int = None) -> int:
+    """La experiencia que pide ese nivel para pasar al siguiente segun level.xml."""
     n = max(1, int(nivel or 1))
+    tablas = cargar_tablas_exp()
+    tabla_nom = '寵物A'
+    if sprite:
+        d = ficha_de_sprite(sprite)
+        exp_tipo = str(d.get('exp_tipo') or d.get('經驗等級表') or '')
+        if 'B' in exp_tipo:
+            tabla_nom = '寵物B'
+        elif 'C' in exp_tipo:
+            tabla_nom = '寵物C'
+        elif 'D' in exp_tipo:
+            tabla_nom = '寵物D'
+    t = tablas.get(tabla_nom, {})
+    if (n + 1) in t and n in t:
+        diff = t[n + 1] - t[n]
+        if diff > 0:
+            return diff
     return int(round(FACTOR_EXP * n * (n ** 0.5)))
 
 
@@ -629,7 +863,7 @@ def nivel_maximo(sprite) -> int:
     """
     clase = tipo_de(sprite)
     niveles = [n for (c, n) in _petattrib() if c == clase]
-    return max(niveles) if niveles else 1
+    return max(niveles) if niveles else 471
 
 
 def multiplicador_exp(ficha: dict, ahora=None) -> float:
@@ -669,22 +903,56 @@ def dar_exp(ficha: dict, cantidad: int, ahora=None) -> int:
     cantidad = int(max(0, int(cantidad)) * multiplicador_exp(ficha, ahora))
     ficha['exp'] = int(ficha.get('exp', 0)) + cantidad
     maximo = nivel_maximo(ficha.get('sprite'))
+    sp = ficha.get('sprite')
     while True:
         if int(ficha.get('nivel', 1)) >= maximo:
-            # Al tope: la experiencia de sobra no se guarda, igual que la
-            # barra llena que enseñaba la Battlemaid de nivel 246.
             ficha['exp'] = 0
             break
-        tope = exp_para_subir(ficha.get('nivel', 1))
+        tope = exp_para_subir(ficha.get('nivel', 1), sp)
         if ficha['exp'] < tope:
             break
         ficha['exp'] -= tope
         ficha['nivel'] = int(ficha.get('nivel', 1)) + 1
         subidos += 1
-    ficha['exp_max'] = exp_para_subir(ficha.get('nivel', 1))
+    ficha['exp_max'] = exp_para_subir(ficha.get('nivel', 1), sp)
     if subidos:
+        nv = ficha['nivel']
+        # Comprobar evolucion en nivel 15 SOLO para huevos (原型 -> 初階)
+        if evoluciona(ficha.get('sprite')):
+            etapa = ficha_de_sprite(ficha.get('sprite')).get('etapa')
+            if etapa == '原型' and nv >= NIVEL_PRIMERA_RAMA:
+                evolucionar(ficha, rama_por_crianza(ficha))
         ficha.update(stats_de(ficha.get('sprite'), ficha['nivel']))
     return subidos
+
+
+def aplicar_certificado(ficha: dict, etapa_cert: int) -> tuple:
+    """Aplica Medium Blood Certificate (etapa_cert=2, lvl 35) o Advanced (etapa_cert=3, lvl 55).
+
+    Devuelve (exito, mensaje).
+    """
+    sprite = ficha.get('sprite')
+    if not evoluciona(sprite):
+        return False, "This pet cannot evolve any further."
+
+    etapa = ficha_de_sprite(sprite).get('etapa')
+    nv = int(ficha.get('nivel', 1))
+
+    if etapa_cert == 2:
+        if nv < NIVEL_MEDIO:
+            return False, f"Pet must be Level {NIVEL_MEDIO} or higher to use Medium Blood Certificate."
+        if etapa not in ('初階', '原型'):
+            return False, "This certificate can only be used on a first-stage pet."
+        evolucionar(ficha, rama_por_crianza(ficha))
+        return True, f"Your pet evolved to {ficha.get('nombre')}!"
+    elif etapa_cert == 3:
+        if nv < NIVEL_AVANZADO:
+            return False, f"Pet must be Level {NIVEL_AVANZADO} or higher to use Advanced Blood Certificate."
+        if etapa not in ('中階', '初階'):
+            return False, "This certificate can only be used on a medium-stage pet."
+        evolucionar(ficha, rama_por_crianza(ficha))
+        return True, f"Your pet evolved to {ficha.get('nombre')}!"
+    return False, "Invalid certificate."
 
 
 # ---------------------------------------------------------------------------

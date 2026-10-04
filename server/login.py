@@ -81,6 +81,8 @@ class Personaje:
     # La mascota activa, tal como la lee mascotas.leer(): nombre, nivel,
     # stats, saciedad... En vacio no hay ninguna invocada.
     mascota: dict = field(default_factory=dict)
+    # Todas las mascotas del inventario: {str(ranura): dict_ficha}
+    mascotas: dict = field(default_factory=dict)
     # Mejoras por casilla de equipo: {ranura: {'veces': N, 'huecos': N,
     # 'gemas': [ids], 'extra': {stat: valor}}}. Lo llena mejoras.py.
     mejoras: dict = field(default_factory=dict)
@@ -184,8 +186,10 @@ def secuencia(p: Personaje):
                        p.oro if int(r) == _inv.RANURA_ORO
                        else max(1, int((p.cantidades or {}).get(int(r), 1))))
                       for r, it in p.inventario.items()]
-            salida.append(_inv.completo(p.char_id, _items,
-                                        mejoras=getattr(p, 'mejoras', None)))
+            salida.append(_inv.completo(p.char_id, _items, p.entity_id,
+                                        mejoras=getattr(p, 'mejoras', None),
+                                        mascota=getattr(p, 'mascota', None),
+                                        mascotas=getattr(p, 'mascotas', None)))
 
         elif op == 0x0008:
             # En Guide Palace (stage 51), asegurar las coordenadas exactas de AngelWar:
@@ -230,23 +234,20 @@ def secuencia(p: Personaje):
     salida.append(_cb_ini.atributo(p.entity_id,
                                    max(0, int(getattr(p, 'sp', 0) or 0)),
                                    _cb_ini.KIND_SP))
-    # La barra de experiencia necesita los cuatro valores, no solo el actual:
-    # sin el "cuanto falta para el siguiente nivel" el cliente la dibujaba
-    # llena y con el numero de un personaje de nivel 1. Es el mismo 0x001D
-    # compuesto que se manda al subir de nivel.
-    #   kind 29 nivel, 30 exp actual, 31 exp del siguiente nivel, 32 la barra
-    # Todo esto va en campos de 32 bits y la experiencia de un nivel alto los
-    # desborda de largo: el nivel 300 pide 801.133.037.724.519. Se recorta
-    # aqui, que es donde se empaqueta, y no en exp_para_nivel(): recortandolo
-    # alli el bucle que sube de nivel se volvia infinito.
+    # La barra de experiencia necesita los cuatro valores en 64 bits (<BQ):
+    #   kind 29: nivel (uint64 LE)
+    #   kind 30: exp_base de la barra (0 en login de Celestia para que el % sea actual/siguiente)
+    #   kind 31: exp requerida para el siguiente nivel (uint64 LE, sin recortar a 0xFFFFFFFF)
+    #   kind 32: exp actual acumulada (uint64 LE, sin recortar a 0xFFFFFFFF)
+    p.exp = max(int(p.exp or 0), _cb_ini.exp_para_nivel(p.nivel))
     exp_actual_ui, exp_siguiente_ui = _cb_ini.exp_para_barra(p.nivel, p.exp)
-    _u32 = lambda v: max(0, min(int(v or 0), 0xFFFFFFFF))
+    _u64 = lambda v: max(0, min(int(v or 0), 0xFFFFFFFFFFFFFFFF))
     salida.append(
         struct.pack('<HIB', 0x001D, p.entity_id, 4)
-        + struct.pack('<BII', 29, _u32(p.nivel), 0)
-        + struct.pack('<BII', 30, exp_actual_ui, 0)
-        + struct.pack('<BII', 31, exp_siguiente_ui, 0)
-        + struct.pack('<BII', 32, exp_actual_ui, 0))
+        + struct.pack('<BQ', 29, _u64(p.nivel))
+        + struct.pack('<BQ', 30, 0)
+        + struct.pack('<BQ', 31, _u64(exp_siguiente_ui))
+        + struct.pack('<BQ', 32, _u64(exp_actual_ui)))
     return salida
 
 
@@ -1017,15 +1018,27 @@ def _ficha(p, base):
     r = bytearray(d['resto'])
     if len(r) >= 3239:
         struct.pack_into('<I', r, 3235, p.stage)
+        # Suprimir dialogo molesto "Set Deal Password or not?" (*(_BYTE *)(v17 + 632) = 1)
+        # El offset en a3 es 3937. Dado que 'resto' empieza en 718: 3937 - 718 = 3219.
+        r[3219] = 1
         d['resto'] = bytes(r)
     nom = p.nombre.encode('ascii', 'replace')[:33]
     d['name_raw'] = nom + b'\x00' * (34 - len(nom))
+    import combate as _cb_ficha
+    p.exp = max(int(p.exp or 0), _cb_ficha.exp_para_nivel(p.nivel))
+    exp_actual_ui, exp_siguiente_ui = _cb_ficha.exp_para_barra(p.nivel, p.exp)
     u50 = bytearray(d['unk_50'])
-    if len(u50) >= 24:
-        # En el servidor oficial (mundo_021229), el nivel es un Big-Endian DWORD en offset 12:
-        # [12..15] = 00 00 00 [nivel]. La exp va en offset 19 LE32.
-        struct.pack_into('>I', u50, 12, max(1, p.nivel))
-        struct.pack_into('<I', u50, 19, p.exp & 0xFFFFFFFF)
+    if len(u50) >= 43:
+        # En sub_5E9C90 (0x0002 de Angel.exe, donde u50[k] = a3 + 52 + k):
+        #   u50[15:19] (a3 + 67): nivel (<I LE32)
+        #   u50[19:27] (a3 + 71): exp_actual (<Q LE64 -> v17 + 1224)
+        #   u50[27:35] (a3 + 79): exp_base   (<Q LE64 -> v17 + 1208, 0 en login)
+        #   u50[35:43] (a3 + 87): exp_sig    (<Q LE64 -> v17 + 1216)
+        u50[12:15] = b'\x00\x00\x00'
+        struct.pack_into('<I', u50, 15, max(1, p.nivel))
+        struct.pack_into('<Q', u50, 19, max(0, min(exp_actual_ui, 0xFFFFFFFFFFFFFFFF)))
+        struct.pack_into('<Q', u50, 27, 0)
+        struct.pack_into('<Q', u50, 35, max(0, min(exp_siguiente_ui, 0xFFFFFFFFFFFFFFFF)))
         # EL RANGO Y LOS CREDITOS, pegados el uno al otro.
         #
         # Estan en el offset 93 y 94 del 0x0002: un byte con el rango y un
@@ -1042,11 +1055,9 @@ def _ficha(p, base):
             struct.pack_into('<I', u50, 44,
                              (getattr(p, 'creditos', 0) or 0) & 0xFFFFFFFF)
         d['unk_50'] = bytes(u50)
-    # HP y MP. El campo 'stats' arranca en +102 de la ficha, asi que los
+    # HP y MP. El campo 'stats' arranca en +102 de la ficha (a3 + 104), asi que los
     # cuatro LE32 del principio son hp, hp_max, mp, mp_max (+102, +106,
-    # +110, +114). Localizados buscando los 296 y 218 que el cliente mostraba
-    # en pantalla con la plantilla sin tocar: eran los del personaje de otro
-    # servidor, no los del jugador.
+    # +110, +114). En st[16:20] (a3 + 120 y a3 + 122) van sp_pts y sp_max_pts (<HH).
     st = bytearray(d['stats'])
     # El maximo va CON el bono de las pasivas, igual que en el 0x0042. Si no,
     # la ID Card enseñaba un tope distinto del que enseña la barra de arriba:
@@ -1057,12 +1068,20 @@ def _ficha(p, base):
     hp_val = 280 if (not p.habilidades and p.nivel == 1 and p.hp <= 205) else min(p.hp, hp_tope)
     hp_max_val = 280 if (not p.habilidades and p.nivel == 1 and p.hp_max <= 205) else hp_tope
     struct.pack_into('<IIII', st, 0, hp_val, hp_max_val, min(p.mp, mp_tope), mp_tope)
+    if len(st) >= 20:
+        _b_sp = _inv.bonos_de_habilidades(p.habilidades)
+        sp_max_pts = min(10, _b_sp['barras_sp']) * 1000
+        sp_pts = max(0, min(int(getattr(p, 'sp', 0) or 0), sp_max_pts))
+        struct.pack_into('<HH', st, 16, sp_pts, sp_max_pts)
     d['stats'] = bytes(st)
     if p.habilidades:
         sk = list(d['skills'])
         for i, (sid, nivel, exp) in enumerate(p.habilidades[:36]):
+            req = _cb_ficha.exp_para_skill(nivel, sid)
+            sexp = max(0, min(req, int(exp or 0)))
             sk[i] = {'skill_id': sid, 'level': nivel, 'level2': nivel,
-                     'cero': b'\x00' * 4, 'exp': exp, 'idx': i + 1}
+                     'cero': struct.pack('<I', sexp & 0xFFFFFFFF),
+                     'exp': req & 0xFFFFFFFF, 'idx': i + 1}
         for i in range(len(p.habilidades), 36):
             sk[i] = {'skill_id': 0, 'level': 0, 'level2': 0,
                      'cero': b'\x00' * 4, 'exp': 0, 'idx': 0}

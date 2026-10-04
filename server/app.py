@@ -355,7 +355,7 @@ def _precio_venta(item_id: int) -> int:
 # hasta que el jugador consigue una mochila y de golpe le aparecen cosas que
 # no sabia que tenia.
 TOPE_SIN_MOCHILA = 39
-TOPE_CON_MOCHILA = 44
+TOPE_CON_MOCHILA = 120
 
 
 def _tope_bolsa(bolsa) -> int:
@@ -586,11 +586,18 @@ def _refrescar(ses, ranuras, con_oro=False):
                                            getattr(ses, 'oro', 0),
                                            _inst(ses, inv.RANURA_ORO),
                                            _dueno(ses)))
+    mascotas_map = getattr(ses.personaje, 'mascotas', {}) if ses.personaje else {}
+    _masc = getattr(ses.personaje, 'mascota', None) if ses.personaje else None
     for r in sorted(set(int(x) for x in ranuras if x is not None)):
         if r in ses.inventario:
+            p_data = None
+            if inv.es_mascota(int(ses.inventario[r])):
+                p_data = mascotas_map.get(str(r)) or mascotas_map.get(r)
+                if not p_data and _masc and (_masc.get('ranura') == r or _masc.get('item') == int(ses.inventario[r])):
+                    p_data = _masc
             _linea = inv.actualizar_ranura(cid, r, int(ses.inventario[r]),
                                            _cant_de(ses, r), _inst(ses, r),
-                                           _dueno(ses))
+                                           _dueno(ses), mascota=p_data)
             # El "+N" de las mejoras viaja DENTRO de la entrada, en el byte
             # 83. Si no se escribe, el cliente no enseña ni el "+7" pegado al
             # nombre ni el "has been intensified ( N ) times" del tooltip,
@@ -628,7 +635,7 @@ def _mejoras_de(ses):
 
 
 def _guardar_bolsa(ses, cid):
-    """Guarda inventario, cantidades Y MEJORAS juntos.
+    """Guarda inventario, cantidades, mejoras y mascota juntos.
 
     Las mejoras se guardaban solo al mejorar. Como ahora viajan con el item
     al cambiar de casilla, hay que dejarlas en disco tambien al moverlo: si
@@ -638,6 +645,9 @@ def _guardar_bolsa(ses, cid):
     if getattr(ses, 'usuario', None) and getattr(ses, 'personaje', None):
         cuentas.guardar_mejoras(ses.usuario, cid,
                                 getattr(ses.personaje, 'mejoras', None))
+        cuentas.guardar_mascota(ses.usuario, cid,
+                                getattr(ses.personaje, 'mascota', None),
+                                getattr(ses.personaje, 'mascotas', None))
     if getattr(ses, 'usuario', None):
         cuentas.guardar_inventario(ses.usuario, cid, ses.inventario,
                                    _cantidades(ses))
@@ -792,23 +802,53 @@ def _probar_gm(ses, cuerpo, addr) -> bool:
 def _pet_ficha(ses, ranura):
     """La ficha guardada de la mascota de esa casilla, creandola si no hay.
 
-    Los stats de combate NO se guardan: el cliente los saca solo del sprite
-    y el nivel. Se vio con una Battlemaid de nivel 1 a la que el juego pinto
-    56 de ataque y 91 de defensa sin que nadie se los mandara.
+    Los stats de combate salen de petattrib segun su sprite y nivel, y las
+    3 habilidades salen de petskill.xml.
     """
     import inventario as inv
     import mascotas as _ms
-    todas = getattr(ses.personaje, 'mascota', None)
-    if todas and todas.get('ranura') == ranura:
-        return todas
-    item_id = ses.inventario[ranura]
+    item_id = ses.inventario.get(ranura)
+    if not item_id:
+        return None
     d = inv.datos_mascota(item_id)
+    if not hasattr(ses.personaje, 'mascotas') or not isinstance(ses.personaje.mascotas, dict):
+        ses.personaje.mascotas = {}
+
+    # Buscar si ya existe la ficha de esta ranura o item
+    f = ses.personaje.mascotas.get(str(ranura)) or ses.personaje.mascotas.get(ranura)
+    if not f:
+        legacy_m = getattr(ses.personaje, 'mascota', None)
+        if legacy_m and isinstance(legacy_m, dict) and (legacy_m.get('ranura') == ranura or legacy_m.get('item') == item_id):
+            f = legacy_m
+        else:
+            for _k, _p in ses.personaje.mascotas.items():
+                if isinstance(_p, dict) and _p.get('item') == item_id and (_p.get('ranura') == ranura or _p.get('ranura') is None):
+                    f = _p
+                    break
+
+    if f:
+        f['ranura'] = ranura
+        f['item'] = item_id
+        f['instancia'] = 1000 + int(ranura)
+        if not f.get('tipo'):
+            f['tipo'] = _ms.ficha_de_sprite(f.get('sprite')).get('tipo', 0)
+        if not f.get('skills'):
+            f['skills'] = list(_ms.skills_de(f.get('sprite'), f.get('nivel', 1)))
+        if 'estrellas' not in f or not f['estrellas']:
+            f['estrellas'] = max(1, int(d.get('estrellas') or 1))
+        ses.personaje.mascotas[str(ranura)] = f
+        ses.personaje.mascota = f
+        return f
+
     import configuracion as _cf
     f = _ms.recien_nacida(d['nombre'], d['sprite'],
-                          nivel=max(1, getattr(_cf, 'MASCOTA_NIVEL_INICIAL', 1)))
+                          nivel=max(1, getattr(_cf, 'MASCOTA_NIVEL_INICIAL', 1)),
+                          estrellas=max(1, int(d.get('estrellas') or 1)))
     f['ranura'] = ranura
     f['item'] = item_id
+    f['instancia'] = 1000 + int(ranura)
     f['fuera'] = False
+    ses.personaje.mascotas[str(ranura)] = f
     ses.personaje.mascota = f
     return f
 
@@ -828,42 +868,83 @@ def _pet_subir(ficha, nivel):
 def _pet_alternar(ses, addr, ranura):
     """Saca la mascota al mundo, o la guarda si ya estaba fuera.
 
-    El servidor real contesta con la ficha (0x0065), la entrada del
-    inventario (0x001B) y la criatura (0x0050). El 0x017A que tambien manda
-    no se sabe que es y no se copia: son 80 bytes casi todos a cero.
+    Secuencia medida en Celestia (mundo_143747 pkts 43290..43300 y 44011..44016):
+      Al sacar:
+        1. 0x001D (yo, kind=0x2A, pet_eid)
+        2. 0x0013 (pet_eid, kind=0x3F, 0)
+        3. 0x0065 (armar(f))
+        4. 0x001B (actualizar_ranura con fuera=1 e instancia=(inst, inst))
+        5. 0x0050 (entidad_mundo con x=p.tile_x, y=p.tile_y, instancia=(inst, inst))
+        6. 0x0065 (armar(f), ya con pet_inst1/pet_inst2 fijados por el 0x0050)
+        7. 0x0013 (pet_eid, kind=0x00, hp)
+      Al guardar:
+        1. 0x0007 (quitar(pet_eid))
+        2. 0x001D (paquete_orden(yo, 0x0B))
+        3. 0x001D (enlazar(yo, 0))
+        4. 0x001B (actualizar_ranura con fuera=0)
     """
-    import json as _json
+    import struct as _st
+    import combate as _cb
     import mascotas as _ms
     f = _pet_ficha(ses, ranura)
     f['fuera'] = not f.get('fuera')
     p = ses.personaje
     if not f['fuera']:
-        # HAY QUE QUITARLA DEL MUNDO. Antes solo se remandaba la entrada del
-        # inventario y la criatura se quedaba pegada en pantalla, asi que no
-        # habia manera de guardarla.
         if f.get('entidad'):
             ses.enviar(_ms.quitar(f['entidad']))
+            ses.enviar(_ms.paquete_orden(p.entity_id, 0x0B))
             ses.enviar(_ms.enlazar(p.entity_id, 0))
+            ses.enviar(_ms.quitar(f['entidad']))
         f['entidad'] = None
+        ses.pet_entity_id = None
         log.info('[%s] mascota guardada: %s' % (addr, f.get('nombre')))
         ses.enviar(*_refrescar(ses, [ranura]))
+        _guardar_bolsa(ses, p.char_id)
         return
-    # Cada vez que sale es una entidad NUEVA: en la captura fueron
-    # 0x1050c4, c5 y c6, una detras de otra.
+
+    # Despawnear cualquier otra mascota que estuviera fuera previamente
+    old_eid = getattr(ses, 'pet_entity_id', None)
+    if old_eid:
+        ses.enviar(_ms.quitar(old_eid))
+        ses.enviar(_ms.paquete_orden(p.entity_id, 0x0B))
+        ses.enviar(_ms.enlazar(p.entity_id, 0))
+        ses.enviar(_ms.quitar(old_eid))
+        ses.pet_entity_id = None
+
+    if getattr(p, 'mascotas', None):
+        for _r_str, _other_pet in p.mascotas.items():
+            if _r_str != str(ranura) and isinstance(_other_pet, dict) and _other_pet.get('fuera'):
+                _other_pet['fuera'] = False
+                _other_r = _other_pet.get('ranura')
+                if _other_r is not None:
+                    ses.enviar(*_refrescar(ses, [_other_r]))
+
+    # Cada vez que sale es una entidad NUEVA
     f['entidad'] = _pet_siguiente_entidad(ses)
-    f['instancia'] = ranura
+    f['instancia'] = 1000 + int(ranura)
+    ses.pet_entity_id = f['entidad']
+    px = getattr(p, 'tile_x', 0)
+    py = getattr(p, 'tile_y', 0)
+    ses.pet_tile = [px, py]
     est = dict(f)
-    est.update({'x': getattr(p, 'x', 0), 'y': getattr(p, 'y', 0),
+    est.update({'x': px, 'y': py,
                 'dueno': p.entity_id, 'dueno_nombre': p.nombre,
                 'tipo': f.get('tipo', 0)})
-    # El orden es el de la captura: primero el enlace, luego la ficha, la
-    # entrada del inventario y por ultimo la criatura.
-    ses.enviar(_ms.enlazar(p.entity_id, f['entidad']))
-    ses.enviar(_ms.armar(f))
-    ses.enviar(*_refrescar(ses, [ranura]))
-    ses.enviar(_ms.entidad_mundo(_pet_plantilla(), est))
-    log.info('[%s] mascota fuera: %s (entidad %d)'
-             % (addr, f.get('nombre'), f['entidad']))
+    pkgs_spawn = [
+        _ms.enlazar(p.entity_id, f['entidad']),
+        _st.pack('<HIBBI', 0x0013, f['entidad'], 1, 0x3F, 0),
+        _ms.armar(f),
+        *_refrescar(ses, [ranura]),
+        _ms.entidad_mundo(_pet_plantilla(), est),
+        _ms.armar(f),
+        _cb.atributo(f['entidad'], max(1, int(f.get('hp') or f.get('hp_max') or 1)), _cb.KIND_HP)
+    ]
+    if f.get('saciedad', 0) > 100:
+        pkgs_spawn.append(_st.pack('<HIBBII', 0x001D, f['entidad'], 1, 4, 3796, 3436877059))
+    ses.enviar(*pkgs_spawn)
+    _guardar_bolsa(ses, p.char_id)
+    log.info('[%s] mascota fuera: %s (entidad %d en %d,%d)'
+             % (addr, f.get('nombre'), f['entidad'], px, py))
 
 
 _PET_ENT = [0x105000]
@@ -923,7 +1004,16 @@ def _usar_mejora(ses, addr, ranura, objetivo) -> bool:
     tipo = _tipo_de_pieza(pieza, objetivo)
     seguro = getattr(_cf, 'MEJORAS_SIEMPRE_EXITO', False)
 
-    if clase == 'verde':
+    if _iv.es_mascota(pieza):
+        import mascotas as _ms_app
+        f_pet = _pet_ficha(ses, objetivo)
+        if f_pet:
+            incremento = 10 if 'Star-up' in _nombre_item(item) else 1
+            nueva_st = _ms_app.subir_estrella(f_pet, incremento)
+            ok, msg = True, 'star level -> %0.1f' % (nueva_st / 10.0)
+        else:
+            ok, msg = False, 'mascota no encontrada'
+    elif clase == 'verde':
         # El martillo verde no sube nada: REEMPLAZA los atributos extra por
         # otros nuevos, sorteados dentro de sus rangos. Los rangos son los
         # que el cliente enseña en su cuadro; con la bandera puesta sale el
@@ -964,6 +1054,9 @@ def _usar_mejora(ses, addr, ranura, objetivo) -> bool:
         else:
             msg_id = _mj.MSG_HUECO_FALLO
         cartel = _cl.aviso(nombre, tipo=7, msg_id=msg_id)
+    elif ok and _iv.es_mascota(pieza):
+        cartel = _cl.aviso('%s+%d' % (nombre, nueva_st if 'nueva_st' in locals() else veces), tipo=7,
+                           msg_id=_mj.MSG_MEJORA_OK)
     elif ok and clase in ('mortero', 'pienso_montura', 'pienso_mascota'):
         # El %s del 1613 lleva el "+N" pegado: "Onyx- Galactic Moped+4".
         cartel = _cl.aviso('%s+%d' % (nombre, veces), tipo=7,
@@ -986,6 +1079,14 @@ def _usar_mejora(ses, addr, ranura, objetivo) -> bool:
     salida.append(cartel)
     salida.extend(_refrescar(ses, [ranura]))
     salida.append(_stats_ses(ses))
+
+    # Si se mejoro una mascota, actualizar y mandar su 0x0065 de inmediato
+    if _iv.es_mascota(pieza):
+        import mascotas as _ms_app
+        f_pet = _pet_ficha(ses, objetivo)
+        if f_pet:
+            salida.append(_ms_app.armar(f_pet))
+
     ses.enviar(*salida)
     _guardar_bolsa(ses, p.char_id)
     # Y las mejoras, que iban SOLO en memoria: al reconectar se perdia todo
@@ -1000,6 +1101,8 @@ def _usar_mejora(ses, addr, ranura, objetivo) -> bool:
 def _tipo_de_pieza(item_id, ranura):
     """'arma', 'armadura', 'escudo', 'montura' o 'mascota'."""
     import inventario as _iv
+    if _iv.es_mascota(item_id):
+        return 'mascota'
     r = _iv.ranura_equipo_de(item_id) or ranura
     if r in (10, 174):
         return 'montura'
@@ -1219,7 +1322,7 @@ def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
 
     if ses.personaje:
         p = ses.personaje
-        p.exp += exp_ganada
+        p.exp = max(int(p.exp or 0), _cb.exp_para_nivel(p.nivel)) + exp_ganada
         subio_nivel = False
         # ESTE BUCLE COLGABA EL SERVIDOR. exp_para_nivel() recortaba a
         # 0xFFFFFFFF, asi que del nivel 299 en adelante devolvia siempre el
@@ -1240,6 +1343,7 @@ def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
             else:
                 break
         exp_actual_ui, exp_siguiente_ui = _cb.exp_para_barra(p.nivel, p.exp)
+        _u64 = lambda v: max(0, min(int(v or 0), 0xFFFFFFFFFFFFFFFF))
         if subio_nivel:
             p.hp = _vida_max(p)
             p.mp = _mana_max(p, ses.inventario)
@@ -1248,10 +1352,10 @@ def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
             salida_combate.append(_cb.atributo(yo, p.mp, _cb.KIND_MP))
             salida_combate.append(
                 struct.pack('<HIB', 0x001D, yo, 4) +
-                struct.pack('<BII', 29, p.nivel, 0) +
-                struct.pack('<BII', 30, exp_actual_ui, 0) +
-                struct.pack('<BII', 31, exp_siguiente_ui, 0) +
-                struct.pack('<BII', 32, exp_actual_ui, 0)
+                struct.pack('<BQ', 29, _u64(p.nivel)) +
+                struct.pack('<BQ', 30, 0) +
+                struct.pack('<BQ', 31, _u64(exp_siguiente_ui)) +
+                struct.pack('<BQ', 32, _u64(exp_actual_ui))
             )
             salida_combate.append(_cb.efecto_level_up(yo, es_skill=False))
             salida_combate.append(_stats_ses(ses))
@@ -1261,13 +1365,32 @@ def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
                                               str(exp_ganada),
                                               str(exp_ganada), tipo=0))
         salida_combate.append(
-            struct.pack('<HIBBII', 0x001D, yo, 1, 32, exp_actual_ui, 0))
+            struct.pack('<HIBBQ', 0x001D, yo, 1, 32, _u64(exp_actual_ui)))
 
         if getattr(ses, 'usuario', None):
             cuentas.guardar_progreso(ses.usuario, p.char_id, p.nivel, p.exp,
                                      p.hp, p.mp, p.habilidades,
                                      hp_max=p.hp_max, mp_max=p.mp_max, sp=getattr(ses, "sp", None), buffs=getattr(ses.personaje, "buffs", None) if ses.personaje else None)
             cuentas.guardar_oro(ses.usuario, p.char_id, ses.oro)
+
+        # Si la mascota esta fuera, tambien gana la experiencia del combate
+        f_pet = getattr(p, 'mascota', None)
+        if f_pet and f_pet.get('fuera'):
+            import mascotas as _ms
+            _sp_antes = f_pet.get('sprite')
+            _sub_p = _ms.dar_exp(f_pet, exp_ganada)
+            salida_combate.append(_ms.armar(f_pet))
+            if _sub_p > 0:
+                _r_pet = f_pet.get('ranura')
+                if _r_pet is not None:
+                    salida_combate.extend(_refrescar(ses, [_r_pet]))
+                pet_eid = getattr(ses, 'pet_entity_id', None)
+                if pet_eid and f_pet.get('sprite') != _sp_antes:
+                    salida_combate.extend([
+                        _ms.quitar(pet_eid),
+                        _ms.entidad_mundo(_pet_plantilla(), f_pet),
+                        _ms.enlazar(yo, pet_eid)
+                    ])
 
     salida_combate.append(_cl.aviso(f'{oro} Gold', tipo=0, msg_id=_cl.MSG_ITEM))
 
@@ -1693,7 +1816,7 @@ def _cerrar_viaje(ses, addr, stage, tile, nombre_dest):
 
 def _vida_max(p, bolsa=None) -> int:
     """El tope de vida que el cliente enseña: el guardado mas lo que dan las
-    pasivas y el equipo (gear y fashion)."""
+    pasivas, el equipo (gear y fashion) y los buffs activos."""
     import inventario as inv
     b = bolsa
     if b is None:
@@ -1702,12 +1825,14 @@ def _vida_max(p, bolsa=None) -> int:
         b = getattr(p.ses, 'inventario', None)
     return inv.vida_maxima(getattr(p, 'hp_max', 0),
                            getattr(p, 'habilidades', None), bolsa=b,
-                           mejoras=getattr(p, 'mejoras', None))
+                           mejoras=getattr(p, 'mejoras', None),
+                           buffs=getattr(p, 'buffs', None),
+                           mp_max=getattr(p, 'mp_max', 0))
 
 
 def _mana_max(p, bolsa=None) -> int:
     """El tope de mana que el cliente enseña: el guardado mas lo que dan las
-    pasivas y el equipo (gear y fashion)."""
+    pasivas, el equipo (gear y fashion) y los buffs activos."""
     import inventario as inv
     b = bolsa
     if b is None:
@@ -1716,7 +1841,8 @@ def _mana_max(p, bolsa=None) -> int:
         b = getattr(p.ses, 'inventario', None)
     return inv.mana_maximo(getattr(p, 'mp_max', 0),
                            getattr(p, 'habilidades', None), bolsa=b,
-                           mejoras=getattr(p, 'mejoras', None))
+                           mejoras=getattr(p, 'mejoras', None),
+                           buffs=getattr(p, 'buffs', None))
 
 
 def _cb_alcance(ses) -> int:
@@ -1740,6 +1866,9 @@ def _stats_ses(ses):
     buffs = getattr(p, 'buffs', None)
     bars, max_pts = _max_sp_info(p)
     sp = getattr(ses, 'sp', None)
+    if sp is None and p is not None:
+        sp = max(0, int(getattr(p, 'sp', 0) or 0))
+        ses.sp = sp
     return inv.stats(bolsa, habs, hp=hp, hp_max=hp_max, mp=mp, mp_max=mp_max,
                      oro=oro, buffs=buffs, sp=sp, sp_max=bars,
                      mejoras=getattr(p, 'mejoras', None) if p else None)
@@ -1796,27 +1925,24 @@ def _otorgar_skill_exp(ses, p, yo, arma_puesta=0, magic_id=0, accion=None):
             continue
         sexp += exp_ganada
         max_lv = (p.nivel + 11) if sid in SKILLS_PRODUCTOR else p.nivel
-        # La experiencia que pide cada nivel sale de la tabla medida en las
-        # capturas (3, 6, 8, 12, 16, 30...), no de nivel*100: con esa formula
-        # dos puntos de exp daban 0% y la habilidad no subia nunca.
-        req = max(1, _cl.exp_requerida_skill(slv))
+        # La experiencia que pide cada nivel sale de level.xml por rama (sid 1..36).
+        req = max(1, _cl.exp_requerida_skill(slv, sid))
         while sexp >= req and slv < max_lv:
             sexp -= req
             slv += 1
-            req = max(1, _cl.exp_requerida_skill(slv))
+            req = max(1, _cl.exp_requerida_skill(slv, sid))
             subio_alguna = True
             pkgs.append(_cb.efecto_level_up(yo, es_skill=True))
             pkgs.append(_cl.aviso_doble(_cl.MSG_SKILL_SUBE, _cl.nombre(sid)))
         if slv >= max_lv:
             sexp = min(sexp, req)
-        pct_exp = min(100, int(round(100.0 * sexp / req)))
         # La skill exp va como TEXTO en un 0x000D de dos cadenas, no como
         # 0x000B: ese mensaje dibuja un numero flotante, y mandandolo con el
         # numero de la habilidad aparecia un "9" verde junto al dano.
         pkgs.append(_cl.aviso_doble(_cl.MSG_SKILL_EXP, _cl.nombre(sid),
                                     str(exp_ganada)))
-        # 0x001D kind=53: la barra porcentual de esa habilidad en la UI
-        pkgs.append(struct.pack('<HIBBII', 0x001D, yo, 1, 53, sid, pct_exp))
+        # 0x001D code=0 (sub_5FEC40 en Angel.exe): actualiza dword_14388[i] (exp actual de la skill)
+        pkgs.append(struct.pack('<HIBBII', 0x001D, yo, 1, 0, sid, sexp & 0xFFFFFFFF))
         nuevas_habs.append((sid, slv, sexp))
 
     p.habilidades = nuevas_habs
@@ -1895,19 +2021,26 @@ class Servidor:
                         ses.enviar(_lg._npc_spawn(m.entity_id, m.npc_type, m.nombre, m.spawn_tile, klass=1))
                         log.info(f"monstruo {m.nombre} (eid={m.entity_id}) reaparecio en {m.spawn_tile}")
 
-                # 3. Seguimiento de mascota al jugador
+                # 3. Seguimiento de mascota al jugador (solo si quedo lejos y no esta en 'Stay')
                 pet_id = getattr(ses, 'pet_entity_id', None)
-                if pet_id and ses.personaje:
+                f_pet = getattr(ses.personaje, 'mascota', None) if ses.personaje else None
+                if pet_id and f_pet and f_pet.get('fuera'):
                     px, py = ses.personaje.tile_x, ses.personaje.tile_y
-                    msg_pet = MOVE.build(
-                        entity_id=pet_id,
-                        cur_x=(px + 1) * 32,
-                        cur_y=py * 32,
-                        dst_x=px * 32,
-                        dst_y=py * 32,
-                        speed=100
-                    )
-                    ses.enviar(msg_pet)
+                    pet_x = f_pet.get('x', px + 1)
+                    pet_y = f_pet.get('y', py)
+                    if max(abs(pet_x - px), abs(pet_y - py)) > 2:
+                        dst_px, dst_py = px + 1, py
+                        f_pet['x'] = dst_px
+                        f_pet['y'] = dst_py
+                        msg_pet = MOVE.build(
+                            entity_id=pet_id,
+                            cur_x=pet_x * 32,
+                            cur_y=pet_y * 32,
+                            dst_x=dst_px * 32,
+                            dst_y=dst_py * 32,
+                            speed=_velocidad_de(ses)
+                        )
+                        ses.enviar(msg_pet)
 
                 out = ses.drenar()
                 if out and getattr(ses, 'writer', None):
@@ -2281,6 +2414,8 @@ class Servidor:
             async def _ia_monstruos():
                 import random, time
                 import combate as _cb
+                import inventario as _iv
+                import mascotas as _ms
                 TICK_IA = 0.1
                 # La probabilidad de pasear sale del tick: un paso cada 5.6 s
                 # de mediana, que es lo medido en el Lyceum de Celestia.
@@ -2298,6 +2433,8 @@ class Servidor:
                             continue
                         ahora = time.time()
                         yo = p.entity_id
+                        f_pet = getattr(p, 'mascota', None) if ses.personaje else None
+                        pet_eid = getattr(ses, 'pet_entity_id', None)
 
                         if getattr(ses, 'muerto', False):
                             # Un jugador muerto no recibe mas golpes: si no,
@@ -2305,14 +2442,19 @@ class Servidor:
                             # se reabria una y otra vez.
                             continue
 
-                        # --- Invocacion del jugador (Wraith summon) ---
-                        inv = getattr(ses, 'invocacion', None)
-                        if inv:
+                        # --- Invocacion(es) del jugador (Wraith summon & Duo Summon) ---
+                        inv_list = []
+                        if getattr(ses, 'invocacion', None):
+                            inv_list.append(('invocacion', ses.invocacion))
+                        if getattr(ses, 'invocacion2', None):
+                            inv_list.append(('invocacion2', ses.invocacion2))
+
+                        for inv_key, inv in inv_list:
                             if ahora >= inv.get('expira', 0) or inv.get('hp', 0) <= 0:
                                 ses.enviar(_cb.atributo(inv['entity_id'], 0, _cb.KIND_HP),
                                            _cb.despawn_monstruo(inv['entity_id']),
                                            struct.pack('<HIBBI', 0x0013, yo, 1, 0x3d, 0))
-                                ses.invocacion = None
+                                setattr(ses, inv_key, None)
                                 log.info(f"[{addr}] invocacion {inv.get('nombre')} expirada/despawned")
                             else:
                                 targ = inv.get('objetivo')
@@ -2570,195 +2712,337 @@ class Servidor:
                             # y esta mal: en el juego real se puede caminar
                             # entre ellos sin que reaccionen.
 
-                            # 1. Monstruo en combate con el jugador
-                            if getattr(m, 'en_combate_con', None) == yo:
-                                if dist > _cb.RANGO_PERDER_AGRO:
-                                    m.en_combate_con = None
-                                    log.debug(f"[{addr}] {m.nombre} pierde el "
-                                              f"agro a {dist} casillas")
-                                    continue
+                            # 1. Monstruo en combate (jugador, mascota, invocacion o charmed)
+                            targ_eid = getattr(m, 'en_combate_con', None)
+                            if targ_eid is not None:
+                                targ_x, targ_y = None, None
+                                targ_valido = False
 
-                                r_atk = max(1, getattr(m, 'atk_range', 1))
-                                if dist <= r_atk:
-                                    # Atacar al jugador si paso el cooldown (2.0s)
-                                    if ahora - getattr(m, 'ultimo_ataque', 0) >= _cb.cadencia_monstruo(m):
-                                        _prev = getattr(m, 'ultimo_ataque', 0)
-                                        m.ultimo_ataque = ahora
-                                        if _prev:
-                                            log.info(
-                                                f"[{addr}] {m.nombre} pega: "
-                                                f"pasaron {ahora - _prev:.3f}s "
-                                                f"(ciclo configurado "
-                                                f"{_cb.cadencia_monstruo(m):.3f}s)")
-                                        suyo = _cb.dano_recibido(m.pegar(),
-                                                                 defensa_jugador(ses))
-                                        import inventario as _iv
-                                        bolsa_yo = getattr(ses, 'inventario', None)
-                                        if bolsa_yo:
-                                            mods_eq = _iv.modificadores_porcentuales_equipo(bolsa_yo)
-                                            mult_mit = mods_eq.get('phys_mit_mult', 1.0)
-                                            if mult_mit < 1.0:
-                                                suyo = max(1, int(round(suyo * mult_mit)))
-                                        if ses.personaje and getattr(ses.personaje, 'buffs', None):
-                                            for b_data in ses.personaje.buffs.values():
-                                                if isinstance(b_data, dict) and b_data.get('fin', 0) > ahora and 'mit' in b_data:
-                                                    suyo = max(1, int(round(suyo * (1.0 - b_data['mit'] / 100.0))))
-                                        ef_atk = m.proj_ef if m.proj_ef > 0 else 148
-
-                                        # El golpe sale ya y el dano espera a
-                                        # que la animacion termine. El campo de
-                                        # animacion del 0x000A es su duracion
-                                        # en milisegundos: en Celestia un bicho
-                                        # con animacion 951 manda su numero a
-                                        # los 951 ms y uno con 774 a los 784.
-                                        # Antes el dano se descontaba en el
-                                        # acto, con el cliente aun levantando
-                                        # el arma, y no cuadraba nada.
-                                        ses.enviar(_cb.ataque(
-                                            m.entity_id, yo,
-                                            _cb.anim_de_monstruo(m.nombre)))
-                                        if getattr(ses, 'invocacion', None) and not ses.invocacion.get('objetivo'):
-                                            if not getattr(m, 'encantado', False):
-                                                ses.invocacion['objetivo'] = m
-                                        if getattr(ses, 'monstruo_encantado', None) and getattr(ses.monstruo_encantado, 'vivo', False) and not getattr(ses.monstruo_encantado, 'charmed_objetivo', None):
-                                            if not getattr(m, 'encantado', False):
-                                                ses.monstruo_encantado.charmed_objetivo = m
-
-                                        def _impacto(m=m, suyo=suyo, ef_atk=ef_atk):
-                                            # Si el bicho se murio durante su
-                                            # propia animacion, el golpe no
-                                            # llega. Esto es lo que hacia que
-                                            # siguiera bajando vida despues de
-                                            # matarlo.
-                                            if not getattr(m, 'vivo', False):
-                                                return
-                                            pj = getattr(ses, 'personaje', None)
-                                            if not pj or getattr(ses, 'muerto', False):
-                                                return
-                                            if getattr(m, 'en_combate_con', None) != yo:
-                                                return
-                                            pj.hp = max(0, pj.hp - suyo)
-                                            ses.enviar_inmediato(
-                                                _cb.numero_de_dano(m.entity_id, yo, suyo,
-                                                                   ataque=656, efecto=ef_atk),
-                                                _cb.numero_flotante(yo, suyo),
-                                                # HP ABSOLUTO, no el porcentaje:
-                                                # VIDA y KIND_HP son el mismo
-                                                # campo, y aqui se mandaba 0..100.
-                                                # La barra saltaba a "80" y
-                                                # parecia que el golpe quitaba 300.
-                                                _cb.atributo(yo, pj.hp, _cb.KIND_HP))
-                                            if pj.hp > 0:
-                                                return
-                                            # Muerte del jugador: el 0x000A con
-                                            # tipo 7 y la vida en cero, y se
-                                            # espera a que elija en la ventana
-                                            # del cliente.
-                                            ses.enviar_inmediato(
-                                                _cb.ataque(yo, m.entity_id, 0, _cb.TIPO_MUERTE),
-                                                _cb.atributo(yo, 0, _cb.KIND_HP))
-                                            ses.muerto = True
-                                            m.en_combate_con = None
-                                            if getattr(ses, 'usuario', None):
-                                                cuentas.guardar_progreso(
-                                                    ses.usuario, pj.char_id,
-                                                    pj.nivel, pj.exp, 0, pj.mp,
-                                                    pj.habilidades,
-                                                    hp_max=pj.hp_max,
-                                                    mp_max=pj.mp_max, sp=getattr(ses, "sp", None), buffs=getattr(ses.personaje, "buffs", None) if ses.personaje else None)
-                                            log.info(f"[{addr}] jugador muerto "
-                                                     f"por {m.nombre} (IA)")
-
-                                        try:
-                                            asyncio.get_event_loop().call_later(
-                                                _cb.retraso_golpe_monstruo(m), _impacto)
-                                        except Exception:
-                                            _impacto()
+                                if targ_eid == yo:
+                                    targ_x, targ_y = p.tile_x, p.tile_y
+                                    targ_valido = not getattr(ses, 'muerto', False)
+                                elif f_pet and f_pet.get('fuera') and pet_eid and targ_eid == pet_eid:
+                                    targ_x, targ_y = f_pet.get('x', p.tile_x), f_pet.get('y', p.tile_y)
+                                    targ_valido = (f_pet.get('hp', 1) > 0)
+                                elif getattr(ses, 'invocacion', None) and targ_eid == ses.invocacion.get('entity_id'):
+                                    itile = [ses.invocacion.get('tile_x', p.tile_x), ses.invocacion.get('tile_y', p.tile_y)]
+                                    targ_x, targ_y = itile[0], itile[1]
+                                    targ_valido = (ses.invocacion.get('hp', 1) > 0)
+                                elif getattr(ses, 'invocacion2', None) and targ_eid == ses.invocacion2.get('entity_id'):
+                                    itile = [ses.invocacion2.get('tile_x', p.tile_x), ses.invocacion2.get('tile_y', p.tile_y)]
+                                    targ_x, targ_y = itile[0], itile[1]
+                                    targ_valido = (ses.invocacion2.get('hp', 1) > 0)
+                                elif getattr(ses, 'monstruo_encantado', None) and targ_eid == ses.monstruo_encantado.entity_id:
+                                    targ_x, targ_y = ses.monstruo_encantado.tile_x, ses.monstruo_encantado.tile_y
+                                    targ_valido = getattr(ses.monstruo_encantado, 'vivo', False)
                                 else:
-                                    # Fuera de rango: avanzar hacia el jugador solo si NO es estatico (como Lily)
-                                    if not getattr(m, 'es_estatico', False):
-                                        # No encadenar trayectorias cada tick: el cliente
-                                        # aun esta interpolando el paso anterior.
-                                        if ahora < getattr(m, 'proximo_paso', 0):
-                                            continue
-                                        dx = p.tile_x - m.tile_x
-                                        dy = p.tile_y - m.tile_y
-                                        dist_p = max(abs(dx), abs(dy))
-                                        pasos_dar = min(max(1, dist_p - r_atk), 3)
-                                        step_x = (1 if dx > 0 else (-1 if dx < 0 else 0)) * pasos_dar
-                                        step_y = (1 if dy > 0 else (-1 if dy < 0 else 0)) * pasos_dar
-                                        cur_x, cur_y = m.tile_x * 32, m.tile_y * 32
-                                        m.tile_x += step_x
-                                        m.tile_y += step_y
-                                        m.tile[0], m.tile[1] = m.tile_x, m.tile_y
-                                        dst_x, dst_y = m.tile_x * 32, m.tile_y * 32
-                                        _pasos = max(abs(step_x), abs(step_y)) or 1
-                                        spd = m.move_speed or _cb.VELOCIDAD_PASEO
-                                        if getattr(m, 'debuffs', None):
-                                            for deb in m.debuffs.values():
-                                                if deb.get('vel_mov_mod'):
-                                                    spd = max(10, spd + deb['vel_mov_mod'])
-                                        m.proximo_paso = ahora + (_pasos * 32.0 / spd)
-                                        ses.enviar(MOVE.build(entity_id=m.entity_id,
-                                                              cur_x=cur_x, cur_y=cur_y,
-                                                              dst_x=dst_x, dst_y=dst_y,
-                                                              speed=spd))
+                                    m.en_combate_con = None
+
+                                if targ_valido and targ_x is not None:
+                                    d_targ = max(abs(m.tile_x - targ_x), abs(m.tile_y - targ_y))
+                                    if d_targ > _cb.RANGO_PERDER_AGRO:
+                                        m.en_combate_con = None
+                                        log.debug(f"[{addr}] {m.nombre} pierde el agro a {d_targ} casillas")
+                                        continue
+
+                                    r_atk = max(1, getattr(m, 'atk_range', 1))
+                                    if d_targ <= r_atk:
+                                        if ahora - getattr(m, 'ultimo_ataque', 0) >= _cb.cadencia_monstruo(m):
+                                            m.ultimo_ataque = ahora
+                                            suyo = _cb.dano_recibido(m.pegar(), defensa_jugador(ses) if targ_eid == yo else 100)
+                                            if targ_eid == yo:
+                                                bolsa_yo = getattr(ses, 'inventario', None)
+                                                if bolsa_yo:
+                                                    mods_eq = _iv.modificadores_porcentuales_equipo(bolsa_yo)
+                                                    mult_mit = mods_eq.get('phys_mit_mult', 1.0)
+                                                    if mult_mit < 1.0:
+                                                        suyo = max(1, int(round(suyo * mult_mit)))
+                                                if ses.personaje and getattr(ses.personaje, 'buffs', None):
+                                                    for b_data in ses.personaje.buffs.values():
+                                                        if isinstance(b_data, dict) and b_data.get('fin', 0) > ahora and 'mit' in b_data:
+                                                            suyo = max(1, int(round(suyo * (1.0 - b_data['mit'] / 100.0))))
+                                            ef_atk = m.proj_ef if m.proj_ef > 0 else 148
+
+                                            ses.enviar(_cb.ataque(m.entity_id, targ_eid, _cb.anim_de_monstruo(m.nombre)))
+
+                                            def _impacto(m=m, suyo=suyo, ef_atk=ef_atk, teid=targ_eid):
+                                                if not getattr(m, 'vivo', False):
+                                                    return
+                                                if getattr(m, 'en_combate_con', None) != teid:
+                                                    return
+                                                if teid == yo:
+                                                    pj = getattr(ses, 'personaje', None)
+                                                    if not pj or getattr(ses, 'muerto', False):
+                                                        return
+                                                    # Demonic Counter (5156..5160): mitigacion 30% y reflejo 50%
+                                                    if pj.buffs and any(5156 <= bid <= 5160 for bid in pj.buffs):
+                                                        refl = max(1, int(suyo * 0.5))
+                                                        suyo = max(1, int(suyo * 0.7))
+                                                        m.hp = max(0, m.hp - refl)
+                                                        ses.enviar_inmediato(
+                                                            _cb.numero_de_dano(yo, m.entity_id, refl, ataque=656, efecto=368),
+                                                            _cb.cierre_de_dano(yo, m.entity_id, ataque=656, efecto=368),
+                                                            _cb.numero_flotante(m.entity_id, refl),
+                                                            _cb.atributo(m.entity_id, m.porcentaje if m.hp > 0 else 0)
+                                                        )
+                                                        if m.hp <= 0:
+                                                            m.hp = 0
+                                                            _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.1)
+
+                                                    pj.hp = max(0, pj.hp - suyo)
+                                                    ses.enviar_inmediato(
+                                                        _cb.numero_de_dano(m.entity_id, yo, suyo, ataque=656, efecto=ef_atk),
+                                                        _cb.numero_flotante(yo, suyo),
+                                                        _cb.atributo(yo, pj.hp, _cb.KIND_HP))
+                                                    if pj.hp <= 0:
+                                                        ses.enviar_inmediato(
+                                                            _cb.ataque(yo, m.entity_id, 0, _cb.TIPO_MUERTE),
+                                                            _cb.atributo(yo, 0, _cb.KIND_HP))
+                                                        ses.muerto = True
+                                                        m.en_combate_con = None
+                                                elif f_pet and teid == pet_eid:
+                                                    f_pet['hp'] = max(0, int(f_pet.get('hp', 100)) - suyo)
+                                                    ses.enviar_inmediato(
+                                                        _cb.numero_de_dano(m.entity_id, pet_eid, suyo, ataque=656, efecto=ef_atk),
+                                                        _cb.numero_flotante(pet_eid, suyo),
+                                                        _ms.armar(f_pet))
+                                                    if f_pet['hp'] <= 0:
+                                                        m.en_combate_con = yo
+                                                elif getattr(ses, 'invocacion', None) and teid == ses.invocacion.get('entity_id'):
+                                                    ses.invocacion['hp'] = max(0, ses.invocacion.get('hp', 1) - suyo)
+                                                    ses.enviar_inmediato(
+                                                        _cb.numero_de_dano(m.entity_id, teid, suyo, ataque=656, efecto=ef_atk),
+                                                        _cb.numero_flotante(teid, suyo),
+                                                        _cb.atributo(teid, int(100 * ses.invocacion['hp'] / max(1, ses.invocacion['hp_max'])), _cb.KIND_HP)
+                                                    )
+                                                    if ses.invocacion['hp'] <= 0:
+                                                        ses.enviar_inmediato(_cb.despawn_monstruo(teid))
+                                                        ses.invocacion = None
+                                                        m.en_combate_con = yo
+                                                elif getattr(ses, 'invocacion2', None) and teid == ses.invocacion2.get('entity_id'):
+                                                    ses.invocacion2['hp'] = max(0, ses.invocacion2.get('hp', 1) - suyo)
+                                                    ses.enviar_inmediato(
+                                                        _cb.numero_de_dano(m.entity_id, teid, suyo, ataque=656, efecto=ef_atk),
+                                                        _cb.numero_flotante(teid, suyo),
+                                                        _cb.atributo(teid, int(100 * ses.invocacion2['hp'] / max(1, ses.invocacion2['hp_max'])), _cb.KIND_HP)
+                                                    )
+                                                    if ses.invocacion2['hp'] <= 0:
+                                                        ses.enviar_inmediato(_cb.despawn_monstruo(teid))
+                                                        ses.invocacion2 = None
+                                                        m.en_combate_con = yo
+
+                                            try:
+                                                asyncio.get_event_loop().call_later(
+                                                    _cb.retraso_golpe_monstruo(m), _impacto)
+                                            except Exception:
+                                                _impacto()
+                                    else:
+                                        if not getattr(m, 'es_estatico', False):
+                                            if ahora < getattr(m, 'proximo_paso', 0):
+                                                continue
+                                            dx = targ_x - m.tile_x
+                                            dy = targ_y - m.tile_y
+                                            dist_t = max(abs(dx), abs(dy))
+                                            pasos_dar = min(max(1, dist_t - r_atk), 3)
+                                            step_x = (1 if dx > 0 else (-1 if dx < 0 else 0)) * pasos_dar
+                                            step_y = (1 if dy > 0 else (-1 if dy < 0 else 0)) * pasos_dar
+                                            cur_x, cur_y = m.tile_x * 32, m.tile_y * 32
+                                            m.tile_x += step_x
+                                            m.tile_y += step_y
+                                            m.tile[0], m.tile[1] = m.tile_x, m.tile_y
+                                            dst_x, dst_y = m.tile_x * 32, m.tile_y * 32
+                                            _pasos = max(abs(step_x), abs(step_y)) or 1
+                                            spd = m.move_speed or _cb.VELOCIDAD_PASEO
+                                            if getattr(m, 'debuffs', None):
+                                                for deb in m.debuffs.values():
+                                                    if deb.get('vel_mov_mod'):
+                                                        spd = max(10, spd + deb['vel_mov_mod'])
+                                            m.proximo_paso = ahora + (_pasos * 32.0 / spd)
+                                            ses.enviar(MOVE.build(entity_id=m.entity_id,
+                                                                  cur_x=cur_x, cur_y=cur_y,
+                                                                  dst_x=dst_x, dst_y=dst_y,
+                                                                  speed=spd))
+                                    continue
+                            # 2. Monstruo libre: pasear, salvo los estaticos
+                            if getattr(m, 'es_estatico', False):
+                                continue
+                            if ahora < getattr(m, 'proximo_paso', 0):
+                                continue
+                            _n = _cb.PASO_PASEO_MAX
+                            dx = random.randint(-_n, _n)
+                            dy = random.randint(-_n, _n)
+                            if dx == 0 and dy == 0:
+                                dx = random.choice((-1, 1))
+                            new_x = m.tile_x + dx
+                            new_y = m.tile_y + dy
+                            _rango = max(m.move_range, _cb.RANGO_PASEO_MIN)
+                            if (abs(new_x - m.spawn_x) > _rango or abs(new_y - m.spawn_y) > _rango):
+                                new_x = m.spawn_x + random.randint(-_rango, _rango)
+                                new_y = m.spawn_y + random.randint(-_rango, _rango)
+                            new_x = max(0, new_x)
+                            new_y = max(0, new_y)
+                            _pasos = max(abs(new_x - m.tile_x), abs(new_y - m.tile_y)) or 1
+                            m.proximo_paso = (ahora + _pasos * _cb.SEGUNDOS_POR_CASILLA
+                                              + random.uniform(_cb.PAUSA_PASEO_MIN, _cb.PAUSA_PASEO_MAX))
+                            cur_x, cur_y = m.tile_x * 32, m.tile_y * 32
+                            m.tile_x = new_x
+                            m.tile_y = new_y
+                            m.tile[0], m.tile[1] = new_x, new_y
+                            dst_x, dst_y = new_x * 32, new_y * 32
+                            ses.enviar(MOVE.build(entity_id=m.entity_id,
+                                                  cur_x=cur_x, cur_y=cur_y,
+                                                  dst_x=dst_x, dst_y=dst_y,
+                                                  speed=m.move_speed or _cb.VELOCIDAD_PASEO))
+                        # --- IA DE MASCOTA AUTONOMA (Combate activo / Ayuda / Skills) ---
+                        f_pet = getattr(p, 'mascota', None) if ses.personaje else None
+                        pet_eid = getattr(ses, 'pet_entity_id', None)
+                        if f_pet and f_pet.get('fuera') and pet_eid:
+                            modo_pet = getattr(p, 'mascota_orden', 1)  # 0=Peace/Safe, 1=Help/Assist, 2=Active Attack
+                            pet_x = f_pet.get('x', p.tile_x + 1)
+                            pet_y = f_pet.get('y', p.tile_y)
+                            pet_targ = getattr(ses, 'pet_objetivo', None)
+                            if pet_targ and (not getattr(pet_targ, 'vivo', False) or pet_targ.hp <= 0):
+                                pet_targ = None
+                                ses.pet_objetivo = None
+
+                            if modo_pet == 2:  # Safe (🕊️): PASIVO TOTAL, NUNCA ATACA, solo sigue
+                                pet_targ = None
+                                ses.pet_objetivo = None
+                            elif modo_pet == 0:  # Help (🤝): SOLO ataca al enemigo con el que master o pet estan en combate
+                                if not pet_targ and ses.monstruos:
+                                    cands = []
+                                    m_list = list(ses.monstruos.values()) if isinstance(ses.monstruos, dict) else (ses.monstruos or [])
+                                    for m_cand in m_list:
+                                        if getattr(m_cand, 'vivo', True) and getattr(m_cand, 'hp', 0) > 0 and not getattr(m_cand, 'encantado', False):
+                                            d_pm = max(abs(m_cand.tile_x - p.tile_x), abs(m_cand.tile_y - p.tile_y))
+                                            if getattr(m_cand, 'en_combate_con', None) in (yo, pet_eid):
+                                                cands.append((d_pm, m_cand))
+                                    if cands:
+                                        cands.sort(key=lambda x: x[0])
+                                        pet_targ = cands[0][1]
+                                        ses.pet_objetivo = pet_targ
+                            elif modo_pet == 1:  # Active (⚔️): Busca y ataca agresivamente a cualquier monstruo cercano
+                                if not pet_targ and ses.monstruos:
+                                    cands = []
+                                    m_list = list(ses.monstruos.values()) if isinstance(ses.monstruos, dict) else (ses.monstruos or [])
+                                    for m_cand in m_list:
+                                        if getattr(m_cand, 'vivo', True) and getattr(m_cand, 'hp', 0) > 0 and not getattr(m_cand, 'encantado', False):
+                                            d_pm = max(abs(m_cand.tile_x - p.tile_x), abs(m_cand.tile_y - p.tile_y))
+                                            if d_pm <= 10:
+                                                cands.append((d_pm, m_cand))
+                                    if cands:
+                                        cands.sort(key=lambda x: x[0])
+                                        pet_targ = cands[0][1]
+                                        ses.pet_objetivo = pet_targ
                             else:
-                                # 2. Monstruo libre: pasear, salvo los
-                                # estaticos. Las Lily son plantas: no se
-                                # mueven ni para pasear ni para perseguir.
-                                #
-                                # Cada bicho lleva su propio reloj en vez de
-                                # una probabilidad por tick. Con la
-                                # probabilidad se movian a tirones: un paso,
-                                # una pausa larga y otro paso. Ahora, en
-                                # cuanto termina de recorrer el tramo
-                                # anterior, sale de nuevo tras una pausa
-                                # corta, y el paseo se ve continuo.
-                                if getattr(m, 'es_estatico', False):
-                                    continue
-                                if ahora < getattr(m, 'proximo_paso', 0):
-                                    continue
-                                # El paso es de una a tres casillas por eje:
-                                # en Celestia los desplazamientos mas
-                                # repetidos son (1,2), (1,1), (1,3), (2,1) y
-                                # (3,1).
-                                _n = _cb.PASO_PASEO_MAX
-                                dx = random.randint(-_n, _n)
-                                dy = random.randint(-_n, _n)
-                                if dx == 0 and dy == 0:
-                                    dx = random.choice((-1, 1))
-                                new_x = m.tile_x + dx
-                                new_y = m.tile_y + dy
-                                _rango = max(m.move_range, _cb.RANGO_PASEO_MIN)
-                                if (abs(new_x - m.spawn_x) > _rango
-                                        or abs(new_y - m.spawn_y) > _rango):
-                                    # Se paso del radio: da media vuelta en
-                                    # vez de quedarse parado esperando.
-                                    new_x = m.spawn_x + random.randint(-_rango, _rango)
-                                    new_y = m.spawn_y + random.randint(-_rango, _rango)
-                                # Nunca fuera del mapa: con el bicho cerca
-                                # del borde, el paso al azar daba casillas
-                                # negativas y el constructor del 0x0005
-                                # reventaba con "dst_x=-32 fuera de rango",
-                                # lo que tiraba la IA entera del mapa.
-                                new_x = max(0, new_x)
-                                new_y = max(0, new_y)
-                                _pasos = max(abs(new_x - m.tile_x),
-                                             abs(new_y - m.tile_y)) or 1
-                                m.proximo_paso = (ahora
-                                                  + _pasos * _cb.SEGUNDOS_POR_CASILLA
-                                                  + random.uniform(_cb.PAUSA_PASEO_MIN,
-                                                                   _cb.PAUSA_PASEO_MAX))
-                                cur_x, cur_y = m.tile_x * 32, m.tile_y * 32
-                                m.tile_x = new_x
-                                m.tile_y = new_y
-                                m.tile[0], m.tile[1] = new_x, new_y
-                                dst_x, dst_y = new_x * 32, new_y * 32
-                                ses.enviar(MOVE.build(entity_id=m.entity_id,
-                                                      cur_x=cur_x, cur_y=cur_y,
-                                                      dst_x=dst_x, dst_y=dst_y,
-                                                      speed=m.move_speed or _cb.VELOCIDAD_PASEO))
+                                pet_targ = None
+                                ses.pet_objetivo = None
+
+                            if pet_targ and modo_pet != 2:
+                                dx_p = pet_targ.tile_x - pet_x
+                                dy_p = pet_targ.tile_y - pet_y
+                                dist_pet = max(abs(dx_p), abs(dy_p))
+                                r_pet = 2
+                                b_star = _ms.bonos_estrellas(f_pet.get('estrellas', 1))
+                                agi_total = int(f_pet.get('agilidad', 15)) + b_star.get('agilidad', 0)
+                                cadencia_pet = max(0.8, min(1.5, 1.5 - agi_total * 0.003))
+                                if dist_pet <= r_pet:
+                                    if ahora - f_pet.get('ultimo_ataque', 0) >= cadencia_pet:
+                                        f_pet['ultimo_ataque'] = ahora
+                                        pet_targ.en_combate_con = pet_eid  # El monstruo enfoca a la mascota
+                                        sks = f_pet.get('skills') or list(_ms.skills_de(f_pet.get('sprite', 3001), int(f_pet.get('nivel', 1))))
+                                        sk_cands = [s for s in sks if s and s > 0]
+                                        sk_usada = random.choice(sk_cands) if sk_cands and random.random() < 0.65 else None
+                                        base_atk_pet = int(f_pet.get('atk', 100)) + b_star.get('atk', 0)
+                                        base_matk_pet = int(f_pet.get('matk', 100)) + b_star.get('matk', 0)
+
+                                        if sk_usada:
+                                            sk_datos = _cb.datos_magia(sk_usada)
+                                            ef_pet = sk_datos.get('efecto') or 101
+                                            dano_pet = max(25, int(base_matk_pet * 2.2) - (getattr(pet_targ, 'mdef', 0) // 3))
+                                            pet_targ.hp = max(0, pet_targ.hp - dano_pet)
+                                            ses.enviar_inmediato(
+                                                _cb.numero_de_dano(pet_eid, pet_targ.entity_id, dano_pet, ataque=sk_usada, efecto=ef_pet),
+                                                _cb.cierre_de_dano(pet_eid, pet_targ.entity_id, ataque=sk_usada, efecto=ef_pet),
+                                                _cb.numero_flotante(pet_targ.entity_id, dano_pet),
+                                                _cb.atributo(pet_targ.entity_id, pet_targ.porcentaje if pet_targ.hp > 0 else 0)
+                                            )
+                                        else:
+                                            dano_pet = max(10, int(base_atk_pet * 1.2) - (getattr(pet_targ, 'defensa', 0) // 3))
+                                            pet_targ.hp = max(0, pet_targ.hp - dano_pet)
+                                            ses.enviar_inmediato(
+                                                _cb.numero_de_dano(pet_eid, pet_targ.entity_id, dano_pet, ataque=0, efecto=0),
+                                                _cb.cierre_de_dano(pet_eid, pet_targ.entity_id, ataque=0, efecto=0),
+                                                _cb.numero_flotante(pet_targ.entity_id, dano_pet),
+                                                _cb.atributo(pet_targ.entity_id, pet_targ.porcentaje if pet_targ.hp > 0 else 0)
+                                            )
+                                        if pet_targ.hp <= 0:
+                                            pet_targ.hp = 0
+                                            ses.pet_objetivo = None
+                                            _procesar_muerte_monstruo(ses, pet_targ, yo, addr, espera=0.1)
+                                            exp_pet = _cb.calcular_exp(pet_targ.npc_type, {})
+                                            _sp_antes = f_pet.get('sprite')
+                                            _sub_p = _ms.dar_exp(f_pet, exp_pet)
+                                            _r_p = f_pet.get('ranura')
+                                            if _r_p is not None:
+                                                ses.personaje.mascotas[str(_r_p)] = f_pet
+                                            ses.personaje.mascota = f_pet
+                                            cuentas.guardar_mascota(ses.usuario, ses.personaje.char_id, f_pet, getattr(ses.personaje, 'mascotas', None))
+                                            ses.enviar_inmediato(_ms.armar(f_pet))
+                                            if _sub_p > 0:
+                                                if _r_p is not None:
+                                                    ses.enviar_inmediato(*_refrescar(ses, [_r_p]))
+                                                if f_pet.get('sprite') != _sp_antes and pet_eid:
+                                                    old_eid = pet_eid
+                                                    ses.enviar_inmediato(_ms.quitar(old_eid), _ms.enlazar(yo, 0))
+                                                    pet_eid = _pet_siguiente_entidad(ses)
+                                                    f_pet['entidad'] = pet_eid
+                                                    ses.pet_entity_id = pet_eid
+                                                    _est_p = dict(f_pet)
+                                                    _est_p.update({
+                                                        'entidad': pet_eid,
+                                                        'x': f_pet.get('x', p.tile_x + 1),
+                                                        'y': f_pet.get('y', p.tile_y),
+                                                        'dueno': yo,
+                                                        'dueno_nombre': p.nombre,
+                                                        'tipo': f_pet.get('tipo', 0)
+                                                    })
+                                                    ses.enviar_inmediato(
+                                                        _ms.entidad_mundo(_pet_plantilla(), _est_p),
+                                                        _ms.enlazar(yo, pet_eid)
+                                                    )
+                                else:
+                                    if ahora >= f_pet.get('proximo_paso', 0):
+                                        stx_p = 1 if dx_p > 0 else (-1 if dx_p < 0 else 0)
+                                        sty_p = 1 if dy_p > 0 else (-1 if dy_p < 0 else 0)
+                                        cur_px, cur_py = pet_x * 32, pet_y * 32
+                                        f_pet['x'] = pet_x + stx_p
+                                        f_pet['y'] = pet_y + sty_p
+                                        ses.pet_tile = [f_pet['x'], f_pet['y']]
+                                        dst_px, dst_py = f_pet['x'] * 32, f_pet['y'] * 32
+                                        f_pet['proximo_paso'] = ahora + (32.0 / 75.0)
+                                        ses.enviar(MOVE.build(entity_id=pet_eid, cur_x=cur_px, cur_y=cur_py, dst_x=dst_px, dst_y=dst_py, speed=75))
+                            else:
+                                dp_x = p.tile_x - pet_x
+                                dp_y = p.tile_y - pet_y
+                                dist_jug = max(abs(dp_x), abs(dp_y))
+                                if dist_jug > 15:
+                                    f_pet['x'] = p.tile_x + 1
+                                    f_pet['y'] = p.tile_y
+                                    ses.pet_tile = [f_pet['x'], f_pet['y']]
+                                    cur_px, cur_py = f_pet['x'] * 32, f_pet['y'] * 32
+                                    ses.enviar(MOVE.build(entity_id=pet_eid, cur_x=cur_px, cur_y=cur_py, dst_x=cur_px, dst_y=cur_py, speed=75))
+                                elif dist_jug > 2 and ahora >= f_pet.get('proximo_paso', 0):
+                                    stx_j = 1 if dp_x > 0 else (-1 if dp_x < 0 else 0)
+                                    sty_j = 1 if dp_y > 0 else (-1 if dp_y < 0 else 0)
+                                    cur_px, cur_py = pet_x * 32, pet_y * 32
+                                    f_pet['x'] = pet_x + stx_j
+                                    f_pet['y'] = pet_y + sty_j
+                                    ses.pet_tile = [f_pet['x'], f_pet['y']]
+                                    dst_px, dst_py = f_pet['x'] * 32, f_pet['y'] * 32
+                                    f_pet['proximo_paso'] = ahora + (32.0 / 75.0)
+                                    ses.enviar(MOVE.build(entity_id=pet_eid, cur_x=cur_px, cur_y=cur_py, dst_x=dst_px, dst_y=dst_py, speed=75))
+
                         # AL FINAL DE CADA TICK, A LA RED. Sin esto el paseo
                         # se quedaba en el buffer hasta que el cliente mandaba
                         # algo, o sea que los monstruos solo se movian cuando
@@ -2816,23 +3100,48 @@ class Servidor:
                 eff_mp_max = _mana_max(p, bolsa=b)
                 p.hp = min(eff_hp_max, max(1, p.hp))
                 p.mp = min(eff_mp_max, max(0, p.mp))
+                p.exp = max(int(p.exp or 0), _cb.exp_para_nivel(p.nivel))
                 exp_actual_ui, exp_sig = _cb.exp_para_barra(p.nivel, p.exp)
+                _u64 = lambda v: max(0, min(int(v or 0), 0xFFFFFFFFFFFFFFFF))
                 yo = p.entity_id
                 salida = [
                     _cb.atributo(yo, p.hp, _cb.KIND_HP),
                     _cb.atributo(yo, p.mp, _cb.KIND_MP),
                     _cb.atributo(yo, ses.sp, _cb.KIND_SP),
                     struct.pack('<HIB', 0x001D, yo, 4) +
-                    struct.pack('<BII', 29, p.nivel, 0) +
-                    struct.pack('<BII', 30, exp_actual_ui, 0) +
-                    struct.pack('<BII', 31, exp_sig, 0) +
-                    struct.pack('<BII', 32, exp_actual_ui, 0),
+                    struct.pack('<BQ', 29, _u64(p.nivel)) +
+                    struct.pack('<BQ', 30, 0) +
+                    struct.pack('<BQ', 31, _u64(exp_sig)) +
+                    struct.pack('<BQ', 32, _u64(exp_actual_ui)),
                     inv.stats(b, p.habilidades,
                               hp=p.hp, hp_max=p.hp_max,
                               mp=p.mp, mp_max=p.mp_max,
                               oro=getattr(ses, 'oro', p.oro), sp=ses.sp, sp_max=bars, mejoras=_mejoras_de(ses)),
                     *_apariencia(ses)
                 ]
+                f_pet = getattr(p, 'mascota', None)
+                if isinstance(f_pet, dict) and f_pet.get('fuera'):
+                    import mascotas as _pet
+                    if not f_pet.get('entidad'):
+                        f_pet['entidad'] = _pet_siguiente_entidad(ses)
+                    px_pet = (p.tile_x or 80) + 1
+                    py_pet = (p.tile_y or 80)
+                    f_pet['x'] = px_pet
+                    f_pet['y'] = py_pet
+                    ses.pet_entity_id = f_pet['entidad']
+                    ses.pet_tile = [px_pet, py_pet]
+                    est_pet = dict(f_pet)
+                    est_pet.update({
+                        'x': px_pet, 'y': py_pet,
+                        'dueno': yo, 'dueno_nombre': p.nombre,
+                        'tipo': f_pet.get('tipo', 0),
+                    })
+                    salida.extend([
+                        _pet.enlazar(yo, f_pet['entidad']),
+                        _pet.armar(f_pet),
+                        _pet.entidad_mundo(_pet_plantilla(), est_pet),
+                        _pet.armar(f_pet),
+                    ])
                 ses.enviar(*salida)
                 log.info(f"[{addr}] 0x0002 mapa {p.stage} sincronizado para {p.nombre}")
             return
@@ -2953,7 +3262,9 @@ class Servidor:
                         log.info(f"[{addr}] SP insuficiente ({getattr(ses, 'sp', 0)}/{cost_sp}) para invocacion {tipo}")
                         return
                     ses.sp -= cost_sp
-                    ses.enviar(_cb.atributo(yo, ses.sp, _cb.KIND_SP))
+                    if ses.personaje:
+                        ses.personaje.sp = ses.sp
+                    ses.enviar(_cb.atributo(yo, ses.sp, _cb.KIND_SP), _stats_ses(ses))
                 _dar_sp(ses, yo, mag, addr)
 
                 cd_ms = mag.get('cd_ms', 2000)
@@ -2965,17 +3276,44 @@ class Servidor:
                 )
                 ef = _cb.efecto_de_ataque(tipo) or mag.get('efecto', 9)
 
-                # Despawnear invocacion anterior si ya tenia una
-                if getattr(ses, 'invocacion', None):
-                    old_eid = ses.invocacion['entity_id']
-                    ses.enviar(_cb.atributo(old_eid, 0, _cb.KIND_HP),
-                               _cb.despawn_monstruo(old_eid),
-                               struct.pack('<HIBBI', 0x0013, yo, 1, 0x3d, 0))
-                    ses.invocacion = None
+                # Comprobar si tiene el buff Duo Summon (5136..5140)
+                duo_summon_activo = False
+                if ses.personaje and getattr(ses.personaje, 'buffs', None):
+                    duo_summon_activo = any(5136 <= bid <= 5140 for bid in ses.personaje.buffs)
+
+                if duo_summon_activo:
+                    if getattr(ses, 'invocacion', None) and not getattr(ses, 'invocacion2', None):
+                        summon_slot = 'invocacion2'
+                        summon_eid = yo + 8001
+                    elif not getattr(ses, 'invocacion', None):
+                        summon_slot = 'invocacion'
+                        summon_eid = yo + 8000
+                    else:
+                        old_eid = ses.invocacion['entity_id']
+                        ses.enviar(_cb.atributo(old_eid, 0, _cb.KIND_HP),
+                                   _cb.despawn_monstruo(old_eid),
+                                   struct.pack('<HIBBI', 0x0013, yo, 1, 0x3d, 0))
+                        ses.invocacion = ses.invocacion2
+                        summon_slot = 'invocacion2'
+                        summon_eid = yo + 8001
+                else:
+                    if getattr(ses, 'invocacion', None):
+                        old_eid = ses.invocacion['entity_id']
+                        ses.enviar(_cb.atributo(old_eid, 0, _cb.KIND_HP),
+                                   _cb.despawn_monstruo(old_eid),
+                                   struct.pack('<HIBBI', 0x0013, yo, 1, 0x3d, 0))
+                        ses.invocacion = None
+                    if getattr(ses, 'invocacion2', None):
+                        old_eid2 = ses.invocacion2['entity_id']
+                        ses.enviar(_cb.atributo(old_eid2, 0, _cb.KIND_HP),
+                                   _cb.despawn_monstruo(old_eid2),
+                                   struct.pack('<HIBBI', 0x0013, yo, 1, 0x3d, 0))
+                        ses.invocacion2 = None
+                    summon_slot = 'invocacion'
+                    summon_eid = yo + 8000
 
                 npc_t = mag.get('invoca_npc')
                 info_inv = _cb.datos_invocacion(npc_t)
-                summon_eid = yo + 8000
 
                 # Coordenadas donde se invoca: si el cliente mando tx, ty validas cerca, usarlas; sino al lado del personaje
                 if tx > 0 and ty > 0 and ses.personaje and max(abs(tx - ses.personaje.tile_x), abs(ty - ses.personaje.tile_y)) <= 14:
@@ -2985,7 +3323,7 @@ class Servidor:
                     sty = ses.personaje.tile_y if ses.personaje else ty
 
                 dur_s = mag.get('dur_invoca', 3600)
-                ses.invocacion = {
+                setattr(ses, summon_slot, {
                     'entity_id': summon_eid,
                     'npc_type': npc_t,
                     'nombre': info_inv['nombre'],
@@ -3010,7 +3348,7 @@ class Servidor:
                     'objetivo': None,
                     'ultimo_ataque': 0.0,
                     'proximo_paso': 0.0,
-                }
+                })
 
                 import login as _lg
                 spawn_pkg = _lg.spawn_invocacion(summon_eid, npc_t, info_inv['nombre'], (stx, sty), sprite=info_inv['sprite'])
@@ -3070,7 +3408,9 @@ class Servidor:
                         log.info(f"[{addr}] SP insuficiente ({getattr(ses, 'sp', 0)}/{cost_sp}) para AOE {tipo}")
                         return
                     ses.sp -= cost_sp
-                    ses.enviar(_cb.atributo(yo, ses.sp, _cb.KIND_SP))
+                    if ses.personaje:
+                        ses.personaje.sp = ses.sp
+                    ses.enviar(_cb.atributo(yo, ses.sp, _cb.KIND_SP), _stats_ses(ses))
                 _dar_sp(ses, yo, mag, addr)
 
                 mp_coste = mag.get('mp', 0)
@@ -3195,6 +3535,15 @@ class Servidor:
                                 if b.en_combate_con != yo:
                                     b.en_combate_con = yo
 
+                    # Dimension Shift (13595..13599): Teletransportacion instantanea y quakes
+                    if 13595 <= tipo <= 13599 and tx > 0 and ty > 0 and ses.personaje:
+                        ses.personaje.tile_x, ses.personaje.tile_y = tx, ty
+                        MOVE_P = Msg.registry[(0x0005, 's2c', '*')]
+                        ses.enviar_inmediato(
+                            MOVE_P.build(entity_id=yo, cur_x=tx * 32, cur_y=ty * 32, dst_x=tx * 32, dst_y=ty * 32, speed=1000),
+                            struct.pack('<HIBBII', 0x001D, yo, 1, 4, 519, 0)
+                        )
+
                     ses.enviar_inmediato(*_otorgar_skill_exp(ses, ses.personaje, yo, magic_id=tipo))
 
                     if getattr(ses, 'usuario', None):
@@ -3267,7 +3616,9 @@ class Servidor:
                             log.info(f"[{addr}] SP insuficiente ({getattr(ses, 'sp', 0)}/{cost_sp}) para habilidad {tipo}")
                             return
                         ses.sp -= cost_sp
-                        ses.enviar(_cb.atributo(yo, ses.sp, _cb.KIND_SP))
+                        if ses.personaje:
+                            ses.personaje.sp = ses.sp
+                        ses.enviar(_cb.atributo(yo, ses.sp, _cb.KIND_SP), _stats_ses(ses))
                     _dar_sp(ses, yo, mag, addr)
 
                     mp_coste = mag.get('mp', 0)
@@ -3389,6 +3740,7 @@ class Servidor:
                         if mag.get('es_transformacion') and tipo in getattr(ses.personaje, 'buffs', {}):
                             ses.personaje.buffs.pop(tipo, None)
                             ses.enviar(
+                                _cb.efecto_magia_self_fin(yo, ef, tipo),
                                 struct.pack('<HIBBII', 0x001D, yo, 1, 4, tipo, 0),
                                 _cb.atributo(yo, 0, _cb.KIND_TRANSFORM),
                                 _stats_ses(ses)
@@ -3401,19 +3753,22 @@ class Servidor:
                             for prev_bid, prev_bdata in list(ses.personaje.buffs.items()):
                                 if prev_bdata.get('es_transform'):
                                     ses.personaje.buffs.pop(prev_bid, None)
-                                    ses.enviar(struct.pack('<HIBBII', 0x001D, yo, 1, 4, prev_bid, 0),
-                                               _cb.atributo(yo, 0, _cb.KIND_TRANSFORM))
+                                    prev_ef = prev_bdata.get('efecto') or prev_bdata.get('mag', {}).get('efecto', ef)
+                                    ses.enviar(
+                                        _cb.efecto_magia_self_fin(yo, prev_ef, prev_bid),
+                                        struct.pack('<HIBBII', 0x001D, yo, 1, 4, prev_bid, 0),
+                                        _cb.atributo(yo, 0, _cb.KIND_TRANSFORM)
+                                    )
 
                         # Registrar buff en el personaje (duracion, bono de critico, % mitigacion de dano, stats de transformacion)
                         if ses.personaje:
                             if not hasattr(ses.personaje, 'buffs') or ses.personaje.buffs is None:
                                 ses.personaje.buffs = {}
                             buff_dur_s = (dur_ms / 1000.0) if dur_ms > 0 else 300.0
-                            buff_entry = {
-                                'fin': time.time() + buff_dur_s,
-                                'mag': mag,
-                                'es_transform': mag.get('es_transformacion', False)
-                            }
+                            buff_entry = dict(mag)
+                            buff_entry['fin'] = time.time() + buff_dur_s
+                            buff_entry['mag'] = mag
+                            buff_entry['es_transform'] = mag.get('es_transformacion', False)
                             if mag.get('crit_rate'):
                                 buff_entry['crit'] = mag.get('crit_rate')
                             if mag.get('phys_mit'):
@@ -3428,10 +3783,6 @@ class Servidor:
                                 buff_entry['matk'] = mag.get('matk_bonus')
                             if mag.get('mdef_bonus'):
                                 buff_entry['mdef'] = mag.get('mdef_bonus')
-                            # % de dano de salida. Se leia de magic.xml -- el
-                            # 魔法傷害 y el 物理傷害 -- pero no lo usaba nadie:
-                            # un Soul Corral IV, que pone "Increase 10% spell
-                            # damage", no cambiaba el golpe ni un punto.
                             if mag.get('mag_dmg_pct'):
                                 buff_entry['mag_dmg_pct'] = mag.get('mag_dmg_pct')
                             if mag.get('phys_dmg_pct'):
@@ -3458,11 +3809,15 @@ class Servidor:
 
                             if dur_ms > 0:
                                 pkgs_buff.append(struct.pack('<HIBBII', 0x001D, yo, 1, 4, tipo, dur_ms))
-                                if mag.get('es_transformacion') and mag.get('trans_sprite'):
-                                    pkgs_buff.extend((
-                                        _cb.atributo(yo, mag['trans_sprite'],
-                                                     _cb.KIND_TRANSFORM),
-                                        _stats_ses(ses)))
+                                if mag.get('es_transformacion'):
+                                    ses.personaje.hp = _vida_max(ses.personaje, ses.inventario)
+                                    pkgs_buff.append(_cb.atributo(yo, ses.personaje.hp, _cb.KIND_HP))
+                                    pkgs_buff.append(_cb.atributo(yo, ses.personaje.mp, _cb.KIND_MP))
+                                    if mag.get('trans_sprite'):
+                                        pkgs_buff.extend((
+                                            _cb.atributo(yo, mag['trans_sprite'],
+                                                         _cb.KIND_TRANSFORM),
+                                            _stats_ses(ses)))
 
                                 def _expirar_buff(sk_id=tipo,
                                                   fin=buff_entry['fin']):
@@ -3471,9 +3826,14 @@ class Servidor:
                                     if not actual or actual.get('fin') != fin:
                                         return
                                     buffs_activos.pop(sk_id, None)
+                                    ses.personaje.hp = min(ses.personaje.hp, _vida_max(ses.personaje, ses.inventario))
+                                    ses.personaje.mp = min(ses.personaje.mp, _mana_max(ses.personaje, ses.inventario))
                                     pkgs_expirar = [
                                         struct.pack('<HIBBII', 0x001D, yo, 1, 4,
-                                                    sk_id, 0)]
+                                                    sk_id, 0),
+                                        _cb.atributo(yo, ses.personaje.hp, _cb.KIND_HP),
+                                        _cb.atributo(yo, ses.personaje.mp, _cb.KIND_MP)
+                                    ]
                                     if actual.get('es_transform'):
                                         pkgs_expirar.append(
                                             _cb.atributo(yo, 0,
@@ -3588,7 +3948,9 @@ class Servidor:
                         log.info(f"[{addr}] SP insuficiente ({getattr(ses, 'sp', 0)}/{cost_sp}) para panico {tipo}")
                         return
                     ses.sp -= cost_sp
-                    ses.enviar(_cb.atributo(yo, ses.sp, _cb.KIND_SP))
+                    if ses.personaje:
+                        ses.personaje.sp = ses.sp
+                    ses.enviar(_cb.atributo(yo, ses.sp, _cb.KIND_SP), _stats_ses(ses))
                 _dar_sp(ses, yo, mag, addr)
 
                 mp_coste = mag.get('mp', 0)
@@ -3659,7 +4021,9 @@ class Servidor:
                         log.info(f"[{addr}] SP insuficiente ({getattr(ses, 'sp', 0)}/{cost_sp}) para maldicion {tipo}")
                         return
                     ses.sp -= cost_sp
-                    ses.enviar(_cb.atributo(yo, ses.sp, _cb.KIND_SP))
+                    if ses.personaje:
+                        ses.personaje.sp = ses.sp
+                    ses.enviar(_cb.atributo(yo, ses.sp, _cb.KIND_SP), _stats_ses(ses))
                 _dar_sp(ses, yo, mag, addr)
 
                 mp_coste = mag.get('mp', 0)
@@ -3753,7 +4117,9 @@ class Servidor:
                         log.info(f"[{addr}] SP insuficiente ({getattr(ses, 'sp', 0)}/{cost_sp}) para habilidad {tipo}")
                         return
                     ses.sp -= cost_sp
-                    ses.enviar(_cb.atributo(yo, ses.sp, _cb.KIND_SP))
+                    if ses.personaje:
+                        ses.personaje.sp = ses.sp
+                    ses.enviar(_cb.atributo(yo, ses.sp, _cb.KIND_SP), _stats_ses(ses))
                 _dar_sp(ses, yo, mag, addr)
 
                 mp_coste = mag.get('mp', 0)
@@ -4225,6 +4591,63 @@ class Servidor:
                     _cb2.atributo(inv['entity_id'], 100, _cb2.KIND_HP),
                     struct.pack('<HIBBI', 0x0013, inv['entity_id'], 1, 0x3c, p.entity_id)
                 )
+
+            # Re-spawn de la mascota activa al cambiar de mapa
+            f_pet = getattr(p, 'mascota', None)
+            if isinstance(f_pet, dict) and f_pet.get('fuera'):
+                import mascotas as _pet
+                if not f_pet.get('entidad'):
+                    f_pet['entidad'] = _pet_siguiente_entidad(ses)
+                px_pet = (p.tile_x or 80) + 1
+                py_pet = (p.tile_y or 80)
+                f_pet['x'] = px_pet
+                f_pet['y'] = py_pet
+                ses.pet_entity_id = f_pet['entidad']
+                ses.pet_tile = [px_pet, py_pet]
+                est_pet = dict(f_pet)
+                est_pet.update({
+                    'x': px_pet, 'y': py_pet,
+                    'dueno': p.entity_id, 'dueno_nombre': p.nombre,
+                    'tipo': f_pet.get('tipo', 0),
+                })
+                ses.enviar(
+                    _pet.enlazar(p.entity_id, f_pet['entidad']),
+                    _pet.armar(f_pet),
+                    _pet.entidad_mundo(_pet_plantilla(), est_pet),
+                    _pet.armar(f_pet),
+                    _cb2.atributo(f_pet['entidad'], max(1, int(f_pet.get('hp') or f_pet.get('hp_max') or 1)), _cb2.KIND_HP)
+                )
+
+            # Restauracion de buffs activos tras cambio de mapa
+            now_t = time.time()
+            if getattr(p, 'buffs', None):
+                for b_id, b_data in list(p.buffs.items()):
+                    if isinstance(b_data, dict):
+                        rem_s = b_data.get('fin', 0) - now_t
+                        if rem_s > 0:
+                            rem_ms = int(rem_s * 1000)
+                            pkgs_rest = [struct.pack('<HIBBII', 0x001D, p.entity_id, 1, 4, int(b_id), rem_ms)]
+                            if b_data.get('es_transform') and b_data.get('mag', {}).get('trans_sprite'):
+                                pkgs_rest.append(_cb2.atributo(p.entity_id, b_data['mag']['trans_sprite'], _cb2.KIND_TRANSFORM))
+                            ses.enviar(*pkgs_rest)
+                            def _expirar_restaurado(sk_id=int(b_id), fin=b_data['fin']):
+                                buffs_act = getattr(p, 'buffs', None)
+                                act = buffs_act.get(sk_id) if buffs_act else None
+                                if not act or act.get('fin') != fin:
+                                    return
+                                buffs_act.pop(sk_id, None)
+                                pks = [struct.pack('<HIBBII', 0x001D, p.entity_id, 1, 4, sk_id, 0)]
+                                if act.get('es_transform'):
+                                    pks.append(_cb2.atributo(p.entity_id, 0, _cb2.KIND_TRANSFORM))
+                                pks.append(_stats_ses(ses))
+                                ses.enviar_inmediato(*pks)
+                            asyncio.get_event_loop().call_later(rem_s, _expirar_restaurado)
+                        else:
+                            p.buffs.pop(b_id, None)
+
+            ses.portal_pisado = None
+            ses.mapa_cambiado_en = time.time()
+
             log.info(f"[{addr}] mapa cargado exitosamente: stage {p.stage} "
                      f"tile ({p.tile_x},{p.tile_y})")
             return
@@ -4330,7 +4753,7 @@ class Servidor:
                          f"{ranura} por {ganancia} de oro")
             if not oro_ganado:
                 return
-            ses.oro = getattr(ses, 'oro', 0) + oro_ganado
+            ses.oro = min(2000000000, getattr(ses, 'oro', 0) + oro_ganado)
             ses.personaje.oro = ses.oro
             ses.enviar(*_refrescar(ses, tocadas, con_oro=True),
                        _c.aviso(f"{oro_ganado} Gold", tipo=0, msg_id=_c.MSG_ITEM))
@@ -4760,13 +5183,21 @@ class Servidor:
                 _mover_inst(ses, org, 0xFFFF)
                 _mover_inst(ses, dst, org)
                 _mover_inst(ses, 0xFFFF, dst)
+                _masc_p = getattr(ses.personaje, 'mascota', None) if ses.personaje else None
+                if isinstance(_masc_p, dict):
+                    if _masc_p.get('ranura') == org:
+                        _masc_p['ranura'] = dst
+                        _masc_p['instancia'] = 1000 + int(dst)
+                    elif _masc_p.get('ranura') == dst:
+                        _masc_p['ranura'] = org
+                        _masc_p['instancia'] = 1000 + int(org)
                 # Las dos casillas en UN solo mensaje, con el estado de
                 # puesto de cada una, que es lo que hace el servidor real.
                 salida = [inv.acuse_movimiento(org),
                           inv.actualizar_ranuras(cid, [
                     (dst, it_org, _c_org, _inst(ses, dst)),
                     (org, it_dst, _c_dst, _inst(ses, org)),
-                ], _dueno(ses))]
+                ], _dueno(ses), mascota=_masc_p)]
                 if inv.es_equipo(org) or inv.es_equipo(dst):
                     if ses.personaje:
                         import combate as _cb
@@ -4782,14 +5213,21 @@ class Servidor:
                     salida.extend(_apariencia(ses))
                 ses.enviar(*salida)
                 if ses.personaje and getattr(ses, 'usuario', None):
-                    cuentas.guardar_inventario(ses.usuario, ses.personaje.char_id, bolsa,
-                                   _cantidades(ses))
+                    _guardar_bolsa(ses, ses.personaje.char_id)
                 log.info(f"[{addr}] swap ranuras {org} ({it_org}) <-> {dst} ({it_dst})")
                 return
 
             it = bolsa.pop(org)
             bolsa[dst] = it
+            _c_org = _cantidades(ses).pop(org, 1)
+            _cantidades(ses)[dst] = _c_org
             _mover_inst(ses, org, dst)
+            _masc_p = getattr(ses.personaje, 'mascota', None) if ses.personaje else None
+            if isinstance(_masc_p, dict) and _masc_p.get('ranura') == org:
+                _masc_p['ranura'] = dst
+                _masc_p['instancia'] = 1000 + int(dst)
+            if getattr(ses.personaje, 'mascotas', None) and str(org) in ses.personaje.mascotas:
+                ses.personaje.mascotas[str(dst)] = ses.personaje.mascotas.pop(str(org))
             salida = [inv.acuse_movimiento(org)]
             salida.extend(_refrescar(ses, [org, dst]))
             if inv.es_equipo(org) or inv.es_equipo(dst):
@@ -4820,8 +5258,7 @@ class Servidor:
                     ses.pet_entity_id = None
             ses.enviar(*salida)
             if ses.personaje and getattr(ses, 'usuario', None):
-                cuentas.guardar_inventario(ses.usuario, ses.personaje.char_id, bolsa,
-                                   _cantidades(ses))
+                _guardar_bolsa(ses, ses.personaje.char_id)
             log.info(f"[{addr}] item {it}: ranura {org} -> {dst}"
                      + ("  (cambia el equipo)"
                         if inv.es_equipo(org) or inv.es_equipo(dst) else ""))
@@ -4897,9 +5334,19 @@ class Servidor:
         # modo dentro. Se vieron los modos 0, 1, 2 y 4.
         if opcode == 0x015E and ses.rol == 'mundo' and ses.personaje:
             import mascotas as _ms
+            import inventario as _iv
+            import mejoras as _mj
             ficha = getattr(ses.personaje, 'mascota', None)
+            if not ficha and getattr(ses, 'inventario', None):
+                for r, iid in ses.inventario.items():
+                    if _iv.es_mascota(iid):
+                        ficha = _pet_ficha(ses, r)
+                        break
             if ficha:
-                ses.enviar(_ms.armar(ficha))
+                r = ficha.get('ranura')
+                veces = (ses.personaje.mejoras.get(r) or {}).get('veces', 0) if getattr(ses.personaje, 'mejoras', None) and r is not None else 0
+                f_env = _ms.aplicar_mejoras(ficha, _mj.stats_de_mejora(ficha.get('item', 0), 'mascota', veces)) if veces > 0 else ficha
+                ses.enviar(_ms.armar(f_env))
                 log.info('[%s] ficha de la mascota %s' % (addr, ficha.get('nombre')))
             return
 
@@ -4924,6 +5371,7 @@ class Servidor:
                          % (addr, _ms.opcion_de(modo), _suma, _total))
                 return
             ses.personaje.mascota_orden = modo
+            ses.pet_objetivo = None
             ses.enviar(_ms.paquete_orden(ses.personaje.entity_id, modo))
             log.info('[%s] orden a la mascota: %d' % (addr, modo))
             return
@@ -4942,6 +5390,10 @@ class Servidor:
                 r = ficha.get('ranura')
                 if r is not None:
                     ses.enviar(*_refrescar(ses, [r]))
+                ses.enviar(_ms.armar(ficha))
+                if getattr(ses, 'pet_entity_id', None) and ficha.get('fuera'):
+                    ses.enviar(_ms.entidad_mundo(_pet_plantilla(), ficha))
+                _guardar_bolsa(ses, ses.personaje.char_id)
                 log.info('[%s] mascota renombrada a %s' % (addr, nom))
             return
 
@@ -4996,6 +5448,89 @@ class Servidor:
             # SP=2000 -- las "2 SP lamps" de su descripcion, porque una
             # lampara son 1000 puntos. No se detectaba de ninguna forma, asi
             # que el objeto ni se gastaba ni hacia nada.
+            # Caso 0: CERTIFICADOS DE SANGRE / PET EVOLUTION CERTIFICATES (Medium & Advanced)
+            _cert_etapa = inv.es_certificado_sangre(item_id)
+            if _cert_etapa and ses.personaje:
+                import mascotas as _mscert
+                import clases as _clcert
+                _f_pet = getattr(ses.personaje, 'mascota', None)
+                if not _f_pet:
+                    ses.enviar(_clcert.aviso('You do not have an active pet to evolve.', tipo=0))
+                    return
+
+                _ok_evo, _msg_evo = _mscert.aplicar_certificado(_f_pet, _cert_etapa)
+                if not _ok_evo:
+                    ses.enviar(_clcert.aviso(_msg_evo, tipo=0))
+                    return
+
+                # Consumir 1 certificado
+                _queda = ses.cantidades.get(ranura, 1) - 1
+                if _queda > 0:
+                    ses.cantidades[ranura] = _queda
+                else:
+                    ses.inventario.pop(ranura, None)
+                    ses.cantidades.pop(ranura, None)
+
+                _guardar_bolsa(ses, cid)
+
+                salida_cert = list(_refrescar(ses, [ranura, _f_pet.get('ranura')]))
+                salida_cert.append(_mscert.armar(_f_pet))
+                salida_cert.append(_clcert.aviso(_msg_evo, tipo=0, msg_id=_clcert.MSG_ITEM))
+
+                pet_eid = getattr(ses, 'pet_entity_id', None)
+                if pet_eid and _f_pet.get('fuera'):
+                    yo = ses.personaje.entity_id
+                    salida_cert.extend([
+                        _mscert.quitar(pet_eid),
+                        _mscert.enlazar(yo, 0)
+                    ])
+                    new_eid = _pet_siguiente_entidad(ses)
+                    _f_pet['entidad'] = new_eid
+                    ses.pet_entity_id = new_eid
+                    _est = dict(_f_pet)
+                    _ptile = getattr(ses, 'pet_tile', [ses.personaje.tile_x, ses.personaje.tile_y])
+                    _est.update({
+                        'entidad': new_eid,
+                        'x': _ptile[0],
+                        'y': _ptile[1],
+                        'dueno': yo,
+                        'dueno_nombre': ses.personaje.nombre,
+                        'tipo': _f_pet.get('tipo', 0)
+                    })
+                    salida_cert.extend([
+                        _mscert.entidad_mundo(_pet_plantilla(), _est),
+                        _mscert.enlazar(yo, new_eid)
+                    ])
+
+                ses.enviar(*salida_cert)
+                log.info(f"[{addr}] mascota evoluciono con certificado etapa {_cert_etapa}: {_f_pet.get('nombre')}")
+                return
+
+            _nom_item_l = (_nombre_item(item_id) or '').lower()
+            if ('star-up' in _nom_item_l or 'star up' in _nom_item_l or item_id in (5902, 5903, 3379)) and ses.personaje:
+                import clases as _clst
+                import mascotas as _msst
+                _f = getattr(ses.personaje, 'mascota', None)
+                if not _f:
+                    ses.enviar(_clst.aviso('You do not have an active pet.', tipo=0))
+                    return
+                _st_sub = 10 if ('card' in _nom_item_l or item_id in (5902, 5903)) else 1
+                _nueva_st = _msst.subir_estrella(_f, _st_sub)
+                _queda = ses.cantidades.get(ranura, 1) - 1
+                if _queda > 0:
+                    ses.cantidades[ranura] = _queda
+                else:
+                    ses.inventario.pop(ranura, None)
+                    ses.cantidades.pop(ranura, None)
+                _r_pet = _f.get('ranura')
+                salida_st = list(_refrescar(ses, [ranura] + ([_r_pet] if _r_pet is not None else [])))
+                salida_st.append(_msst.armar(_f))
+                salida_st.append(_clst.aviso(f"Pet star level upgraded! ({_nueva_st / 10.0:.1f} Stars)", tipo=0, msg_id=_clst.MSG_ITEM))
+                ses.enviar(*salida_st)
+                _guardar_bolsa(ses, cid)
+                log.info(f"[{addr}] estrella de mascota {_f.get('nombre')} subio a {_nueva_st} (Star Level {_nueva_st/10.0:.1f})")
+                return
+
             _sp_item = inv.sp_de_item(item_id)
             if _sp_item > 0 and ses.personaje:
                 import combate as _cbsp
@@ -5026,7 +5561,6 @@ class Servidor:
                             _antes, ses.sp))
                 return
 
-
             # Caso 0: CONSUMIBLE DE MASCOTA (使用目標="目標寵物").
             #
             # El propio item dice que va a la mascota, asi que no hay lista
@@ -5056,8 +5590,13 @@ class Servidor:
                 else:
                     ses.inventario.pop(ranura, None)
                     ses.cantidades.pop(ranura, None)
-                ses.enviar(_msp.armar(_f))
-                ses.enviar(*_refrescar(ses, [ranura]))
+                _r_pet = _f.get('ranura')
+                salida_pet = list(_refrescar(ses, [ranura] + ([_r_pet] if _r_pet is not None else [])))
+                salida_pet.append(_msp.armar(_f))
+                pet_eid = getattr(ses, 'pet_entity_id', None)
+                if pet_eid and _f.get('fuera') and _f.get('saciedad', 0) > 100:
+                    salida_pet.append(struct.pack('<HIBBII', 0x001D, pet_eid, 1, 4, 3796, 3436877059))
+                ses.enviar(*salida_pet)
                 _guardar_bolsa(ses, cid)
                 log.info('[%s] a la mascota %s: %s'
                          % (addr, _f.get('nombre'), _txt))
@@ -5377,12 +5916,12 @@ class Servidor:
                     curado = ef_con['hp']
                     ses.personaje.hp = min(_vida_max(ses.personaje, bolsa=bolsa_p), ses.personaje.hp + curado)
                     salida.append(_cb.atributo(yo, ses.personaje.hp, _cb.KIND_HP))
-                    salida.extend(_cb.efecto_curacion(yo, yo, curado, efecto=165))
+                    salida.append(_cb.numero_flotante(yo, curado, tipo=_cb.TIPO_CURA_HP))
                 if 'mp' in ef_con:
                     rec_mp = ef_con['mp']
                     ses.personaje.mp = min(_mana_max(ses.personaje, bolsa=bolsa_p), ses.personaje.mp + rec_mp)
                     salida.append(_cb.atributo(yo, ses.personaje.mp, _cb.KIND_MP))
-                    salida.extend(_cb.efecto_recuperacion_mp(yo, yo, rec_mp, efecto=69))
+                    salida.append(_cb.numero_flotante(yo, rec_mp, tipo=_cb.TIPO_CURA_MP))
                 salida.extend(_refrescar(ses, [ranura]))
                 # Y los stats, que es lo que refresca las barras del panel.
                 salida.append(_stats_ses(ses))
@@ -5422,22 +5961,23 @@ class Servidor:
                     return
                 _sacar(ses, ranura, 1)
                 p.nivel = target_lv
-                p.exp = 0
+                p.exp = _cb.exp_para_nivel(p.nivel)
                 p.hp_max = max(p.hp_max, 500 + p.nivel * 25)
                 p.mp_max = max(p.mp_max, 300 + p.nivel * 15)
                 p.hp = _vida_max(p)
                 p.mp = _mana_max(p)
                 exp_actual_ui, exp_sig = _cb.exp_para_barra(p.nivel, p.exp)
+                _u64 = lambda v: max(0, min(int(v or 0), 0xFFFFFFFFFFFFFFFF))
 
                 salida = [
                     _cl.aviso(f"Level Up! Advanced to Level {p.nivel}!", tipo=0, msg_id=_cl.MSG_ITEM),
                     _cb.atributo(yo, p.hp, _cb.KIND_HP),
                     _cb.atributo(yo, p.mp, _cb.KIND_MP),
                     struct.pack('<HIB', 0x001D, yo, 4) +
-                    struct.pack('<BII', 29, p.nivel, 0) +
-                    struct.pack('<BII', 30, exp_actual_ui, 0) +
-                    struct.pack('<BII', 31, exp_sig, 0) +
-                    struct.pack('<BII', 32, exp_actual_ui, 0),
+                    struct.pack('<BQ', 29, _u64(p.nivel)) +
+                    struct.pack('<BQ', 30, 0) +
+                    struct.pack('<BQ', 31, _u64(exp_sig)) +
+                    struct.pack('<BQ', 32, _u64(exp_actual_ui)),
                     _cb.efecto_level_up(yo, es_skill=False),
                     *_refrescar(ses, [ranura]),
                     _stats_ses(ses)
@@ -5705,6 +6245,40 @@ class Servidor:
                     ses.enviar(dialogos.linea_de(g2, 0, nom2))
                     log.info(f"[{addr}] dialogo de {_nombre_entidad(ses, ent)} (val={ses.dlg_val})")
                     return
+                if ses.personaje:
+                    stg = str(ses.personaje.stage)
+                    cfg_p = _portales()
+                    portal_match = None
+                    for por in cfg_p.get('mapas', {}).get(stg, []):
+                        if por.get('entity') == ent:
+                            portal_match = por
+                            break
+                    if not portal_match:
+                        for s_k, plist in cfg_p.get('mapas', {}).items():
+                            for por in plist:
+                                if por.get('entity') == ent:
+                                    portal_match = por
+                                    break
+                            if portal_match:
+                                break
+                    if portal_match:
+                        if portal_match.get('preguntar'):
+                            import dialogos as _dlg
+                            _ops = portal_match.get('opciones') or cfg_p['opciones']
+                            sub = _dlg.armar_linea(portal_match.get('msg') or cfg_p['msg'], 0, _ops,
+                                                   acciones=portal_match.get('acciones'))
+                            ses.dlg_ent = ent
+                            ses.dlg_guion = [sub[2:]]
+                            ses.dlg_paso = 1
+                            ses.dlg_val = 0
+                            ses.dlg_portal = portal_match
+                            ses.enviar(sub)
+                            log.info(f"[{addr}] clic en tornado {ent}: abriendo menu de portal")
+                            return
+                        else:
+                            _viajar_por_portal(ses, addr, portal_match, f"(clic en tornado {ent})")
+                            return
+
                 log.debug(f"[{addr}] clic en la entidad {ent}: sin dialogo")
                 return
             # En Guide Palace (stage 51):
