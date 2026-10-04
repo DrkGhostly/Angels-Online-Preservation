@@ -2082,7 +2082,7 @@ OBJETIVO_MASCOTA = '\u76ee\u6a19\u5bf5\u7269'
 
 
 def uso_en_mascota(item_id: int):
-    """{'saciedad': N} o {'buff': id, 'segundos': N, 'exp_pct': N}, o None."""
+    """{'saciedad': N}, {'exp': N} o {'buff': id, 'segundos': N, 'exp_pct': N}, o None."""
     if es_certificado_sangre(item_id):
         return None
     try:
@@ -2091,19 +2091,25 @@ def uso_en_mascota(item_id: int):
         if not db.exists():
             return None
         con = sqlite3.connect(db)
-        fila = fila_item(con, '"使用目標", "動態資料1", "常駐法術"', item_id)
+        fila = fila_item(con, '"使用目標", "動態資料1", "常駐法術", "基本名稱"', item_id)
         if not fila or str(fila[0] or '') != OBJETIVO_MASCOTA:
             return None
         hechizo = str(fila[2] or '')
         if hechizo.isdigit() and int(hechizo):
             r = con.execute('select 持續時間,經驗加倍 from magic where id=?',
                             (hechizo,)).fetchone()
-            seg = int(r[0]) if r and str(r[0] or '').isdigit() else 0
-            pct = int(r[1]) if r and str(r[1] or '').isdigit() else 0
-            return {'buff': int(hechizo), 'segundos': seg, 'exp_pct': pct}
+            seg = int(r[0]) if r and str(r[0] or '').lstrip('-').isdigit() else 0
+            pct = int(r[1]) if r and str(r[1] or '').lstrip('-').isdigit() else 0
+            if int(hechizo) == 3796:
+                return {'saciedad': 500}
+            return {'buff': int(hechizo), 'segundos': max(0, seg), 'exp_pct': max(0, pct)}
         d1 = str(fila[1] or '')
+        nom = str(fila[3] or '').lower()
         if d1.isdigit() and int(d1):
-            return {'saciedad': int(d1)}
+            val_d1 = int(d1)
+            if 'exp' in nom or 'diamond' in nom or 'stone' in nom or val_d1 > 1000:
+                return {'exp': val_d1}
+            return {'saciedad': val_d1}
     except Exception:
         pass
     return None

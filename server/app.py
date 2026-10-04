@@ -977,10 +977,10 @@ def _pet_alternar(ses, addr, ranura):
         *_refrescar(ses, [ranura]),
         _ms.entidad_mundo(_pet_plantilla(), est),
         _ms.armar(f),
-        _cb.atributo(f['entidad'], max(1, int(f.get('hp') or f.get('hp_max') or 1)), _cb.KIND_HP)
+        _cb.atributo(f['entidad'], _ms.hp_eff(f), _cb.KIND_HP)
     ]
-    if f.get('saciedad', 0) > 100:
-        pkgs_spawn.append(_st.pack('<HIBBII', 0x001D, f['entidad'], 1, 4, 3796, 3436877059))
+    if int(f.get('saciedad', 0)) > 100:
+        pkgs_spawn.append(_st.pack('<HIBBII', 0x001D, f['entidad'], 1, 4, 3796, max(60000, (int(f['saciedad']) - 100) * 60000)))
     ses.enviar(*pkgs_spawn)
     _guardar_bolsa(ses, p.char_id)
     log.info('[%s] mascota fuera: %s (entidad %d en %d,%d)'
@@ -1130,9 +1130,20 @@ def _usar_mejora(ses, addr, ranura, objetivo) -> bool:
     # Solo mandar 0x0065 si la mascota mejorada esta invocada en el mundo
     if _iv.es_mascota(pieza):
         import mascotas as _ms_app
+        import combate as _cb_app
+        import struct as _st_app
         f_pet = _pet_ficha(ses, objetivo)
-        if f_pet and f_pet.get('fuera') and f_pet.get('entidad'):
-            salida.append(_ms_app.armar(f_pet))
+        if f_pet:
+            if getattr(p, 'mascotas', None) is not None:
+                p.mascotas[str(objetivo)] = f_pet
+            if f_pet.get('fuera') and f_pet.get('entidad'):
+                pet_eid_m = int(f_pet['entidad'])
+                salida.append(_ms_app.armar(f_pet))
+                salida.append(_cb_app.atributo(pet_eid_m, _ms_app.hp_eff(f_pet), _cb_app.KIND_HP))
+                if int(f_pet.get('saciedad', 0)) > 100:
+                    salida.append(_st_app.pack('<HIBBII', 0x001D, pet_eid_m, 1, 4, 3796, max(60000, (int(f_pet['saciedad']) - 100) * 60000)))
+            if getattr(ses, 'usuario', None):
+                cuentas.guardar_mascota(ses.usuario, p.char_id, f_pet, getattr(p, 'mascotas', None))
 
     ses.enviar(*salida)
     _guardar_bolsa(ses, p.char_id)
@@ -1426,18 +1437,43 @@ def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
             import mascotas as _ms
             _sp_antes = f_pet.get('sprite')
             _sub_p = _ms.dar_exp(f_pet, exp_ganada)
+            _r_pet = f_pet.get('ranura')
+            if _r_pet is not None and getattr(p, 'mascotas', None) is not None:
+                p.mascotas[str(_r_pet)] = f_pet
+            if getattr(ses, 'usuario', None):
+                cuentas.guardar_mascota(ses.usuario, p.char_id, f_pet, getattr(p, 'mascotas', None))
             salida_combate.append(_ms.armar(f_pet))
             if _sub_p > 0:
-                _r_pet = f_pet.get('ranura')
                 if _r_pet is not None:
                     salida_combate.extend(_refrescar(ses, [_r_pet]))
-                pet_eid = getattr(ses, 'pet_entity_id', None)
+                pet_eid = getattr(ses, 'pet_entity_id', None) or f_pet.get('entidad')
                 if pet_eid and f_pet.get('sprite') != _sp_antes:
+                    old_eid = int(pet_eid)
                     salida_combate.extend([
-                        _ms.quitar(pet_eid),
-                        _ms.entidad_mundo(_pet_plantilla(), f_pet),
-                        _ms.enlazar(yo, pet_eid)
+                        _ms.quitar(old_eid),
+                        _ms.enlazar(yo, 0),
                     ])
+                    pet_eid = _pet_siguiente_entidad(ses)
+                    f_pet['entidad'] = pet_eid
+                    ses.pet_entity_id = pet_eid
+                    _est_p = dict(f_pet)
+                    _est_p.update({
+                        'entidad': pet_eid,
+                        'x': f_pet.get('x', p.tile_x + 1),
+                        'y': f_pet.get('y', p.tile_y),
+                        'dueno': yo,
+                        'dueno_nombre': p.nombre,
+                        'tipo': f_pet.get('tipo', 0),
+                    })
+                    salida_combate.extend([
+                        _ms.entidad_mundo(_pet_plantilla(), _est_p),
+                        _ms.enlazar(yo, pet_eid),
+                        _ms.armar(f_pet),
+                    ])
+                if pet_eid:
+                    salida_combate.append(_cb.atributo(int(pet_eid), _ms.hp_eff(f_pet), _cb.KIND_HP))
+                    if int(f_pet.get('saciedad', 0)) > 100:
+                        salida_combate.append(struct.pack('<HIBBII', 0x001D, int(pet_eid), 1, 4, 3796, max(60000, (int(f_pet['saciedad']) - 100) * 60000)))
 
     salida_combate.append(_cl.aviso(f'{oro} Gold', tipo=0, msg_id=_cl.MSG_ITEM))
 
@@ -2146,10 +2182,11 @@ class Servidor:
                                                      p.hp, p.mp, p.habilidades,
                                                      hp_max=p.hp_max, mp_max=p.mp_max, sp=getattr(ses, "sp", None), buffs=getattr(ses.personaje, "buffs", None) if ses.personaje else None)
 
-                # --- Decaimiento periodico de saciedad e intimidad de la mascota invocada ---
+                # --- Decaimiento periodico de saciedad (60s) y ganancia/perdida de intimidad (180s) ---
                 f_pet = getattr(p, 'mascota', None)
                 if isinstance(f_pet, dict) and f_pet.get('fuera'):
                     import mascotas as _ms_reg
+                    import clases as _cl_reg
                     ult_sac = float(f_pet.get('ultimo_tick_saciedad') or ahora)
                     ult_int = float(f_pet.get('ultimo_tick_intimidad') or ahora)
                     if 'ultimo_tick_saciedad' not in f_pet:
@@ -2157,35 +2194,46 @@ class Servidor:
                     if 'ultimo_tick_intimidad' not in f_pet:
                         f_pet['ultimo_tick_intimidad'] = ahora
                     cambio_pet = False
+                    avisos_pet = []
                     sac_antes = int(f_pet.get('saciedad', 100))
-                    if (ahora - ult_sac) >= 30.0:
+                    # Cada 60s pierde 1 de Satiation; si ya esta en 0, pierde 1 de Intimacy (piso 40)
+                    if (ahora - ult_sac) >= 60.0:
                         f_pet['ultimo_tick_saciedad'] = ahora
                         if sac_antes > 0:
                             f_pet['saciedad'] = max(0, sac_antes - 1)
                             cambio_pet = True
                         else:
-                            # Si tiene 0 de saciedad, pierde 1 de intimidad (nunca baja de 40 para que no escape)
                             int_ant = int(f_pet.get('intimidad', 60))
                             if int_ant > 40:
                                 f_pet['intimidad'] = max(40, int_ant - 1)
+                                avisos_pet.append(_cl_reg.aviso('1', tipo=7, msg_id=965))
                                 cambio_pet = True
-                    if (ahora - ult_int) >= 60.0:
+                    # Cada 180s (3 min) estando con el jugador y con saciedad > 0 GANA +1 de Intimacy
+                    if (ahora - ult_int) >= 180.0:
                         f_pet['ultimo_tick_intimidad'] = ahora
-                        int_ant = int(f_pet.get('intimidad', 60))
-                        if int_ant > 40:
-                            f_pet['intimidad'] = max(40, int_ant - 1)
-                            cambio_pet = True
+                        if int(f_pet.get('saciedad', 0)) > 0:
+                            int_ant = int(f_pet.get('intimidad', 60))
+                            if int_ant < 100:
+                                f_pet['intimidad'] = min(100, int_ant + 1)
+                                avisos_pet.append(_cl_reg.aviso('1', tipo=7, msg_id=966))
+                                cambio_pet = True
                     if cambio_pet:
                         _r_p = f_pet.get('ranura')
                         pkgs_pet_dec = [_ms_reg.armar(f_pet)]
+                        pkgs_pet_dec.extend(avisos_pet)
                         if _r_p is not None:
                             if getattr(p, 'mascotas', None) is not None:
                                 p.mascotas[str(_r_p)] = f_pet
                             pkgs_pet_dec.extend(_refrescar(ses, [_r_p]))
                         pet_eid = getattr(ses, 'pet_entity_id', None) or f_pet.get('entidad')
-                        if sac_antes > 100 and int(f_pet.get('saciedad', 0)) <= 100 and pet_eid:
-                            # Quitar icono de buff 3796 (Pet's Satiation) cuando baja de 101 a 100
-                            pkgs_pet_dec.append(struct.pack('<HIBBII', 0x001D, int(pet_eid), 1, 4, 3796, 0))
+                        sac_ahora = int(f_pet.get('saciedad', 0))
+                        if pet_eid:
+                            if sac_antes > 100 and sac_ahora <= 100:
+                                # Quitar icono de buff 3796 (Pet's Satiation) y actualizar HP efectivo cuando baja a <= 100
+                                pkgs_pet_dec.append(struct.pack('<HIBBII', 0x001D, int(pet_eid), 1, 4, 3796, 0))
+                                pkgs_pet_dec.append(_cb.atributo(int(pet_eid), _ms_reg.hp_eff(f_pet), _cb.KIND_HP))
+                            elif sac_ahora > 100:
+                                pkgs_pet_dec.append(struct.pack('<HIBBII', 0x001D, int(pet_eid), 1, 4, 3796, max(60000, (sac_ahora - 100) * 60000)))
                         ses.enviar_inmediato(*pkgs_pet_dec)
                         if getattr(ses, 'usuario', None):
                             cuentas.guardar_mascota(ses.usuario, p.char_id, f_pet, getattr(p, 'mascotas', None))
@@ -2841,7 +2889,16 @@ class Servidor:
                                     if d_targ <= r_atk:
                                         if ahora - getattr(m, 'ultimo_ataque', 0) >= _cb.cadencia_monstruo(m):
                                             m.ultimo_ataque = ahora
-                                            suyo = _cb.dano_recibido(m.pegar(), defensa_jugador(ses) if targ_eid == yo else 100)
+                                            if targ_eid == yo:
+                                                def_targ = defensa_jugador(ses)
+                                            elif f_pet and targ_eid == pet_eid:
+                                                b_st_def = _ms.bonos_de_ficha(f_pet)
+                                                def_targ = int(f_pet.get('dfs', 50)) + int(b_st_def.get('dfs', 0))
+                                                if int(f_pet.get('saciedad', 0)) > 100:
+                                                    def_targ = int(round(def_targ * 1.4))
+                                            else:
+                                                def_targ = 100
+                                            suyo = _cb.dano_recibido(m.pegar(), def_targ)
                                             if targ_eid == yo:
                                                 bolsa_yo = getattr(ses, 'inventario', None)
                                                 if bolsa_yo:
@@ -2893,9 +2950,11 @@ class Servidor:
                                                         ses.muerto = True
                                                         m.en_combate_con = None
                                                 elif f_pet and teid == pet_eid:
-                                                    f_pet['hp'] = max(0, int(f_pet.get('hp', 100)) - suyo)
+                                                    dano_base = max(1, int(round(suyo / 3.5))) if int(f_pet.get('saciedad', 0)) > 100 else suyo
+                                                    f_pet['hp'] = max(0, int(f_pet.get('hp', 100)) - dano_base)
                                                     if f_pet['hp'] <= 0:
                                                         # Si muere la mascota, baja su intimidad (-10 puntos, pero nunca menos de 40 para que no escape) y se guarda
+                                                        import clases as _cl_pm
                                                         f_pet['intimidad'] = max(40, int(f_pet.get('intimidad', 60)) - 10)
                                                         f_pet['fuera'] = False
                                                         f_pet['entidad'] = 0
@@ -2910,6 +2969,7 @@ class Servidor:
                                                             _ms.quitar(pet_eid),
                                                             _ms.enlazar(yo, 0),
                                                             _ms.armar(f_pet),
+                                                            _cl_pm.aviso('10', tipo=7, msg_id=965),
                                                         ]
                                                         if _r_p is not None:
                                                             if getattr(ses.personaje, 'mascotas', None) is not None:
@@ -2922,6 +2982,7 @@ class Servidor:
                                                         ses.enviar_inmediato(
                                                             _cb.numero_de_dano(m.entity_id, pet_eid, suyo, ataque=656, efecto=ef_atk),
                                                             _cb.numero_flotante(pet_eid, suyo),
+                                                            _cb.atributo(pet_eid, _ms.hp_eff(f_pet), _cb.KIND_HP),
                                                             _ms.armar(f_pet))
                                                 elif getattr(ses, 'invocacion', None) and teid == ses.invocacion.get('entity_id'):
                                                     ses.invocacion['hp'] = max(0, ses.invocacion.get('hp', 1) - suyo)
@@ -3063,7 +3124,10 @@ class Servidor:
                                 dist_pet = max(abs(dx_p), abs(dy_p))
                                 r_pet = 2
                                 b_star = _ms.bonos_de_ficha(f_pet)
+                                sac_buff = int(f_pet.get('saciedad', 0)) > 100
                                 agi_total = int(f_pet.get('agilidad', 15)) + int(b_star.get('agilidad', 0))
+                                if sac_buff:
+                                    agi_total = int(round(agi_total * 1.2))
                                 cadencia_pet = max(1.6, min(2.2, 2.2 - agi_total * 0.0015))
                                 if dist_pet <= r_pet:
                                     if ahora - f_pet.get('ultimo_ataque', 0) >= cadencia_pet:
@@ -3074,6 +3138,9 @@ class Servidor:
                                         sk_usada = random.choice(sk_cands) if sk_cands and random.random() < 0.65 else None
                                         base_atk_pet = int(f_pet.get('atk', 100)) + int(b_star.get('atk', 0))
                                         base_matk_pet = int(f_pet.get('matk', 100)) + int(b_star.get('matk', 0))
+                                        if sac_buff:
+                                            base_atk_pet = int(round(base_atk_pet * 1.4))
+                                            base_matk_pet = int(round(base_matk_pet * 1.4))
 
                                         if sk_usada:
                                             sk_datos = _cb.datos_magia(sk_usada)
@@ -3099,37 +3166,6 @@ class Servidor:
                                             pet_targ.hp = 0
                                             ses.pet_objetivo = None
                                             _procesar_muerte_monstruo(ses, pet_targ, yo, addr, espera=0.1)
-                                            exp_pet = _cb.calcular_exp(pet_targ.npc_type, {})
-                                            _sp_antes = f_pet.get('sprite')
-                                            _sub_p = _ms.dar_exp(f_pet, exp_pet)
-                                            _r_p = f_pet.get('ranura')
-                                            if _r_p is not None:
-                                                ses.personaje.mascotas[str(_r_p)] = f_pet
-                                            ses.personaje.mascota = f_pet
-                                            cuentas.guardar_mascota(ses.usuario, ses.personaje.char_id, f_pet, getattr(ses.personaje, 'mascotas', None))
-                                            ses.enviar_inmediato(_ms.armar(f_pet))
-                                            if _sub_p > 0:
-                                                if _r_p is not None:
-                                                    ses.enviar_inmediato(*_refrescar(ses, [_r_p]))
-                                                if f_pet.get('sprite') != _sp_antes and pet_eid:
-                                                    old_eid = pet_eid
-                                                    ses.enviar_inmediato(_ms.quitar(old_eid), _ms.enlazar(yo, 0))
-                                                    pet_eid = _pet_siguiente_entidad(ses)
-                                                    f_pet['entidad'] = pet_eid
-                                                    ses.pet_entity_id = pet_eid
-                                                    _est_p = dict(f_pet)
-                                                    _est_p.update({
-                                                        'entidad': pet_eid,
-                                                        'x': f_pet.get('x', p.tile_x + 1),
-                                                        'y': f_pet.get('y', p.tile_y),
-                                                        'dueno': yo,
-                                                        'dueno_nombre': p.nombre,
-                                                        'tipo': f_pet.get('tipo', 0)
-                                                    })
-                                                    ses.enviar_inmediato(
-                                                        _ms.entidad_mundo(_pet_plantilla(), _est_p),
-                                                        _ms.enlazar(yo, pet_eid)
-                                                    )
                                 else:
                                     if ahora >= f_pet.get('proximo_paso', 0):
                                         spd_p = 105 if f_pet.get('saciedad', 0) > 100 else 85
@@ -3306,10 +3342,10 @@ class Servidor:
                         *_refrescar(ses, [_r_p]),
                         _pet.entidad_mundo(_pet_plantilla(), est_pet),
                         _pet.armar(f_pet),
-                        _cb.atributo(f_pet['entidad'], max(1, int(f_pet.get('hp') or f_pet.get('hp_max') or 1)), _cb.KIND_HP),
+                        _cb.atributo(f_pet['entidad'], _pet.hp_eff(f_pet), _cb.KIND_HP),
                     ])
-                    if f_pet.get('saciedad', 0) > 100:
-                        salida.append(struct.pack('<HIBBII', 0x001D, f_pet['entidad'], 1, 4, 3796, 3436877059))
+                    if int(f_pet.get('saciedad', 0)) > 100:
+                        salida.append(struct.pack('<HIBBII', 0x001D, f_pet['entidad'], 1, 4, 3796, max(60000, (int(f_pet['saciedad']) - 100) * 60000)))
                 ses.enviar(*salida)
                 log.info(f"[{addr}] 0x0002 mapa {p.stage} sincronizado para {p.nombre}")
             return
@@ -5709,6 +5745,7 @@ class Servidor:
             import mascotas as _ms
             import inventario as _iv
             import mejoras as _mj
+            import combate as _cb_15e
             ficha = getattr(ses.personaje, 'mascota', None)
             if not ficha and getattr(ses, 'inventario', None):
                 for r, iid in ses.inventario.items():
@@ -5719,7 +5756,13 @@ class Servidor:
                 r = ficha.get('ranura')
                 veces = (ses.personaje.mejoras.get(r) or {}).get('veces', 0) if getattr(ses.personaje, 'mejoras', None) and r is not None else 0
                 f_env = _ms.aplicar_mejoras(ficha, _mj.stats_de_mejora(ficha.get('item', 0), 'mascota', veces)) if veces > 0 else ficha
-                ses.enviar(_ms.armar(f_env))
+                pkgs_15e = [_ms.armar(f_env)]
+                pet_eid_15e = getattr(ses, 'pet_entity_id', None) or f_env.get('entidad')
+                if f_env.get('fuera') and pet_eid_15e:
+                    pkgs_15e.append(_cb_15e.atributo(int(pet_eid_15e), _ms.hp_eff(f_env), _cb_15e.KIND_HP))
+                    if int(f_env.get('saciedad', 0)) > 100:
+                        pkgs_15e.append(struct.pack('<HIBBII', 0x001D, int(pet_eid_15e), 1, 4, 3796, max(60000, (int(f_env['saciedad']) - 100) * 60000)))
+                ses.enviar(*pkgs_15e)
                 log.info('[%s] ficha de la mascota %s' % (addr, ficha.get('nombre')))
             return
 
@@ -5826,7 +5869,12 @@ class Servidor:
             if _cert_etapa and ses.personaje:
                 import mascotas as _mscert
                 import clases as _clcert
-                _f_pet = getattr(ses.personaje, 'mascota', None)
+                import combate as _cbcert
+                _f_pet = None
+                if objetivo is not None and objetivo in bolsa and inv.es_mascota(bolsa[objetivo]):
+                    _f_pet = _pet_ficha(ses, objetivo)
+                if not _f_pet:
+                    _f_pet = getattr(ses.personaje, 'mascota', None)
                 if not _f_pet:
                     ses.enviar(_clcert.aviso('You do not have an active pet to evolve.', tipo=0))
                     return
@@ -5844,18 +5892,23 @@ class Servidor:
                     ses.inventario.pop(ranura, None)
                     ses.cantidades.pop(ranura, None)
 
+                _r_pet_c = _f_pet.get('ranura')
+                if _r_pet_c is not None and getattr(ses.personaje, 'mascotas', None) is not None:
+                    ses.personaje.mascotas[str(_r_pet_c)] = _f_pet
                 _guardar_bolsa(ses, cid)
+                if getattr(ses, 'usuario', None):
+                    cuentas.guardar_mascota(ses.usuario, cid, _f_pet, getattr(ses.personaje, 'mascotas', None))
 
-                salida_cert = list(_refrescar(ses, [ranura, _f_pet.get('ranura')]))
+                salida_cert = list(_refrescar(ses, [ranura, _r_pet_c]))
                 if _f_pet.get('fuera') and _f_pet.get('entidad'):
                     salida_cert.append(_mscert.armar(_f_pet))
                 salida_cert.append(_clcert.aviso(_msg_evo, tipo=0, msg_id=_clcert.MSG_ITEM))
 
-                pet_eid = getattr(ses, 'pet_entity_id', None)
+                pet_eid = getattr(ses, 'pet_entity_id', None) or _f_pet.get('entidad')
                 if pet_eid and _f_pet.get('fuera'):
                     yo = ses.personaje.entity_id
                     salida_cert.extend([
-                        _mscert.quitar(pet_eid),
+                        _mscert.quitar(int(pet_eid)),
                         _mscert.enlazar(yo, 0)
                     ])
                     new_eid = _pet_siguiente_entidad(ses)
@@ -5874,8 +5927,11 @@ class Servidor:
                     salida_cert.extend([
                         _mscert.entidad_mundo(_pet_plantilla(), _est),
                         _mscert.enlazar(yo, new_eid),
-                        _mscert.armar(_f_pet)
+                        _mscert.armar(_f_pet),
+                        _cbcert.atributo(new_eid, _mscert.hp_eff(_f_pet), _cbcert.KIND_HP),
                     ])
+                    if int(_f_pet.get('saciedad', 0)) > 100:
+                        salida_cert.append(struct.pack('<HIBBII', 0x001D, new_eid, 1, 4, 3796, max(60000, (int(_f_pet['saciedad']) - 100) * 60000)))
 
                 ses.enviar(*salida_cert)
                 log.info(f"[{addr}] mascota evoluciono con certificado etapa {_cert_etapa}: {_f_pet.get('nombre')}")
@@ -5885,7 +5941,12 @@ class Servidor:
             if ('star-up' in _nom_item_l or 'star up' in _nom_item_l or item_id in (5902, 5903, 3379)) and ses.personaje:
                 import clases as _clst
                 import mascotas as _msst
-                _f = getattr(ses.personaje, 'mascota', None)
+                import combate as _cbst
+                _f = None
+                if objetivo is not None and objetivo in bolsa and inv.es_mascota(bolsa[objetivo]):
+                    _f = _pet_ficha(ses, objetivo)
+                if not _f:
+                    _f = getattr(ses.personaje, 'mascota', None)
                 if not _f:
                     ses.enviar(_clst.aviso('You do not have an active pet.', tipo=0))
                     return
@@ -5898,12 +5959,20 @@ class Servidor:
                     ses.inventario.pop(ranura, None)
                     ses.cantidades.pop(ranura, None)
                 _r_pet = _f.get('ranura')
+                if _r_pet is not None and getattr(ses.personaje, 'mascotas', None) is not None:
+                    ses.personaje.mascotas[str(_r_pet)] = _f
                 salida_st = list(_refrescar(ses, [ranura] + ([_r_pet] if _r_pet is not None else [])))
                 if _f.get('fuera') and _f.get('entidad'):
+                    _peid_st = int(_f['entidad'])
                     salida_st.append(_msst.armar(_f))
+                    salida_st.append(_cbst.atributo(_peid_st, _msst.hp_eff(_f), _cbst.KIND_HP))
+                    if int(_f.get('saciedad', 0)) > 100:
+                        salida_st.append(struct.pack('<HIBBII', 0x001D, _peid_st, 1, 4, 3796, max(60000, (int(_f['saciedad']) - 100) * 60000)))
                 salida_st.append(_clst.aviso(f"Pet star level upgraded! ({_nueva_st / 10.0:.1f} Stars)", tipo=0, msg_id=_clst.MSG_ITEM))
                 ses.enviar(*salida_st)
                 _guardar_bolsa(ses, cid)
+                if getattr(ses, 'usuario', None):
+                    cuentas.guardar_mascota(ses.usuario, cid, _f, getattr(ses.personaje, 'mascotas', None))
                 log.info(f"[{addr}] estrella de mascota {_f.get('nombre')} subio a {_nueva_st} (Star Level {_nueva_st/10.0:.1f})")
                 return
 
@@ -5947,13 +6016,37 @@ class Servidor:
             if _pet_uso and ses.personaje:
                 import clases as _clp
                 import mascotas as _msp
-                _f = getattr(ses.personaje, 'mascota', None)
+                import combate as _cb_pu
+                _f = None
+                if objetivo is not None and objetivo in bolsa and inv.es_mascota(bolsa[objetivo]):
+                    _f = _pet_ficha(ses, objetivo)
+                if not _f:
+                    _f = getattr(ses.personaje, 'mascota', None)
+                if not _f and bolsa:
+                    for _r_b, _iid_b in bolsa.items():
+                        if inv.es_mascota(_iid_b):
+                            _f = _pet_ficha(ses, _r_b)
+                            break
                 if not _f:
                     ses.enviar(_clp.aviso('no tienes ninguna mascota', tipo=0))
                     return
+                _avisos_pu = []
+                _sp_ant_pu = _f.get('sprite')
+                _sub_pu = 0
                 if 'saciedad' in _pet_uso:
+                    _sac_ant = int(_f.get('saciedad', 0))
+                    _int_ant = int(_f.get('intimidad', 60))
                     _val, _puede = _msp.alimentar(_f, _pet_uso['saciedad'])
+                    _diff_sac = max(0, _val - _sac_ant)
+                    _diff_int = max(0, int(_f.get('intimidad', 60)) - _int_ant)
+                    if _diff_sac > 0:
+                        _avisos_pu.append(_clp.aviso(str(_diff_sac), tipo=7, msg_id=969))
+                    if _diff_int > 0:
+                        _avisos_pu.append(_clp.aviso(str(_diff_int), tipo=7, msg_id=966))
                     _txt = 'saciedad %d' % _val
+                elif 'exp' in _pet_uso:
+                    _sub_pu = _msp.dar_exp(_f, _pet_uso['exp'])
+                    _txt = '+%d exp (%d niveles -> nv %d)' % (_pet_uso['exp'], _sub_pu, _f.get('nivel', 1))
                 else:
                     _msp.poner_buff_exp(_f, _pet_uso['segundos'],
                                         _pet_uso['exp_pct'])
@@ -5970,10 +6063,39 @@ class Servidor:
                 if _r_pet is not None and getattr(ses.personaje, 'mascotas', None) is not None:
                     ses.personaje.mascotas[str(_r_pet)] = _f
                 salida_pet = list(_refrescar(ses, [ranura] + ([_r_pet] if _r_pet is not None else [])))
+                salida_pet.extend(_avisos_pu)
                 salida_pet.append(_msp.armar(_f))
                 pet_eid = getattr(ses, 'pet_entity_id', None) or _f.get('entidad')
-                if pet_eid and _f.get('fuera') and _f.get('saciedad', 0) > 100:
-                    salida_pet.append(struct.pack('<HIBBII', 0x001D, int(pet_eid), 1, 4, 3796, 3436877059))
+                if pet_eid and _f.get('fuera'):
+                    yo_pu = ses.personaje.entity_id
+                    if _sub_pu > 0 and _f.get('sprite') != _sp_ant_pu:
+                        old_eid_pu = int(pet_eid)
+                        salida_pet.extend([
+                            _msp.quitar(old_eid_pu),
+                            _msp.enlazar(yo_pu, 0),
+                        ])
+                        pet_eid = _pet_siguiente_entidad(ses)
+                        _f['entidad'] = pet_eid
+                        ses.pet_entity_id = pet_eid
+                        _est_pu = dict(_f)
+                        _est_pu.update({
+                            'entidad': pet_eid,
+                            'x': _f.get('x', ses.personaje.tile_x + 1),
+                            'y': _f.get('y', ses.personaje.tile_y),
+                            'dueno': yo_pu,
+                            'dueno_nombre': ses.personaje.nombre,
+                            'tipo': _f.get('tipo', 0),
+                        })
+                        salida_pet.extend([
+                            _msp.entidad_mundo(_pet_plantilla(), _est_pu),
+                            _msp.enlazar(yo_pu, pet_eid),
+                            _msp.armar(_f),
+                        ])
+                    salida_pet.append(_cb_pu.atributo(int(pet_eid), _msp.hp_eff(_f), _cb_pu.KIND_HP))
+                    if int(_f.get('saciedad', 0)) > 100:
+                        salida_pet.append(struct.pack('<HIBBII', 0x001D, int(pet_eid), 1, 4, 3796, max(60000, (int(_f['saciedad']) - 100) * 60000)))
+                    if _pet_uso.get('buff') and _pet_uso.get('segundos'):
+                        salida_pet.append(struct.pack('<HIBBII', 0x001D, int(pet_eid), 1, 4, int(_pet_uso['buff']), int(_pet_uso['segundos']) * 1000))
                 ses.enviar(*salida_pet)
                 _guardar_bolsa(ses, cid)
                 if getattr(ses, 'usuario', None) and ses.personaje:
@@ -5995,12 +6117,14 @@ class Servidor:
                 _dest, _cuanto = _vale
                 if _dest == inv.VALE_MASCOTA:
                     import mascotas as _msv
+                    import combate as _cbv
                     _f = getattr(ses.personaje, 'mascota', None)
                     if not _f:
                         import clases as _clv
                         ses.enviar(_clv.aviso('no tienes ninguna mascota',
                                               tipo=0))
                         return
+                    _sp_ant_v = _f.get('sprite')
                     _sub = _msv.dar_exp(_f, _cuanto)
                     _queda = ses.cantidades.get(ranura, 1) - 1
                     if _queda > 0:
@@ -6009,10 +6133,43 @@ class Servidor:
                         ses.inventario.pop(ranura, None)
                         ses.cantidades.pop(ranura, None)
                     _r_pet = _f.get('ranura')
-                    if _f.get('fuera') and _f.get('entidad'):
-                        ses.enviar(_msv.armar(_f))
-                    ses.enviar(*_refrescar(ses, [ranura] + ([_r_pet] if _r_pet is not None else [])))
+                    if _r_pet is not None and getattr(ses.personaje, 'mascotas', None) is not None:
+                        ses.personaje.mascotas[str(_r_pet)] = _f
+                    salida_v = list(_refrescar(ses, [ranura] + ([_r_pet] if _r_pet is not None else [])))
+                    salida_v.append(_msv.armar(_f))
+                    pet_eid_v = getattr(ses, 'pet_entity_id', None) or _f.get('entidad')
+                    if _f.get('fuera') and pet_eid_v:
+                        yo_v = ses.personaje.entity_id
+                        if _sub > 0 and _f.get('sprite') != _sp_ant_v:
+                            old_eid_v = int(pet_eid_v)
+                            salida_v.extend([
+                                _msv.quitar(old_eid_v),
+                                _msv.enlazar(yo_v, 0),
+                            ])
+                            pet_eid_v = _pet_siguiente_entidad(ses)
+                            _f['entidad'] = pet_eid_v
+                            ses.pet_entity_id = pet_eid_v
+                            _est_v = dict(_f)
+                            _est_v.update({
+                                'entidad': pet_eid_v,
+                                'x': _f.get('x', ses.personaje.tile_x + 1),
+                                'y': _f.get('y', ses.personaje.tile_y),
+                                'dueno': yo_v,
+                                'dueno_nombre': ses.personaje.nombre,
+                                'tipo': _f.get('tipo', 0),
+                            })
+                            salida_v.extend([
+                                _msv.entidad_mundo(_pet_plantilla(), _est_v),
+                                _msv.enlazar(yo_v, pet_eid_v),
+                                _msv.armar(_f),
+                            ])
+                        salida_v.append(_cbv.atributo(int(pet_eid_v), _msv.hp_eff(_f), _cbv.KIND_HP))
+                        if int(_f.get('saciedad', 0)) > 100:
+                            salida_v.append(struct.pack('<HIBBII', 0x001D, int(pet_eid_v), 1, 4, 3796, max(60000, (int(_f['saciedad']) - 100) * 60000)))
+                    ses.enviar(*salida_v)
                     _guardar_bolsa(ses, cid)
+                    if getattr(ses, 'usuario', None) and ses.personaje:
+                        cuentas.guardar_mascota(ses.usuario, cid, _f, getattr(ses.personaje, 'mascotas', None))
                     log.info('[%s] vale de mascota: +%d exp, %s sube %d '
                              'nivel(es) hasta %d'
                              % (addr, _cuanto, _f.get('nombre'), _sub,

@@ -262,6 +262,31 @@ def bonos_de_ficha(estado: dict) -> dict:
     return calc
 
 
+def hp_max_eff(estado: dict) -> int:
+    """Devuelve el HP maximo efectivo de la mascota (incluyendo bono de estrella y Pet's Satiation > 100)."""
+    if not isinstance(estado, dict):
+        return 127
+    b_star = bonos_de_ficha(estado)
+    hp_max = max(1, int(estado.get('hp_max') or estado.get('hp') or 127))
+    val = hp_max + int(b_star.get('hp', 0))
+    if int(estado.get('saciedad') or 0) > 100:
+        val = int(round(val * 3.5))
+    return max(1, val)
+
+
+def hp_eff(estado: dict) -> int:
+    """Devuelve el HP actual efectivo de la mascota (escalado con estrella y Pet's Satiation > 100)."""
+    if not isinstance(estado, dict):
+        return 127
+    b_star = bonos_de_ficha(estado)
+    hp_max = max(1, int(estado.get('hp_max') or estado.get('hp') or 127))
+    hp = max(1, int(estado.get('hp') or hp_max))
+    val = hp + int(b_star.get('hp', 0))
+    if int(estado.get('saciedad') or 0) > 100:
+        val = int(round(val * 3.5))
+    return max(1, min(hp_max_eff(estado), val))
+
+
 def armar(estado: dict) -> bytes:
     """El 0x0065 con el estado de una mascota (sub_60ADC0 en Angel.exe)."""
     b = bytearray(TAM)
@@ -279,15 +304,15 @@ def armar(estado: dict) -> bytes:
     exp_max = max(1, int(estado.get('exp_max') or exp_para_subir(nv, sp)))
 
     satiado = int(estado.get('saciedad') or 0) > 100
-    hp_eff = hp + int(b_star.get('hp', 0))
-    mp_eff = mp + int(b_star.get('mp', 0))
-    hp_max_eff = hp_max + int(b_star.get('hp', 0))
-    mp_max_eff = mp_max + int(b_star.get('mp', 0))
+    h_eff = hp + int(b_star.get('hp', 0))
+    m_eff = mp + int(b_star.get('mp', 0))
+    h_max_eff = hp_max + int(b_star.get('hp', 0))
+    m_max_eff = mp_max + int(b_star.get('mp', 0))
     if satiado:
-        hp_max_eff = int(round(hp_max_eff * 3.5))
-        mp_max_eff = int(round(mp_max_eff * 3.5))
-        hp_eff = min(hp_max_eff, int(round(hp_eff * 3.5)))
-        mp_eff = min(mp_max_eff, int(round(mp_eff * 3.5)))
+        h_max_eff = int(round(h_max_eff * 3.5))
+        m_max_eff = int(round(m_max_eff * 3.5))
+        h_eff = min(h_max_eff, int(round(h_eff * 3.5)))
+        m_eff = min(m_max_eff, int(round(m_eff * 3.5)))
 
     for campo, off in OFF.items():
         v = estado.get(campo)
@@ -315,7 +340,10 @@ def armar(estado: dict) -> bytes:
                 struct.pack_into('<I', b, off + 4, eff_v & 0xFFFFFFFF)
 
     # La instancia del item en la mochila se repite en +8 y +12
-    inst = int(estado.get('instancia') or 0) & 0xFFFFFFFF
+    inst_raw = estado.get('instancia')
+    if not inst_raw and estado.get('ranura') is not None:
+        inst_raw = 1000 + int(estado['ranura'])
+    inst = int(inst_raw or 0) & 0xFFFFFFFF
     struct.pack_into('<II', b, 8, inst, inst)
 
     # Nivel y experiencia en 64 bits (+35 exp, +43 flag=1, +51 exp_max)
@@ -323,7 +351,7 @@ def armar(estado: dict) -> bytes:
     struct.pack_into('<QQQ', b, 35, exp, 1, exp_max)
 
     # Vida y mana actuales + base + maximos (+59..+83)
-    struct.pack_into('<IIIIII', b, 59, hp_eff, mp_eff, hp_max, hp_max_eff, mp_max, mp_max_eff)
+    struct.pack_into('<IIIIII', b, 59, h_eff, m_eff, hp_max, h_max_eff, mp_max, m_max_eff)
 
     # Resistencias elementales (+131..+163) y Sta / Soul (+163..+171)
     # Si la mascota tiene mejoras (+N), sus defensas elementales efectivas suben +N (sub_63EF40)
@@ -342,6 +370,8 @@ def armar(estado: dict) -> bytes:
                          int(sks[1] or 0) & 0xFFFF,
                          int(sks[2] or 0) & 0xFFFF)
 
+    # Byte 190 (a2+192 en sub_60ADC0 -> dword_1434C): contador de mejoras (+N) en WND_PET_INFO
+    b[190] = min(255, mej)
     # Estrellas (+196, 1 = Star Level 0.1)
     struct.pack_into('<I', b, 196, st_lvl & 0xFFFFFFFF)
     return struct.pack('<H', 0x0065) + bytes(b)
@@ -414,8 +444,8 @@ OFF_ENTRADA = {
     'exp_max': 98,
     'nombre': 106,      # 12 bytes, no 16 como en el 0x0065
     'hp_max': 119,
-    'mp_max': 123,
-    'mp': 127,          # el MP actual, que en el 0x0065 va en +63
+    'mp': 123,          # el MP actual (a3+122 -> v6+184 en sub_514180)
+    'mp_max': 127,      # el MP maximo (a3+126 -> v6+188 en sub_514180)
     'sprite': 131,      # u16; es el 動態資料1 del item
     'nivel': 133,
     'saciedad': 137,    # u16
@@ -629,8 +659,8 @@ def entidad_mundo(plantilla: bytes, estado: dict) -> bytes:
         struct.pack_into('<I', b, 71, int(estado['entidad']) & 0xFFFFFFFF)
     if estado.get('dueno') is not None:
         struct.pack_into('<I', b, 75, int(estado['dueno']) & 0xFFFFFFFF)
-    # Offset 95: HP de la mascota en el mundo
-    hp_val = int(estado.get('hp') or estado.get('hp_max') or 1) & 0xFFFFFFFF
+    # Offset 95: HP efectivo de la mascota en el mundo
+    hp_val = hp_eff(estado) & 0xFFFFFFFF
     struct.pack_into('<I', b, 95, hp_val)
     return struct.pack('<H', 0x0050) + bytes(b)
 
