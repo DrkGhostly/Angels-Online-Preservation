@@ -409,6 +409,18 @@ class Monstruo:
         self.panico = False
         self.panico_hasta = 0.0
         self.debuffs = {}
+        self.dano_jugador = 0
+        self.dano_pet = 0
+
+    def registrar_dano(self, cantidad: int, es_pet: bool = False):
+        """Acumula el dano real infligido al monstruo (jugador/invocacion/charmed vs mascota)."""
+        c = max(0, int(cantidad or 0))
+        if c <= 0:
+            return
+        if es_pet:
+            self.dano_pet = getattr(self, 'dano_pet', 0) + c
+        else:
+            self.dano_jugador = getattr(self, 'dano_jugador', 0) + c
 
     @property
     def vivo(self):
@@ -463,6 +475,7 @@ class Monstruo:
             return 0
         self.sangra_ultimo = ahora
         d = min(self.hp, self.sangra_hp)
+        self.registrar_dano(d, es_pet=False)
         self.hp = max(0, self.hp - d)
         if not self.hp:
             self.muerto_en = ahora
@@ -494,7 +507,7 @@ class Monstruo:
                     self.debuffs.pop(bid, None)
         return max(0, d)
 
-    def recibir(self, ataque: int, es_magico: bool = False, mult: float = 1.0, var_pct: float = 0.05) -> int:
+    def recibir(self, ataque: int, es_magico: bool = False, mult: float = 1.0, var_pct: float = 0.05, es_pet: bool = False) -> int:
         """Aplica el dano y devuelve cuanto pego de verdad."""
         now = time.time()
         mit_pct = 0
@@ -535,6 +548,7 @@ class Monstruo:
         d = max(1, int(round(base_dano * spread)))
         if mit_pct != 0:
             d = max(1, int(round(d * (1.0 - mit_pct / 100.0))))
+        self.registrar_dano(min(self.hp, d), es_pet=es_pet)
         self.hp = max(0, self.hp - d)
         if getattr(self, 'panico', False):
             self.panico = False
@@ -580,6 +594,8 @@ class Monstruo:
         self.ultimo_ataque = 0.0
         self.panico = False
         self.panico_hasta = 0.0
+        self.dano_jugador = 0
+        self.dano_pet = 0
         if hasattr(self, 'debuffs') and self.debuffs:
             self.debuffs.clear()
 
@@ -853,7 +869,8 @@ def datos_magia(magic_id: int) -> dict:
                 res['es_aoe'] = False
 
             # Hechizo de encanto / control de monstruos (Shining Charm I..V, Creature Charm, etc.)
-            res['es_encanto'] = (d.get('魔法狀態') == '媚惑' or 'charm' in nom_l) and not res['es_invocacion']
+            # OJO: usar _palabra('charm', nom_l) para no confundir "Charming Blessing" con un hechizo de encanto!
+            res['es_encanto'] = (d.get('魔法狀態') == '媚惑' or (_palabra('charm', nom_l) and 'lava charm' not in nom_l)) and not res['es_invocacion']
 
             # Hechizo de panico / miedo (Soul Entangle I..V, Crazy Roar I..XXVII, etc.)
             res['es_panico'] = (not res['es_invocacion']) and (
@@ -932,9 +949,9 @@ def datos_magia(magic_id: int) -> dict:
                 )
             )
 
-            # Curacion directa solo si es un hechizo curativo real (ej. Cure Spell, Holy Light, Angel Prayer, Tears of Life)
+            # Curacion directa solo si es un hechizo curativo real (ej. Cure Spell, Holy Light, Angel Prayer, Tears of Life, Mighty Cure)
             res['es_cura'] = (not res['es_invocacion']) and (not res['es_encanto']) and (not res['es_panico']) and (not res['es_debuff']) and (not res.get('es_brand')) and (
-                any(k in nom_l for k in ('cure spell', 'holy light', 'angel prayer', 'tears of life')) or
+                any(k in nom_l for k in ('cure spell', 'mighty cure', 'holy light', 'angel prayer', 'tears of life', "angel's tears")) or
                 ('restores hp' in desc_l and 'speed' not in desc_l and 'injury' not in nom_l and 'song' not in nom_l)
             ) and d.get('攻擊型') != '是'
 

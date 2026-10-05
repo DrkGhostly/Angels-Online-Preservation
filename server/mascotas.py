@@ -262,8 +262,99 @@ def bonos_de_ficha(estado: dict) -> dict:
     return calc
 
 
+def buffs_activos_de(estado: dict, ahora: float = None) -> dict:
+    """Devuelve y limpia los buffs activos en estado['buffs'] cuyo 'fin' > ahora."""
+    if not isinstance(estado, dict):
+        return {}
+    raw = estado.get('buffs')
+    if not isinstance(raw, dict) or not raw:
+        return {}
+    import time as _t
+    now = ahora if ahora is not None else _t.time()
+    activos = {}
+    for k, b in list(raw.items()):
+        try:
+            sk_id = int(k)
+        except (ValueError, TypeError):
+            raw.pop(k, None)
+            continue
+        if isinstance(b, dict) and float(b.get('fin') or 0) > now:
+            activos[sk_id] = b
+        else:
+            raw.pop(k, None)
+    return activos
+
+
+def bonos_buffs(estado: dict, h_max_base: int = 0, m_max_base: int = 0) -> dict:
+    """Calcula los bonos planos y porcentuales de los buffs activos sobre la mascota."""
+    activos = buffs_activos_de(estado)
+    out = {
+        'hp_flat': 0, 'hp_pct': 0,
+        'mp_flat': 0, 'mp_pct': 0,
+        'atk': 0, 'dfs': 0, 'matk': 0, 'mdef': 0,
+        'rigor': 0, 'agilidad': 0,
+        'phys_dmg_pct': 0, 'mag_dmg_pct': 0,
+        'phys_mit_pct': 0, 'mag_mit_pct': 0,
+        'crit': 0, 'atk_speed': 0, 'move_speed': 0,
+    }
+    if not activos:
+        return out
+    for sk_id, b in activos.items():
+        mag = b.get('mag') if isinstance(b.get('mag'), dict) else b
+        out['hp_flat'] += int(b.get('hp_bonus') or mag.get('hp_bonus') or 0)
+        out['hp_pct'] += int(b.get('hp_pct') or mag.get('hp_pct') or 0)
+        out['mp_flat'] += int(b.get('mp_bonus') or mag.get('mp_bonus') or 0)
+        out['mp_pct'] += int(b.get('mp_pct') or mag.get('mp_pct') or 0)
+        out['atk'] += int(b.get('atk') or mag.get('atk_bonus') or 0)
+        out['dfs'] += int(b.get('def') or mag.get('def_bonus') or 0)
+        out['matk'] += int(b.get('matk') or mag.get('matk_bonus') or 0)
+        out['mdef'] += int(b.get('mdef') or mag.get('mdef_bonus') or 0)
+        out['phys_dmg_pct'] += int(b.get('phys_dmg_pct') or mag.get('phys_dmg_pct') or 0)
+        out['mag_dmg_pct'] += int(b.get('mag_dmg_pct') or mag.get('mag_dmg_pct') or 0)
+        out['phys_mit_pct'] += int(b.get('mit') or mag.get('phys_mit') or 0)
+        out['mag_mit_pct'] += int(b.get('mag_mit') or mag.get('mag_mit') or 0)
+        out['crit'] += int(b.get('crit') or mag.get('crit_rate') or 0)
+        out['atk_speed'] += int(b.get('atk_speed_bonus') or mag.get('atk_speed_bonus') or 0)
+        out['move_speed'] += int(b.get('move_speed_bonus') or mag.get('move_speed_bonus') or 0)
+    if h_max_base > 0 and out['hp_pct'] > 0:
+        out['hp_total'] = out['hp_flat'] + int(round(h_max_base * (out['hp_pct'] / 100.0)))
+    else:
+        out['hp_total'] = out['hp_flat']
+    if m_max_base > 0 and out['mp_pct'] > 0:
+        out['mp_total'] = out['mp_flat'] + int(round(m_max_base * (out['mp_pct'] / 100.0)))
+    else:
+        out['mp_total'] = out['mp_flat']
+    return out
+
+
+def paquetes_buffs(estado: dict, pet_eid: int = None) -> list:
+    """Construye los paquetes 0x001D (kind=4) de todos los buffs activos en la mascota.
+    Como sub_60ADC0 (0x0065) borra la lista de iconos de buff de WND_PET_INFO, estos
+    paquetes se envian justo despues de cualquier 0x0065 para mantener los iconos visibles."""
+    if not isinstance(estado, dict) or not estado.get('fuera'):
+        return []
+    eid = int(pet_eid or estado.get('entidad') or 0)
+    if eid <= 0:
+        return []
+    import time as _t
+    ahora = _t.time()
+    pkgs = []
+    sac = int(estado.get('saciedad') or 0)
+    if sac > 100:
+        dur_sac_ms = max(60000, (sac - 100) * 60000)
+        pkgs.append(struct.pack('<HIBBII', 0x001D, eid, 1, 4, 3796, dur_sac_ms))
+    b_exp = estado.get('buff_exp')
+    if isinstance(b_exp, dict) and float(b_exp.get('fin') or 0) > ahora:
+        rem_exp_ms = max(1000, int((float(b_exp['fin']) - ahora) * 1000))
+        pkgs.append(struct.pack('<HIBBII', 0x001D, eid, 1, 4, int(b_exp.get('id') or 1866), rem_exp_ms))
+    for sk_id, b in buffs_activos_de(estado, ahora=ahora).items():
+        rem_ms = max(1000, int((float(b.get('fin') or 0) - ahora) * 1000))
+        pkgs.append(struct.pack('<HIBBII', 0x001D, eid, 1, 4, int(sk_id), rem_ms))
+    return pkgs
+
+
 def hp_max_eff(estado: dict) -> int:
-    """Devuelve el HP maximo efectivo de la mascota (incluyendo bono de estrella y Pet's Satiation > 100)."""
+    """Devuelve el HP maximo efectivo de la mascota (incluyendo bono de estrella, Pet's Satiation > 100 y buffs activos)."""
     if not isinstance(estado, dict):
         return 127
     b_star = bonos_de_ficha(estado)
@@ -271,19 +362,25 @@ def hp_max_eff(estado: dict) -> int:
     val = hp_max + int(b_star.get('hp', 0))
     if int(estado.get('saciedad') or 0) > 100:
         val = int(round(val * 3.5))
+    b_bf = bonos_buffs(estado, h_max_base=val)
+    val += int(b_bf.get('hp_total', 0))
     return max(1, val)
 
 
 def hp_eff(estado: dict) -> int:
-    """Devuelve el HP actual efectivo de la mascota (escalado con estrella y Pet's Satiation > 100)."""
+    """Devuelve el HP actual efectivo de la mascota (escalado con estrella, Pet's Satiation > 100 y buffs activos)."""
     if not isinstance(estado, dict):
         return 127
     b_star = bonos_de_ficha(estado)
     hp_max = max(1, int(estado.get('hp_max') or estado.get('hp') or 127))
     hp = max(1, int(estado.get('hp') or hp_max))
     val = hp + int(b_star.get('hp', 0))
+    h_max_s = hp_max + int(b_star.get('hp', 0))
     if int(estado.get('saciedad') or 0) > 100:
         val = int(round(val * 3.5))
+        h_max_s = int(round(h_max_s * 3.5))
+    b_bf = bonos_buffs(estado, h_max_base=h_max_s)
+    val += int(b_bf.get('hp_total', 0))
     return max(1, min(hp_max_eff(estado), val))
 
 
@@ -314,6 +411,12 @@ def armar(estado: dict) -> bytes:
         h_eff = min(h_max_eff, int(round(h_eff * 3.5)))
         m_eff = min(m_max_eff, int(round(m_eff * 3.5)))
 
+    b_bf = bonos_buffs(estado, h_max_base=h_max_eff, m_max_base=m_max_eff)
+    h_max_eff += int(b_bf.get('hp_total', 0))
+    m_max_eff += int(b_bf.get('mp_total', 0))
+    h_eff = min(h_max_eff, h_eff + int(b_bf.get('hp_total', 0)))
+    m_eff = min(m_max_eff, m_eff + int(b_bf.get('mp_total', 0)))
+
     for campo, off in OFF.items():
         v = estado.get(campo)
         if v is None:
@@ -335,9 +438,15 @@ def armar(estado: dict) -> bytes:
                     eff_v = int(round(eff_v * 1.4))
                 elif campo in ('rigor', 'agilidad'):
                     eff_v = int(round(eff_v * 1.2))
+            if campo in DOBLES:
+                eff_v += int(b_bf.get(campo, 0))
+                if campo == 'atk' and b_bf.get('phys_dmg_pct'):
+                    eff_v = int(round(eff_v * (1.0 + b_bf['phys_dmg_pct'] / 100.0)))
+                elif campo == 'matk' and b_bf.get('mag_dmg_pct'):
+                    eff_v = int(round(eff_v * (1.0 + b_bf['mag_dmg_pct'] / 100.0)))
             struct.pack_into('<I', b, off, base_v & 0xFFFFFFFF)
             if campo in DOBLES:
-                struct.pack_into('<I', b, off + 4, eff_v & 0xFFFFFFFF)
+                struct.pack_into('<I', b, off + 4, max(0, eff_v) & 0xFFFFFFFF)
 
     # La instancia del item en la mochila se repite en +8 y +12
     inst_raw = estado.get('instancia')
@@ -624,10 +733,10 @@ OFF_MUNDO = {
     'instancia': 63,    # la del item en la mochila, repetida en el 67 (a2+65 en Angel.exe)
     'entidad2': 71,     # la suya otra vez (a2+73 en Angel.exe)
     'dueno': 75,        # LA ENTIDAD DEL JUGADOR (a2+77 en Angel.exe)
-    'dueno_nombre': 79,  # 8 bytes (a2+81 en Angel.exe)
+    'dueno_nombre': 79,  # 16 bytes (a2+81..97 en Angel.exe)
 }
 LARGO_NOMBRE_MUNDO = 13
-LARGO_DUENO = 8
+LARGO_DUENO = 16
 
 
 def entidad_mundo(plantilla: bytes, estado: dict) -> bytes:

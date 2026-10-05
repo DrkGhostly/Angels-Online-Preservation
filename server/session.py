@@ -75,6 +75,20 @@ class Session:
         """submsgs: bytes ya serializados por Msg.build (opcode incluido)."""
         if not submsgs:
             return
+        # sub_60ADC0 (0x0065) borra la lista de iconos de buff de WND_PET_INFO;
+        # si va un 0x0065 y la mascota esta invocada, reenviar sus 0x001D kind=4 detras.
+        if any(isinstance(s, (bytes, bytearray)) and len(s) >= 2 and s[:2] == b'\x65\x00' for s in submsgs):
+            try:
+                p = getattr(self, 'personaje', None)
+                f_pet = getattr(p, 'mascota', None) if p else None
+                pet_eid = getattr(self, 'pet_entity_id', None) or (f_pet.get('entidad') if isinstance(f_pet, dict) else None)
+                if isinstance(f_pet, dict) and f_pet.get('fuera') and pet_eid:
+                    import mascotas as _ms
+                    extra_b = _ms.paquetes_buffs(f_pet, int(pet_eid))
+                    if extra_b:
+                        submsgs = tuple(submsgs) + tuple(extra_b)
+            except Exception:
+                pass
         self.salida.append(build_frame(pack_submessages(submsgs), self._next_seq()))
 
     def enviar_crudo(self, payload):
