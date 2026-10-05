@@ -694,6 +694,8 @@ def _nombre_item(item_id: int) -> str:
     """Nombre del item para el cartel de 'obtuviste X'."""
     if item_id == 10:
         return "FreshmanSabre"
+    if int(item_id) == 83266:
+        return "Rank Promotion Medal"
     import sqlite3
     db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
     try:
@@ -717,6 +719,8 @@ def _nombre_item(item_id: int) -> str:
 
 def _item_existe(item_id: int) -> bool:
     """Si ese id existe en alguna de las tablas de items del cliente."""
+    if int(item_id) == 83266:
+        return True
     import sqlite3
     import inventario as _iv
     db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
@@ -795,7 +799,8 @@ def _gm_texto(cuerpo: bytes):
         nul = trozo.find(b'\x00')
         if nul >= 0:
             trozo = trozo[:nul]
-        if not trozo or not all(32 <= b < 127 for b in trozo):
+        trozo = trozo.strip(b'\r\n\t ')
+        if not trozo or not all((32 <= b < 127) or b in (9, 10, 13) for b in trozo):
             continue
         t = trozo.decode('ascii').strip()
         primera = (t.lower().split() or [''])[0]
