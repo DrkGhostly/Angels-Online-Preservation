@@ -94,6 +94,24 @@ LINEA_XML_MEDALLA = (
 _CLIENTE_CACHE = None
 
 
+def _unidades() -> list:
+    """Las letras de unidad montadas, de la C en adelante.
+
+    Se saltan las que no responden: una unidad de red caida o un lector
+    vacio cuelgan el arranque si se les pregunta sin mas.
+    """
+    if os.name != 'nt':
+        return []
+    salida = []
+    for letra in 'CDEFGHIJKLMNOPQRSTUVWXYZ':
+        try:
+            if pathlib.Path('%s:' % letra + os.sep).is_dir():
+                salida.append(letra)
+        except OSError:
+            continue
+    return salida
+
+
 def _parece_cliente(d: pathlib.Path) -> bool:
     try:
         if not (d / 'Angel.exe').exists():
@@ -103,6 +121,63 @@ def _parece_cliente(d: pathlib.Path) -> bool:
         return False
 
 
+def _candidatos_cliente():
+    """Rutas donde puede estar el cliente, de la mas probable a la menos.
+
+    Es un GENERADOR a proposito: lo caro es recorrer las unidades, y con
+    la ruta configurada bien puesta no hace falta llegar ahi. Devolviendo
+    una lista entera, el arranque se iba a dos segudos y medio aunque el
+    cliente estuviera en el primer sitio que se mira.
+    """
+    env = os.environ.get('AO_CLIENTE')
+    if env:
+        yield pathlib.Path(env)
+    configurada = str(getattr(_cf, 'RUTA_CLIENTE', '') or '')
+    if configurada:
+        yield pathlib.Path(configurada)
+
+    # Vecinos del repo: lo normal es el cliente al lado del servidor.
+    base = RAIZ_PROYECTO
+    for arriba in (base, base.parent, base.parent.parent):
+        try:
+            if not arriba.is_dir():
+                continue
+            for hijo in sorted(arriba.iterdir()):
+                if hijo.is_dir() and 'angel' in hijo.name.lower():
+                    yield hijo
+                    for nieto in ('Angels Online', 'client', 'cliente'):
+                        yield hijo / nieto
+        except OSError:
+            continue
+
+    # Y los sitios de siempre en TODAS las unidades: el cliente puede estar
+    # en C:\AO\Angels Online, en C:\Angels Online a secas, o en D:, E:,
+    # F:, G:... No se escanea el disco entero, solo la raiz de cada unidad
+    # y un par de carpetas tipicas, con un vistazo de un nivel a las que
+    # lleven "angel" en el nombre.
+    for letra in _unidades():
+        raiz = pathlib.Path('%s:' % letra + os.sep)
+        for sub in ('Angels Online', 'AO', 'Games', 'Juegos',
+                    'Program Files', 'Program Files (x86)'):
+            yield raiz / sub
+            yield raiz / sub / 'Angels Online'
+        try:
+            for hijo in sorted(raiz.iterdir()):
+                if not hijo.is_dir():
+                    continue
+                n = hijo.name.lower()
+                if 'angel' in n or n in ('ao', 'games', 'juegos'):
+                    yield hijo
+                    try:
+                        for nieto in sorted(hijo.iterdir()):
+                            if nieto.is_dir() and 'angel' in nieto.name.lower():
+                                yield nieto
+                    except OSError:
+                        pass
+        except OSError:
+            continue
+
+
 def ruta_cliente(refrescar: bool = False) -> pathlib.Path:
     """El directorio del cliente, buscandolo si hace falta."""
     global _CLIENTE_CACHE
@@ -110,48 +185,20 @@ def ruta_cliente(refrescar: bool = False) -> pathlib.Path:
         return _CLIENTE_CACHE
 
     configurada = str(getattr(_cf, 'RUTA_CLIENTE', '') or '')
-    candidatos = []
-    env = os.environ.get('AO_CLIENTE')
-    if env:
-        candidatos.append(pathlib.Path(env))
-    if configurada:
-        candidatos.append(pathlib.Path(configurada))
-    candidatos += [
-        pathlib.Path(r'C:\AO\Angels Online'),
-        pathlib.Path(r'C:\Angels Online'),
-        pathlib.Path(r'C:\Program Files (x86)\Angels Online'),
-        pathlib.Path(r'C:\Program Files\Angels Online'),
-    ]
-    # Vecinos del repo: ../Angels Online, ../../AO/Angels Online, etc.
-    base = RAIZ_PROYECTO
-    for arriba in (base, base.parent, base.parent.parent):
-        try:
-            if not arriba.is_dir():
-                continue
-            for hijo in arriba.iterdir():
-                if hijo.is_dir() and 'angel' in hijo.name.lower():
-                    candidatos.append(hijo)
-                    for nieto in ('Angels Online', 'client', 'cliente'):
-                        candidatos.append(hijo / nieto)
-        except OSError:
-            continue
-
     vistos = set()
-    for c in candidatos:
-        try:
-            k = str(c).lower()
-        except Exception:
-            continue
+    for c in _candidatos_cliente():
+        k = str(c).lower()
         if k in vistos:
             continue
         vistos.add(k)
         if _parece_cliente(c):
-            if configurada and str(c).lower() != configurada.lower():
+            if configurada and k != configurada.lower():
                 log.info('cliente encontrado en %s (RUTA_CLIENTE decia %s)'
                          % (c, configurada))
             _CLIENTE_CACHE = c
             return c
 
+    log.info('no se encontro el cliente; la parte del cliente se queda sin hacer')
     _CLIENTE_CACHE = pathlib.Path(configurada) if configurada else pathlib.Path('.')
     return _CLIENTE_CACHE
 
