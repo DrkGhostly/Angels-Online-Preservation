@@ -11,6 +11,7 @@ se crea siempre una copia de respaldo (.bak) intacta si no existe todavia.
 import asyncio
 import json
 import logging
+import os
 import pathlib
 import shutil
 import sqlite3
@@ -76,6 +77,83 @@ LINEA_XML_MEDALLA = (
     '\u8aaa\u660e\u5b9a\u7fa9="Right click to use and automatically promote your character\'s Rank by +1 level." '
     '\u53ef\u5806\u758a="\u662f" \u53ef\u4f7f\u7528="\u662f" />'
 )
+
+
+# DONDE ESTA EL CLIENTE.
+#
+# Estaba escrito a mano en cinco sitios como C:\AO\Angels Online, asi que
+# a quien lo tuviera en otro lado no le funcionaba nada de la parte del
+# cliente y encima sin decir por que. Ahora se busca.
+#
+# Un directorio es el cliente si tiene Angel.exe y al menos un .pak. Se
+# mira, en este orden: lo que diga la variable de entorno AO_CLIENTE, lo
+# que diga RUTA_CLIENTE en configuracion.py, los sitios de siempre, y los
+# vecinos del propio repo (que es lo habitual: el cliente al lado del
+# servidor). Si no aparece ninguno se devuelve igual la ruta configurada,
+# y quien la use ya comprueba que exista.
+_CLIENTE_CACHE = None
+
+
+def _parece_cliente(d: pathlib.Path) -> bool:
+    try:
+        if not (d / 'Angel.exe').exists():
+            return False
+        return any(d.glob('*.pak')) or any(d.glob('*.PAK'))
+    except OSError:
+        return False
+
+
+def ruta_cliente(refrescar: bool = False) -> pathlib.Path:
+    """El directorio del cliente, buscandolo si hace falta."""
+    global _CLIENTE_CACHE
+    if _CLIENTE_CACHE is not None and not refrescar:
+        return _CLIENTE_CACHE
+
+    configurada = str(getattr(_cf, 'RUTA_CLIENTE', '') or '')
+    candidatos = []
+    env = os.environ.get('AO_CLIENTE')
+    if env:
+        candidatos.append(pathlib.Path(env))
+    if configurada:
+        candidatos.append(pathlib.Path(configurada))
+    candidatos += [
+        pathlib.Path(r'C:\AO\Angels Online'),
+        pathlib.Path(r'C:\Angels Online'),
+        pathlib.Path(r'C:\Program Files (x86)\Angels Online'),
+        pathlib.Path(r'C:\Program Files\Angels Online'),
+    ]
+    # Vecinos del repo: ../Angels Online, ../../AO/Angels Online, etc.
+    base = RAIZ_PROYECTO
+    for arriba in (base, base.parent, base.parent.parent):
+        try:
+            if not arriba.is_dir():
+                continue
+            for hijo in arriba.iterdir():
+                if hijo.is_dir() and 'angel' in hijo.name.lower():
+                    candidatos.append(hijo)
+                    for nieto in ('Angels Online', 'client', 'cliente'):
+                        candidatos.append(hijo / nieto)
+        except OSError:
+            continue
+
+    vistos = set()
+    for c in candidatos:
+        try:
+            k = str(c).lower()
+        except Exception:
+            continue
+        if k in vistos:
+            continue
+        vistos.add(k)
+        if _parece_cliente(c):
+            if configurada and str(c).lower() != configurada.lower():
+                log.info('cliente encontrado en %s (RUTA_CLIENTE decia %s)'
+                         % (c, configurada))
+            _CLIENTE_CACHE = c
+            return c
+
+    _CLIENTE_CACHE = pathlib.Path(configurada) if configurada else pathlib.Path('.')
+    return _CLIENTE_CACHE
 
 
 def _asegurar_bak(ruta: pathlib.Path) -> pathlib.Path:
@@ -307,7 +385,7 @@ def aplicar_modo_estacion(modo: str = None) -> str:
         modo_Norm = 'normal'
     _cf.MODO_ESTACION = modo_Norm
 
-    ruta_cli = pathlib.Path(getattr(_cf, 'RUTA_CLIENTE', r'C:\AO\Angels Online'))
+    ruta_cli = ruta_cliente()
     if not ruta_cli.exists():
         return modo_Norm
     pak26 = ruta_cli / 'update26.pak'
@@ -361,7 +439,7 @@ def aplicar_modo_estacion(modo: str = None) -> str:
 def parchear_launcher():
     """Parchea C:\\AO\\Angels Online\\START.EXE y reg.ini (creando .bak antes)
     para que el launcher apunte a 127.0.0.1 y muestre el panel local."""
-    ruta_cli = pathlib.Path(getattr(_cf, 'RUTA_CLIENTE', r'C:\AO\Angels Online'))
+    ruta_cli = ruta_cliente()
     if not ruta_cli.exists():
         return
 
@@ -606,7 +684,7 @@ def _vaciar_shp(raw: bytes) -> bytes:
 
 def quitar_logo_arranque() -> bool:
     """Deja en blanco la pantalla del logo que sale al abrir el cliente."""
-    ruta_cli = pathlib.Path(getattr(_cf, 'RUTA_CLIENTE', r'C:\AO\Angels Online'))
+    ruta_cli = ruta_cliente()
     pak = ruta_cli / PAK_LOGOS
     if not pak.exists():
         return False
@@ -678,7 +756,7 @@ def quitar_exclusion_ramas() -> int:
         nuevo, cuantas = _RE_EXCLUSION.subn('', txt)
     if not cuantas:
         return 0
-    ruta_cli = pathlib.Path(getattr(_cf, 'RUTA_CLIENTE', r'C:\AO\Angels Online'))
+    ruta_cli = ruta_cliente()
     destino = ruta_cli / RUTA_SKILL_XML
     try:
         destino.parent.mkdir(parents=True, exist_ok=True)
@@ -700,7 +778,7 @@ def abrir_clientes(cuantos: int = 1) -> int:
     respiro entre una y otra: arrancandolas de golpe se pisan leyendo los
     .pak y alguna se queda a medias.
     """
-    ruta_cli = pathlib.Path(getattr(_cf, 'RUTA_CLIENTE', r'C:\AO\Angels Online'))
+    ruta_cli = ruta_cliente()
     exe = ruta_cli / 'Angel.exe'
     if not exe.exists():
         log.warning('no esta %s, no se abre nada' % exe)

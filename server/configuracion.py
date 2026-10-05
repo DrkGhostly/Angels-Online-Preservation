@@ -217,6 +217,12 @@ FLECHAS_INFINITAS = True
 MODO_ESTACION = 'normal'
 
 # Ruta local del cliente para sincronizar el modo estacional y el launcher START.EXE
+# Donde esta el cliente. Es solo una PISTA: si no esta ahi, el servidor lo
+# busca solo (cliente_local.ruta_cliente). Da por bueno cualquier directorio
+# que tenga Angel.exe y al menos un .pak, y mira en este orden: la variable
+# de entorno AO_CLIENTE, esta ruta, los sitios habituales de instalacion, y
+# los vecinos del propio repo -- que es lo normal, el cliente al lado del
+# servidor. Dejarla vacia tambien vale.
 RUTA_CLIENTE = r'C:\AO\Angels Online'
 PUERTO_UPDATE_FTP = 2121
 PUERTO_UPDATE_HTTP = 8080
