@@ -808,6 +808,10 @@ def stats(bolsa=None, habilidades: list = None,
                     matk_eff += b_data['matk']
                 if 'mdef' in b_data:
                     mdef_eff += b_data['mdef']
+                if 'hit' in b_data:
+                    rigor_eff += b_data['hit']
+                if 'eva' in b_data:
+                    agi_eff += b_data['eva']
                 if b_data.get('hp_bonus'):
                     hp_max_eff += b_data['hp_bonus']
                 if b_data.get('mp_bonus'):

@@ -19,8 +19,8 @@ defensa 25) y Slarm el 19 (118 de vida, ataque 28+-2, defensa 25).
 """
 import pathlib
 import random
+import re
 import sqlite3
-import random
 import struct
 import time
 
@@ -784,11 +784,14 @@ def datos_magia(magic_id: int) -> dict:
             res['dur_ms'] = dur_val * 1000 if dur_val > 0 else 0
             res['cast_time'] = _num(d.get('前置時間'), 100)
             res['rango'] = _num(d.get('射程'), 1)
-            res['crit_rate'] = _num(d.get('crit_rate') if d.get('crit_rate') is not None else d.get('爆擊率'), 0)
+            res['crit_rate'] = _num(d.get('crit_rate') if d.get('crit_rate') is not None else (d.get('爆擊率') or d.get('重擊機率')), 0)
             res['phys_mit'] = _num(d.get('物理傷害抵銷'), 0)
             res['mag_mit'] = _num(d.get('魔法傷害抵銷'), 0)
             res['dano_base'] = _num(d.get('平均傷害'), 0)
+            if not res['dano_base'] and d.get('攻擊型') == '是' and res['hp'] > 0 and str(d.get('HP定義') or '') != '最大值':
+                res['dano_base'] = res['hp']
             res['base_denom'] = _num(d.get('高權位'), 200) or 200
+            res['priority_group'] = _num(d.get('高權位'), 0)
             if not res['dano_base']:
                 _f = str(d.get('公式') or '')
                 _r = RATIO_POR_FORMULA.get(_f, RATIO_FORMULA_DEFECTO)
@@ -886,10 +889,12 @@ def datos_magia(magic_id: int) -> dict:
                 ('shift' in nom_l and target == '自己')
             )
             res['trans_sprite'] = _num(d.get('動態參數1'), 0)
-            res['def_bonus'] = _num(d.get('防禦力') or d.get('def'), 0)
-            res['atk_bonus'] = _num(d.get('攻擊力') or d.get('atk'), 0)
+            res['def_bonus'] = _num(d.get('防禦力') or d.get('防禦') or d.get('def'), 0)
+            res['atk_bonus'] = _num(d.get('攻擊力') or d.get('攻擊') or d.get('atk'), 0)
             res['matk_bonus'] = _num(d.get('matk') or d.get('magic_attack') or d.get('魔攻'), 0)
             res['mdef_bonus'] = _num(d.get('mdef') or d.get('magic_defend') or d.get('魔防'), 0)
+            res['hit_bonus'] = _num(d.get('hit') or d.get('精準'), 0)
+            res['eva_bonus'] = _num(d.get('dodge') or d.get('靈敏'), 0)
             res['move_speed_bonus'] = _num(d.get('move_speed') or d.get('移動速度'), 0)
             res['atk_speed_bonus'] = _num(d.get('atk_speed') or d.get('攻擊速度'), 0)
             # Definicion de HP / MP:
@@ -913,11 +918,35 @@ def datos_magia(magic_id: int) -> dict:
             if res['es_transformacion']:
                 res['matk_pct'] = _num(d.get('matk') or d.get('magic_attack') or d.get('魔攻'), 0)
                 res['mdef_pct'] = _num(d.get('mdef') or d.get('magic_defend') or d.get('魔防'), 0)
-                res['atk_pct'] = _num(d.get('atk') or d.get('攻擊力'), 0)
-                res['def_pct'] = _num(d.get('def') or d.get('防禦力'), 0)
+                res['atk_pct'] = _num(d.get('atk') or d.get('攻擊力') or d.get('攻擊'), 0)
+                res['def_pct'] = _num(d.get('def') or d.get('防禦力') or d.get('防禦'), 0)
                 res['es_melee_trans'] = (d.get('魔法狀態') == '近戰化' or 'shark' in nom_l)
 
-            res['cast_redux'] = _num(d.get('動態參數3'), 0)
+            # Auras de equipo (範圍效果光環 == '是', ej. Merlin's Circle, Guardian's Circle, Sacred Circle):
+            # heredan sus bonos de stats del sub-hechizo indicado en 動態參數1.
+            if d.get('範圍效果光環') == '是':
+                _aura_sub_id = _num(d.get('動態參數1'), 0)
+                _d_aura = _magic_xml().get(_aura_sub_id) or {}
+                if _d_aura:
+                    res['def_bonus'] = res['def_bonus'] or _num(_d_aura.get('防禦力') or _d_aura.get('防禦') or _d_aura.get('def'), 0)
+                    res['atk_bonus'] = res['atk_bonus'] or _num(_d_aura.get('攻擊力') or _d_aura.get('攻擊') or _d_aura.get('atk'), 0)
+                    res['matk_bonus'] = res['matk_bonus'] or _num(_d_aura.get('魔攻') or _d_aura.get('matk'), 0)
+                    res['mdef_bonus'] = res['mdef_bonus'] or _num(_d_aura.get('魔防') or _d_aura.get('mdef'), 0)
+                    res['hit_bonus'] = res['hit_bonus'] or _num(_d_aura.get('精準') or _d_aura.get('hit'), 0)
+                    res['eva_bonus'] = res['eva_bonus'] or _num(_d_aura.get('靈敏') or _d_aura.get('dodge'), 0)
+                    res['crit_rate'] = res['crit_rate'] or _num(_d_aura.get('爆擊率') or _d_aura.get('重擊機率'), 0)
+                    res['phys_mit'] = res['phys_mit'] or _num(_d_aura.get('物理傷害抵銷'), 0)
+                    res['mag_mit'] = res['mag_mit'] or _num(_d_aura.get('魔法傷害抵銷'), 0)
+                    if str(_d_aura.get('HP定義') or '') == '最大值' and not res['hp_bonus']:
+                        res['hp_bonus'] = _num(_d_aura.get('HP'), 0)
+                    if str(_d_aura.get('MP定義') or '') == '最大值' and not res['mp_bonus']:
+                        res['mp_bonus'] = _num(_d_aura.get('MP'), 0)
+
+            _es_cast_redux_skill = (
+                'casting time' in desc_l or 'cast time' in desc_l or
+                any(k in nom_l for k in ('limit breaker', 'shadow meld', 'first path', 'third spirit', 'killer intent'))
+            )
+            res['cast_redux'] = _num(d.get('動態參數3'), 0) if _es_cast_redux_skill else 0
             if not res['cast_redux'] and 'limit breaker' in nom_l:
                 lb_ranks = {'limit breaker i': 500, 'limit breaker ii': 600, 'limit breaker iii': 700, 'limit breaker iv': 800, 'limit breaker v': 1000}
                 for k, v in lb_ranks.items():
@@ -925,19 +954,78 @@ def datos_magia(magic_id: int) -> dict:
                         res['cast_redux'] = v
                         break
 
-            res['atk_mod'] = _num(d.get('atk') or d.get('攻擊力'), 0)
-            res['def_mod'] = _num(d.get('def') or d.get('防禦力'), 0)
-            res['phys_dmg_pct'] = _num(d.get('物理傷害'), 0)
-            res['mag_dmg_pct'] = _num(d.get('魔法傷害'), 0)
-            res['phys_mit_pct'] = _num(d.get('物理傷害抵銷'), 0)
-            res['mag_mit_pct'] = _num(d.get('魔法傷害抵銷'), 0)
+            res['atk_mod'] = _num(d.get('atk') or d.get('攻擊力') or d.get('攻擊'), 0)
+            res['def_mod'] = _num(d.get('def') or d.get('防禦力') or d.get('防禦'), 0)
+            res['matk_mod'] = _num(d.get('matk') or d.get('魔攻'), 0)
+            res['mdef_mod'] = _num(d.get('mdef') or d.get('魔防'), 0)
+            res['phys_dmg_pct'] = _num(d.get('物理傷害') or (_d_aura.get('物理傷害') if d.get('範圍效果光環') == '是' and _d_aura else 0), 0)
+            res['mag_dmg_pct'] = _num(d.get('魔法傷害') or (_d_aura.get('魔法傷害') if d.get('範圍效果光環') == '是' and _d_aura else 0), 0)
+            res['phys_mit_pct'] = _num(d.get('物理傷害抵銷') or (_d_aura.get('物理傷害抵銷') if d.get('範圍效果光環') == '是' and _d_aura else 0), 0)
+            res['mag_mit_pct'] = _num(d.get('魔法傷害抵銷') or (_d_aura.get('魔法傷害抵銷') if d.get('範圍效果光環') == '是' and _d_aura else 0), 0)
             res['vel_mov_mod'] = _num(d.get('move_speed') or d.get('移動速度'), 0)
+
+            # Buffs con triggers / procs al atacar o al recibir dano:
+            # 1) Formulas 53, 54, 61, 62 (Blazing Sun, Mana Overflow, Spell Boost, Witch Ward, Brainjack,
+            #    Flowing Water, Drifting Clouds, Tiger Arts, Twincore Blades, Mind's Eye, Blade Field,
+            #    Sparrow, Owl, Eagle, Roc, Fighting Stance, Nimble Hands, Winged Accuracy, Guardian Shell, etc.)
+            if res['formula'] in (53, 54, 61, 62):
+                _ps = _num(d.get('動態參數1'), 0)
+                _p2 = _num(d.get('動態參數2'), 25)
+                _p3 = _num(d.get('動態參數3'), 10)
+                _m_tr = re.search(r'(\d+)\s*(?:times|triggers)', desc_l)
+                _max_u = int(_m_tr.group(1)) if _m_tr else (_p3 if _p3 > 0 else 10)
+                _prob = max(25, _p2 if 0 < _p2 <= 100 else 30)
+                if _ps > 0:
+                    res['proc_spell'] = _ps
+                    res['proc_prob'] = _prob
+                    res['proc_max_uses'] = _max_u
+                    res['proc_on_attack'] = True
+                    res['proc_on_hit'] = True
+            # 2) Formulas 47 y 48 activables (Erosion, Lava Charm, Blood Bond, Maim Shot, Osmose Arrow,
+            #    Spearheart, Solar Power, Sage Slash, Colossal Might)
+            elif res['formula'] in (47, 48) and res['dur_ms'] > 0:
+                _ps = _num(d.get('動態參數2'), 0)
+                _p1 = _num(d.get('動態參數1'), 30)
+                _prob = 35 if (_p1 >= 100 and 'chance' in desc_l) else max(25, min(100, _p1 if _p1 > 0 else 30))
+                if _ps > 0:
+                    res['proc_spell'] = _ps
+                    res['proc_prob'] = _prob
+                    res['proc_max_uses'] = 0
+                    res['proc_on_attack'] = True
+                    res['proc_on_hit'] = True
+            # 3) Estado '魔法還擊' (Fire Gathering, Punishing Shield, Spine Shell, Hell Shield, Energy Roar,
+            #    Holy Prayer, Spirit's Blessing, Spiritual Energy, Soul Corral, Titan Rage, Life Vine,
+            #    Cross Slash, Arrow Gravity, Raijin's Protection, Lotus Armor, Spike Shield, Divine Attend,
+            #    Spike Armor, Passion Warcry, Arrow Wind, Mana Flow, Holy Guard, Titan Rumble, Wild Strike,
+            #    Tactician's Return, Wrath Armor, Arrow Guard, Barbed Armor)
+            elif d.get('魔法狀態') == '魔法還擊':
+                _ps = _num(d.get('動態參數2'), 0)
+                _max_u = _num(d.get('動態參數1'), 10)
+                _prob = max(25, _num(d.get('動態參數3'), 30))
+                if _ps > 0:
+                    res['proc_spell'] = _ps
+                    res['proc_prob'] = _prob
+                    res['proc_max_uses'] = _max_u
+                    res['proc_on_hit'] = True
+                    res['proc_on_attack'] = False
+            # 4) Estados '機率持續扣血' y '爆擊轉嫁' (Debilitating Thrust, Sniper Shot)
+            elif d.get('魔法狀態') in ('機率持續扣血', '爆擊轉嫁'):
+                _ps = _num(d.get('動態參數1'), 0)
+                _prob = max(25, _num(d.get('動態參數2'), 30))
+                if _ps > 0:
+                    res['proc_spell'] = _ps
+                    res['proc_prob'] = _prob
+                    res['proc_max_uses'] = 0
+                    res['proc_on_attack'] = True
+                    res['proc_on_hit'] = False
 
             # Hechizo de debuff / maldicion a enemigos (Exhaustion Curse, Weak Curse, Blind Curse, Slow Curse, Tough Break, etc.)
             res['es_debuff'] = (not res['es_invocacion']) and (not res['es_encanto']) and (not res['es_panico']) and (not res.get('es_brand')) and (
                 res['dur_ms'] > 0 and target != '自己' and (
                     res['atk_mod'] < 0 or
                     res['def_mod'] < 0 or
+                    res['matk_mod'] < 0 or
+                    res['mdef_mod'] < 0 or
                     res['phys_dmg_pct'] < 0 or
                     res['mag_dmg_pct'] < 0 or
                     res['phys_mit_pct'] < 0 or

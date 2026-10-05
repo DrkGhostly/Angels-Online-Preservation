@@ -2069,6 +2069,208 @@ def _otorgar_skill_exp(ses, p, yo, arma_puesta=0, magic_id=0, accion=None):
     return pkgs
 
 
+def _ejecutar_proc_subhechizo(ses, yo, m, sub_id: int, addr=None) -> list:
+    """Ejecuta el sub-hechizo disparado por un buff con trigger (ej. Sun Strike de Blazing Sun,
+    debuff de Erosion, buff de Spell Boost, golpe de Fire Gathering, cura MP de Witch Ward, etc.)."""
+    import combate as _cb
+    import inventario as _iv
+    p = getattr(ses, 'personaje', None)
+    if not p or getattr(ses, 'muerto', False) or not sub_id:
+        return []
+    pkgs = []
+    d_sub = _cb._magic_xml().get(int(sub_id)) or {}
+    smag = _cb.datos_magia(int(sub_id))
+    ef_proc = int(smag.get('efecto') or 251)
+    targ_type = str(d_sub.get('對象') or '')
+    es_ofensivo = (
+        d_sub.get('攻擊型') == '是' or
+        int(float(d_sub.get('平均傷害') or 0)) > 0 or
+        (int(float(d_sub.get('HP') or 0)) > 0 and str(d_sub.get('HP定義') or '') != '最大值' and targ_type != '自己')
+    )
+
+    # Caso 1: Proc beneficioso sobre el propio jugador (Spell Boost, Witch Ward, Lava Charm, Flowing Water, etc.)
+    if targ_type == '自己' and not es_ofensivo:
+        pkgs.append(_cb.efecto_magia_self_fin(yo, ef_proc, int(sub_id)))
+        hp_def_s = str(d_sub.get('HP定義') or '')
+        mp_def_s = str(d_sub.get('MP定義') or '')
+        raw_hp_s = int(float(d_sub.get('HP') or 0))
+        raw_mp_s = int(float(d_sub.get('MP') or 0))
+        dur_s_ms = int(smag.get('dur_ms') or 0)
+        if hp_def_s == '數值' and raw_hp_s > 0:
+            ticks_h = max(1, dur_s_ms // 1000) if 0 < dur_s_ms <= 5000 else 1
+            hc = raw_hp_s * ticks_h
+            p.hp = min(_vida_max(p, ses.inventario), p.hp + hc)
+            pkgs.append(_cb.atributo(yo, p.hp, _cb.KIND_HP))
+            pkgs.append(_cb.numero_flotante(yo, hc, _cb.TIPO_CURA_HP))
+        if mp_def_s == '數值' and raw_mp_s > 0:
+            ticks_m = max(1, dur_s_ms // 1000) if 0 < dur_s_ms <= 5000 else 1
+            mc = raw_mp_s * ticks_m
+            p.mp = min(_mana_max(p, ses.inventario), p.mp + mc)
+            pkgs.append(_cb.atributo(yo, p.mp, _cb.KIND_MP))
+            pkgs.append(_cb.numero_flotante(yo, mc, _cb.TIPO_CURA_MP))
+
+        tiene_bono_buff = any(smag.get(k) for k in (
+            'def_bonus', 'atk_bonus', 'matk_bonus', 'mdef_bonus', 'hit_bonus', 'eva_bonus',
+            'crit_rate', 'hp_bonus', 'mp_bonus', 'phys_dmg_pct', 'mag_dmg_pct',
+            'phys_mit', 'mag_mit', 'move_speed_bonus', 'atk_speed_bonus'
+        ))
+        if dur_s_ms > 0 and tiene_bono_buff:
+            if not hasattr(p, 'buffs') or p.buffs is None:
+                p.buffs = {}
+            pfin = time.time() + (dur_s_ms / 1000.0)
+            b_proc = dict(smag)
+            b_proc.pop('mp', None)
+            b_proc.pop('hp', None)
+            b_proc['fin'] = pfin
+            b_proc['mag'] = smag
+            if smag.get('crit_rate'):
+                b_proc['crit'] = smag['crit_rate']
+            if smag.get('def_bonus'):
+                b_proc['def'] = smag['def_bonus']
+            if smag.get('atk_bonus'):
+                b_proc['atk'] = smag['atk_bonus']
+            if smag.get('matk_bonus'):
+                b_proc['matk'] = smag['matk_bonus']
+            if smag.get('mdef_bonus'):
+                b_proc['mdef'] = smag['mdef_bonus']
+            if smag.get('hit_bonus'):
+                b_proc['hit'] = smag['hit_bonus']
+            if smag.get('eva_bonus'):
+                b_proc['eva'] = smag['eva_bonus']
+            if smag.get('phys_dmg_pct'):
+                b_proc['phys_dmg_pct'] = smag['phys_dmg_pct']
+            if smag.get('mag_dmg_pct'):
+                b_proc['mag_dmg_pct'] = smag['mag_dmg_pct']
+            if smag.get('hp_bonus'):
+                b_proc['hp_bonus'] = smag['hp_bonus']
+            if smag.get('mp_bonus'):
+                b_proc['mp_bonus'] = smag['mp_bonus']
+            p.buffs[int(sub_id)] = b_proc
+            if smag.get('hp_bonus'):
+                p.hp = min(_vida_max(p, ses.inventario), p.hp + int(smag['hp_bonus']))
+                pkgs.append(_cb.atributo(yo, p.hp, _cb.KIND_HP))
+                pkgs.append(_cb.numero_flotante(yo, int(smag['hp_bonus']), _cb.TIPO_CURA_HP))
+            if smag.get('mp_bonus'):
+                p.mp = min(_mana_max(p, ses.inventario), p.mp + int(smag['mp_bonus']))
+                pkgs.append(_cb.atributo(yo, p.mp, _cb.KIND_MP))
+                pkgs.append(_cb.numero_flotante(yo, int(smag['mp_bonus']), _cb.TIPO_CURA_MP))
+            pkgs.append(struct.pack('<HIBBII', 0x001D, yo, 1, 4, int(sub_id), dur_s_ms))
+            pkgs.append(_stats_ses(ses))
+
+            def _expirar_sub_buff(sk_id=int(sub_id), fin=pfin):
+                if not ses.personaje:
+                    return
+                b_act = getattr(ses.personaje, 'buffs', None)
+                act = b_act.get(sk_id) if b_act else None
+                if not act or act.get('fin') != fin:
+                    return
+                b_act.pop(sk_id, None)
+                ses.personaje.hp = min(ses.personaje.hp, _vida_max(ses.personaje, ses.inventario))
+                ses.personaje.mp = min(ses.personaje.mp, _mana_max(ses.personaje, ses.inventario))
+                ses.enviar_inmediato(
+                    struct.pack('<HIBBII', 0x001D, yo, 1, 4, sk_id, 0),
+                    _cb.atributo(yo, ses.personaje.hp, _cb.KIND_HP),
+                    _cb.atributo(yo, ses.personaje.mp, _cb.KIND_MP),
+                    _stats_ses(ses),
+                )
+            try:
+                asyncio.get_event_loop().call_later(dur_s_ms / 1000.0, _expirar_sub_buff)
+            except Exception:
+                pass
+        return pkgs
+
+    # Caso 2: Proc ofensivo o debuff sobre el monstruo / area alrededor (Sun Strike, Mana Overflow, Erosion, Fire Gathering, etc.)
+    blancos_proc = []
+    area_p = int(smag.get('area') or 0)
+    if area_p > 0:
+        cx_p = p.tile_x if targ_type == '自己' or not m else m.tile_x
+        cy_p = p.tile_y if targ_type == '自己' or not m else m.tile_y
+        rad_p = max(4, area_p)
+        for bm in list((getattr(ses, 'monstruos', None) or {}).values()):
+            if getattr(bm, 'vivo', False) and not getattr(bm, 'encantado', False):
+                if max(abs(bm.tile_x - cx_p), abs(bm.tile_y - cy_p)) <= rad_p:
+                    blancos_proc.append(bm)
+        if m and getattr(m, 'vivo', False) and not getattr(m, 'encantado', False) and m not in blancos_proc:
+            blancos_proc.append(m)
+    elif m and getattr(m, 'vivo', False) and not getattr(m, 'encantado', False):
+        blancos_proc.append(m)
+
+    if not blancos_proc:
+        return pkgs
+
+    arma_puesta = ses.inventario.get(3, 0) if getattr(ses, 'inventario', None) else 0
+    es_mag_p = int(float(d_sub.get('平均傷害') or 0)) > 0 or str(d_sub.get('公式') or '') in ('4', '5', '6', '7', '17')
+    _st_j = _iv._stats_efectivos_interno(ses.inventario, p.habilidades, mejoras=getattr(p, 'mejoras', None), buffs=getattr(p, 'buffs', None))
+    atk_pow = _st_j['matk'] if es_mag_p else _st_j['r_atk']
+    mult_p, var_p = _cb.multiplicador_magia(int(sub_id), p.nivel, arma_id=arma_puesta, stats_jugador=_st_j)
+    ef_sec = _cb.efecto_secundario(int(sub_id))
+    dur_debuff = int(smag.get('dur_ms') or 0)
+
+    for bm in blancos_proc:
+        if not getattr(bm, 'vivo', False):
+            continue
+        if es_ofensivo:
+            dano_p = bm.recibir(atk_pow, es_magico=es_mag_p, mult=mult_p, var_pct=var_p)
+            pkgs.extend([
+                _cb.numero_de_dano(yo, bm.entity_id, dano_p, ataque=int(sub_id), efecto=ef_proc, cast_time=0, es_magia=es_mag_p),
+                _cb.cierre_de_dano(yo, bm.entity_id, ataque=int(sub_id), efecto=ef_proc, tile_x=bm.tile_x, tile_y=bm.tile_y),
+                _cb.numero_flotante(bm.entity_id, dano_p, _cb.TIPO_DANO),
+                _cb.atributo(bm.entity_id, bm.porcentaje if bm.hp > 0 else 0),
+            ])
+            if bm.hp <= 0 or not bm.vivo:
+                bm.hp = 0
+                _procesar_muerte_monstruo(ses, bm, yo, addr, espera=0.05)
+                continue
+        if ef_sec:
+            bm.aplicar_efecto(ef_sec)
+        if dur_debuff > 0 and (
+            smag.get('def_mod', 0) < 0 or smag.get('mdef_mod', 0) < 0 or
+            smag.get('atk_mod', 0) < 0 or smag.get('matk_mod', 0) < 0 or
+            (ef_sec and ef_sec.get('dur_ms'))
+        ):
+            if not es_ofensivo:
+                pkgs.append(_cb.efecto_magia_self_fin(bm.entity_id, ef_proc, int(sub_id)))
+            pkgs.append(struct.pack('<HIBBII', 0x001D, bm.entity_id, 1, 4, int(sub_id), dur_debuff))
+    return pkgs
+
+
+def _procesar_triggers_buffs(ses, yo, m, addr=None, en_ataque=True) -> list:
+    """Revisa los buffs activos del jugador y dispara sus triggers al atacar (en_ataque=True)
+    o al recibir un golpe de un monstruo (en_ataque=False)."""
+    import combate as _cb
+    p = getattr(ses, 'personaje', None)
+    if not p or getattr(ses, 'muerto', False) or not getattr(p, 'buffs', None):
+        return []
+    ahora = time.time()
+    pkgs = []
+    for bid, bdata in list(p.buffs.items()):
+        if not isinstance(bdata, dict) or bdata.get('fin', 0) <= ahora:
+            continue
+        sub_id = int(bdata.get('proc_spell') or 0)
+        if not sub_id:
+            continue
+        if en_ataque and not bdata.get('proc_on_attack'):
+            continue
+        if not en_ataque and not bdata.get('proc_on_hit'):
+            continue
+        prob = float(bdata.get('proc_prob') or 30.0)
+        if random.random() * 100.0 < prob:
+            pkgs.extend(_ejecutar_proc_subhechizo(ses, yo, m, sub_id, addr=addr))
+            if int(bdata.get('usos_restantes') or 0) > 0:
+                bdata['usos_restantes'] = int(bdata['usos_restantes']) - 1
+                if bdata['usos_restantes'] <= 0:
+                    p.buffs.pop(bid, None)
+                    p.hp = min(p.hp, _vida_max(p, ses.inventario))
+                    p.mp = min(p.mp, _mana_max(p, ses.inventario))
+                    pkgs.extend([
+                        struct.pack('<HIBBII', 0x001D, yo, 1, 4, int(bid), 0),
+                        _cb.atributo(yo, p.hp, _cb.KIND_HP),
+                        _cb.atributo(yo, p.mp, _cb.KIND_MP),
+                        _stats_ses(ses),
+                    ])
+    return pkgs
+
+
 class Servidor:
     def __init__(self, host, port, fport=21238, wport=None):
         self.host, self.port, self.fport = host, port, fport
@@ -2948,11 +3150,22 @@ class Servidor:
                                                     pj = getattr(ses, 'personaje', None)
                                                     if not pj or getattr(ses, 'muerto', False):
                                                         return
-                                                    # Demonic Counter (5156..5160): reduce el dano recibido e inflige la diferencia al atacante (sin repetir la animacion 368 de casteo)
-                                                    _dc_bid = next((bid for bid, b in (pj.buffs or {}).items() if 5156 <= int(bid) <= 5160 and isinstance(b, dict) and b.get('fin', 0) > time.time()), None)
+                                                    ahora_imp = time.time()
+                                                    # Demonic Counter (5156..5160), Particle Refraction (13670..13674) y Rebound Spell (5131..5135):
+                                                    # reducen/reflejan parte del dano recibido al atacante sin repetir la animacion de casteo.
+                                                    _dc_bid = next((
+                                                        bid for bid, b in (pj.buffs or {}).items()
+                                                        if (5156 <= int(bid) <= 5160 or 13670 <= int(bid) <= 13674 or 5131 <= int(bid) <= 5135)
+                                                        and isinstance(b, dict) and b.get('fin', 0) > ahora_imp
+                                                    ), None)
                                                     if _dc_bid is not None:
-                                                        _dc_rank = int(_dc_bid) - 5155  # 1..5 -> 6%..10% (低權位 6..10) o minimo 30% diferencial
-                                                        _dc_pct = 0.20 + 0.02 * _dc_rank  # 22%..30%
+                                                        _bid_i = int(_dc_bid)
+                                                        if 5156 <= _bid_i <= 5160:
+                                                            _dc_pct = 0.20 + 0.02 * (_bid_i - 5155)
+                                                        elif 13670 <= _bid_i <= 13674:
+                                                            _dc_pct = 0.14 + 0.02 * (_bid_i - 13669)
+                                                        else:
+                                                            _dc_pct = 0.20 + 0.03 * (_bid_i - 5130)
                                                         refl = max(1, int(round(suyo * _dc_pct)))
                                                         suyo = max(1, suyo - refl)
                                                         m.registrar_dano(min(m.hp, refl), es_pet=False)
@@ -2965,17 +3178,36 @@ class Servidor:
                                                             m.hp = 0
                                                             _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.1)
 
+                                                    # Shock Absorber (13675..13679): convierte un % del dano recibido en MP
+                                                    _sa_bid = next((
+                                                        bid for bid, b in (pj.buffs or {}).items()
+                                                        if 13675 <= int(bid) <= 13679 and isinstance(b, dict) and b.get('fin', 0) > ahora_imp
+                                                    ), None)
+
                                                     pj.hp = max(0, pj.hp - suyo)
-                                                    ses.enviar_inmediato(
+                                                    pkgs_imp_yo = [
                                                         _cb.numero_de_dano(m.entity_id, yo, suyo, ataque=656, efecto=ef_atk),
                                                         _cb.numero_flotante(yo, suyo),
-                                                        _cb.atributo(yo, pj.hp, _cb.KIND_HP))
+                                                        _cb.atributo(yo, pj.hp, _cb.KIND_HP),
+                                                    ]
+                                                    if _sa_bid is not None and pj.hp > 0:
+                                                        _sa_pct = 0.12 + 0.02 * (int(_sa_bid) - 13674)
+                                                        _mp_rec = max(1, int(round(suyo * _sa_pct)))
+                                                        pj.mp = min(_mana_max(pj, ses.inventario), pj.mp + _mp_rec)
+                                                        pkgs_imp_yo.append(_cb.atributo(yo, pj.mp, _cb.KIND_MP))
+                                                        pkgs_imp_yo.append(_cb.numero_flotante(yo, _mp_rec, _cb.TIPO_CURA_MP))
+
                                                     if pj.hp <= 0:
+                                                        ses.enviar_inmediato(*pkgs_imp_yo)
                                                         ses.enviar_inmediato(
                                                             _cb.ataque(yo, m.entity_id, 0, _cb.TIPO_MUERTE),
                                                             _cb.atributo(yo, 0, _cb.KIND_HP))
                                                         ses.muerto = True
                                                         m.en_combate_con = None
+                                                    else:
+                                                        if getattr(m, 'vivo', False) and m.hp > 0:
+                                                            pkgs_imp_yo.extend(_procesar_triggers_buffs(ses, yo, m, addr=addr, en_ataque=False))
+                                                        ses.enviar_inmediato(*pkgs_imp_yo)
                                                 elif f_pet and teid == pet_eid:
                                                     dano_base = max(1, int(round(suyo / 3.5))) if int(f_pet.get('saciedad', 0)) > 100 else suyo
                                                     f_pet['hp'] = max(0, int(f_pet.get('hp', 100)) - dano_base)
@@ -3962,6 +4194,11 @@ class Servidor:
                                 if b.en_combate_con != yo:
                                     b.en_combate_con = yo
 
+                        _b_proc_t = next((b for b in blancos if getattr(b, 'vivo', False)), blancos[0])
+                        _pkgs_tr_aoe = _procesar_triggers_buffs(ses, yo, _b_proc_t, addr=addr, en_ataque=True)
+                        if _pkgs_tr_aoe:
+                            ses.enviar_inmediato(*_pkgs_tr_aoe)
+
                     ses.enviar_inmediato(*_otorgar_skill_exp(ses, ses.personaje, yo, magic_id=tipo))
 
                     if getattr(ses, 'usuario', None):
@@ -4062,49 +4299,22 @@ class Servidor:
                     f_pet_cast = getattr(ses.personaje, 'mascota', None) if ses.personaje else None
                     pet_eid_cast = getattr(ses, 'pet_entity_id', None) or (f_pet_cast.get('entidad') if isinstance(f_pet_cast, dict) else None)
                     pet_out_cast = bool(isinstance(f_pet_cast, dict) and f_pet_cast.get('fuera') and pet_eid_cast)
+                    es_target_pet = bool(pet_out_cast and objetivo == int(pet_eid_cast) and not mag.get('es_transformacion'))
 
                     # 1a. Curacion POR TICS (Injury Cure: 15 HP cada 5 s
                     # durante 11; Earth Blessing: 對象="角色").
                     _tic = _cb.cura_por_tics(tipo)
                     if _tic and ses.personaje:
-                        def _curar_tic(n=0):
+                        def _curar_tic(n=0, a_pet=es_target_pet):
                             if not ses.personaje or getattr(ses, 'muerto', False):
                                 return
-                            antes_hp = ses.personaje.hp
-                            antes_mp = ses.personaje.mp
-                            hp_tope = _vida_max(ses.personaje, ses.inventario)
-                            mp_tope = _mana_max(ses.personaje, ses.inventario)
-                            ses.personaje.hp = min(
-                                hp_tope,
-                                ses.personaje.hp + _tic['hp'])
-                            ses.personaje.mp = min(
-                                mp_tope,
-                                ses.personaje.mp + _tic['mp'])
-                            sanado_hp = ses.personaje.hp - antes_hp
-                            sanado_mp = ses.personaje.mp - antes_mp
-                            log.debug(
-                                f"[{addr}] {mag.get('nombre')} tic "
-                                f"{n + 1}/{_tic['tics']}: "
-                                f"HP {antes_hp}->{ses.personaje.hp}/{hp_tope} "
-                                f"(+{sanado_hp}), MP {antes_mp}->"
-                                f"{ses.personaje.mp}/{mp_tope} (+{sanado_mp})")
                             pkgs_tic = []
-                            if sanado_hp > 0:
-                                pkgs_tic.extend((
-                                    _cb.numero_flotante(yo, sanado_hp,
-                                                        _cb.TIPO_CURA_HP),
-                                    _cb.atributo(yo, ses.personaje.hp, _cb.KIND_HP)))
-                            if sanado_mp > 0:
-                                pkgs_tic.extend((
-                                    _cb.numero_flotante(yo, sanado_mp,
-                                                        _cb.TIPO_CURA_MP),
-                                    _cb.atributo(yo, ses.personaje.mp, _cb.KIND_MP)))
-                            fp_t = getattr(ses.personaje, 'mascota', None)
-                            peid_t = getattr(ses, 'pet_entity_id', None)
-                            if isinstance(fp_t, dict) and fp_t.get('fuera') and peid_t and _tic['hp'] > 0:
-                                antes_hp_p = int(fp_t.get('hp') or 0)
-                                tope_hp_p = int(fp_t.get('hp_max') or 100)
-                                if antes_hp_p < tope_hp_p:
+                            if a_pet:
+                                fp_t = getattr(ses.personaje, 'mascota', None)
+                                peid_t = getattr(ses, 'pet_entity_id', None)
+                                if isinstance(fp_t, dict) and fp_t.get('fuera') and peid_t and _tic['hp'] > 0:
+                                    antes_hp_p = int(fp_t.get('hp') or 0)
+                                    tope_hp_p = int(fp_t.get('hp_max') or 100)
                                     fp_t['hp'] = min(tope_hp_p, antes_hp_p + _tic['hp'])
                                     san_p = fp_t['hp'] - antes_hp_p
                                     if san_p > 0:
@@ -4113,13 +4323,42 @@ class Servidor:
                                             _cb.atributo(int(peid_t), _ms.hp_eff(fp_t), _cb.KIND_HP),
                                             _ms.armar(fp_t),
                                         ))
+                            else:
+                                antes_hp = ses.personaje.hp
+                                antes_mp = ses.personaje.mp
+                                hp_tope = _vida_max(ses.personaje, ses.inventario)
+                                mp_tope = _mana_max(ses.personaje, ses.inventario)
+                                ses.personaje.hp = min(
+                                    hp_tope,
+                                    ses.personaje.hp + _tic['hp'])
+                                ses.personaje.mp = min(
+                                    mp_tope,
+                                    ses.personaje.mp + _tic['mp'])
+                                sanado_hp = ses.personaje.hp - antes_hp
+                                sanado_mp = ses.personaje.mp - antes_mp
+                                log.debug(
+                                    f"[{addr}] {mag.get('nombre')} tic "
+                                    f"{n + 1}/{_tic['tics']}: "
+                                    f"HP {antes_hp}->{ses.personaje.hp}/{hp_tope} "
+                                    f"(+{sanado_hp}), MP {antes_mp}->"
+                                    f"{ses.personaje.mp}/{mp_tope} (+{sanado_mp})")
+                                if sanado_hp > 0:
+                                    pkgs_tic.extend((
+                                        _cb.numero_flotante(yo, sanado_hp,
+                                                            _cb.TIPO_CURA_HP),
+                                        _cb.atributo(yo, ses.personaje.hp, _cb.KIND_HP)))
+                                if sanado_mp > 0:
+                                    pkgs_tic.extend((
+                                        _cb.numero_flotante(yo, sanado_mp,
+                                                            _cb.TIPO_CURA_MP),
+                                        _cb.atributo(yo, ses.personaje.mp, _cb.KIND_MP)))
                             if pkgs_tic:
                                 ses.enviar_inmediato(*pkgs_tic)
                             if n + 1 < _tic['tics']:
                                 try:
                                     asyncio.get_event_loop().call_later(
                                         _tic['intervalo'],
-                                        lambda: _curar_tic(n + 1))
+                                        lambda: _curar_tic(n + 1, a_pet=a_pet))
                                 except Exception:
                                     pass
                         _curar_tic()
@@ -4130,34 +4369,35 @@ class Servidor:
                             _detalle_tics.append(f"{_tic['mp']} MP")
                         log.info(f"[{addr}] {mag.get('nombre')}: recupera "
                                  f"{' y '.join(_detalle_tics)} x{_tic['tics']} "
-                                 f"cada {_tic['intervalo']}s")
+                                 f"cada {_tic['intervalo']}s (target_pet={es_target_pet})")
 
                     # 2. Habilidad de curacion real (Cure Spell de mago, Holy Light, etc.)
                     if mag.get('es_cura') and ses.personaje and not _tic:
                         cura = max(10, abs(mag.get('hp', 0)))
-                        cura_a_pet = bool(pet_out_cast and (objetivo == int(pet_eid_cast) or int(f_pet_cast.get('hp') or 0) < int(f_pet_cast.get('hp_max') or 100)))
-                        if objetivo != int(pet_eid_cast or 0):
-                            ses.personaje.hp = min(_vida_max(ses.personaje), ses.personaje.hp + cura)
-                        if cura_a_pet:
+                        if es_target_pet:
                             f_pet_cast['hp'] = min(int(f_pet_cast.get('hp_max') or 100), int(f_pet_cast.get('hp') or 100) + cura)
-                        targ_cura_vis = int(pet_eid_cast) if (pet_out_cast and objetivo == int(pet_eid_cast)) else yo
+                            targ_cura_vis = int(pet_eid_cast)
+                        else:
+                            ses.personaje.hp = min(_vida_max(ses.personaje), ses.personaje.hp + cura)
+                            targ_cura_vis = yo
                         ses.enviar(_cb.efecto_curacion_inicio(yo, targ_cura_vis, cura, efecto=ef), _cb.gcd_paquete())
 
                         def _fin_cura():
                             if ses.personaje:
                                 pkgs_fin = [
                                     _cb.efecto_curacion_fin(yo, targ_cura_vis, efecto=ef),
-                                    _cb.atributo(yo, ses.personaje.hp, _cb.KIND_HP),
                                     _cb.atributo(yo, ses.personaje.mp, _cb.KIND_MP),
                                 ]
-                                if objetivo != int(pet_eid_cast or 0):
-                                    pkgs_fin.append(_cb.numero_flotante(yo, cura, _cb.TIPO_CURA_HP))
-                                if cura_a_pet and isinstance(f_pet_cast, dict) and f_pet_cast.get('fuera') and pet_eid_cast:
+                                if es_target_pet and isinstance(f_pet_cast, dict) and f_pet_cast.get('fuera') and pet_eid_cast:
                                     pkgs_fin.extend([
-                                        _cb.efecto_curacion_fin(yo, int(pet_eid_cast), efecto=ef),
                                         _cb.numero_flotante(int(pet_eid_cast), cura, _cb.TIPO_CURA_HP),
                                         _cb.atributo(int(pet_eid_cast), _ms.hp_eff(f_pet_cast), _cb.KIND_HP),
                                         _ms.armar(f_pet_cast),
+                                    ])
+                                else:
+                                    pkgs_fin.extend([
+                                        _cb.numero_flotante(yo, cura, _cb.TIPO_CURA_HP),
+                                        _cb.atributo(yo, ses.personaje.hp, _cb.KIND_HP),
                                     ])
                                 if cd_ms > 0:
                                     pkgs_fin.append(struct.pack('<HIBBII', 0x001D, yo, 1, 3, tipo, cd_ms))
@@ -4171,23 +4411,18 @@ class Servidor:
                                                              ses.personaje.habilidades,
                                                              hp_max=ses.personaje.hp_max, mp_max=ses.personaje.mp_max, sp=getattr(ses, "sp", None), buffs=getattr(ses.personaje, "buffs", None) if ses.personaje else None)
                         asyncio.get_event_loop().call_later(max(0.1, cast_time / 1000.0), _fin_cura)
-                        log.info(f"[{addr}] habilidad curativa {tipo} curó {cura} HP (jug={ses.personaje.hp}/{ses.personaje.hp_max}, pet={cura_a_pet})")
+                        log.info(f"[{addr}] habilidad curativa {tipo} curó {cura} HP (target_pet={es_target_pet})")
                     else:
-                        # 2. Buff activo / habilidad sobre si mismo o sobre la mascota
-                        # (Life Blessing, Sage Blessing, Earth Blessing, Dawn Shield, Silver Shield, Ferocious Song, Fighting Shield, Swiftness Song, Charming Blessing, etc.)
-                        es_buff_pet = bool(pet_out_cast and not mag.get('es_transformacion'))
-                        targ_confirm = int(pet_eid_cast) if (es_buff_pet and objetivo == int(pet_eid_cast)) else yo
-                        tx_conf = f_pet_cast.get('x', ses.personaje.tile_x) if targ_confirm != yo else ses.personaje.tile_x
-                        ty_conf = f_pet_cast.get('y', ses.personaje.tile_y) if targ_confirm != yo else ses.personaje.tile_y
+                        # 2. Buff activo / habilidad sobre el objetivo elegido (el propio jugador O la mascota por separado)
+                        targ_confirm = int(pet_eid_cast) if es_target_pet else yo
+                        tx_conf = f_pet_cast.get('x', ses.personaje.tile_x) if es_target_pet else ses.personaje.tile_x
+                        ty_conf = f_pet_cast.get('y', ses.personaje.tile_y) if es_target_pet else ses.personaje.tile_y
                         atk_confirm = _cb.confirmar_cast(targ_confirm, tx_conf, ty_conf)
-                        pkgs_ini_buff = [
+                        ses.enviar(
                             _cb.atributo(yo, ses.personaje.mp, _cb.KIND_MP),
                             atk_confirm,
-                            _cb.efecto_magia_self_inicio(yo, ef, tipo, cast_time=cast_time),
-                        ]
-                        if es_buff_pet:
-                            pkgs_ini_buff.append(_cb.efecto_magia_self_inicio(int(pet_eid_cast), ef, tipo, cast_time=cast_time))
-                        ses.enviar(*pkgs_ini_buff)
+                            _cb.efecto_magia_self_inicio(targ_confirm, ef, tipo, cast_time=cast_time),
+                        )
 
                         # Si es transformacion y ya la tenia activa, re-castear reinstaura su forma humana
                         if mag.get('es_transformacion') and tipo in getattr(ses.personaje, 'buffs', {}):
@@ -4213,10 +4448,20 @@ class Servidor:
                                         _cb.atributo(yo, 0, _cb.KIND_TRANSFORM)
                                     )
 
-                        # Registrar buff en el personaje y en la mascota activa (duracion, bono de critico, % mitigacion de dano, HP/MP/ATK/DEF/MATK/MDEF)
+                        # Registrar buff UNICAMENTE en el objetivo seleccionado (jugador o mascota)
                         if ses.personaje:
                             if not hasattr(ses.personaje, 'buffs') or ses.personaje.buffs is None:
                                 ses.personaje.buffs = {}
+                            # Exclusion mutua por grupo de prioridad (高權位, ej. Blazing Sun vs Mana Overflow = 887,
+                            # Erosion vs Lava Charm vs Brainjack = 577, o distintos rangos I..V del mismo buff)
+                            _pg = int(mag.get('priority_group') or 0)
+                            if _pg > 0 and not mag.get('es_transformacion'):
+                                _dict_b_obj = f_pet_cast.setdefault('buffs', {}) if (es_target_pet and isinstance(f_pet_cast, dict)) else ses.personaje.buffs
+                                for prev_bid, prev_bdata in list(_dict_b_obj.items()):
+                                    if int(prev_bid) != int(tipo) and isinstance(prev_bdata, dict) and int(prev_bdata.get('priority_group') or 0) == _pg:
+                                        _dict_b_obj.pop(prev_bid, None)
+                                        ses.enviar(struct.pack('<HIBBII', 0x001D, targ_confirm, 1, 4, int(prev_bid), 0))
+
                             buff_dur_s = (dur_ms / 1000.0) if dur_ms > 0 else 300.0
                             buff_entry = dict(mag)
                             # OJO: mag['mp'] es el coste de mana de lanzar el hechizo y mag['hp'] puede ser un tick;
@@ -4226,6 +4471,8 @@ class Servidor:
                             buff_entry['fin'] = time.time() + buff_dur_s
                             buff_entry['mag'] = mag
                             buff_entry['es_transform'] = mag.get('es_transformacion', False)
+                            if mag.get('proc_max_uses', 0) > 0:
+                                buff_entry['usos_restantes'] = int(mag['proc_max_uses'])
                             if mag.get('crit_rate'):
                                 buff_entry['crit'] = mag.get('crit_rate')
                             if mag.get('phys_mit'):
@@ -4240,6 +4487,10 @@ class Servidor:
                                 buff_entry['matk'] = mag.get('matk_bonus')
                             if mag.get('mdef_bonus'):
                                 buff_entry['mdef'] = mag.get('mdef_bonus')
+                            if mag.get('hit_bonus'):
+                                buff_entry['hit'] = mag.get('hit_bonus')
+                            if mag.get('eva_bonus'):
+                                buff_entry['eva'] = mag.get('eva_bonus')
                             if mag.get('mag_dmg_pct'):
                                 buff_entry['mag_dmg_pct'] = mag.get('mag_dmg_pct')
                             if mag.get('phys_dmg_pct'):
@@ -4250,38 +4501,23 @@ class Servidor:
                                 buff_entry['mp_bonus'] = mag.get('mp_bonus')
                             if mag.get('cast_redux'):
                                 buff_entry['cast_redux'] = mag.get('cast_redux')
-                            ses.personaje.buffs[tipo] = buff_entry
-                            if es_buff_pet and isinstance(f_pet_cast, dict):
+                            if es_target_pet and isinstance(f_pet_cast, dict):
                                 f_pet_cast.setdefault('buffs', {})[tipo] = dict(buff_entry)
+                            else:
+                                ses.personaje.buffs[tipo] = buff_entry
 
                         def _fin_buff():
                             if not ses.personaje or getattr(ses, 'muerto', False):
                                 return
                             pkgs_buff = [
-                                _cb.efecto_magia_self_fin(yo, ef, tipo),
+                                _cb.efecto_magia_self_fin(targ_confirm, ef, tipo),
                             ]
-                            if es_buff_pet and pet_eid_cast:
-                                pkgs_buff.append(_cb.efecto_magia_self_fin(int(pet_eid_cast), ef, tipo))
                             if cd_ms > 0:
                                 pkgs_buff.append(struct.pack('<HIBBII', 0x001D, yo, 1, 3, tipo, cd_ms))
                                 asyncio.get_event_loop().call_later(cd_ms / 1000.0, lambda: ses.enviar_inmediato(struct.pack('<HIBBII', 0x001D, yo, 1, 3, tipo, 0)))
 
-                            pkgs_buff.append(_stats_ses(ses))
-
                             if dur_ms > 0:
-                                pkgs_buff.append(struct.pack('<HIBBII', 0x001D, yo, 1, 4, tipo, dur_ms))
-                                if mag.get('es_transformacion') or mag.get('hp_bonus') or mag.get('hp_pct'):
-                                    ses.personaje.hp = _vida_max(ses.personaje, ses.inventario)
-                                if mag.get('mp_bonus') or mag.get('mp_pct'):
-                                    ses.personaje.mp = _mana_max(ses.personaje, ses.inventario)
-                                pkgs_buff.append(_cb.atributo(yo, ses.personaje.hp, _cb.KIND_HP))
-                                pkgs_buff.append(_cb.atributo(yo, ses.personaje.mp, _cb.KIND_MP))
-                                if mag.get('es_transformacion') and mag.get('trans_sprite'):
-                                    pkgs_buff.extend((
-                                        _cb.atributo(yo, mag['trans_sprite'],
-                                                     _cb.KIND_TRANSFORM),
-                                        _stats_ses(ses)))
-                                if es_buff_pet and isinstance(f_pet_cast, dict) and f_pet_cast.get('fuera') and pet_eid_cast:
+                                if es_target_pet and isinstance(f_pet_cast, dict) and f_pet_cast.get('fuera') and pet_eid_cast:
                                     if mag.get('hp_bonus') or mag.get('hp_pct'):
                                         f_pet_cast['hp'] = int(f_pet_cast.get('hp_max') or 100)
                                     if mag.get('mp_bonus') or mag.get('mp_pct'):
@@ -4291,41 +4527,59 @@ class Servidor:
                                         _cb.atributo(int(pet_eid_cast), _ms.hp_eff(f_pet_cast), _cb.KIND_HP),
                                         _ms.armar(f_pet_cast),
                                     ])
+                                else:
+                                    pkgs_buff.append(struct.pack('<HIBBII', 0x001D, yo, 1, 4, tipo, dur_ms))
+                                    if mag.get('es_transformacion') or mag.get('hp_bonus') or mag.get('hp_pct'):
+                                        ses.personaje.hp = _vida_max(ses.personaje, ses.inventario)
+                                        if mag.get('hp_bonus'):
+                                            pkgs_buff.append(_cb.numero_flotante(yo, int(mag['hp_bonus']), _cb.TIPO_CURA_HP))
+                                    if mag.get('mp_bonus') or mag.get('mp_pct'):
+                                        ses.personaje.mp = _mana_max(ses.personaje, ses.inventario)
+                                        if mag.get('mp_bonus'):
+                                            pkgs_buff.append(_cb.numero_flotante(yo, int(mag['mp_bonus']), _cb.TIPO_CURA_MP))
+                                    pkgs_buff.append(_cb.atributo(yo, ses.personaje.hp, _cb.KIND_HP))
+                                    pkgs_buff.append(_cb.atributo(yo, ses.personaje.mp, _cb.KIND_MP))
+                                    if mag.get('es_transformacion') and mag.get('trans_sprite'):
+                                        pkgs_buff.append(_cb.atributo(yo, mag['trans_sprite'], _cb.KIND_TRANSFORM))
+                                pkgs_buff.append(_stats_ses(ses))
 
                                 def _expirar_buff(sk_id=tipo,
-                                                  fin=buff_entry['fin']):
+                                                  fin=buff_entry['fin'],
+                                                  a_pet=es_target_pet):
                                     if not ses.personaje:
                                         return
                                     pkgs_expirar = []
-                                    buffs_activos = getattr(ses.personaje, 'buffs', None)
-                                    actual = buffs_activos.get(sk_id) if buffs_activos else None
-                                    if actual and actual.get('fin') == fin:
-                                        buffs_activos.pop(sk_id, None)
-                                        ses.personaje.hp = min(ses.personaje.hp, _vida_max(ses.personaje, ses.inventario))
-                                        ses.personaje.mp = min(ses.personaje.mp, _mana_max(ses.personaje, ses.inventario))
-                                        pkgs_expirar.extend([
-                                            struct.pack('<HIBBII', 0x001D, yo, 1, 4,
-                                                        sk_id, 0),
-                                            _cb.atributo(yo, ses.personaje.hp, _cb.KIND_HP),
-                                            _cb.atributo(yo, ses.personaje.mp, _cb.KIND_MP),
-                                        ])
-                                        if actual.get('es_transform'):
-                                            pkgs_expirar.append(
-                                                _cb.atributo(yo, 0,
-                                                             _cb.KIND_TRANSFORM))
-                                        pkgs_expirar.append(_stats_ses(ses))
-                                    fp_exp = getattr(ses.personaje, 'mascota', None)
-                                    peid_exp = getattr(ses, 'pet_entity_id', None)
-                                    if isinstance(fp_exp, dict) and isinstance(fp_exp.get('buffs'), dict):
-                                        act_p = fp_exp['buffs'].get(sk_id)
-                                        if act_p and act_p.get('fin') == fin:
-                                            fp_exp['buffs'].pop(sk_id, None)
-                                            if peid_exp and fp_exp.get('fuera'):
-                                                pkgs_expirar.extend([
-                                                    struct.pack('<HIBBII', 0x001D, int(peid_exp), 1, 4, sk_id, 0),
-                                                    _cb.atributo(int(peid_exp), _ms.hp_eff(fp_exp), _cb.KIND_HP),
-                                                    _ms.armar(fp_exp),
-                                                ])
+                                    if a_pet:
+                                        fp_exp = getattr(ses.personaje, 'mascota', None)
+                                        peid_exp = getattr(ses, 'pet_entity_id', None)
+                                        if isinstance(fp_exp, dict) and isinstance(fp_exp.get('buffs'), dict):
+                                            act_p = fp_exp['buffs'].get(sk_id)
+                                            if act_p and act_p.get('fin') == fin:
+                                                fp_exp['buffs'].pop(sk_id, None)
+                                                if peid_exp and fp_exp.get('fuera'):
+                                                    pkgs_expirar.extend([
+                                                        struct.pack('<HIBBII', 0x001D, int(peid_exp), 1, 4, sk_id, 0),
+                                                        _cb.atributo(int(peid_exp), _ms.hp_eff(fp_exp), _cb.KIND_HP),
+                                                        _ms.armar(fp_exp),
+                                                    ])
+                                    else:
+                                        buffs_activos = getattr(ses.personaje, 'buffs', None)
+                                        actual = buffs_activos.get(sk_id) if buffs_activos else None
+                                        if actual and actual.get('fin') == fin:
+                                            buffs_activos.pop(sk_id, None)
+                                            ses.personaje.hp = min(ses.personaje.hp, _vida_max(ses.personaje, ses.inventario))
+                                            ses.personaje.mp = min(ses.personaje.mp, _mana_max(ses.personaje, ses.inventario))
+                                            pkgs_expirar.extend([
+                                                struct.pack('<HIBBII', 0x001D, yo, 1, 4,
+                                                            sk_id, 0),
+                                                _cb.atributo(yo, ses.personaje.hp, _cb.KIND_HP),
+                                                _cb.atributo(yo, ses.personaje.mp, _cb.KIND_MP),
+                                            ])
+                                            if actual.get('es_transform'):
+                                                pkgs_expirar.append(
+                                                    _cb.atributo(yo, 0,
+                                                                 _cb.KIND_TRANSFORM))
+                                            pkgs_expirar.append(_stats_ses(ses))
                                     if pkgs_expirar:
                                         ses.enviar_inmediato(*pkgs_expirar)
                                 asyncio.get_event_loop().call_later(dur_ms / 1000.0, _expirar_buff)
@@ -4882,6 +5136,9 @@ class Servidor:
                                 asyncio.get_event_loop().call_later(_pdur / 1000.0, _expirar_proc)
                             except Exception:
                                 pass
+
+                # --- Triggers de Buffs activos al atacar (Blazing Sun, Mana Overflow, Erosion, Spell Boost, etc.) ---
+                _pkgs_drain.extend(_procesar_triggers_buffs(ses, yo, m, addr=addr, en_ataque=True))
 
             m.en_combate_con = yo
             m.ultimo_ataque = time.time()
