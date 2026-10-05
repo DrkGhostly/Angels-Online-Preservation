@@ -150,32 +150,76 @@ def _candidatos_cliente():
         except OSError:
             continue
 
-    # Y los sitios de siempre en TODAS las unidades: el cliente puede estar
-    # en C:\AO\Angels Online, en C:\Angels Online a secas, o en D:, E:,
-    # F:, G:... No se escanea el disco entero, solo la raiz de cada unidad
-    # y un par de carpetas tipicas, con un vistazo de un nivel a las que
-    # lleven "angel" en el nombre.
-    for letra in _unidades():
-        raiz = pathlib.Path('%s:' % letra + os.sep)
-        for sub in ('Angels Online', 'AO', 'Games', 'Juegos',
-                    'Program Files', 'Program Files (x86)'):
-            yield raiz / sub
-            yield raiz / sub / 'Angels Online'
-        try:
-            for hijo in sorted(raiz.iterdir()):
-                if not hijo.is_dir():
+    # Y por ultimo las unidades, a lo ancho. El cliente puede estar en
+    # C:\AO\Angels Online, en C:\Angels Online a secas, en D:, E:, F:, G:
+    # o colgado de cualquier carpeta intermedia (D:\Juegos\MMO\Angels
+    # Online). Por eso se recorre por PROFUNDIDAD en vez de adivinar
+    # nombres: tres niveles desde la raiz de cada unidad.
+    #
+    # Lo que lo mantiene rapido es la lista de carpetas que NO se pisan:
+    # Windows y compania tienen decenas de miles de subdirectorios y ahi
+    # no va a estar el juego.
+    limite = time.monotonic() + SEGUNDOS_BUSQUEDA
+    raices = [pathlib.Path('%s:' % l + os.sep) for l in _unidades()]
+    for d in _por_niveles(raices, PROF_BUSQUEDA, limite):
+        yield d
+    if time.monotonic() > limite:
+        log.info('busqueda del cliente cortada a los %.0f s'
+                 % SEGUNDOS_BUSQUEDA)
+
+
+# Carpetas que no se recorren buscando el cliente: son enormes y el juego
+# no va a estar ahi.
+SALTAR = {
+    'windows', '$recycle.bin', 'system volume information', 'programdata',
+    'appdata', 'perflogs', 'recovery', 'msocache', 'node_modules',
+    '.git', 'onedrive', 'temp', 'tmp', 'cache', '$winreagent',
+}
+
+# Cuantos niveles por debajo de la raiz de cada unidad, y cuantos segundos
+# como mucho. Sin el tope de tiempo, con el cliente en ningun lado, tres
+# niveles de cinco unidades tardaban 42 segundos y el servidor se quedaba
+# parado al arrancar. Los casos normales ni se enteran: con la ruta
+# configurada se resuelve en 0,00 s y no se llega nunca a esta parte.
+PROF_BUSQUEDA = 3
+SEGUNDOS_BUSQUEDA = 3.0
+# Los dos primeros niveles van SIN tope de tiempo. Son unos 900 directorios
+# en total y cubren lo que de verdad pasa -- C:\Angels Online, C:\AO\Angels
+# Online, D:\Games\Angels Online -- asi que vale la pena asegurarlos aunque
+# el disco este frio. El tercero es un extra y se corta si tarda.
+PROF_SIN_TOPE = 2
+
+
+def _por_niveles(raices, prof: int, limite: float = None):
+    """Los directorios colgados de esas raices, nivel a nivel.
+
+    Va a lo ANCHO y mezclando TODAS las unidades: primero el nivel 1 de
+    C:, D:, E:..., luego el nivel 2 de todas, y asi. Es lo que hace que
+    valga la pena: recorriendo una unidad entera antes de pasar a la
+    siguiente, el tiempo se acababa dentro de C: y un cliente en F: no
+    aparecia nunca, aunque estuviera a dos carpetas de la raiz.
+    """
+    nivel = list(raices)
+    for hondura in range(prof):
+        siguiente = []
+        # Los primeros niveles no se cortan: ver PROF_SIN_TOPE.
+        tope = None if hondura < PROF_SIN_TOPE else limite
+        for d in nivel:
+            if tope is not None and time.monotonic() > tope:
+                return
+            try:
+                hijos = sorted(d.iterdir())
+            except OSError:
+                continue
+            for h in hijos:
+                try:
+                    if not h.is_dir() or h.name.lower() in SALTAR:
+                        continue
+                except OSError:
                     continue
-                n = hijo.name.lower()
-                if 'angel' in n or n in ('ao', 'games', 'juegos'):
-                    yield hijo
-                    try:
-                        for nieto in sorted(hijo.iterdir()):
-                            if nieto.is_dir() and 'angel' in nieto.name.lower():
-                                yield nieto
-                    except OSError:
-                        pass
-        except OSError:
-            continue
+                yield h
+                siguiente.append(h)
+        nivel = siguiente
 
 
 def ruta_cliente(refrescar: bool = False) -> pathlib.Path:
