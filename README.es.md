@@ -170,6 +170,10 @@ Path`, `Third Spirit`, `Limit Breaker`, `Shadow Meld`, `Killer Intent`) y la
     diálogos salen de `msg.xml` (bloque 516188-516210) y las tiendas de `shop.xml`, donde cada
     ciudad añade un par y el impar son espadas y el par magias: el `Researcher (C)` abre la 221
     (Edge Guard I) y el `Researcher (S)` la 222 (Astro Impact I), ambas de nivel 310
+  - **Clank Oasis (Stage 407, Cybertronica) y Commercial Street (Stage 419, Night City Code)**:
+    también sin captura, con los bloques 516648-516657 y 517063-517068 de `msg.xml`. Van por
+    **stage** porque `Spell Analyst` y `Technique Analyst` se repiten en los dos mapas con
+    tiendas distintas: 223/224 en Clank Oasis y 225/226 en Commercial Street
 - **Sistema Integral de Mascotas (Pets al 85-90% de desarrollo)**:
   - **Invocación y Gestión de Barra**: Invocación con clic derecho en mochila, compatibilidad total con accesos rápidos F1-F12 y alternancia de múltiples mascotas. Al cambiar de mascota se despawnea y desvincula limpiamente la anterior sin dejar entidades fantasma (`0x000E`, `0x001B`, `0x015E`).
   - **Evolución y Etapas de Crecimiento**: Rompimiento del huevo automático a nivel 15 pasando a Junior Pet, y evoluciones por certificados (Medium Blood Certificate a nivel 35, Advanced Blood Certificate a nivel 55) con regeneración limpia de entidad y modelo.
@@ -184,18 +188,40 @@ Path`, `Third Spirit`, `Limit Breaker`, `Shadow Meld`, `Killer Intent`) y la
 - **Motor de Bufos, HoT y DoT**:
   - Gestión de duración de bufos, tics de curación en el tiempo (HoT de Earth Blessing HP/MP), efectos de pociones y cartas de larga duración.
 
+**El cliente, personalizado**
+
+El servidor deja el cliente local listo al arrancar, siempre con un `.bak` antes de tocar nada:
+
+- **Estación del Angel Lyceum** (normal, navidad, halloween, sakura, verano). No está en
+  `map041.mpc` como se creía, sino en `stage.xml`: un mapa de **decoración** (`裝飾地圖檔`) más
+  el clima. Se cambia desde el launcher, con `/estacion` o con `MODO_ESTACION`
+- **Nueve ranuras de habilidad** en vez de seis. Las tres extra se abren por **nivel 301, 351 y
+  401**, sin Supreme Level ni misión, y se rellenan solas con una rama de oficio para ir a
+  cambiarla con el Skill Angel. A quien no tenga sus seis de base no se le toca nada
+- **Sin exclusión entre ramas**: las once reglas `互斥N` de `skill.xml` (Life↔Wraith,
+  Chaos↔Earth, Meditate↔Enhance, Grapple↔Snipe y el trío Mantle/Garment/Vestment). El servidor
+  nunca las comprobó; quien se negaba era el selector del cliente
+- **Rank Promotion Medal** (83266), con los créditos que pide cada rango leídos de la columna
+  `功勳` de `level.xml` y la banderola de rango (`0x0020` con `effect_id` 3)
+- **Launcher** en español e inglés, con botones para abrir varias copias del cliente a la vez
+- **Pantalla del logo de arranque** vaciada
+
 **A medias**
 
 - Diálogos de NPC: 17 de los 52 del Lyceum tienen su texto y sus opciones, más expansión
   a vendedores regionales de habilidades
 - **Habilidades y magias**: las ramas de combate cuerpo a cuerpo, AoEs, invocaciones y magia están
-  operativas (lanzamiento, costes, daño, buffs, debuffs, invocaciones y progresión). Arco y daga tienen menos pruebas
+  operativas (lanzamiento, costes, daño, buffs, debuffs, invocaciones y progresión). El arco ya
+  pega a distancia con su básico (Basic Shot I, alcance 12); falta confirmar si se dibuja la
+  flecha volando, porque el efecto solo se manda en las habilidades. La daga tiene menos pruebas
 - Hechizos: salen en F1-F3, se lanzan, dan buff y hacen daño, pero faltan
   algunos efectos visuales
 - La fórmula de daño físico y mágico ahora escala con mitigación lineal de
   defensa y atributos elementales, pero a niveles extremos (300+) o contra
   monstruos con estadísticas atípicas puede requerir ajustes finos de calibración
-- Los combos se leen de `magic.xml` pero no se ejecutan
+- ~~Los combos se leen de `magic.xml` pero no se ejecutan~~ **resuelto**: los 475
+  (376 directos por `連擊次數` y 99 encadenados por `轉嫁法術`) se ejecutan, y los
+  golpes extra procesan la muerte del monstruo
 - El efecto de lentitud se registra pero no cambia la velocidad de movimiento
 - El bastón y el hacha usan la animación de ataque de la espada hasta que
   alguien capture la suya

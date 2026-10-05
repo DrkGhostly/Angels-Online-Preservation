@@ -69,6 +69,13 @@ def skills_arma_ses(ses):
     return _cl.skills_de_equipo(getattr(ses, 'inventario', None))
 
 
+# Cuanto se le perdona al cliente que se adelante al pedir el siguiente
+# golpe basico, como fraccion de la cadencia. Con 0.20 sobre 1.15 s entran
+# los que piden a partir de 0.92, que son los que se veian en el log
+# (1.03, 1.05, 1.10). Lo que llegue antes de eso sigue fuera.
+MARGEN_CADENCIA = 0.20
+
+
 def lleva_duales_ses(ses):
     """Si el personaje pelea con DOS armas de mano (el escudo no cuenta)."""
     import clases as _cl
@@ -349,12 +356,10 @@ def _precio_venta(item_id: int) -> int:
     return max(1, _precio_item(item_id) // 2)
 
 
-# Ultima casilla utilizable de la mochila. Sin mochila puesta son 20..39; con
-# ella llega hasta la 44. Poner algo mas alla del tope no da error: el objeto
-# entra en el inventario pero el cliente no lo dibuja, asi que queda invisible
-# hasta que el jugador consigue una mochila y de golpe le aparecen cosas que
-# no sabia que tenia.
-TOPE_SIN_MOCHILA = 39
+# Ultima casilla utilizable de la mochila base (pestaña Prop: 5x5 = 25 ranuras,
+# de la 20 a la 44 inclusive). Con mochila equipada en ranura 7/8 se habilitan
+# ademas las bolsas extra (hasta la 120).
+TOPE_SIN_MOCHILA = 44
 TOPE_CON_MOCHILA = 120
 
 
@@ -752,6 +757,17 @@ def _gm_dar_item(ses, item_id: int, n: int = 1) -> str:
     return 'dado %dx %s (%d) en la casilla %d' % (n, nom, item_id, ranura)
 
 
+# Las primeras palabras que valen como comando sin la barra delante. Tiene
+# que llevar TODAS las que entiende _gm_parsear: lo que falte aqui no llega
+# nunca, porque el cliente se come la barra.
+PALABRAS_GM = frozenset((
+    'item', 'give', 'i', 'help',
+    'rama', 'skill', 'branch',
+    'estacion', 'season', 'modo',
+    'rango', 'rank',
+))
+
+
 def _gm_texto(cuerpo: bytes):
     """Saca un posible comando ASCII de un paquete C->S.
 
@@ -759,6 +775,16 @@ def _gm_texto(cuerpo: bytes):
     donde puede empezar el texto. Solo se da por bueno si empieza por barra o
     si la primera palabra es una de las del comando: asi un paquete binario
     cualquiera no se confunde con un comando.
+
+    OJO con la barra: el cliente SE LA COME. Al escribir "/rama add Life" lo
+    que llega es "rama add Life" pelado, medido en el log del 05/10/2026:
+
+        0x0001 sin esquema (14B): 72 61 6d 61 20 61 64 64 20 4c 69 66 65 00
+
+    Por eso la lista de palabras es la que manda de verdad, y antes solo
+    tenia item/give/i/help: ni rama, ni estacion, ni rango entraban nunca.
+    Ahora sale de PALABRAS_GM, que esta pegada a los comandos que conoce
+    _gm_parsear para que no se vuelvan a separar.
     """
     if not cuerpo:
         return None
@@ -772,8 +798,8 @@ def _gm_texto(cuerpo: bytes):
         if not trozo or not all(32 <= b < 127 for b in trozo):
             continue
         t = trozo.decode('ascii').strip()
-        if t.startswith('/') or t.lower().split()[:1] in (['item'], ['give'],
-                                                          ['i'], ['help']):
+        primera = (t.lower().split() or [''])[0]
+        if t.startswith('/') or primera in PALABRAS_GM:
             return t
     return None
 
@@ -789,6 +815,30 @@ def _gm_parsear(texto: str):
     cmd = partes[0].lower()
     if cmd == 'help':
         return ('help',)
+    if cmd in ('rama', 'skill', 'branch'):
+        # /rama <fuera> <dentro>  cambia una rama por otra
+        # /rama add <dentro>      anade una rama sin quitar ninguna
+        #
+        # Existe porque la restriccion de "Unable to learn at the same
+        # time" (texto 714 de string.xml) es SOLO del selector del
+        # cliente: el servidor no comprueba nada al recibir el 0x002F
+        # contenedor 10, acepta la pareja que le manden. Desde aqui se
+        # elige sin pasar por el selector.
+        if len(partes) < 3:
+            return ('err', 'usage: /rama <fuera|add> <dentro>   '
+                           '(por nombre o por numero)')
+        return ('rama', partes[1], partes[2])
+    if cmd in ('estacion', 'season', 'modo'):
+        if len(partes) < 2:
+            return ('err', 'usage: /estacion <normal|navidad|halloween|sakura|verano>')
+        return ('estacion', partes[1].lower())
+    if cmd in ('rango', 'rank'):
+        if len(partes) < 2:
+            return ('rango', 0)  # 0 = subir +1 rango
+        try:
+            return ('rango', int(partes[1], 0))
+        except ValueError:
+            return ('err', 'usage: /rango [1..20]')
     if cmd not in ('item', 'give', 'i'):
         return None
     if len(partes) < 2:
@@ -816,12 +866,129 @@ def _probar_gm(ses, cuerpo, addr) -> bool:
     if leido is None:
         return False
     if leido[0] == 'help':
-        ses.enviar(_cl.aviso('GM: /item <id> [qty]', tipo=0, msg_id=_cl.MSG_ITEM))
+        ses.enviar(_cl.aviso('GM: /item <id> [qty] | /rango [1..20] | /estacion <normal|navidad|halloween|sakura|verano>', tipo=0, msg_id=_cl.MSG_ITEM))
         log.info('[%s] GM help' % (addr,))
         return True
     if leido[0] == 'err':
         ses.enviar(_cl.aviso(leido[1], tipo=0, msg_id=_cl.MSG_ITEM))
         log.info('[%s] GM %s' % (addr, leido[1]))
+        return True
+    if leido[0] == 'estacion':
+        import cliente_local as _cl_loc
+        m_ap = _cl_loc.aplicar_modo_estacion(leido[1])
+        ses.enviar(_cl.aviso(f'Estacion cambiada a: {m_ap.upper()} (reentra al mapa para verla)', tipo=0))
+        log.info('[%s] GM estacion -> %s' % (addr, m_ap))
+        return True
+    if leido[0] == 'rama' and ses.personaje:
+        import clases as _cl_rm
+        import skills as _sk_rm
+        _p = ses.personaje
+
+        def _num_rama(txt):
+            """El numero de una rama, por numero o por nombre."""
+            t = str(txt).strip()
+            if t.isdigit():
+                return int(t)
+            tl = t.lower()
+            for sid, nom in _cl_rm.NOMBRE_RAMA.items():
+                if nom.lower() == tl:
+                    return sid
+            for sid, nom in _cl_rm.NOMBRE_RAMA.items():
+                if nom.lower().startswith(tl):
+                    return sid
+            return 0
+
+        _dentro = _num_rama(leido[2])
+        if not _dentro or _dentro not in _cl_rm.NOMBRE_RAMA:
+            ses.enviar(_cl.aviso('No conozco la rama "%s".' % leido[2], tipo=0))
+            return True
+        _habs = list(_p.habilidades or [])
+        if any(h[0] == _dentro for h in _habs):
+            ses.enviar(_cl.aviso('Ya llevas %s.' % _sk_rm.nombre_rama(_dentro), tipo=0))
+            return True
+        if not hasattr(_p, 'banco_habilidades') or _p.banco_habilidades is None:
+            _p.banco_habilidades = {}
+        _nv, _xp = _p.banco_habilidades.get(_dentro, (1, 0))
+
+        _anade = str(leido[1]).lower() in ('add', 'anadir', 'mas', '+')
+        if _anade:
+            # Una ranura DE MAS, de las tres que se abren por nivel
+            # (301, 351 y 401). El tope sale de skills.ranuras_de_habilidad.
+            _tope_rm = _sk_rm.ranuras_de_habilidad(getattr(_p, 'nivel', 1) or 1)
+            if len(_habs) >= _tope_rm:
+                _falta = next((c for c in _sk_rm.NIVELES_RANURA_EXTRA
+                               if (getattr(_p, 'nivel', 1) or 1) < c), None)
+                ses.enviar(_cl.aviso(
+                    'Ya llevas %d ranuras, que es tu tope.%s' % (
+                        _tope_rm,
+                        (' La siguiente se abre a nivel %d.' % _falta) if _falta else ''),
+                    tipo=0))
+                return True
+            _habs.append((_dentro, _nv, _xp))
+            _fuera = 0
+        else:
+            _fuera = _num_rama(leido[1])
+            _pos = next((k for k, h in enumerate(_habs) if h[0] == _fuera), None)
+            if _pos is None:
+                ses.enviar(_cl.aviso('No llevas la rama "%s".' % leido[1], tipo=0))
+                return True
+            _p.banco_habilidades[_fuera] = [_habs[_pos][1], _habs[_pos][2]]
+            _habs[_pos] = (_dentro, _nv, _xp)
+
+        _p.habilidades = _habs
+        _p.class_id = _sk_rm.calcular_class_id([h[0] for h in _p.habilidades])
+        _salida_rm = [
+            _cl.aviso(_sk_rm.nombre_rama(_dentro), tipo=7, msg_id=424),
+            _stats_ses(ses),
+            _cl.arbol(_p.habilidades, banco=_p.banco_habilidades),
+        ]
+        if _fuera:
+            _salida_rm.insert(1, _cl.aviso(_sk_rm.nombre_rama(_fuera), tipo=7, msg_id=423))
+        for _nid, _nom in (_sk_rm.hechizos_de_rama(_dentro) or []):
+            _salida_rm.append(struct.pack('<HIB', 0x001D, _p.entity_id, 1)
+                              + struct.pack('<BII', _cl.KIND_HECHIZO, _nid, 1))
+            _salida_rm.append(_cl.aviso(_nom, tipo=7, msg_id=_cl.MSG_HECHIZO))
+        ses.enviar(*_salida_rm)
+        if getattr(ses, 'usuario', None):
+            cuentas.guardar_habilidades(ses.usuario, _p.char_id, _p.habilidades)
+            cuentas.guardar_clase(ses.usuario, _p.char_id, _p.class_id)
+            cuentas.guardar_banco_habilidades(ses.usuario, _p.char_id, _p.banco_habilidades)
+        log.info('[%s] /rama: %s -> %s (%d ramas, clase %d)'
+                 % (addr, _sk_rm.nombre_rama(_fuera) if _fuera else 'add',
+                    _sk_rm.nombre_rama(_dentro), len(_habs), _p.class_id))
+        return True
+
+    if leido[0] == 'rango' and ses.personaje:
+        import combate as _cb
+        _rk_arg = leido[1]
+        _rk_act = max(1, min(20, int(getattr(ses.personaje, 'rango', 1) or 1)))
+        _rk_new = min(20, _rk_act + 1) if _rk_arg <= 0 else max(1, min(20, _rk_arg))
+        ses.personaje.rango = _rk_new
+        _tit = _cb.NOMBRES_RANGO.get(_rk_new, f'Rank {_rk_new}')
+        # Los creditos que pide el rango nuevo, de la tabla de level.xml.
+        # Con max() para no quitarle a nadie los que ya llevaba de sobra.
+        _cred_rk = max(int(getattr(ses.personaje, 'creditos', 0) or 0),
+                       _cb.creditos_de_rango(_rk_new))
+        ses.personaje.creditos = _cred_rk
+            # NO se manda efecto visual aqui. El 251 que habia no existe:
+            # los efectos magicos viven en shape/magic/<n>/ y de 224 que
+            # hay, el 251 no esta, asi que el cliente lo tiraba.
+            #
+            # La banderola la dibuja el CLIENTE solo al recibir KIND_RANGO,
+            # y usa la vieja de common.obd secuencia 71,
+            # "升級效果-LEVEL UP旗幟(階級)", que reaprovecha el arte del
+            # subir de nivel (lvup02-7/8/9) en verde. La buena es la 743,
+            # "升級效果-PEERAGE UP旗幟". Cambiarla es tocar el cliente, no
+            # el servidor: desde aqui no se elige.
+        ses.enviar(
+            _cb.atributo(ses.personaje.entity_id, _rk_new, _cb.KIND_RANGO),
+            _cb.atributo(ses.personaje.entity_id, _cred_rk, _cb.KIND_CREDITO),
+            _cb.efecto_level_up(ses.personaje.entity_id, es_rango=True),
+            _cl.aviso(f'Rank promoted to Lv.{_rk_new}: {_tit}!', tipo=0),
+        )
+        if getattr(ses, 'usuario', None):
+            cuentas.guardar_rango(ses.usuario, ses.personaje.char_id, _rk_new, _cred_rk)
+        log.info('[%s] GM rango -> %d (%s)' % (addr, _rk_new, _tit))
         return True
     _, iid, cant = leido
     msg = _gm_dar_item(ses, iid, cant)
@@ -1442,6 +1609,48 @@ def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
                 )
                 salida_combate.append(_cb.efecto_level_up(yo, es_skill=False))
                 salida_combate.append(_stats_ses(ses))
+                # Las tres ranuras de rama extra se abren por NIVEL (301,
+                # 351 y 401), sin Supreme Level ni mision. Aqui solo se
+                # avisa: la ranura ya esta disponible, se llena eligiendo
+                # una rama.
+                import skills as _sk_rn
+                _nueva_ranura = _sk_rn.ranura_que_se_abre(p.nivel)
+                if (_nueva_ranura
+                        and len(p.habilidades or []) >= _sk_rn.RANURAS_BASE
+                        and len(p.habilidades or []) < _nueva_ranura):
+                    # Se rellena sola con una rama de OFICIO, que no cambia
+                    # la clase, para que la ranura se vea y se pueda ir a
+                    # cambiarla con el Skill Angel. El comando /rama sigue
+                    # valiendo para ponerle otra cosa directamente.
+                    _relleno = _sk_rn.rama_de_relleno(p.habilidades)
+                    if _relleno:
+                        if not getattr(p, 'banco_habilidades', None):
+                            p.banco_habilidades = {}
+                        _nv_rl, _xp_rl = p.banco_habilidades.get(_relleno, (1, 0))
+                        p.habilidades = list(p.habilidades or []) + [(_relleno, _nv_rl, _xp_rl)]
+                        p.class_id = _sk_rn.calcular_class_id([h[0] for h in p.habilidades])
+                        salida_combate.append(_cl.aviso(
+                            _sk_rn.nombre_rama(_relleno), tipo=7, msg_id=424))
+                        salida_combate.append(
+                            _cl.arbol(p.habilidades, banco=p.banco_habilidades))
+                        for _nid, _nom in (_sk_rn.hechizos_de_rama(_relleno) or []):
+                            salida_combate.append(
+                                struct.pack('<HIB', 0x001D, yo, 1)
+                                + struct.pack('<BII', _cl.KIND_HECHIZO, _nid, 1))
+                            salida_combate.append(
+                                _cl.aviso(_nom, tipo=7, msg_id=_cl.MSG_HECHIZO))
+                        if getattr(ses, 'usuario', None):
+                            cuentas.guardar_clase(ses.usuario, p.char_id, p.class_id)
+                            cuentas.guardar_banco_habilidades(
+                                ses.usuario, p.char_id, p.banco_habilidades)
+                    salida_combate.append(_cl.aviso(
+                        'Skill slot %d unlocked (%s). Change it at the Skill Angel.'
+                        % (_nueva_ranura, _sk_rn.nombre_rama(_relleno) if _relleno else '-'),
+                        tipo=0, msg_id=_cl.MSG_ITEM))
+                    log.info('[%s] %s abre la ranura de rama %d al nivel %d, '
+                             'rellenada con %s'
+                             % (addr, p.nombre, _nueva_ranura, p.nivel,
+                                _sk_rn.nombre_rama(_relleno) if _relleno else 'nada'))
                 log.info(f"[{addr}] {p.nombre} SUBIO A NIVEL {p.nivel} (enviado 0x001D y efecto 0x0020 red banner)!")
 
             salida_combate.append(_cl.aviso_doble(_cl.MSG_EXP,
@@ -2770,6 +2979,7 @@ class Servidor:
             # que el personaje lo lleve puesto.
             if not getattr(p, 'rango', 0):
                 p.rango = getattr(_cf, 'RANGO_INICIAL', 1)
+            ses.enviar(_cb.atributo(p.entity_id, p.rango, _cb.KIND_RANGO))
             if _cred:
                 p.creditos = _cred
                 ses.enviar(_cb.atributo(p.entity_id, _cred, _cb.KIND_CREDITO))
@@ -2778,6 +2988,39 @@ class Servidor:
             # interrogantes.
             if p.habilidades:
                 import clases as _cl
+                # Las ranuras de rama que ya le tocan por nivel (301, 351 y
+                # 401) y todavia no tiene. Va AQUI ademas de en el subir de
+                # nivel porque quien ya paso esos niveles nunca dispararia
+                # aquel aviso, y se quedaria sin sus ranuras para siempre.
+                import skills as _sk_in
+                _tope_in = _sk_in.ranuras_de_habilidad(getattr(p, 'nivel', 1) or 1)
+                _puestas = 0
+                # Solo se rellenan las ranuras EXTRA. A quien todavia no
+                # tenga sus seis de base no se le toca: ese aun esta por
+                # elegir clase y llenarselas de oficios seria destrozarlo.
+                if len(p.habilidades) < _sk_in.RANURAS_BASE:
+                    _tope_in = 0
+                while len(p.habilidades) < _tope_in:
+                    _rl = _sk_in.rama_de_relleno(p.habilidades)
+                    if not _rl:
+                        break
+                    if not getattr(p, 'banco_habilidades', None):
+                        p.banco_habilidades = {}
+                    _nv_in, _xp_in = p.banco_habilidades.get(_rl, (1, 0))
+                    p.habilidades = list(p.habilidades) + [(_rl, _nv_in, _xp_in)]
+                    _puestas += 1
+                if _puestas:
+                    p.class_id = _sk_in.calcular_class_id([h[0] for h in p.habilidades])
+                    if getattr(ses, 'usuario', None):
+                        cuentas.guardar_habilidades(ses.usuario, p.char_id, p.habilidades)
+                        cuentas.guardar_clase(ses.usuario, p.char_id, p.class_id)
+                        cuentas.guardar_banco_habilidades(
+                            ses.usuario, p.char_id, getattr(p, 'banco_habilidades', None))
+                    log.info('[%s] %s entra con %d ranura(s) de rama nueva(s) '
+                             'por nivel %d: %s'
+                             % (addr, p.nombre, _puestas, p.nivel,
+                                ', '.join(_sk_in.nombre_rama(h[0])
+                                          for h in p.habilidades[-_puestas:])))
                 ses.enviar(_cl.arbol(p.habilidades, banco=getattr(p, 'banco_habilidades', None)))
                 _ids = [h[0] for h in p.habilidades]
                 _hech = _cl.hechizos_iniciales(_ids)
@@ -3841,10 +4084,23 @@ class Servidor:
             # Ya en rango: cadencia y cooldown
             if m is not None and not es_aoe:
                 _obj_act = getattr(ses, 'objetivo_actual', None)
+                # Antes, si no habia objetivo fijado, el golpe basico se
+                # tiraba a la basura. El objetivo lo fija el 0x0016 accion
+                # 0x0c, que el cliente solo repite cada ~1,5 s, asi que
+                # cuando el golpe llegaba primero se perdia y el personaje
+                # se quedaba "pensandolo" hasta el siguiente reenvio. Con
+                # habilidades no pasaba porque esta comprobacion era solo
+                # para el ataque normal.
+                #
+                # No hace falta rechazarlo: la comprobacion de alcance de
+                # aqui arriba ya corrio para este mismo bicho y se habria
+                # vuelto si estuviera lejos, que era justo de lo que esto
+                # pretendia proteger. Asi que se adopta el objetivo y se
+                # pega ya.
                 if _obj_act is None and tipo == _cb.ATAQUE_NORMAL:
-                    log.info(f"[{addr}] GOLPE RECHAZADO: no hay objetivo "
-                             f"fijado (te alejaste del {m.nombre})")
-                    return
+                    ses.objetivo_actual = objetivo
+                    ses.ultimo_golpe = 0
+                    _obj_act = objetivo
                 if _obj_act != objetivo:
                     ses.objetivo_actual = objetivo
                     ses.ultimo_golpe = 0
@@ -3869,11 +4125,27 @@ class Servidor:
                     duales=lleva_duales_ses(ses),
                     item_id=arma_puesta)
                 _espera = _ahora_atk - getattr(ses, 'ultimo_golpe', 0)
-                if _espera < _cad:
+                # El cliente pide el siguiente golpe con su propio reloj y
+                # llega adelantado por poco: en el log sale pidiendo a 1.03
+                # y 1.10 cuando el minimo es 1.15. Tirarlo costaba carisimo,
+                # porque el cliente no reintenta enseguida sino a los ~1,5 s
+                # y el golpe acababa saliendo a los 2,5 en vez de a 1,15.
+                #
+                # Asi que si va adelantado por poco se acepta, pero se
+                # APUNTA LA DEUDA: ultimo_golpe se deja en el futuro, en el
+                # instante que le tocaba, con lo que el siguiente espera lo
+                # que no espero este. El ritmo medio sigue siendo la
+                # cadencia exacta, solo se mueve la fase. Los golpes que
+                # llegan muy pronto se siguen rechazando.
+                _margen = _cad * MARGEN_CADENCIA
+                if _espera < _cad - _margen:
                     log.info(f"[{addr}] GOLPE RECHAZADO por cadencia: pidio a "
                              f"los {_espera:.3f}s y el minimo es {_cad:.3f}s")
                     return
-                ses.ultimo_golpe = _ahora_atk
+                if _espera < _cad:
+                    ses.ultimo_golpe = _ahora_atk + (_cad - _espera)
+                else:
+                    ses.ultimo_golpe = _ahora_atk
 
             # Si es Invocacion (Summon Skeleton, Mummy, Leech, Azrael, Demon, etc.)
             if es_invocacion:
@@ -5221,6 +5493,25 @@ class Servidor:
                 salida_golpe = [
                     _cb.ataque(yo, objetivo, _anim_golpe, _tipo_golpe),
                 ]
+            # Si FLECHAS_INFINITAS es False en configuracion.py y ataca con arco u honda,
+            # descuenta 1 flecha/bolita de la ranura 4. Por defecto es True (municion infinita como en el Global).
+            #
+            # El import va AQUI y no se fia del `_cf` de mas arriba: dentro de
+            # manejar() solo se liga en una rama que no siempre se pasa, y sin
+            # el, esta linea reventaba con UnboundLocalError en CADA golpe.
+            # Como esta antes del ses.enviar(), se perdia el ataque entero: ni
+            # animacion, ni numero de dano, ni muerte del bicho.
+            import configuracion as _cf_mun
+            if not getattr(_cf_mun, 'FLECHAS_INFINITAS', True) and (_iv.es_arco(arma_puesta) or _iv.es_honda(arma_puesta)):
+                _bolsa_am = getattr(ses, 'inventario', None) or {}
+                if 4 in _bolsa_am and _iv.es_municion(_bolsa_am[4]):
+                    _q_am = _cant_de(ses, 4) - 1
+                    if _q_am > 0:
+                        _cantidades(ses)[4] = _q_am
+                    else:
+                        _bolsa_am.pop(4, None)
+                        _cantidades(ses).pop(4, None)
+                    salida_golpe.extend(_refrescar(ses, [4]))
             ses.enviar(*salida_golpe)
             _tipo_num = _cb.TIPO_DANO_CRITICO if es_crit else _cb.TIPO_DANO
             _duales = lleva_duales_ses(ses)
@@ -5581,29 +5872,36 @@ class Servidor:
             if not pedido:
                 return
 
-            total = sum(_precio_compra(i) * c for i, c in pedido)
-            if getattr(ses, 'oro', 0) < total:
-                log.warning(f"[{addr}] compra rechazada: cuesta {total} y hay "
+            total_pedido = sum(_precio_compra(i) * c for i, c in pedido)
+            if getattr(ses, 'oro', 0) < total_pedido:
+                log.warning(f"[{addr}] compra rechazada: cuesta {total_pedido} y hay "
                             f"{getattr(ses, 'oro', 0)}")
                 return
-            ses.oro -= total
-            if ses.personaje:
-                ses.personaje.oro = ses.oro
             cid = ses.personaje.char_id if ses.personaje else 4980
 
             # El cartel del oro va primero y luego uno por item, igual que en
             # la captura: "680Gold" y despues cada nombre.
             tocadas = []
             avisos = []
+            total = 0
             for item_id, cant in pedido:
                 _r = _meter(ses, item_id, cant)
                 if _r is None:
                     log.warning(f"[{addr}] compra: no entra {item_id} x{cant}, "
                                 f"la mochila esta llena")
-                    continue
+                    avisos.append(_c.aviso('Your backpack is full.', tipo=0))
+                    break
+                total += _precio_compra(item_id) * cant
                 tocadas.append(_r)
                 avisos.append(_c.aviso(_nombre_item(item_id), tipo=0,
                                        msg_id=_c.MSG_ITEM))
+            if not tocadas:
+                if avisos:
+                    ses.enviar(*avisos)
+                return
+            ses.oro -= total
+            if ses.personaje:
+                ses.personaje.oro = ses.oro
             ses.enviar(*_refrescar(ses, tocadas, con_oro=True),
                        _c.aviso(f'{total} Gold', tipo=0, msg_id=_c.MSG_PAGO),
                        *avisos)
@@ -6076,18 +6374,34 @@ class Servidor:
                     ses.enviar(_clf.aviso("Requires Finesse skill to dual-wield weapons.", tipo=0), *_refrescar(ses, [org]))
                     return
             cid = ses.personaje.char_id if ses.personaje else 4980
-            # Si equipa un arma de 2 manos (Staff, Spear, Bow) en la 3 y lleva algo en la 4, desequipar la 4 a la mochila
+            # Si equipa un arma/municion en la 3 o 4 incompatible con la otra mano
+            # (ej. Staff/Spear con escudo, o Arco con escudo en vez de flechas, o Honda con flechas en vez de bolitas),
+            # desequipar la otra mano a la mochila conservando su cantidad.
             _extra_tocadas = []
-            if dst == 3 and inv.es_arma_dos_manos(it_org) and 4 in bolsa and org != 4:
-                _it_lh = bolsa.pop(4)
+            if dst == 3 and 4 in bolsa and org != 4 and not inv.compatibles_manos(it_org, bolsa[4]):
                 _lib_lh = _ranura_libre(bolsa, desde=20)
+                if _lib_lh is None:
+                    import clases as _clf
+                    ses.enviar(_clf.aviso("Your backpack is full.", tipo=0), *_refrescar(ses, [org]))
+                    return
+                _it_lh = bolsa.pop(4)
                 bolsa[_lib_lh] = _it_lh
+                _c_lh = _cantidades(ses).pop(4, 1)
+                if _c_lh > 1:
+                    _cantidades(ses)[_lib_lh] = _c_lh
                 _mover_inst(ses, 4, _lib_lh)
                 _extra_tocadas.extend([4, _lib_lh])
-            elif dst == 4 and 3 in bolsa and inv.es_arma_dos_manos(bolsa[3]) and org != 3:
-                _it_rh = bolsa.pop(3)
+            elif dst == 4 and 3 in bolsa and org != 3 and not inv.compatibles_manos(bolsa[3], it_org):
                 _lib_rh = _ranura_libre(bolsa, desde=20)
+                if _lib_rh is None:
+                    import clases as _clf
+                    ses.enviar(_clf.aviso("Your backpack is full.", tipo=0), *_refrescar(ses, [org]))
+                    return
+                _it_rh = bolsa.pop(3)
                 bolsa[_lib_rh] = _it_rh
+                _c_rh = _cantidades(ses).pop(3, 1)
+                if _c_rh > 1:
+                    _cantidades(ses)[_lib_rh] = _c_rh
                 _mover_inst(ses, 3, _lib_rh)
                 _extra_tocadas.extend([3, _lib_rh])
             if dst in bolsa:
@@ -6720,6 +7034,43 @@ class Servidor:
                          'destino %d, %d puntos' % (addr, _dest, _cuanto))
 
 
+            # Consumible custom: Medalla de ascenso de rango (+1 rango por uso)
+            import configuracion as _cf_rk
+            if int(item_id) == int(getattr(_cf_rk, 'ITEM_MEDALLA_RANGO', 83266)) and ses.personaje:
+                import combate as _cb
+                import clases as _cl_rk
+                _rango_act = max(1, min(20, int(getattr(ses.personaje, 'rango', 1) or 1)))
+                if _rango_act >= 20:
+                    ses.enviar(_cl_rk.aviso("You have already reached the maximum Rank (20 - God's Mouthpiece)!", tipo=0))
+                    return
+                _nuevo_rango = _rango_act + 1
+                ses.personaje.rango = _nuevo_rango
+                # Igual que en el comando de GM: el rango nuevo trae sus
+                # creditos, y no se le quitan a quien ya tuviera mas.
+                _cred_md = max(int(getattr(ses.personaje, 'creditos', 0) or 0),
+                               _cb.creditos_de_rango(_nuevo_rango))
+                ses.personaje.creditos = _cred_md
+                _queda_rk = _cantidades(ses).get(ranura, 1) - 1
+                if _queda_rk > 0:
+                    _cantidades(ses)[ranura] = _queda_rk
+                else:
+                    bolsa.pop(ranura, None)
+                    _cantidades(ses).pop(ranura, None)
+                _titulo_rk = _cb.NOMBRES_RANGO.get(_nuevo_rango, f"Rank {_nuevo_rango}")
+                salida_rk = list(_refrescar(ses, [ranura]))
+                salida_rk.append(_cb.atributo(ses.personaje.entity_id, _nuevo_rango, _cb.KIND_RANGO))
+                salida_rk.append(_cb.atributo(ses.personaje.entity_id, _cred_md, _cb.KIND_CREDITO))
+                salida_rk.append(_cb.efecto_level_up(ses.personaje.entity_id, es_rango=True))
+                # Ver la nota del rango por GM: el 251 no existe y la
+                # banderola la pone el cliente al recibir KIND_RANGO.
+                salida_rk.append(_cl_rk.aviso(f"Rank promoted to Lv.{_nuevo_rango}: {_titulo_rk}!", tipo=0))
+                ses.enviar(*salida_rk)
+                _guardar_bolsa(ses, cid)
+                if getattr(ses, 'usuario', None):
+                    cuentas.guardar_rango(ses.usuario, cid, _nuevo_rango, _cred_md)
+                log.info(f"[{addr}] medalla de rango ({item_id}): rango {_rango_act} -> {_nuevo_rango} ({_titulo_rk})")
+                return
+
             _cred = inv.creditos_de(item_id)
             if _cred and ses.personaje:
                 import combate as _cb
@@ -6741,14 +7092,24 @@ class Servidor:
                 log.info(f"[{addr}] creditos de rango: +{_cred} "
                          f"(total {ses.personaje.creditos})")
                 ses.enviar(*salida)
+                _guardar_bolsa(ses, cid)
+                if getattr(ses, 'usuario', None):
+                    cuentas.guardar_rango(ses.usuario, cid, getattr(ses.personaje, 'rango', 1), ses.personaje.creditos)
                 return
 
             # Caso 1: Item equipable (clic derecho)
             if inv.es_equipo(ranura):
                 # Ya esta puesto -> desequipar a la bolsa
                 dst = _ranura_libre(bolsa, desde=20)
+                if dst is None:
+                    import clases as _clf_u
+                    ses.enviar(_clf_u.aviso("Your backpack is full.", tipo=0))
+                    return
                 it = bolsa.pop(ranura)
                 bolsa[dst] = it
+                _c_un = _cantidades(ses).pop(ranura, 1)
+                if _c_un > 1:
+                    _cantidades(ses)[dst] = _c_un
                 _mover_inst(ses, ranura, dst)
                 # Sin acuse: en la captura el 0x002E (usar) no recibe
                 # ninguno, solo el 0x0012 de arrastrar.
@@ -6790,34 +7151,63 @@ class Servidor:
                     # que el segundo hueco no aceptaba nada y el jugador no
                     # podia ponerse dos anillos.
                     dst = inv.ranura_libre_equipo(item_id, bolsa) or eq_slot
-                # Si se equipa un arma a dos manos (Staff, Lanza, Arco, etc.) en mano derecha (3):
-                # Desequipar la mano izquierda (4) si habia algo puesto
+                # Si se equipa un arma/municion en la 3 o 4 incompatible con la otra mano:
+                # Desequipar la otra mano a la bolsa conservando su cantidad
                 _extra_tocadas_2e = []
-                if dst == 3 and inv.es_arma_dos_manos(item_id) and 4 in bolsa:
-                    it_lhand = bolsa.pop(4)
+                if dst == 3 and 4 in bolsa and not inv.compatibles_manos(item_id, bolsa[4]):
                     libre = _ranura_libre(bolsa, desde=20)
+                    if libre is None:
+                        import clases as _clf_e
+                        ses.enviar(_clf_e.aviso("Your backpack is full.", tipo=0))
+                        return
+                    it_lhand = bolsa.pop(4)
                     bolsa[libre] = it_lhand
+                    _c_lh2 = _cantidades(ses).pop(4, 1)
+                    if _c_lh2 > 1:
+                        _cantidades(ses)[libre] = _c_lh2
                     _mover_inst(ses, 4, libre)
                     _extra_tocadas_2e.extend([4, libre])
-                    log.info(f"[{addr}] arma a dos manos: desequipando mano izquierda {it_lhand} -> bolsa {libre}")
-                elif dst == 4 and 3 in bolsa and inv.es_arma_dos_manos(bolsa[3]):
-                    # Si intenta equipar mano izquierda y tiene arma a 2 manos puesta, desequipar el arma a 2 manos
-                    it_rhand = bolsa.pop(3)
+                    log.info(f"[{addr}] mano derecha incompatible con izquierda: desequipando mano izquierda {it_lhand} -> bolsa {libre}")
+                elif dst == 4 and 3 in bolsa and not inv.compatibles_manos(bolsa[3], item_id):
                     libre = _ranura_libre(bolsa, desde=20)
+                    if libre is None:
+                        import clases as _clf_e
+                        ses.enviar(_clf_e.aviso("Your backpack is full.", tipo=0))
+                        return
+                    it_rhand = bolsa.pop(3)
                     bolsa[libre] = it_rhand
+                    _c_rh2 = _cantidades(ses).pop(3, 1)
+                    if _c_rh2 > 1:
+                        _cantidades(ses)[libre] = _c_rh2
                     _mover_inst(ses, 3, libre)
                     _extra_tocadas_2e.extend([3, libre])
-                    log.info(f"[{addr}] equipando mano izquierda: desequipando arma a dos manos {it_rhand} -> bolsa {libre}")
+                    log.info(f"[{addr}] mano izquierda incompatible con derecha: desequipando mano derecha {it_rhand} -> bolsa {libre}")
 
                 if dst in bolsa:
-                    # Reemplazar equipo actual (swap con lo puesto)
+                    # Reemplazar equipo actual (swap con lo puesto, conservando cantidades e instancias)
                     it_eq = bolsa[dst]
                     bolsa[ranura] = it_eq
                     bolsa[dst] = item_id
+                    _c_org2 = _cant_de(ses, ranura)
+                    _c_dst2 = _cant_de(ses, dst)
+                    if _c_dst2 > 1:
+                        _cantidades(ses)[ranura] = _c_dst2
+                    else:
+                        _cantidades(ses).pop(ranura, None)
+                    if _c_org2 > 1:
+                        _cantidades(ses)[dst] = _c_org2
+                    else:
+                        _cantidades(ses).pop(dst, None)
+                    _mover_inst(ses, ranura, 0xFFFF)
+                    _mover_inst(ses, dst, ranura)
+                    _mover_inst(ses, 0xFFFF, dst)
                     log.info(f"[{addr}] reemplazar equipo: item {item_id} -> {dst}, sacando {it_eq} -> {ranura}")
                 else:
                     it = bolsa.pop(ranura)
                     bolsa[dst] = it
+                    _c_eq = _cantidades(ses).pop(ranura, 1)
+                    if _c_eq > 1:
+                        _cantidades(ses)[dst] = _c_eq
                     _mover_inst(ses, ranura, dst)
                     log.info(f"[{addr}] equipar directo: item {it} -> ranura {dst}")
 
@@ -8318,6 +8708,30 @@ class Servidor:
                 pass
         log.info("senuelos abiertos en los puertos vecinos")
         log.info("las sesiones se graban en logs/sesiones/ para poder analizarlas")
+        # Sincronizar el cliente local (C:\AO\Angels Online):
+        #   1. Crea backups .bak de update26.pak, START.EXE y reg.ini si no existen
+        #   2. Aplica MODO_ESTACION ('normal' por defecto, quitando Navidad) en update26.pak y map/map041.mpc
+        #   3. Registra e inyecta el consumible custom 83266 (Rank Promotion Medal, sprite 8921) en item9.xml
+        #   4. Levanta los servidores locales FTP (2121) y HTTP (8080) para el launcher START.EXE
+        try:
+            import cliente_local as _cl_loc
+            _modo_est = _cl_loc.aplicar_modo_estacion()
+            # La pantalla del logo de arranque. Se intenta en cada arranque
+            # porque si el juego esta abierto el .pak esta bloqueado y hay
+            # que dejarlo para la proxima.
+            import configuracion as _cf_logo
+            if getattr(_cf_logo, 'QUITAR_LOGO_ARRANQUE', True):
+                _cl_loc.quitar_logo_arranque()
+            if getattr(_cf_logo, 'RAMAS_SIN_EXCLUSION', True):
+                _cl_loc.quitar_exclusion_ramas()
+            _cl_loc.parchear_launcher()
+            _srvs_launcher = await _cl_loc.iniciar_servidores_launcher()
+            for _sl in _srvs_launcher:
+                tareas.append(_sl.serve_forever())
+            log.info(f"cliente local sincronizado (modo estacion: {_modo_est}, item 83266 activo)")
+        except Exception as _e_loc:
+            log.warning(f"no se pudo sincronizar cliente local: {_e_loc}")
+
         # El GM: por consola si se arranco desde una terminal, y por
         # data/gm.txt siempre.
         tareas.append(self._consola_gm())

@@ -1359,6 +1359,51 @@ def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
                         acciones=[1000088, 0])[2:],
         ]
 
+    # --- Clank Oasis (407) y Commercial Street (419) ---
+    # Los dos ultimos mapas de ALO TW, tambien sin captura. Las lineas
+    # salen de msg.xml: Clank Oasis en 516648-516657 y Commercial Street
+    # en 517063-517068, los dos ya en ingles.
+    #
+    # Van por STAGE y no por nombre ni entidad: 'Spell Analyst' y
+    # 'Technique Analyst' se llaman IGUAL en los dos mapas y venden cosas
+    # distintas, y el entity_id de la plantilla es el de la sesion de
+    # Taiwan y no sobrevive a la conexion.
+    #
+    # Quien es quien: el "stance researcher" de Clank y el "strategy
+    # researcher" de Commercial son el de guerrero (Technique Analyst), y
+    # el "spell/magic researcher" el de magias (Spell Analyst).
+    if stage == 407:
+        if nombre == 'Spell Analyst':
+            return [armar_linea(516648, npc_val or 4, [516649])[2:]]
+        if nombre == 'Technique Analyst':
+            return [armar_linea(516650, npc_val or 4, [516651])[2:]]
+        if nombre == 'Oasis Mechanic':
+            return [armar_linea(516652, npc_val or 4, [516653])[2:]]
+        if nombre == 'Oasis Merchant':
+            return [armar_linea(516654, npc_val or 4, [516655])[2:]]
+        if nombre == 'Oasis Banker':
+            # Sin opciones: msg.xml no trae ninguna para el banquero de
+            # este mapa. Habla y ya; el almacen necesita una captura.
+            return [armar_linea(516656, npc_val or 4, [])[2:]]
+    if stage == 419:
+        # OJO: las opciones son las MISMAS que las de Clank Oasis. No es un
+        # descuido: Commercial Street no tiene ni una linea de opcion en
+        # ningun pak que tengamos, solo los seis saludos. Como el texto de
+        # las de Clank es generico ("Okay, I'd like to buy spell scrolls")
+        # se reusan para que la ciudad sirva, y la tienda se decide por el
+        # stage. Si algun dia sale una captura, estos ids son lo primero
+        # que hay que corregir.
+        if nombre == 'Spell Analyst':
+            return [armar_linea(517063, npc_val or 4, [516649])[2:]]
+        if nombre == 'Technique Analyst':
+            return [armar_linea(517064, npc_val or 4, [516651])[2:]]
+        if nombre == 'Street Mechanic':
+            return [armar_linea(517065, npc_val or 4, [516653])[2:]]
+        if nombre == 'Street Vendor':
+            return [armar_linea(517066, npc_val or 4, [516655])[2:]]
+        if nombre == 'Street Banker':
+            return [armar_linea(517067, npc_val or 4, [])[2:]]
+
     # --- Floral Alley (stage 398, region de Sun Sea Maze) ---
     # Este mapa NO viene de una captura: se poblo desde el cliente oficial
     # de Taiwan y sus NPC estaban mudos. Las lineas salen de msg.xml
@@ -2130,6 +2175,23 @@ def opciones_de(linea: bytes):
 def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
                 nombre: str = '', stage: int = 0, nivel: int = 0):
     """Devuelve tupla de sub-mensajes: apertura de tienda y/o cierre/continuacion de dialogo."""
+    # --- Clank Oasis (407) y Commercial Street (419) ---
+    # Las cuatro opciones son las mismas en los dos mapas (ver la nota de
+    # propio()), asi que la tienda la decide el STAGE. El par que les toca
+    # por orden de ciudad es 223/224 y 225/226, impar espadas y par magias.
+    if stage in (407, 419) and opcion_id in (516649, 516651, 516653, 516655):
+        cierre = struct.pack('<H', 0x0012) + FIN
+        if opcion_id == 516653:                       # reparar
+            return (struct.pack('<HBB', 0x004F, 0, 1), cierre)
+        if opcion_id == 516655:                       # tienda general
+            return (struct.pack('<HH', 0x0034, 3), cierre)
+        oasis = (stage == 407)
+        if opcion_id == 516649:                       # magias, el par
+            tienda = 224 if oasis else 226
+        else:                                         # espadas, el impar
+            tienda = 223 if oasis else 225
+        return (struct.pack('<HH', 0x0034, tienda), cierre)
+
     if (opcion_id in (5190, 5270, 7535, 7932, 7982, 7986, 7988, 12103,
                       508050, 508052, 508316, 508317,
                       # Whitefang Village (288): los dos Dev venden directo

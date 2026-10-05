@@ -166,6 +166,10 @@ a guess, it says so.
     `shop.xml`, where every city adds a pair and the odd id is sword skills while the even one
     is spells: `Researcher (C)` opens shop 221 (Edge Guard I) and `Researcher (S)` opens 222
     (Astro Impact I), both level 310
+  - **Clank Oasis (Stage 407, Cybertronica) and Commercial Street (Stage 419, Night City
+    Code)**: also without a capture, from `msg.xml` blocks 516648-516657 and 517063-517068.
+    They key off the **stage**, because `Spell Analyst` and `Technique Analyst` appear in both
+    maps with different shops: 223/224 in Clank Oasis and 225/226 in Commercial Street
   - **Faction Hubs & Outposts**: Cherry Village, Memory Cave, Mysterious Garden,
 - **Comprehensive Pet System (85-90% Complete)**:
   - **Summoning & Hotkey Management**: Right-click bag summoning, hotkey bar (F1-F12) activation, and multi-pet management. Switching pets cleanly despawns the previous entity without leaving ghost duplicates (`0x000E`, `0x001B`, `0x015E`).
@@ -181,19 +185,39 @@ a guess, it says so.
 - **Buffs, HoT & DoT Tick Engine**:
   - Timed buff management for self-buffs, regeneration ticks (Earth Blessing HP/MP HoT), potion effects, and long-duration utility cards.
 
+**The customised client**
+
+The server prepares the local client on startup, always taking a `.bak` first:
+
+- **Angel Lyceum season** (normal, christmas, halloween, sakura, summer). It does not live in
+  `map041.mpc` as was assumed, but in `stage.xml`: a **decoration** map (`裝飾地圖檔`) plus the
+  weather. Switch it from the launcher, with `/estacion`, or via `MODO_ESTACION`
+- **Nine skill slots** instead of six. The three extra ones open at **levels 301, 351 and 401**,
+  with no Supreme Level and no quest, and fill themselves with a trade branch so you can swap it
+  at the Skill Angel. Characters that do not yet have their base six are left untouched
+- **No mutual exclusion between branches**: the eleven `互斥N` rules in `skill.xml` (Life↔Wraith,
+  Chaos↔Earth, Meditate↔Enhance, Grapple↔Snipe and the Mantle/Garment/Vestment trio). The server
+  never checked them; it was the client's picker that refused
+- **Rank Promotion Medal** (83266), with each rank's credits read from the `功勳` column of
+  `level.xml` and the rank banner (`0x0020` with `effect_id` 3)
+- **Launcher** in Spanish and English, with buttons to open several clients at once
+- **Startup logo screen** blanked
+
 **Partly**
 
 - NPC dialogue: 17 of the Lyceum's 52 NPCs have their text and options, plus
   expansion to regional and dungeon skill vendors
 - **Skills and spells**: melee combat, AoE spells, and magic trees are operational
-  (casting, costs, damage, buffs, debuffs, summons, and progression). Longbow
-  and dagger have received less testing
+  (casting, costs, damage, buffs, debuffs, summons, and progression). The longbow now lands
+  its ranged basic (Basic Shot I, range 12); whether the arrow is drawn in flight is still
+  unconfirmed, since the effect is only sent for skills. The dagger has had less testing
 - Spells: they show up on F1-F3, cast, buff and deal damage, but some visual
   effects are still missing
 - Physical and spell damage formulas now scale with linear defense mitigation
   and elemental stats, though extreme high levels (300+) or monsters with outlier
   attributes may still need fine calibration against packet captures
-- Combos are read from `magic.xml` but never executed
+- ~~Combos are read from `magic.xml` but never executed~~ **fixed**: all 475 run (376 direct
+  via `連擊次數`, 99 chained via `轉嫁法術`), and the extra hits process the monster's death
 - The slow effect is registered but doesn't change movement speed
 - The staff and the axe use the sword's attack animation until someone
   captures theirs

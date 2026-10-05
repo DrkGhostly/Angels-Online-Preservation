@@ -468,10 +468,13 @@ def bonos_de_equipo(bolsa, mejoras: dict = None) -> dict:
 
         item_atk = x.get('atk', 0)
 
-        if r == RANURA_DERECHA: # 3 (Arma Gear mano derecha: 1H, 2H, Shadow Blade, etc. -> solo R.Atk)
+        if r == RANURA_DERECHA: # 3 (Arma Gear mano derecha: 1H, 2H, Shadow Blade, Arco, Honda -> R.Atk)
             r_weap_atk += item_atk + x.get('accuracy', 0)
-        elif r == RANURA_IZQUIERDA: # 4 (Escudo / Arma Dual Gear mano izquierda)
-            if es_arma_dual(iid):
+        elif r == RANURA_IZQUIERDA: # 4 (Escudo / Arma Dual / Municion: Flechas o Bolitas en mano izquierda)
+            if es_municion(iid):
+                # Las flechas y bolitas en la ranura 4 suman su ataque al arco/honda (R.Atk)
+                r_weap_atk += item_atk
+            elif es_arma_dual(iid):
                 l_weap_atk += item_atk + x.get('accuracy', 0)
             elif item_atk > 0:
                 # El escudo solo da defensa, salvo que sea uno especial que declare ataque propio
@@ -963,8 +966,12 @@ def es_equipable(item_id: int) -> bool:
 
 
 def es_apilable(item_id: int) -> bool:
-    """Si el item se puede acumular en una misma casilla (pociones, hojas, galletas, materiales)."""
-    if not item_id or es_equipable(item_id):
+    """Si el item se puede acumular en una misma casilla (pociones, hojas, galletas, materiales, flechas y bolitas)."""
+    if not item_id:
+        return False
+    if es_municion(item_id):
+        return True
+    if es_equipable(item_id):
         return False
     return True
 
@@ -1399,28 +1406,107 @@ def ranura_equipo_de(item_id: int):
     return _SLOT_CACHE.get(item_id)
 
 _TWO_HAND_CACHE = {}
+_CAT_ITEM_CACHE = None
+
+
+def categoria_de(item_id: int) -> str:
+    """Devuelve la categoria (物品類別) del item en item.xml."""
+    global _CAT_ITEM_CACHE
+    if not item_id:
+        return ''
+    iid = int(item_id)
+    if _CAT_ITEM_CACHE is None:
+        _CAT_ITEM_CACHE = {}
+        f_json = pathlib.Path(__file__).parent / 'plantillas' / 'client_tables.json'
+        if f_json.exists():
+            try:
+                raw = json.loads(f_json.read_text(encoding='utf-8'))
+                for k, v in (raw.get('item_cats') or {}).items():
+                    _CAT_ITEM_CACHE[int(k)] = str(v)
+            except Exception:
+                pass
+        import sqlite3
+        db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
+        if db.exists():
+            try:
+                con = sqlite3.connect(db)
+                for _t in TABLAS_ITEM:
+                    try:
+                        cols = [r[1] for r in con.execute('pragma table_info(%s)' % _t)]
+                        id_col = 'id' if 'id' in cols else '"\u7de8\u865f"'
+                        for r_id, r_cat in con.execute(f'SELECT {id_col}, "\u7269\u54c1\u985e\u5225" FROM {_t}'):
+                            if r_id and str(r_id).isdigit() and r_cat:
+                                _CAT_ITEM_CACHE[int(r_id)] = str(r_cat)
+                    except Exception:
+                        continue
+            except Exception:
+                pass
+    return _CAT_ITEM_CACHE.get(iid, '')
+
+
+def es_arco(item_id: int) -> bool:
+    """Si el arma es un arco (弓箭)."""
+    cat = categoria_de(item_id)
+    return '弓箭' in cat or '340弓' in cat
+
+
+def es_honda(item_id: int) -> bool:
+    """Si el arma es una honda / tirachinas / catapulta (彈弓)."""
+    cat = categoria_de(item_id)
+    return '彈弓' in cat
+
+
+def es_flecha(item_id: int) -> bool:
+    """Si el item es una flecha para arco (箭矢)."""
+    cat = categoria_de(item_id)
+    return '箭矢' in cat
+
+
+def es_bala(item_id: int) -> bool:
+    """Si el item es municion / bolitas para honda (彈藥 o 小鋼珠)."""
+    cat = categoria_de(item_id)
+    return '彈藥' in cat or '小鋼珠' in cat
+
+
+def es_municion(item_id: int) -> bool:
+    """Si el item es municion de arquero (flechas o bolitas de honda)."""
+    return es_flecha(item_id) or es_bala(item_id)
+
 
 def es_arma_dos_manos(item_id: int) -> bool:
-    """Si el arma requiere ambas manos (Bastón/Staff, Lanza/Spear, Arco/Bow, etc.)."""
+    """Si el arma ocupa ambas manos y NO admite nada en la mano izquierda (Staff 杖, Spear 槍, etc.).
+    Nota: Los arcos (弓箭) y hondas (彈弓) van en la mano derecha (3) pero SI admiten
+    su municion correspondiente (flechas o bolitas) en la mano izquierda (4)."""
     global _TWO_HAND_CACHE
     if not item_id:
         return False
-    if item_id in _TWO_HAND_CACHE:
-        return _TWO_HAND_CACHE[item_id]
-    import sqlite3
-    db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
-    res = False
-    if db.exists():
-        try:
-            con = sqlite3.connect(db)
-            row = fila_item(con, '"物品類別"', item_id)
-            if row and row[0]:
-                cat = str(row[0])
-                res = any(k in cat for k in ('槍', '弓', '杖', '雙手'))
-        except Exception:
-            pass
-    _TWO_HAND_CACHE[item_id] = res
+    iid = int(item_id)
+    if iid in _TWO_HAND_CACHE:
+        return _TWO_HAND_CACHE[iid]
+    cat = categoria_de(iid)
+    res = any(k in cat for k in ('槍', '杖', '雙手', '釣竿', '鐵鍬'))
+    _TWO_HAND_CACHE[iid] = res
     return res
+
+
+def compatibles_manos(rhand_id: int, lhand_id: int) -> bool:
+    """Verifica si el item de la mano derecha (ranura 3) y el de la mano izquierda (ranura 4)
+    pueden llevarse equipados al mismo tiempo:
+      - Armas de 2 manos puras (Staff, Spear, etc.): no admiten nada en la 4.
+      - Arco (弓箭) en la 3: solo admite Flechas (箭矢) en la 4.
+      - Honda (彈弓) en la 3: solo admite Bolitas/Balas (彈藥 / 小鋼珠) en la 4.
+      - Armas de 1 mano en la 3: admiten Escudo (盾) o arma dual en la 4, pero NO flechas ni bolitas."""
+    if not rhand_id or not lhand_id:
+        return True
+    if es_arma_dos_manos(rhand_id):
+        return False
+    if es_arco(rhand_id):
+        return es_flecha(lhand_id)
+    if es_honda(rhand_id):
+        return es_bala(lhand_id)
+    if es_flecha(lhand_id) or es_bala(lhand_id):
+        return False
+    return True
 
 
 

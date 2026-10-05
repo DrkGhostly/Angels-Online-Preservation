@@ -168,6 +168,8 @@ def personaje_de(cuenta, indice=0):
         buffs={int(k): v for k, v in (p.get('buffs') or {}).items()
                if isinstance(v, dict) and v.get('fin', 0) > _ahora()},
         class_id=p.get('class_id', 0),
+        creditos=int(p.get('creditos', 0) or 0),
+        rango=max(1, min(20, int(p.get('rango', 1) or 1))),
         banco_habilidades={int(k): list(v) for k, v in p.get('banco_habilidades', {}).items()},
         hechizos_aprendidos=set(p.get('hechizos_aprendidos', [])),
         mascota=_cargar_mascota(p.get('mascota')),
@@ -540,5 +542,24 @@ def guardar_mascota(usuario: str, char_id: int, mascota: dict, mascotas: dict = 
             ARCHIVO.write_text(json.dumps(d, indent=2, ensure_ascii=False),
                                encoding='utf-8')
             return
+
+
+def guardar_rango(usuario: str, char_id: int, rango: int, creditos: int = None):
+    """Guarda el rango (1..20) y opcionalmente los creditos de rango del personaje."""
+    if not usuario:
+        return
+    d = json.loads(ARCHIVO.read_text(encoding='utf-8'))
+    c = d['cuentas'].get(usuario)
+    if not c:
+        return
+    for p in c.get('personajes', []):
+        if p.get('char_id') == char_id:
+            p['rango'] = max(1, min(20, int(rango or 1)))
+            if creditos is not None:
+                p['creditos'] = int(creditos or 0)
+            ARCHIVO.write_text(json.dumps(d, indent=2, ensure_ascii=False),
+                               encoding='utf-8')
+            return
+
 
 

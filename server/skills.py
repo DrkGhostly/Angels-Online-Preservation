@@ -92,6 +92,57 @@ def hechizos_de_rama(sid: int) -> list:
     return list(HECHIZOS_INICIALES_RAMA.get(sid_int, []))
 
 
+# LAS RANURAS DE RAMA DE HABILIDAD.
+#
+# De serie son SEIS: asi salen los seis personajes de data/cuentas.json y
+# asi lo pinta el cliente. Encima de esas hay TRES mas, las que en el
+# cliente oficial salen con "Reach Supreme Lv 1 to activate", "Reach
+# Supreme Lv 20 to unlock" y "Unlocks at Supreme Lv 50" (textos 3656, 3657
+# y 3658 de string.xml).
+#
+# Aqui no hay Supreme Level ni mision de por medio: se abren por NIVEL y
+# ya, que es lo que se pidio.
+RANURAS_BASE = 6
+NIVELES_RANURA_EXTRA = (301, 351, 401)
+
+
+def ranuras_de_habilidad(nivel: int) -> int:
+    """Cuantas ramas puede llevar un personaje de ese nivel (6 a 9)."""
+    n = int(nivel or 1)
+    return RANURAS_BASE + sum(1 for corte in NIVELES_RANURA_EXTRA if n >= corte)
+
+
+def ranura_que_se_abre(nivel: int) -> int:
+    """La ranura que se estrena JUSTO a ese nivel, o 0 si no se estrena."""
+    n = int(nivel or 1)
+    for i, corte in enumerate(NIVELES_RANURA_EXTRA):
+        if n == corte:
+            return RANURAS_BASE + i + 1
+    return 0
+
+
+# CON QUE SE RELLENA UNA RANURA RECIEN ABIERTA.
+#
+# Se pone una rama que NO sea de combate a proposito, por dos razones: no
+# toca la clase del personaje (calcular_class_id solo mira magias, armas y
+# arco, asi que una de oficio no lo convierte en otra cosa) y se ve claro
+# que es un hueco para ir a cambiarlo con el Skill Angel.
+#
+# Van en este orden y se coge la primera que no se lleve ya.
+RAMAS_RELLENO = (20, 21, 22, 23, 31, 30, 29, 28, 27, 26, 25, 24)
+
+
+def rama_de_relleno(ya_llevadas) -> int:
+    """La primera rama de oficio que ese personaje no tenga, o 0."""
+    puestas = set()
+    for h in (ya_llevadas or []):
+        puestas.add(h[0] if isinstance(h, (list, tuple)) else int(h))
+    for sid in RAMAS_RELLENO:
+        if sid not in puestas:
+            return sid
+    return 0
+
+
 def calcular_class_id(skill_ids) -> int:
     """Calcula el class_id (0..20 de class.xml) segun las habilidades equipadas."""
     ids = set()

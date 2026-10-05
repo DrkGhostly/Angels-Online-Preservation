@@ -12,8 +12,8 @@ import datetime
 # =====================================================================
 # 1.0 = Experiencia normal oficial
 # 2.0 = Doble experiencia, etc.
-TASA_EXP_BASE = 20.0           # Multiplicador de EXP de personaje
-TASA_SKILL_EXP_BASE = 20.0     # Multiplicador de EXP de habilidades (stamina/skills)
+TASA_EXP_BASE = 2000.0           # Multiplicador de EXP de personaje
+TASA_SKILL_EXP_BASE = 2000.0     # Multiplicador de EXP de habilidades (stamina/skills)
 TASA_DROP_BASE = 10.5          # Multiplicador de probabilidad de drop de items
 TASA_ORO_BASE = 7.5           # Multiplicador de oro obtenido de monstruos
 
@@ -89,10 +89,19 @@ COMPRAS_1_DE_ORO = True
 # founder", que es el 1716, o sea el rango 17 contando "Growing Power" como
 # el 1.
 #
-# Los CORTES entre un rango y otro no se han encontrado: no estan en ningun
-# xml del cliente ni en los luas, y en la captura no se ve el salto. Por eso
-# esto es un numero suelto y no una tabla: se manda el total y es el cliente
-# quien decide que rango mostrar. Con 4610115 deberia salir "Order founder".
+# ENCONTRADOS (05/10/2026): los cortes entre un rango y otro SI estan en el
+# cliente. Son la columna 功勳 de setting/level.xml, y hay exactamente 20
+# valores, uno por rango:
+#
+#   1:0        2:1000      3:2400      4:4500      5:8500
+#   6:17000    7:33000     8:60000     9:103000   10:170000
+#  11:280000  12:457000   13:730000   14:1130000  15:1690000
+#  16:2745000 17:4250000  18:6380000  19:9370000  20:15750000
+#
+# Cuadran con lo medido: 4.610.115 cae entre el 17 y el 18, y la ficha de la
+# captura decia "Order founder", que es el 17. La tabla la lee
+# combate.creditos_de_rango() del propio xml, no esta copiada a mano, y al
+# subir de rango el servidor pone los creditos que le tocan.
 #
 # En cero no se manda nada y la ficha queda como estaba.
 CREDITOS_INICIALES = 0
@@ -180,6 +189,37 @@ MARTILLO_VERDE_TODOS_LOS_STATS = True
 # cliente, asi que lo decide el servidor.
 RANGO_INICIAL = 1
 
+# ID del consumible custom (Rank Promotion Medal, basado en el sprite 8921 de
+# la General's Medal 5873, agregado al final de item9.xml del update26) que
+# sube +1 rango automaticamente por cada uso (hasta el rango maximo 20).
+ITEM_MEDALLA_RANGO = 83266
+
+
+# =====================================================================
+# MUNICION DE ARQUEROS (Arcos + Flechas / Hondas + Bolitas)
+# =====================================================================
+# Si es True (como en el servidor Global actual), las flechas y bolitas/balas
+# equipadas en la mano izquierda (ranura 4) son infinitas y no se gastan al atacar.
+# Si es False, cada disparo con arco u honda consume 1 unidad de municion.
+FLECHAS_INFINITAS = True
+
+
+# =====================================================================
+# MODO ESTACIONAL DEL CLIENTE Y ACTUALIZADOR LOCAL (START.EXE)
+# =====================================================================
+# Controla el tema visual del Angel Lyceum (map041.mpc) que el servidor
+# sincroniza automaticamente con el cliente local:
+#   - 'normal'    : Angel Lyceum clasico sin nieve (update25/map041.mpc)
+#   - 'navidad'   : Angel Lyceum nevado de Navidad (update26/map041.mpc)
+#   - 'halloween' : Angel Lyceum de Halloween (041halloween.mpc)
+#   - 'sakura'    : Angel Lyceum de cerezos en flor (041sakura.mpc)
+#   - 'verano'    : Angel Lyceum de festival de verano / Matsuri (041matsuri.mpc)
+MODO_ESTACION = 'normal'
+
+# Ruta local del cliente para sincronizar el modo estacional y el launcher START.EXE
+RUTA_CLIENTE = r'C:\AO\Angels Online'
+PUERTO_UPDATE_FTP = 2121
+PUERTO_UPDATE_HTTP = 8080
 
 
 # A que nivel sale una mascota nueva. Los stats los saca de petattrib con su
@@ -191,3 +231,15 @@ RANGO_INICIAL = 1
 # A nivel 1 la mascota es inservible, asi que aqui se pone a que nivel
 # quieres que aparezcan las que da el comando /item.
 MASCOTA_NIVEL_INICIAL = 1
+
+# Deja en blanco la pantalla del logo que sale al abrir el cliente.
+# Solo toca UPDATE21.PAK, y siempre deja un .bak antes.
+QUITAR_LOGO_ARRANQUE = True
+
+# Quita las once reglas de exclusion entre ramas de habilidad (Life<->Wraith,
+# Chaos<->Earth, Meditate<->Enhance, Grapple<->Snipe y el trio
+# Mantle/Garment/Vestment). Son el atributo 互斥N de setting/eng/skill.xml;
+# el servidor nunca las comprobo, quien se negaba era el selector del
+# cliente. Se deja un skill.xml suelto en el cliente, y para deshacerlo
+# basta borrarlo.
+RAMAS_SIN_EXCLUSION = True

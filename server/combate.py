@@ -45,6 +45,85 @@ KIND_EXP = 4                # Alias retrocompatible
 # del personaje sale de ese total; los cortes entre un rango y otro NO estan
 # en los xml del cliente ni se han podido medir todavia.
 KIND_CREDITO = 49
+# Rango del personaje (1..20, string.xml 1700..1719). En Angel.exe (sub_5FEB10,
+# offset 16920 de la tabla de 0x0013 -> kind 51), mandar 0x0013 con kind 51
+# actualiza en vivo tanto el requisito de rango (a2+1232) como el texto del
+# rango en la ventana de estado (widget 853).
+KIND_RANGO = 51
+NOMBRES_RANGO = {
+    1: "Growing Power",
+    2: "Make a figure",
+    3: "Belief Preacher",
+    4: "Order Apostle",
+    5: "Gospel Archangel",
+    6: "Holy Dedicator",
+    7: "God as Lawyer",
+    8: "Rainbow Guide",
+    9: "Gospel Sower",
+    10: "Chief Justice",
+    11: "Eden's Hope",
+    12: "War Angel",
+    13: "God as Judge",
+    14: "Heavenly Hero",
+    15: "Six-winged Angel",
+    16: "Symbol of Might",
+    17: "Order founder",
+    18: "Star Ruler",
+    19: "Holy Angel",
+    20: "God's Mouthpiece",
+}
+# LOS CREDITOS QUE PIDE CADA RANGO, leidos de level.xml.
+#
+# Estaba escrito que "los cortes entre un rango y otro no se han encontrado:
+# no estan en ningun xml del cliente". Si estan: son la columna 功勳 de
+# level.xml, y hay EXACTAMENTE 20 valores, uno por rango.
+#
+# Cuadra con lo unico medido que habia: en la captura del 28/09/2026 el
+# personaje tenia 4.610.115 creditos y la ficha decia "Order founder", que
+# es el rango 17. La tabla pide 4.250.000 para el 17 y 6.380.000 para el
+# 18, asi que 4.610.115 cae justo en el 17.
+_CREDITOS_RANGO = None
+
+
+def _tabla_creditos_rango() -> list:
+    """Los 20 cortes de credito, del rango 1 al 20."""
+    global _CREDITOS_RANGO
+    if _CREDITOS_RANGO is not None:
+        return _CREDITOS_RANGO
+    _CREDITOS_RANGO = []
+    raiz = pathlib.Path(__file__).parent.parent / 'extracted_paks'
+    for sub in sorted(raiz.glob('*/setting/level.xml'), reverse=True):
+        try:
+            txt = sub.read_text(encoding='utf-8-sig', errors='ignore')
+        except OSError:
+            continue
+        vals = [int(v) for v in re.findall(r'<功勳>(\d+)</功勳>', txt)]
+        if len(vals) >= 20:
+            _CREDITOS_RANGO = vals[:20]
+            break
+    return _CREDITOS_RANGO
+
+
+def creditos_de_rango(rango: int) -> int:
+    """Los creditos con los que empieza ese rango, o 0 si no hay tabla."""
+    t = _tabla_creditos_rango()
+    n = max(1, min(20, int(rango or 1)))
+    return t[n - 1] if len(t) >= n else 0
+
+
+def rango_de_creditos(creditos: int) -> int:
+    """El rango que corresponde a esos creditos."""
+    t = _tabla_creditos_rango()
+    if not t:
+        return 1
+    c = max(0, int(creditos or 0))
+    r = 1
+    for i, corte in enumerate(t, start=1):
+        if c >= corte:
+            r = i
+    return r
+
+
 COSTE_GOLPE = 4
 SEGUNDOS_REAPARICION = 20
 _MON = None
@@ -2073,12 +2152,27 @@ def calcular_cast_time(base_cast_time: int, buffs: dict = None, habilidades: lis
     return max(100, ct)
 
 
-def efecto_level_up(yo: int, es_skill: bool = False) -> bytes:
-    """Opcode 0x0020: reproduce la animacion visual y banner de Level Up sobre el jugador.
-    effect_id = 1 (0x0001) -> Banner ROJO con querubines y trompetas (Subida de nivel de personaje)
-    effect_id = 2 (0x0002) -> Banner AZUL con querubines y trompetas (Subida de nivel de habilidad / skill)
+def efecto_level_up(yo: int, es_skill: bool = False,
+                    es_rango: bool = False) -> bytes:
+    """Opcode 0x0020: la banderola de Level Up sobre el jugador.
+
+    effect_id = 1  nivel de personaje
+    effect_id = 2  nivel de habilidad (skill)
+    effect_id = 3  RANGO
+
+    El 3 sale de que common.obd tiene TRES banderolas, no dos, y las tres
+    comparten el arte lvup02 cambiado de color:
+
+        secuencia 302  "升級效果-LEVEL UP旗幟"         lvup02-1/2/3
+        secuencia 70   "升級效果-LEVEL UP旗幟(技能)"   lvup02-4/5/6
+        secuencia 71   "升級效果-LEVEL UP旗幟(階級)"   lvup02-7/8/9
+
+    La del rango es la 71 (階級 = rango), que es la verde que se veia. Hay
+    ademas una 743 "PEERAGE UP旗幟" con arte propio (peup02-1/2/3), pero
+    esos sprites NO estan en ningun pak: solo existen los lvup02-1..9. Por
+    eso el rango se queda con la verde.
     """
-    effect_id = 2 if es_skill else 1
+    effect_id = 3 if es_rango else (2 if es_skill else 1)
     return struct.pack('<HIHI', 0x0020, yo, effect_id, yo)
 
 
