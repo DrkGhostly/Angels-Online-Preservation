@@ -2948,15 +2948,16 @@ class Servidor:
                                                     pj = getattr(ses, 'personaje', None)
                                                     if not pj or getattr(ses, 'muerto', False):
                                                         return
-                                                    # Demonic Counter (5156..5160): mitigacion 30% y reflejo 50%
-                                                    if pj.buffs and any(5156 <= bid <= 5160 for bid in pj.buffs):
-                                                        refl = max(1, int(suyo * 0.5))
-                                                        suyo = max(1, int(suyo * 0.7))
+                                                    # Demonic Counter (5156..5160): reduce el dano recibido e inflige la diferencia al atacante (sin repetir la animacion 368 de casteo)
+                                                    _dc_bid = next((bid for bid, b in (pj.buffs or {}).items() if 5156 <= int(bid) <= 5160 and isinstance(b, dict) and b.get('fin', 0) > time.time()), None)
+                                                    if _dc_bid is not None:
+                                                        _dc_rank = int(_dc_bid) - 5155  # 1..5 -> 6%..10% (低權位 6..10) o minimo 30% diferencial
+                                                        _dc_pct = 0.20 + 0.02 * _dc_rank  # 22%..30%
+                                                        refl = max(1, int(round(suyo * _dc_pct)))
+                                                        suyo = max(1, suyo - refl)
                                                         m.registrar_dano(min(m.hp, refl), es_pet=False)
                                                         m.hp = max(0, m.hp - refl)
                                                         ses.enviar_inmediato(
-                                                            _cb.numero_de_dano(yo, m.entity_id, refl, ataque=656, efecto=368),
-                                                            _cb.cierre_de_dano(yo, m.entity_id, ataque=656, efecto=368),
                                                             _cb.numero_flotante(m.entity_id, refl),
                                                             _cb.atributo(m.entity_id, m.porcentaje if m.hp > 0 else 0)
                                                         )
