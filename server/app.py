@@ -2089,7 +2089,7 @@ def _ejecutar_proc_subhechizo(ses, yo, m, sub_id: int, addr=None) -> list:
     )
 
     # Caso 1: Proc beneficioso sobre el propio jugador (Spell Boost, Witch Ward, Lava Charm, Flowing Water, etc.)
-    if targ_type == '自己' and not es_ofensivo:
+    if not es_ofensivo and not smag.get('es_debuff') and not _cb.efecto_secundario(int(sub_id)):
         pkgs.append(_cb.efecto_magia_self_fin(yo, ef_proc, int(sub_id)))
         hp_def_s = str(d_sub.get('HP定義') or '')
         mp_def_s = str(d_sub.get('MP定義') or '')
@@ -2198,11 +2198,22 @@ def _ejecutar_proc_subhechizo(ses, yo, m, sub_id: int, addr=None) -> list:
     if not blancos_proc:
         return pkgs
 
-    arma_puesta = ses.inventario.get(3, 0) if getattr(ses, 'inventario', None) else 0
     es_mag_p = int(float(d_sub.get('平均傷害') or 0)) > 0 or str(d_sub.get('公式') or '') in ('4', '5', '6', '7', '17')
-    _st_j = _iv._stats_efectivos_interno(ses.inventario, p.habilidades, mejoras=getattr(p, 'mejoras', None), buffs=getattr(p, 'buffs', None))
-    atk_pow = _st_j['matk'] if es_mag_p else _st_j['r_atk']
-    mult_p, var_p = _cb.multiplicador_magia(int(sub_id), p.nivel, arma_id=arma_puesta, stats_jugador=_st_j)
+    st_bin = _iv.stats(ses.inventario, p.habilidades, buffs=getattr(p, 'buffs', None), mejoras=_mejoras_de(ses))
+    atk_pow = struct.unpack_from('<I', st_bin, 2 + 44)[0] if es_mag_p else struct.unpack_from('<I', st_bin, 2 + 20 + 4)[0]
+    dano_base_p = smag.get('dano_base', 0)
+    denom_p = smag.get('base_denom', 200) or (200 if es_mag_p else 300)
+    mult_p = (dano_base_p / float(denom_p)) if dano_base_p > 0 else 1.0
+    var_p = 0.05 if es_mag_p else 0.03
+    if es_mag_p and smag.get('dano_coef', 0) > 0:
+        mult_p *= (smag['dano_coef'] / 100.0)
+    mods_eq_p = _iv.modificadores_porcentuales_equipo(ses.inventario)
+    _clave_pct_p = 'mag_dmg_pct' if es_mag_p else 'phys_dmg_pct'
+    if mods_eq_p.get(_clave_pct_p, 0) > 0:
+        mult_p *= (1.0 + mods_eq_p[_clave_pct_p] / 100.0)
+    _pct_b_p = _cb.pct_dano_buffs(getattr(p, 'buffs', None), es_mag_p)
+    if _pct_b_p:
+        mult_p *= (1.0 + _pct_b_p / 100.0)
     ef_sec = _cb.efecto_secundario(int(sub_id))
     dur_debuff = int(smag.get('dur_ms') or 0)
 
@@ -2509,7 +2520,10 @@ class Servidor:
                         log.debug(f"[{addr}] {m.name} {d if d else '(no parsea)'}")
                     # el dispatcher corre igual: un opcode sin esquema puede
                     # necesitar respuesta (la autenticacion es el caso tipico)
-                    self.manejar(ses, opcode, m, d, addr, cuerpo)
+                    try:
+                        self.manejar(ses, opcode, m, d, addr, cuerpo)
+                    except Exception:
+                        log.exception(f"[{addr}] error procesando opcode 0x{opcode:04X}")
                 salida = ses.drenar()
                 if salida:
                     grab.salida(salida)
@@ -6324,14 +6338,23 @@ class Servidor:
             # derecho en un mortero y luego clic izquierdo en el equipo.
             # Medido el 29/09/2026: "252b000000" es la casilla 37 sobre la 43.
             objetivo = None
+            bolsa = getattr(ses, 'inventario', None)
+            if bolsa is None:
+                return
             if len(cuerpo) == 5:
-                ranura = cuerpo[0]
-                objetivo = struct.unpack_from('<I', cuerpo, 1)[0]
+                if cuerpo[4] == 0 and cuerpo[0] not in bolsa and struct.unpack_from('<I', cuerpo, 0)[0] in bolsa:
+                    ranura = struct.unpack_from('<I', cuerpo, 0)[0]
+                else:
+                    ranura = cuerpo[0]
+                    objetivo = struct.unpack_from('<I', cuerpo, 1)[0]
             else:
                 ranura = struct.unpack_from('<I', cuerpo, 0)[0]
-            bolsa = getattr(ses, 'inventario', None)
-            if bolsa is None or ranura not in bolsa:
-                return
+            if ranura not in bolsa:
+                _r_alt = _ranura_de_item(ses, ranura)
+                if _r_alt is not None and _r_alt in bolsa:
+                    ranura = _r_alt
+                else:
+                    return
 
             # SACAR O GUARDAR LA MASCOTA. Medido el 29/09/2026: el juego
             # manda "2100000000", o sea la casilla 33 con destino cero, que
@@ -6344,11 +6367,24 @@ class Servidor:
                 _pet_alternar(ses, addr, ranura)
                 return
 
-            # MEJORAS: morteros, martillos, piensos y gemas.
-            if objetivo is not None and objetivo in bolsa and ses.personaje:
-                _res = _usar_mejora(ses, addr, ranura, objetivo)
-                if _res:
-                    return
+            # MEJORAS: morteros, martillos, piensos y gemas (incluyendo desde la barra F1-F12).
+            if ses.personaje:
+                import mejoras as _mj_2e
+                _clase_m = _mj_2e.clase_de(bolsa[ranura])
+                if _clase_m:
+                    _obj_m = objetivo if (objetivo is not None and objetivo in bolsa) else None
+                    if _obj_m is None:
+                        if _clase_m in ('pienso_mascota', 'gema_mascota'):
+                            _f_m = getattr(ses.personaje, 'mascota', None)
+                            if _f_m and _f_m.get('ranura') in bolsa:
+                                _obj_m = _f_m.get('ranura')
+                        elif _clase_m == 'pienso_montura':
+                            if 10 in bolsa:
+                                _obj_m = 10
+                    if _obj_m is not None and _obj_m in bolsa:
+                        _res = _usar_mejora(ses, addr, ranura, _obj_m)
+                        if _res:
+                            return
             item_id = bolsa[ranura]
             cid = ses.personaje.char_id if ses.personaje else 4980
 

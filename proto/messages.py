@@ -214,7 +214,7 @@ VarMsg(0x0021, 's2c', 'QUEST_LOG', [
         "  entity_id de runtime, 14509). Tambien aparece en 0x0002 en +207.")
 
 Msg(0x005B, 's2c', 'SKILL_BAR', [
-    FixedArray('ranuras', 24, [U8('usada'), U16('magic_id'), Bytes('resto', 6)]),
+    FixedArray('ranuras', 24, [U8('usada'), U32('magic_id'), Bytes('resto', 4)]),
 ], rev='privado', puertos=(24131, 24132),
    note="24 ranuras de 9 B = 216. CONFIRMADO contra magic.xml: las 4 usadas\n"
         "  dan 634=Slicing Hit IV, 732=Panther Killing III, 734=Basic Beating\n"

@@ -1148,6 +1148,6 @@ def _barra(p, base):
     r = []
     for x in p.barra[:24]:
         tipo, mid = entrada_barra(x)
-        r.append({'usada': tipo, 'magic_id': mid, 'resto': bytes(6)})
-    r += [{'usada': 0, 'magic_id': 0, 'resto': bytes(6)}] * (24 - len(r))
+        r.append({'usada': tipo, 'magic_id': int(mid or 0), 'resto': bytes(4)})
+    r += [{'usada': 0, 'magic_id': 0, 'resto': bytes(4)}] * (24 - len(r))
     return m.build(ranuras=r)
