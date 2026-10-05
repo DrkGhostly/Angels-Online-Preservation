@@ -1,0 +1,25 @@
+{
+ "_nota": "Creditos que pide cada rango, 1 a 20. Columna 功勳 de setting/level.xml. Cuadra con la captura del 28/09/2026: 4.610.115 cae entre el 17 y el 18 y la ficha decia \"Order founder\".",
+ "cortes": [
+  0,
+  1000,
+  2400,
+  4500,
+  8500,
+  17000,
+  33000,
+  60000,
+  103000,
+  170000,
+  280000,
+  457000,
+  730000,
+  1130000,
+  1690000,
+  2745000,
+  4250000,
+  6380000,
+  9370000,
+  15750000
+ ]
+}

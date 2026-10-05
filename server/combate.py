@@ -17,6 +17,8 @@ Los datos de cada bicho salen de la tabla monster de content.db, buscando por
 el npc_type que trae su NPC_SPAWN: Lily es el 7 (100 de vida, ataque 23+-2,
 defensa 25) y Slarm el 19 (118 de vida, ataque 28+-2, defensa 25).
 """
+import json
+import logging
 import pathlib
 import random
 import re
@@ -91,6 +93,18 @@ def _tabla_creditos_rango() -> list:
     if _CREDITOS_RANGO is not None:
         return _CREDITOS_RANGO
     _CREDITOS_RANGO = []
+    # Primero la plantilla, que es lo unico que viaja en el repo:
+    # extracted_paks NO esta publicado y sin esto los creditos salian 0
+    # para todo el que clonara.
+    f = pathlib.Path(__file__).parent / 'plantillas' / 'creditos_rango.json'
+    if f.exists():
+        try:
+            cortes = (json.loads(f.read_text(encoding='utf-8')) or {}).get('cortes') or []
+            if len(cortes) >= 20:
+                _CREDITOS_RANGO = [int(x) for x in cortes[:20]]
+                return _CREDITOS_RANGO
+        except Exception:
+            pass
     raiz = pathlib.Path(__file__).parent.parent / 'extracted_paks'
     for sub in sorted(raiz.glob('*/setting/level.xml'), reverse=True):
         try:
@@ -699,7 +713,15 @@ def _cargar_drops_plantilla() -> dict:
         if p.exists():
             try:
                 _DROPS_PLANTILLA = json.loads(p.read_text(encoding='utf-8'))
-            except Exception:
+            except Exception as e:
+                # Esto estuvo vacio mucho tiempo sin que se notara: `json`
+                # no estaba importado, el NameError caia aqui y los 12.715
+                # drops de la plantilla quedaban muertos en silencio. Si
+                # vuelve a fallar, que al menos se vea en el log.
+                logging.getLogger('combate').warning(
+                    'no se pudo leer drops_monstruos.json (%s: %s); '
+                    'los monstruos no van a soltar nada'
+                    % (type(e).__name__, e))
                 _DROPS_PLANTILLA = {}
         else:
             _DROPS_PLANTILLA = {}

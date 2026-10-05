@@ -35,6 +35,12 @@ una suposición, lo dice.
   peso que se carga
 - Combate: pegar y recibir, números de daño, críticos, armas duales, efectos
   de ataque, morir y revivir, botín, experiencia y experiencia de habilidad
+- **Botín en todos los niveles**: ninguno de los 2.672 monstruos de las
+  plantillas se queda sin soltar nada, hasta el 455 de Ultimate Arena. Hasta
+  nivel ~200 con su tabla propia de `serv_drop.xml`; por encima, con el
+  respaldo por tramo de nivel, porque **esos datos no existen en el cliente**
+  (`serv_drop.xml` cubre el 76% del tramo 101-200, el 6,4% del 201-300 y el
+  0,8% del 301-400)
 - Monstruos: cadencia de ataque propia de cada uno, persecución, paseo,
   reaparición y efectos de sangrado y aturdimiento
 - **Separar monstruos de NPC no depende solo del byte `klass`.** El servidor
@@ -384,6 +390,22 @@ instancia** de Bling Plaza, identificada por el `jumpmap.xml` —es el único de
 los nueve destinos de la cadena que lleva una clase extra— y **tres tornados
 de Ultimate Arena** que no dejaron pasar, probablemente por algún requisito de
 misión o de nivel.
+
+---
+
+## Qué hace falta para levantarlo
+
+El repo es **autosuficiente**: trae las 435 plantillas de mapa, `content.db`,
+`AO.db` y las tablas derivadas del cliente. **No hace falta `extracted_paks/`**,
+que no se publica porque es material con copyright de IGG.
+
+Comprobado extrayendo `HEAD` a una carpeta limpia y ejecutándolo desde ahí. Lo
+que dependía de `extracted_paks` se movió a plantillas: los cortes de crédito
+de cada rango (`creditos_rango.json`), el `skill.xml` sin exclusiones
+(`skill_sin_exclusion.xml.zlib`) y los mapas de decoración de las estaciones
+(`mapas_estacion/*.zlib`).
+
+El **cliente va aparte**, no en el repo.
 
 ---
 

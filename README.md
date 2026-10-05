@@ -380,6 +380,22 @@ likely gated by a quest or a level.
 
 ---
 
+## What you need to run it
+
+The repo is **self-contained**: it ships the 435 map templates, `content.db`,
+`AO.db` and the tables derived from the client. **`extracted_paks/` is not
+needed**, and is not published because it is IGG copyrighted material.
+
+Verified by extracting `HEAD` into a clean folder and running from there.
+Everything that depended on `extracted_paks` moved into templates: the credit
+thresholds per rank (`creditos_rango.json`), the exclusion-free `skill.xml`
+(`skill_sin_exclusion.xml.zlib`) and the seasonal decoration maps
+(`mapas_estacion/*.zlib`).
+
+The **client ships separately**, not in the repo.
+
+---
+
 ## Running it
 
 You need **Python 3.10 or newer** and the Angels Online client installed.

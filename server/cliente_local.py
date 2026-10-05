@@ -655,16 +655,27 @@ _RE_EXCLUSION = re.compile('\s*互斥\d+="[^"]*"')
 
 def quitar_exclusion_ramas() -> int:
     """Deja skill.xml sin reglas de exclusion. Devuelve cuantas quito."""
-    origen = None
-    for sub in ('UPDATE8', 'update', 'data1'):
-        f = RAIZ_PROYECTO / 'extracted_paks' / sub / 'setting' / 'eng' / 'skill.xml'
-        if f.exists():
-            origen = f
-            break
-    if origen is None:
-        return 0
-    txt = origen.read_text(encoding='utf-8-sig', errors='ignore')
-    nuevo, cuantas = _RE_EXCLUSION.subn('', txt)
+    # La plantilla ya viene sin exclusiones y es lo unico que viaja en el
+    # repo: extracted_paks no esta publicado.
+    plantilla = pathlib.Path(__file__).parent / 'plantillas' / 'skill_sin_exclusion.xml.zlib'
+    nuevo, cuantas = None, 0
+    if plantilla.exists():
+        try:
+            nuevo = zlib.decompress(plantilla.read_bytes()).decode('utf-8')
+            cuantas = 14
+        except Exception:
+            nuevo = None
+    if nuevo is None:
+        origen = None
+        for sub in ('UPDATE8', 'update', 'data1'):
+            f = RAIZ_PROYECTO / 'extracted_paks' / sub / 'setting' / 'eng' / 'skill.xml'
+            if f.exists():
+                origen = f
+                break
+        if origen is None:
+            return 0
+        txt = origen.read_text(encoding='utf-8-sig', errors='ignore')
+        nuevo, cuantas = _RE_EXCLUSION.subn('', txt)
     if not cuantas:
         return 0
     ruta_cli = pathlib.Path(getattr(_cf, 'RUTA_CLIENTE', r'C:\AO\Angels Online'))
