@@ -1,0 +1,1500 @@
+{
+ "_origen": "treasuremap.xml (UPDATE8)",
+ "filas": [
+  {
+   "id": 1,
+   "nombre": "Dusty Wooden Box",
+   "drop": 473,
+   "sprite_cofre": 60153,
+   "escenas": [
+    41
+   ],
+   "puntos": [
+    100,
+    102,
+    104
+   ]
+  },
+  {
+   "id": 2,
+   "nombre": "Dusty Wooden Box",
+   "drop": 473,
+   "sprite_cofre": 60153,
+   "escenas": [
+    41
+   ],
+   "puntos": [
+    100,
+    102,
+    104
+   ]
+  },
+  {
+   "id": 3,
+   "nombre": "Dusty Wooden Box",
+   "drop": 473,
+   "sprite_cofre": 60153,
+   "escenas": [
+    41
+   ],
+   "puntos": [
+    100,
+    102,
+    104
+   ]
+  },
+  {
+   "id": 4,
+   "nombre": "Robber's Secret",
+   "drop": 474,
+   "sprite_cofre": 60153,
+   "escenas": [
+    41
+   ],
+   "puntos": [
+    100,
+    102,
+    104
+   ]
+  },
+  {
+   "id": 5,
+   "nombre": "Robber's Secret",
+   "drop": 474,
+   "sprite_cofre": 60153,
+   "escenas": [
+    41
+   ],
+   "puntos": [
+    100,
+    102,
+    104
+   ]
+  },
+  {
+   "id": 6,
+   "nombre": "Trace-indicating Mark",
+   "drop": 475,
+   "sprite_cofre": 60153,
+   "escenas": [
+    41
+   ],
+   "puntos": [
+    100,
+    102,
+    104
+   ]
+  },
+  {
+   "id": 7,
+   "nombre": "Trace-indicating Mark",
+   "drop": 475,
+   "sprite_cofre": 60153,
+   "escenas": [
+    41
+   ],
+   "puntos": [
+    100,
+    102,
+    104
+   ]
+  },
+  {
+   "id": 8,
+   "nombre": "Common Mound",
+   "drop": 476,
+   "sprite_cofre": 60153,
+   "escenas": [
+    41
+   ],
+   "puntos": [
+    100,
+    102,
+    104
+   ]
+  },
+  {
+   "id": 9,
+   "nombre": "Common Mound",
+   "drop": 476,
+   "sprite_cofre": 60153,
+   "escenas": [
+    41
+   ],
+   "puntos": [
+    100,
+    102,
+    104
+   ]
+  },
+  {
+   "id": 10,
+   "nombre": "Common Mound",
+   "drop": 476,
+   "sprite_cofre": 60153,
+   "escenas": [
+    41
+   ],
+   "puntos": [
+    100,
+    102,
+    104
+   ]
+  },
+  {
+   "id": 11,
+   "nombre": "Common Mound",
+   "drop": 476,
+   "sprite_cofre": 60153,
+   "escenas": [
+    6,
+    7,
+    13,
+    18,
+    33,
+    37,
+    19,
+    32
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 12,
+   "nombre": "Suspected Gravel Piles",
+   "drop": 477,
+   "sprite_cofre": 60153,
+   "escenas": [
+    6,
+    7,
+    13,
+    18,
+    33,
+    37,
+    19,
+    32
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 13,
+   "nombre": "Suspected Gravel Piles",
+   "drop": 477,
+   "sprite_cofre": 60153,
+   "escenas": [
+    6,
+    7,
+    13,
+    18,
+    33,
+    37,
+    19,
+    32
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 14,
+   "nombre": "Suspected Gravel Piles",
+   "drop": 477,
+   "sprite_cofre": 60153,
+   "escenas": [
+    6,
+    7,
+    13,
+    18,
+    33,
+    37,
+    19,
+    32
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 15,
+   "nombre": "Collector's Cellar",
+   "drop": 478,
+   "sprite_cofre": 60153,
+   "escenas": [
+    6,
+    7,
+    13,
+    18,
+    33,
+    37,
+    19,
+    32
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 16,
+   "nombre": "Collector's Cellar",
+   "drop": 478,
+   "sprite_cofre": 60153,
+   "escenas": [
+    6,
+    7,
+    13,
+    18,
+    33,
+    37,
+    19,
+    32
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 17,
+   "nombre": "Collector's Cellar",
+   "drop": 478,
+   "sprite_cofre": 60153,
+   "escenas": [
+    6,
+    7,
+    13,
+    18,
+    33,
+    37,
+    19,
+    32
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 18,
+   "nombre": "Collector's Cellar",
+   "drop": 478,
+   "sprite_cofre": 60153,
+   "escenas": [
+    6,
+    7,
+    13,
+    18,
+    33,
+    37,
+    19,
+    32
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 19,
+   "nombre": "Location of the Buried Swags",
+   "drop": 479,
+   "sprite_cofre": 60153,
+   "escenas": [
+    8,
+    9,
+    17,
+    28,
+    25,
+    20
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 20,
+   "nombre": "Location of the Buried Swags",
+   "drop": 479,
+   "sprite_cofre": 60153,
+   "escenas": [
+    8,
+    9,
+    17,
+    28,
+    25,
+    20
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 21,
+   "nombre": "Location of the Buried Swags",
+   "drop": 479,
+   "sprite_cofre": 60153,
+   "escenas": [
+    8,
+    9,
+    17,
+    28,
+    25,
+    20
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 22,
+   "nombre": "Location of the Tumulus",
+   "drop": 480,
+   "sprite_cofre": 60153,
+   "escenas": [
+    8,
+    9,
+    17,
+    28,
+    25,
+    20
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 23,
+   "nombre": "Location of the Tumulus",
+   "drop": 480,
+   "sprite_cofre": 60153,
+   "escenas": [
+    8,
+    9,
+    17,
+    28,
+    25,
+    20
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 24,
+   "nombre": "Location of the Tumulus",
+   "drop": 480,
+   "sprite_cofre": 60153,
+   "escenas": [
+    8,
+    9,
+    17,
+    28,
+    25,
+    20
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 25,
+   "nombre": "Location of the Tumulus",
+   "drop": 480,
+   "sprite_cofre": 60153,
+   "escenas": [
+    8,
+    9,
+    17,
+    28,
+    25,
+    20
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 26,
+   "nombre": "The Antiquary's Collections",
+   "drop": 481,
+   "sprite_cofre": 60153,
+   "escenas": [
+    8,
+    9,
+    17,
+    28,
+    25,
+    20
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 27,
+   "nombre": "The Antiquary's Collections",
+   "drop": 481,
+   "sprite_cofre": 60153,
+   "escenas": [
+    8,
+    9,
+    17,
+    28,
+    25,
+    20
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 28,
+   "nombre": "The Antiquary's Collections",
+   "drop": 481,
+   "sprite_cofre": 60153,
+   "escenas": [
+    8,
+    9,
+    17,
+    28,
+    25,
+    20
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 29,
+   "nombre": "The Antiquary's Collections",
+   "drop": 481,
+   "sprite_cofre": 60153,
+   "escenas": [
+    8,
+    9,
+    17,
+    28,
+    25,
+    20
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 30,
+   "nombre": "Old Luxurious Chest",
+   "drop": 482,
+   "sprite_cofre": 60153,
+   "escenas": [
+    8,
+    9,
+    12,
+    15,
+    20,
+    21,
+    28,
+    17
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 31,
+   "nombre": "Old Luxurious Chest",
+   "drop": 482,
+   "sprite_cofre": 60153,
+   "escenas": [
+    8,
+    9,
+    12,
+    15,
+    20,
+    21,
+    28,
+    17
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 32,
+   "nombre": "Old Luxurious Chest",
+   "drop": 482,
+   "sprite_cofre": 60153,
+   "escenas": [
+    8,
+    9,
+    12,
+    15,
+    20,
+    21,
+    28,
+    17
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 33,
+   "nombre": "Old Luxurious Chest",
+   "drop": 482,
+   "sprite_cofre": 60153,
+   "escenas": [
+    8,
+    9,
+    12,
+    15,
+    20,
+    21,
+    28,
+    17
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 34,
+   "nombre": "Delicate Antique Box",
+   "drop": 483,
+   "sprite_cofre": 60153,
+   "escenas": [
+    21,
+    28,
+    17,
+    11,
+    16,
+    27,
+    67,
+    68,
+    69
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 35,
+   "nombre": "Delicate Antique Box",
+   "drop": 483,
+   "sprite_cofre": 60153,
+   "escenas": [
+    21,
+    28,
+    17,
+    11,
+    16,
+    27,
+    67,
+    68,
+    69
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 36,
+   "nombre": "Delicate Antique Box",
+   "drop": 483,
+   "sprite_cofre": 60153,
+   "escenas": [
+    21,
+    28,
+    17,
+    11,
+    16,
+    27,
+    67,
+    68,
+    69
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 37,
+   "nombre": "Delicate Antique Box",
+   "drop": 483,
+   "sprite_cofre": 60153,
+   "escenas": [
+    21,
+    28,
+    17,
+    11,
+    16,
+    27,
+    67,
+    68,
+    69
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 38,
+   "nombre": "Legendary Jewel Box",
+   "drop": 484,
+   "sprite_cofre": 60153,
+   "escenas": [
+    21,
+    28,
+    17,
+    11,
+    16,
+    27,
+    67,
+    68,
+    69
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 39,
+   "nombre": "Legendary Jewel Box",
+   "drop": 484,
+   "sprite_cofre": 60153,
+   "escenas": [
+    21,
+    28,
+    17,
+    11,
+    16,
+    27,
+    67,
+    68,
+    69
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 40,
+   "nombre": "Legendary Jewel Box",
+   "drop": 484,
+   "sprite_cofre": 60153,
+   "escenas": [
+    21,
+    28,
+    17,
+    11,
+    16,
+    27,
+    67,
+    68,
+    69
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 41,
+   "nombre": "Legendary Jewel Box",
+   "drop": 484,
+   "sprite_cofre": 60153,
+   "escenas": [
+    21,
+    28,
+    17,
+    11,
+    16,
+    27,
+    67,
+    68,
+    69
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 42,
+   "nombre": "Merchant's Legacy",
+   "drop": 485,
+   "sprite_cofre": 60153,
+   "escenas": [
+    11,
+    16,
+    27,
+    67,
+    68,
+    69
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 43,
+   "nombre": "Merchant's Legacy",
+   "drop": 485,
+   "sprite_cofre": 60153,
+   "escenas": [
+    11,
+    16,
+    27,
+    67,
+    68,
+    69
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 44,
+   "nombre": "Merchant's Legacy",
+   "drop": 485,
+   "sprite_cofre": 60153,
+   "escenas": [
+    11,
+    16,
+    27,
+    67,
+    68,
+    69
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 45,
+   "nombre": "Merchant's Legacy",
+   "drop": 485,
+   "sprite_cofre": 60153,
+   "escenas": [
+    11,
+    16,
+    27,
+    67,
+    68,
+    69
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 46,
+   "nombre": "Downfallen Warehouse",
+   "drop": 486,
+   "sprite_cofre": 60153,
+   "escenas": [
+    11,
+    16,
+    27,
+    67,
+    68,
+    69
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 47,
+   "nombre": "Downfallen Warehouse",
+   "drop": 486,
+   "sprite_cofre": 60153,
+   "escenas": [
+    11,
+    16,
+    27,
+    67,
+    68,
+    69
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 48,
+   "nombre": "Downfallen Warehouse",
+   "drop": 486,
+   "sprite_cofre": 60153,
+   "escenas": [
+    11,
+    16,
+    27,
+    67,
+    68,
+    69
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 49,
+   "nombre": "Downfallen Warehouse",
+   "drop": 486,
+   "sprite_cofre": 60153,
+   "escenas": [
+    11,
+    16,
+    27,
+    67,
+    68,
+    69
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 50,
+   "nombre": "Downfallen Warehouse",
+   "drop": 486,
+   "sprite_cofre": 60153,
+   "escenas": [
+    11,
+    16,
+    27,
+    67,
+    68,
+    69
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 51,
+   "nombre": "Downfallen Treasure",
+   "drop": 487,
+   "sprite_cofre": 60153,
+   "escenas": [
+    27,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 52,
+   "nombre": "Downfallen Treasure",
+   "drop": 487,
+   "sprite_cofre": 60153,
+   "escenas": [
+    27,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 53,
+   "nombre": "Downfallen Treasure",
+   "drop": 487,
+   "sprite_cofre": 60153,
+   "escenas": [
+    27,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 54,
+   "nombre": "Downfallen Treasure",
+   "drop": 487,
+   "sprite_cofre": 60153,
+   "escenas": [
+    27,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 55,
+   "nombre": "Ancient Magnate's Treasures",
+   "drop": 488,
+   "sprite_cofre": 60153,
+   "escenas": [
+    27,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 56,
+   "nombre": "Ancient Magnate's Treasures",
+   "drop": 488,
+   "sprite_cofre": 60153,
+   "escenas": [
+    27,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 57,
+   "nombre": "Ancient Magnate's Treasures",
+   "drop": 488,
+   "sprite_cofre": 60153,
+   "escenas": [
+    27,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 58,
+   "nombre": "Ancient Magnate's Treasures",
+   "drop": 488,
+   "sprite_cofre": 60153,
+   "escenas": [
+    27,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 59,
+   "nombre": "Robber Lord's Fine Box",
+   "drop": 489,
+   "sprite_cofre": 60153,
+   "escenas": [
+    27,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 60,
+   "nombre": "Robber Lord's Fine Box",
+   "drop": 489,
+   "sprite_cofre": 60153,
+   "escenas": [
+    27,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 61,
+   "nombre": "Robber Lord's Fine Box",
+   "drop": 489,
+   "sprite_cofre": 60153,
+   "escenas": [
+    27,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 62,
+   "nombre": "Robber Lord's Fine Box",
+   "drop": 489,
+   "sprite_cofre": 60153,
+   "escenas": [
+    27,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 63,
+   "nombre": "Robber Lord's Fine Box",
+   "drop": 489,
+   "sprite_cofre": 60153,
+   "escenas": [
+    27,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 64,
+   "nombre": "Robber Lord's Riches",
+   "drop": 490,
+   "sprite_cofre": 60153,
+   "escenas": [
+    27,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 65,
+   "nombre": "Robber Lord's Riches",
+   "drop": 490,
+   "sprite_cofre": 60153,
+   "escenas": [
+    27,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 66,
+   "nombre": "Robber Lord's Riches",
+   "drop": 490,
+   "sprite_cofre": 60153,
+   "escenas": [
+    27,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 67,
+   "nombre": "Robber Lord's Riches",
+   "drop": 490,
+   "sprite_cofre": 60153,
+   "escenas": [
+    27,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 68,
+   "nombre": "Robber Lord's Riches",
+   "drop": 490,
+   "sprite_cofre": 60153,
+   "escenas": [
+    27,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 69,
+   "nombre": "Robber Lord's Warehouse",
+   "drop": 491,
+   "sprite_cofre": 60153,
+   "escenas": [
+    27,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 70,
+   "nombre": "Robber Lord's Warehouse",
+   "drop": 491,
+   "sprite_cofre": 60153,
+   "escenas": [
+    27,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 71,
+   "nombre": "Robber Lord's Warehouse",
+   "drop": 491
+  },
+  {
+   "id": 72,
+   "nombre": "Robber Lord's Warehouse",
+   "drop": 491
+  },
+  {
+   "id": 73,
+   "nombre": "Robber Lord's Jewelry",
+   "drop": 492
+  },
+  {
+   "id": 74,
+   "nombre": "Robber Lord's Jewelry",
+   "drop": 492
+  },
+  {
+   "id": 75,
+   "nombre": "Robber Lord's Jewelry",
+   "drop": 492
+  },
+  {
+   "id": 76,
+   "nombre": "Robber Lord's Jewelry",
+   "drop": 492
+  },
+  {
+   "id": 77,
+   "nombre": "Robber Lord's Jewelry",
+   "drop": 492
+  },
+  {
+   "id": 78,
+   "nombre": "Robber Lord's Jewelry",
+   "drop": 492
+  },
+  {
+   "id": 79,
+   "nombre": "Robber Lord's Jewelry",
+   "drop": 492
+  },
+  {
+   "id": 80,
+   "nombre": "Robber Lord's Jewelry",
+   "drop": 492
+  },
+  {
+   "id": 81,
+   "nombre": "Ancients' Legacy",
+   "drop": 493
+  },
+  {
+   "id": 82,
+   "nombre": "Ancients' Legacy",
+   "drop": 493
+  },
+  {
+   "id": 83,
+   "nombre": "Ancients' Legacy",
+   "drop": 493
+  },
+  {
+   "id": 84,
+   "nombre": "Ancients' Legacy",
+   "drop": 493
+  },
+  {
+   "id": 85,
+   "nombre": "Ancients' Legacy",
+   "drop": 493
+  },
+  {
+   "id": 86,
+   "nombre": "Ancients' Legacy",
+   "drop": 493
+  },
+  {
+   "id": 87,
+   "nombre": "Ancients' Legacy",
+   "drop": 493
+  },
+  {
+   "id": 88,
+   "nombre": "Ancients' Legacy",
+   "drop": 493
+  },
+  {
+   "id": 89,
+   "nombre": "Ancients' Legacy",
+   "drop": 493
+  },
+  {
+   "id": 90,
+   "nombre": "Ancients' Legacy",
+   "drop": 493
+  },
+  {
+   "id": 91,
+   "nombre": "Ancients' Legacy",
+   "drop": 493
+  },
+  {
+   "id": 100,
+   "nombre": "Qiduo's Magic Box",
+   "drop": 764,
+   "sprite_cofre": 60153,
+   "escenas": [
+    8,
+    9,
+    12,
+    15,
+    20,
+    21,
+    28,
+    17,
+    11,
+    16,
+    27
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 101,
+   "nombre": "Ghost Pirate Lord's Warehouse",
+   "sprite_cofre": 60153,
+   "escenas": [
+    85,
+    86,
+    89,
+    92
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 102,
+   "nombre": "海賊王の蔵宝図",
+   "drop": 2757,
+   "sprite_cofre": 60153,
+   "escenas": [
+    5,
+    22,
+    35,
+    36
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 103,
+   "nombre": "海賊王の蔵宝図",
+   "drop": 2888,
+   "sprite_cofre": 60153,
+   "escenas": [
+    5,
+    22,
+    35,
+    36
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 104,
+   "nombre": "海賊王の蔵宝図",
+   "drop": 3887,
+   "sprite_cofre": 60153,
+   "escenas": [
+    5,
+    22,
+    35,
+    36
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 105,
+   "nombre": "海賊王の蔵宝図",
+   "drop": 4279,
+   "sprite_cofre": 60153,
+   "escenas": [
+    5,
+    22,
+    35,
+    36
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 106,
+   "nombre": "Desert Bandit's Treasure",
+   "sprite_cofre": 60153,
+   "escenas": [
+    120,
+    121,
+    122,
+    123,
+    124,
+    125,
+    126
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 107,
+   "nombre": "Heavenly Magical Treasure",
+   "drop": 5409,
+   "sprite_cofre": 60153,
+   "escenas": [
+    120,
+    121,
+    122,
+    123,
+    124,
+    125
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 108,
+   "nombre": "Nightly Magical Treasure",
+   "drop": 5410,
+   "sprite_cofre": 60153,
+   "escenas": [
+    120,
+    121,
+    122,
+    123,
+    124,
+    125
+   ],
+   "puntos": [
+    100
+   ]
+  },
+  {
+   "id": 109,
+   "nombre": "ドールスキーの秘密のメモ",
+   "drop": 7844,
+   "sprite_cofre": 60153,
+   "escenas": [
+    5,
+    22,
+    35,
+    36
+   ],
+   "puntos": [
+    100
+   ]
+  }
+ ]
+}

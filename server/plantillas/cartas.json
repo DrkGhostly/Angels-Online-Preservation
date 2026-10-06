@@ -1,0 +1,4088 @@
+{
+ "_origen": "card.xml (update25)",
+ "filas": [
+  {
+   "id": 1,
+   "sprite": 25001,
+   "nombre": "Water Elf",
+   "estrellas": 1,
+   "categoria": "一般怪物",
+   "texto": "Water Elf Card can be obtained from the Water Lord.",
+   "pista": "Have chance to get it after defeating the Water Lord at the Angel Lyceum."
+  },
+  {
+   "id": 2,
+   "sprite": 25002,
+   "nombre": "Fire Elf",
+   "estrellas": 1,
+   "categoria": "一般怪物",
+   "texto": "Fire Elf Card can be obtained from the Fire Lord.",
+   "pista": "Have chance to get it after defeating the Fire Lord at the Angel Lyceum."
+  },
+  {
+   "id": 3,
+   "sprite": 25003,
+   "nombre": "Wind Elf",
+   "estrellas": 1,
+   "categoria": "一般怪物",
+   "texto": "Wind Elf Card can be obtained from the Wind Lord.",
+   "pista": "Have chance to get it after defeating the  Wind Lord at the Angel Lyceum."
+  },
+  {
+   "id": 4,
+   "sprite": 25004,
+   "nombre": "Earth Elf",
+   "estrellas": 1,
+   "categoria": "一般怪物",
+   "texto": "Earth Elf Card can be obtained from the Earth Lord",
+   "pista": "Have chance to get it after defeating the Earth Lord at the Angel Lyceum."
+  },
+  {
+   "id": 5,
+   "sprite": 25005,
+   "nombre": "Farm Mistress",
+   "estrellas": 1,
+   "categoria": "人物場景",
+   "texto": "Farm Mistress wants to bring the Eggshell Chick up.",
+   "pista": "Farm Mistress likes the little Eggshell Chick which attacked her when she getting close, she needs your help. (Quest: Wanting a pet!)"
+  },
+  {
+   "id": 6,
+   "sprite": 25006,
+   "nombre": "Pumpkin Head",
+   "estrellas": 1,
+   "categoria": "一般怪物",
+   "texto": "Can be used to cook pumpkin porridge, anyway, nobody would like to have it.",
+   "pista": "Have chance to get it after defeating the Pumpkin Head at Spike Farm."
+  },
+  {
+   "id": 7,
+   "sprite": 25007,
+   "nombre": "Eggshell Chick",
+   "estrellas": 1,
+   "categoria": "一般怪物",
+   "texto": "Half-hatched chick, which can't see the road clearly and run amok.",
+   "pista": "Have chance to get it after defeating the Eggshell Chick at Spike Farm."
+  },
+  {
+   "id": 8,
+   "sprite": 25008,
+   "nombre": "Jackstraw",
+   "estrellas": 1,
+   "categoria": "一般怪物",
+   "texto": "The one who asked the Farm Lord for over-time pay.",
+   "pista": "Have chance to get it after defeating the Jackstraw at Spike Farm."
+  },
+  {
+   "id": 9,
+   "sprite": 25009,
+   "nombre": "Sickle Soldier",
+   "estrellas": 1,
+   "categoria": "人物場景",
+   "texto": "The one who protected the projects so they are going on well.",
+   "pista": "Sickle Soldier wanted to updated his weapons for the senior monsters. (Quest: Railway Guard)"
+  },
+  {
+   "id": 10,
+   "sprite": 25010,
+   "nombre": "Skeletal Rogue",
+   "estrellas": 1,
+   "categoria": "一般怪物",
+   "texto": "The one who disturbed the constructions of the Railway Company.",
+   "pista": "Have chance to get it after defeating the Skeletal Rogue at Shadowy Path."
+  },
+  {
+   "id": 11,
+   "sprite": 25011,
+   "nombre": "Skeletal Sniper",
+   "estrellas": 1,
+   "categoria": "一般怪物",
+   "texto": "The one who disturbed the constructions of the Railway Company.",
+   "pista": "Have chance to get it after defeating the Skeletal Sniper at Shadowy Path."
+  },
+  {
+   "id": 12,
+   "sprite": 25012,
+   "nombre": "Red-cloth Skull",
+   "estrellas": 1,
+   "categoria": "一般怪物",
+   "texto": "The one who disturbed the constructions of the Railway Company.",
+   "pista": "Have chance to get it after defeating the Red-cloth Skull at Shadowy Path."
+  },
+  {
+   "id": 13,
+   "sprite": 25013,
+   "nombre": "Jungle Priest",
+   "estrellas": 1,
+   "categoria": "人物場景",
+   "texto": "Is present at all ceremonies.",
+   "pista": "Jungle Priest lost his pet which may have been killed by Flame Lily, he asked you to help investigate the case. (Quest: Lost Little Frog)"
+  },
+  {
+   "id": 14,
+   "sprite": 25014,
+   "nombre": "Forest Monkey",
+   "estrellas": 1,
+   "categoria": "一般怪物",
+   "texto": "A naughty monkey who always makes trouble in the garden of Herbalist Hebu",
+   "pista": "Have a chance to get it after defeating the Forest Monkey in the Dense Forest."
+  },
+  {
+   "id": 15,
+   "sprite": 25015,
+   "nombre": "Wild Lily",
+   "estrellas": 1,
+   "categoria": "一般怪物",
+   "texto": "Nobody can imagin the popularity of the Nepenthes face pack.",
+   "pista": "Have chance to get it after defeating the Wild Lily in the Dense Forest."
+  },
+  {
+   "id": 16,
+   "sprite": 25016,
+   "nombre": "Nest Tree Elf",
+   "estrellas": 1,
+   "categoria": "一般怪物",
+   "texto": "It must have eaten Mushrooms to become so big.",
+   "pista": "Have chance to get it after defeating the Nest Tree Elf in the Dense Forest."
+  },
+  {
+   "id": 17,
+   "sprite": 25017,
+   "nombre": "Desert Game",
+   "estrellas": 1,
+   "categoria": "人物場景",
+   "texto": "A glutton is looking for delicious foods at Wishing Tear.",
+   "pista": "The glutton would like a game feast, so it needs a bow. (Quest: Hunting)"
+  },
+  {
+   "id": 18,
+   "sprite": 25018,
+   "nombre": "Desert Lizard",
+   "estrellas": 1,
+   "categoria": "一般怪物",
+   "texto": "Dry Lizard Skin is very popular!",
+   "pista": "Have chance to get it after defeating the Desert Lizard at Wishing Tear."
+  },
+  {
+   "id": 19,
+   "sprite": 25019,
+   "nombre": "Ocher Toad",
+   "estrellas": 1,
+   "categoria": "一般怪物",
+   "texto": "Dry Toad Skin is very popular!",
+   "pista": "Have chance to get it after defeating the Ocher Toad at Wishing Tear."
+  },
+  {
+   "id": 20,
+   "sprite": 25020,
+   "nombre": "Desert Mouse",
+   "estrellas": 1,
+   "categoria": "一般怪物",
+   "texto": "Naughty Desert Mouse annoyed the merchants in the desert.",
+   "pista": "Have chance to get it after defeating the Desert Mouse at Wishing Tear."
+  },
+  {
+   "id": 21,
+   "sprite": 25021,
+   "nombre": "Tusk Boar",
+   "estrellas": 2,
+   "categoria": "一般怪物",
+   "texto": "The creatures here are used to digging for food from the earth, where it is called the &quot;Crashing Hillock&quot;.",
+   "pista": "Have chance to get it after defeating the Tusk Boar at Crashing Hillock."
+  },
+  {
+   "id": 22,
+   "sprite": 25022,
+   "nombre": "White Wolf",
+   "estrellas": 2,
+   "categoria": "一般怪物",
+   "texto": "The annoyed wolves are gathering at the Crashing Hillock.",
+   "pista": "Have chance to get it after defeating the White Wolf at Crashing Hillock."
+  },
+  {
+   "id": 23,
+   "sprite": 25023,
+   "nombre": "Evil Wolf",
+   "estrellas": 2,
+   "categoria": "特殊怪物",
+   "texto": "The leader of the wolf pack at Crashing Hillock. He is the key to defeating the wolves.",
+   "pista": "Have chance to get it after defeating the Evil Wolf at Crashing Hillock."
+  },
+  {
+   "id": 24,
+   "sprite": 25024,
+   "nombre": "Giant Boar",
+   "estrellas": 2,
+   "categoria": "特殊怪物",
+   "texto": "How much did the Giant Boar eat to become so huge?",
+   "pista": "Have chance to get it after defeating the Giant Boar at Crashing Hillock."
+  },
+  {
+   "id": 25,
+   "sprite": 25025,
+   "nombre": "Miss Diana",
+   "estrellas": 1,
+   "categoria": "人物場景",
+   "texto": "A tender teacher, she is too good to control these naughty children.",
+   "pista": "Miss Diana needs your help to look after the naughty children. (Quest: Giving a bad child a lesson)"
+  },
+  {
+   "id": 26,
+   "sprite": 25026,
+   "nombre": "Paopao",
+   "estrellas": 2,
+   "categoria": "一般怪物",
+   "texto": "Paopao who kept coming and going here and there in South Fungus Forest, seems was always lost in thought, or just wandering with no aim.",
+   "pista": "Have chance to get it after defeating the Paopao at South Fungus Forest."
+  },
+  {
+   "id": 27,
+   "sprite": 25027,
+   "nombre": "Dream Paopao",
+   "estrellas": 2,
+   "categoria": "特殊怪物",
+   "texto": "Dream Paopao who wanders in South Fungus Forest, is interestd in spreading love, but actually what it gives out is a rather than weird spirit.",
+   "pista": "Have chance to get it after defeating the Dream Paopao at South Fungus Forest."
+  },
+  {
+   "id": 28,
+   "sprite": 25028,
+   "nombre": "Imp",
+   "estrellas": 2,
+   "categoria": "一般怪物",
+   "texto": "The Imp liked playing here and there when he just learned to walk, it always takes along its favorite toys. Are chilren always so curious?",
+   "pista": "Have chance to get it after defeating the Imp at South Fungus Forest."
+  },
+  {
+   "id": 29,
+   "sprite": 25029,
+   "nombre": "Timberjacker",
+   "estrellas": 1,
+   "categoria": "人物場景",
+   "texto": "A Timberjacker at South of Mirror Lake…Is there more timber at the north bank?",
+   "pista": "South of Mirror Lake is very resourceful. The Timberjacker need your help to collect some timber. (Quest: Finding an Axe )"
+  },
+  {
+   "id": 30,
+   "sprite": 25030,
+   "nombre": "Lake Slarm",
+   "estrellas": 2,
+   "categoria": "一般怪物",
+   "texto": "The Slarm wrings when walking, but is not as delicious as the jelly.",
+   "pista": "Have chance to get it after defeating the Lake Slarm at South of Mirror Lake."
+  },
+  {
+   "id": 31,
+   "sprite": 25031,
+   "nombre": "Athlete Cliff",
+   "estrellas": 1,
+   "categoria": "人物場景",
+   "texto": "The South of Mirror Lake is very resourceful, and the weather here is agreeing. People working here are all as strong as Cliff.",
+   "pista": "Disapointed that there is no fishing rod when you want to go fishing? Find an Angel for help. (Quest: Lost Fishing Rod)"
+  },
+  {
+   "id": 32,
+   "sprite": 25032,
+   "nombre": "Circus Leader",
+   "estrellas": 2,
+   "categoria": "特殊怪物",
+   "texto": "The Circus Leader wants to show you a magic trick, he must have some evil intent, be careful!",
+   "pista": "Have chance to get it after defeating the Circus Leader at South of Mirror Lake."
+  },
+  {
+   "id": 33,
+   "sprite": 25033,
+   "nombre": "Purple Mushroom",
+   "estrellas": 1,
+   "categoria": "一般怪物",
+   "texto": "Purple Mushrooms must have no environmental concept because it gives out poisonous air while walking.",
+   "pista": "Have chance to get it after defeating the Purple Mushroom at Mushroom Forest."
+  },
+  {
+   "id": 34,
+   "sprite": 25034,
+   "nombre": "Red Mushroom",
+   "estrellas": 1,
+   "categoria": "一般怪物",
+   "texto": "Mushroom Forest is famous for its speciality Mushrooms. Are they these Red Mushroom?",
+   "pista": "Have chance to get it after defeating the Red Mushroom at Mushroom Forest."
+  },
+  {
+   "id": 35,
+   "sprite": 25035,
+   "nombre": "Iron Mane Blaic",
+   "estrellas": 1,
+   "categoria": "特殊怪物",
+   "texto": "Is the Golden Matsuake delicious? The Iron Mane Blaic must have eaten so many of them so it becomes huge.",
+   "pista": "Have chance to get it after defeating the Iron Mane Blaic at Mushroom Forest."
+  },
+  {
+   "id": 36,
+   "sprite": 25036,
+   "nombre": "Yellow Mushroom",
+   "estrellas": 1,
+   "categoria": "特殊怪物",
+   "texto": "Yellow Mushrooms would rather use more energy at giving a greeting than the local ruffian who always beats others at first sight.",
+   "pista": "Have chance to get it after defeating the Yellow Mushroom at Mushroom Forest."
+  },
+  {
+   "id": 37,
+   "sprite": 25037,
+   "nombre": "Little Eye",
+   "estrellas": 1,
+   "categoria": "一般怪物",
+   "texto": "Little Eye likes to fly aound the Degula Duke's, maybe it knows where to relax.",
+   "pista": "Have chance to get it after defeating the Little Eye at Degula Maze."
+  },
+  {
+   "id": 38,
+   "sprite": 25038,
+   "nombre": "One-eyed Bat",
+   "estrellas": 1,
+   "categoria": "一般怪物",
+   "texto": "Degula Maze is all dark inside, it's like being blind when you are inside. I see why the One-eyed Bat has such a big eye.",
+   "pista": "Have chance to get it after defeating the One-eyed Bat at Degula Maze."
+  },
+  {
+   "id": 39,
+   "sprite": 25039,
+   "nombre": "Evil Leech",
+   "estrellas": 1,
+   "categoria": "一般怪物",
+   "texto": "If you hear some noises at night, that must be the Leech which likes to live in Degula Maze where there is no difference in the daytime or at night.",
+   "pista": "Have chance to get it after defeating the Evil Leech at Degula Maze."
+  },
+  {
+   "id": 40,
+   "sprite": 25040,
+   "nombre": "Eye Bershala",
+   "estrellas": 1,
+   "categoria": "特殊怪物",
+   "texto": "If you feel someone is starring at you when you're alone,  it may be the Bershala.",
+   "pista": "Have chance to get it after defeating the Eye Bershala at Degula Maze."
+  },
+  {
+   "id": 41,
+   "sprite": 25041,
+   "nombre": "Edison",
+   "estrellas": 1,
+   "categoria": "人物場景",
+   "texto": "Inventor Edison has recently been very interested with Turbo-driven machines.",
+   "pista": "Edison devoted his life in the research of science, but confronted with more powerful challenges, he needs your help. (Quest: Increasing Power )"
+  },
+  {
+   "id": 42,
+   "sprite": 25042,
+   "nombre": "Fat Robot",
+   "estrellas": 1,
+   "categoria": "一般怪物",
+   "texto": "The Fat Robot is fat with no doubts, although he is running at Scrap Iron Village everyday, he can't change his shape.",
+   "pista": "Have chance to get it after defeating the Fat Robot at Scrap Iron Village."
+  },
+  {
+   "id": 43,
+   "sprite": 25043,
+   "nombre": "Buccinal Robot",
+   "estrellas": 1,
+   "categoria": "一般怪物",
+   "texto": "Buccinal Robot is afraid that others can't hear what he says, so it is equipped with a loudspeaker. It must be terribly noisy if they are in a group.",
+   "pista": "Have chance to get it after defeating the Buccinal Robot at Scrap Iron Village."
+  },
+  {
+   "id": 44,
+   "sprite": 25044,
+   "nombre": "Turbo Robot",
+   "estrellas": 1,
+   "categoria": "特殊怪物",
+   "texto": "The Turbo Robot is also very powerful because it is enhanced and driven by a turbo.",
+   "pista": "Have chance to get it after defeating the Turbo Robot at Scrap Iron Village."
+  },
+  {
+   "id": 45,
+   "sprite": 25045,
+   "nombre": "General Allie",
+   "estrellas": 1,
+   "categoria": "人物場景",
+   "texto": "General Allie fights against the Gebuer in order to advocate the Pestle Corps.",
+   "pista": "Help to hold the battlefield, and protect the peace of Eden. (Quest: Gebuers' Action)"
+  },
+  {
+   "id": 46,
+   "sprite": 25046,
+   "nombre": "Mummy",
+   "estrellas": 1,
+   "categoria": "一般怪物",
+   "texto": "The Mummy feels the world is totally different from Ancient Egypt when it wakes up. Um…maybe it is just a weird dream.",
+   "pista": "Have chance to get it after defeating the Mummy at Burning Desert."
+  },
+  {
+   "id": 47,
+   "sprite": 25047,
+   "nombre": "Mummy Leader",
+   "estrellas": 1,
+   "categoria": "一般怪物",
+   "texto": "Although its whole body is wrapped with bandages, the Mummy Leader must dress in clothes before going out, even in the hot desert.",
+   "pista": "Have chance to get it after defeating the Mummy Leader at Burning Desert."
+  },
+  {
+   "id": 48,
+   "sprite": 25048,
+   "nombre": "Toxic Spider",
+   "estrellas": 1,
+   "categoria": "特殊怪物",
+   "texto": "The spider doesn't mean to scare people, maybe it just wants to say hello. Little spider expects to be as big as the Black widow and even scarier.",
+   "pista": "Have chance to get it after defeating the Toxic Spider at Burning Desert."
+  },
+  {
+   "id": 49,
+   "sprite": 25049,
+   "nombre": "Spy Lude",
+   "estrellas": 1,
+   "categoria": "人物場景",
+   "texto": "Lude won't want to stay at Gebuer any more.",
+   "pista": "Spy Lude is confronted with some difficulties,can you help him? (Quest: Eternal Glory)"
+  },
+  {
+   "id": 50,
+   "sprite": 25050,
+   "nombre": "Gebuer Cadre",
+   "estrellas": 1,
+   "categoria": "一般怪物",
+   "texto": "Gebuer Cadre often speaks in a strange voice, and likes to make friends with guests, but the sword swinging in its hand often scares other people.",
+   "pista": "Have chance to get it after defeating the Gebuer Cadre at Gebuer Vale."
+  },
+  {
+   "id": 51,
+   "sprite": 25051,
+   "nombre": "Rotten Bird",
+   "estrellas": 1,
+   "categoria": "一般怪物",
+   "texto": "The Rotten Bird that eats dead creatues is actually a very animal.It patrols the Gebuer Vale everyday looking for dead bodies that need to be cleared.",
+   "pista": "Have chance to get it after defeating the Rotten Bird at Gebuer Vale."
+  },
+  {
+   "id": 52,
+   "sprite": 25052,
+   "nombre": "Giant Bird",
+   "estrellas": 1,
+   "categoria": "特殊怪物",
+   "texto": "How can the Giant Bird become so huge, it must be hiding somewhere and eating all day long.",
+   "pista": "There are many incredible creatures in the world. Want to know more about Giant Bird? Go find the Myth Scholar for help. (Quest: Seek for Rare Animals)"
+  },
+  {
+   "id": 53,
+   "sprite": 25053,
+   "nombre": "Hook Barft",
+   "estrellas": 2,
+   "categoria": "一般怪物",
+   "texto": "Hook Barft cuts the grass in the vale.",
+   "pista": "Have chance to get it after defeating the Hook Barft at Dragon Graveyard."
+  },
+  {
+   "id": 54,
+   "sprite": 25054,
+   "nombre": "Ancient Soldier",
+   "estrellas": 2,
+   "categoria": "一般怪物",
+   "texto": "If the battle finished earlier, maybe the Ancient Solider, whose bones lie on the battlefield, could finally rest in peace.",
+   "pista": "Have chance to get it after defeating the Ancient Soldier at Dragon Graveyard."
+  },
+  {
+   "id": 55,
+   "sprite": 25055,
+   "nombre": "Death Cyclone",
+   "estrellas": 2,
+   "categoria": "特殊怪物",
+   "texto": "The Death Cyclone is too busy working the field to notice the cyclone aound him.",
+   "pista": "Have chance to get it after defeating the Death Cyclone at Dragon Graveyard."
+  },
+  {
+   "id": 56,
+   "sprite": 25056,
+   "nombre": "Silent Hero",
+   "estrellas": 2,
+   "categoria": "特殊怪物",
+   "texto": "The Silent Hero can't remember his name, but he can talk about his achievements from long, long ago.",
+   "pista": "Have chance to get it after defeating the Silent Hero at Dragon Graveyard."
+  },
+  {
+   "id": 57,
+   "sprite": 25057,
+   "nombre": "Magic Eye Member",
+   "estrellas": 1,
+   "categoria": "一般怪物",
+   "texto": "The world has immense treasures. The one who wants to explore the treasures in the relics must  register in the Mgaic Eye first.",
+   "pista": "Have chance to get it after defeating the Magic Eye Member at Jade Vale."
+  },
+  {
+   "id": 58,
+   "sprite": 25058,
+   "nombre": "Unicorn Rabbit",
+   "estrellas": 1,
+   "categoria": "一般怪物",
+   "texto": "Everything is fun to the unicorn Rabbit, so it is always staring  at people curiously.",
+   "pista": "Have chance to get it after defeating the Unicorn Rabbit at Jade Vale."
+  },
+  {
+   "id": 59,
+   "sprite": 25059,
+   "nombre": "Green Lizard",
+   "estrellas": 1,
+   "categoria": "一般怪物",
+   "texto": "The weather in Jade Vale is very good. It is great for fishing. The Green Lizard here always has a napkin around its neck.",
+   "pista": "Have chance to get it after defeating the Green Lizard at Jade Vale."
+  },
+  {
+   "id": 60,
+   "sprite": 25060,
+   "nombre": "Fisher Chark",
+   "estrellas": 1,
+   "categoria": "人物場景",
+   "texto": "Fisher Chark is unbeatable in fishing skills, but not as good as the Green Lizard, which is good at swollowing the fishes whole.",
+   "pista": "Fisher Chark wants a comfortable environment for fishing, if you can help him, he will be very grateful. (Quest: Greedy Green Lizard)"
+  },
+  {
+   "id": 61,
+   "sprite": 25061,
+   "nombre": "Bloody Hook Card",
+   "estrellas": 2,
+   "categoria": "特殊怪物",
+   "texto": "It appears in people's dreams and awakens them with a bloody hook. But the hook smells like tomato.  So, maybe the blood is…",
+   "pista": "You may obtain it by defeating the Bloody Hook in the Nightmare Cave."
+  },
+  {
+   "id": 62,
+   "sprite": 25062,
+   "nombre": "Soul Puller Card",
+   "estrellas": 2,
+   "categoria": "特殊怪物",
+   "texto": "It appears in people's dream and awakens them with a scream. When you are pressed by the Scar Cat Robot, you will know where the scream comes from.",
+   "pista": "You may obtain it by defeating the Soul Puller in the Nightmare Cave."
+  },
+  {
+   "id": 63,
+   "sprite": 25063,
+   "nombre": "Evil Chieftain Card",
+   "estrellas": 3,
+   "categoria": "特殊怪物",
+   "texto": "It is appears in people's dream and awakens them with Ghost shadows. All of them are made by the Evil Chieftain Pand and his Underling.",
+   "pista": "You may obtain it by defeating the Evil Chieftain in the Nightmare Cave."
+  },
+  {
+   "id": 64,
+   "sprite": 25064,
+   "nombre": "Violent Cat Card",
+   "estrellas": 4,
+   "categoria": "特殊怪物",
+   "texto": "It is appears in people's dream and awakens them with machine noise. If Geber knows how to maintain the robots, how can they still be so noisy.",
+   "pista": "You may obtain it by defeating the Violent Cat in the Nightmare Cave."
+  },
+  {
+   "id": 65,
+   "sprite": 25065,
+   "nombre": "Exploration Problem Card",
+   "estrellas": 4,
+   "categoria": "人物場景",
+   "texto": "Lots of questions occur while exploring in the Nightmare Cave. If you always need to ask others for help, then why not recruit more people?",
+   "pista": "Exploring Members of the Nightmare Cave in the South of Mirror Lake encounter difficulties, can you help them? (Related quest: Legendary proof)"
+  },
+  {
+   "id": 66,
+   "sprite": 25066,
+   "nombre": "Gravity Boffin Card",
+   "estrellas": 2,
+   "categoria": "人物場景",
+   "texto": "He eats so much in order to better study steel gravity, but he has become fatter and fatter. Now it takes him 2 hours to put on his boffin uniform.",
+   "pista": "The Gravity Boffin in Palm Base is studying a mysterious product, but he seems to have met with a problem, maybe you can help him. (Related quest: Far from gravity)"
+  },
+  {
+   "id": 67,
+   "sprite": 25067,
+   "nombre": "Exiled Earl Card",
+   "estrellas": 3,
+   "categoria": "一般怪物",
+   "texto": "He lived in the Castle before, but why was he exiled into the wild? Because he drank the blood of others.",
+   "pista": "You may obtain it by defeating the Exiled Earl in the Foggy Forest."
+  },
+  {
+   "id": 68,
+   "sprite": 25068,
+   "nombre": "Circus Tyrant Card",
+   "estrellas": 4,
+   "categoria": "一般怪物",
+   "texto": "They put on a performance, but have no audience.Perhaps it is because no one will sit still whilst they perform the flying knife trick on an audience.",
+   "pista": "You may obtain it by defeating the Circus Tyrant in South of Mirror Lake."
+  },
+  {
+   "id": 69,
+   "sprite": 25069,
+   "nombre": "Steel Clamp Card",
+   "estrellas": 4,
+   "categoria": "特殊怪物",
+   "texto": "He hates being ignored because he is too short. A loud sound means he is nearby and is very angry.",
+   "pista": "You may obtain it by defeating the Steel Clamp in the North of Mirror Lake."
+  },
+  {
+   "id": 70,
+   "sprite": 25070,
+   "nombre": "Crazy Rosit Card",
+   "estrellas": 5,
+   "categoria": "特殊怪物",
+   "texto": "He opens his big eyes and big mouth and talks nonsense. However, if someone says he is crazy, he is certain to run after them!",
+   "pista": "You may obtain it by defeating the Crazy Rosit in the Quiet Vale."
+  },
+  {
+   "id": 71,
+   "sprite": 25071,
+   "nombre": "Thankful Root Card",
+   "estrellas": 2,
+   "categoria": "人物場景",
+   "texto": "[My hands are swollen but I have not managed to dig anything up. Now some monsters are stealing my things, how annoying!]",
+   "pista": "An Root Member is baffled by an abyss. He is looking for help. If you help him, you may get his reward. Repeatable quest.(Related quests: Striving for resources, No time delay, Labor's misery)"
+  },
+  {
+   "id": 72,
+   "sprite": 25072,
+   "nombre": "Business Truth Card",
+   "estrellas": 3,
+   "categoria": "人物場景",
+   "texto": "Motor Seller Pam lives a luxurious life but pays no attention to the poor. His catchphrase is [If you don't have rice, why not eat cakes?]",
+   "pista": "There is a Motor Seller Pam in the Fiery Path. If you are in pursuit of business, you can learn from him. Repeatble quest.(Related quests: Business road-exploitation, Business road-utilizing others)"
+  },
+  {
+   "id": 73,
+   "sprite": 25073,
+   "nombre": "Loyal Servant Card",
+   "estrellas": 3,
+   "categoria": "人物場景",
+   "texto": "The Little Childe is never independent. He lost in the underground of the Riddle City, but he is also waiting for someone to save him.",
+   "pista": "There is a Little Childe at the Flaming Door. He is unruly and troublesome, can you put up with him? Repeatble quest. (Related quests: The unruly Little Childe, The Little Childe's new pet)"
+  },
+  {
+   "id": 74,
+   "sprite": 25074,
+   "nombre": "Child's Heart Card",
+   "estrellas": 4,
+   "categoria": "人物場景",
+   "texto": "Why does the cute girl love to have afternoon tea with a ghost child?",
+   "pista": "A mysterious maiden, in Underground Square looks worried. Only the hero who can save the damsel in distress, can win her heart. Repeatable quest.(Related quests: The misted will, Poison antidote)"
+  },
+  {
+   "id": 75,
+   "sprite": 25075,
+   "nombre": "Chef Faz Card",
+   "estrellas": 4,
+   "categoria": "人物場景",
+   "texto": "Faz practises his skills every day to keep his title of Master Chef. The dishes are so good that the Evil Lyceum decides to make trouble for him.",
+   "pista": "Chef Faz in the Flaming Door needs help. The helper needs run fast and be on time, can you do it? Repeatable quest. (Related quest: Food special)"
+  },
+  {
+   "id": 76,
+   "sprite": 25076,
+   "nombre": "Lily Card",
+   "estrellas": 3,
+   "categoria": "一般怪物",
+   "texto": "Although it is planted in the Angel Lyceum for the Freshman to practice on, nobody cares for it.[Tender is also a fault?]",
+   "pista": "You may obtain it by defeating Lily in the Angel Lyceum."
+  },
+  {
+   "id": 77,
+   "sprite": 25077,
+   "nombre": "Flame Lily Card",
+   "estrellas": 3,
+   "categoria": "特殊怪物",
+   "texto": "Flame Lily is hiding in forest. It is attractive and enticing, but also dangerous!",
+   "pista": "You may obtain it by defeating the Flame Lily in the Dense Forest."
+  },
+  {
+   "id": 78,
+   "sprite": 25078,
+   "nombre": "Queen Angela Card",
+   "estrellas": 3,
+   "categoria": "特殊怪物",
+   "texto": "The flowers in the Mysterious Garden want to take over. But, most of them cannot move, so they have had to give up their evil plan.",
+   "pista": "You may obtain it by defeating Queen Angela in Mysterious Garden."
+  },
+  {
+   "id": 79,
+   "sprite": 25079,
+   "nombre": "Sexy Quli",
+   "estrellas": 4,
+   "categoria": "特殊怪物",
+   "texto": "[How beautiful her petals are!] The one who approaches Quli thinking like that must be looking for trouble!",
+   "pista": "You may obtain it by defeating the Sexy Quli in Mysterious Wetland."
+  },
+  {
+   "id": 80,
+   "sprite": 25080,
+   "nombre": "Charming Flower Card",
+   "estrellas": 5,
+   "categoria": "特殊怪物",
+   "texto": "The Charming Flower with purple petals always wanders around the  Underground Square. Don't let others know that she is lost.",
+   "pista": "You may obtain it by defeating the Charming Flower in Underground Square."
+  },
+  {
+   "id": 81,
+   "sprite": 25081,
+   "nombre": "Flora Card",
+   "estrellas": 5,
+   "categoria": "人物場景",
+   "texto": "She loves flowers and wants to leave Puqi Island to go and see all flowers of the world. However, will she still love the flower which bites?",
+   "pista": "Flora of Puqi Village has never left Puqi Island. You may choose to help her to realize her wish. (Repeatable quest: Flora's wish)"
+  },
+  {
+   "id": 82,
+   "sprite": 25082,
+   "nombre": "Theurgy Master Card",
+   "estrellas": 4,
+   "categoria": "一般怪物",
+   "texto": "To pursue the highest level of flame magic, a young man entered Lava Cave to eat fire stones and drink magma. So he became this strange apparition.",
+   "pista": "You may obtain it by defeating the Theurgy Master in the Lava Cave."
+  },
+  {
+   "id": 83,
+   "sprite": 25083,
+   "nombre": "Rock Slarm Card",
+   "estrellas": 4,
+   "categoria": "一般怪物",
+   "texto": "It can be found in the lava environment. As it has the traits of glowing and high temperature resistance, it has been touted as a new energy source.",
+   "pista": "You may obtain it by defeating the Rock Slarm in the Gulp Room."
+  },
+  {
+   "id": 84,
+   "sprite": 25084,
+   "nombre": "Ghost Kid Card",
+   "estrellas": 4,
+   "categoria": "一般怪物",
+   "texto": "He wants to turn black in the fire, but as he is only a bodiless ghost,  it only makes his face red.",
+   "pista": "You may obtain it by defeating the Fire Ghost Kid in the Flaming Door, the Underground Square and the Hell Palace."
+  },
+  {
+   "id": 85,
+   "sprite": 25085,
+   "nombre": "Lion Dragon Card",
+   "estrellas": 5,
+   "categoria": "特殊怪物",
+   "texto": "He is trapped in a small room. It will not5 help you to hurt him, but it may make you feel better.",
+   "pista": "You may obtain it by defeating the Lion Dragon in the Gulp Room."
+  },
+  {
+   "id": 86,
+   "sprite": 25086,
+   "nombre": "Demon Kidace Card",
+   "estrellas": 5,
+   "categoria": "特殊怪物",
+   "texto": "It is burning from head to foot, it will never die as long as it has things to keep it's fire going.",
+   "pista": "You may obtain it by defeating the Demon Kidace in Gulp Room."
+  },
+  {
+   "id": 87,
+   "sprite": 25087,
+   "nombre": "Scientist Boni Card",
+   "estrellas": 6,
+   "categoria": "人物場景",
+   "texto": "He likes to get to the bottom of problems. So he has no time to think of his wife…  He'd better concentrate on his research.",
+   "pista": "Scientist Boni in the Gulp Room portal of the eastern Underground Square gets a once in a lifetime archeological chance. He wants to solve the puzzles of the Underground Palace, maybe he needs a hand. (Related quest: Bobo's wish)"
+  },
+  {
+   "id": 88,
+   "sprite": 25088,
+   "nombre": "Water Goblin Card",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "It hasn't rain, but the road is extremely muddy. Maybe it is due to the North Lake Water Fairy。",
+   "pista": "You may obtain it by defeating the North Lake Water Fairy in the North of Mirror Lake."
+  },
+  {
+   "id": 89,
+   "sprite": 25089,
+   "nombre": "Mirror Elf Card",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "He is one of the four Fane Brothers. You can throw your anger, aroused by Fire Evil Elf, at him. (Maybe even worse XD)",
+   "pista": "You may obtain it by defeating the Mirror Elf in the Deity Palace Ruins."
+  },
+  {
+   "id": 90,
+   "sprite": 25090,
+   "nombre": "Elf Narice Card",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "He is the head of the North Lake Water Fairies but has a female name. Whoever laughs at his name will be soaked through.",
+   "pista": "You may obtain it by defeating the Elf Narice in the North of Mirror Lake."
+  },
+  {
+   "id": 91,
+   "sprite": 25091,
+   "nombre": "Platina Slarm Card",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "He likes to stay by the side of the lake and eat molluscs.  He never leaves a trace,  even when he goes to catch fish.",
+   "pista": "You may obtain it by defeating the Platina Slarm in the North of Mirror Lake."
+  },
+  {
+   "id": 92,
+   "sprite": 25092,
+   "nombre": "Wind Goblin Card",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "He makes the dump environment much colder. Don't forget to bring more warm clothes next time.",
+   "pista": "You may obtain it by defeating the Marsh Wind Fairy in the Mysterious Wetland."
+  },
+  {
+   "id": 93,
+   "sprite": 25093,
+   "nombre": "Fallen Angel Card",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "He is fond of restricting people, which may be the reason why he is not allowed into heaven.",
+   "pista": "You may obtain it by defeating the Degenerate Angel in the Thunder Ruins."
+  },
+  {
+   "id": 94,
+   "sprite": 25094,
+   "nombre": "Wind Goblin Claya Card",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "As soon as the wind blows, Claya will suddenly turn up from the back moving round to the front. He is a mysterious monster.",
+   "pista": "You may obtain it by defeating the Wind Fairy Clair in the Mysterious Wetland."
+  },
+  {
+   "id": 95,
+   "sprite": 25095,
+   "nombre": "Slave Driver Card",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "He leads a gang of slaves in digging. His red eyes are useful for working at night.",
+   "pista": "You may obtain it by defeating the Slave Driver in the Sad Abyss."
+  },
+  {
+   "id": 96,
+   "sprite": 25096,
+   "nombre": "Guilt Azrael Card",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "He always has a hook and a sandglass, the former is the main tool of his wealth, the latter reminds him of the shifting nature of luck.",
+   "pista": "You may obtain it by defeating the Guilt Azrael in the Thunder Ruins."
+  },
+  {
+   "id": 97,
+   "sprite": 25097,
+   "nombre": "Earth Demon Card",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "Born as a Giant, he has to work in the wild. You can say hello to him, but don't shake hands.",
+   "pista": "You may obtain it by defeating the Evil Earth Elf in the Deity Palace Ruins."
+  },
+  {
+   "id": 98,
+   "sprite": 25098,
+   "nombre": "Guard Fasit Card",
+   "estrellas": 5,
+   "categoria": "特殊怪物",
+   "texto": "Although he has a strong body, he is afraid of the dark. Only once a light is turned on, will he come out.",
+   "pista": "You may obtain it by defeating the Guard Fasit in the Magic Kichen Path Instance."
+  },
+  {
+   "id": 99,
+   "sprite": 25099,
+   "nombre": "Evil Tree Card",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "Sunshine, air and water are not favored by him.  He prefers the sour water from the depths. Obviously, he is an evil monster.",
+   "pista": "You may obtain it by defeating the Evil Tree in the Sad Abyss."
+  },
+  {
+   "id": 100,
+   "sprite": 25100,
+   "nombre": "Savage Dogface Card",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "It is said their race has evolved from mud. However, they seem to be able make steamed bread with a delicious smell.",
+   "pista": "You may obtain it by defeating the Savage Dogface in the Thorn Wasteland."
+  },
+  {
+   "id": 101,
+   "sprite": 25101,
+   "nombre": "Burning Monster Card",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "He wishes more than anything to take a cold bath. Once, when he dipped himself in the Mirror Lake, the lake water turned into a hot spring at once.",
+   "pista": "You may obtain it by defeating the Burning Monster in the Thunder Ruins."
+  },
+  {
+   "id": 102,
+   "sprite": 25102,
+   "nombre": "Flame Elf Card",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "It is said that if you take the Flame Elf home it will solve the problem of firewood. But no one dares to do it.",
+   "pista": "You may obtain it by defeating the Theurgy Master in the Lava Cave."
+  },
+  {
+   "id": 103,
+   "sprite": 25103,
+   "nombre": "Jail Warden's Card",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "His head would not be seperated from the wine bottle. So he separated his head from his body and then the body was sent off to be a Fervor Road Guard.",
+   "pista": "You may obtain it by defeating the Jail Warden in the Fiery Path."
+  },
+  {
+   "id": 104,
+   "sprite": 25104,
+   "nombre": "Disciple Andsen Card",
+   "estrellas": 3,
+   "categoria": "人物場景",
+   "texto": "Poor Artisan, he has good skills for refining weapons but is too afraid to go collecting materials in the dangerous areas. What can he do?",
+   "pista": "Disciple Andsen in Palm Base has learned all of the lessons. His master has given him a hard graduation test. He hopes someone can give him a hand. (Related quest: Andsen's graduated test)"
+  },
+  {
+   "id": 105,
+   "sprite": 25105,
+   "nombre": "Manufacture Card 1",
+   "estrellas": 4,
+   "categoria": "裝備道具",
+   "texto": "Such materials could make a great suit of armor should the gods decide to bless it. But are you qualified to wear it?",
+   "pista": "You may obtain it by advanced manufacturing the Holy Manteau and the Power Shield."
+  },
+  {
+   "id": 106,
+   "sprite": 25106,
+   "nombre": "Gold Fly Card",
+   "estrellas": 4,
+   "categoria": "一般怪物",
+   "texto": "The golden fly is one of fuels needed. It seems that a lot of energy is needed for to move such a large robot.",
+   "pista": "You may obtain it by defeating the Gold Fly in the Lava Cave, the Sad Abyss and the Fiery Path."
+  },
+  {
+   "id": 107,
+   "sprite": 25107,
+   "nombre": "Gluttonous Angle Card",
+   "estrellas": 4,
+   "categoria": "一般怪物",
+   "texto": "The Fat Angel holds his favorite muffin in his hand. Don't let him see you drool, even a lovely angel will become a devil.",
+   "pista": "You may obtain it by defeating the Gluttonous Angel in the Underground Square and the Hell Palace."
+  },
+  {
+   "id": 108,
+   "sprite": 25108,
+   "nombre": "Horn Dragon Card",
+   "estrellas": 5,
+   "categoria": "特殊怪物",
+   "texto": "His features are depicted in twinkling scales. You know he's coming by the shining lights. Don't fly to the fire like a moth.",
+   "pista": "You may obtain it by defeating the Horn Dragon in the Hell Palace."
+  },
+  {
+   "id": 109,
+   "sprite": 25109,
+   "nombre": "Silver Ore Card",
+   "estrellas": 4,
+   "categoria": "裝備道具",
+   "texto": "It seems to be the fuel crystal. The ore possesses good tenacity and tractility. Is it the so-called black gold?",
+   "pista": "You may obtain it by collecting Silver Ore."
+  },
+  {
+   "id": 110,
+   "sprite": 25110,
+   "nombre": "Suft's Belief Card",
+   "estrellas": 5,
+   "categoria": "人物場景",
+   "texto": "Why does the Suft C of C give orders to you? As long as your skills are known, then orders will come one after another.",
+   "pista": "You may obtain it by handing in Suft's orders of the Reborn Sword and Level 7 Big Hamburger.(Have to trade with Suft Branch in Palm Base)"
+  },
+  {
+   "id": 111,
+   "sprite": 25111,
+   "nombre": "Sharp Material Card",
+   "estrellas": 5,
+   "categoria": "裝備道具",
+   "texto": "What will happen if tartness meets hardness?  We can only see by trying it out!",
+   "pista": "Disciple Andsen in the Palm Base wants to forge a famous weapon but he is unable to find rare material, maybe you can help him. (Related quest: The sharpest material)"
+  },
+  {
+   "id": 112,
+   "sprite": 25112,
+   "nombre": "Manufacture Card 2",
+   "estrellas": 6,
+   "categoria": "裝備道具",
+   "texto": "Every sword has to experience much to become an outstanding one. And then it may called a Reborn Sword.",
+   "pista": "You may obtain it by the advanced manufacturing of the Reborn Sword, the Fire Guard Boots, the Hermit Boots and the Energy Boots."
+  },
+  {
+   "id": 113,
+   "sprite": 25113,
+   "nombre": "Trapped Shar Card",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "He is lost in maze which serves him right.  As he always set traps on purpose for those who enter the maze.",
+   "pista": "You may obtain it by defeating the Trapped Shar in the Gulp Room."
+  },
+  {
+   "id": 114,
+   "sprite": 25114,
+   "nombre": "Suft's Trust Card",
+   "estrellas": 5,
+   "categoria": "人物場景",
+   "texto": "You must do what you have promised.And that is to uphold the main principle of keeping a co-operative relationship with the Suft Commence Association.",
+   "pista": "You may obtain it by handing in Suft's orders of the Shake Axe and the Level 7 Braised Fish.(Have to trade with Suft Branch in Palm Base)"
+  },
+  {
+   "id": 115,
+   "sprite": 25115,
+   "nombre": "Heavy Material Card",
+   "estrellas": 5,
+   "categoria": "裝備道具",
+   "texto": "Products can be only from certain materials. But moving the heavy materials into forging room is almost impossible.",
+   "pista": "Disciple Andsen in the Palm Base wants to forge a famous weapon but he is unable to find rare material, maybe you can help him. (Related quest: The heaviest material)"
+  },
+  {
+   "id": 116,
+   "sprite": 25116,
+   "nombre": "Manufacture Card 3",
+   "estrellas": 6,
+   "categoria": "裝備道具",
+   "texto": "This is rumored to be the weapon of Giant Race. It is incomparable.",
+   "pista": "You may obtain it by advanced manufacturing the Shake Axe, the Fire Guard Gloves, the Hermit Gloves and the Energy Gloves."
+  },
+  {
+   "id": 117,
+   "sprite": 25117,
+   "nombre": "Wanderer Card",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "How can such a dim oil lamp light the road? Maybe endless wandering in the dark is his fate.",
+   "pista": "You may obtain it by defeating the Wanderer of the Fiery Path."
+  },
+  {
+   "id": 118,
+   "sprite": 25118,
+   "nombre": "Shy Plant Card",
+   "estrellas": 4,
+   "categoria": "裝備道具",
+   "texto": "Upon coming close to it, one may see it flushed with red and assume that it is blood. However, the color you see is in fact the plant blushing.",
+   "pista": "You may obtain it by collecting the Shy Plant."
+  },
+  {
+   "id": 119,
+   "sprite": 25119,
+   "nombre": "Suft's Guerdon Card",
+   "estrellas": 5,
+   "categoria": "人物場景",
+   "texto": "Who gets the most profit from the current weapons and gear? It's Suft. The craftsmen put a lot of effort into them, but they don't see the most money.",
+   "pista": "You may obtain it by handing in Suft's orders of the Thunder Spear and the Fire Guard Gloves.(Have to trade with Suft Branch in Palm Base)"
+  },
+  {
+   "id": 120,
+   "sprite": 25120,
+   "nombre": "Stiff Material Card",
+   "estrellas": 5,
+   "categoria": "裝備道具",
+   "texto": "How can a common stone compare with the hardest material? But how can you cut the material after finding it?",
+   "pista": "Disciple Andsen in the Palm Base wants to forge a famous weapon but he is unable to find a rare material, maybe you can help him. (Related quest: The hardest material)"
+  },
+  {
+   "id": 121,
+   "sprite": 25121,
+   "nombre": "Manufacture Card 4",
+   "estrellas": 6,
+   "categoria": "裝備道具",
+   "texto": "The Thunder Spear is famous for its fast attack and heavy damage. If it is matched with a cape it's performance will be even better.",
+   "pista": "You may obtain it by advanced manufacturing the Thunder Spear, the Fire Guard Armor, the Hermit Armor and the Energy Cape."
+  },
+  {
+   "id": 122,
+   "sprite": 25122,
+   "nombre": "Bloody Flower Card",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "Although it has the name of a blood-sucker, it's favorite place to be is the scalding magma of the Fiery Path.",
+   "pista": "You may obtain it by defeating the Bloody Flower in Fiery Path."
+  },
+  {
+   "id": 123,
+   "sprite": 25123,
+   "nombre": "Suft's Thankfulness Card",
+   "estrellas": 5,
+   "categoria": "人物場景",
+   "texto": "If you complete Suft's order smoothly, the Suft C of C will reward you.",
+   "pista": "You may obtain it by handing in Suft's orders of Level 7 Seafood Hamburger and the Hermit Boots.(Have to trade with Suft Branch in the Palm Base)"
+  },
+  {
+   "id": 124,
+   "sprite": 25124,
+   "nombre": "Curving Material Card",
+   "estrellas": 5,
+   "categoria": "裝備道具",
+   "texto": "These curvy materials are hard to deal with. It will take more time to find a suitable one for processing.",
+   "pista": "Disciple Andsen in the Palm Base wants to forge a famous weapon but he is unable to find rare material, maybe you can help him. (Related quest: The sinuatest material)"
+  },
+  {
+   "id": 125,
+   "sprite": 25125,
+   "nombre": "Manufacture Card 5",
+   "estrellas": 6,
+   "categoria": "裝備道具",
+   "texto": "Taking the falling star line as a bowstring, the maker needs strong will to catch the tail of a star.",
+   "pista": "You may obtain it by advanced manufacturing the Heaven Bow, the Fire Guard Helmet, the Hermit Helmet and the Energy Hood."
+  },
+  {
+   "id": 126,
+   "sprite": 25126,
+   "nombre": "Miner Foreman Card",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "The foreman talks a lot more than he gets work done. The tool in his hand is just a decoration. He always says[I am the foreman, how can I help you?]",
+   "pista": "You may obtain it by defeating the Miner Foreman in the Flaming Door."
+  },
+  {
+   "id": 127,
+   "sprite": 25127,
+   "nombre": "Suft's Support Card",
+   "estrellas": 5,
+   "categoria": "人物場景",
+   "texto": "How can Suft give you an order if you cannot promise the quantity and quality.",
+   "pista": "You may obtain it by handing in Suft's orders of the Fool Staff and the Energy Gloves.(Have to trade with Suft Branch in the Palm Base)"
+  },
+  {
+   "id": 128,
+   "sprite": 25128,
+   "nombre": "Lucid Material Card",
+   "estrellas": 5,
+   "categoria": "裝備道具",
+   "texto": "Lucid material is the purest thing in the world. Take care during delivery. If it was to fall then there would be no choice but to buy a new one.",
+   "pista": "Disciple Andsen in the Palm Base wants to forge a famous weapon but he is unable to find rare material, maybe you can help him. (Related quest: The lucidest material)"
+  },
+  {
+   "id": 129,
+   "sprite": 25129,
+   "nombre": "Manufacture Card 6",
+   "estrellas": 6,
+   "categoria": "裝備道具",
+   "texto": "Some say that a Fool makes the best wisdom tutor. The words of fool come closer to the truth and improve mana wisdom.",
+   "pista": "You may obtain it by advanced manufacturing the Fool Staff."
+  },
+  {
+   "id": 130,
+   "sprite": 25130,
+   "nombre": "Earl Makice Card",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "The eccentric earl, who loves to sleep in his tomb, says that sleeping like this always gives him the best hairstyle in the morning.",
+   "pista": "You may obtain it by defeating the Earl Makice in Gulp Room."
+  },
+  {
+   "id": 131,
+   "sprite": 25131,
+   "nombre": "Sword Introduction Card",
+   "estrellas": 6,
+   "categoria": "裝備道具",
+   "texto": "If you are seeking the super speedy and deft weapon, then you may be the future sword maker!",
+   "pista": "Obtain it by collecting the Renascence Cardset."
+  },
+  {
+   "id": 132,
+   "sprite": 25132,
+   "nombre": "Axe Introduction Card",
+   "estrellas": 6,
+   "categoria": "裝備道具",
+   "texto": "If you are pursuing the super thick and destructive weapon, then you may be the future sword maker!",
+   "pista": "Obtain it by collecting the Earthquake Cardset."
+  },
+  {
+   "id": 133,
+   "sprite": 25133,
+   "nombre": "Gun Introduction Card",
+   "estrellas": 6,
+   "categoria": "裝備道具",
+   "texto": "If you are searching for the super long-reaching and puncturing weapon, then you may be the future spear maker!",
+   "pista": "Obtain it by collecting the Storm Cardset."
+  },
+  {
+   "id": 134,
+   "sprite": 25134,
+   "nombre": "Bow Introduction Card",
+   "estrellas": 6,
+   "categoria": "裝備道具",
+   "texto": "If you are exhuming the super far-reaching and exact weapon, then you may be the future bow maker!",
+   "pista": "Obtain it by collecting the Arc Cardset."
+  },
+  {
+   "id": 135,
+   "sprite": 25135,
+   "nombre": "Staff Introduction Card",
+   "estrellas": 6,
+   "categoria": "裝備道具",
+   "texto": "If you are questing for the super psychic and magic weapon, then you may be the future staff maker!",
+   "pista": "Obtain it by collecting the Wisdom Cardset."
+  },
+  {
+   "id": 136,
+   "sprite": 25136,
+   "nombre": "Flamen Tomomy Card",
+   "estrellas": 7,
+   "categoria": "特殊怪物",
+   "texto": "He was a scientist who studied poisons, however, his head became poisoned and he became a propagator who likes casting poison",
+   "pista": "You may obtain it by defeating the Flamen Tomomy in the Gulp Room."
+  },
+  {
+   "id": 137,
+   "sprite": 25137,
+   "nombre": "Overlord Legte Card",
+   "estrellas": 8,
+   "categoria": "特殊怪物",
+   "texto": "The first impression he gives to others is one of rudeness. He likes to grow plants. But he often stamps on flowers and breaks bottles by accident.",
+   "pista": "You may obtain it by defeating the Overlord Legte in the Gulp Room."
+  },
+  {
+   "id": 138,
+   "sprite": 25138,
+   "nombre": "Suft's Respect Card",
+   "estrellas": 5,
+   "categoria": "人物場景",
+   "texto": "A respectable craftsman should be strict on quality. After all, word of mouth can make or break his business.",
+   "pista": "You may obtain it by handing in Suft's orders of the Power Shield and the Level 7 Defense Fuel.(Have to trade with Suft Branch in the Palm Base)"
+  },
+  {
+   "id": 139,
+   "sprite": 25139,
+   "nombre": "Flower Monster Card",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "He likes to do his thinking in a group of people.  Nobody knows what he is thinking, but when someone gets close to his idea, he will surely know.",
+   "pista": "You may obtain it by defeating the Flower Monster in the Gulp Room."
+  },
+  {
+   "id": 140,
+   "sprite": 25140,
+   "nombre": "Soul-eater Slalin Card",
+   "estrellas": 7,
+   "categoria": "特殊怪物",
+   "texto": "The lousy adhesive monster just keeps dividing itself more and more when you try to cut it.",
+   "pista": "You may obtain it by defeating the Soul Slalin in the Magic Kichen Path."
+  },
+  {
+   "id": 141,
+   "sprite": 25141,
+   "nombre": "Sleeper Nalica Card",
+   "estrellas": 8,
+   "categoria": "特殊怪物",
+   "texto": "Nalica waits in her deep slumber for a handsome prince to wake her with true loves kiss. However, most people shun her.",
+   "pista": "You may obtain it by defeating the Sleeper Nalica in the Gulp Room."
+  },
+  {
+   "id": 142,
+   "sprite": 25142,
+   "nombre": "Dream Beast Den Card",
+   "estrellas": 4,
+   "categoria": "裝備道具",
+   "texto": "This is the habitat of a mysterious beast and attracts countless collectors. Take care while working, maybe the dream beast is behind you…..",
+   "pista": "You may obtain it by collecting the Dream Beast Den."
+  },
+  {
+   "id": 143,
+   "sprite": 25143,
+   "nombre": "Suft's Welcome Card",
+   "estrellas": 5,
+   "categoria": "人物場景",
+   "texto": "Your supply of products is admired by Suft C of C. Don't hesitate, you must deliver them as soon as there is an order.",
+   "pista": "You may obtain it by handing in Suft's order of the Holy Manteau.(Have to trade with Suft Branch in the Palm Base)"
+  },
+  {
+   "id": 144,
+   "sprite": 25144,
+   "nombre": "Garden Elf Card",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "The Garden Elf who looks after the flowers flies like a butterfly. Strangely, all the flowers he takes care of have the tendancecy to bite people.",
+   "pista": "You may obtain it by defeating the Garden Elf in the Mysterious Garden."
+  },
+  {
+   "id": 145,
+   "sprite": 25145,
+   "nombre": "Poo Poo Demon Card",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "Without a nose, he is immune to his own smell. No one wants to be his friend. Anyone who comes too close to him will need to wash for hours.",
+   "pista": "You may obtain it by defeating the Pupu Demon in the Gulp Room  and the Magic Kichen Path."
+  },
+  {
+   "id": 146,
+   "sprite": 25146,
+   "nombre": "Evil Eye Card",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "The Evil Eye will excrete colourful crystal when his stomach is too full. What precious waste!",
+   "pista": "You may obtain it by defeating the Evil Eye in the Gulp Room."
+  },
+  {
+   "id": 147,
+   "sprite": 25147,
+   "nombre": "White Fish Card",
+   "estrellas": 4,
+   "categoria": "裝備道具",
+   "texto": "The fish from the dangerous areas taste more delicious. Also, only the fisherman who can overcome such difficulties may obtain it.",
+   "pista": "You may obtain it by collecting white fish."
+  },
+  {
+   "id": 148,
+   "sprite": 25148,
+   "nombre": "Suft's Esteem Card",
+   "estrellas": 4,
+   "categoria": "人物場景",
+   "texto": "It is not easy to be so outstanding when you have so many orders. But it is good to be the largest supplier of Suft.",
+   "pista": "You may obtain it by handing in Suft's orders of the Black Sycee, the Beast Fell Strip, the Cherry Thread,the Shy Batten and the White Fish Meat.(Have to trade with Suft Branch in the Palm Base)"
+  },
+  {
+   "id": 149,
+   "sprite": 25149,
+   "nombre": "Fire Mummy Card",
+   "estrellas": 4,
+   "categoria": "一般怪物",
+   "texto": "They often dance in a small group and dream of becoming stars. But their movements are too stiff and clunky.",
+   "pista": "You may obtain it by defeating the Fire Mummy in the Gulp Room."
+  },
+  {
+   "id": 150,
+   "sprite": 25150,
+   "nombre": "Injuried Angel Card",
+   "estrellas": 4,
+   "categoria": "特殊怪物",
+   "texto": "Bathing in chocolate is his way of keeping white. But it is dirty of him to get out without washing himself clean afterwards.",
+   "pista": "You may obtain it by defeating the Injuried Angel in the Hell Palace."
+  },
+  {
+   "id": 151,
+   "sprite": 25151,
+   "nombre": "Cherry Grass Card",
+   "estrellas": 4,
+   "categoria": "裝備道具",
+   "texto": "Cherry Grass will produce a kind of fairy fruit when the world is in chaos. However, when the world is chaotic, is the fruit necessary?",
+   "pista": "You may obtain it by collecting Cherry Grass."
+  },
+  {
+   "id": 152,
+   "sprite": 25152,
+   "nombre": "Suft's Passion Card",
+   "estrellas": 4,
+   "categoria": "人物場景",
+   "texto": "Suft C of C likes gifted craftsman. They send orders to the best craftsman. Not only for business, but also for selecting greatest of them.",
+   "pista": "You may obtain it by handing in Suft's orders of the Benison Ring and the Energy Boots.(Have to trade with Suft Branch in the Palm Base)"
+  },
+  {
+   "id": 153,
+   "sprite": 25153,
+   "nombre": "Manufacture Card 7",
+   "estrellas": 6,
+   "categoria": "裝備道具",
+   "texto": "The Monk group made a ten-day benison ceremony on the top of the Crashing Hillock. They scattered the benison crystals all over.",
+   "pista": "You may obtain it by the advanced manufacturing Benison Rings."
+  },
+  {
+   "id": 154,
+   "sprite": 25154,
+   "nombre": "Fire Fly Card",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "Evil chef Berssif burned the fly's wings when he blew out his birthday candles. The poor fly could only walk sadly around.",
+   "pista": "You may obtain it by defeating the Fire Fly in the Lava Cave, the Flaming Door, the Underground Square and the Hell Palace."
+  },
+  {
+   "id": 155,
+   "sprite": 25155,
+   "nombre": "Rat Mosi Card",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "The Coward Mosi often attacks others hiding in groups. However, if he is caught he never confesses and escapes quickly.",
+   "pista": "You may obtain it by defeating the Rat Mosi in the Magic Kichen Path."
+  },
+  {
+   "id": 156,
+   "sprite": 25156,
+   "nombre": "Conch Girl Card",
+   "estrellas": 5,
+   "categoria": "人物場景",
+   "texto": "Help the lovely girl to complete her wish.  Then look at her happy smile, it can make you happy as well.",
+   "pista": "The little girl on Shining Coast cannot find her beautiful shell. Please help her! (Related quest: Little girl's wish)"
+  },
+  {
+   "id": 157,
+   "sprite": 25157,
+   "nombre": "Puqi Turtle Card",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "It is a kind of giant turtle, enjoying the sunshine. But be careful that you are not mistaken for a big stone.",
+   "pista": "You may obtain it by defeating the Puqi Turtle on the Gold Beach."
+  },
+  {
+   "id": 158,
+   "sprite": 25158,
+   "nombre": "Puqi Crab Card",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "Walking in the sun may have affected the shell of the Puqi Crab. It can be found due to the burning smell.",
+   "pista": "You may obtain it by defeating the Puqi Crab on the Gold Beach."
+  },
+  {
+   "id": 159,
+   "sprite": 25159,
+   "nombre": "Pontiff Hululu Card",
+   "estrellas": 5,
+   "categoria": "特殊怪物",
+   "texto": "He considers himself the host of the Gold Beach. He will jump out from behind rocks whenever a traveller goes by. What an annoying guy!",
+   "pista": "You may obtain it by defeating the Pontiff Hululu on the Gold Beach."
+  },
+  {
+   "id": 160,
+   "sprite": 25160,
+   "nombre": "True Protector Card",
+   "estrellas": 6,
+   "categoria": "人物場景",
+   "texto": "The old man on the dock regards you as the true guard of coast. How honorable of him!",
+   "pista": "The old man on Shining Coast sighs at the sight of the damaged environment, are you able to change the situation? (Related quest: Return my clean sea)"
+  },
+  {
+   "id": 161,
+   "sprite": 25161,
+   "nombre": "Puqi Pirate Card",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "They stay on the west coast of the Puqi Island under the orders of the Pirate Captain. They often follow adventurers and rob them.",
+   "pista": "You may obtain it by defeating the Puqi Pirate in the Shining Coast."
+  },
+  {
+   "id": 162,
+   "sprite": 25162,
+   "nombre": "Puqi Pirate Leader Card",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "He is the leader of Puqi Pirates and has terrible bad breath. But all of the Puqi Pirates are loyal to him.",
+   "pista": "You may obtain it by defeating the Puqi Pirate Leader in the Shining Coast."
+  },
+  {
+   "id": 163,
+   "sprite": 25163,
+   "nombre": "Coast Protector Card",
+   "estrellas": 5,
+   "categoria": "特殊怪物",
+   "texto": "The Coast Protector keeps people going to the other side of the sea. What secret does the remote side hold?",
+   "pista": "You may obtain it by defeating the Coast Protector in the Shining Coast."
+  },
+  {
+   "id": 164,
+   "sprite": 25164,
+   "nombre": "Merman's Trust Card",
+   "estrellas": 5,
+   "categoria": "人物場景",
+   "texto": "Winning the trust of the Mermen is proof of courage and wisdom.",
+   "pista": "The Mermen of Dream Ocean have taken action! What could have worried them so much?"
+  },
+  {
+   "id": 165,
+   "sprite": 25165,
+   "nombre": "Crab General Card",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "Promoted up from a Soldier Crab, it now wants to make it's mark as a General. Anyone who disobeys him is certain to be punished.",
+   "pista": "You may obtain it by defeating the Crab General in the Shining Coast or the Colorful Coral Reefs."
+  },
+  {
+   "id": 166,
+   "sprite": 25166,
+   "nombre": "Octopus Mallet Card",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "Beat lover Octopus seems to be hard at work, but actually, it is destroying the bilge with it's beatings.",
+   "pista": "You may obtain it by defeating the Wood Octopus in the Colorful Coral Reefs or the Dream Ocean."
+  },
+  {
+   "id": 167,
+   "sprite": 25167,
+   "nombre": "Captain Nio Card",
+   "estrellas": 5,
+   "categoria": "特殊怪物",
+   "texto": "Regardless of their odd appearance, team work is the mermans's biggest weapon. Don't fight them alone.",
+   "pista": "You may obtain it by defeating the Leader Nio in the Blue Sea or the Dream Ocean."
+  },
+  {
+   "id": 168,
+   "sprite": 25168,
+   "nombre": "Coral Nurse Card",
+   "estrellas": 5,
+   "categoria": "人物場景",
+   "texto": "We award you with this card in recognition of your determination and will for protecting the coral. May your persistence never end.",
+   "pista": "Don't think that Guang of the Puqi Village only eats chocolate. He also protects the coral.  And he pays a lot of attention to it. Repeatable quest. (Related quest: Displace coral reefs)"
+  },
+  {
+   "id": 169,
+   "sprite": 25169,
+   "nombre": "Octopus Brush Card",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "The Octopus wishes to practise his handwriting with his own ink. However, how can it write in the sea? No wonder he is scrawls on the faces of others.",
+   "pista": "You may obtain it by defeating the Ink Octopus in the Colorful Coral Reefs or the Dream Ocean."
+  },
+  {
+   "id": 170,
+   "sprite": 25170,
+   "nombre": "Whelk Sword Card",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "In florid coral sea, its colorful shell may be the best camouflage you have ever seen. Take care of yourself from it's invisible rapier!",
+   "pista": "You may obtain it by defeating the Whelk Swordsman in the Colorful Coral Reefs or the Wave Harbor."
+  },
+  {
+   "id": 171,
+   "sprite": 25171,
+   "nombre": "Sharpshooter Cathie Card",
+   "estrellas": 5,
+   "categoria": "特殊怪物",
+   "texto": "He is the best at shooting. The resistance of seawater doesn't affect him at all. Good luck to his targets.",
+   "pista": "You may obtain it by defeating the Sharp-shooter in the Colorful Coral Reefs."
+  },
+  {
+   "id": 172,
+   "sprite": 25172,
+   "nombre": "Exploration Assistant Card",
+   "estrellas": 6,
+   "categoria": "人物場景",
+   "texto": "The sea is once again pure and clean, thanks to your efforts, which also prove the scientific power of Iron Castle.",
+   "pista": "Ocean Scholar in the Palm Base wants to purify the sea. Please assist him! Repeatable quest. (Related quest: Eliminate impurity)"
+  },
+  {
+   "id": 173,
+   "sprite": 25173,
+   "nombre": "Whelk Wand Card",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "You want to help the Slow Grandpa, but he cannot stop chattering.",
+   "pista": "You may obtain it by defeating the Whelk Mage in the Colorful Coral Reefs or the Wave Harbor."
+  },
+  {
+   "id": 174,
+   "sprite": 25174,
+   "nombre": "Ball Jellyfish Card",
+   "estrellas": 4,
+   "categoria": "一般怪物",
+   "texto": "How can they continue playing the bad jellyfish has stolen their beachball. He is so mean.",
+   "pista": "You may obtain it by defeating the Ball Jellyfish in the Colorful Coral Reefs or the Wave Harbor."
+  },
+  {
+   "id": 175,
+   "sprite": 25175,
+   "nombre": "Stab Jellyfish Card",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "He is well protected by slippery tentacles and sharp stings. Pay attention to them and be careful.",
+   "pista": "You may obtain it by defeating the Stab Jellyfish in the Wave Harbor or the Blue Sea."
+  },
+  {
+   "id": 176,
+   "sprite": 25176,
+   "nombre": "Sword Jellyfish Card",
+   "estrellas": 5,
+   "categoria": "特殊怪物",
+   "texto": "Once he joined a sword competition and came in last place because he got all tangled up.Then he formed the habit of beating people with his sword.",
+   "pista": "You may obtain it by defeating the Sword Jellyfish in the Wave Harbor."
+  },
+  {
+   "id": 177,
+   "sprite": 25177,
+   "nombre": "Teny's Finesse Card",
+   "estrellas": 5,
+   "categoria": "人物場景",
+   "texto": "You are a kind man to help Teny use her skills. She will never forget you.",
+   "pista": "By mentioning the shell brooch, you can't help but praise Teny's skills. It is even more outstanding when matched with the scarf or the amice. Repeatable quest. (Related quest: Wandering Artist)"
+  },
+  {
+   "id": 178,
+   "sprite": 25178,
+   "nombre": "Teny's Handicraft Card",
+   "estrellas": 5,
+   "categoria": "人物場景",
+   "texto": "You are a kind man to help Teny use her handicraft. She will never forget you.",
+   "pista": "By mentioning of shell necklace, you can't help but praise Teny's skills. Only she could make such a delicate necklace. Repeatable quest. (Related quest: Wandering Artist)"
+  },
+  {
+   "id": 179,
+   "sprite": 25179,
+   "nombre": "Teny's Romance Card",
+   "estrellas": 5,
+   "categoria": "人物場景",
+   "texto": "You are a kind man to help Teny create her romance. She will never forget you.",
+   "pista": "How romantic the bracelet is! It being given as a love token is a wonderful thing. Repeatable quest. (Related quest: Wandering Artist)"
+  },
+  {
+   "id": 180,
+   "sprite": 25180,
+   "nombre": "Teny's Creativity Card",
+   "estrellas": 5,
+   "categoria": "人物場景",
+   "texto": "You are a kind man to help Teny play to her creativity. She will never forget you.",
+   "pista": "Only Teny can create such wonderful handicraft. It is useful and beautiful. Girls love it very much. Repeatable quest. (Related quest: Wandering Artist)"
+  },
+  {
+   "id": 181,
+   "sprite": 25181,
+   "nombre": "Top Pearl Card",
+   "estrellas": 6,
+   "categoria": "裝備道具",
+   "texto": "The Top Pearl can only be found after spending a very long time in the sea.",
+   "pista": "Only in the deepest depths of the sea may the Top Pearl be found. The quantity left is so small."
+  },
+  {
+   "id": 182,
+   "sprite": 25182,
+   "nombre": "Blue Merman",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "Recently, the Mermen have become angry because more and more humans and Angels are traveling under the water. Because of this they are having to wash their hair and trim their nails more and more often.",
+   "pista": "You may obtain it by defeating Blue Mermen in the Blue Sea."
+  },
+  {
+   "id": 183,
+   "sprite": 25183,
+   "nombre": "Feather Angel Fish",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "Although it is known as an Angel Fish, it doesn't really look like a fish.  This is because it was once a beautiful little Angel who was forced to live underwater for some past discretion. So now all of our angels are always on their best behavior.",
+   "pista": "You may obtain it by defeating Feather Angel Fish in the Blue Ocean, Sunken Ruins or Quiet Ocean."
+  },
+  {
+   "id": 184,
+   "sprite": 25184,
+   "nombre": "Poison Evil Fish",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "The red teeth show that it is very poisonous. But don't be so scared of it; in fact the only thing it drinks is tomato juice.",
+   "pista": "You may obtain it by defeating Poison Evil Fish in the Sunken Ruins, Quiet Ocean or Coral Vale."
+  },
+  {
+   "id": 185,
+   "sprite": 25185,
+   "nombre": "Red Lantern Fish",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "The poor Lantern Fish's lantern has been stolen. And now the poor thing must search through all of the rubbish on the sea bed to find it.  However, it is somewhat troubled by all of the congratulations it has been receiving from the other fish.  Why would they congratulate him?...",
+   "pista": "You may obtain it by defeating Red Lantern Fish in the Quiet Ocean or Coral Vale."
+  },
+  {
+   "id": 186,
+   "sprite": 25186,
+   "nombre": "Rage Shark",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "The evil shark has equipped himself with many weapons and it is even holding a huge blade in its fin. Not as impressive as it seems as without fingers or opposable thumbs he keeps on dropping it!  It seems that he was left with no choice but to bite people.",
+   "pista": "You may obtain it by defeating Rage Sharks in the Quiet Ocean or Coral Vale."
+  },
+  {
+   "id": 187,
+   "sprite": 25187,
+   "nombre": "Evil Fish",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "The Evil Fish are some of the fastest swimmers in the sea. Even Poseidon likes to invite them to perform their synchronized swimming routines for him.",
+   "pista": "You may obtain it by defeating Evil Fish in the Sunken Ruins, Quiet Ocean or Coral Vale."
+  },
+  {
+   "id": 188,
+   "sprite": 25188,
+   "nombre": "Sea Explorer",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "Because they want to build a base deep under the water, the Evil Lyceum has sent a group of explorers to search for a suitable spot.  Their leader is equipped the most advanced LED searchlight so that they can swim in the deepest darkest depths of the ocean to complete their mission.",
+   "pista": "You may obtain it by defeating Sea Explorers in the Quiet Ocean."
+  },
+  {
+   "id": 189,
+   "sprite": 25189,
+   "nombre": "Running Seahorse",
+   "estrellas": 5,
+   "categoria": "人物場景",
+   "texto": "After training many seahorses go on to become people's favorite mounts. I know of a seahorse whose deepest desire is to join in the training.  So much so in fact it often tries to sneak away from it's owners farm in Palm Base. However, its owner always catches it before it can get too far.",
+   "pista": "The cattleman's beloved seahorse is missing. Please help him find it! You may find it if you repeatedly complete the race quest. (Related quest: The Seahorse Ran Away)"
+  },
+  {
+   "id": 190,
+   "sprite": 25190,
+   "nombre": "Little Star",
+   "estrellas": 5,
+   "categoria": "裝備道具",
+   "texto": "It is indeed a special starfish. It loves to watch TV but isn't always the most clever of animals. It's one distinctive feature is that unlike all other Starfish it has a nose.",
+   "pista": "The Little Star didn't watch TV at home. How can it do if it meets some evil fish. The Crab Boss hopes that you can get the Little Star back. You may find it if you repeatedly complete the quest. (Related quest: The Lost Starfish)"
+  },
+  {
+   "id": 191,
+   "sprite": 25191,
+   "nombre": "Scale Soldier",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "The Evil Lyceum lied to them and told them that the Angel Lyceum had cancelled their International Ballroom Dance. That's why they decided to help the Evil Lyceum instead.",
+   "pista": "You may obtain it by defeating Scale Soldiers in the Lost Region."
+  },
+  {
+   "id": 192,
+   "sprite": 25192,
+   "nombre": "Linberd Elder",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "As the elder, it is really skilled at dancing. It attracts a lot of innocent grannies because it always leans on it's stick and shakes its mantle whilst dancing.",
+   "pista": "You may obtain it by defeating Linberd Elders in the Evil Ship."
+  },
+  {
+   "id": 193,
+   "sprite": 25193,
+   "nombre": "Merman Hulio",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "Hulio is the most knowledgeable Merman. Whenever any of the other Merpeople have a question they know that they can go to Hulio for the answer.",
+   "pista": "You may obtain it by defeating Merman Hulio in the Blue Sea or Dream Ocean."
+  },
+  {
+   "id": 194,
+   "sprite": 25194,
+   "nombre": "Knight Clarc",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "His father loves to read Superman Comics, so much so that he named his only son Clark. However, Clark can't fly so he has to ride on an Evil Fish instead.",
+   "pista": "You may obtain it by defeating Knight Clarc in the Sunken Ruins."
+  },
+  {
+   "id": 195,
+   "sprite": 25195,
+   "nombre": "Weather-worn Boat",
+   "estrellas": 5,
+   "categoria": "裝備道具",
+   "texto": "That small ship has taken King Ruff around the world many times. Even though it is broken and has had to be repaired many times, King Ruff says that it is safe. So, trust him!",
+   "pista": "Ruff dreamed of one day becoming the king of the sea when he was younger. Now he is retired and nobody knows whether he really became the king or not. He left a boat and he would like to find a successor. You may obtain it if you repeatedly complete the quest. (Related quest: King on the Sea)"
+  },
+  {
+   "id": 196,
+   "sprite": 25196,
+   "nombre": "Death Sail",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "It is said that he drowned because he was hoisting the sail whilst the deck was wet and slippy.  He lost his footing, became entangled in the ropes, fell into the dark ocean and drowned. His ghost can often be heard telling other sailors to mop the deck and keep it clean.",
+   "pista": "You may obtain it by defeating Death Sail in the Blue Ocean or Quiet Ocean or Coral Vale."
+  },
+  {
+   "id": 197,
+   "sprite": 25197,
+   "nombre": "Captain Hack",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "He was the 13th brother of Captain Huc. Although he was a captain, he did not live long enough to become a great one.",
+   "pista": "You may obtain it by defeating Captain Hack in the Quiet Ocean."
+  },
+  {
+   "id": 198,
+   "sprite": 25198,
+   "nombre": "Pet Seal",
+   "estrellas": 6,
+   "categoria": "人物場景",
+   "texto": "It is Raby's 48th pet. It always tries to fight for it's master's attention, because Raby still has a girlfriend and chooses to devote his time to her instead. However it is always mindful that there may be a 49th pet coming to take it's place.",
+   "pista": "No matter where you find the pet, you must return it to it's master. You may find it if you repeatedly complete the quest. (Related quest: King on the Sea and Return the Seal)"
+  },
+  {
+   "id": 199,
+   "sprite": 25199,
+   "nombre": "Octopus Oliss",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "It's the most popular creature in the ocean. You can often see it in the movies. It used to be very gentle but fame has gone to it's tiny brain. Now it thinks that it is always taking a screen test  it's constantly destroying ships and causing havoc.",
+   "pista": "You may obtain it by defeating Octopus Oliss in the Raging Reefs or Blue Ocean."
+  },
+  {
+   "id": 200,
+   "sprite": 25200,
+   "nombre": "Death Sailor",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "Without their boats, those sailors have nothing constructive to do to kill time. So they gossip with each other all the day and chase after Merman.",
+   "pista": "You may obtain it by defeating Death Sailors in the Blue Ocean, Coral Vale or Quiet Ocean."
+  },
+  {
+   "id": 201,
+   "sprite": 25201,
+   "nombre": "Winged Fish",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "It is a rare Angel Fish. It is hard for it to beat it's wings because it has been under the water for such a long time. Maybe this is the fate of Angels who are not careful.",
+   "pista": "You may obtain it by defeating Winged Fish in the Sunken Ruins, Quiet Ocean or Coral Vale."
+  },
+  {
+   "id": 202,
+   "sprite": 25202,
+   "nombre": "Hicalu Ship 1",
+   "estrellas": 8,
+   "categoria": "特殊怪物",
+   "texto": "As the last and the most powerful guardian of Atlantis, the Hicalu Ship 1 has the super mission of destroying every enemy who shows an interest in the Ancient Treasure.",
+   "pista": "You may obtain it by defeating Hicalu Ship 1 in the Lost Region."
+  },
+  {
+   "id": 203,
+   "sprite": 25203,
+   "nombre": "Asharl",
+   "estrellas": 9,
+   "categoria": "特殊怪物",
+   "texto": "The snake king loves to eat sheep. But there are no sheep in Hell, so it has chosen to try it's luckin Eden. However, it is confined to stay under the water. That's why it is always in such a bad mood.",
+   "pista": "You may obtain it by defeating Asharl in the Evil Ship."
+  },
+  {
+   "id": 204,
+   "sprite": 25204,
+   "nombre": "Beastman Soldier",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "These Beastman Soldiers have to find a piece of wood as a weapon because of the shortage of materials.",
+   "pista": "You may obtain it by defeating Beastman Soldiers in the Half-beast Hamlet."
+  },
+  {
+   "id": 205,
+   "sprite": 25205,
+   "nombre": "Orangutan Mother",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "The female orangutan always puts on a long face because it has to go out and find its mate with the baby orangutan in its arms. Oh, even the orangutan has an affair.",
+   "pista": "You may obtain it by defeating Orangutan Mothers in the Waterfall Camp."
+  },
+  {
+   "id": 206,
+   "sprite": 25206,
+   "nombre": "Big Dipper Bear Stage Photo",
+   "estrellas": 5,
+   "categoria": "人物場景",
+   "texto": "This handsome bear is a popular TV show hero. It always says &quot;you are dead…&quot; and then laughs rolling on the floor. It always asks others that whether it is funny or not!",
+   "pista": "It is said that even the skilled warriors will watch the TV show on time. It is great if I can have the stage photo. You may find it if you repeatedly complete the quest. (Related quest: Trial for Warriors)"
+  },
+  {
+   "id": 207,
+   "sprite": 25207,
+   "nombre": "Skilled Warrior",
+   "estrellas": 5,
+   "categoria": "裝備道具",
+   "texto": "The heavy axe proves that you are a skilled warrior. It stands for power and honor. When you have it in your hands, you are not a newbie anymore.",
+   "pista": "You should finish some trials if you want to be a skilled warrior. You may find it if you repeatedly complete the quest. (Related quest: Trial for Warriors)"
+  },
+  {
+   "id": 208,
+   "sprite": 25208,
+   "nombre": "Wistaria Elf",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "This superior flower elf dropped into a mud puddle by accident and was covered by dirty leaves.",
+   "pista": "You may obtain it by defeating Wistaria Elves in the Noisy Rain Forest."
+  },
+  {
+   "id": 209,
+   "sprite": 25209,
+   "nombre": "Naga Elder Priest",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "This priest takes charge of praying for the Naga Tribe. He always eats the offering on the sly and says that &quot;Naga is really my home.&quot;",
+   "pista": "You may obtain it by defeating Naga Elder Priests in the Half-beast Hamlet."
+  },
+  {
+   "id": 210,
+   "sprite": 25210,
+   "nombre": "Mage School Beauty",
+   "estrellas": 5,
+   "categoria": "人物場景",
+   "texto": "Even her teacher always speaks loudly that she is really a beautiful girl. It is said that she has a lot of fans and this card is the certificate of the fans.",
+   "pista": "It is said that she is the best student in the Mage School in the history. You should train yourself if you would like to be as good as her. You may find it if you repeatedly complete the quest. (Related quest: Trial for Mages)"
+  },
+  {
+   "id": 211,
+   "sprite": 25211,
+   "nombre": "Skilled Mage",
+   "estrellas": 5,
+   "categoria": "裝備道具",
+   "texto": "This unique staff proves that you are a skilled mage. The roses on it stand for the art and it seems that you are an artist when you wave the staff.",
+   "pista": "You should finish some trials if you want to be a skilled mage. You may find it if you repeatedly complete the quest. (Related quest: Trial for Mages)"
+  },
+  {
+   "id": 212,
+   "sprite": 25212,
+   "nombre": "Bird Sharpshooter",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "The best sharpshooter can fly steadily in the sky. However, it can't fly far.",
+   "pista": "You may obtain it by defeating Bird Sharpshooters in the Giant Wooden Stairs."
+  },
+  {
+   "id": 213,
+   "sprite": 25213,
+   "nombre": "Glede Bud",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "It is said that it used to be a human being. However, he was too weak and everybody called him idiot.",
+   "pista": "You may obtain it by defeating Glede Buds in the Ancient Glide River."
+  },
+  {
+   "id": 214,
+   "sprite": 25214,
+   "nombre": "Nature Needle",
+   "estrellas": 5,
+   "categoria": "人物場景",
+   "texto": "This strange cactus can release a thousand needles at the same time. That's why a lot of bowmen admire it.",
+   "pista": "Only one person is still alive after he saw cactus monster's stance. He even took a photo. Where is he? You may find it if you repeatedly complete the quest. (Related quest: Trial for Bowmen)"
+  },
+  {
+   "id": 215,
+   "sprite": 25215,
+   "nombre": "Skilled Bowman",
+   "estrellas": 5,
+   "categoria": "裝備道具",
+   "texto": "The long sharp bow proves that you are a skilled bowman. The spine stands for accuracy while the sharp blade is agility.",
+   "pista": "You should finish some trials if you want to be a skilled bowman. You may find it if you repeatedly complete the quest. (Related quest: Trial for Bowmen)"
+  },
+  {
+   "id": 216,
+   "sprite": 25216,
+   "nombre": "Death Killer Camote",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "It is a professional killer among worms and is called as Death Killer. However, we always see that it is sent back on a stretcher.",
+   "pista": "You may obtain it by defeating Death Killer Camote in the Ancient Glide River."
+  },
+  {
+   "id": 217,
+   "sprite": 25217,
+   "nombre": "Noisy Worm",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "These worms are noisy and they always wander here and there. However, the most depressed thing is that it is really difficult for you to understand what they are talking about.",
+   "pista": "You may obtain it by defeating Noisy Worms in the Noisy Rain Forest."
+  },
+  {
+   "id": 218,
+   "sprite": 25218,
+   "nombre": "Giant Forest Moth",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "Do you feel that you are stared by many pairs of eyes when you pass through the jungle? In fact, these guys like to stay on a stone and stare at others with the eyes on their wings.",
+   "pista": "You may obtain it by defeating Giant Forest Moths in the Clouding Forest."
+  },
+  {
+   "id": 219,
+   "sprite": 25219,
+   "nombre": "Hook Worm King",
+   "estrellas": 7,
+   "categoria": "特殊怪物",
+   "texto": "It is said that it has a thousand eyes. However, can you imagine that it has 500 pairs of glasses? Oh, my god!",
+   "pista": "You may obtain it by defeating Hook Worm King in the Giant Wooden Stairs."
+  },
+  {
+   "id": 220,
+   "sprite": 25220,
+   "nombre": "Den Crocodile",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "The crocodiles like to stay in the den. They always say that they like to attack travelers passing by. In fact, they are scared of the sunshine.",
+   "pista": "You may obtain it by defeating Den Crocodiles in the Secret Den."
+  },
+  {
+   "id": 221,
+   "sprite": 25221,
+   "nombre": "Iron-shell Worm",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "It always considers itself as the most handsome worm in the world. But, it has a broken horn.",
+   "pista": "You may obtain it by defeating Iron-shell Worms in the Secret Den."
+  },
+  {
+   "id": 222,
+   "sprite": 25222,
+   "nombre": "Blue Clapper Dragon",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "In order to feed themselves, they have to work as cleaners.",
+   "pista": "You may obtain it by defeating Blue Clapper Dragons in the Waterfall Camp."
+  },
+  {
+   "id": 223,
+   "sprite": 25223,
+   "nombre": "Moth King Turna",
+   "estrellas": 7,
+   "categoria": "特殊怪物",
+   "texto": "The moth king accuses others all the time.",
+   "pista": "You may obtain it by defeating Moth King Turna in the Clouding Forest."
+  },
+  {
+   "id": 224,
+   "sprite": 25224,
+   "nombre": "Leech Mrs. Dorsa",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "Take care of yourself. Mrs. Dorsa may bite you hanging on the ceiling.",
+   "pista": "You may obtain it by defeating Leech Mrs. Dorsa in the Secret Den."
+  },
+  {
+   "id": 225,
+   "sprite": 25225,
+   "nombre": "Jade Bloody Flower",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "The evil plant dreams to drink others' blood all the day. However, it is always hungry because it can't run fast.",
+   "pista": "You may obtain it by defeating Jade Bloody Flowers in the Noisy Rain Forest."
+  },
+  {
+   "id": 226,
+   "sprite": 25226,
+   "nombre": "Bloody Saint Judas",
+   "estrellas": 8,
+   "categoria": "特殊怪物",
+   "texto": "He used to be an Angel. After he betrayed the Archangel, he ran to the Cloud-top Land and became a demon. It is said that he has an affair with the wind king.",
+   "pista": "You may obtain it by defeating Bloody Saint Judas in the Cloud-top Land."
+  },
+  {
+   "id": 227,
+   "sprite": 25227,
+   "nombre": "Full Moon Wolfman",
+   "estrellas": 7,
+   "categoria": "人物場景",
+   "texto": "The legendary wolfman only appears at the full moon night. However, it always considers itself as an orc.",
+   "pista": "Some wolfmen have hurt people in the Aurora City…But they disappeared suddenly. Is there really a wolfman in the world? (Related quest: The Horrible Full Moon Night)"
+  },
+  {
+   "id": 228,
+   "sprite": 25228,
+   "nombre": "Earth Fairy",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "These kind-hearted fairies are born to protect the forest. However, nobody appreciates them and always asks them to put on their clothes. That's why they became angry and attack others.",
+   "pista": "You may obtain it by defeating Earth Fairies in the Waterfall Camp."
+  },
+  {
+   "id": 229,
+   "sprite": 25229,
+   "nombre": "Naga Leader Arna",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "He is the leader of the Naga Tribe. However, there are still other leaders. It is nothing.",
+   "pista": "You may obtain it by defeating Naga Leader Arna in the Half-beast  Hamlet."
+  },
+  {
+   "id": 230,
+   "sprite": 25230,
+   "nombre": "Search Party Leader",
+   "estrellas": 5,
+   "categoria": "人物場景",
+   "texto": "The forest is too vast and dangerous. People in Waterfall Camp have organized a Search Party to help travelers and the leader is a owl which can work at night.",
+   "pista": "The forest Search Party has quests now. Who is asking for help now? You may find it if you repeatedly complete the quest. (Related quest: Rescue in the Woods)"
+  },
+  {
+   "id": 231,
+   "sprite": 25231,
+   "nombre": "Orderly Man Dick",
+   "estrellas": 5,
+   "categoria": "人物場景",
+   "texto": "As the orderly man of Breeze Woods, he is very proud of his flight skill. However, he is too fat to fly now because he has eaten too many cakes.",
+   "pista": "Orderly Man Dick needs someone to help him. Can you run fast? You may find it if you repeatedly complete the quest. (Related quest: A Dispatch from the Breeze Woods)"
+  },
+  {
+   "id": 232,
+   "sprite": 25232,
+   "nombre": "Lion Knight",
+   "estrellas": 9,
+   "categoria": "特殊怪物",
+   "texto": "Lion Knights take charge of the security in Cloud-top Land. However, others always accuse them because they can fly but they ride on lions.",
+   "pista": "You may obtain it by defeating Lion Knights in the Cloud-top Land."
+  },
+  {
+   "id": 233,
+   "sprite": 25233,
+   "nombre": "Life Sealed Halberd",
+   "estrellas": 8,
+   "categoria": "裝備道具",
+   "texto": "A butterfly soul has been sealed in the halberd.",
+   "pista": "The evil Sandman sealed a butterfly's soul in a weapon. Older Wal needs someone to help release the should. It is a really difficult quest. (Related quest: Life Seal)."
+  },
+  {
+   "id": 234,
+   "sprite": 25234,
+   "nombre": "Life Sealed Wand",
+   "estrellas": 8,
+   "categoria": "裝備道具",
+   "texto": "A parrot soul has been sealed in the wand.",
+   "pista": "The evil Sandman sealed a parrot's soul in a weapon. Older Wal needs someone to help release the should. It is a really difficult quest. (Related quest: Life Seal)."
+  },
+  {
+   "id": 235,
+   "sprite": 25235,
+   "nombre": "Life Sealed Bow",
+   "estrellas": 8,
+   "categoria": "裝備道具",
+   "texto": "An antelope soul has been sealed in the bow.",
+   "pista": "The evil Sandman sealed an antelope's soul in a weapon. Older Wal needs someone to help release the should. It is a really difficult quest. (Related quest: Life Seal)."
+  },
+  {
+   "id": 236,
+   "sprite": 25236,
+   "nombre": "Sleeper Sandman",
+   "estrellas": 9,
+   "categoria": "特殊怪物",
+   "texto": "Sleeper Sandman is the owner of the Limitless Tower. It is said that people will fall asleep once they look into Sandman's eyes. If Sandman opens his 6 eyes, people will die at once.",
+   "pista": "You may obtain it by defeating Sleeper Sandman in the Limitless Tower."
+  },
+  {
+   "id": 237,
+   "sprite": 25237,
+   "nombre": "Bulldozer",
+   "estrellas": 6,
+   "categoria": "裝備道具",
+   "texto": "One of the most advanced machines in Eden which can work as fast as 100 miners. However, it is always stolen by adventurers.",
+   "pista": "Miners are too tired to digging any more. They hopes that they can find an easy way to do the job. You may find it if you repeatedly complete the quest. (Related quest: Work Overtime Again)"
+  },
+  {
+   "id": 238,
+   "sprite": 25238,
+   "nombre": "Blago Warrior",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "Every miner is digging and excellent miners can be awarded as Blago Warriors. However, what will they fight with?",
+   "pista": "You may obtain it by defeating Blago Warriors in the Fantastic Sand City."
+  },
+  {
+   "id": 239,
+   "sprite": 25239,
+   "nombre": "Desert Worm",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "The worm is gentle. If you feed it something, it will help you dig the mine.",
+   "pista": "You may obtain it by defeating Desert Worms in the Desert Racetrack."
+  },
+  {
+   "id": 240,
+   "sprite": 25240,
+   "nombre": "Mining Wall Lamp",
+   "estrellas": 6,
+   "categoria": "裝備道具",
+   "texto": "Anybody would like to buy this broken lamp?",
+   "pista": "You may obtain it by defeating Blago Warriors or Blago Miners in the Fantastic Sand City."
+  },
+  {
+   "id": 241,
+   "sprite": 25241,
+   "nombre": "Utility Tool Set",
+   "estrellas": 6,
+   "categoria": "裝備道具",
+   "texto": "The set is useful no matter you would like to dig mines or rob tombs. But I know you are a kind-hearted Angel.",
+   "pista": "You may obtain it by defeating Blago Warriors or Blago Miners in the Fantastic Sand City."
+  },
+  {
+   "id": 242,
+   "sprite": 25242,
+   "nombre": "Maid Eilian",
+   "estrellas": 8,
+   "categoria": "人物場景",
+   "texto": "Since you have known Eilian's secret, why don't you love her more?",
+   "pista": "As Eilian's master, maybe you should take more care of her. (Related quest: Eilian's Story)"
+  },
+  {
+   "id": 243,
+   "sprite": 25243,
+   "nombre": "Poolside Maid",
+   "estrellas": 5,
+   "categoria": "裝備道具",
+   "texto": "This beautiful girl is one of Eilian's friends. Eilain helped her find this job. However, it seems that she is not interested in it.",
+   "pista": "There are someone who serves the rich to bathe in the desert. What's going on? (Related quest: Good Friends Forever)"
+  },
+  {
+   "id": 244,
+   "sprite": 25244,
+   "nombre": "Sweet Double Bed",
+   "estrellas": 6,
+   "categoria": "裝備道具",
+   "texto": "Soulmates will love each other more if they can sleep on this beautiful bed every day.",
+   "pista": "It is said that a merchant manufactured a luxurious bed for his beloved girl. But the result was not so happy. (Related quest: My Previous Master)"
+  },
+  {
+   "id": 245,
+   "sprite": 25245,
+   "nombre": "Round Table",
+   "estrellas": 5,
+   "categoria": "裝備道具",
+   "texto": "This small table is more durable than it looks.",
+   "pista": "You may obtain it by manufacturing a Khaki Round Table."
+  },
+  {
+   "id": 246,
+   "sprite": 25246,
+   "nombre": "Yellow Sofa",
+   "estrellas": 5,
+   "categoria": "裝備道具",
+   "texto": "It seems that it wants people to fall asleep on this soft chair. Hey, we are not lazy!",
+   "pista": "You may obtain it by manufacturing a Yellow Striped Chair."
+  },
+  {
+   "id": 247,
+   "sprite": 25247,
+   "nombre": "Robber Walter",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "It is said that he can steal the shadow as well. Take care of your shadow when you meet him.",
+   "pista": "You may obtain it by defeating Robber Walter in the Ghost Village."
+  },
+  {
+   "id": 248,
+   "sprite": 25248,
+   "nombre": "Fat Thief Jem",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "They give themselves up and keep eating because they always fail to rob others.",
+   "pista": "You may obtain it by defeating Fat Thief Jem in the Ghost Village."
+  },
+  {
+   "id": 249,
+   "sprite": 25249,
+   "nombre": "Ali Bandit",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "In fact, it is not easy for Ali Bandits to rob others because they are too weak.",
+   "pista": "You may obtain it by defeating Ali Bandit in the Ghost Village."
+  },
+  {
+   "id": 250,
+   "sprite": 25250,
+   "nombre": "Cactus Bag",
+   "estrellas": 5,
+   "categoria": "裝備道具",
+   "texto": "It is well-known that cactus can deposit much water. That's why merchants sell cactus bags to players.",
+   "pista": "You may obtain it by defeating robbers in the Ghost Village."
+  },
+  {
+   "id": 251,
+   "sprite": 25251,
+   "nombre": "Dragon Colossus Blade",
+   "estrellas": 6,
+   "categoria": "裝備道具",
+   "texto": "It is one of the legendary weapon which can slay dragons. One dragon eye has been set on it. As to the dragon wings on the blade, they are only decorations.",
+   "pista": "Where is the legendary weapon? (Related quest: Who is the real warrior?)"
+  },
+  {
+   "id": 252,
+   "sprite": 25252,
+   "nombre": "Dragon Bone Scythe",
+   "estrellas": 6,
+   "categoria": "裝備道具",
+   "texto": "It is one of the legendary weapon which can slay dragons. Someone says that only dragons can kill dragons. So people forge this weapon with dragon's bone and teeth.",
+   "pista": "Where is the legendary weapon? (Related quest: Who is the real warrior?)"
+  },
+  {
+   "id": 253,
+   "sprite": 25253,
+   "nombre": "Dragon Harold",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "The golden legendary dragon in the desert looks like the sand.",
+   "pista": "You may obtain it by defeating the Dragon Harold in the Ancient Front."
+  },
+  {
+   "id": 254,
+   "sprite": 25254,
+   "nombre": "Dragon Wish",
+   "estrellas": 5,
+   "categoria": "人物場景",
+   "texto": "You may destroy your family if you fail to kill the dragon. But when you are successful, the dragon family has destroyed as well. I hope you can protect this baby dragon.",
+   "pista": "Who can help the baby dragon go back home? It is a difficult quest. (Related quest: Legend of Slaying Dragons)"
+  },
+  {
+   "id": 255,
+   "sprite": 25255,
+   "nombre": "Jungle Leopard",
+   "estrellas": 6,
+   "categoria": "人物場景",
+   "texto": "Although it is a fierce monster, it completely listens to its master's orders.",
+   "pista": "A mysterious person brought an east-oriented legend, you will also have a chance to be one part of the legend. You may obtain it if you repeatedly complete the quest. (Related quest: Save Rare Animal)"
+  },
+  {
+   "id": 256,
+   "sprite": 25256,
+   "nombre": "Circus Clown Panda",
+   "estrellas": 6,
+   "categoria": "人物場景",
+   "texto": "The puppet from the far eastern country is skilled at kinds of circus show.",
+   "pista": "A mysterious person brought an east-oriented legend, you will also have a chance to be one part of the legend. You may obtain it if you repeatedly complete the quest. (Related quest: Save Rare Animal)"
+  },
+  {
+   "id": 257,
+   "sprite": 25257,
+   "nombre": "Colorful Ostrich",
+   "estrellas": 6,
+   "categoria": "人物場景",
+   "texto": "This strange creature which looks like a bird or a chick can run very fast. It may kick your ass if you dare to bother it.",
+   "pista": "A mysterious person brought an east-oriented legend, you will also have a chance to be one part of the legend. You may obtain it if you repeatedly complete the quest. (Related quest: Save Rare Animal)"
+  },
+  {
+   "id": 258,
+   "sprite": 25258,
+   "nombre": "Lazy Camel",
+   "estrellas": 6,
+   "categoria": "人物場景",
+   "texto": "It is a traditional mount in the desert. You had better bring a notebook for it.",
+   "pista": "A mysterious person brought an east-oriented legend, you will also have a chance to be one part of the legend. You may obtain it if you repeatedly complete the quest. (Related quest: Save Rare Animal)"
+  },
+  {
+   "id": 259,
+   "sprite": 25259,
+   "nombre": "Stolen Pigboat",
+   "estrellas": 5,
+   "categoria": "裝備道具",
+   "texto": "Every sailor dreams to be a captain, even the water elf. It is really interested in sailing.",
+   "pista": "Naughty elves obtained a pile of motors and drove them fast, only the Earth Elf didn't make troubles, he hopes you can find other elves back. You may obtain it if you repeatedly complete the quest. (Related quest: Race with Elves)"
+  },
+  {
+   "id": 260,
+   "sprite": 25260,
+   "nombre": "Stolen Train",
+   "estrellas": 6,
+   "categoria": "裝備道具",
+   "texto": "Are you serious? Why you let a Fire Elf to drive the train?",
+   "pista": "Naughty elves obtained a pile of motors and drove them fast, only the Earth Elf didn't make troubles, he hopes you can find other elves back. You may obtain it if you repeatedly complete the quest. (Related quest: Race with Elves)"
+  },
+  {
+   "id": 261,
+   "sprite": 25261,
+   "nombre": "Stolen Plane",
+   "estrellas": 6,
+   "categoria": "裝備道具",
+   "texto": "You had better run faster than the Wind Elf first if you want it to listen to you.",
+   "pista": "Naughty elves obtained a pile of motors and drove them fast, only the Earth Elf didn't make troubles, he hopes you can find other elves back. You may obtain it if you repeatedly complete the quest. (Related quest: Race with Elves)"
+  },
+  {
+   "id": 262,
+   "sprite": 25262,
+   "nombre": "Stolen Motor",
+   "estrellas": 5,
+   "categoria": "裝備道具",
+   "texto": "The motor is handsome and fast. Can't you find that this Fire Elf is more handsome than before?",
+   "pista": "Naughty elves obtained a pile of motors and drove them fast, only the Earth Elf didn't make troubles, he hopes you can find other elves back. You may obtain it if you repeatedly complete the quest. (Related quest: Race with Elves)"
+  },
+  {
+   "id": 263,
+   "sprite": 25263,
+   "nombre": "Cruel Executioner",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "It is not easy for those fierce Cruel Executioners to find a job. That's why they have to act as part-time waiters in a restaurant.",
+   "pista": "You may obtain it by defeating Cruel Executioners in the Desert Racetrack."
+  },
+  {
+   "id": 264,
+   "sprite": 25264,
+   "nombre": "Sand Rock Goblin",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "Those rocks have become evil. They always pretend to be rocks and attack travelers by accident.",
+   "pista": "You may obtain it by defeating Sand Rock Goblins in the Ancient Front."
+  },
+  {
+   "id": 265,
+   "sprite": 25265,
+   "nombre": "Desert Worm Elite",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "Those worms keep digging holes all the time. They just want the Earth to breathe better.",
+   "pista": "You may obtain it by defeating Desert Worm Elites in the Desert Racetrack."
+  },
+  {
+   "id": 266,
+   "sprite": 25266,
+   "nombre": "Lord Adrian",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "6 sharp blades near its big mouth prove that Adrian is really the king who controls the whole desert.",
+   "pista": "You may obtain it by defeating Lord Adrian in the Desert Racetrack."
+  },
+  {
+   "id": 267,
+   "sprite": 25267,
+   "nombre": "Savage Elite Leslie",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "It can change smoke to sharp horns by its powerful magic. However, why not choose something more useful?",
+   "pista": "You may obtain it by defeating Savage Elite Leslie in the Ancient Front."
+  },
+  {
+   "id": 268,
+   "sprite": 25268,
+   "nombre": "Little Shell Collector",
+   "estrellas": 6,
+   "categoria": "人物場景",
+   "texto": "The little girl has grown up and becomes more beautiful. Although she has left the sea for a long time, she likes the same.",
+   "pista": "The girl have grown up. Now she come to the desert to look for the legendary pearl. Can you help her? You may obtain it if you repeatedly complete the quest. (Related quest: Little Girl's Wish)"
+  },
+  {
+   "id": 269,
+   "sprite": 25269,
+   "nombre": "Gloomy Smoker",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "Those smokers are scared because the wind may destroy them.",
+   "pista": "You may obtain it by defeating Gloomy Smokers in the Crescent Valley."
+  },
+  {
+   "id": 270,
+   "sprite": 25270,
+   "nombre": "Grass Goblin",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "It used to be a common rock which is covered by green moss. However, it is more powerful than those rock goblins after it became evil.",
+   "pista": "You may obtain it by defeating Grass Goblins in the Ancient Front."
+  },
+  {
+   "id": 271,
+   "sprite": 25271,
+   "nombre": "Natural Pearl Shell ",
+   "estrellas": 7,
+   "categoria": "裝備道具",
+   "texto": "It is said that the desert used to be a ocean long time ago. That's why you may find pearls here.",
+   "pista": "A legendary pearl. Although it is smited by winds and sand in the desert, it keeps complete. It is difficult to find that pearl, can you help the poor girl? You may obtain it if you repeatedly complete the quest. (Related quest: Little Girl's Wish)"
+  },
+  {
+   "id": 272,
+   "sprite": 25272,
+   "nombre": "Lantern Giant Chacha",
+   "estrellas": 8,
+   "categoria": "特殊怪物",
+   "texto": "The legendary Lantern Giant should go back to the lamp after it helps people fulfill 3 dreams. However, it is too fat to go home now.",
+   "pista": "You may obtain it by defeating the Lantern Giant Chacha in the Leviathan's Bedroom."
+  },
+  {
+   "id": 273,
+   "sprite": 25273,
+   "nombre": "Scale Fish",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "They are not good at balance. How can they join the battle and fight with others?",
+   "pista": "You may obtain it by defeating Scale Fish in the Colorful Coral Reefs, Wave Harbor or Blue Sea."
+  },
+  {
+   "id": 274,
+   "sprite": 25274,
+   "nombre": "Green Scale Soldier",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "In fact, Naga people don't care about what they evolved from. Snake, lizard or crocodile?",
+   "pista": "You may obtain it by defeating Green Scale Soldiers in the Noisy Rain Forest."
+  },
+  {
+   "id": 275,
+   "sprite": 25275,
+   "nombre": "Bird Soldier",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "It is said that they look like the God who takes charge of thunder and lightning in the far eastern country. But they don't care. How can you fly fast if you have a big drum on your back?",
+   "pista": "You may obtain it by defeating Bird Soldiers in the Giant Wooden Stairs."
+  },
+  {
+   "id": 276,
+   "sprite": 25276,
+   "nombre": "Beastman Warrior",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "They are not smart at all. Look, their mouth are wet again.",
+   "pista": "You may obtain it by defeating Beastman Warriors in the Half-beast Hamlet."
+  },
+  {
+   "id": 277,
+   "sprite": 25277,
+   "nombre": "Outpost Warrior",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "They used to be the most prideful race in the forest. But when they were expelled to the desert, they became violent robbers now.",
+   "pista": "You may obtain it by defeating Outpost Warriors in the Troop Outpost."
+  },
+  {
+   "id": 278,
+   "sprite": 25278,
+   "nombre": "Evil Dancing Girl",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "You should be beautiful enough if you would like to follow Leviathan.",
+   "pista": "You may obtain it by defeating Evil Dancing Girls in the Fantastic Sand City."
+  },
+  {
+   "id": 279,
+   "sprite": 25279,
+   "nombre": "Golden Ball Pendent Lamp",
+   "estrellas": 6,
+   "categoria": "裝備道具",
+   "texto": "It is a luxurious lamp specially for the ball. The fantastic light makes you feel that you are in the space.",
+   "pista": "The young man owns a cabin at last, why not congratulate him? However, he need you to help find something. You may obtain it if you repeatedly complete the quest. (Related quest: Happy Together!)"
+  },
+  {
+   "id": 280,
+   "sprite": 25280,
+   "nombre": "Music Merman",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "They are the most elegant musicians under the water. They comfort those unlucky souls with their music.",
+   "pista": "You may obtain it by defeating Music Mermans in the Sunken Ruins."
+  },
+  {
+   "id": 281,
+   "sprite": 25281,
+   "nombre": "Mixed Fruit Dish",
+   "estrellas": 5,
+   "categoria": "裝備道具",
+   "texto": "It is the biggest fruit dish in the history.",
+   "pista": "The young man owns a cabin at last, why not congratulate him? However, he need you to help find something. You may obtain it if you repeatedly complete the quest. (Related quest: Happy Together!)"
+  },
+  {
+   "id": 282,
+   "sprite": 25282,
+   "nombre": "Sea Shark",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "It is the fiercest monster in the sea. However, it cut its fin to two parts and would like to stand like a human being. Just have a look on its face.",
+   "pista": "You may obtain it by defeating Sea Sharks in the Raging Reefs, Blue Ocean or Dream Ocean."
+  },
+  {
+   "id": 283,
+   "sprite": 25283,
+   "nombre": "Diary Cattle ",
+   "estrellas": 5,
+   "categoria": "人物場景",
+   "texto": "If you would like to have some milk, the dairy cattle will be sent to your house at once.",
+   "pista": "The young man dreams to have a zoo, but he is lack of animals, can you help him? You may obtain it if you repeatedly complete the quest. (Related quest: For the Sake of the Zoo)"
+  },
+  {
+   "id": 284,
+   "sprite": 25284,
+   "nombre": "Valley Orangutan",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "Wow, have a look on it. Do you know why monkeys in the zoo risk their lives to grab bananas.",
+   "pista": "You may obtain it by defeating Valley Orangutans in the River Valley."
+  },
+  {
+   "id": 285,
+   "sprite": 25285,
+   "nombre": "Stone Crocodile",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "Their backs became stones because they have lived in the den for a long time. That's why they are bow-backed.",
+   "pista": "You may obtain it by defeating Stone Crocodiles in the River Valley."
+  },
+  {
+   "id": 286,
+   "sprite": 25286,
+   "nombre": "Evil Purple Scorpion",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "It is so poisonous that its skin has become purple. Take care of yourself; otherwise, you will become purple too.",
+   "pista": "You may obtain it by defeating Evil Purple Scorpions in the Crescent Valley."
+  },
+  {
+   "id": 287,
+   "sprite": 25287,
+   "nombre": "Cyan Dragon",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "It doesn't know why its skin is cyan.",
+   "pista": "You may obtain it by defeating Cyan Dragons in the River Valley."
+  },
+  {
+   "id": 288,
+   "sprite": 25288,
+   "nombre": "Poor Deserted Puppy",
+   "estrellas": 5,
+   "categoria": "人物場景",
+   "texto": "In fact, it used to be a lovely dog. But its master treated it badly.",
+   "pista": "The young man dreams to have a zoo, but he is lack of animals, can you help him? You may obtain it if you repeatedly complete the quest. (Related quest: For the Sake of the Zoo)"
+  },
+  {
+   "id": 289,
+   "sprite": 25289,
+   "nombre": "Cursed Scorpion Emperor",
+   "estrellas": 9,
+   "categoria": "特殊怪物",
+   "texto": "He is not only the real king in the desert but also at home. He will become angry if his wife and daughters don't listen to him.",
+   "pista": "You may obtain it by defeating the Cursed Scorpion Emperor in the Leviathan's Bedroom."
+  },
+  {
+   "id": 290,
+   "sprite": 25290,
+   "nombre": "Wind Queen Ehrlichkeit",
+   "estrellas": 8,
+   "categoria": "特殊怪物",
+   "texto": "As the wind queen, she loves freedom. However, her skin became yellow because she have lived in the desert for a long time. It is really ugly.",
+   "pista": "You may obtain it by defeating Wind Queen Ehrlichkeit in the Cloud-top Land."
+  },
+  {
+   "id": 291,
+   "sprite": 25291,
+   "nombre": "Palace Desks and Chairs",
+   "estrellas": 7,
+   "categoria": "裝備道具",
+   "texto": "The noble desks and chairs are made specially for you.",
+   "pista": "Cursed Scorpion Emperor destroyed desks and chairs in the Nightmare Palace on the feast eve. The chamberlain has to ask for help. You may obtain it if you repeatedly complete the quest. (Related quest: Reign of Terror in the Palace)"
+  },
+  {
+   "id": 292,
+   "sprite": 25292,
+   "nombre": "Dancing Girl Bonnie",
+   "estrellas": 7,
+   "categoria": "特殊怪物",
+   "texto": "She is as fierce as her father and as beautiful as her mother. Recently, she is really interested in dancing and she is the leader of all dancing girls.",
+   "pista": "You may obtain it by defeating Dancing Girl Bonnie in the Nightmare Palace."
+  },
+  {
+   "id": 293,
+   "sprite": 25293,
+   "nombre": "Outpost Gunman Kente",
+   "estrellas": 7,
+   "categoria": "特殊怪物",
+   "texto": "He is the leader of all palace guards because he is skilled at spear. He also loves fish.",
+   "pista": "You may obtain it by defeating the Outpost Gunman in the Fantastic Sand City."
+  },
+  {
+   "id": 294,
+   "sprite": 25294,
+   "nombre": "Rage Denio",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "This guy has a really bad temper.",
+   "pista": "You may obtain it by defeating Rage Denio in the Raging Reefs or Blue Ocean."
+  },
+  {
+   "id": 295,
+   "sprite": 25295,
+   "nombre": "Rage Orangutan Jordan",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "Their furs are red as well because they always become angry without any reason.",
+   "pista": "You may obtain it by defeating Rage Orangutan Jordan in the River Valley."
+  },
+  {
+   "id": 296,
+   "sprite": 25296,
+   "nombre": "Shot Fierier",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "His bombs always scare people nearby.",
+   "pista": "You may obtain it by defeating  Rip Man in the Ghost Village."
+  },
+  {
+   "id": 297,
+   "sprite": 25297,
+   "nombre": "Raging Giant Stoneman",
+   "estrellas": 7,
+   "categoria": "特殊怪物",
+   "texto": "There are a lot of bad-tempered guys in the desert. But, Raging Giant Stoneman is NO. 1.",
+   "pista": "You may obtain it by defeating the Raging Giant Stoneman in the Ancient Front."
+  },
+  {
+   "id": 298,
+   "sprite": 25298,
+   "nombre": "Sallen",
+   "estrellas": 9,
+   "categoria": "特殊怪物",
+   "texto": "Sallen used to be the king of this ocean. Later, she followed the Evil Lyceum and committed all kinds of crimes. It is said that she fell in love with Asharl…",
+   "pista": "You may obtain it by defeating Sallen in the Evil Ship."
+  },
+  {
+   "id": 299,
+   "sprite": 25299,
+   "nombre": "Artist Mark",
+   "estrellas": 7,
+   "categoria": "特殊怪物",
+   "texto": "He always tries to change others' color. In fact, he is not an artist because he doesn't know how to draw.",
+   "pista": "You may obtain it by defeating Artist Mars in the Half-beast Hamlet."
+  },
+  {
+   "id": 300,
+   "sprite": 25300,
+   "nombre": "Poisonous Snake",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "It was expelled out of the Evil Lyceum because it always made friends with sheep.",
+   "pista": "You may obtain it by defeating Poisonous Snakes in the Ghost Village."
+  },
+  {
+   "id": 301,
+   "sprite": 25301,
+   "nombre": "Crocodile Quake",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "It is boring to stay in the den. They begin to add something on their body, such as wings and horns. However, they are still crocodiles.",
+   "pista": "You may obtain it by defeating Crocodile Mr. Kuke in the River Valley."
+  },
+  {
+   "id": 302,
+   "sprite": 25302,
+   "nombre": "Naga Colonel Zic",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "He dreams to conquered the whole forest. However, nobody knows when his dream will come true.",
+   "pista": "You may obtain it by defeating Naga Colonel Zic in the Ancient Glide River."
+  },
+  {
+   "id": 303,
+   "sprite": 25303,
+   "nombre": "Asmode",
+   "estrellas": 10,
+   "categoria": "人物場景",
+   "texto": "He is the Evil Lyceum's Student Union Leader and one of the best spies.",
+   "pista": "It is said the Evil Lyceum has sent a spy to the Eden Land, little angels must defeat him. (Related quest: The Hidden Enemy Agent, the related quest must be solved before accepting this one.)"
+  },
+  {
+   "id": 304,
+   "sprite": 25304,
+   "nombre": "Berssif",
+   "estrellas": 10,
+   "categoria": "特殊怪物",
+   "texto": "The chef of the Evil Lyceum is skilled at cooking. It is said that people can't stop eating once they begin to eat Berssif's food.",
+   "pista": "You may obtain it by defeating Glutton in the Gulp Room."
+  },
+  {
+   "id": 305,
+   "sprite": 25305,
+   "nombre": "Mamen",
+   "estrellas": 10,
+   "categoria": "特殊怪物",
+   "texto": "He is so greedy that he dreams to obtain the abundant legacy of the lost Atlantis.",
+   "pista": "You may obtain it by defeating Mamen in the Evil Ship."
+  },
+  {
+   "id": 306,
+   "sprite": 25306,
+   "nombre": "Belia",
+   "estrellas": 10,
+   "categoria": "特殊怪物",
+   "texto": "He is too lazy to work. He ran to the Eden and seduced the Half-beast tribe to attack human beings.",
+   "pista": "You may obtain it by defeating Belia in the Cloud-top Land."
+  },
+  {
+   "id": 307,
+   "sprite": 25307,
+   "nombre": "Leviathan",
+   "estrellas": 10,
+   "categoria": "特殊怪物",
+   "texto": "She was sent by the Evil Lyceum to find a secret den in Eden. However, she would like to be a queen. That's why she enchanted the Cursed Scorpion Emperor and then dominated the whole desert.",
+   "pista": "You may obtain it by defeating Leviathan in the Leviathan's Bedroom."
+  },
+  {
+   "id": 308,
+   "sprite": 25308,
+   "nombre": "Red Eyebasher",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "Legend has it that these fearsome beasts produce so much electricity they give off deadly shocks to anything passing nearby.",
+   "pista": "There is a chance of acquiring this card from the Red Eyebashers in Botti Palace."
+  },
+  {
+   "id": 309,
+   "sprite": 25309,
+   "nombre": "Thorny Baby",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "The inhabitants love these Thorny Babies, but watch out for their spikes!",
+   "pista": "There is a chance of acquiring this card from the Thorny Babies in Vine Front."
+  },
+  {
+   "id": 310,
+   "sprite": 25310,
+   "nombre": "Colorful Bird",
+   "estrellas": 7,
+   "categoria": "一般怪物",
+   "texto": "Covered in beautiful feathers, the Colorful Bird is a rare sight to behold. Despite its radiant colors, these seemingly docile birds often attack adventurers searching the base of the tree for their fallen feathers, pecking and scratching ferociously.",
+   "pista": "There is a chance of acquiring this card from the Colorful Birds in Sky Pumice."
+  },
+  {
+   "id": 311,
+   "sprite": 25311,
+   "nombre": "Stinging Crab",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "Any adventurer worth his salt steers clear of these spikey creatures!",
+   "pista": "There is a chance of acquiring this card from the Stinging Crab in Sky Pumice."
+  },
+  {
+   "id": 312,
+   "sprite": 25312,
+   "nombre": "Bud Crab",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "A crab with the appearance of a seedling. When it's hidden, even the smartest adventurers can't tell the difference…",
+   "pista": "There is a chance of acquiring this card from the Bud Crab in Winding Flower Corridor."
+  },
+  {
+   "id": 313,
+   "sprite": 25313,
+   "nombre": "Sharp Snake",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "Legend has it that its flesh can be used to restore youth and beauty. Will this deadly serpent surrender itself without a fight?",
+   "pista": "There is a chance of acquiring this card from the Sharp Snake in Vine Front. Ebon seems like he may be interested in this card...(Quest: The natural food)"
+  },
+  {
+   "id": 314,
+   "sprite": 25314,
+   "nombre": "Stone Scout",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "It's a rock and it moves! This mysterious creature has left many scientists baffled as to how it came into existence…",
+   "pista": "There is a chance of acquiring this card from the Stone Scout in Winding Flower."
+  },
+  {
+   "id": 315,
+   "sprite": 25315,
+   "nombre": "Crown Claudia",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "Claudia is the leader of the birds and is known far and wide for her singing. This doesn't mean that she's a pushover though. Many adventurers that have tried to steal her feathers have lived to regret their foolishnes…",
+   "pista": "There is a chance of acquiring this card from Crown Claudia in Sky Pumice."
+  },
+  {
+   "id": 316,
+   "sprite": 25316,
+   "nombre": "Noxious Snake",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "Due to its rich in medicinal properties, many adventurers risk their lives to get the gall bladder of the Noxious Snake! However, this is risky, as the venom of the Noxious Snake kills after just a touch!",
+   "pista": "There is a chance of acquiring this card from the Noxious Snake in Roam Battlefield."
+  },
+  {
+   "id": 317,
+   "sprite": 25317,
+   "nombre": "Dragon Flame Delila",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "As a protector, Delila is constantly harassed by adventurers seeking to defeat him and make their claim to fame! Perhaps it's time for Delila to bare its fangs and fight!",
+   "pista": "There is a chance of acquiring this card from Dragon Flame Delila in Roam Battlefield."
+  },
+  {
+   "id": 318,
+   "sprite": 25318,
+   "nombre": "The Rare Unicorn",
+   "estrellas": 6,
+   "categoria": "人物場景",
+   "texto": "An animal of great pride, the Unicorn will never stoop so low as to be a simple mount for humans! When it was injured, the Animal society cared for it. Uip to this day, it remains there, under their protection.",
+   "pista": "Ebon will reward this card to the champion that acquires the Sharp Snake card from Sky Pumice. Present the Sharp Snake card to activate the quest for a chance to receive this card! (Quest: The natural food)"
+  },
+  {
+   "id": 319,
+   "sprite": 25319,
+   "nombre": "Botti Cavalier",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "There are many who feel that the Botti Cavaliers are a group of lawless brigands that prey on the weak and defenseless. But no one has ever found out why the Botti Cavaliers have been acting this way...",
+   "pista": "There is a chance of acquiring this card from the Botti Cavalier in Airship Station."
+  },
+  {
+   "id": 320,
+   "sprite": 25320,
+   "nombre": "Adv Mech Soldier X",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "Is this a rock or a robot? It really makes you wonder what the inventors were thinking when they designed it…",
+   "pista": "There is a chance of acquiring this card from Adv Mech Soldier X in Airship Station."
+  },
+  {
+   "id": 321,
+   "sprite": 25321,
+   "nombre": "Crazy Lorna",
+   "estrellas": 7,
+   "categoria": "特殊怪物",
+   "texto": "They don't call her Crazy Lorna for nothing! Her Robot has caused a lot of trouble for the townsfolk and the adventurers living in the area.",
+   "pista": "There is a chance of acquiring this card from Crazy Lorna in Bouleuterion."
+  },
+  {
+   "id": 322,
+   "sprite": 25322,
+   "nombre": "Into the Heart of a Robot",
+   "estrellas": 7,
+   "categoria": "人物場景",
+   "texto": "Waltley is just your typical Robot, except he's fallen in love with Burby! Wait! A robot? In love? Looks like Cupid is going to have a tough time helping this couple…",
+   "pista": "Burby the robot is a masterpeice of Professor Kreig! In a freak accident, it acquired wisdom and is feeling perturbed. Find Professor Bonny Kreig in the Airship Station to take this quest. (Quest: The greatest inventor)"
+  },
+  {
+   "id": 323,
+   "sprite": 25323,
+   "nombre": "Botti Archer",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "The Botti Archer has the body of model - tall, fair and natural beautiful. She could model for whomever she liked, but she doesn't like the arrogant attitudes of the artists who insist she should model for them. Perhaps she's not cut out for the fashion world...",
+   "pista": "There is a chance of acquiring this card from the Botti Archers in Season Garden."
+  },
+  {
+   "id": 324,
+   "sprite": 25324,
+   "nombre": "A bouquet of beauty",
+   "estrellas": 6,
+   "categoria": "裝備道具",
+   "texto": "It takes great skill to grow a crop of the most beautiful flowers, it takes even more skill to grown them in adverse conditions!",
+   "pista": "Dixon of Season Garden has been troubled lately. It seems that he is envious of his neighbor's garden! How would you build a better garden? (Quest: Other's Garden's are better)"
+  },
+  {
+   "id": 325,
+   "sprite": 25325,
+   "nombre": "Apparel of Neccessity",
+   "estrellas": 6,
+   "categoria": "人物場景",
+   "texto": "Earrings are accessories to wear and display. Lately, the Jungle Dancing Girls have turned these beautiful accessories into a collector's item! Wait till you see the designs that they've been hiding!",
+   "pista": "There is a chance of acquiring this card from the Jungle Dancing Girls in Botti Palace."
+  },
+  {
+   "id": 326,
+   "sprite": 25326,
+   "nombre": "Jade Bud",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "Many researchers are baffled by how the Jade Bud keeps its flowers on its head. How does it do it?",
+   "pista": "There is a chance of acquiring this card from the Jade Buds in Roam Battlefield."
+  },
+  {
+   "id": 327,
+   "sprite": 25327,
+   "nombre": "Sun Crab",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "The Sun Crabs are a mysterious group of creatures that combine the wonders of flora and fauna. Looks like there are more mysteries to this planet that have yet to be discovered.",
+   "pista": "There is a chance of acquiring this card from the Sun Crabs in Season Garden."
+  },
+  {
+   "id": 328,
+   "sprite": 25328,
+   "nombre": "Palace Guardian",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "The Palace Guardian seems like the stern kind of monsters that patrol the Bouleuterion almost every hour! Lately, they seem troubled by something…I wonder what it could be…?",
+   "pista": "There is a chance of acquiring this card from the Palace Guardians in Bouleuterion."
+  },
+  {
+   "id": 329,
+   "sprite": 25329,
+   "nombre": "Little Fiend",
+   "estrellas": 6,
+   "categoria": "人物場景",
+   "texto": "The Dead Eyes have been secretly rearing fiends as personal mounts. The funniest part is, everyone but the Dead Eyes seems to know those little fiends will never grow big enough to carry them!",
+   "pista": "There is a chance of acquiring this card from the Dead Eyes in Botti Palace."
+  },
+  {
+   "id": 330,
+   "sprite": 25330,
+   "nombre": "Palace Priest",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "The Palace Priest carries some of the most high-tech flying gizmos anyone has ever seen!",
+   "pista": "There is a chance of acquiring this card from the Palace Priests in Botti Palace."
+  },
+  {
+   "id": 331,
+   "sprite": 25331,
+   "nombre": "Floating Airship",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "A UFO in this region? It's probably nothing more than a weather balloon...or swamp gas. Then again...?",
+   "pista": "There is a chance of acquiring this card from the Floating Airship in Airship Station."
+  },
+  {
+   "id": 332,
+   "sprite": 25332,
+   "nombre": "Botti Sorcerer",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "These young sorcerers just love wandering around and causing trouble! Someone should inform their parents!",
+   "pista": "There is a chance of acquiring this card from the Botti Sorcerers in Bouleuterion."
+  },
+  {
+   "id": 333,
+   "sprite": 25333,
+   "nombre": "Botti Assassin",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "Deadly weapons? For such young children? Who's looking after these kids!?",
+   "pista": "There is a chance of acquiring this card from the Botti Assassins in Bouleuterion."
+  },
+  {
+   "id": 334,
+   "sprite": 25334,
+   "nombre": "A Blessing from an Angel",
+   "estrellas": 5,
+   "categoria": "人物場景",
+   "texto": "Every child has a guardian angel. A Guardian Angel serves as both protector of all thats good and right and an enemy of the dark!",
+   "pista": "There is a chance of acquiring this card from the Fat Babies in Airship Station."
+  },
+  {
+   "id": 335,
+   "sprite": 25335,
+   "nombre": "Rolin Machine X",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "These heavily armored girls will knock sense into anyone who tries to hold them back!",
+   "pista": "There is a chance of acquiring this card from Rolin Machine X in Airship Station."
+  },
+  {
+   "id": 336,
+   "sprite": 25336,
+   "nombre": "Mysterious Flying Machine",
+   "estrellas": 7,
+   "categoria": "裝備道具",
+   "texto": "Small, fast and quiet! If only someone started selling them…",
+   "pista": "There is a chance of acquiring this card from Envoy Susie in Winding Flower Corridor."
+  },
+  {
+   "id": 337,
+   "sprite": 25337,
+   "nombre": "The Flurry from a Carp",
+   "estrellas": 8,
+   "categoria": "裝備道具",
+   "texto": "This is one robot with an exquisite shape! Many of the inhabitants believe that the Carp brings good luck to those who wear it! There have even been stories about Noel finding some apparel in this robot! Does this mean he's lucky?",
+   "pista": "Noel is calling all men (and women) of righteousness to gather! Help him to locate the true perpetrator that have been wreaking havoc in Bouleuterion! (Quest: The prisoner is nearby)"
+  },
+  {
+   "id": 338,
+   "sprite": 25338,
+   "nombre": "A Wondering Dragon",
+   "estrellas": 6,
+   "categoria": "裝備道具",
+   "texto": "One of Hermit Bob's pets, this is one mischievous little critter! Well, at least it bothered to return for dinner…",
+   "pista": "There is a chance of acquiring this card from Hermit Bob in Vine Front."
+  },
+  {
+   "id": 339,
+   "sprite": 25339,
+   "nombre": "Season Coat",
+   "estrellas": 7,
+   "categoria": "特殊怪物",
+   "texto": "It looks gentle but if you mishandle it, be prepared to reap the whirlwind! Seriously!",
+   "pista": "There is a chance of acquiring this card from Season Coat in the Season Garden."
+  },
+  {
+   "id": 340,
+   "sprite": 25340,
+   "nombre": "Rolin Robot Y",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "This is one cute Robot! If you are thinking that it’s a potential target to woo, watch out for its fist! One strike and you will be seeing stars!",
+   "pista": "There is a chance of acquiring this card from Rolin Robot Y in the Airship Station."
+  },
+  {
+   "id": 341,
+   "sprite": 25341,
+   "nombre": "Godly Ted",
+   "estrellas": 7,
+   "categoria": "特殊怪物",
+   "texto": "Not many know that Godly Ted is a really nice guy! Only problem is, he has a HUGE body! This has made it very inconvenient to move around. Victor in Sky Pumice knows all about it…",
+   "pista": "There is a chance of acquiring this card from Godly Ted in the Winding Flower Corridor."
+  },
+  {
+   "id": 342,
+   "sprite": 25342,
+   "nombre": "Explorer Eleanor",
+   "estrellas": 7,
+   "categoria": "特殊怪物",
+   "texto": "Armed with a giant hammer, legends say Eleanor once sent a dragon flying with a single strike! It may seem like an exaggeration. Then again, who doesn't believe that?",
+   "pista": "There is a chance of acquiring this card from Explorer Eleanor in the Airship Station."
+  },
+  {
+   "id": 343,
+   "sprite": 25343,
+   "nombre": "Butcher Scott",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "Everyone knows that Butcher Scott loves to use the famous catchphrase &quot;One more word and I'll cleave you in half!&quot; but does he really mean it? Everyone seems to think so…no one has stuck around long enough to find out!",
+   "pista": "There is a chance of acquiring this card from Butcher Scott in the Sky Pumice."
+  },
+  {
+   "id": 344,
+   "sprite": 25344,
+   "nombre": "Fair Maiden",
+   "estrellas": 7,
+   "categoria": "人物場景",
+   "texto": "Gabriel has got to be the cutest lady on Floating Island! Strangely, no one seems to have a photo of her! Maybe only Victor in Sky Pumice can help you…",
+   "pista": "Aki of Season Garden is looking to complete a set of four beauties cards! If you have the Carstensen card, help Aki in complete her collection! (Quest: Aki's album 1)"
+  },
+  {
+   "id": 345,
+   "sprite": 25345,
+   "nombre": "Gerardus",
+   "estrellas": 8,
+   "categoria": "人物場景",
+   "texto": "Despite leaving office, Gerardus still helps protect Botti Palace out of a sense of duty and pride.  That is one dedicated officer!",
+   "pista": "After helping Aki with 相簿1, move on to part 2 of Aki's collection! (Quest: Aki's album 2)"
+  },
+  {
+   "id": 346,
+   "sprite": 25346,
+   "nombre": "Carstensen",
+   "estrellas": 5,
+   "categoria": "人物場景",
+   "texto": "Besides taking pride in being part of the Botti Palace vanguard, Carstensen holds another (albeit unofficial) title - the hottest guard ever! The Light Airship was retrofitted with an image capturing device. Perhaps there is a photo of her somewhere…",
+   "pista": "There is a chance of acquiring this card from the Light Airships on board the Airship Station. Aki of Season Garden seems keen on getting this card. (Quest: Aki's album 1)"
+  },
+  {
+   "id": 347,
+   "sprite": 25347,
+   "nombre": "Envoy Alice",
+   "estrellas": 7,
+   "categoria": "特殊怪物",
+   "texto": "If you are talking about drop-dead gorgeous, Alice has got to be the champion! She's super smart, with a body too die for – everything a guy could want! However, if you want a photo of her, well…that's easier said than done!",
+   "pista": "There is a chance of acquiring this card from Envoy Alice in the Season Garden."
+  },
+  {
+   "id": 348,
+   "sprite": 25348,
+   "nombre": "Rainbow Bird",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "Many believe that the Rainbow Bird is native to Floating Island. In actuality, this one-of-a-kind exotic bird only appears on the Roam Battlefield.",
+   "pista": "There is a chance of acquiring this card from the Rainbow Birds in Roam Battlefield."
+  },
+  {
+   "id": 349,
+   "sprite": 25349,
+   "nombre": "Baby Flower",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "Red attracts acne and pimples…or so they say! Poor Baby Flower seems to be rather bothered by that fact! Then again…it might just be thinking a little too hard…",
+   "pista": "There is a chance of acquiring this card from Baby Flower in the Vine Front."
+  },
+  {
+   "id": 350,
+   "sprite": 25350,
+   "nombre": "Rolin Robot X",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "Rumor has it that the armor of the Rolin Robot X was forged by the same person who did Watley's! That would seem more credible if the Watley's Master had ever shown himself. Apparently, no one has ever seen what he (or she?) looks like...",
+   "pista": "There is a chance of acquiring this card from Rolin Robot X in the Bouleuterion."
+  },
+  {
+   "id": 351,
+   "sprite": 25351,
+   "nombre": "Mystic Keith",
+   "estrellas": 8,
+   "categoria": "特殊怪物",
+   "texto": "As one of the 4 highest-ranking officers, Keith is a fearsome man to behold. But he does seem a little tired of running around. I wonder why…",
+   "pista": "There is a chance of acquiring this card from Mystic Keith in the Botti Palace."
+  },
+  {
+   "id": 352,
+   "sprite": 25352,
+   "nombre": "Priest Terence",
+   "estrellas": 8,
+   "categoria": "特殊怪物",
+   "texto": "It takes a lot of guts to be a great officer. For Terence, it seems that the challenges of the job and dealing with the people is driving him nuts!",
+   "pista": "There is a chance of acquiring this card from Priest Terence in the Botti Palace."
+  },
+  {
+   "id": 353,
+   "sprite": 25353,
+   "nombre": "Rayman",
+   "estrellas": 8,
+   "categoria": "特殊怪物",
+   "texto": "I would stay away from Rayman if I were you. His line &quot;Touching me will yield shocking results&quot; is as real as it gets! Not the type of guy you want to hang out with, or bump into on occasion...",
+   "pista": "There is a chance of acquiring this card from Rayman in the Botti Palace."
+  },
+  {
+   "id": 354,
+   "sprite": 25354,
+   "nombre": "Bloody Hoof",
+   "estrellas": 9,
+   "categoria": "特殊怪物",
+   "texto": "It's a crazy feeling for Bloody Hoof! It's not about being a leader of a tribe, nor the responsibilities, but to handle sheer number of challengers coming in daily can be quite a chore! Not to mention the fact Bloody Hoof feels inferior since he couldn't even defeat little Lilith in battle!",
+   "pista": "There is a chance of acquiring this card from Bloody Hoof in the Botti Palace."
+  },
+  {
+   "id": 355,
+   "sprite": 25355,
+   "nombre": "Lilith",
+   "estrellas": 10,
+   "categoria": "特殊怪物",
+   "texto": "As the stronger contender, Lilith became boss of Bloody Hoof's tribe after beating him in an honorable duel. If you think that being the big boss is easy, wait till you see all the problems that she has to handle because her subordinate's are so inept! Why can't they be more responsible?",
+   "pista": "There is a chance of acquiring this card from Lilith in the Botti Palace."
+  },
+  {
+   "id": 356,
+   "sprite": 25356,
+   "nombre": "Elvis",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "Sorry, Elvis, I really want to know that secret!",
+   "pista": "Umi from Mushroom Village has a secret. Keep completing the quest to unlock it. (Related quest: Unspeakable Secret)"
+  },
+  {
+   "id": 357,
+   "sprite": 25357,
+   "nombre": "Cat Traveling Bag",
+   "estrellas": 5,
+   "categoria": "裝備道具",
+   "texto": "The perfect backpack for home adventures, keeping you company every step of the way!",
+   "pista": "Defeat the Pyroblast Cat in Mushroom Village for a chance to get."
+  },
+  {
+   "id": 358,
+   "sprite": 25358,
+   "nombre": "Excellent Sheep",
+   "estrellas": 5,
+   "categoria": "人物場景",
+   "texto": "High-quality mount, perfect for winter outings! No need to worry about feeling cold or hungry!",
+   "pista": "Defeat the Deep Sea Sheep in Mushroom Village for a chance to get."
+  },
+  {
+   "id": 359,
+   "sprite": 25359,
+   "nombre": "Big Chris",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "Brother Dam is usually kind-hearted and honest, and loves to help others. He is hereby specially issued a good person card certification.",
+   "pista": "Defeat the Brother Thumb Chris in Mushroom Village for a chance to get."
+  },
+  {
+   "id": 360,
+   "sprite": 25360,
+   "nombre": "Bountiful Candy Basket",
+   "estrellas": 7,
+   "categoria": "人物場景",
+   "texto": "So Vanilla Kreme secretly hid a basket of delicious candies. She really knows how to enjoy herself!",
+   "pista": "Defeat Vanilla Kreme in the Chocolate Forest for a chance to get."
+  },
+  {
+   "id": 361,
+   "sprite": 25361,
+   "nombre": "Caramel Pudding Fighter",
+   "estrellas": 7,
+   "categoria": "一般怪物",
+   "texto": "It is forced to develop defenses as its sweet caramel and creamy custard is coveted by food lovers everywhere.",
+   "pista": "Defeat the Caramel Pudding Fighter in Chocolate Village for a chance to get."
+  },
+  {
+   "id": 362,
+   "sprite": 25362,
+   "nombre": "Prickly Backpack",
+   "estrellas": 5,
+   "categoria": "裝備道具",
+   "texto": "Although it's prickly, there are no more pickpockets.",
+   "pista": "Defeat the Flower Thorn Baby in Building Block City Outskirts for a chance to get."
+  },
+  {
+   "id": 363,
+   "sprite": 25363,
+   "nombre": "Fruit Leader Bern",
+   "estrellas": 7,
+   "categoria": "特殊怪物",
+   "texto": "A humble fruit minion, risen to power through conquest, adorned with the spoils of its victims.",
+   "pista": "Defeat Fruit Leader Bern in Fruit Gale Land for a chance to get."
+  },
+  {
+   "id": 364,
+   "sprite": 25364,
+   "nombre": "Danba's Pet",
+   "estrellas": 5,
+   "categoria": "人物場景",
+   "texto": "Lost in Building Block City, directionally-challenged Danba shared cute pet pics as thanks.",
+   "pista": "Danba wandered away Building Block City Outskirts and got lost. He would be very grateful if he got some help. Complete the quest to get. (Related quest: Danba's Wonderful Trip)"
+  },
+  {
+   "id": 365,
+   "sprite": 25365,
+   "nombre": "Guided Carriage",
+   "estrellas": 6,
+   "categoria": "人物場景",
+   "texto": "Danba, usually so careful, needed our help. To show his thanks, he made postcards of his trip, including this horse.",
+   "pista": "You helped Danba but he won't leave you alone. Should you help him again? Quest available after completing Lost Danba. Keep completing the quest to unlock it. (Related quest: Danba's Wonderful Trip)"
+  },
+  {
+   "id": 366,
+   "sprite": 25366,
+   "nombre": "Mushroom Manor",
+   "estrellas": 6,
+   "categoria": "人物場景",
+   "texto": "The charming Mushroom Manor built by Rittles is now a popular tourist spot.",
+   "pista": "Defeat Rittles in Mushroom Village for a chance to get."
+  },
+  {
+   "id": 367,
+   "sprite": 25367,
+   "nombre": "Visit Landmark: Poker City Gate",
+   "estrellas": 7,
+   "categoria": "人物場景",
+   "texto": "Despite it being guarded by portly bandits, the majestic Poker City gate is open to visitors for a fee.",
+   "pista": "Defeat the Portly Bandits in Poker Castle for a chance to get."
+  },
+  {
+   "id": 368,
+   "sprite": 25368,
+   "nombre": "Photo of the Thatched House Master",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "Though long graduated, he still fondly recalls his school days. Look how green he was in uniform!",
+   "pista": "Defeat the Straw Piggy in Building Block City Outskirts for a chance to get."
+  },
+  {
+   "id": 369,
+   "sprite": 25369,
+   "nombre": "Photo of the Wooden House Celebrity",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "He was the go-to guy for building wooden houses when he was a renowned student at the Building Block Academy.",
+   "pista": "Defeat the Carpenter Piggy in Building Block City Outskirts for a chance to get."
+  },
+  {
+   "id": 370,
+   "sprite": 25370,
+   "nombre": "Photo of the Brick House Assistant",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "As a senior teaching assistant in the bricklaying department, he's definitely one of the best at building houses.",
+   "pista": "Defeat Cole, the piggy boss in Building Block City Outskirts for a chance to get."
+  },
+  {
+   "id": 371,
+   "sprite": 25371,
+   "nombre": "Highest Art Form",
+   "estrellas": 6,
+   "categoria": "人物場景",
+   "texto": "Porker the Fourth's final project showcased his unique architectural vision with various techniques.",
+   "pista": "Porker the Fourth in Building Block City wants to know the secrets of other builders to become the greatest architect. Keep completing the quest to unlock it. (Related quest: Highest Art Form)"
+  },
+  {
+   "id": 372,
+   "sprite": 25372,
+   "nombre": "Still missing a weapon",
+   "estrellas": 7,
+   "categoria": "裝備道具",
+   "texto": "Good Tools Make Good Work 1",
+   "pista": "Banpu, a soldier from Chocolate Village, needs a powerful weapon to become the next captain. Keep completing the quest to unlock it. (Related quest: A Soldier's Equipment Set)"
+  },
+  {
+   "id": 373,
+   "sprite": 25373,
+   "nombre": "Still missing a cape",
+   "estrellas": 7,
+   "categoria": "裝備道具",
+   "texto": "Good Tools Make Good Work 2",
+   "pista": "Banpu, a soldier from Chocolate Village, needs a cool cape to become the next captain. Keep completing the quest to unlock it. (Related quest: A Soldier's Equipment Set)"
+  },
+  {
+   "id": 374,
+   "sprite": 25374,
+   "nombre": "Still missing an alarm clock",
+   "estrellas": 7,
+   "categoria": "裝備道具",
+   "texto": "Good Tools Make Good Work 3",
+   "pista": "Banpu, a soldier from Chocolate Village, must always be on time to become the next captain. Keep completing the quest to unlock it. (Related quest: A Soldier's Equipment Set)"
+  },
+  {
+   "id": 375,
+   "sprite": 25375,
+   "nombre": "And missing a good bed",
+   "estrellas": 7,
+   "categoria": "裝備道具",
+   "texto": "Good Tools Make Good Work 4",
+   "pista": "Banpu, a soldier from Chocolate Village, needs the best sleep quality to become the next captain. Keep completing the quest to unlock it. (Related quest: A Soldier's Equipment Set)"
+  },
+  {
+   "id": 376,
+   "sprite": 25376,
+   "nombre": "Fruit Spearman",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "A spear-wielding fruit soldier is no pushover. After all, &quot;a longer spear means a stronger warrior.&quot;",
+   "pista": "Defeat the Fruit Spearman in Fruit Gale Land for a chance to get."
+  },
+  {
+   "id": 377,
+   "sprite": 25377,
+   "nombre": "Fruit Soldier",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "A Fruit Soldier who isn't particularly skilled at anything, but can do everything. He's a practical Fruit Soldier!",
+   "pista": "Defeat the Fruit Soldier in Fruit Gale Land for a chance to get."
+  },
+  {
+   "id": 378,
+   "sprite": 25378,
+   "nombre": "Little Strawberry",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "Being so young and naive, they are still a little shy around people.",
+   "pista": "Defeat the Little Strawberry in Fruit Gale Land for a chance to get."
+  },
+  {
+   "id": 379,
+   "sprite": 25379,
+   "nombre": "Strawberry Guard Maya",
+   "estrellas": 7,
+   "categoria": "特殊怪物",
+   "texto": "The mature berry won't hide away shyly anymore. Instead, it will stand up to protect the other berries!",
+   "pista": "Defeat Strawberry Guard Maya in Berry Garden for a chance to obtain it."
+  },
+  {
+   "id": 380,
+   "sprite": 25380,
+   "nombre": "One-of-a-Kind Mount",
+   "estrellas": 7,
+   "categoria": "人物場景",
+   "texto": "Ruby's stunning alchemy mount, while incredibly cool, requires constant energy to exist.",
+   "pista": "Ruby, the apprentice from Chocolate Village has always dreamed of having a unique mount. Keep completing the quest to unlock it. (Related quest: The Apprentice's Path)"
+  },
+  {
+   "id": 381,
+   "sprite": 25381,
+   "nombre": "Accompanying Escort",
+   "estrellas": 9,
+   "categoria": "人物場景",
+   "texto": "Angus, a dedicated commander, personally oversees every aspect of the Poker Castle.",
+   "pista": "Clear Instance: Angus, the plump lamp spirit in Poker Castle for a chance to get."
+  },
+  {
+   "id": 382,
+   "sprite": 25382,
+   "nombre": "Dark Tutor Aslander",
+   "estrellas": 7,
+   "categoria": "特殊怪物",
+   "texto": "A lycanthrope, Arslan's obsession with magic and relentless pursuit of its mastery led him to learn dark magic.",
+   "pista": "Defeat Dark Tutor Aslander in Fruit Gale Land for a chance to get."
+  },
+  {
+   "id": 383,
+   "sprite": 25383,
+   "nombre": "Mage Cathy",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "texto": "The famous mage of Building Block City, Cathy is a mysterious figure. Despite her magic mastery, she continues to learn.",
+   "pista": "Defeat Mage Cathy in Building Block City for a chance to get."
+  },
+  {
+   "id": 384,
+   "sprite": 25384,
+   "nombre": "Flame Witch",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "The adorable little witch is skilled at using fiery magic to drive away those who bother her with an embrace of flames.",
+   "pista": "Defeat the Flame Witch in Building Block City for a chance to get."
+  },
+  {
+   "id": 385,
+   "sprite": 25385,
+   "nombre": "Custom Mech",
+   "estrellas": 7,
+   "categoria": "裝備道具",
+   "texto": "As thanks for aiding Didiro in gathering materials for his mech, a special photo of the completed mech is being shared.",
+   "pista": "Even idols have their troubles. Please go find Didiro in the Chocolate Forest and listen to his wish. Obtain the cards of the Flame Witch and the Witch of Earth, and give them to Didiro to accept the task. Complete the quest to get. (Related quest: Idol's Wish)"
+  },
+  {
+   "id": 386,
+   "sprite": 25386,
+   "nombre": "Sweet Strawberry",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "The sweet-smelling wild berries often lure unwary victims into their traps with their delicious aroma, only to rob them.",
+   "pista": "Defeat the Sweet Strawberry in Fruit Gale Land for a chance to get."
+  },
+  {
+   "id": 387,
+   "sprite": 25387,
+   "nombre": "Earth Witch",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "The adorable little witch creates earth magic-based pitfall traps, where she catches travelers and observes them.",
+   "pista": "Defeat the Earth Witch in Building Block City for a chance to get."
+  },
+  {
+   "id": 388,
+   "sprite": 25388,
+   "nombre": "Nightwind Spirit Armor",
+   "estrellas": 5,
+   "categoria": "裝備道具",
+   "texto": "The new dress that Pado has been longing for is said to have the magical ability to make her figure appear more slender.",
+   "pista": "Pado, the wealthy tycoon of Mushroom Village, has always wanted to be thinner. He came up with an idea to lose weight by changing his clothes. Keep completing the quest to unlock it. (Related quest: Paddy's Weight Loss Method)"
+  },
+  {
+   "id": 389,
+   "sprite": 25389,
+   "nombre": "Dog Swordsman's Leather Jacket",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "The righteous dog swordsman, making a dashing entrance in a coat, is actually not very skilled with a sword!",
+   "pista": "Defeat the Dog Swordsman in Building Block City Outskirts for a chance to get."
+  },
+  {
+   "id": 390,
+   "sprite": 25390,
+   "nombre": "Russell's Bodysuit",
+   "estrellas": 7,
+   "categoria": "特殊怪物",
+   "texto": "Russell's tall and slender figure is on display in his tight-fitting suit, but such a physique doesn't really suit him.",
+   "pista": "Defeat Guard Captain Russell in Building Block City for a chance to get."
+  },
+  {
+   "id": 391,
+   "sprite": 25391,
+   "nombre": "Pado's Old Photo",
+   "estrellas": 7,
+   "categoria": "人物場景",
+   "texto": "Pado's exquisite figure, captured in the photo, is too beautiful to keep to myself. I want to make more copies!",
+   "pista": "Pado, the wealthy tycoon of Mushroom Village, has always wanted to be thinner. Rumor has it that he'll give a &quot;surprise&quot; to anyone who helps him! Exchange cards with Pado to get a reward. (Related quest: Paddy's Weight Loss Method)"
+  },
+  {
+   "id": 392,
+   "sprite": 25392,
+   "nombre": "Dog Fighter",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "The righteous canine pugilist, a deep student of boxing, can only be defeated with the command, &quot;Shake!&quot;",
+   "pista": "Defeat the Dog Fighter in Building Block City Outskirts for a chance to get."
+  },
+  {
+   "id": 393,
+   "sprite": 25393,
+   "nombre": "Toy Soldier",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "texto": "The brick soldier is always on the clock, patrolling Building Block City. He's a real workhorse.",
+   "pista": "Defeat the Toy Soldier in Building Block City Outskirts for a chance to get."
+  },
+  {
+   "id": 394,
+   "sprite": 25394,
+   "nombre": "Love Fighter Lisa",
+   "estrellas": 7,
+   "categoria": "特殊怪物",
+   "texto": "The innocent and cheerful Lisa May admires her powerful enemy and grows towards that goal to become a powerful being.",
+   "pista": "Defeat Love Fighter Lisa in Fruit Gale Land for a chance to get."
+  },
+  {
+   "id": 395,
+   "sprite": 25395,
+   "nombre": "Heart Poker Spearman",
+   "estrellas": 7,
+   "categoria": "一般怪物",
+   "texto": "The Hearts Spearmen of Poker City is the vanguard of the city. Invaders must pass through them to enter the castle.",
+   "pista": "Clear Instance: Heart Poker Spearman in Poker Castle for a chance to get."
+  },
+  {
+   "id": 396,
+   "sprite": 25396,
+   "nombre": "Boasting Peo",
+   "estrellas": 6,
+   "categoria": "人物場景",
+   "texto": "Peo's nose grows without end unless he brags. Is his strange curse true?",
+   "pista": "Everyone knows that Peo Chocolate Village loves to boast. Should you believe him? Keep completing the quest to unlock it. (Related quest: King of Boasts)"
+  },
+  {
+   "id": 397,
+   "sprite": 25397,
+   "nombre": "Magic Rabbit",
+   "estrellas": 6,
+   "categoria": "人物場景",
+   "texto": "The curious bunny opened the treasure box and was swallowed and trapped by the Mimic.",
+   "pista": "Defeat the Pink Bunny in Chocolate Village for a chance to get."
+  },
+  {
+   "id": 398,
+   "sprite": 25398,
+   "nombre": "Naughty Dragon",
+   "estrellas": 6,
+   "categoria": "人物場景",
+   "texto": "The cool-looking little hatchling's big wings are actually just for show. It can only fly by using balloons!",
+   "pista": "Defeat Hell Messenger Disco in Mushroom Village for a chance to get."
+  },
+  {
+   "id": 399,
+   "sprite": 25399,
+   "nombre": "Black Forest Soldier",
+   "estrellas": 7,
+   "categoria": "一般怪物",
+   "texto": "The cream spearman soldier who guards the Chocolate Forest has a layer upon layer of cream as his best protection!",
+   "pista": "Defeat the Black Forest Soldier in the Chocolate Forest for a chance to get."
+  },
+  {
+   "id": 400,
+   "sprite": 25400,
+   "nombre": "Red Riding Hood",
+   "estrellas": 6,
+   "categoria": "人物場景",
+   "texto": "Though she may seem careless, Red Riding Hood is always protected by her grandfather's watchful eye.",
+   "pista": "Red Riding Hood's grandpa is worried about her safety. He hopes someone can help clear the dangers on the road. If you're interested, go to the Berry Garden to find her! Complete the quest to get. (Related quest: Red Riding Hood's Adventure)"
+  },
+  {
+   "id": 401,
+   "sprite": 25401,
+   "nombre": "Apple Dwarf",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "texto": "Help Red Riding Hood's grandpa clear the dangerous evidence.",
+   "pista": "Defeat the Apple Dwarf in Building Block City Outskirts for a chance to get."
+  },
+  {
+   "id": 402,
+   "sprite": 25402,
+   "nombre": "Black Forest Spearman",
+   "estrellas": 7,
+   "categoria": "一般怪物",
+   "texto": "Help Red Riding Hood's grandpa clear the dangerous evidence.",
+   "pista": "Defeat the Black Forest Spearman in the Chocolate Forest for a chance to get."
+  },
+  {
+   "id": 403,
+   "sprite": 25403,
+   "nombre": "Poker Leader Tilla",
+   "estrellas": 8,
+   "categoria": "特殊怪物",
+   "texto": "Help Red Riding Hood's grandpa clear the dangerous evidence.",
+   "pista": "Defeat Poker Leader Tilla in the Chocolate Forest for a chance to get."
+  },
+  {
+   "id": 404,
+   "sprite": 25404,
+   "nombre": "Chief Cheese Warrior",
+   "estrellas": 8,
+   "categoria": "特殊怪物",
+   "texto": "Ike, a member of the Cream Lancers, becomes more dangerous as his cream coating wears off. Don't underestimate him.",
+   "pista": "Defeat Chief Cheese Warrior in Berry Garden for a chance to obtain it."
+  },
+  {
+   "id": 405,
+   "sprite": 25405,
+   "nombre": "Sandwich Warrior Jasson",
+   "estrellas": 7,
+   "categoria": "特殊怪物",
+   "texto": "Jason is a highly skilled swordsman. It's said that even in the heat of battle, he can keep the strawberry on his head!",
+   "pista": "Defeat Sandwich Warrior Jasson in Chocolate Village for a chance to get."
+  },
+  {
+   "id": 406,
+   "sprite": 25406,
+   "nombre": "Club Poker Spearman",
+   "estrellas": 7,
+   "categoria": "一般怪物",
+   "texto": "The Club Spearmen guard Poker City together with the Hearts Spearmen, but unlike the Hearts, they are better at defense.",
+   "pista": "Clear Instance: Club Poker Spearman in Poker Castle for a chance to get."
+  },
+  {
+   "id": 407,
+   "sprite": 25407,
+   "nombre": "Spade Poker Priest",
+   "estrellas": 7,
+   "categoria": "一般怪物",
+   "texto": "The Spade Poker Priest, the highest-ranking soldier, commands the troops and oversees city rituals.",
+   "pista": "Clear Instance: Spade Poker Priest in Poker Castle for a chance to get."
+  },
+  {
+   "id": 408,
+   "sprite": 25408,
+   "nombre": "Goddess Ward",
+   "estrellas": 9,
+   "categoria": "特殊怪物",
+   "texto": "The eldest Norn, Urd, is the Norn of the past, her gaze forever fixed on the bygone days.",
+   "pista": "Clear Instance: Goddess Ward in Poker Castle for a chance to get."
+  },
+  {
+   "id": 409,
+   "sprite": 25409,
+   "nombre": "Goddess Aglaia",
+   "estrellas": 10,
+   "categoria": "特殊怪物",
+   "texto": "Verdandi, the Norn of the present, is a vibrant and curious goddess.",
+   "pista": "Clear Instance: Goddess Aglaia in Poker Castle for a chance to get."
+  },
+  {
+   "id": 410,
+   "sprite": 25410,
+   "nombre": "Goddess Thalia",
+   "estrellas": 11,
+   "categoria": "特殊怪物",
+   "texto": "Skuld, the youngest of the Norns, is the guardian of the future. With youthful optimism, she gazes towards tomorrow.",
+   "pista": "Clear Instance: Goddess Thalia in Poker Castle for a chance to get."
+  },
+  {
+   "id": 411,
+   "sprite": 25411,
+   "nombre": "Gothicllo",
+   "estrellas": 12,
+   "categoria": "特殊怪物",
+   "texto": "The Demon Queen, tasked by Lucifer to disrupt the flow of time, is really just a loud, temperamental woman.",
+   "pista": "Defeat the dungeon: Gothicllo from Poker Castle has a chance to obtain it."
+  },
+  {
+   "id": 412,
+   "sprite": 25412,
+   "nombre": "Ghostly Shrimp",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "pista": "Chance to receive if Ghostly Shrimp from the Giant Stone Forest is defeated."
+  },
+  {
+   "id": 413,
+   "sprite": 25413,
+   "nombre": "Cute Riding Dragon",
+   "estrellas": 7,
+   "categoria": "一般怪物",
+   "pista": "Chance to receive if Cute Riding Dragon from Hunting Hill is defeated."
+  },
+  {
+   "id": 414,
+   "sprite": 25414,
+   "nombre": "Rainbow Snail",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "pista": "Chance to receive if Rainbow Snail from the Amazon River area is defeated."
+  },
+  {
+   "id": 415,
+   "sprite": 25415,
+   "nombre": "Egg Thief Speedsaur",
+   "estrellas": 7,
+   "categoria": "一般怪物",
+   "pista": "Chance to receive if Egg Thief Speedsaur from the Squeaking Desert is defeated."
+  },
+  {
+   "id": 416,
+   "sprite": 25416,
+   "nombre": "Blood Spike Dragon",
+   "estrellas": 8,
+   "categoria": "一般怪物",
+   "pista": "Defeat Dungeon: Chance to receive if Blood Spike Dragon from the Dinosaur Arena is defeated."
+  },
+  {
+   "id": 417,
+   "sprite": 25417,
+   "nombre": "Patrolling Pterosaurs",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "pista": "Chance to receive if Patrolling Pterosaurs from the Amazon River area is defeated."
+  },
+  {
+   "id": 418,
+   "sprite": 25418,
+   "nombre": "Dagger Dragon Knight",
+   "estrellas": 7,
+   "categoria": "一般怪物",
+   "pista": "Chance to receive if Dagger Dragon Knight from Hunting Hill is defeated."
+  },
+  {
+   "id": 419,
+   "sprite": 25419,
+   "nombre": "The Best Spoil",
+   "estrellas": 7,
+   "categoria": "裝備道具",
+   "pista": "As a new hunter, hunting skills are not that great is understanding, but Pilford from Rex Point doesn't think so. Repeating this quest can earn. (Corresponding Quest: Newbie Hunter)"
+  },
+  {
+   "id": 420,
+   "sprite": 25420,
+   "nombre": "Premium Meat",
+   "estrellas": 6,
+   "categoria": "人物場景",
+   "pista": "Chance to receive if Dreamland Cradle Rex from Rex Point is defeated."
+  },
+  {
+   "id": 421,
+   "sprite": 25421,
+   "nombre": "Wornhorn Dragon",
+   "estrellas": 7,
+   "categoria": "一般怪物",
+   "pista": "Chance to receive if Wornhorn Dragon from Hunting Hill is defeated."
+  },
+  {
+   "id": 422,
+   "sprite": 25422,
+   "nombre": "Sharp Pterosaur",
+   "estrellas": 5,
+   "categoria": "一般怪物",
+   "pista": "Chance to receive if Sharp Pterosaur from Giant Stone Forest is defeated."
+  },
+  {
+   "id": 423,
+   "sprite": 25423,
+   "nombre": "Iron Can Snail",
+   "estrellas": 7,
+   "categoria": "一般怪物",
+   "pista": "Defeat Dungeon: Chance to receive if Iron Can Snail from the Dinosaur Arena is defeated."
+  },
+  {
+   "id": 424,
+   "sprite": 25424,
+   "nombre": "Exploration Chair Rex",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "pista": "Chance to receive if Exploration Chair Rex from Rex Point is defeated."
+  },
+  {
+   "id": 425,
+   "sprite": 25425,
+   "nombre": "Unhappy Phobe",
+   "estrellas": 5,
+   "categoria": "人物場景",
+   "pista": "Looks like Lost Caves' Phobe has been frightened by something, what happened? Repeating this quest you can earn. (Corresponding Quest: Frightened Little Creatures)"
+  },
+  {
+   "id": 426,
+   "sprite": 25426,
+   "nombre": "Slasher Raptor",
+   "estrellas": 7,
+   "categoria": "一般怪物",
+   "pista": "Defeat Dungeon: Chance to receive if Slasher Raptor from the Dinosaur Arena is defeated."
+  },
+  {
+   "id": 427,
+   "sprite": 25427,
+   "nombre": "Armored Triceratops",
+   "estrellas": 7,
+   "categoria": "一般怪物",
+   "pista": "Chance to receive if Armored Triceratops from Hunting Hill is defeated."
+  },
+  {
+   "id": 428,
+   "sprite": 25428,
+   "nombre": "Can Snail",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "pista": "Chance to receive if Can Snail from the Amazon River area is defeated."
+  },
+  {
+   "id": 429,
+   "sprite": 25429,
+   "nombre": "Slasher Raptor",
+   "estrellas": 7,
+   "categoria": "一般怪物",
+   "pista": "Defeat Dungeon: Chance to receive if Slasher Raptor from the Dinosaur Arena is defeated."
+  },
+  {
+   "id": 430,
+   "sprite": 25430,
+   "nombre": "Tough Janice",
+   "estrellas": 7,
+   "categoria": "人物場景",
+   "pista": "Janice from Hunting Hill wants to make her dream come true has decided to start meeting men. Give the card to Janice's Maid could accept the quest, completing the quest you can receive. (corresponding quest: Janice's Dating)"
+  },
+  {
+   "id": 431,
+   "sprite": 25431,
+   "nombre": "Loyal Maid",
+   "estrellas": 6,
+   "categoria": "人物場景",
+   "pista": "Chance to receive if Marksman Archer Vincent from Giant Stone Forest is defeated. Janice might be interested in this card. (Corresponding Quest: Janice's Dating)"
+  },
+  {
+   "id": 432,
+   "sprite": 25432,
+   "nombre": "The Most Suitable Memorabilia ",
+   "estrellas": 8,
+   "categoria": "人物場景",
+   "pista": "Defeat Dungeon: Chance to receive if Giant Ramasaur from the Dinosaur Arena is defeated."
+  },
+  {
+   "id": 433,
+   "sprite": 25433,
+   "nombre": "Iron Sabertooth Tiger",
+   "estrellas": 7,
+   "categoria": "一般怪物",
+   "pista": "Chance to receive if Iron Sabertooth Tiger from the Amazon River area is defeated."
+  },
+  {
+   "id": 434,
+   "sprite": 25434,
+   "nombre": "Huka Spearman",
+   "estrellas": 7,
+   "categoria": "一般怪物",
+   "pista": "Chance to receive if Huka Spearman from Hunting Hill is defeated."
+  },
+  {
+   "id": 435,
+   "sprite": 25435,
+   "nombre": "Diamond Drill Spikesaur",
+   "estrellas": 7,
+   "categoria": "一般怪物",
+   "pista": "Chance to receive if Diamond Drill Spikesaur from Hunting Hill is defeated."
+  },
+  {
+   "id": 436,
+   "sprite": 25436,
+   "nombre": "Barbarian Warrior Gululu",
+   "estrellas": 6,
+   "categoria": "特殊怪物",
+   "pista": "Chance to receive if Barbarian Warrior Gululu from Giant Stone Forest is defeated."
+  },
+  {
+   "id": 437,
+   "sprite": 25437,
+   "nombre": "Sabertooth Tiger King Yager",
+   "estrellas": 8,
+   "categoria": "特殊怪物",
+   "pista": "Chance to receive if Sabertooth Tiger King Yager from the Squeaking Desert is defeated."
+  },
+  {
+   "id": 438,
+   "sprite": 25438,
+   "nombre": "Apprentice Eva",
+   "estrellas": 6,
+   "categoria": "人物場景",
+   "pista": "Apprentice Eva has been waiting for a bus at the Rex Point for a long time, can somebody help him? Completing the mission you can receive. (Corresponding Quest: No show)"
+  },
+  {
+   "id": 439,
+   "sprite": 25439,
+   "nombre": "The Late Bus",
+   "estrellas": 7,
+   "categoria": "人物場景",
+   "pista": "Chance to receive if Excavating Cradle Thunder Lizard from the Squeaking Desert is defeated."
+  },
+  {
+   "id": 440,
+   "sprite": 25440,
+   "nombre": "Wilde Dragon Turtle",
+   "estrellas": 6,
+   "categoria": "一般怪物",
+   "pista": "Chance to receive if Wilde Dragon Turtle from Rex Point is defeated."
+  },
+  {
+   "id": 441,
+   "sprite": 25441,
+   "nombre": "Thunder Lizard Zoom Zoom",
+   "estrellas": 7,
+   "categoria": "特殊怪物",
+   "pista": "Chance to receive if Thunder Lizard Zoom Zoom from Rex Point is defeated."
+  },
+  {
+   "id": 442,
+   "sprite": 25442,
+   "nombre": "Enrol Family Home",
+   "estrellas": 7,
+   "categoria": "人物場景",
+   "pista": "There is a legend the men from the Enrol family has been cursed, Purvis Enrol from the Huka Tribe says nothing like this exist. Completing the mission. (Corresponding: The Cursed House)"
+  },
+  {
+   "id": 443,
+   "sprite": 25443,
+   "nombre": "Bone Swirl Demon Snail Olulu",
+   "estrellas": 7,
+   "categoria": "特殊怪物",
+   "pista": "Chance to receive if Bone Swirl Demon Snail Olulu from the Huka Tribe is defeated."
+  },
+  {
+   "id": 444,
+   "sprite": 25444,
+   "nombre": "Dragon Knight Wuka",
+   "estrellas": 8,
+   "categoria": "特殊怪物",
+   "pista": "Chance to receive if Dragon Knight Wuka from Hunting Hill is defeated."
+  },
+  {
+   "id": 445,
+   "sprite": 25445,
+   "nombre": "Cursed Staff",
+   "estrellas": 5,
+   "categoria": "裝備道具",
+   "pista": "Chance to receive if Winged Sorcerer from Giant Stone Forest is defeated."
+  },
+  {
+   "id": 446,
+   "sprite": 25446,
+   "nombre": "Baby Dragon",
+   "estrellas": 6,
+   "categoria": "人物場景",
+   "pista": "This Professor Kreig in the Amazon River area is not that Professor Kreig. Take a closer look, his name is Banjee Carat. Chance to receive if repeat quest. (Corresponding Quest: Another Professor Kreig)"
+  },
+  {
+   "id": 447,
+   "sprite": 25447,
+   "nombre": "Flaming Mountain Tiger",
+   "estrellas": 7,
+   "categoria": "一般怪物",
+   "pista": "Chance to receive if Flaming Mountain Tiger from the Amazon River area is defeated."
+  },
+  {
+   "id": 448,
+   "sprite": 25448,
+   "nombre": "Demon's assistant",
+   "estrellas": 6,
+   "categoria": "人物場景",
+   "pista": "Chance to receive if Hell Emmissary Mola from Rex Point is defeated."
+  },
+  {
+   "id": 449,
+   "sprite": 25449,
+   "nombre": "Crystal Shellsaur Chill",
+   "estrellas": 7,
+   "categoria": "特殊怪物",
+   "pista": "Chance to receive if Crystal Shellsaur Chill from Rex Point is defeated."
+  },
+  {
+   "id": 450,
+   "sprite": 25450,
+   "nombre": "New Invention",
+   "estrellas": 7,
+   "categoria": "裝備道具",
+   "pista": "Professor Krieg's assistant Nemu is in trouble, she's in the Squeaking Desert, is there anyone that can save her? Completing the Mission you can receive. (Correpsonding Quest: New Invention)"
+  },
+  {
+   "id": 451,
+   "sprite": 25451,
+   "nombre": "Silver Helm Triceratops",
+   "estrellas": 8,
+   "categoria": "一般怪物",
+   "pista": "Defeat Dungeon: Chance to receive if Silver Helm Triceratops from the Dinosaur Arena is defeated."
+  },
+  {
+   "id": 452,
+   "sprite": 25452,
+   "nombre": "Flying Assasin Gil",
+   "estrellas": 7,
+   "categoria": "特殊怪物",
+   "pista": "Chance to receive if Flying Assasin Gil from the Amazon River area is defeated."
+  },
+  {
+   "id": 453,
+   "sprite": 25453,
+   "nombre": "Heavy Armorsaur Kane",
+   "estrellas": 8,
+   "categoria": "特殊怪物",
+   "pista": "Chance to receive if Heavy Armorsaur Kane from Hunting Hill is defeated."
+  },
+  {
+   "id": 454,
+   "sprite": 25454,
+   "nombre": "Barren Warrior",
+   "estrellas": 7,
+   "categoria": "一般怪物",
+   "pista": "Defeat Dungeon: Chance to receive if Barren Warrior from the Dinosaur Arena is defeated."
+  },
+  {
+   "id": 455,
+   "sprite": 25455,
+   "nombre": "Pisadino",
+   "estrellas": 9,
+   "categoria": "特殊怪物",
+   "pista": "Defeat Dungeon: Chance to receive if Pisadino from the Dinosaur Arena is defeated."
+  },
+  {
+   "id": 456,
+   "sprite": 25456,
+   "nombre": "Demon Dragon Ambassador",
+   "estrellas": 10,
+   "categoria": "特殊怪物",
+   "pista": "Defeat Dungeon: Chance to receive if Demon Dragon Ambassador from the Dinosaur Arena is defeated."
+  },
+  {
+   "id": 457,
+   "sprite": 25457,
+   "nombre": "Dista the Dragon",
+   "estrellas": 11,
+   "categoria": "特殊怪物",
+   "pista": "Defeat Dungeon: Chance to receive if Dista the Dragon from the Dinosaur Arena is defeated."
+  },
+  {
+   "id": 458,
+   "sprite": 25458,
+   "nombre": "Catastrophe",
+   "estrellas": 12,
+   "categoria": "特殊怪物",
+   "pista": "Defeat Dungeon: Chance to receive if Catastrophe from the Dinosaur Arena is defeated."
+  },
+  {
+   "id": 459,
+   "sprite": 25459,
+   "nombre": "Dragon Emperor Rex",
+   "estrellas": 13,
+   "categoria": "特殊怪物",
+   "pista": "Defeat Dungeon: Chance to receive if Dragon Emperor Rex from the Dinosaur Arena is defeated."
+  }
+ ]
+}
