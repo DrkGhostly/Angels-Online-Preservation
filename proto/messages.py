@@ -79,7 +79,23 @@ Msg(0x0007, 'c2s', 'GIRAR', [U8('direccion')],
          "del este. Mismos valores que el 0x0016 del servidor.")
 Msg(0x0006, 'c2s', 'REQ_0006', [U32('unk_00'), U32('unk_04'),
                                 U32('unk_08'), U32('unk_12')])
-Msg(0x0016, 'c2s', 'REQ_0016', [U32('unk_00'), U8('unk_04')])  # 17,9% de cruce: no es entity_id
+# EL 0x0016 ES UN CANAL MULTIPLEXADO, no un mensaje suelto: lleva un u8 de
+# SUBTIPO y detras un u32. Lo dice el propio cliente, en la funcion que lo
+# arma (0x614DA0 de Angel.exe):
+#
+#     mov ecx, 0x16   ;  [+0] u16 = 0x0016
+#     mov cl, [ebp+8] ;  [+2] u8  = subtipo
+#     mov eax,[ebp+C] ;  [+3] u32 = dato
+#     push 7          ;  siete bytes
+#
+# Estaba definido como [u32][u8], que es justo al reves, y por eso el
+# campo nunca cuadraba ("17,9% de cruce: no es entity_id").
+#
+# Los subtipos salen de desensamblar las nativas de Lua
+# (tools/opcodes_de_nativas.py). Comprobado contra las capturas: el 0x14 y
+# el 0x15 son automallrequestmalldata, y el 0x0C -- el segundo mas visto --
+# es el que fija el objetivo de ataque, que ya estaba medido.
+Msg(0x0016, 'c2s', 'REQ_0016', [U8('subtipo'), U32('dato')])
 Msg(0x0005, 'c2s', 'HABLAR_NPC', [U32('entity_id'), U16('cero')],
     note="Clic en una entidad. Verificado con marca de tiempo: los entity_id "
          "19, 20 y 21 son Angel Raphael, Interface Tutor y Angel Aide, y el "

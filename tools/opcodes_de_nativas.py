@@ -1,4 +1,4 @@
-"""Que OPCODE manda cada `game.*` de los Lua.
+"""Que SUBTIPO de 0x0016 manda cada `game.*` de los Lua.
 
 Encadena lo que saca tools/nativas_lua.py. Con la direccion de cada nativa
 se desensambla su codigo y se busca la llamada al emisor de paquetes: el
@@ -35,7 +35,22 @@ import sys
 RAIZ = pathlib.Path(__file__).parent.parent
 sys.path.insert(0, str(RAIZ / 'tools'))
 
-EMISORES = (0x614DA0, 0x6792C0)
+# El unico emisor confirmado. Desensamblado, arma SIEMPRE el mismo paquete:
+#
+#     mov ecx, 0x16  ;  [+0] u16 = 0x0016   <- el opcode de verdad
+#     mov cl, [ebp+8];  [+2] u8  = subtipo  <- el primer argumento
+#     mov eax,[ebp+C];  [+3] u32 = dato     <- el segundo
+#     push 7         ;  siete bytes en total
+#
+# O sea que lo que se empuja antes de la llamada NO es un opcode, es el
+# SUBTIPO de un 0x0016. Confirmado contra las capturas: el cuerpo del
+# c2s 0x0016 empieza por un u8, y el subtipo 0x0C -- el que mas sale -- es
+# el que fija el objetivo de ataque, que ya teniamos medido.
+#
+# 0x6792C0 estaba aqui y se quito: desensamblado resulto ser una busqueda
+# en una tabla, no un emisor. Los 0xCA y 0xCB de blacklistadd/remove que
+# me hicieron creer que si lo era seran ids de ventana o de mensaje.
+EMISORES = (0x614DA0,)
 # Lectores de argumentos de Lua: reciben el indice del argumento, no opcodes.
 NO_EMISORES = (0x52E9F0, 0x51C210, 0x4970B0, 0x698A90, 0x52EB20, 0x52EA90)
 
@@ -97,7 +112,7 @@ def opcodes() -> dict:
                     ops.append(val)
                 break
         if ops:
-            out[nom] = {'funcion': a, 'opcodes': sorted(set(ops))}
+            out[nom] = {'funcion': a, 'subtipos': sorted(set(ops))}
     return out
 
 
@@ -107,13 +122,13 @@ def main():
     if '--json' in sys.argv[1:]:
         f = RAIZ / 'server' / 'plantillas' / 'opcodes_nativas.json'
         f.write_text(json.dumps(
-            {'_nota': 'game.* de los Lua -> opcode que manda. '
+            {'_nota': 'game.* de los Lua -> subtipo del c2s 0x0016 que manda. '
                       'Ver tools/opcodes_de_nativas.py.',
              'nativas': {k: {'funcion': '0x%X' % v['funcion'],
-                             'opcodes': ['0x%04X' % o for o in v['opcodes']]}
+                             'subtipos_0x0016': ['0x%02X' % o for o in v['subtipos']]}
                          for k, v in sorted(t.items())}},
             ensure_ascii=False, indent=1), encoding='utf-8')
-        print('%d nativas con opcode -> %s' % (len(t), f))
+        print('%d nativas con subtipo -> %s' % (len(t), f))
         return 0
     filtro = args[0].lower() if args else None
     n = 0
@@ -121,9 +136,9 @@ def main():
         if filtro and filtro not in nom.lower():
             continue
         print('  %-28s 0x%06X  ->  %s'
-              % (nom, v['funcion'], ', '.join('0x%04X' % o for o in v['opcodes'])))
+              % (nom, v['funcion'], ', '.join('0x%02X' % o for o in v['subtipos'])))
         n += 1
-    print('\n%d de %d nativas mandan un opcode identificable' % (n, len(t)))
+    print('\n%d de %d nativas mandan un subtipo de 0x0016 identificable' % (n, len(t)))
     return 0
 
 

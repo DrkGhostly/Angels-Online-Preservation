@@ -1,256 +1,77 @@
 {
- "_nota": "game.* de los Lua -> opcode que manda. Ver tools/opcodes_de_nativas.py.",
+ "_nota": "game.* de los Lua -> subtipo del c2s 0x0016 que manda. Ver tools/opcodes_de_nativas.py.",
  "nativas": {
-  "answercaptcha": {
-   "funcion": "0x58D700",
-   "opcodes": [
-    "0x0332"
-   ]
-  },
   "antiplaytime": {
    "funcion": "0x58AD60",
-   "opcodes": [
-    "0x0020"
+   "subtipos_0x0016": [
+    "0x20"
    ]
   },
   "automallrequestmalldata": {
    "funcion": "0x593790",
-   "opcodes": [
-    "0x0014",
-    "0x0015"
-   ]
-  },
-  "blacklistadd": {
-   "funcion": "0x57A240",
-   "opcodes": [
-    "0x00CA"
-   ]
-  },
-  "blacklistremove": {
-   "funcion": "0x57A3C0",
-   "opcodes": [
-    "0x00CB"
-   ]
-  },
-  "checkexitem": {
-   "funcion": "0x581FA0",
-   "opcodes": [
-    "0x0179"
+   "subtipos_0x0016": [
+    "0x14",
+    "0x15"
    ]
   },
   "closebank": {
    "funcion": "0x589110",
-   "opcodes": [
-    "0x0012"
-   ]
-  },
-  "createguild": {
-   "funcion": "0x58C070",
-   "opcodes": [
-    "0x028E"
+   "subtipos_0x0016": [
+    "0x12"
    ]
   },
   "deletequest": {
    "funcion": "0x584AE0",
-   "opcodes": [
-    "0x0008"
-   ]
-  },
-  "deletetreasuremap": {
-   "funcion": "0x58C2F0",
-   "opcodes": [
-    "0x02D2"
-   ]
-  },
-  "dragcharitem": {
-   "funcion": "0x57BC60",
-   "opcodes": [
-    "0x0177"
-   ]
-  },
-  "dropbankitem": {
-   "funcion": "0x588EA0",
-   "opcodes": [
-    "0x0225"
-   ]
-  },
-  "dropbuysalelist": {
-   "funcion": "0x583020",
-   "opcodes": [
-    "0x0271"
+   "subtipos_0x0016": [
+    "0x08"
    ]
   },
   "dropemot": {
    "funcion": "0x578E60",
-   "opcodes": [
-    "0x0006"
-   ]
-  },
-  "dropsellsalelist": {
-   "funcion": "0x582EF0",
-   "opcodes": [
-    "0x0271"
+   "subtipos_0x0016": [
+    "0x06"
    ]
   },
   "dropxquickemot": {
    "funcion": "0x578EF0",
-   "opcodes": [
-    "0x0006"
+   "subtipos_0x0016": [
+    "0x06"
    ]
   },
   "equipcrown": {
    "funcion": "0x589430",
-   "opcodes": [
-    "0x0031"
-   ]
-  },
-  "fgroupaddok": {
-   "funcion": "0x579520",
-   "opcodes": [
-    "0x00DF"
-   ]
-  },
-  "fgroupchange": {
-   "funcion": "0x579D00",
-   "opcodes": [
-    "0x0146",
-    "0x0147"
-   ]
-  },
-  "fgroupname": {
-   "funcion": "0x579B60",
-   "opcodes": [
-    "0x0145",
-    "0x0147"
-   ]
-  },
-  "fgroupremove": {
-   "funcion": "0x579960",
-   "opcodes": [
-    "0x00C9",
-    "0x0145",
-    "0x0147"
-   ]
-  },
-  "friendremove": {
-   "funcion": "0x5791D0",
-   "opcodes": [
-    "0x00C8",
-    "0x0146"
-   ]
-  },
-  "friendsay": {
-   "funcion": "0x57A0F0",
-   "opcodes": [
-    "0x0146"
-   ]
-  },
-  "getbankbagmsg": {
-   "funcion": "0x58E620",
-   "opcodes": [
-    "0x0362",
-    "0x0363",
-    "0x0397"
-   ]
-  },
-  "getrebornstring": {
-   "funcion": "0x589F30",
-   "opcodes": [
-    "0x0248"
-   ]
-  },
-  "makeadd": {
-   "funcion": "0x587960",
-   "opcodes": [
-    "0x017D",
-    "0x017F",
-    "0x0180",
-    "0x0181",
-    "0x02FA"
-   ]
-  },
-  "makedel": {
-   "funcion": "0x587ED0",
-   "opcodes": [
-    "0x017F",
-    "0x0180",
-    "0x0181"
-   ]
-  },
-  "mallgivecheckagain": {
-   "funcion": "0x58E1B0",
-   "opcodes": [
-    "0x03DA"
+   "subtipos_0x0016": [
+    "0x31"
    ]
   },
   "opencollectionbook": {
    "funcion": "0x59A6F0",
-   "opcodes": [
-    "0x0032"
+   "subtipos_0x0016": [
+    "0x32"
    ]
   },
   "quickemot": {
    "funcion": "0x578FD0",
-   "opcodes": [
-    "0x0001"
+   "subtipos_0x0016": [
+    "0x01"
    ]
   },
   "repairclose": {
    "funcion": "0x589E80",
-   "opcodes": [
-    "0x0022"
-   ]
-  },
-  "salebuymultiple": {
-   "funcion": "0x583540",
-   "opcodes": [
-    "0x01A5",
-    "0x01A6"
-   ]
-  },
-  "salebuysingle": {
-   "funcion": "0x583420",
-   "opcodes": [
-    "0x01A6"
-   ]
-  },
-  "salesellmultiple": {
-   "funcion": "0x583270",
-   "opcodes": [
-    "0x01A5",
-    "0x01A6"
-   ]
-  },
-  "salesellsingle": {
-   "funcion": "0x583150",
-   "opcodes": [
-    "0x01A6"
+   "subtipos_0x0016": [
+    "0x22"
    ]
   },
   "sendcollect": {
    "funcion": "0x59A780",
-   "opcodes": [
-    "0x0033"
-   ]
-  },
-  "setchangeskillcostitem": {
-   "funcion": "0x58C1D0",
-   "opcodes": [
-    "0x02CB",
-    "0x02CC"
-   ]
-  },
-  "shownoguildmsg": {
-   "funcion": "0x58B080",
-   "opcodes": [
-    "0x0299",
-    "0x02B0"
+   "subtipos_0x0016": [
+    "0x33"
    ]
   },
   "switchsubset": {
    "funcion": "0x58AC90",
-   "opcodes": [
-    "0x0047"
+   "subtipos_0x0016": [
+    "0x47"
    ]
   }
  }

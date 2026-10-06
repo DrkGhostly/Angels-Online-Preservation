@@ -6090,22 +6090,27 @@ class Servidor:
         # que puede y, sobre todo, no se traga el paquete en silencio: si
         # llega algo que no encaja, lo dice en el log con los bytes. Sin
         # eso no hay forma de ir ajustandolo.
-        if opcode in (0x0032, 0x0033) and ses.rol == 'mundo' and ses.personaje:
+        # Los dos son SUBTIPOS del 0x0016, no opcodes sueltos: el cliente
+        # los manda como [u16 0x0016][u8 subtipo][u32 dato], que es lo que
+        # arma la funcion 0x614DA0 de Angel.exe. Aqui se atiende el 0x0016
+        # y se mira el subtipo.
+        if (opcode == 0x0016 and ses.rol == 'mundo' and ses.personaje
+                and len(cuerpo) >= 1 and cuerpo[0] in (0x32, 0x33)):
+            _sub_al = cuerpo[0]
+            _dato_al = struct.unpack_from('<I', cuerpo, 1)[0] if len(cuerpo) >= 5 else 0
             import album as _alb
             _p_al = ses.personaje
             if getattr(_p_al, 'album', None) is None:
                 _p_al.album = {}
-            if opcode == 0x0032:
-                log.info('[%s] album: abrir -> %s'
+            if _sub_al == 0x32:
+                log.info('[%s] album: abrir (0x0016/0x32) -> %s'
                          % (addr, _alb.resumen(_p_al.album)['total']))
                 return
-            # 0x0033, meter una pieza. Se espera la ranura de la mochila;
-            # si el cuerpo no da para eso, se registra y se deja pasar.
-            if len(cuerpo) < 2:
-                log.info('[%s] album: 0x0033 con %d bytes: %s'
-                         % (addr, len(cuerpo), cuerpo.hex()))
-                return
-            _ran = struct.unpack_from('<H', cuerpo, 0)[0]
+            # Subtipo 0x33: meter una pieza. El u32 que acompana es, por
+            # lo que hace sendcollect en el binario, un u16 leido del
+            # objeto que esta en la casilla de soltar. Se toma como ranura
+            # y, si no cuadra, se registra con los bytes en vez de callar.
+            _ran = _dato_al & 0xFFFF
             _bolsa_al = getattr(ses, 'inventario', None) or {}
             _it_al = _bolsa_al.get(_ran)
             _cat = _alb.categoria_de(_it_al) if _it_al else ''
