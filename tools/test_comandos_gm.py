@@ -136,6 +136,63 @@ def test_el_orden_del_swordsman_es_el_de_la_captura():
     assert filas == [0, 1, 2, 3, 4, 5], filas
 
 
+def _simular_panel(ids):
+    """El bucle entero de 0x646370, con los candados de las filas 7, 8 y 9.
+
+    Devuelve (visible, candado): que rama queda dibujada en cada fila y si
+    el candado de las filas de arriba de la sexta quedo puesto. Se mira lo
+    que de verdad sale del 0x001C, no lo que creemos que sale.
+    """
+    import sys, pathlib as _pl
+    sys.path.insert(0, str(_pl.Path(__file__).resolve().parent.parent / 'server'))
+    import clases
+    a = clases._arbol()
+    todos = sorted(a['regs'])
+    cab = len(a['cabecera'])
+    c = clases.arbol([(s, 100, 0) for s in ids])[2:]
+    regs = [c[cab + i * 14:cab + (i + 1) * 14] for i in range((len(c) - cab) // 14)]
+    sids = [r[0] for r in regs[:9]]
+    llev = set(ids)
+    visible, candado = {}, {}
+    for i in range(9):
+        sid, orden = regs[i][0], regs[i][13]
+        fila = clases._fila_del_cliente(sids, i, llev)
+        if fila >= 6:
+            candado[fila] = 0 if (sid and orden >= 6) else 1
+        if sid and 0 < orden <= 9:
+            visible[fila] = sid
+        else:
+            visible.pop(fila, None)
+    return visible, candado
+
+
+def test_las_nueve_ranuras_se_ven_y_sin_candado():
+    """Que no se rompa al desbloquear la octava y la novena.
+
+    Tres cosas: que cada rama acabe dibujada, que ocupen las filas 0..n-1
+    sin huecos, y que ninguna fila ocupada de la septima para arriba se
+    quede con el candado "Reach Supreme Lv" encima.
+    """
+    import random
+    import sys, pathlib as _pl
+    sys.path.insert(0, str(_pl.Path(__file__).resolve().parent.parent / 'server'))
+    import clases
+    todos = sorted(clases._arbol()['regs'])
+    random.seed(11)
+    casos = [[36, 5, 1, 6, 8, 34, 4],
+             [36, 5, 1, 6, 8, 34, 4, 20],
+             [36, 5, 1, 6, 8, 34, 4, 20, 30]]
+    for n in (6, 7, 8, 9):
+        casos += [random.sample(todos, n) for _ in range(300)]
+    for ids in casos:
+        visible, candado = _simular_panel(ids)
+        assert set(visible.values()) == set(ids), (ids, visible)
+        assert sorted(visible) == list(range(len(ids))), (ids, sorted(visible))
+        for fila in visible:
+            if fila >= 6:
+                assert candado.get(fila) == 0, (ids, fila, candado)
+
+
 if __name__ == '__main__':
     fallos = 0
     for nombre, fn in sorted(globals().items()):
