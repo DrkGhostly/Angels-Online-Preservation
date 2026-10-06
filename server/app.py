@@ -6150,9 +6150,24 @@ class Servidor:
                     _p.banco = {}
 
                 def _en_bolsa(n):
-                    if n in _bolsa:
-                        return n
-                    return n + 20 if (n + 20) in _bolsa else None
+                    """La ranura REAL de la mochila para esa posicion, o None.
+
+                    Aqui estaba el fallo que vaciaba el equipo. El numero que
+                    manda el cliente por debajo de 20 es la posicion de la
+                    REJILLA de la mochila, no una ranura: la mochila empieza
+                    en la 20 y de la 0 a la 19 esta el equipo.
+
+                    Mirando primero `n in _bolsa`, un "banco casilla 5" caia
+                    en la ranura 5 del INVENTARIO -- que es una pieza
+                    equipada -- y se la llevaba al almacen. Por eso
+                    desaparecian los objetos puestos.
+
+                    Por debajo de 20 solo vale la mochila (n + 20). De 20 en
+                    adelante el numero ya es la ranura de verdad.
+                    """
+                    if n < 20:
+                        return n + 20 if (n + 20) in _bolsa else None
+                    return n if n in _bolsa else None
 
                 _desde_bolsa = _en_bolsa(_ori)
                 if _desde_bolsa is not None:
