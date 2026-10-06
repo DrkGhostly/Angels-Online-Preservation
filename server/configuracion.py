@@ -249,9 +249,3 @@ QUITAR_LOGO_ARRANQUE = True
 # cliente. Se deja un skill.xml suelto en el cliente, y para deshacerlo
 # basta borrarlo.
 RAMAS_SIN_EXCLUSION = True
-
-# Devuelve al msg.xml del cliente los textos que un pak posterior piso. Hoy
-# es UNO: el saludo de Fortunia (504131), que el evento de Pasqua
-# sobrescribio y nunca devolvieron. Sus otras diez lineas y el propio NPC
-# siguen bien en el pak vigente.
-DEVOLVER_TEXTOS = True
