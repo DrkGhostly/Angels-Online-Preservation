@@ -1,0 +1,1095 @@
+{
+ "_nota": "Tabla del Album, de setting/eng/collection.xml (solo UPDATE8 lo trae). Ver tools/album_de_collection_xml.py.",
+ "filas": [
+  {
+   "id": 7,
+   "nivel": 1,
+   "categoria": "accesorio",
+   "valor": 122,
+   "bonos": {
+    "dfs": 1,
+    "res_hielo": 1,
+    "res_corrosion": 1,
+    "peso": 1000
+   },
+   "texto": "ICE Res+1, Cor.Res+1, Berat+1000"
+  },
+  {
+   "id": 16,
+   "nivel": 2,
+   "categoria": "accesorio",
+   "valor": 243,
+   "bonos": {
+    "dfs": 1,
+    "res_hielo": 1,
+    "res_corrosion": 1,
+    "peso": 1000
+   },
+   "texto": "ICE Res+1, Cor.Res+1, Berat+1000"
+  },
+  {
+   "id": 25,
+   "nivel": 3,
+   "categoria": "accesorio",
+   "valor": 405,
+   "bonos": {
+    "dfs": 2,
+    "res_hielo": 2,
+    "res_corrosion": 2,
+    "peso": 1100
+   },
+   "texto": "ICE Res+2, Cor.Res+2, Berat+1100"
+  },
+  {
+   "id": 34,
+   "nivel": 4,
+   "categoria": "accesorio",
+   "valor": 729,
+   "bonos": {
+    "dfs": 2,
+    "res_hielo": 2,
+    "res_corrosion": 2,
+    "peso": 1200
+   },
+   "texto": "ICE Res+2, Cor.Res+2, Berat+1200"
+  },
+  {
+   "id": 43,
+   "nivel": 5,
+   "categoria": "accesorio",
+   "valor": 1458,
+   "bonos": {
+    "dfs": 3,
+    "res_hielo": 3,
+    "res_corrosion": 3,
+    "peso": 1300
+   },
+   "texto": "ICE Res+3, Cor.Res+3, Berat+1300"
+  },
+  {
+   "id": 52,
+   "nivel": 6,
+   "categoria": "accesorio",
+   "valor": 2268,
+   "bonos": {
+    "dfs": 3,
+    "res_hielo": 3,
+    "res_corrosion": 3,
+    "peso": 1500
+   },
+   "texto": "ICE Res+3, Cor.Res+3, Berat+1500"
+  },
+  {
+   "id": 61,
+   "nivel": 7,
+   "categoria": "accesorio",
+   "valor": 3240,
+   "bonos": {
+    "dfs": 4,
+    "res_hielo": 4,
+    "res_corrosion": 4,
+    "peso": 1700
+   },
+   "texto": "ICE Res+4, Cor.Res+4, Berat+1700"
+  },
+  {
+   "id": 70,
+   "nivel": 8,
+   "categoria": "accesorio",
+   "valor": 4860,
+   "bonos": {
+    "dfs": 4,
+    "res_hielo": 4,
+    "res_corrosion": 4,
+    "peso": 1900
+   },
+   "texto": "ICE Res+4, Cor.Res+4, Berat+1900"
+  },
+  {
+   "id": 79,
+   "nivel": 9,
+   "categoria": "accesorio",
+   "valor": 6480,
+   "bonos": {
+    "dfs": 5,
+    "res_hielo": 5,
+    "res_corrosion": 5,
+    "peso": 2100
+   },
+   "texto": "ICE Res+5, Cor.Res+5, Berat+2100"
+  },
+  {
+   "id": 88,
+   "nivel": 10,
+   "categoria": "accesorio",
+   "valor": 8100,
+   "bonos": {
+    "dfs": 5,
+    "res_hielo": 5,
+    "res_corrosion": 5,
+    "peso": 2200
+   },
+   "texto": "ICE Res+5, Cor.Res+5, Berat+2200"
+  },
+  {
+   "id": 8,
+   "nivel": 1,
+   "categoria": "apariencia",
+   "valor": 81,
+   "bonos": {
+    "vel_fabricacion": 1,
+    "hp": 700,
+    "mp": 700
+   },
+   "texto": "HP MAX+700, MP MAX+700, Manuf.SPD+1"
+  },
+  {
+   "id": 17,
+   "nivel": 2,
+   "categoria": "apariencia",
+   "valor": 162,
+   "bonos": {
+    "vel_fabricacion": 1,
+    "hp": 800,
+    "mp": 800
+   },
+   "texto": "HP MAX+800, MP MAX+800, Manuf.SPD+1"
+  },
+  {
+   "id": 26,
+   "nivel": 3,
+   "categoria": "apariencia",
+   "valor": 270,
+   "bonos": {
+    "vel_fabricacion": 1,
+    "hp": 900,
+    "mp": 900
+   },
+   "texto": "HP MAX+900, MP MAX+900, Manuf.SPD+1"
+  },
+  {
+   "id": 35,
+   "nivel": 4,
+   "categoria": "apariencia",
+   "valor": 486,
+   "bonos": {
+    "vel_fabricacion": 1,
+    "hp": 1000,
+    "mp": 1000
+   },
+   "texto": "HP MAX+1000, MP MAX+1000, Manuf.SPD+1"
+  },
+  {
+   "id": 44,
+   "nivel": 5,
+   "categoria": "apariencia",
+   "valor": 972,
+   "bonos": {
+    "vel_fabricacion": 1,
+    "hp": 1100,
+    "mp": 1100
+   },
+   "texto": "HP MAX+1100, MP MAX+1100, Manuf.SPD+1"
+  },
+  {
+   "id": 53,
+   "nivel": 6,
+   "categoria": "apariencia",
+   "valor": 1512,
+   "bonos": {
+    "vel_fabricacion": 1,
+    "hp": 1200,
+    "mp": 1200
+   },
+   "texto": "HP MAX+1200, MP MAX+1200, Manuf.SPD+1"
+  },
+  {
+   "id": 62,
+   "nivel": 7,
+   "categoria": "apariencia",
+   "valor": 2160,
+   "bonos": {
+    "vel_fabricacion": 1,
+    "hp": 1400,
+    "mp": 1400
+   },
+   "texto": "HP MAX+1400, MP MAX+1400, Manuf.SPD+1"
+  },
+  {
+   "id": 71,
+   "nivel": 8,
+   "categoria": "apariencia",
+   "valor": 3240,
+   "bonos": {
+    "vel_fabricacion": 1,
+    "hp": 1600,
+    "mp": 1600
+   },
+   "texto": "HP MAX+1600, MP MAX+1600, Manuf.SPD+1"
+  },
+  {
+   "id": 80,
+   "nivel": 9,
+   "categoria": "apariencia",
+   "valor": 4320,
+   "bonos": {
+    "vel_fabricacion": 1,
+    "hp": 1800,
+    "mp": 1800
+   },
+   "texto": "HP MAX+1800, MP MAX+1800, Manuf.SPD+1"
+  },
+  {
+   "id": 89,
+   "nivel": 10,
+   "categoria": "apariencia",
+   "valor": 5400,
+   "bonos": {
+    "vel_fabricacion": 1,
+    "hp": 2000,
+    "mp": 2000
+   },
+   "texto": "HP MAX+2000, MP MAX+2000, Manuf.SPD+1"
+  },
+  {
+   "id": 1,
+   "nivel": 1,
+   "categoria": "arma",
+   "valor": 704,
+   "bonos": {
+    "atk": 140,
+    "matk": 70
+   },
+   "texto": "ATK+140, MATK+70"
+  },
+  {
+   "id": 10,
+   "nivel": 2,
+   "categoria": "arma",
+   "valor": 1407,
+   "bonos": {
+    "atk": 160,
+    "matk": 80
+   },
+   "texto": "ATK+160, MATK+80"
+  },
+  {
+   "id": 19,
+   "nivel": 3,
+   "categoria": "arma",
+   "valor": 2345,
+   "bonos": {
+    "atk": 180,
+    "matk": 90
+   },
+   "texto": "ATK+180, MATK+90"
+  },
+  {
+   "id": 28,
+   "nivel": 4,
+   "categoria": "arma",
+   "valor": 4221,
+   "bonos": {
+    "atk": 200,
+    "matk": 100
+   },
+   "texto": "ATK+200, MATK+100"
+  },
+  {
+   "id": 37,
+   "nivel": 5,
+   "categoria": "arma",
+   "valor": 8442,
+   "bonos": {
+    "atk": 240,
+    "matk": 120
+   },
+   "texto": "ATK+240, MATK+120"
+  },
+  {
+   "id": 46,
+   "nivel": 6,
+   "categoria": "arma",
+   "valor": 13132,
+   "bonos": {
+    "atk": 280,
+    "matk": 140
+   },
+   "texto": "ATK+280, MATK+140"
+  },
+  {
+   "id": 55,
+   "nivel": 7,
+   "categoria": "arma",
+   "valor": 18760,
+   "bonos": {
+    "atk": 320,
+    "matk": 160
+   },
+   "texto": "ATK+320, MATK+160"
+  },
+  {
+   "id": 64,
+   "nivel": 8,
+   "categoria": "arma",
+   "valor": 28140,
+   "bonos": {
+    "atk": 360,
+    "matk": 180
+   },
+   "texto": "ATK+360, MATK+180"
+  },
+  {
+   "id": 73,
+   "nivel": 9,
+   "categoria": "arma",
+   "valor": 37520,
+   "bonos": {
+    "atk": 400,
+    "matk": 200
+   },
+   "texto": "ATK+400, MATK+200"
+  },
+  {
+   "id": 82,
+   "nivel": 10,
+   "categoria": "arma",
+   "valor": 46900,
+   "bonos": {
+    "atk": 460,
+    "matk": 230
+   },
+   "texto": "ATK+460, MATK+230"
+  },
+  {
+   "id": 4,
+   "nivel": 1,
+   "categoria": "guantes",
+   "valor": 63,
+   "bonos": {
+    "dfs": 1,
+    "res_rayo": 1,
+    "res_fuego": 1,
+    "critico": 1
+   },
+   "texto": "LTNG Res+1, FIRERes+1, Cri+1"
+  },
+  {
+   "id": 13,
+   "nivel": 2,
+   "categoria": "guantes",
+   "valor": 126,
+   "bonos": {
+    "dfs": 1,
+    "res_rayo": 1,
+    "res_fuego": 1,
+    "critico": 1
+   },
+   "texto": "LTNG Res+1, FIRERes+1, Cri+1"
+  },
+  {
+   "id": 22,
+   "nivel": 3,
+   "categoria": "guantes",
+   "valor": 210,
+   "bonos": {
+    "dfs": 2,
+    "res_rayo": 2,
+    "res_fuego": 2,
+    "critico": 1
+   },
+   "texto": "LTNG Res+2, FIRERes+2, Cri+1"
+  },
+  {
+   "id": 31,
+   "nivel": 4,
+   "categoria": "guantes",
+   "valor": 378,
+   "bonos": {
+    "dfs": 2,
+    "res_rayo": 2,
+    "res_fuego": 2,
+    "critico": 1
+   },
+   "texto": "LTNG Res+2, FIRERes+2, Cri+1"
+  },
+  {
+   "id": 40,
+   "nivel": 5,
+   "categoria": "guantes",
+   "valor": 756,
+   "bonos": {
+    "dfs": 3,
+    "res_rayo": 3,
+    "res_fuego": 3,
+    "critico": 1
+   },
+   "texto": "LTNG Res+3, FIRERes+3, Cri+1"
+  },
+  {
+   "id": 49,
+   "nivel": 6,
+   "categoria": "guantes",
+   "valor": 1176,
+   "bonos": {
+    "dfs": 3,
+    "res_rayo": 3,
+    "res_fuego": 3,
+    "critico": 1
+   },
+   "texto": "LTNG Res+3, FIRERes+3, Cri+1"
+  },
+  {
+   "id": 58,
+   "nivel": 7,
+   "categoria": "guantes",
+   "valor": 1680,
+   "bonos": {
+    "dfs": 4,
+    "res_rayo": 4,
+    "res_fuego": 4,
+    "critico": 1
+   },
+   "texto": "LTNG Res+4, FIRERes+4, Cri+1"
+  },
+  {
+   "id": 67,
+   "nivel": 8,
+   "categoria": "guantes",
+   "valor": 2520,
+   "bonos": {
+    "dfs": 4,
+    "res_rayo": 4,
+    "res_fuego": 4,
+    "critico": 1
+   },
+   "texto": "LTNG Res+4, FIRERes+4, Cri+1"
+  },
+  {
+   "id": 76,
+   "nivel": 9,
+   "categoria": "guantes",
+   "valor": 3360,
+   "bonos": {
+    "dfs": 5,
+    "res_rayo": 5,
+    "res_fuego": 5,
+    "critico": 1
+   },
+   "texto": "LTNG Res+5, FIRERes+5, Cri+1"
+  },
+  {
+   "id": 85,
+   "nivel": 10,
+   "categoria": "guantes",
+   "valor": 4200,
+   "bonos": {
+    "dfs": 5,
+    "res_rayo": 5,
+    "res_fuego": 5,
+    "critico": 1
+   },
+   "texto": "LTNG Res+5, FIRERes+5, Cri+1"
+  },
+  {
+   "id": 6,
+   "nivel": 1,
+   "categoria": "montura",
+   "valor": 420,
+   "bonos": {
+    "velocidad": 1,
+    "vel_recoleccion": 1
+   },
+   "texto": "SPD+1, Coll.SPD+1"
+  },
+  {
+   "id": 15,
+   "nivel": 2,
+   "categoria": "montura",
+   "valor": 840,
+   "bonos": {
+    "velocidad": 1,
+    "vel_recoleccion": 1
+   },
+   "texto": "SPD+1, Coll.SPD+1"
+  },
+  {
+   "id": 24,
+   "nivel": 3,
+   "categoria": "montura",
+   "valor": 1400,
+   "bonos": {
+    "velocidad": 1,
+    "vel_recoleccion": 1
+   },
+   "texto": "SPD+1, Coll.SPD+1"
+  },
+  {
+   "id": 33,
+   "nivel": 4,
+   "categoria": "montura",
+   "valor": 2520,
+   "bonos": {
+    "velocidad": 1,
+    "vel_recoleccion": 1
+   },
+   "texto": "SPD+1, Coll.SPD+1"
+  },
+  {
+   "id": 42,
+   "nivel": 5,
+   "categoria": "montura",
+   "valor": 5040,
+   "bonos": {
+    "velocidad": 1,
+    "vel_recoleccion": 1
+   },
+   "texto": "SPD+1, Coll.SPD+1"
+  },
+  {
+   "id": 51,
+   "nivel": 6,
+   "categoria": "montura",
+   "valor": 7840,
+   "bonos": {
+    "velocidad": 1,
+    "vel_recoleccion": 1
+   },
+   "texto": "SPD+1, Coll.SPD+1"
+  },
+  {
+   "id": 60,
+   "nivel": 7,
+   "categoria": "montura",
+   "valor": 11200,
+   "bonos": {
+    "velocidad": 1,
+    "vel_recoleccion": 1
+   },
+   "texto": "SPD+1, Coll.SPD+1"
+  },
+  {
+   "id": 69,
+   "nivel": 8,
+   "categoria": "montura",
+   "valor": 16800,
+   "bonos": {
+    "velocidad": 1,
+    "vel_recoleccion": 1
+   },
+   "texto": "SPD+1, Coll.SPD+1"
+  },
+  {
+   "id": 78,
+   "nivel": 9,
+   "categoria": "montura",
+   "valor": 22400,
+   "bonos": {
+    "velocidad": 1,
+    "vel_recoleccion": 1
+   },
+   "texto": "SPD+1, Coll.SPD+1"
+  },
+  {
+   "id": 87,
+   "nivel": 10,
+   "categoria": "montura",
+   "valor": 28000,
+   "bonos": {
+    "velocidad": 1,
+    "vel_recoleccion": 1
+   },
+   "texto": "SPD+1, Coll.SPD+1"
+  },
+  {
+   "id": 3,
+   "nivel": 1,
+   "categoria": "ropa",
+   "valor": 159,
+   "bonos": {
+    "dfs": 140,
+    "mdef": 70
+   },
+   "texto": "DEF+140, MDEF+70"
+  },
+  {
+   "id": 12,
+   "nivel": 2,
+   "categoria": "ropa",
+   "valor": 318,
+   "bonos": {
+    "dfs": 160,
+    "mdef": 80
+   },
+   "texto": "DEF+160, MDEF+80"
+  },
+  {
+   "id": 21,
+   "nivel": 3,
+   "categoria": "ropa",
+   "valor": 530,
+   "bonos": {
+    "dfs": 180,
+    "mdef": 90
+   },
+   "texto": "DEF+180, MDEF+90"
+  },
+  {
+   "id": 30,
+   "nivel": 4,
+   "categoria": "ropa",
+   "valor": 954,
+   "bonos": {
+    "dfs": 200,
+    "mdef": 100
+   },
+   "texto": "DEF+200, MDEF+100"
+  },
+  {
+   "id": 39,
+   "nivel": 5,
+   "categoria": "ropa",
+   "valor": 1908,
+   "bonos": {
+    "dfs": 240,
+    "mdef": 120
+   },
+   "texto": "DEF+240, MDEF+120"
+  },
+  {
+   "id": 48,
+   "nivel": 6,
+   "categoria": "ropa",
+   "valor": 2968,
+   "bonos": {
+    "dfs": 280,
+    "mdef": 140
+   },
+   "texto": "DEF+280, MDEF+140"
+  },
+  {
+   "id": 57,
+   "nivel": 7,
+   "categoria": "ropa",
+   "valor": 4240,
+   "bonos": {
+    "dfs": 320,
+    "mdef": 160
+   },
+   "texto": "DEF+320, MDEF+160"
+  },
+  {
+   "id": 66,
+   "nivel": 8,
+   "categoria": "ropa",
+   "valor": 6360,
+   "bonos": {
+    "dfs": 360,
+    "mdef": 180
+   },
+   "texto": "DEF+360, MDEF+180"
+  },
+  {
+   "id": 75,
+   "nivel": 9,
+   "categoria": "ropa",
+   "valor": 8480,
+   "bonos": {
+    "dfs": 400,
+    "mdef": 200
+   },
+   "texto": "DEF+400, MDEF+200"
+  },
+  {
+   "id": 84,
+   "nivel": 10,
+   "categoria": "ropa",
+   "valor": 10600,
+   "bonos": {
+    "dfs": 460,
+    "mdef": 230
+   },
+   "texto": "DEF+460, MDEF+230"
+  },
+  {
+   "id": 2,
+   "nivel": 1,
+   "categoria": "tocado",
+   "valor": 92,
+   "bonos": {
+    "res_con": 1,
+    "res_spr": 1
+   },
+   "texto": "CON Res+1, SPR Res+1"
+  },
+  {
+   "id": 11,
+   "nivel": 2,
+   "categoria": "tocado",
+   "valor": 183,
+   "bonos": {
+    "res_con": 1,
+    "res_spr": 1
+   },
+   "texto": "CON Res+1, SPR Res+1"
+  },
+  {
+   "id": 20,
+   "nivel": 3,
+   "categoria": "tocado",
+   "valor": 305,
+   "bonos": {
+    "res_con": 2,
+    "res_spr": 2
+   },
+   "texto": "CON Res+2, SPR Res+2"
+  },
+  {
+   "id": 29,
+   "nivel": 4,
+   "categoria": "tocado",
+   "valor": 549,
+   "bonos": {
+    "res_con": 2,
+    "res_spr": 2
+   },
+   "texto": "CON Res+2, SPR Res+2"
+  },
+  {
+   "id": 38,
+   "nivel": 5,
+   "categoria": "tocado",
+   "valor": 1098,
+   "bonos": {
+    "res_con": 3,
+    "res_spr": 3
+   },
+   "texto": "CON Res+3, SPR Res+3"
+  },
+  {
+   "id": 47,
+   "nivel": 6,
+   "categoria": "tocado",
+   "valor": 1708,
+   "bonos": {
+    "res_con": 3,
+    "res_spr": 3
+   },
+   "texto": "CON Res+3, SPR Res+3"
+  },
+  {
+   "id": 56,
+   "nivel": 7,
+   "categoria": "tocado",
+   "valor": 2440,
+   "bonos": {
+    "res_con": 4,
+    "res_spr": 4
+   },
+   "texto": "CON Res+4, SPR Res+4"
+  },
+  {
+   "id": 65,
+   "nivel": 8,
+   "categoria": "tocado",
+   "valor": 3660,
+   "bonos": {
+    "res_con": 4,
+    "res_spr": 4
+   },
+   "texto": "CON Res+4, SPR Res+4"
+  },
+  {
+   "id": 74,
+   "nivel": 9,
+   "categoria": "tocado",
+   "valor": 4880,
+   "bonos": {
+    "res_con": 5,
+    "res_spr": 5
+   },
+   "texto": "CON Res+5, SPR Res+5"
+  },
+  {
+   "id": 83,
+   "nivel": 10,
+   "categoria": "tocado",
+   "valor": 6100,
+   "bonos": {
+    "res_con": 5,
+    "res_spr": 5
+   },
+   "texto": "CON Res+5, SPR Res+5"
+  },
+  {
+   "id": 9,
+   "nivel": 1,
+   "categoria": "total",
+   "valor": 1700,
+   "bonos": {
+    "exp": 3,
+    "hp": {
+     "pct": 3
+    },
+    "mp": {
+     "pct": 3
+    }
+   },
+   "texto": "HP MAX+3, MP MAX+3, EXP+3"
+  },
+  {
+   "id": 18,
+   "nivel": 2,
+   "categoria": "total",
+   "valor": 3399,
+   "bonos": {
+    "exp": 3,
+    "hp": {
+     "pct": 3
+    },
+    "mp": {
+     "pct": 3
+    }
+   },
+   "texto": "HP MAX+3, MP MAX+3, EXP+3"
+  },
+  {
+   "id": 27,
+   "nivel": 3,
+   "categoria": "total",
+   "valor": 5665,
+   "bonos": {
+    "exp": 3,
+    "hp": {
+     "pct": 2
+    },
+    "mp": {
+     "pct": 2
+    }
+   },
+   "texto": "HP MAX+2, MP MAX+2, EXP+3"
+  },
+  {
+   "id": 36,
+   "nivel": 4,
+   "categoria": "total",
+   "valor": 10197,
+   "bonos": {
+    "exp": 3,
+    "hp": {
+     "pct": 1
+    },
+    "mp": {
+     "pct": 1
+    }
+   },
+   "texto": "HP MAX+1, MP MAX+1, EXP+3"
+  },
+  {
+   "id": 45,
+   "nivel": 5,
+   "categoria": "total",
+   "valor": 20394,
+   "bonos": {
+    "exp": 3,
+    "hp": {
+     "pct": 1
+    },
+    "mp": {
+     "pct": 1
+    }
+   },
+   "texto": "HP MAX+1, MP MAX+1, EXP+3"
+  },
+  {
+   "id": 54,
+   "nivel": 6,
+   "categoria": "total",
+   "valor": 31724,
+   "bonos": {
+    "exp": 3,
+    "hp": {
+     "pct": 1
+    },
+    "mp": {
+     "pct": 1
+    }
+   },
+   "texto": "HP MAX+1, MP MAX+1, EXP+3"
+  },
+  {
+   "id": 63,
+   "nivel": 7,
+   "categoria": "total",
+   "valor": 45320,
+   "bonos": {
+    "exp": 3,
+    "hp": {
+     "pct": 1
+    },
+    "mp": {
+     "pct": 1
+    }
+   },
+   "texto": "HP MAX+1, MP MAX+1, EXP+3"
+  },
+  {
+   "id": 72,
+   "nivel": 8,
+   "categoria": "total",
+   "valor": 67980,
+   "bonos": {
+    "exp": 3,
+    "hp": {
+     "pct": 1
+    },
+    "mp": {
+     "pct": 1
+    }
+   },
+   "texto": "HP MAX+1, MP MAX+1, EXP+3"
+  },
+  {
+   "id": 81,
+   "nivel": 9,
+   "categoria": "total",
+   "valor": 90640,
+   "bonos": {
+    "exp": 3,
+    "hp": {
+     "pct": 1
+    },
+    "mp": {
+     "pct": 1
+    }
+   },
+   "texto": "HP MAX+1, MP MAX+1, EXP+3"
+  },
+  {
+   "id": 90,
+   "nivel": 10,
+   "categoria": "total",
+   "valor": 113300,
+   "bonos": {
+    "exp": 3,
+    "hp": {
+     "pct": 1
+    },
+    "mp": {
+     "pct": 1
+    }
+   },
+   "texto": "HP MAX+1, MP MAX+1, EXP+3"
+  },
+  {
+   "id": 5,
+   "nivel": 1,
+   "categoria": "zapatos",
+   "valor": 60,
+   "bonos": {
+    "rigor": 7,
+    "agilidad": 7
+   },
+   "texto": "HIT+7, AGI+7"
+  },
+  {
+   "id": 14,
+   "nivel": 2,
+   "categoria": "zapatos",
+   "valor": 120,
+   "bonos": {
+    "rigor": 8,
+    "agilidad": 8
+   },
+   "texto": "HIT+8, AGI+8"
+  },
+  {
+   "id": 23,
+   "nivel": 3,
+   "categoria": "zapatos",
+   "valor": 200,
+   "bonos": {
+    "rigor": 8,
+    "agilidad": 8
+   },
+   "texto": "HIT+8, AGI+8"
+  },
+  {
+   "id": 32,
+   "nivel": 4,
+   "categoria": "zapatos",
+   "valor": 360,
+   "bonos": {
+    "rigor": 12,
+    "agilidad": 12
+   },
+   "texto": "HIT+12, AGI+12"
+  },
+  {
+   "id": 41,
+   "nivel": 5,
+   "categoria": "zapatos",
+   "valor": 720,
+   "bonos": {
+    "rigor": 14,
+    "agilidad": 14
+   },
+   "texto": "HIT+14, AGI+14"
+  },
+  {
+   "id": 50,
+   "nivel": 6,
+   "categoria": "zapatos",
+   "valor": 1120,
+   "bonos": {
+    "rigor": 16,
+    "agilidad": 16
+   },
+   "texto": "HIT+16, AGI+16"
+  },
+  {
+   "id": 59,
+   "nivel": 7,
+   "categoria": "zapatos",
+   "valor": 1600,
+   "bonos": {
+    "rigor": 18,
+    "agilidad": 18
+   },
+   "texto": "HIT+18, AGI+18"
+  },
+  {
+   "id": 68,
+   "nivel": 8,
+   "categoria": "zapatos",
+   "valor": 2400,
+   "bonos": {
+    "rigor": 20,
+    "agilidad": 20
+   },
+   "texto": "HIT+20, AGI+20"
+  },
+  {
+   "id": 77,
+   "nivel": 9,
+   "categoria": "zapatos",
+   "valor": 3200,
+   "bonos": {
+    "rigor": 22,
+    "agilidad": 22
+   },
+   "texto": "HIT+22, AGI+22"
+  },
+  {
+   "id": 86,
+   "nivel": 10,
+   "categoria": "zapatos",
+   "valor": 4000,
+   "bonos": {
+    "rigor": 24,
+    "agilidad": 24
+   },
+   "texto": "HIT+24, AGI+24"
+  }
+ ]
+}
