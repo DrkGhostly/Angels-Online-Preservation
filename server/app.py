@@ -3602,7 +3602,11 @@ class Servidor:
                             pet_x = f_pet['x']
                             pet_y = f_pet['y']
                             pet_targ = getattr(ses, 'pet_objetivo', None)
-                            if pet_targ and (not getattr(pet_targ, 'vivo', False) or pet_targ.hp <= 0):
+                            # El encantado cuenta como muerto para la
+                            # mascota: es aliado y no se le pega.
+                            if pet_targ and (not getattr(pet_targ, 'vivo', False)
+                                             or pet_targ.hp <= 0
+                                             or getattr(pet_targ, 'encantado', False)):
                                 pet_targ = None
                                 ses.pet_objetivo = None
 
@@ -4959,9 +4963,22 @@ class Servidor:
 
                 if getattr(ses, 'invocacion', None) and ses.invocacion.get('objetivo') == m:
                     ses.invocacion['objetivo'] = None
+                if getattr(ses, 'invocacion2', None) and ses.invocacion2.get('objetivo') == m:
+                    ses.invocacion2['objetivo'] = None
                 for _ob in (ses.monstruos or {}).values():
                     if getattr(_ob, 'charmed_objetivo', None) == m:
                         _ob.charmed_objetivo = None
+                # Y SOLTARLO DE QUIEN YA LO TENIA APUNTADO.
+                #
+                # Los filtros de "no ataques a un encantado" miran el
+                # estado al ELEGIR blanco, asi que si el jugador o la
+                # mascota ya lo tenian fijado antes de encantarlo seguian
+                # dandole. Por eso se veia seguir pegandole al bicho recien
+                # encantado aunque no se pudiera elegir de nuevo.
+                if getattr(ses, 'objetivo_actual', None) == m.entity_id:
+                    ses.objetivo_actual = None
+                if getattr(ses, 'pet_objetivo', None) == m:
+                    ses.pet_objetivo = None
 
                 ef = mag.get('efecto', 64)
                 cast_time = _cb.calcular_cast_time(
