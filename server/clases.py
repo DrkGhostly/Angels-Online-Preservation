@@ -461,17 +461,31 @@ def class_id(skills_input):
 #
 # Las seis elegidas van primero y el resto detras, como en la captura.
 #
-# EL ORDEN NO PUEDE PASAR DE SEIS. La lista del panel de personaje es el
-# widget 432 de wnd01.xml y esta declarada con rows="6" en los VEINTICINCO
-# paks, del data1 al update26: nunca cambio. Al mandar una septima rama con
-# orden=7 el panel se desbordaba y la fila sexta salia en blanco y al
-# 100,00% -- que es lo que se veia con Vestment cuando Earth entro de
-# septima. Las ramas de mas siguen en el arbol con su nivel y su
-# experiencia de verdad (se entrenan y se ven en la lista completa), pero
-# no pelean por una fila que no existe.
-# Cuantas filas tiene de verdad la lista del panel (widget 432, rows="6").
-FILAS_PANEL = 6
-
+# EL ORDEN DE LOS REGISTROS IMPORTA, y mucho. El panel de personaje tiene
+# NUEVE filas de verdad (wnd01.xml: las seis de siempre, 318..335, y las
+# tres nuevas 27663..27671 con sus candados "Reach Supreme Lv"), pero el
+# cliente NO dibuja el registro i en la fila i. Dibuja en la fila
+#
+#     fila = i + sub_654F90(i)
+#
+# y ese desplazamiento sale de QUE RAMA es, no de donde esta (0x646370 y
+# 0x654F90 del binario):
+#
+#   - una rama cualquiera con id > 11 baja una fila por cada una de estas
+#     que el personaje lleve: la 30 (Alchemy) si su id esta entre 12 y 29,
+#     y la 35 (Avatar) y la 36 (Assault) si su id esta entre 20 y 34;
+#   - las ramas 30, 35 y 36 no se quedan donde estan: se meten en la fila
+#     de la PRIMERA rama de su grupo y empujan al resto hacia abajo.
+#
+# O sea que el cliente da por hecho que los registros vienen ORDENADOS POR
+# ID con la 30, la 35 y la 36 al final, que es como venian en la captura.
+# Mandandolos en el orden en que el jugador los eligio, dos ramas caian en
+# la misma fila y otra se quedaba sin nadie: por eso Vestment salia dos
+# veces al principio y despues la fila sexta se quedo en blanco y al
+# 100,00%. El paquete estaba bien; lo que estaba mal era el orden.
+#
+# ordenar_para_el_panel() deja el orden que el cliente espera y ademas lo
+# COMPRUEBA emulando su cuenta, que es lo unico que de verdad vale.
 ARBOL = pathlib.Path(__file__).parent / 'plantillas' / 'arbol_skills.json'
 _ARBOL = None
 
@@ -714,6 +728,94 @@ def exp_requerida_skill(nivel: int, sid: int = 1) -> int:
     return _cb.exp_para_skill(nivel, sid)
 
 
+# Las tres que el cliente trata aparte: Alchemy, Avatar y Assault.
+RAMAS_AL_FINAL = (30, 35, 36)
+
+
+def _fila_del_cliente(sids, i, llevadas):
+    """Lo que devuelve sub_654F90 para el registro i, mas i.
+
+    Copia literal de 0x654F90. `sids` son los ids de los nueve primeros
+    registros del arbol y `llevadas` las ramas que tiene el personaje.
+    """
+    v9 = sids[i] if i < len(sids) else 0
+    tope = len(sids)
+    if not 0 < tope < 9:
+        tope = 9
+    if v9 == 30:
+        for i2 in range(min(tope, len(sids))):
+            if sids[i2] > 11:
+                return i2
+    elif v9 == 35:
+        for j in range(min(tope, len(sids))):
+            if sids[j] >= 20:
+                return j + (1 if 30 in llevadas else 0)
+    elif v9 == 36:
+        for k in range(min(tope, len(sids))):
+            if sids[k] >= 20:
+                return (k + (1 if 30 in llevadas else 0)
+                        + (1 if 35 in llevadas else 0))
+    else:
+        d = 0
+        if v9 > 11:
+            if v9 < 30 and 30 in llevadas:
+                d = 1
+            if 20 <= v9 < 35 and 35 in llevadas:
+                d += 1
+            if 20 <= v9 < 35 and 36 in llevadas:
+                d += 1
+        return i + d
+    return i
+
+
+def _filas_limpias(sids, llevadas, cuantas):
+    """True si las `cuantas` elegidas caen en filas 0..cuantas-1 sin repetir."""
+    filas = [_fila_del_cliente(sids, i, llevadas) for i in range(cuantas)]
+    return sorted(filas) == list(range(cuantas)), filas
+
+
+def ordenar_para_el_panel(elegidas, resto):
+    """El orden que el cliente espera: por id, con 30, 35 y 36 al final.
+
+    Devuelve (elegidas_ordenadas, filas) donde filas[k] es la fila de
+    pantalla en la que el cliente va a dibujar la elegida k. Si el orden
+    canonico no cuadra se prueban otros, porque una fila repetida deja a
+    otra en blanco y eso es justo el bug que se quiere evitar.
+    """
+    llevadas = set(elegidas)
+    normales = sorted(s for s in elegidas if s not in RAMAS_AL_FINAL)
+    aparte = sorted(s for s in elegidas if s in RAMAS_AL_FINAL)
+    n = len(elegidas)
+
+    candidatos = [normales + aparte]
+    if n != len(candidatos[0]):
+        candidatos = [list(elegidas)]
+    candidatos.append(sorted(elegidas))
+    candidatos.append(list(elegidas))
+
+    for cand in candidatos:
+        sids = (cand + list(resto))[:9]
+        ok, filas = _filas_limpias(sids, llevadas, n)
+        if ok:
+            return cand, filas
+
+    # Ninguno de los de siempre sirve: se buscan a lo bruto. Son nueve como
+    # mucho, y el resultado se queda en cache por combinacion de ramas.
+    import itertools
+    for cand in itertools.permutations(normales + aparte):
+        sids = (list(cand) + list(resto))[:9]
+        ok, filas = _filas_limpias(sids, llevadas, n)
+        if ok:
+            return list(cand), filas
+    # Nada cuadra: se manda el canonico igual, que es el menos malo.
+    cand = normales + aparte
+    return cand, [_fila_del_cliente((cand + list(resto))[:9], i, llevadas)
+                  for i in range(n)]
+
+
+_CACHE_ORDEN = {}
+
+
 def arbol(ids, banco=None) -> bytes:
     """Sub-mensaje 0x001C con las 36 habilidades, su nivel y su experiencia.
 
@@ -743,8 +845,20 @@ def arbol(ids, banco=None) -> bytes:
         else:
             niveles.setdefault(item, 1)
             lista_ids.append(item)
-    elegidas = [i for i in lista_ids if i in a['regs']]
+    elegidas = [i for i in lista_ids if i in a['regs']][:9]
     resto = [i for i in sorted(a['regs']) if i not in elegidas]
+
+    # El orden que el cliente sabe leer, y la fila en la que va a dibujar
+    # cada una. El campo de orden lleva LA FILA, no el puesto en la lista:
+    # asi el candado de las filas 7, 8 y 9 (que solo se quita si el orden
+    # llega a 6) nunca tapa a una rama que si esta puesta.
+    clave = tuple(elegidas)
+    if clave in _CACHE_ORDEN:
+        elegidas, filas = _CACHE_ORDEN[clave]
+    else:
+        elegidas, filas = ordenar_para_el_panel(elegidas, resto)
+        _CACHE_ORDEN[clave] = (elegidas, filas)
+
     salida = bytearray(a['cabecera'])
     for puesto, sid in enumerate(elegidas + resto):
         r = bytearray(a['regs'][sid])
@@ -755,7 +869,7 @@ def arbol(ids, banco=None) -> bytes:
         struct.pack_into('<H', r, 3, nv)
         struct.pack_into('<I', r, 5, sexp & 0xFFFFFFFF)
         struct.pack_into('<I', r, 9, req & 0xFFFFFFFF)
-        r[13] = puesto + 1 if puesto < min(len(elegidas), FILAS_PANEL) else 0
+        r[13] = (filas[puesto] + 1) if puesto < len(elegidas) else 0
         salida += r
     return struct.pack('<H', 0x001C) + bytes(salida)
 

@@ -98,19 +98,42 @@ def test_rama_entiende_los_nombres_de_dos_palabras():
         assert app._gm_parsear(malo)[0] == 'err', malo
 
 
-def test_el_panel_nunca_pasa_de_seis_filas():
-    """El widget 432 de wnd01.xml es rows="6" en los veinticinco paks."""
+def test_el_panel_no_deja_filas_en_blanco():
+    """Las ramas tienen que caer en filas 0..n-1, sin huecos ni repetidas.
+
+    El cliente (0x646370 + 0x654F90) no dibuja el registro i en la fila i:
+    desplaza segun QUE rama sea y segun cuales lleve el personaje. Mandando
+    los registros en el orden en que el jugador eligio, dos caian en la
+    misma fila y otra se quedaba sin nadie -- la fila en blanco al 100%.
+    """
     import sys, pathlib as _pl
     sys.path.insert(0, str(_pl.Path(__file__).resolve().parent.parent / 'server'))
     import clases
-    ids = [(36, 41, 194), (5, 301, 130000), (1, 291, 31538), (6, 20, 85),
-           (8, 301, 110000), (34, 301, 90000), (4, 291, 419538), (7, 50, 10)]
     a = clases._arbol()
-    cab = len(a['cabecera'])
-    c = clases.arbol(ids)[2:]
-    ordenes = [c[cab + i * 14 + 13] for i in range((len(c) - cab) // 14)]
-    puestos = sorted(o for o in ordenes if o)
-    assert puestos == [1, 2, 3, 4, 5, 6], puestos
+    todos = sorted(a['regs'])
+    casos = [
+        [9, 12, 13, 15, 16, 33],          # el Swordsman de la captura
+        [36, 5, 1, 7, 8, 34],             # Karmav3 con sus seis
+        [36, 5, 1, 6, 8, 34, 4],          # Karmav3 con la septima
+        [35, 30, 34, 1, 5, 9],            # Avatar y Alchemy juntos
+        [1, 4, 5, 6, 8, 34, 36, 20, 30],  # las nueve
+    ]
+    for ids in casos:
+        resto = [i for i in todos if i not in ids]
+        _, filas = clases.ordenar_para_el_panel(ids, resto)
+        assert sorted(filas) == list(range(len(ids))), (ids, filas)
+
+
+def test_el_orden_del_swordsman_es_el_de_la_captura():
+    import sys, pathlib as _pl
+    sys.path.insert(0, str(_pl.Path(__file__).resolve().parent.parent / 'server'))
+    import clases
+    a = clases._arbol()
+    ids = [9, 12, 13, 15, 16, 33]
+    resto = [i for i in sorted(a['regs']) if i not in ids]
+    orden, filas = clases.ordenar_para_el_panel(ids, resto)
+    assert orden == [9, 12, 13, 15, 16, 33], orden
+    assert filas == [0, 1, 2, 3, 4, 5], filas
 
 
 if __name__ == '__main__':
