@@ -1,5 +1,5 @@
 {
- "_nota": "NPC, monstruos y recursos del Angel Lyceum (stage 41), de dos capturas fusionadas por entity_id. La separacion entre NPC y monstruo se hace contra la tabla monster de content.db, NO por el campo klass: hay NPC con klass distinto de 200, como Bao Clerk. Se quitan los monstruos a nueve tiles o menos de un NPC, porque las zonas de NPC no tienen enemigos. Los 0x0001 de las capturas son otros jugadores reales y no se guardan.",
+ "_nota": "NPC, monstruos y recursos del Angel Lyceum (stage 41), de dos capturas fusionadas por entity_id. La separacion entre NPC y monstruo se hace contra la tabla monster de content.db, NO por el campo klass: hay NPC con klass distinto de 200, como Bao Clerk. Se quitan los monstruos a nueve tiles o menos de un NPC, porque las zonas de NPC no tienen enemigos. Los 0x0001 de las capturas son otros jugadores reales y no se guardan. | Seis NPC fijos anadidos el 06/10/2026 desde los sp_*.xml (tools/npcs_de_sp_xml.py): Hestia, Voucher Angel, Scrollmaker, Astrologer y Gear Clerk con su casilla y su msgid. Fortunia no la coloca ningun sp_*.xml y su casilla (174,82) la dio el usuario.",
  "stage": 41,
  "spawns": [
   {
@@ -1597,6 +1597,84 @@
     108
    ],
    "hex": "8e01000000000000870000006c0000004c696c79000000000000000000000000000039a4000007000100000003070008800000000000000000000000000000"
+  },
+  {
+   "entity_id": 401,
+   "nombre": "Fortunia",
+   "npc_type": 8814,
+   "klass": 200,
+   "monstruo": false,
+   "tile": [
+    174,
+    82
+   ],
+   "msgid": 0,
+   "hex": "9101000001000000ae00000052000000466f7274756e696100000000000000000005429c00000000c8000000006e2200800c00000000000000000000000000"
+  },
+  {
+   "entity_id": 402,
+   "nombre": "Hestia",
+   "npc_type": 11119,
+   "klass": 200,
+   "monstruo": false,
+   "tile": [
+    153,
+    88
+   ],
+   "msgid": 514888,
+   "hex": "92010000010000009900000058000000486573746961000000000000000000000005fc9e00000000c8000000006f2b00800c00000000000000000000000000"
+  },
+  {
+   "entity_id": 403,
+   "nombre": "Voucher Angel",
+   "npc_type": 14334,
+   "klass": 200,
+   "monstruo": false,
+   "tile": [
+    181,
+    98
+   ],
+   "msgid": 507715,
+   "hex": "9301000001000000b500000062000000566f756368657220416e67656c0000000005699c00000000c800000000fe3700800c00000000000000000000000000"
+  },
+  {
+   "entity_id": 404,
+   "nombre": "Scrollmaker",
+   "npc_type": 14888,
+   "klass": 200,
+   "monstruo": false,
+   "tile": [
+    169,
+    71
+   ],
+   "msgid": 513261,
+   "hex": "9401000001000000a9000000470000005363726f6c6c6d616b657200000000000005c79e00000000c800000000283a00800c00000000000000000000000000"
+  },
+  {
+   "entity_id": 405,
+   "nombre": "Astrologer",
+   "npc_type": 14701,
+   "klass": 200,
+   "monstruo": false,
+   "tile": [
+    144,
+    107
+   ],
+   "msgid": 142535,
+   "hex": "9501000001000000900000006b000000417374726f6c6f6765720000000000000005e69d00000000c8000000006d3900800c00000000000000000000000000"
+  },
+  {
+   "entity_id": 406,
+   "nombre": "Gear Clerk",
+   "npc_type": 14319,
+   "klass": 200,
+   "monstruo": false,
+   "tile": [
+    170,
+    93
+   ],
+   "msgid": 505823,
+   "hex": "9601000001000000aa0000005d0000004765617220436c65726b00000000000000056e9c00000000c800000000ef3700800c00000000000000000000000000"
   }
  ],
  "recursos": [

@@ -1359,6 +1359,40 @@ def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
                         acciones=[1000088, 0])[2:],
         ]
 
+    # --- Los fijos del Lyceum (stage 41) ---
+    # Sacados de los sp_*.xml de los paks (tools/npcs_de_sp_xml.py), que
+    # son los unicos archivos del cliente que dicen DONDE va cada NPC y con
+    # que linea abre:
+    #
+    #     <npc id="11119" msgid="514888" map="41" x="153" y="88" dir="下"/>
+    #
+    # Ojo: el msgid NO siempre es el saludo. En el Gear Clerk apunta a una
+    # OPCION ("Skills") y el saludo es el 505825; en el Scrollmaker si es
+    # el saludo. Hay que leer el bloque, no fiarse del numero.
+    if stage == 41:
+        if nombre == 'Hestia':
+            # 514888 saluda, 514889/514890 son sus dos opciones. Detras
+            # viene el Angel Training Quest y el Hestia Gift Coupon.
+            return [armar_linea(514888, npc_val or 4, [514889, 514890])[2:]]
+        if nombre == 'Scrollmaker':
+            # El de los Arcane Scraps: cambia fragmentos por pergaminos o
+            # por habilidades (513265 y 513266), que es el que faltaba.
+            return [armar_linea(513261, npc_val or 4, [513262, 513263])[2:]]
+        if nombre == 'Gear Clerk':
+            # El saludo es el 505825; el 505823 que trae sp_gear_clerk.xml
+            # es una de las opciones, no la linea de apertura.
+            return [armar_linea(505825, npc_val or 4,
+                                [505822, 505823, 505824, 505826])[2:]]
+        if nombre == 'Astrologer':
+            return [armar_linea(142535, npc_val or 4, [142536])[2:]]
+        if nombre == 'Voucher Angel':
+            # Vende los dos Angelic Voucher, el de 100 y el de 10 millones
+            # (items 42399 y 42400). Los dos se compran y se venden al
+            # MISMO precio, asi que sirven para guardar oro sin perderlo,
+            # que es lo que el banco no deja hacer. La tienda es la 159 de
+            # shop.xml, que trae exactamente esos dos y nada mas.
+            return [armar_linea(507715, npc_val or 4, [5190, 5191])[2:]]
+
     # --- Clank Oasis (407) y Commercial Street (419) ---
     # Los dos ultimos mapas de ALO TW, tambien sin captura. Las lineas
     # salen de msg.xml: Clank Oasis en 516648-516657 y Commercial Street
@@ -1519,6 +1553,11 @@ RESPUESTAS = {
 
 # Mapeo por nombre de NPC a su Shop ID correspondiente
 TIENDAS_POR_NOMBRE = {
+    # El Voucher Angel del Lyceum: tienda 159, los dos Angelic Voucher.
+    # Va por NOMBRE y no por opcion: su opcion es la 5190, la generica
+    # de 'quiero ver tus cosas', que apunta a la tienda 1. El nombre se
+    # mira antes que la opcion, asi que gana este.
+    'Voucher Angel': 159,
     # --- Whitefang Village (Stage 288) ---
     'Vulcan Magic Dev': 160,
     'Vulcan Melee Dev': 161,
