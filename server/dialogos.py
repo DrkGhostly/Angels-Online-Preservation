@@ -1385,6 +1385,22 @@ def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
                                 [505822, 505823, 505824, 505826])[2:]]
         if nombre == 'Astrologer':
             return [armar_linea(142535, npc_val or 4, [142536])[2:]]
+        if nombre == 'Fortunia':
+            # La cambiadora de vales. Su bloque es el 504131-504141:
+            # saluda y ofrece cambiar vales o Convention Tickets, y detras
+            # vienen las categorias (armas, robots, muebles, pergaminos V,
+            # gemas...).
+            #
+            # OJO CON EL TEXTO: el id 504131 NO dice lo mismo en todos los
+            # paks. En UPDATE8 es "Howdy! Name's Fortunia...", en UPDATE6 y
+            # UPDATE7 es un NPC del Huevo, y desde UPDATE9 en adelante es
+            # "Hi, I'm Pasqua". Manda el pak mas nuevo, asi que el cliente
+            # de hoy la hace presentarse como Pasqua aunque el NPC siga
+            # llamandose Fortunia en npc.xml, en los 26 updates.
+            #
+            # Las opciones y toda la estructura son las mismas en los dos,
+            # solo cambia la redaccion.
+            return [armar_linea(504131, npc_val or 4, [504132, 504133])[2:]]
         if nombre == 'Voucher Angel':
             # Vende los dos Angelic Voucher, el de 100 y el de 10 millones
             # (items 42399 y 42400). Los dos se compran y se venden al
