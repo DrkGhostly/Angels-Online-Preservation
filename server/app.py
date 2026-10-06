@@ -905,10 +905,15 @@ def _gm_parsear(texto: str):
         # cliente: el servidor no comprueba nada al recibir el 0x002F
         # contenedor 10, acepta la pareja que le manden. Desde aqui se
         # elige sin pasar por el selector.
-        if len(partes) < 3:
+        # OJO: los nombres de rama llevan espacios ("Staff Hit", "Eagle
+        # Eye"), asi que no sirve coger partes[1] y partes[2]. Se parte
+        # probando todos los cortes, en skills.partir_argumentos_rama.
+        import skills as _sk_arg
+        _args = _sk_arg.partir_argumentos_rama(' '.join(partes[1:]))
+        if _args is None:
             return ('err', 'usage: /rama <fuera|add> <dentro>   '
                            '(por nombre o por numero)')
-        return ('rama', partes[1], partes[2])
+        return ('rama', _args[0], _args[1])
     if cmd in ('estacion', 'season', 'modo'):
         if len(partes) < 2:
             return ('err', 'usage: /estacion <normal|navidad|halloween|sakura|verano>')

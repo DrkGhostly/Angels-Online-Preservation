@@ -78,6 +78,41 @@ def test_una_letra_suelta_no_es_comando():
         assert app._gm_texto(b'/' + letra.encode('ascii') + b'\x00') is not None, letra
 
 
+def test_rama_entiende_los_nombres_de_dos_palabras():
+    """"Staff Hit" y "Eagle Eye" llevan espacio.
+
+    El parser partia por espacios y cogia partes[1] y partes[2], asi que
+    "rama Staff Hit Earth" intentaba cambiar "Staff" por "Hit" y
+    "rama Earth" soltaba el cartel de uso aunque fuera correcto.
+    """
+    casos = {
+        'rama Hit Meditate': ('rama', 'Hit', 'Meditate'),
+        'rama Staff Hit Earth': ('rama', 'Staff Hit', 'Earth'),
+        'rama Eagle Eye Staff Hit': ('rama', 'Eagle Eye', 'Staff Hit'),
+        'rama add Eagle Eye': ('rama', 'add', 'Eagle Eye'),
+        '/rama 34 4': ('rama', '34', '4'),
+    }
+    for texto, esperado in casos.items():
+        assert app._gm_parsear(texto) == esperado, texto
+    for malo in ('rama Earth', 'rama', 'rama vaya cosa'):
+        assert app._gm_parsear(malo)[0] == 'err', malo
+
+
+def test_el_panel_nunca_pasa_de_seis_filas():
+    """El widget 432 de wnd01.xml es rows="6" en los veinticinco paks."""
+    import sys, pathlib as _pl
+    sys.path.insert(0, str(_pl.Path(__file__).resolve().parent.parent / 'server'))
+    import clases
+    ids = [(36, 41, 194), (5, 301, 130000), (1, 291, 31538), (6, 20, 85),
+           (8, 301, 110000), (34, 301, 90000), (4, 291, 419538), (7, 50, 10)]
+    a = clases._arbol()
+    cab = len(a['cabecera'])
+    c = clases.arbol(ids)[2:]
+    ordenes = [c[cab + i * 14 + 13] for i in range((len(c) - cab) // 14)]
+    puestos = sorted(o for o in ordenes if o)
+    assert puestos == [1, 2, 3, 4, 5, 6], puestos
+
+
 if __name__ == '__main__':
     fallos = 0
     for nombre, fn in sorted(globals().items()):

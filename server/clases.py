@@ -460,6 +460,18 @@ def class_id(skills_input):
 #     +13  U8  orden: 1..6 en las seis elegidas, 0 en el resto
 #
 # Las seis elegidas van primero y el resto detras, como en la captura.
+#
+# EL ORDEN NO PUEDE PASAR DE SEIS. La lista del panel de personaje es el
+# widget 432 de wnd01.xml y esta declarada con rows="6" en los VEINTICINCO
+# paks, del data1 al update26: nunca cambio. Al mandar una septima rama con
+# orden=7 el panel se desbordaba y la fila sexta salia en blanco y al
+# 100,00% -- que es lo que se veia con Vestment cuando Earth entro de
+# septima. Las ramas de mas siguen en el arbol con su nivel y su
+# experiencia de verdad (se entrenan y se ven en la lista completa), pero
+# no pelean por una fila que no existe.
+# Cuantas filas tiene de verdad la lista del panel (widget 432, rows="6").
+FILAS_PANEL = 6
+
 ARBOL = pathlib.Path(__file__).parent / 'plantillas' / 'arbol_skills.json'
 _ARBOL = None
 
@@ -743,7 +755,7 @@ def arbol(ids, banco=None) -> bytes:
         struct.pack_into('<H', r, 3, nv)
         struct.pack_into('<I', r, 5, sexp & 0xFFFFFFFF)
         struct.pack_into('<I', r, 9, req & 0xFFFFFFFF)
-        r[13] = puesto + 1 if puesto < len(elegidas) else 0
+        r[13] = puesto + 1 if puesto < min(len(elegidas), FILAS_PANEL) else 0
         salida += r
     return struct.pack('<H', 0x001C) + bytes(salida)
 

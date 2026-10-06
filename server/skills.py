@@ -304,3 +304,51 @@ def nivel_de_magia(magic_id: int) -> int:
         return lv
     except Exception:
         return 1
+
+
+# ------------------------------------------------- nombres de rama en comandos
+# Hace falta porque los nombres LLEVAN ESPACIOS: "Staff Hit" y "Eagle Eye" son
+# dos palabras. El comando /rama partia por espacios y cogia partes[1] y
+# partes[2], asi que "rama Staff Hit Earth" acababa intentando cambiar "Staff"
+# por "Hit", y "rama Hit Staff Hit" se quedaba en dos trozos y soltaba el
+# cartel de uso. Aqui se parte probando TODOS los cortes y quedandose con el
+# que deja dos nombres de rama de verdad.
+_ALIAS_ANADIR = ('add', 'anadir', 'añadir', 'mas', 'más', '+')
+
+
+def numero_de_rama(txt) -> int:
+    """El id de una rama por numero o por nombre, o 0."""
+    t = str(txt or '').strip()
+    if not t:
+        return 0
+    if t.isdigit():
+        n = int(t)
+        return n if n in NOMBRE_RAMA else 0
+    tl = ' '.join(t.lower().split())
+    for sid, nom in NOMBRE_RAMA.items():
+        if nom.lower() == tl:
+            return sid
+    for sid, nom in NOMBRE_RAMA.items():
+        if nom.lower().startswith(tl):
+            return sid
+    return 0
+
+
+def partir_argumentos_rama(resto: str):
+    """('add', dentro) o (fuera, dentro) de lo que sigue a /rama, o None."""
+    partes = (resto or '').split()
+    if not partes:
+        return None
+    if partes[0].lower() in _ALIAS_ANADIR:
+        dentro = ' '.join(partes[1:]).strip()
+        return ('add', dentro) if numero_de_rama(dentro) else None
+    if len(partes) < 2:
+        return None
+    # Se prueban todos los cortes. Se prefiere el que parte mas a la
+    # izquierda y deja las dos mitades siendo ramas conocidas.
+    for corte in range(1, len(partes)):
+        izq = ' '.join(partes[:corte])
+        der = ' '.join(partes[corte:])
+        if numero_de_rama(izq) and numero_de_rama(der):
+            return (izq, der)
+    return None
