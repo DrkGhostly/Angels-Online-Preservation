@@ -694,11 +694,58 @@ class Monstruo:
 
 
 
-def botin(nivel_monstruo: int = 1) -> int:
-    """Cuanto oro suelta. Aplica el multiplicador de configuracion."""
+_ORO_MONSTRUOS = None
+
+
+def _tabla_oro() -> dict:
+    """El oro por monstruo y por tramo, de plantillas/oro_monstruos.json."""
+    global _ORO_MONSTRUOS
+    if _ORO_MONSTRUOS is None:
+        f = pathlib.Path(__file__).parent / 'plantillas' / 'oro_monstruos.json'
+        try:
+            _ORO_MONSTRUOS = json.loads(f.read_text(encoding='utf-8'))
+        except Exception:
+            _ORO_MONSTRUOS = {'por_monstruo': {}, 'por_tramo': {}}
+    return _ORO_MONSTRUOS
+
+
+def botin(nivel_monstruo: int = 1, npc_type: int = 0) -> int:
+    """Cuanto oro suelta ese monstruo.
+
+    Daba `random.randint(3, 8)` para TODOS, sin mirar cual era ni de que
+    nivel: un bicho de Bearscape soltaba lo mismo que un Slarm del Lyceum.
+
+    Ahora sale de serv_drop.xml, que trae por cada tabla de drop el oro
+    medio (平均金錢) y cuanto varia (金錢變數). Hay 1.595 monstruos con su
+    dato propio; el resto -- casi todo por encima del nivel 200, que es
+    donde se acaba ese archivo -- usa la mediana de su tramo de diez
+    niveles, y por arriba se extrapola. Ver tools/oro_de_monstruos.py.
+    """
     import configuracion
-    base = random.randint(3, 8)
-    return max(1, int(round(base * configuracion.TASA_ORO_BASE)))
+    t = _tabla_oro()
+    medio = var = 0
+    fila = t.get('por_monstruo', {}).get(str(int(npc_type or 0)))
+    if fila:
+        medio, var = int(fila[0]), int(fila[1] if len(fila) > 1 else 0)
+    else:
+        # Tope al nivel: en karang_desert hay un monstruo con 4.294.967.295
+        # (0xFFFFFFFF), que es un dato corrupto de la plantilla. Sin esto
+        # caia en el ultimo tramo y soltaba casi dos millones de oro.
+        nv = max(0, min(NIVEL_MAXIMO, int(nivel_monstruo or 1)))
+        tramos = t.get('por_tramo') or {}
+        if tramos:
+            clave = str((nv // 10) * 10)
+            if clave not in tramos:
+                # Por encima de lo que hay, el ultimo; por debajo, el primero.
+                claves = sorted(int(k) for k in tramos)
+                clave = str(claves[-1] if nv > claves[-1] else claves[0])
+            medio = int(tramos[clave])
+            var = medio // 4
+    if medio <= 0:
+        medio, var = random.randint(3, 8), 0
+    if var:
+        medio = random.randint(max(1, medio - var), medio + var)
+    return max(1, int(round(medio * configuracion.TASA_ORO_BASE)))
 
 
 _DROPS_CACHE = {}

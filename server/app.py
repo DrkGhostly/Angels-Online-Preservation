@@ -1634,7 +1634,10 @@ def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
     exp_ganada = _cb.calcular_exp(m.npc_type, buffs)
     sk_exp_ganada = _cb.calcular_skill_exp(buffs)
 
-    oro = _cb.botin()
+    # El oro depende del BICHO: su tabla de serv_drop.xml si la tiene, y si
+    # no la mediana de su tramo de nivel. Antes se llamaba sin argumentos y
+    # por eso todos soltaban lo mismo.
+    oro = _cb.botin(getattr(m, 'nivel', 0) or 0, getattr(m, 'npc_type', 0) or 0)
     ses.oro = getattr(ses, 'oro', 0) + oro
     if ses.personaje:
         ses.personaje.oro = ses.oro
