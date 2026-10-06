@@ -249,9 +249,3 @@ QUITAR_LOGO_ARRANQUE = True
 # cliente. Se deja un skill.xml suelto en el cliente, y para deshacerlo
 # basta borrarlo.
 RAMAS_SIN_EXCLUSION = True
-
-# Devuelve al cliente los textos que un pak posterior piso. Hoy es el
-# bloque de Fortunia (504131-504141), que desde UPDATE9 lo reutilizaron
-# para un NPC de evento llamado Pasqua. Se deja un msg.xml suelto en
-# setting/eng/ y para deshacerlo basta borrarlo.
-DEVOLVER_TEXTOS = True
