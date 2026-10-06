@@ -5007,6 +5007,12 @@ class Servidor:
                 def _fin_encanto():
                     ses.enviar_inmediato(
                         _cb.cierre_de_dano(yo, objetivo, ataque=tipo, efecto=ef),
+                        # El 0x0006 es lo que hace que el CLIENTE lo trate
+                        # como aliado y deje de apuntarle. Sin el, seguia
+                        # pidiendo el golpe dos veces por segundo y el
+                        # servidor lo rechazaba uno a uno. Medido en
+                        # mundo_234602_153654_orden.jsonl.
+                        _cb.entidad_aliada(m.entity_id),
                         struct.pack('<HIBBII', 0x001D, m.entity_id, 1, 4, tipo, dur_ms),
                         struct.pack('<HIBBI', 0x0013, m.entity_id, 1, 0x3c, yo),
                         _cb.efecto_aura_objetivo(yo, objetivo, m.tile_x, m.tile_y, tipo),

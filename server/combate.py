@@ -2355,6 +2355,34 @@ def efecto_magia_self_cierre(yo: int, ef: int, tipo: int,
     return struct.pack('<H', 0x0011) + bytes(b)
 
 
+def entidad_aliada(entidad: int, a: int = 30, b: int = 15) -> bytes:
+    """0x0006: le dice al cliente que esa entidad pasa a ser ALIADA.
+
+    Es lo que faltaba para que el Shining Charm quedara bien. Mandando
+    solo el buff y el dueño, el cliente seguia tratando al bicho como
+    enemigo: lo apuntaba y pedia el golpe dos veces por segundo, y el
+    servidor tenia que rechazarlo uno a uno.
+
+    MEDIDO en mundo_234602_153654_orden.jsonl, lanzando Shining Charm I
+    (303) sobre la entidad 1025332 ("Burning Criminal"). El servidor real
+    contesta, por este orden:
+
+        s2c 0x0013  el HP del bicho al 100%
+        s2c 0x0013  el MP que le costo al jugador
+        s2c 0x0006  010034a50f001e0000000f0000000000   <- ESTE
+        s2c 0x0011  el efecto visual, con el 303 detras
+        s2c 0x001D  kind 3, cooldown 2000
+        s2c 0x001D  kind 4, duracion 600494 ms (el 持續時間=600 del xml)
+
+    La forma es [u16 1][u32 entidad][u32 30][u32 15][u16 0]. El 30 y el 15
+    NO se han identificado: no son el nivel del bicho (83) ni sus rangos de
+    movimiento y ataque (6 y 1) ni su casilla. Hay una sola muestra, asi
+    que van tal cual salieron y por eso son parametros.
+    """
+    return struct.pack('<HHIIIH', 0x0006, 1, int(entidad) & 0xFFFFFFFF,
+                       int(a) & 0xFFFFFFFF, int(b) & 0xFFFFFFFF, 0)
+
+
 def efecto_magia_self_fin(yo: int, ef: int, tipo: int) -> bytes:
     """Fase 0x80 del efecto visual 0x0011 de buff sobre si mismo."""
     b1 = bytearray(23)
