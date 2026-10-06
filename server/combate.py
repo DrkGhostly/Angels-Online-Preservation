@@ -891,7 +891,26 @@ def datos_magia(magic_id: int) -> dict:
             res['dano_base'] = _num(d.get('平均傷害'), 0)
             if not res['dano_base'] and d.get('攻擊型') == '是' and res['hp'] > 0 and str(d.get('HP定義') or '') != '最大值':
                 res['dano_base'] = res['hp']
-            res['base_denom'] = _num(d.get('高權位'), 200) or 200
+            # EL 高權位 NO ES UNA MAGNITUD, ES UNA CATEGORIA.
+            #
+            # Se usaba de divisor del daño, y eso castigaba sin motivo a
+            # los hechizos que no llevan el valor comun. Contados los 2210
+            # hechizos con daño: el 55,5% vale 200, el 15% 201 y el 12,6%
+            # 203 -- un 83% entre 200 y 204 -- y el resto son valores
+            # sueltos (500, 381, 714, 792, 576...). No crece con el nivel:
+            # Flying Dart I (nivel 1) y Berserk Cry I (nivel 206) valen los
+            # dos 200.
+            #
+            # Dividiendo por el, Hyperspace V (381) pegaba 2,3 veces menos
+            # que Earth Anger V (203) pese a pedir 42 niveles mas y 1.422
+            # MP mas, y Rock Pillars (716) se quedaba a un tercio. Ahora el
+            # divisor es fijo: el daño queda proporcional al 平均傷害, que
+            # es justo el "Spell power" que el cliente enseña en el tooltip.
+            #
+            # Se deja en 200, el valor dominante, para no mover el daño del
+            # 83% de los hechizos. El 高權位 de verdad sigue disponible en
+            # priority_group por si algun dia se averigua que es.
+            res['base_denom'] = DENOM_HECHIZO
             res['priority_group'] = _num(d.get('高權位'), 0)
             if not res['dano_base']:
                 _f = str(d.get('公式') or '')
@@ -1534,6 +1553,9 @@ _WEAPON_ATTACK_CACHE = {}
 # Queda como constante para poder subirlo si en el juego se siente flojo. En
 # 1.0 es la suma pura, que es lo unico que respalda la medicion.
 PESO_STANCE = 2
+
+# Divisor fijo del daño de hechizo. Ver la nota del 高權位 mas abajo.
+DENOM_HECHIZO = 200
 
 
 def stance_de(magic_id: int) -> int:
