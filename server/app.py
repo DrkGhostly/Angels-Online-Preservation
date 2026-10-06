@@ -4078,8 +4078,20 @@ class Servidor:
                 if getattr(m, 'encantado', False):
                     if getattr(ses, 'objetivo_actual', None) == objetivo:
                         ses.objetivo_actual = None
-                    log.info('[%s] no se ataca al %s: esta encantado y es '
-                             'aliado' % (addr, getattr(m, 'nombre', '?')))
+                    # Se avisa UNA vez por bicho. El cliente no se entera de
+                    # que el encantado es aliado y sigue pidiendo el golpe
+                    # dos veces por segundo, asi que esto inundaba el log.
+                    # Que el cliente deje de apuntarle hace falta saber que
+                    # manda el servidor real al encantar, y no hay ni una
+                    # captura de Shining Charm entre las 1.214 que tenemos.
+                    _avisados = getattr(ses, '_encanto_avisado', None)
+                    if _avisados is None:
+                        _avisados = set()
+                        ses._encanto_avisado = _avisados
+                    if objetivo not in _avisados:
+                        _avisados.add(objetivo)
+                        log.info('[%s] no se ataca al %s: esta encantado y es '
+                                 'aliado' % (addr, getattr(m, 'nombre', '?')))
                     return
                 # La invocacion y el aliado encantado fijan el objetivo de inmediato si no es un aliado
                 if not getattr(m, 'encantado', False):
