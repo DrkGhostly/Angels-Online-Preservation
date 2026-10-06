@@ -8903,6 +8903,8 @@ class Servidor:
                 _cl_loc.quitar_logo_arranque()
             if getattr(_cf_logo, 'RAMAS_SIN_EXCLUSION', True):
                 _cl_loc.quitar_exclusion_ramas()
+            if getattr(_cf_logo, 'DEVOLVER_TEXTOS', True):
+                _cl_loc.devolver_textos()
             _cl_loc.parchear_launcher()
             _srvs_launcher = await _cl_loc.iniciar_servidores_launcher()
             for _sl in _srvs_launcher:
