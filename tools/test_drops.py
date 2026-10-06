@@ -58,11 +58,31 @@ def test_ningun_monstruo_se_queda_sin_botin():
     assert not sin, '%d monstruos sin botin, p.ej. %s' % (len(sin), sin[:5])
 
 
-def test_los_de_nivel_alto_tambien_sueltan():
-    """El tramo que se quejaba el usuario: Forest/Desert en adelante."""
+def test_los_de_nivel_alto_tienen_de_donde_soltar():
+    """El tramo que se quejaba el usuario: Forest/Desert en adelante.
+
+    Se mira que TENGAN candidatos, no cuantas veces caen: cuanto cae lo
+    decide TASA_DROP_BASE, que es del gusto de cada quien. Comprobando la
+    tirada, el test se rompia solo con bajar la tasa.
+    """
     for nt, nom, nv in ((20770, 'Emerald Croc', 322), (23459, 'Playful Imp', 381)):
-        con = sum(1 for _ in range(200) if cb.botin_items(nt, nom, nv))
-        assert con > 100, '%s solo solto %d de 200 veces' % (nom, con)
+        cb.botin_items(nt, nom, nv)
+        assert cb._DROPS_CACHE.get(nt), '%s (nivel %d) no tiene nada que soltar' % (nom, nv)
+
+
+def test_la_tasa_de_drop_manda_en_cuanto_cae():
+    """Con la tasa alta cae casi siempre; con la baja, casi nunca."""
+    import configuracion as cf
+    original = cf.TASA_DROP_BASE
+    try:
+        cf.TASA_DROP_BASE = 10.5
+        alto = sum(1 for _ in range(300) if cb.botin_items(20770, 'Emerald Croc', 322))
+        cf.TASA_DROP_BASE = 0.01
+        bajo = sum(1 for _ in range(300) if cb.botin_items(20770, 'Emerald Croc', 322))
+    finally:
+        cf.TASA_DROP_BASE = original
+    assert alto > 240, 'con tasa 10.5 solo cayo %d de 300' % alto
+    assert bajo < 60, 'con tasa 0.01 cayo %d de 300' % bajo
 
 
 if __name__ == '__main__':

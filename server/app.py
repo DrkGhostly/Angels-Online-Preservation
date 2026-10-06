@@ -4061,6 +4061,22 @@ class Servidor:
                              f"jugador ({ses.personaje.tile_x},{ses.personaje.tile_y}) target ({tx},{ty})")
                     return
             elif not es_self_aoe and m is not None and ses.personaje:
+                # UN ENCANTADO ES UN ALIADO: no se le pega.
+                #
+                # El Shining Charm de Earth te pone al bicho de tu lado, y
+                # aun asi el golpe basico y las habilidades le entraban y le
+                # hacian dano. El servidor ya sabia que estaba encantado --
+                # lo mira dos lineas mas abajo para no mandarle las
+                # invocaciones encima -- pero no impedia atacarlo, y en los
+                # AoE si se filtraba. Aqui se suelta el objetivo y se deja
+                # pasar el golpe, para que el cliente no se quede trabado
+                # esperando respuesta.
+                if getattr(m, 'encantado', False):
+                    if getattr(ses, 'objetivo_actual', None) == objetivo:
+                        ses.objetivo_actual = None
+                    log.info('[%s] no se ataca al %s: esta encantado y es '
+                             'aliado' % (addr, getattr(m, 'nombre', '?')))
+                    return
                 # La invocacion y el aliado encantado fijan el objetivo de inmediato si no es un aliado
                 if not getattr(m, 'encantado', False):
                     if getattr(ses, 'invocacion', None):
@@ -4460,7 +4476,12 @@ class Servidor:
                         crit_prob = min(0.90, (critico_jugador(ses) + extra_crit) / 100.0)
 
                         for b in blancos:
-                            if not b.vivo:
+                            # Un encantado (Shining Charm) es ALIADO: el AoE
+                            # no le entra. Aqui se colaba, y era por donde
+                            # el mago le pegaba a su propio bicho con las
+                            # habilidades de area. El combo de la 5601 si
+                            # lo filtraba.
+                            if not b.vivo or getattr(b, 'encantado', False):
                                 continue
                             es_crit = (random.random() < crit_prob)
                             mult_crit = 1.5 if es_crit else 1.0
@@ -5670,7 +5691,9 @@ class Servidor:
                         mejor = None
                         mejor_dist = 999
                         for mb in (ses.monstruos or {}).values():
-                            if mb.entity_id in blancos_usados or not mb.vivo:
+                            # Igual que arriba: el rebote no salta a un aliado.
+                            if (mb.entity_id in blancos_usados or not mb.vivo
+                                    or getattr(mb, 'encantado', False)):
                                 continue
                             dist = max(abs(mb.tile_x - _prev_x),
                                        abs(mb.tile_y - _prev_y))
