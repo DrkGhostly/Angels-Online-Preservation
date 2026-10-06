@@ -1,0 +1,2825 @@
+{
+ "_nota": "game.* de los Lua -> funcion en Angel.exe. Ver tools/nativas_lua.py.",
+ "nativas": {
+  "BattlePassAction": {
+   "cadena": "0x8B86AC",
+   "funcion": "0x59B8C0",
+   "entrada": "0x8BC230"
+  },
+  "BattlePassChangePage": {
+   "cadena": "0x8B86C0",
+   "funcion": "0x59B880",
+   "entrada": "0x8BC228"
+  },
+  "BattlePassOpen": {
+   "cadena": "0x8B869C",
+   "funcion": "0x59B900",
+   "entrada": "0x8BC238"
+  },
+  "QTAns1": {
+   "cadena": "0x8B8BB0",
+   "funcion": "0x58F5F0",
+   "entrada": "0x8BC000"
+  },
+  "QTAns2": {
+   "cadena": "0x8B8BA8",
+   "funcion": "0x58F6D0",
+   "entrada": "0x8BC008"
+  },
+  "QTAns3": {
+   "cadena": "0x8B8BA0",
+   "funcion": "0x58F7B0",
+   "entrada": "0x8BC010"
+  },
+  "QTEncodeAns": {
+   "cadena": "0x8B8B6C",
+   "funcion": "0x58F890",
+   "entrada": "0x8BC038"
+  },
+  "QTJoin": {
+   "cadena": "0x8B8BB8",
+   "funcion": "0x58F4E0",
+   "entrada": "0x8BBFF8"
+  },
+  "QTSelectAns": {
+   "cadena": "0x8B8B60",
+   "funcion": "0x58FBB0",
+   "entrada": "0x8BC040"
+  },
+  "UseHeart": {
+   "cadena": "0x8B8B94",
+   "funcion": "0x58FD00",
+   "entrada": "0x8BC018"
+  },
+  "UseStar": {
+   "cadena": "0x8B8B8C",
+   "funcion": "0x58FD80",
+   "entrada": "0x8BC020"
+  },
+  "addpackitemtohandlelist": {
+   "cadena": "0x8B958C",
+   "funcion": "0x594B90",
+   "entrada": "0x8BBBB0"
+  },
+  "addsystemmessage": {
+   "cadena": "0x8BA70C",
+   "funcion": "0x5845E0",
+   "entrada": "0x8BB3C0"
+  },
+  "addtuitiontip": {
+   "cadena": "0x8BA06C",
+   "funcion": "0x58BFE0",
+   "entrada": "0x8BB750"
+  },
+  "adtradeselectchange": {
+   "cadena": "0x8BAA1C",
+   "funcion": "0x5820B0",
+   "entrada": "0x8BB228"
+  },
+  "answercaptcha": {
+   "cadena": "0x8B9E9C",
+   "funcion": "0x58D700",
+   "entrada": "0x8BB830"
+  },
+  "antiplaytime": {
+   "cadena": "0x8BA1EC",
+   "funcion": "0x58AD60",
+   "entrada": "0x8BB698"
+  },
+  "assistclearmagicitem": {
+   "cadena": "0x8B9BA4",
+   "funcion": "0x590450",
+   "entrada": "0x8BB990"
+  },
+  "assistdropmagicitem": {
+   "cadena": "0x8B9BD0",
+   "funcion": "0x590100",
+   "entrada": "0x8BB980"
+  },
+  "assistlistadditem": {
+   "cadena": "0x8B9B90",
+   "funcion": "0x590590",
+   "entrada": "0x8BB998"
+  },
+  "assistlistgetitemdata": {
+   "cadena": "0x8B9B1C",
+   "funcion": "0x590820",
+   "entrada": "0x8BB9C0"
+  },
+  "assistlistremoveitem": {
+   "cadena": "0x8B9B78",
+   "funcion": "0x5906A0",
+   "entrada": "0x8BB9A0"
+  },
+  "assistsetmagicitem": {
+   "cadena": "0x8B9BBC",
+   "funcion": "0x590390",
+   "entrada": "0x8BB988"
+  },
+  "atselfhouse": {
+   "cadena": "0x8B9158",
+   "funcion": "0x598980",
+   "entrada": "0x8BBD68"
+  },
+  "autofightaddcustom": {
+   "cadena": "0x8B97DC",
+   "funcion": "0x592860",
+   "entrada": "0x8BBAE0"
+  },
+  "autofightaddsurroundtotarget": {
+   "cadena": "0x8B97F0",
+   "funcion": "0x5921C0",
+   "entrada": "0x8BBAD8"
+  },
+  "autofightclearbackitem": {
+   "cadena": "0x8B976C",
+   "funcion": "0x5930D0",
+   "entrada": "0x8BBB08"
+  },
+  "autofightclearinvoke": {
+   "cadena": "0x8B9740",
+   "funcion": "0x593350",
+   "entrada": "0x8BBB18"
+  },
+  "autofightclearmakecloning": {
+   "cadena": "0x8B96F4",
+   "funcion": "0x5935F0",
+   "entrada": "0x8BBB30"
+  },
+  "autofightclearskill": {
+   "cadena": "0x8B983C",
+   "funcion": "0x591DA0",
+   "entrada": "0x8BBAC0"
+  },
+  "autofightdeltarget": {
+   "cadena": "0x8B9810",
+   "funcion": "0x592400",
+   "entrada": "0x8BBAD0"
+  },
+  "autofightdropbackitem": {
+   "cadena": "0x8B9784",
+   "funcion": "0x592D10",
+   "entrada": "0x8BBB00"
+  },
+  "autofightdropinvoke": {
+   "cadena": "0x8B9758",
+   "funcion": "0x5931A0",
+   "entrada": "0x8BBB10"
+  },
+  "autofightdropmakecloning": {
+   "cadena": "0x8B9710",
+   "funcion": "0x593410",
+   "entrada": "0x8BBB28"
+  },
+  "autofightdropskill": {
+   "cadena": "0x8B9850",
+   "funcion": "0x591C10",
+   "entrada": "0x8BBAB8"
+  },
+  "autofightloadbackitem": {
+   "cadena": "0x8B979C",
+   "funcion": "0x592B80",
+   "entrada": "0x8BBAF8"
+  },
+  "autofightloadinvoke": {
+   "cadena": "0x8B972C",
+   "funcion": "0x593980",
+   "entrada": "0x8BBB20"
+  },
+  "autofightloadmakecloning": {
+   "cadena": "0x8B96D8",
+   "funcion": "0x5936B0",
+   "entrada": "0x8BBB38"
+  },
+  "autofightloadskill": {
+   "cadena": "0x8B969C",
+   "funcion": "0x592A80",
+   "entrada": "0x8BBB50"
+  },
+  "autofightloadtarget": {
+   "cadena": "0x8B97C8",
+   "funcion": "0x592750",
+   "entrada": "0x8BBAE8"
+  },
+  "autofightreloadmonster": {
+   "cadena": "0x8B9824",
+   "funcion": "0x591E20",
+   "entrada": "0x8BBAC8"
+  },
+  "autofightsetorgpos": {
+   "cadena": "0x8B97B4",
+   "funcion": "0x592590",
+   "entrada": "0x8BBAF0"
+  },
+  "autogatheraddcustomtolist": {
+   "cadena": "0x8B9A80",
+   "funcion": "0x590F10",
+   "entrada": "0x8BB9E8"
+  },
+  "autogatheraddsurroundtodesignatedlist": {
+   "cadena": "0x8B9AC0",
+   "funcion": "0x590BC0",
+   "entrada": "0x8BB9D8"
+  },
+  "autogatherdeletemutipleitemoflist": {
+   "cadena": "0x8B9A9C",
+   "funcion": "0x590E10",
+   "entrada": "0x8BB9E0"
+  },
+  "autogatherreloadresource": {
+   "cadena": "0x8B9A64",
+   "funcion": "0x591060",
+   "entrada": "0x8BB9F0"
+  },
+  "autoloadpackitemtolist": {
+   "cadena": "0x8B9574",
+   "funcion": "0x5949B0",
+   "entrada": "0x8BBBB8"
+  },
+  "automallchangeordernum": {
+   "cadena": "0x8B9654",
+   "funcion": "0x593820",
+   "entrada": "0x8BBB68"
+  },
+  "automallloadmallitem": {
+   "cadena": "0x8B9684",
+   "funcion": "0x593810",
+   "entrada": "0x8BBB58"
+  },
+  "automallrequestmalldata": {
+   "cadena": "0x8B966C",
+   "funcion": "0x593790",
+   "entrada": "0x8BBB60"
+  },
+  "autootheraddfollowname": {
+   "cadena": "0x8B94E4",
+   "funcion": "0x5940C0",
+   "entrada": "0x8BBBE8"
+  },
+  "autootheraddgrouplist": {
+   "cadena": "0x8B9544",
+   "funcion": "0x593BD0",
+   "entrada": "0x8BBBC8"
+  },
+  "autootheraddgroupname": {
+   "cadena": "0x8B9514",
+   "funcion": "0x593D40",
+   "entrada": "0x8BBBD8"
+  },
+  "autootherdelgrouplist": {
+   "cadena": "0x8B952C",
+   "funcion": "0x593CE0",
+   "entrada": "0x8BBBD0"
+  },
+  "autootherdropmagic": {
+   "cadena": "0x8B94D0",
+   "funcion": "0x594150",
+   "entrada": "0x8BBBF0"
+  },
+  "autootherloadfriendlist": {
+   "cadena": "0x8B955C",
+   "funcion": "0x593A60",
+   "entrada": "0x8BBBC0"
+  },
+  "autootherloadnearplayer": {
+   "cadena": "0x8B94FC",
+   "funcion": "0x593E90",
+   "entrada": "0x8BBBE0"
+  },
+  "autoproducesetgatherorgpos": {
+   "cadena": "0x8B9AE8",
+   "funcion": "0x590A00",
+   "entrada": "0x8BB9D0"
+  },
+  "autorelogingame": {
+   "cadena": "0x8BA22C",
+   "funcion": "0x58ABF0",
+   "entrada": "0x8BB678"
+  },
+  "autoselectnum": {
+   "cadena": "0x8BAEF4",
+   "funcion": "0x578A30",
+   "entrada": "0x8BAF90"
+  },
+  "autosupplyaddcustom": {
+   "cadena": "0x8B9608",
+   "funcion": "0x594D90",
+   "entrada": "0x8BBB88"
+  },
+  "autosupplychangeitemnum": {
+   "cadena": "0x8B95BC",
+   "funcion": "0x595020",
+   "entrada": "0x8BBBA0"
+  },
+  "autosupplyhandleitem": {
+   "cadena": "0x8B95A4",
+   "funcion": "0x595680",
+   "entrada": "0x8BBBA8"
+  },
+  "autosupplyloadbackitem": {
+   "cadena": "0x8B961C",
+   "funcion": "0x594760",
+   "entrada": "0x8BBB80"
+  },
+  "autosupplyreloadtobuy": {
+   "cadena": "0x8B95D4",
+   "funcion": "0x595130",
+   "entrada": "0x8BBB98"
+  },
+  "autosupplyreloadtodiscard": {
+   "cadena": "0x8B95EC",
+   "funcion": "0x5953C0",
+   "entrada": "0x8BBB90"
+  },
+  "blacklistadd": {
+   "cadena": "0x8BACD0",
+   "funcion": "0x57A240",
+   "entrada": "0x8BB0C0"
+  },
+  "blacklistaddok": {
+   "cadena": "0x8BACB0",
+   "funcion": "0x57A380",
+   "entrada": "0x8BB0D0"
+  },
+  "blacklistnext1": {
+   "cadena": "0x8BAC6C",
+   "funcion": "0x57A820",
+   "entrada": "0x8BB0F0"
+  },
+  "blacklistnext2": {
+   "cadena": "0x8BAC48",
+   "funcion": "0x57AC60",
+   "entrada": "0x8BB100"
+  },
+  "blacklistprevious1": {
+   "cadena": "0x8BAC7C",
+   "funcion": "0x57A600",
+   "entrada": "0x8BB0E8"
+  },
+  "blacklistprevious2": {
+   "cadena": "0x8BAC58",
+   "funcion": "0x57AA40",
+   "entrada": "0x8BB0F8"
+  },
+  "blacklistremove": {
+   "cadena": "0x8BACC0",
+   "funcion": "0x57A3C0",
+   "entrada": "0x8BB0C8"
+  },
+  "blacklistremoveok": {
+   "cadena": "0x8BAC9C",
+   "funcion": "0x57A500",
+   "entrada": "0x8BB0D8"
+  },
+  "buycltnslot": {
+   "cadena": "0x8B8C84",
+   "funcion": "0x59A800",
+   "entrada": "0x8BBF90"
+  },
+  "cangetreward": {
+   "cadena": "0x8B8AC4",
+   "funcion": "0x59AEE0",
+   "entrada": "0x8BC080"
+  },
+  "canusebankbag": {
+   "cadena": "0x8B9C14",
+   "funcion": "0x58FEC0",
+   "entrada": "0x8BB960"
+  },
+  "cardlistsortitem": {
+   "cadena": "0x8B9408",
+   "funcion": "0x596290",
+   "entrada": "0x8BBC38"
+  },
+  "cardsettreesortitem": {
+   "cadena": "0x8B9480",
+   "funcion": "0x595B50",
+   "entrada": "0x8BBC10"
+  },
+  "castonpartner": {
+   "cadena": "0x8B9EDC",
+   "funcion": "0x58D400",
+   "entrada": "0x8BB810"
+  },
+  "castonpet": {
+   "cadena": "0x8B9CC8",
+   "funcion": "0x58EA90",
+   "entrada": "0x8BB910"
+  },
+  "changeSCExchangeSubPage": {
+   "cadena": "0x8B87D4",
+   "funcion": "0x59BFD0",
+   "entrada": "0x8BC1B8"
+  },
+  "changecardlistdisplayclass": {
+   "cadena": "0x8B9430",
+   "funcion": "0x595E10",
+   "entrada": "0x8BBC28"
+  },
+  "changecltnpage": {
+   "cadena": "0x8B8C9C",
+   "funcion": "0x59A740",
+   "entrada": "0x8BBF80"
+  },
+  "changefontsize": {
+   "cadena": "0x8B8E38",
+   "funcion": "0x59A180",
+   "entrada": "0x8BBEB0"
+  },
+  "changeguildperm": {
+   "cadena": "0x8BA260",
+   "funcion": "0x58AAD0",
+   "entrada": "0x8BB658"
+  },
+  "changeitemslot": {
+   "cadena": "0x8BA1A0",
+   "funcion": "0x58B240",
+   "entrada": "0x8BB6C0"
+  },
+  "changesafeverifypwd": {
+   "cadena": "0x8B9CE0",
+   "funcion": "0x58E930",
+   "entrada": "0x8BB900"
+  },
+  "changesubset": {
+   "cadena": "0x8BA21C",
+   "funcion": "0x58AC40",
+   "entrada": "0x8BB680"
+  },
+  "chatroomadd": {
+   "cadena": "0x8BABB4",
+   "funcion": "0x57B1D0",
+   "entrada": "0x8BB150"
+  },
+  "chatroomjoin": {
+   "cadena": "0x8BAB74",
+   "funcion": "0x57B290",
+   "entrada": "0x8BB170"
+  },
+  "chatroomkick": {
+   "cadena": "0x8BAB54",
+   "funcion": "0x57B2F0",
+   "entrada": "0x8BB180"
+  },
+  "chatroomleave": {
+   "cadena": "0x8BAB84",
+   "funcion": "0x57B260",
+   "entrada": "0x8BB168"
+  },
+  "chatroommaster": {
+   "cadena": "0x8BAB64",
+   "funcion": "0x57B2C0",
+   "entrada": "0x8BB178"
+  },
+  "chatroomrefresh": {
+   "cadena": "0x8BABA4",
+   "funcion": "0x57B200",
+   "entrada": "0x8BB158"
+  },
+  "chatroomsend": {
+   "cadena": "0x8BAB94",
+   "funcion": "0x57B230",
+   "entrada": "0x8BB160"
+  },
+  "checkautofight": {
+   "cadena": "0x8B94C0",
+   "funcion": "0x5942F0",
+   "entrada": "0x8BBBF8"
+  },
+  "checkexitem": {
+   "cadena": "0x8B8D94",
+   "funcion": "0x581FA0",
+   "entrada": "0x8BBF08"
+  },
+  "checkhouseoption": {
+   "cadena": "0x8B8F9C",
+   "funcion": "0x599590",
+   "entrada": "0x8BBE18"
+  },
+  "clearbackitem": {
+   "cadena": "0x8B9634",
+   "funcion": "0x5948F0",
+   "entrada": "0x8BBB78"
+  },
+  "clearfurniture": {
+   "cadena": "0x8B9234",
+   "funcion": "0x597570",
+   "entrada": "0x8BBD00"
+  },
+  "clearfurniturerecycle": {
+   "cadena": "0x8B9048",
+   "funcion": "0x599200",
+   "entrada": "0x8BBDD0"
+  },
+  "clickcrown": {
+   "cadena": "0x8B8D4C",
+   "funcion": "0x589610",
+   "entrada": "0x8BBF30"
+  },
+  "closebank": {
+   "cadena": "0x8BA410",
+   "funcion": "0x589110",
+   "entrada": "0x8BB568"
+  },
+  "closehouse": {
+   "cadena": "0x8B91F0",
+   "funcion": "0x597DB0",
+   "entrada": "0x8BBD20"
+  },
+  "cltncancelitem": {
+   "cadena": "0x8B8CCC",
+   "funcion": "0x59A920",
+   "entrada": "0x8BBF68"
+  },
+  "cltndrop": {
+   "cadena": "0x8B8CC0",
+   "funcion": "0x59A8D0",
+   "entrada": "0x8BBF70"
+  },
+  "cltnpoplist": {
+   "cadena": "0x8B8C78",
+   "funcion": "0x59A9F0",
+   "entrada": "0x8BBF98"
+  },
+  "createcardsettree": {
+   "cadena": "0x8B94AC",
+   "funcion": "0x595890",
+   "entrada": "0x8BBC00"
+  },
+  "createguild": {
+   "cadena": "0x8BA03C",
+   "funcion": "0x58C070",
+   "entrada": "0x8BB768"
+  },
+  "createsimplfycardlist": {
+   "cadena": "0x8B9368",
+   "funcion": "0x5966A0",
+   "entrada": "0x8BBC68"
+  },
+  "createsimplfycardsettree": {
+   "cadena": "0x8B93A0",
+   "funcion": "0x5964B0",
+   "entrada": "0x8BBC58"
+  },
+  "defaultguildlogo": {
+   "cadena": "0x8BA1B0",
+   "funcion": "0x58B1A0",
+   "entrada": "0x8BB6B8"
+  },
+  "deletequest": {
+   "cadena": "0x8BA660",
+   "funcion": "0x584AE0",
+   "entrada": "0x8BB418"
+  },
+  "deletesalelist": {
+   "cadena": "0x8BA964",
+   "funcion": "0x5836F0",
+   "entrada": "0x8BB290"
+  },
+  "deletesalelistex": {
+   "cadena": "0x8BA950",
+   "funcion": "0x583830",
+   "entrada": "0x8BB298"
+  },
+  "deletetreasuremap": {
+   "cadena": "0x8BA000",
+   "funcion": "0x58C2F0",
+   "entrada": "0x8BB780"
+  },
+  "destroyitemslot": {
+   "cadena": "0x8BAA0C",
+   "funcion": "0x582190",
+   "entrada": "0x8BB230"
+  },
+  "dollheadswitch": {
+   "cadena": "0x8BA150",
+   "funcion": "0x58B010",
+   "entrada": "0x8BB6E8"
+  },
+  "dollswitch": {
+   "cadena": "0x8BA160",
+   "funcion": "0x58AFE0",
+   "entrada": "0x8BB6E0"
+  },
+  "dosafeverify": {
+   "cadena": "0x8BA8FC",
+   "funcion": "0x583F80",
+   "entrada": "0x8BB2C8"
+  },
+  "dosafeverifysetdw1": {
+   "cadena": "0x8BA8E8",
+   "funcion": "0x583F50",
+   "entrada": "0x8BB2D0"
+  },
+  "dosaleautoadd": {
+   "cadena": "0x8BA898",
+   "funcion": "0x584300",
+   "entrada": "0x8BB300"
+  },
+  "doshinewindow": {
+   "cadena": "0x8BA02C",
+   "funcion": "0x58C1B0",
+   "entrada": "0x8BB770"
+  },
+  "dragbankitem": {
+   "cadena": "0x8BA438",
+   "funcion": "0x588B20",
+   "entrada": "0x8BB550"
+  },
+  "dragcharitem": {
+   "cadena": "0x8BAB44",
+   "funcion": "0x57BC60",
+   "entrada": "0x8BB188"
+  },
+  "dragemot": {
+   "cadena": "0x8BAE74",
+   "funcion": "0x578CF0",
+   "entrada": "0x8BAFE0"
+  },
+  "dragmagic": {
+   "cadena": "0x8BA5BC",
+   "funcion": "0x585FD0",
+   "entrada": "0x8BB470"
+  },
+  "dragmagics": {
+   "cadena": "0x8BA5C8",
+   "funcion": "0x585EC0",
+   "entrada": "0x8BB468"
+  },
+  "dragmallitem": {
+   "cadena": "0x8B9DE0",
+   "funcion": "0x58DF30",
+   "entrada": "0x8BB888"
+  },
+  "dragquickemot": {
+   "cadena": "0x8BAE64",
+   "funcion": "0x578D90",
+   "entrada": "0x8BAFE8"
+  },
+  "dragquickkey": {
+   "cadena": "0x8BA644",
+   "funcion": "0x584ED0",
+   "entrada": "0x8BB428"
+  },
+  "dropEquipPetItem": {
+   "cadena": "0x8B8AA0",
+   "funcion": "0x59AFD0",
+   "entrada": "0x8BC090"
+  },
+  "dropbackitem": {
+   "cadena": "0x8B9644",
+   "funcion": "0x5943C0",
+   "entrada": "0x8BBB70"
+  },
+  "dropbankitem": {
+   "cadena": "0x8BA428",
+   "funcion": "0x588EA0",
+   "entrada": "0x8BB558"
+  },
+  "dropbuysalelist": {
+   "cadena": "0x8BA9B8",
+   "funcion": "0x583020",
+   "entrada": "0x8BB268"
+  },
+  "dropcharitem": {
+   "cadena": "0x8BAB34",
+   "funcion": "0x580000",
+   "entrada": "0x8BB190"
+  },
+  "dropemot": {
+   "cadena": "0x8BAE58",
+   "funcion": "0x578E60",
+   "entrada": "0x8BAFF0"
+  },
+  "dropfurniturerecycle": {
+   "cadena": "0x8B9074",
+   "funcion": "0x599070",
+   "entrada": "0x8BBDC0"
+  },
+  "dropmallitem": {
+   "cadena": "0x8B9DD0",
+   "funcion": "0x58E040",
+   "entrada": "0x8BB890"
+  },
+  "dropquickkey": {
+   "cadena": "0x8BA634",
+   "funcion": "0x5850E0",
+   "entrada": "0x8BB430"
+  },
+  "dropsellsalelist": {
+   "cadena": "0x8BA9C8",
+   "funcion": "0x582EF0",
+   "entrada": "0x8BB260"
+  },
+  "dropxquickemot": {
+   "cadena": "0x8BAE48",
+   "funcion": "0x578EF0",
+   "entrada": "0x8BAFF8"
+  },
+  "dropxquickkey": {
+   "cadena": "0x8BA624",
+   "funcion": "0x585400",
+   "entrada": "0x8BB438"
+  },
+  "enablequestshortcut": {
+   "cadena": "0x8BA0E4",
+   "funcion": "0x58BCE0",
+   "entrada": "0x8BB720"
+  },
+  "enterfarmmap": {
+   "cadena": "0x8B8C2C",
+   "funcion": "0x58EE90",
+   "entrada": "0x8BBFB8"
+  },
+  "equipPetItemUpdate": {
+   "cadena": "0x8B89EC",
+   "funcion": "0x59B340",
+   "entrada": "0x8BC0D0"
+  },
+  "equipPetUseOpenConfirm": {
+   "cadena": "0x8B89D4",
+   "funcion": "0x59B410",
+   "entrada": "0x8BC0D8"
+  },
+  "equipPetUseOpenItemCheck": {
+   "cadena": "0x8B8A00",
+   "funcion": "0x59B310",
+   "entrada": "0x8BC0C8"
+  },
+  "equipcrown": {
+   "cadena": "0x8B8D78",
+   "funcion": "0x589430",
+   "entrada": "0x8BBF18"
+  },
+  "exchangeconfirm": {
+   "cadena": "0x8B8D84",
+   "funcion": "0x582090",
+   "entrada": "0x8BBF10"
+  },
+  "exchangeitemtooltip": {
+   "cadena": "0x8B8DA0",
+   "funcion": "0x581F70",
+   "entrada": "0x8BBF00"
+  },
+  "farmfertilize": {
+   "cadena": "0x8B8C04",
+   "funcion": "0x58F1C0",
+   "entrada": "0x8BBFD0"
+  },
+  "farmharvest": {
+   "cadena": "0x8B8BF8",
+   "funcion": "0x58F350",
+   "entrada": "0x8BBFD8"
+  },
+  "farmhelp": {
+   "cadena": "0x8B8C20",
+   "funcion": "0x58EF00",
+   "entrada": "0x8BBFC0"
+  },
+  "farmwater": {
+   "cadena": "0x8B8C14",
+   "funcion": "0x58F030",
+   "entrada": "0x8BBFC8"
+  },
+  "fgroupadd": {
+   "cadena": "0x8BAD80",
+   "funcion": "0x5794B0",
+   "entrada": "0x8BB060"
+  },
+  "fgroupaddok": {
+   "cadena": "0x8BAD74",
+   "funcion": "0x579520",
+   "entrada": "0x8BB068"
+  },
+  "fgroupchange": {
+   "cadena": "0x8BAD28",
+   "funcion": "0x579D00",
+   "entrada": "0x8BB090"
+  },
+  "fgroupchangeok": {
+   "cadena": "0x8BACFC",
+   "funcion": "0x57A0C0",
+   "entrada": "0x8BB0A8"
+  },
+  "fgrouplist": {
+   "cadena": "0x8BAD1C",
+   "funcion": "0x579E70",
+   "entrada": "0x8BB098"
+  },
+  "fgroupmodel": {
+   "cadena": "0x8BAC90",
+   "funcion": "0x57A530",
+   "entrada": "0x8BB0E0"
+  },
+  "fgroupname": {
+   "cadena": "0x8BAD48",
+   "funcion": "0x579B60",
+   "entrada": "0x8BB080"
+  },
+  "fgroupnameok": {
+   "cadena": "0x8BAD38",
+   "funcion": "0x579CD0",
+   "entrada": "0x8BB088"
+  },
+  "fgroupremove": {
+   "cadena": "0x8BAD64",
+   "funcion": "0x579960",
+   "entrada": "0x8BB070"
+  },
+  "fgroupremoveok": {
+   "cadena": "0x8BAD54",
+   "funcion": "0x579B30",
+   "entrada": "0x8BB078"
+  },
+  "fgroupselect": {
+   "cadena": "0x8BAD0C",
+   "funcion": "0x579FF0",
+   "entrada": "0x8BB0A0"
+  },
+  "findnpc": {
+   "cadena": "0x8BA318",
+   "funcion": "0x58A260",
+   "entrada": "0x8BB5F8"
+  },
+  "friendaccept": {
+   "cadena": "0x8BADF4",
+   "funcion": "0x5790B0",
+   "entrada": "0x8BB028"
+  },
+  "friendcancel": {
+   "cadena": "0x8BADE4",
+   "funcion": "0x5790E0",
+   "entrada": "0x8BB030"
+  },
+  "friendinvite": {
+   "cadena": "0x8BAE14",
+   "funcion": "0x579050",
+   "entrada": "0x8BB018"
+  },
+  "friendinvitebyname": {
+   "cadena": "0x8BADB0",
+   "funcion": "0x579390",
+   "entrada": "0x8BB048"
+  },
+  "friendinviteex": {
+   "cadena": "0x8BAE04",
+   "funcion": "0x579080",
+   "entrada": "0x8BB020"
+  },
+  "friendmessage": {
+   "cadena": "0x8BACE0",
+   "funcion": "0x57A210",
+   "entrada": "0x8BB0B8"
+  },
+  "friendremove": {
+   "cadena": "0x8BADD4",
+   "funcion": "0x5791D0",
+   "entrada": "0x8BB038"
+  },
+  "friendremoveok": {
+   "cadena": "0x8BADC4",
+   "funcion": "0x579360",
+   "entrada": "0x8BB040"
+  },
+  "friendsay": {
+   "cadena": "0x8BACF0",
+   "funcion": "0x57A0F0",
+   "entrada": "0x8BB0B0"
+  },
+  "friendwnd": {
+   "cadena": "0x8BAE24",
+   "funcion": "0x579020",
+   "entrada": "0x8BB010"
+  },
+  "furnishhouse": {
+   "cadena": "0x8B9284",
+   "funcion": "0x596C60",
+   "entrada": "0x8BBCD8"
+  },
+  "fusecalcprop": {
+   "cadena": "0x8B8DD8",
+   "funcion": "0x59A3E0",
+   "entrada": "0x8BBEE8"
+  },
+  "fusecancelitem": {
+   "cadena": "0x8B8DF4",
+   "funcion": "0x59A5F0",
+   "entrada": "0x8BBED8"
+  },
+  "fuseclearpetattrib": {
+   "cadena": "0x8B8DB4",
+   "funcion": "0x59A380",
+   "entrada": "0x8BBEF8"
+  },
+  "fuseclearwnditem": {
+   "cadena": "0x8B8E04",
+   "funcion": "0x59A320",
+   "entrada": "0x8BBED0"
+  },
+  "fuseconfirm": {
+   "cadena": "0x8B8DE8",
+   "funcion": "0x59A430",
+   "entrada": "0x8BBEE0"
+  },
+  "fusedrop": {
+   "cadena": "0x8B8E20",
+   "funcion": "0x59A270",
+   "entrada": "0x8BBEC0"
+  },
+  "fuseispettrans": {
+   "cadena": "0x8B8DC8",
+   "funcion": "0x59A4B0",
+   "entrada": "0x8BBEF0"
+  },
+  "fuseok": {
+   "cadena": "0x8B8E18",
+   "funcion": "0x59A2C0",
+   "entrada": "0x8BBEC8"
+  },
+  "game04pass": {
+   "cadena": "0x8BAEAC",
+   "funcion": "0x578BF0",
+   "entrada": "0x8BAFC0"
+  },
+  "game04surrender": {
+   "cadena": "0x8BAE9C",
+   "funcion": "0x578C30",
+   "entrada": "0x8BAFC8"
+  },
+  "gamemenu": {
+   "cadena": "0x8B9FDC",
+   "funcion": "0x58C510",
+   "entrada": "0x8BB798"
+  },
+  "getEquipPetNeedNumToOpen": {
+   "cadena": "0x8B8A74",
+   "funcion": "0x59B180",
+   "entrada": "0x8BC0A0"
+  },
+  "getEquipPetSlot": {
+   "cadena": "0x8B8A90",
+   "funcion": "0x59B010",
+   "entrada": "0x8BC098"
+  },
+  "getEquipPetSlotAttrib": {
+   "cadena": "0x8B8A44",
+   "funcion": "0x59B1B0",
+   "entrada": "0x8BC0B0"
+  },
+  "getEquipPetSlotValue": {
+   "cadena": "0x8B8A5C",
+   "funcion": "0x59B220",
+   "entrada": "0x8BC0A8"
+  },
+  "getStarPower": {
+   "cadena": "0x8B88A0",
+   "funcion": "0x59CDE0",
+   "entrada": "0x8BC160"
+  },
+  "getbagsize": {
+   "cadena": "0x8BA9E8",
+   "funcion": "0x582E80",
+   "entrada": "0x8BB250"
+  },
+  "getbankbagmsg": {
+   "cadena": "0x8B9CF4",
+   "funcion": "0x58E620",
+   "entrada": "0x8BB8F8"
+  },
+  "getcontribnum": {
+   "cadena": "0x8B9C48",
+   "funcion": "0x58ED30",
+   "entrada": "0x8BB948"
+  },
+  "getcurmemberid": {
+   "cadena": "0x8BA284",
+   "funcion": "0x58AA00",
+   "entrada": "0x8BB648"
+  },
+  "getcurmembername": {
+   "cadena": "0x8BA270",
+   "funcion": "0x58AA70",
+   "entrada": "0x8BB650"
+  },
+  "getcursormode": {
+   "cadena": "0x8BAA80",
+   "funcion": "0x581D60",
+   "entrada": "0x8BB1F8"
+  },
+  "getdailyeventdata": {
+   "cadena": "0x8B8C3C",
+   "funcion": "0x59AB30",
+   "entrada": "0x8BBFB0"
+  },
+  "getdropdata": {
+   "cadena": "0x8B6868",
+   "funcion": "0x520BF0",
+   "entrada": "0x8B6B40"
+  },
+  "getemotbuy": {
+   "cadena": "0x8BA6E4",
+   "funcion": "0x584890",
+   "entrada": "0x8BB3D8"
+  },
+  "getemotbyindex": {
+   "cadena": "0x8BA6F0",
+   "funcion": "0x5848E0",
+   "entrada": "0x8BB3D0"
+  },
+  "getfriendoptionname": {
+   "cadena": "0x8BAD8C",
+   "funcion": "0x5793C0",
+   "entrada": "0x8BB058"
+  },
+  "getfurniturename": {
+   "cadena": "0x8B920C",
+   "funcion": "0x597B40",
+   "entrada": "0x8BBD10"
+  },
+  "getguildoptionname": {
+   "cadena": "0x8BA2A4",
+   "funcion": "0x58A6E0",
+   "entrada": "0x8BB638"
+  },
+  "gethousemobgenmaxnum": {
+   "cadena": "0x8B908C",
+   "funcion": "0x599030",
+   "entrada": "0x8BBDB8"
+  },
+  "gethousemobgenvaildnum": {
+   "cadena": "0x8B90B8",
+   "funcion": "0x598FA0",
+   "entrada": "0x8BBDA8"
+  },
+  "gethousename": {
+   "cadena": "0x8B9148",
+   "funcion": "0x598A50",
+   "entrada": "0x8BBD70"
+  },
+  "gethousepetmaxnum": {
+   "cadena": "0x8B90A4",
+   "funcion": "0x598FF0",
+   "entrada": "0x8BBDB0"
+  },
+  "gethousepetradio": {
+   "cadena": "0x8B9020",
+   "funcion": "0x599350",
+   "entrada": "0x8BBDE0"
+  },
+  "gethousepetvaildnum": {
+   "cadena": "0x8B90D0",
+   "funcion": "0x598F50",
+   "entrada": "0x8BBDA0"
+  },
+  "getintfromtypevalue": {
+   "cadena": "0x8B9B48",
+   "funcion": "0x590730",
+   "entrada": "0x8BB9B0"
+  },
+  "getitemicon": {
+   "cadena": "0x8BA578",
+   "funcion": "0x5860E0",
+   "entrada": "0x8BB498"
+  },
+  "getitemslot": {
+   "cadena": "0x8BAA00",
+   "funcion": "0x582290",
+   "entrada": "0x8BB238"
+  },
+  "getlogindaysthismonth": {
+   "cadena": "0x8B8AD4",
+   "funcion": "0x59AE70",
+   "entrada": "0x8BC078"
+  },
+  "getloginrewardcount": {
+   "cadena": "0x8B8B18",
+   "funcion": "0x59ACD0",
+   "entrada": "0x8BC060"
+  },
+  "getloginrewarditem": {
+   "cadena": "0x8B8B04",
+   "funcion": "0x59AD50",
+   "entrada": "0x8BC068"
+  },
+  "getloginrewarditemnum": {
+   "cadena": "0x8B8AEC",
+   "funcion": "0x59ADE0",
+   "entrada": "0x8BC070"
+  },
+  "getmagicname": {
+   "cadena": "0x8BA128",
+   "funcion": "0x58BAB0",
+   "entrada": "0x8BB700"
+  },
+  "getmallbagitem": {
+   "cadena": "0x8B9DF0",
+   "funcion": "0x58DE80",
+   "entrada": "0x8BB880"
+  },
+  "getmapid": {
+   "cadena": "0x8BA0F8",
+   "funcion": "0x58BC80",
+   "entrada": "0x8BB718"
+  },
+  "getminigame": {
+   "cadena": "0x8BAF38",
+   "funcion": "0x578870",
+   "entrada": "0x8BAF68"
+  },
+  "getmoney": {
+   "cadena": "0x8BA3F0",
+   "funcion": "0x589320",
+   "entrada": "0x8BB578"
+  },
+  "getmonthstring": {
+   "cadena": "0x8B8AB4",
+   "funcion": "0x59AF70",
+   "entrada": "0x8BC088"
+  },
+  "getnowsubset": {
+   "cadena": "0x8BA1FC",
+   "funcion": "0x58AD20",
+   "entrada": "0x8BB690"
+  },
+  "getpartnermagicnum": {
+   "cadena": "0x8BA114",
+   "funcion": "0x58BB10",
+   "entrada": "0x8BB708"
+  },
+  "getpartnermapid": {
+   "cadena": "0x8BA104",
+   "funcion": "0x58BC00",
+   "entrada": "0x8BB710"
+  },
+  "getpartnername": {
+   "cadena": "0x8BAA70",
+   "funcion": "0x581DA0",
+   "entrada": "0x8BB200"
+  },
+  "getpartnernum": {
+   "cadena": "0x8BAA50",
+   "funcion": "0x581E90",
+   "entrada": "0x8BB210"
+  },
+  "getplayername": {
+   "cadena": "0x8BA048",
+   "funcion": "0x58C020",
+   "entrada": "0x8BB760"
+  },
+  "getrebornstring": {
+   "cadena": "0x8BA3BC",
+   "funcion": "0x589F30",
+   "entrada": "0x8BB598"
+  },
+  "getrobotvar1_int2list": {
+   "cadena": "0x8B98E0",
+   "funcion": "0x591A30",
+   "entrada": "0x8BBA88"
+  },
+  "getrobotvar2_int2list": {
+   "cadena": "0x8B98C8",
+   "funcion": "0x591A90",
+   "entrada": "0x8BBA90"
+  },
+  "getrobotvar_bool": {
+   "cadena": "0x8B9920",
+   "funcion": "0x591930",
+   "entrada": "0x8BBA70"
+  },
+  "getrobotvar_int": {
+   "cadena": "0x8B9934",
+   "funcion": "0x5918E0",
+   "entrada": "0x8BBA68"
+  },
+  "getrobotvar_intlist": {
+   "cadena": "0x8B98F8",
+   "funcion": "0x5919D0",
+   "entrada": "0x8BBA80"
+  },
+  "getrobotvar_string": {
+   "cadena": "0x8B990C",
+   "funcion": "0x591980",
+   "entrada": "0x8BBA78"
+  },
+  "getrobotvar_stringlist": {
+   "cadena": "0x8B98B0",
+   "funcion": "0x591AF0",
+   "entrada": "0x8BBA98"
+  },
+  "getstageplayers": {
+   "cadena": "0x8B9FCC",
+   "funcion": "0x58C540",
+   "entrada": "0x8BB7A0"
+  },
+  "getstring": {
+   "cadena": "0x8BAB28",
+   "funcion": "0x581620",
+   "entrada": "0x8BB198"
+  },
+  "getstrlen": {
+   "cadena": "0x8BAB1C",
+   "funcion": "0x581A70",
+   "entrada": "0x8BB1A0"
+  },
+  "gettipshow": {
+   "cadena": "0x8B9FE8",
+   "funcion": "0x58C4F0",
+   "entrada": "0x8BB790"
+  },
+  "gettuitiontipinfo": {
+   "cadena": "0x8BA07C",
+   "funcion": "0x58BFC0",
+   "entrada": "0x8BB748"
+  },
+  "gettypevaluefromint": {
+   "cadena": "0x8B9B34",
+   "funcion": "0x5907A0",
+   "entrada": "0x8BB9B8"
+  },
+  "giveup01": {
+   "cadena": "0x8BAF1C",
+   "funcion": "0x578900",
+   "entrada": "0x8BAF78"
+  },
+  "gotobillboardhouse": {
+   "cadena": "0x8B8F58",
+   "funcion": "0x5996E0",
+   "entrada": "0x8BBE30"
+  },
+  "gotodailyeventmap": {
+   "cadena": "0x8B8C64",
+   "funcion": "0x59AA30",
+   "entrada": "0x8BBFA0"
+  },
+  "gotojumpmap": {
+   "cadena": "0x8B8BEC",
+   "funcion": "0x59ABA0",
+   "entrada": "0x8BBFE0"
+  },
+  "gotoqtmap": {
+   "cadena": "0x8B8B80",
+   "funcion": "0x58FE00",
+   "entrada": "0x8BC028"
+  },
+  "groupdeny": {
+   "cadena": "0x8BAAA0",
+   "funcion": "0x581CF0",
+   "entrada": "0x8BB1E8"
+  },
+  "groupdisband": {
+   "cadena": "0x8BAAAC",
+   "funcion": "0x581CC0",
+   "entrada": "0x8BB1E0"
+  },
+  "groupinvite": {
+   "cadena": "0x8BAAF0",
+   "funcion": "0x581B30",
+   "entrada": "0x8BB1B8"
+  },
+  "groupjoin": {
+   "cadena": "0x8BAAE4",
+   "funcion": "0x581B70",
+   "entrada": "0x8BB1C0"
+  },
+  "groupkick": {
+   "cadena": "0x8BAAC8",
+   "funcion": "0x581C20",
+   "entrada": "0x8BB1D0"
+  },
+  "groupleave": {
+   "cadena": "0x8BAABC",
+   "funcion": "0x581C90",
+   "entrada": "0x8BB1D8"
+  },
+  "grouppromote": {
+   "cadena": "0x8BAAD4",
+   "funcion": "0x581BB0",
+   "entrada": "0x8BB1C8"
+  },
+  "guildcommand": {
+   "cadena": "0x8BA2D8",
+   "funcion": "0x58A560",
+   "entrada": "0x8BB620"
+  },
+  "guildcontrib": {
+   "cadena": "0x8B9C24",
+   "funcion": "0x58EE60",
+   "entrada": "0x8BB958"
+  },
+  "guildinvite": {
+   "cadena": "0x8BA2E8",
+   "funcion": "0x58A530",
+   "entrada": "0x8BB618"
+  },
+  "gvgattend": {
+   "cadena": "0x8B8938",
+   "funcion": "0x59BAE0",
+   "entrada": "0x8BC120"
+  },
+  "gvgcheckin": {
+   "cadena": "0x8B8944",
+   "funcion": "0x59B9C0",
+   "entrada": "0x8BC118"
+  },
+  "gvginfusematerial": {
+   "cadena": "0x8B8914",
+   "funcion": "0x59BC30",
+   "entrada": "0x8BC130"
+  },
+  "gvgshopaddbuycount": {
+   "cadena": "0x8B8900",
+   "funcion": "0x59BC70",
+   "entrada": "0x8BC138"
+  },
+  "gvgshopclickbuy": {
+   "cadena": "0x8B88C4",
+   "funcion": "0x59BD20",
+   "entrada": "0x8BC150"
+  },
+  "gvgshopclicklistitem": {
+   "cadena": "0x8B88D4",
+   "funcion": "0x59BCF0",
+   "entrada": "0x8BC148"
+  },
+  "gvgshopconfirmbuy": {
+   "cadena": "0x8B88B0",
+   "funcion": "0x59BD50",
+   "entrada": "0x8BC158"
+  },
+  "gvgshopsetbuycount": {
+   "cadena": "0x8B88EC",
+   "funcion": "0x59BCB0",
+   "entrada": "0x8BC140"
+  },
+  "gvgupdatewindow": {
+   "cadena": "0x8B8928",
+   "funcion": "0x59BC00",
+   "entrada": "0x8BC128"
+  },
+  "hasbankkey": {
+   "cadena": "0x8B9D14",
+   "funcion": "0x58E430",
+   "entrada": "0x8BB8E8"
+  },
+  "hidefurniture": {
+   "cadena": "0x8B9254",
+   "funcion": "0x597420",
+   "entrada": "0x8BBCF0"
+  },
+  "inguild": {
+   "cadena": "0x8BA1E4",
+   "funcion": "0x58B040",
+   "entrada": "0x8BB6A0"
+  },
+  "inimallfitting": {
+   "cadena": "0x8B9D64",
+   "funcion": "0x58EBD0",
+   "entrada": "0x8BB8C0"
+  },
+  "initActBoardListBtn": {
+   "cadena": "0x8B8748",
+   "funcion": "0x59B710",
+   "entrada": "0x8BC1F8"
+  },
+  "initbankwnd": {
+   "cadena": "0x8BA448",
+   "funcion": "0x588AD0",
+   "entrada": "0x8BB548"
+  },
+  "initchangeskills": {
+   "cadena": "0x8BA5E4",
+   "funcion": "0x5855F0",
+   "entrada": "0x8BB458"
+  },
+  "initchfilter": {
+   "cadena": "0x8BA6C0",
+   "funcion": "0x5849B0",
+   "entrada": "0x8BB3E8"
+  },
+  "initemotwnd": {
+   "cadena": "0x8BA700",
+   "funcion": "0x584930",
+   "entrada": "0x8BB3C8"
+  },
+  "initgame": {
+   "cadena": "0x8BAEDC",
+   "funcion": "0x578AE0",
+   "entrada": "0x8BAFA0"
+  },
+  "initgame04": {
+   "cadena": "0x8BAE90",
+   "funcion": "0x578C80",
+   "entrada": "0x8BAFD0"
+  },
+  "initguildwnd": {
+   "cadena": "0x8BA2C8",
+   "funcion": "0x58A680",
+   "entrada": "0x8BB628"
+  },
+  "inititemmall": {
+   "cadena": "0x8B9E18",
+   "funcion": "0x58DDB0",
+   "entrada": "0x8BB868"
+  },
+  "inititemwnd": {
+   "cadena": "0x8BABCC",
+   "funcion": "0x57B120",
+   "entrada": "0x8BB140"
+  },
+  "initmakeclassskillwnd": {
+   "cadena": "0x8BA4C8",
+   "funcion": "0x586AC0",
+   "entrada": "0x8BB4F8"
+  },
+  "initmakeclasswnd": {
+   "cadena": "0x8BA4E0",
+   "funcion": "0x586660",
+   "entrada": "0x8BB4F0"
+  },
+  "initmallitemwnd": {
+   "cadena": "0x8B9E08",
+   "funcion": "0x58DE20",
+   "entrada": "0x8BB870"
+  },
+  "initownskills": {
+   "cadena": "0x8BA5D4",
+   "funcion": "0x5855A0",
+   "entrada": "0x8BB460"
+  },
+  "initpartnerWnd": {
+   "cadena": "0x8BAB0C",
+   "funcion": "0x581AC0",
+   "entrada": "0x8BB1A8"
+  },
+  "initquestlist": {
+   "cadena": "0x8BA690",
+   "funcion": "0x584A40",
+   "entrada": "0x8BB400"
+  },
+  "initquickkeywnd": {
+   "cadena": "0x8BA680",
+   "funcion": "0x584A70",
+   "entrada": "0x8BB408"
+  },
+  "initsalewnd": {
+   "cadena": "0x8BA9DC",
+   "funcion": "0x582EC0",
+   "entrada": "0x8BB258"
+  },
+  "initsalonwnd": {
+   "cadena": "0x8B933C",
+   "funcion": "0x596930",
+   "entrada": "0x8BBC78"
+  },
+  "initskillswnd": {
+   "cadena": "0x8BA5F8",
+   "funcion": "0x585560",
+   "entrada": "0x8BB450"
+  },
+  "inittreasuremap": {
+   "cadena": "0x8B9F98",
+   "funcion": "0x58C470",
+   "entrada": "0x8BB7B8"
+  },
+  "insertfurnituretype": {
+   "cadena": "0x8B9198",
+   "funcion": "0x598200",
+   "entrada": "0x8BBD48"
+  },
+  "insertstringtohistory": {
+   "cadena": "0x8B9B04",
+   "funcion": "0x5909C0",
+   "entrada": "0x8BB9C8"
+  },
+  "inviteplayer": {
+   "cadena": "0x8B9FBC",
+   "funcion": "0x58CD40",
+   "entrada": "0x8BB7A8"
+  },
+  "isBagHaveItem": {
+   "cadena": "0x8B8A34",
+   "funcion": "0x59B290",
+   "entrada": "0x8BC0B8"
+  },
+  "isallowguild": {
+   "cadena": "0x8BA294",
+   "funcion": "0x58A7F0",
+   "entrada": "0x8BB640"
+  },
+  "isbankrent": {
+   "cadena": "0x8B9CD4",
+   "funcion": "0x58E960",
+   "entrada": "0x8BB908"
+  },
+  "isdef": {
+   "cadena": "0x8B8F38",
+   "funcion": "0x599780",
+   "entrada": "0x8BBE40"
+  },
+  "isfurnitureuse": {
+   "cadena": "0x8B9164",
+   "funcion": "0x598810",
+   "entrada": "0x8BBD60"
+  },
+  "isgroupleader": {
+   "cadena": "0x8BAA40",
+   "funcion": "0x581EE0",
+   "entrada": "0x8BB218"
+  },
+  "isquestshortcutenable": {
+   "cadena": "0x8BA0B8",
+   "funcion": "0x58BE40",
+   "entrada": "0x8BB730"
+  },
+  "issafeverifyset": {
+   "cadena": "0x8B9F38",
+   "funcion": "0x58D0E0",
+   "entrada": "0x8BB7E0"
+  },
+  "isshowguildname": {
+   "cadena": "0x8BA358",
+   "funcion": "0x5847F0",
+   "entrada": "0x8BB5D0"
+  },
+  "isshowmapname": {
+   "cadena": "0x8BA368",
+   "funcion": "0x5847A0",
+   "entrada": "0x8BB5C8"
+  },
+  "isshowplacename": {
+   "cadena": "0x8BA348",
+   "funcion": "0x584840",
+   "entrada": "0x8BB5D8"
+  },
+  "isvlogin": {
+   "cadena": "0x8B9C80",
+   "funcion": "0x58EB60",
+   "entrada": "0x8BB930"
+  },
+  "joinminigame": {
+   "cadena": "0x8BAE80",
+   "funcion": "0x578CC0",
+   "entrada": "0x8BAFD8"
+  },
+  "jumpmapclasspoplist": {
+   "cadena": "0x8B8BD8",
+   "funcion": "0x59ABE0",
+   "entrada": "0x8BBFE8"
+  },
+  "leavefurnish": {
+   "cadena": "0x8B91D4",
+   "funcion": "0x597E30",
+   "entrada": "0x8BBD30"
+  },
+  "leavehouse": {
+   "cadena": "0x8B91E4",
+   "funcion": "0x597E00",
+   "entrada": "0x8BBD28"
+  },
+  "listcltn": {
+   "cadena": "0x8B8CDC",
+   "funcion": "0x59A850",
+   "entrada": "0x8BBF60"
+  },
+  "listtrypwenterhouse": {
+   "cadena": "0x8B8FB0",
+   "funcion": "0x599540",
+   "entrada": "0x8BBE10"
+  },
+  "loadtheme": {
+   "cadena": "0x8BA23C",
+   "funcion": "0x58AFB0",
+   "entrada": "0x8BB670"
+  },
+  "logout": {
+   "cadena": "0x8BA258",
+   "funcion": "0x58ABC0",
+   "entrada": "0x8BB660"
+  },
+  "mailcommand": {
+   "cadena": "0x8BABC0",
+   "funcion": "0x57B160",
+   "entrada": "0x8BB148"
+  },
+  "makeadd": {
+   "cadena": "0x8BA47C",
+   "funcion": "0x587960",
+   "entrada": "0x8BB520"
+  },
+  "makedel": {
+   "cadena": "0x8BA474",
+   "funcion": "0x587ED0",
+   "entrada": "0x8BB528"
+  },
+  "makeitemnum": {
+   "cadena": "0x8BA484",
+   "funcion": "0x587190",
+   "entrada": "0x8BB518"
+  },
+  "makemax": {
+   "cadena": "0x8BA454",
+   "funcion": "0x5882B0",
+   "entrada": "0x8BB540"
+  },
+  "makeselectclass": {
+   "cadena": "0x8BA4B8",
+   "funcion": "0x586EE0",
+   "entrada": "0x8BB500"
+  },
+  "makeselectitem": {
+   "cadena": "0x8BA490",
+   "funcion": "0x587070",
+   "entrada": "0x8BB510"
+  },
+  "makeskillselectclass": {
+   "cadena": "0x8BA4A0",
+   "funcion": "0x586F90",
+   "entrada": "0x8BB508"
+  },
+  "makestart": {
+   "cadena": "0x8BA468",
+   "funcion": "0x5881C0",
+   "entrada": "0x8BB530"
+  },
+  "makestop": {
+   "cadena": "0x8BA45C",
+   "funcion": "0x588240",
+   "entrada": "0x8BB538"
+  },
+  "malladdmyfavorites": {
+   "cadena": "0x8B9D88",
+   "funcion": "0x58E3D0",
+   "entrada": "0x8BB8B0"
+  },
+  "mallbuy": {
+   "cadena": "0x8B9E00",
+   "funcion": "0x58DE50",
+   "entrada": "0x8BB878"
+  },
+  "malldelmyfavorites": {
+   "cadena": "0x8B9D74",
+   "funcion": "0x58E400",
+   "entrada": "0x8BB8B8"
+  },
+  "mallextralink": {
+   "cadena": "0x8B8E84",
+   "funcion": "0x599740",
+   "entrada": "0x8BBE88"
+  },
+  "mallfitting": {
+   "cadena": "0x8B9D34",
+   "funcion": "0x58EC60",
+   "entrada": "0x8BB8D8"
+  },
+  "mallfittingchecksex": {
+   "cadena": "0x8B9D20",
+   "funcion": "0x58EC90",
+   "entrada": "0x8BB8E0"
+  },
+  "mallfittingmirror": {
+   "cadena": "0x8B9100",
+   "funcion": "0x598EF0",
+   "entrada": "0x8BBD90"
+  },
+  "mallgive": {
+   "cadena": "0x8B9D9C",
+   "funcion": "0x58E3A0",
+   "entrada": "0x8BB8A8"
+  },
+  "mallgivecheckagain": {
+   "cadena": "0x8B9DA8",
+   "funcion": "0x58E1B0",
+   "entrada": "0x8BB8A0"
+  },
+  "mallgivenamecheck": {
+   "cadena": "0x8B9DBC",
+   "funcion": "0x58E0D0",
+   "entrada": "0x8BB898"
+  },
+  "marryaskcancel": {
+   "cadena": "0x8B9A48",
+   "funcion": "0x5914E0",
+   "entrada": "0x8BBA00"
+  },
+  "marryaskok": {
+   "cadena": "0x8B9A58",
+   "funcion": "0x591450",
+   "entrada": "0x8BB9F8"
+  },
+  "messageclose": {
+   "cadena": "0x8BABE4",
+   "funcion": "0x57B0C0",
+   "entrada": "0x8BB130"
+  },
+  "messageinvite": {
+   "cadena": "0x8BAC2C",
+   "funcion": "0x57AEB0",
+   "entrada": "0x8BB110"
+  },
+  "messageinviteadd": {
+   "cadena": "0x8BAC18",
+   "funcion": "0x57AEE0",
+   "entrada": "0x8BB118"
+  },
+  "messageinvitedel": {
+   "cadena": "0x8BAC04",
+   "funcion": "0x57B010",
+   "entrada": "0x8BB120"
+  },
+  "messageinviteok": {
+   "cadena": "0x8BABF4",
+   "funcion": "0x57B090",
+   "entrada": "0x8BB128"
+  },
+  "messagesend": {
+   "cadena": "0x8BAC3C",
+   "funcion": "0x57AE80",
+   "entrada": "0x8BB108"
+  },
+  "minigameinviteex": {
+   "cadena": "0x8B9FA8",
+   "funcion": "0x58CDF0",
+   "entrada": "0x8BB7B0"
+  },
+  "movefurniture": {
+   "cadena": "0x8B9274",
+   "funcion": "0x596CA0",
+   "entrada": "0x8BBCE0"
+  },
+  "netcommand": {
+   "cadena": "0x8BAE3C",
+   "funcion": "0x578F70",
+   "entrada": "0x8BB000"
+  },
+  "netcommand2": {
+   "cadena": "0x8BA594",
+   "funcion": "0x585CF0",
+   "entrada": "0x8BB488"
+  },
+  "noeqcrown": {
+   "cadena": "0x8BA138",
+   "funcion": "0x58B200",
+   "entrada": "0x8BB6F8"
+  },
+  "npcsalebuy": {
+   "cadena": "0x8BA7A0",
+   "funcion": "0x584B60",
+   "entrada": "0x8BB378"
+  },
+  "npcsalebuyconfirm": {
+   "cadena": "0x8BA78C",
+   "funcion": "0x584B90",
+   "entrada": "0x8BB380"
+  },
+  "npcsalebuyex": {
+   "cadena": "0x8BA75C",
+   "funcion": "0x584D10",
+   "entrada": "0x8BB398"
+  },
+  "npcsalesell": {
+   "cadena": "0x8BA76C",
+   "funcion": "0x584C50",
+   "entrada": "0x8BB390"
+  },
+  "npcsalesellconfirm": {
+   "cadena": "0x8BA778",
+   "funcion": "0x584C80",
+   "entrada": "0x8BB388"
+  },
+  "npcsalesellex": {
+   "cadena": "0x8BA74C",
+   "funcion": "0x584D50",
+   "entrada": "0x8BB3A0"
+  },
+  "numclearall": {
+   "cadena": "0x8BAF04",
+   "funcion": "0x5789D0",
+   "entrada": "0x8BAF88"
+  },
+  "onClickActBoardListBtn": {
+   "cadena": "0x8B8730",
+   "funcion": "0x59B740",
+   "entrada": "0x8BC200"
+  },
+  "onclickcardlistitem": {
+   "cadena": "0x8B941C",
+   "funcion": "0x595FA0",
+   "entrada": "0x8BBC30"
+  },
+  "onclickcardsettreeitem": {
+   "cadena": "0x8B9494",
+   "funcion": "0x595A10",
+   "entrada": "0x8BBC08"
+  },
+  "onclicksimplfycardlistitem": {
+   "cadena": "0x8B934C",
+   "funcion": "0x596820",
+   "entrada": "0x8BBC70"
+  },
+  "onclicksimplfycardsettreeitem": {
+   "cadena": "0x8B9380",
+   "funcion": "0x5965C0",
+   "entrada": "0x8BBC60"
+  },
+  "ontooltipassistmagicitem": {
+   "cadena": "0x8B9B5C",
+   "funcion": "0x5904E0",
+   "entrada": "0x8BB9A8"
+  },
+  "ontooltipatcardsetreward": {
+   "cadena": "0x8B9464",
+   "funcion": "0x595C00",
+   "entrada": "0x8BBC18"
+  },
+  "openABActURL": {
+   "cadena": "0x8B86D8",
+   "funcion": "0x59B800",
+   "entrada": "0x8BC220"
+  },
+  "openActBoardTypeWnd": {
+   "cadena": "0x8B871C",
+   "funcion": "0x59B770",
+   "entrada": "0x8BC208"
+  },
+  "opencollectionbook": {
+   "cadena": "0x8B8CE8",
+   "funcion": "0x59A6F0",
+   "entrada": "0x8BBF58"
+  },
+  "openmap": {
+   "cadena": "0x8BA3A4",
+   "funcion": "0x584620",
+   "entrada": "0x8BB5A8"
+  },
+  "padsetmenumode": {
+   "cadena": "0x8B8E74",
+   "funcion": "0x59A030",
+   "entrada": "0x8BBE90"
+  },
+  "pass03": {
+   "cadena": "0x8BAEB8",
+   "funcion": "0x578BB0",
+   "entrada": "0x8BAFB8"
+  },
+  "petcommand": {
+   "cadena": "0x8BA32C",
+   "funcion": "0x58A0D0",
+   "entrada": "0x8BB5E8"
+  },
+  "pickuptower": {
+   "cadena": "0x8B9C08",
+   "funcion": "0x590080",
+   "entrada": "0x8BB968"
+  },
+  "playnpcvoice": {
+   "cadena": "0x8BA3AC",
+   "funcion": "0x58A050",
+   "entrada": "0x8BB5A0"
+  },
+  "quickemot": {
+   "cadena": "0x8BAE30",
+   "funcion": "0x578FD0",
+   "entrada": "0x8BB008"
+  },
+  "recoverfurniture": {
+   "cadena": "0x8B9220",
+   "funcion": "0x597AF0",
+   "entrada": "0x8BBD08"
+  },
+  "registryhouse": {
+   "cadena": "0x8B91FC",
+   "funcion": "0x597C70",
+   "entrada": "0x8BBD18"
+  },
+  "removerobotvar_int2list": {
+   "cadena": "0x8B9880",
+   "funcion": "0x591B90",
+   "entrada": "0x8BBAA8"
+  },
+  "removerobotvar_stringlist": {
+   "cadena": "0x8B9864",
+   "funcion": "0x591BD0",
+   "entrada": "0x8BBAB0"
+  },
+  "removetuitiontip": {
+   "cadena": "0x8BA090",
+   "funcion": "0x58BF90",
+   "entrada": "0x8BB740"
+  },
+  "repairall": {
+   "cadena": "0x8BA3D8",
+   "funcion": "0x589E50",
+   "entrada": "0x8BB588"
+  },
+  "repairclose": {
+   "cadena": "0x8BA3CC",
+   "funcion": "0x589E80",
+   "entrada": "0x8BB590"
+  },
+  "repairone": {
+   "cadena": "0x8BA3E4",
+   "funcion": "0x589E20",
+   "entrada": "0x8BB580"
+  },
+  "resetmallfitting": {
+   "cadena": "0x8B9D50",
+   "funcion": "0x58EC00",
+   "entrada": "0x8BB8C8"
+  },
+  "resetmallfittingfurniture": {
+   "cadena": "0x8B90E4",
+   "funcion": "0x598F20",
+   "entrada": "0x8BBD98"
+  },
+  "restoremousepos": {
+   "cadena": "0x8B8E48",
+   "funcion": "0x59A120",
+   "entrada": "0x8BBEA8"
+  },
+  "robotvar_add_int2list": {
+   "cadena": "0x8B9A04",
+   "funcion": "0x5915F0",
+   "entrada": "0x8BBA18"
+  },
+  "robotvar_add_intlist": {
+   "cadena": "0x8B9A1C",
+   "funcion": "0x5915B0",
+   "entrada": "0x8BBA10"
+  },
+  "robotvar_add_stringlist": {
+   "cadena": "0x8B99EC",
+   "funcion": "0x591640",
+   "entrada": "0x8BBA20"
+  },
+  "robotvar_clear_list": {
+   "cadena": "0x8B99D8",
+   "funcion": "0x591680",
+   "entrada": "0x8BBA28"
+  },
+  "robotvar_getnum_list": {
+   "cadena": "0x8B99C0",
+   "funcion": "0x5916C0",
+   "entrada": "0x8BBA30"
+  },
+  "rotatefurniture": {
+   "cadena": "0x8B9264",
+   "funcion": "0x596E50",
+   "entrada": "0x8BBCE8"
+  },
+  "rouletteclose": {
+   "cadena": "0x8B8B50",
+   "funcion": "0x59CE50",
+   "entrada": "0x8BC048"
+  },
+  "roulettelogtooltip": {
+   "cadena": "0x8B8B2C",
+   "funcion": "0x59CEB0",
+   "entrada": "0x8BC058"
+  },
+  "roulettestart": {
+   "cadena": "0x8B8B40",
+   "funcion": "0x59CE70",
+   "entrada": "0x8BC050"
+  },
+  "safeverifycancel": {
+   "cadena": "0x8B9E4C",
+   "funcion": "0x58D8B0",
+   "entrada": "0x8BB850"
+  },
+  "salebuymultiple": {
+   "cadena": "0x8BA974",
+   "funcion": "0x583540",
+   "entrada": "0x8BB288"
+  },
+  "salebuysingle": {
+   "cadena": "0x8BA984",
+   "funcion": "0x583420",
+   "entrada": "0x8BB280"
+  },
+  "saleclose": {
+   "cadena": "0x8BA8C0",
+   "funcion": "0x584270",
+   "entrada": "0x8BB2E8"
+  },
+  "salecloseok": {
+   "cadena": "0x8BA8B4",
+   "funcion": "0x5842D0",
+   "entrada": "0x8BB2F0"
+  },
+  "saleeditchange": {
+   "cadena": "0x8BA934",
+   "funcion": "0x583BA0",
+   "entrada": "0x8BB2A8"
+  },
+  "saleissale": {
+   "cadena": "0x8BA800",
+   "funcion": "0x584490",
+   "entrada": "0x8BB348"
+  },
+  "saleistrade": {
+   "cadena": "0x8BA80C",
+   "funcion": "0x584450",
+   "entrada": "0x8BB340"
+  },
+  "salelistsave": {
+   "cadena": "0x8BA7F0",
+   "funcion": "0x5844D0",
+   "entrada": "0x8BB350"
+  },
+  "salescroll": {
+   "cadena": "0x8BA944",
+   "funcion": "0x583970",
+   "entrada": "0x8BB2A0"
+  },
+  "salesellmultiple": {
+   "cadena": "0x8BA994",
+   "funcion": "0x583270",
+   "entrada": "0x8BB278"
+  },
+  "salesellsingle": {
+   "cadena": "0x8BA9A8",
+   "funcion": "0x583150",
+   "entrada": "0x8BB270"
+  },
+  "salesettrade": {
+   "cadena": "0x8BA818",
+   "funcion": "0x584420",
+   "entrada": "0x8BB338"
+  },
+  "salestart": {
+   "cadena": "0x8BA928",
+   "funcion": "0x583DB0",
+   "entrada": "0x8BB2B0"
+  },
+  "salestartok": {
+   "cadena": "0x8BA91C",
+   "funcion": "0x583E90",
+   "entrada": "0x8BB2B8"
+  },
+  "saletradebuy": {
+   "cadena": "0x8BA864",
+   "funcion": "0x5843C0",
+   "entrada": "0x8BB318"
+  },
+  "saletradebuyconfirm": {
+   "cadena": "0x8BA850",
+   "funcion": "0x584CB0",
+   "entrada": "0x8BB320"
+  },
+  "saletradeeditchange": {
+   "cadena": "0x8BA884",
+   "funcion": "0x584390",
+   "entrada": "0x8BB308"
+  },
+  "saletradescroll": {
+   "cadena": "0x8BA874",
+   "funcion": "0x584360",
+   "entrada": "0x8BB310"
+  },
+  "saletradesell": {
+   "cadena": "0x8BA840",
+   "funcion": "0x5843F0",
+   "entrada": "0x8BB328"
+  },
+  "saletradesellconfirm": {
+   "cadena": "0x8BA828",
+   "funcion": "0x584CE0",
+   "entrada": "0x8BB330"
+  },
+  "saletradewnd": {
+   "cadena": "0x8BA90C",
+   "funcion": "0x583EC0",
+   "entrada": "0x8BB2C0"
+  },
+  "salonfitting": {
+   "cadena": "0x8B9318",
+   "funcion": "0x5969A0",
+   "entrada": "0x8BBC88"
+  },
+  "salonok": {
+   "cadena": "0x8B92FC",
+   "funcion": "0x596A00",
+   "entrada": "0x8BBC98"
+  },
+  "salontallfitting": {
+   "cadena": "0x8B9304",
+   "funcion": "0x5969D0",
+   "entrada": "0x8BBC90"
+  },
+  "savefurniture": {
+   "cadena": "0x8B9244",
+   "funcion": "0x5974D0",
+   "entrada": "0x8BBCF8"
+  },
+  "savesetting": {
+   "cadena": "0x8B6518",
+   "funcion": "0x523D80",
+   "entrada": "0x8B6D28"
+  },
+  "selectcard03": {
+   "cadena": "0x8BAECC",
+   "funcion": "0x578B20",
+   "entrada": "0x8BAFA8"
+  },
+  "selectok03": {
+   "cadena": "0x8BAEC0",
+   "funcion": "0x578B70",
+   "entrada": "0x8BAFB0"
+  },
+  "selectvotenotelist": {
+   "cadena": "0x8B8FD8",
+   "funcion": "0x5994C0",
+   "entrada": "0x8BBE00"
+  },
+  "sendChangeSlotSetting": {
+   "cadena": "0x8B8A1C",
+   "funcion": "0x59B2E0",
+   "entrada": "0x8BC0C0"
+  },
+  "sendExchange": {
+   "cadena": "0x8B87EC",
+   "funcion": "0x59BF10",
+   "entrada": "0x8BC1B0"
+  },
+  "sendStarSlotChange": {
+   "cadena": "0x8B885C",
+   "funcion": "0x59CBE0",
+   "entrada": "0x8BC180"
+  },
+  "sendcollect": {
+   "cadena": "0x8B8C90",
+   "funcion": "0x59A780",
+   "entrada": "0x8BBF88"
+  },
+  "sendrentbank": {
+   "cadena": "0x8B9D04",
+   "funcion": "0x58E5C0",
+   "entrada": "0x8BB8F0"
+  },
+  "sendsafeverify": {
+   "cadena": "0x8B9E78",
+   "funcion": "0x58DC50",
+   "entrada": "0x8BB840"
+  },
+  "sendsafeverifychange": {
+   "cadena": "0x8B9E60",
+   "funcion": "0x58D9E0",
+   "entrada": "0x8BB848"
+  },
+  "sendsafeverifydelete": {
+   "cadena": "0x8B9E34",
+   "funcion": "0x58D8E0",
+   "entrada": "0x8BB858"
+  },
+  "sendstart": {
+   "cadena": "0x8BAEE8",
+   "funcion": "0x578A80",
+   "entrada": "0x8BAF98"
+  },
+  "sentmsgtorewardcardset": {
+   "cadena": "0x8B944C",
+   "funcion": "0x595C90",
+   "entrada": "0x8BBC20"
+  },
+  "setEquipItemValue": {
+   "cadena": "0x8B89C0",
+   "funcion": "0x59B440",
+   "entrada": "0x8BC0E0"
+  },
+  "setEquipPetItemEx": {
+   "cadena": "0x8B89AC",
+   "funcion": "0x59B480",
+   "entrada": "0x8BC0E8"
+  },
+  "setbuyvalue": {
+   "cadena": "0x8BA740",
+   "funcion": "0x584D90",
+   "entrada": "0x8BB3A8"
+  },
+  "setchangeskillcostitem": {
+   "cadena": "0x8BA014",
+   "funcion": "0x58C1D0",
+   "entrada": "0x8BB778"
+  },
+  "setcommandnotify": {
+   "cadena": "0x8B87AC",
+   "funcion": "0x59BD80",
+   "entrada": "0x8BC1C8"
+  },
+  "setcontribnum": {
+   "cadena": "0x8B9C58",
+   "funcion": "0x58ED00",
+   "entrada": "0x8BB940"
+  },
+  "setcursormode": {
+   "cadena": "0x8BAA90",
+   "funcion": "0x581D20",
+   "entrada": "0x8BB1F0"
+  },
+  "setgametime": {
+   "cadena": "0x8B9EAC",
+   "funcion": "0x58D6D0",
+   "entrada": "0x8BB828"
+  },
+  "setgroupimage": {
+   "cadena": "0x8BA248",
+   "funcion": "0x58AD90",
+   "entrada": "0x8BB668"
+  },
+  "sethousepassword": {
+   "cadena": "0x8B91AC",
+   "funcion": "0x598050",
+   "entrada": "0x8BBD40"
+  },
+  "sethousepetradio": {
+   "cadena": "0x8B9034",
+   "funcion": "0x599300",
+   "entrada": "0x8BBDD8"
+  },
+  "setinvestvalue": {
+   "cadena": "0x8BA730",
+   "funcion": "0x584DD0",
+   "entrada": "0x8BB3B0"
+  },
+  "setitemtooltip": {
+   "cadena": "0x8B896C",
+   "funcion": "0x59B4C0",
+   "entrada": "0x8BC100"
+  },
+  "setmallpage": {
+   "cadena": "0x8B9E28",
+   "funcion": "0x58DDE0",
+   "entrada": "0x8BB860"
+  },
+  "setminigamewnd": {
+   "cadena": "0x8BAF28",
+   "funcion": "0x5788B0",
+   "entrada": "0x8BAF70"
+  },
+  "setminimapopen": {
+   "cadena": "0x8B9EB8",
+   "funcion": "0x58D4A0",
+   "entrada": "0x8BB820"
+  },
+  "setminwnd": {
+   "cadena": "0x8BABD8",
+   "funcion": "0x57B0F0",
+   "entrada": "0x8BB138"
+  },
+  "setnumback": {
+   "cadena": "0x8BAF10",
+   "funcion": "0x578950",
+   "entrada": "0x8BAF80"
+  },
+  "setotherplayercardbooktitle": {
+   "cadena": "0x8B93BC",
+   "funcion": "0x5963D0",
+   "entrada": "0x8BBC50"
+  },
+  "setpetname": {
+   "cadena": "0x8BA320",
+   "funcion": "0x58A250",
+   "entrada": "0x8BB5F0"
+  },
+  "setrobotisrun": {
+   "cadena": "0x8B9BE4",
+   "funcion": "0x5900B0",
+   "entrada": "0x8BB978"
+  },
+  "setrobotvar_bool": {
+   "cadena": "0x8B999C",
+   "funcion": "0x591750",
+   "entrada": "0x8BBA40"
+  },
+  "setrobotvar_int": {
+   "cadena": "0x8B99B0",
+   "funcion": "0x591710",
+   "entrada": "0x8BBA38"
+  },
+  "setrobotvar_int2list": {
+   "cadena": "0x8B995C",
+   "funcion": "0x591830",
+   "entrada": "0x8BBA58"
+  },
+  "setrobotvar_string": {
+   "cadena": "0x8B9988",
+   "funcion": "0x591790",
+   "entrada": "0x8BBA48"
+  },
+  "setsafeverifypic": {
+   "cadena": "0x8B9E88",
+   "funcion": "0x58D7E0",
+   "entrada": "0x8BB838"
+  },
+  "setsalenum": {
+   "cadena": "0x8BA8A8",
+   "funcion": "0x584330",
+   "entrada": "0x8BB2F8"
+  },
+  "setsellvalue": {
+   "cadena": "0x8BA720",
+   "funcion": "0x584E10",
+   "entrada": "0x8BB3B8"
+  },
+  "setshowshadow": {
+   "cadena": "0x8B9EFC",
+   "funcion": "0x58D3C0",
+   "entrada": "0x8BB800"
+  },
+  "setsplititemnum": {
+   "cadena": "0x8BA584",
+   "funcion": "0x585D80",
+   "entrada": "0x8BB490"
+  },
+  "setsplitmoneynum": {
+   "cadena": "0x8BA3FC",
+   "funcion": "0x589200",
+   "entrada": "0x8BB570"
+  },
+  "setstagemappage": {
+   "cadena": "0x8B9EEC",
+   "funcion": "0x58D460",
+   "entrada": "0x8BB808"
+  },
+  "setstagerender": {
+   "cadena": "0x8BA338",
+   "funcion": "0x58A090",
+   "entrada": "0x8BB5E0"
+  },
+  "settalkmessage": {
+   "cadena": "0x8BA5AC",
+   "funcion": "0x585640",
+   "entrada": "0x8BB478"
+  },
+  "settipshow": {
+   "cadena": "0x8B9FF4",
+   "funcion": "0x58C4D0",
+   "entrada": "0x8BB788"
+  },
+  "setwordbuyvalue": {
+   "cadena": "0x8B92EC",
+   "funcion": "0x596A40",
+   "entrada": "0x8BBCA0"
+  },
+  "showAchieveEquipPetNew": {
+   "cadena": "0x8B8994",
+   "funcion": "0x59B3A0",
+   "entrada": "0x8BC0F0"
+  },
+  "showBestCoin": {
+   "cadena": "0x8B8768",
+   "funcion": "0x59C550",
+   "entrada": "0x8BC1E8"
+  },
+  "showBingoCoin": {
+   "cadena": "0x8B8788",
+   "funcion": "0x59C270",
+   "entrada": "0x8BC1D8"
+  },
+  "showConfirmBingo": {
+   "cadena": "0x8B8798",
+   "funcion": "0x59C140",
+   "entrada": "0x8BC1D0"
+  },
+  "showConfirmCoin": {
+   "cadena": "0x8B8778",
+   "funcion": "0x59C420",
+   "entrada": "0x8BC1E0"
+  },
+  "showConfirmExchange": {
+   "cadena": "0x8B87FC",
+   "funcion": "0x59C080",
+   "entrada": "0x8BC1A8"
+  },
+  "showEquipPetNewPetName": {
+   "cadena": "0x8B897C",
+   "funcion": "0x59B370",
+   "entrada": "0x8BC0F8"
+  },
+  "showExchange": {
+   "cadena": "0x8B8810",
+   "funcion": "0x59BE90",
+   "entrada": "0x8BC1A0"
+  },
+  "showMainStarCard": {
+   "cadena": "0x8B8848",
+   "funcion": "0x59CD10",
+   "entrada": "0x8BC188"
+  },
+  "showTempSlot": {
+   "cadena": "0x8B8890",
+   "funcion": "0x59CD80",
+   "entrada": "0x8BC168"
+  },
+  "showallfurniture": {
+   "cadena": "0x8B91C0",
+   "funcion": "0x597EB0",
+   "entrada": "0x8BBD38"
+  },
+  "showallinfo": {
+   "cadena": "0x8BA144",
+   "funcion": "0x58B1D0",
+   "entrada": "0x8BB6F0"
+  },
+  "showbillboardhousedata": {
+   "cadena": "0x8B8F6C",
+   "funcion": "0x5996B0",
+   "entrada": "0x8BBE28"
+  },
+  "showdailyeventhelp": {
+   "cadena": "0x8B8C50",
+   "funcion": "0x59AAB0",
+   "entrada": "0x8BBFA8"
+  },
+  "showhitparadedata": {
+   "cadena": "0x8B9BF4",
+   "funcion": "0x590050",
+   "entrada": "0x8BB970"
+  },
+  "showhitparadehousedata": {
+   "cadena": "0x8B8F84",
+   "funcion": "0x599680",
+   "entrada": "0x8BBE20"
+  },
+  "showhitparadehousescore": {
+   "cadena": "0x8B8F40",
+   "funcion": "0x599710",
+   "entrada": "0x8BBE38"
+  },
+  "showlisttooltip": {
+   "cadena": "0x8BAA30",
+   "funcion": "0x581F20",
+   "entrada": "0x8BB220"
+  },
+  "shownoguildmsg": {
+   "cadena": "0x8BA1D4",
+   "funcion": "0x58B080",
+   "entrada": "0x8BB6A8"
+  },
+  "showsalemessage": {
+   "cadena": "0x8BA8CC",
+   "funcion": "0x583FD0",
+   "entrada": "0x8BB2E0"
+  },
+  "starDragItem": {
+   "cadena": "0x8B8870",
+   "funcion": "0x59CA70",
+   "entrada": "0x8BC178"
+  },
+  "starDropItem": {
+   "cadena": "0x8B8880",
+   "funcion": "0x59C700",
+   "entrada": "0x8BC170"
+  },
+  "statuschange": {
+   "cadena": "0x8BADA0",
+   "funcion": "0x579110",
+   "entrada": "0x8BB050"
+  },
+  "switchsubset": {
+   "cadena": "0x8BA20C",
+   "funcion": "0x58AC90",
+   "entrada": "0x8BB688"
+  },
+  "talkaction": {
+   "cadena": "0x8BA5A0",
+   "funcion": "0x585CC0",
+   "entrada": "0x8BB480"
+  },
+  "testbasemode": {
+   "cadena": "0x8B8F18",
+   "funcion": "0x589B80",
+   "entrada": "0x8BBE50"
+  },
+  "testbiascolor": {
+   "cadena": "0x8B8F28",
+   "funcion": "0x589860",
+   "entrada": "0x8BBE48"
+  },
+  "testcopyvalues": {
+   "cadena": "0x8B8EE8",
+   "funcion": "0x589D10",
+   "entrada": "0x8BBE68"
+  },
+  "testinitvalues": {
+   "cadena": "0x8B8EF8",
+   "funcion": "0x589CE0",
+   "entrada": "0x8BBE60"
+  },
+  "testmaskmode": {
+   "cadena": "0x8B8F08",
+   "funcion": "0x589C30",
+   "entrada": "0x8BBE58"
+  },
+  "toteminvest": {
+   "cadena": "0x8BA7D0",
+   "funcion": "0x584BC0",
+   "entrada": "0x8BB360"
+  },
+  "toteminvestconfirm": {
+   "cadena": "0x8BA7BC",
+   "funcion": "0x584BF0",
+   "entrada": "0x8BB368"
+  },
+  "toteminvestwnd": {
+   "cadena": "0x8BA7AC",
+   "funcion": "0x584C20",
+   "entrada": "0x8BB370"
+  },
+  "tradeclose": {
+   "cadena": "0x8BA540",
+   "funcion": "0x5861E0",
+   "entrada": "0x8BB4B8"
+  },
+  "tradedrop": {
+   "cadena": "0x8BA534",
+   "funcion": "0x586210",
+   "entrada": "0x8BB4C0"
+  },
+  "tradeinvite": {
+   "cadena": "0x8BA56C",
+   "funcion": "0x586150",
+   "entrada": "0x8BB4A0"
+  },
+  "tradeinviteex": {
+   "cadena": "0x8BA55C",
+   "funcion": "0x586180",
+   "entrada": "0x8BB4A8"
+  },
+  "tradeinviteok": {
+   "cadena": "0x8BA54C",
+   "funcion": "0x5861B0",
+   "entrada": "0x8BB4B0"
+  },
+  "trademoney": {
+   "cadena": "0x8BA51C",
+   "funcion": "0x586340",
+   "entrada": "0x8BB4D0"
+  },
+  "trademoneyok": {
+   "cadena": "0x8BA50C",
+   "funcion": "0x586530",
+   "entrada": "0x8BB4D8"
+  },
+  "tradereject": {
+   "cadena": "0x8BA4F4",
+   "funcion": "0x586630",
+   "entrada": "0x8BB4E8"
+  },
+  "tradesetok": {
+   "cadena": "0x8BA528",
+   "funcion": "0x586310",
+   "entrada": "0x8BB4C8"
+  },
+  "tradetrade": {
+   "cadena": "0x8BA500",
+   "funcion": "0x586600",
+   "entrada": "0x8BB4E0"
+  },
+  "trycastvote": {
+   "cadena": "0x8B9014",
+   "funcion": "0x5993C0",
+   "entrada": "0x8BBDE8"
+  },
+  "tryentryhouse": {
+   "cadena": "0x8B9138",
+   "funcion": "0x598BD0",
+   "entrada": "0x8BBD78"
+  },
+  "trygotosenderhouse": {
+   "cadena": "0x8B8FC4",
+   "funcion": "0x599500",
+   "entrada": "0x8BBE08"
+  },
+  "turnmallfitting": {
+   "cadena": "0x8B9D40",
+   "funcion": "0x58EC30",
+   "entrada": "0x8BB8D0"
+  },
+  "turnsalonfitting": {
+   "cadena": "0x8B9328",
+   "funcion": "0x596970",
+   "entrada": "0x8BBC80"
+  },
+  "updateABLoginRawardData": {
+   "cadena": "0x8B8704",
+   "funcion": "0x59B7A0",
+   "entrada": "0x8BC210"
+  },
+  "updateABOnlineRawardData": {
+   "cadena": "0x8B86E8",
+   "funcion": "0x59B7D0",
+   "entrada": "0x8BC218"
+  },
+  "updateachtip": {
+   "cadena": "0x8B8D2C",
+   "funcion": "0x589690",
+   "entrada": "0x8BBF40"
+  },
+  "updateachwnd": {
+   "cadena": "0x8B8D3C",
+   "funcion": "0x589660",
+   "entrada": "0x8BBF38"
+  },
+  "updatechfilter": {
+   "cadena": "0x8BA6B0",
+   "funcion": "0x5849E0",
+   "entrada": "0x8BB3F0"
+  },
+  "updatecltnawdwnd": {
+   "cadena": "0x8B8CAC",
+   "funcion": "0x59A890",
+   "entrada": "0x8BBF78"
+  },
+  "updatecontriblist": {
+   "cadena": "0x8B9C34",
+   "funcion": "0x58EE30",
+   "entrada": "0x8BB950"
+  },
+  "updatecrownwnd": {
+   "cadena": "0x8B8D68",
+   "funcion": "0x5895A0",
+   "entrada": "0x8BBF20"
+  },
+  "updatefurniturelist": {
+   "cadena": "0x8B9184",
+   "funcion": "0x598520",
+   "entrada": "0x8BBD50"
+  },
+  "updateguildwnd": {
+   "cadena": "0x8BA2B8",
+   "funcion": "0x58A6B0",
+   "entrada": "0x8BB630"
+  },
+  "updatehouseinfo": {
+   "cadena": "0x8B9294",
+   "funcion": "0x596C30",
+   "entrada": "0x8BBCD0"
+  },
+  "updatejumpmapcurrclass": {
+   "cadena": "0x8B8BC0",
+   "funcion": "0x59AC20",
+   "entrada": "0x8BBFF0"
+  },
+  "updatemagicstate": {
+   "cadena": "0x8BA6D0",
+   "funcion": "0x584960",
+   "entrada": "0x8BB3E0"
+  },
+  "updatemaintypepoplist": {
+   "cadena": "0x8B8D14",
+   "funcion": "0x5896C0",
+   "entrada": "0x8BBF48"
+  },
+  "updatenpcsaleitemwnd": {
+   "cadena": "0x8B9C68",
+   "funcion": "0x58EBA0",
+   "entrada": "0x8BB938"
+  },
+  "updatepetequipsuit": {
+   "cadena": "0x8B9CA0",
+   "funcion": "0x58EAE0",
+   "entrada": "0x8BB920"
+  },
+  "updatepetmagicstate": {
+   "cadena": "0x8B9CB4",
+   "funcion": "0x58EAC0",
+   "entrada": "0x8BB918"
+  },
+  "updateprestwnd": {
+   "cadena": "0x8B8D58",
+   "funcion": "0x5895E0",
+   "entrada": "0x8BBF28"
+  },
+  "updatequestcontent": {
+   "cadena": "0x8BA66C",
+   "funcion": "0x584AB0",
+   "entrada": "0x8BB410"
+  },
+  "updatequestshortcut": {
+   "cadena": "0x8BA0D0",
+   "funcion": "0x58BE10",
+   "entrada": "0x8BB728"
+  },
+  "updatesubtypepoplist": {
+   "cadena": "0x8B8CFC",
+   "funcion": "0x589780",
+   "entrada": "0x8BBF50"
+  },
+  "updatetelllist": {
+   "cadena": "0x8BA6A0",
+   "funcion": "0x584A10",
+   "entrada": "0x8BB3F8"
+  },
+  "updatevotenotelist": {
+   "cadena": "0x8B9000",
+   "funcion": "0x599430",
+   "entrada": "0x8BBDF0"
+  },
+  "updatewordprizewnd": {
+   "cadena": "0x8B92C4",
+   "funcion": "0x596BB0",
+   "entrada": "0x8BBCB8"
+  },
+  "uploadguildlogo": {
+   "cadena": "0x8BA1C4",
+   "funcion": "0x58B170",
+   "entrada": "0x8BB6B0"
+  },
+  "usebankitem": {
+   "cadena": "0x8BA41C",
+   "funcion": "0x589050",
+   "entrada": "0x8BB560"
+  },
+  "usecardaddtocardbook": {
+   "cadena": "0x8B93F0",
+   "funcion": "0x596340",
+   "entrada": "0x8BBC40"
+  },
+  "usecharitem": {
+   "cadena": "0x8BA9F4",
+   "funcion": "0x5823E0",
+   "entrada": "0x8BB248"
+  },
+  "useexppaper": {
+   "cadena": "0x8B8E2C",
+   "funcion": "0x59A230",
+   "entrada": "0x8BBEB8"
+  },
+  "useextrasaleslot": {
+   "cadena": "0x8BA7DC",
+   "funcion": "0x584550",
+   "entrada": "0x8BB358"
+  },
+  "usefurniture": {
+   "cadena": "0x8B9174",
+   "funcion": "0x5986C0",
+   "entrada": "0x8BBD58"
+  },
+  "useitem": {
+   "cadena": "0x8B9F0C",
+   "funcion": "0x59AC60",
+   "entrada": "0x8BB7F8"
+  },
+  "useitem2itemconfirm": {
+   "cadena": "0x8B9F5C",
+   "funcion": "0x58CE80",
+   "entrada": "0x8BB7D0"
+  },
+  "useitem2target": {
+   "cadena": "0x8B9F14",
+   "funcion": "0x59AC90",
+   "entrada": "0x8BB7F0"
+  },
+  "useitemonpartner": {
+   "cadena": "0x8B9EC8",
+   "funcion": "0x58D430",
+   "entrada": "0x8BB818"
+  },
+  "useitemsupershout": {
+   "cadena": "0x8B9F48",
+   "funcion": "0x58D120",
+   "entrada": "0x8BB7D8"
+  },
+  "usequickkey": {
+   "cadena": "0x8BA618",
+   "funcion": "0x585460",
+   "entrada": "0x8BB440"
+  },
+  "useskillsmagic": {
+   "cadena": "0x8BA608",
+   "funcion": "0x5854B0",
+   "entrada": "0x8BB448"
+  },
+  "viewotherplayercardbook": {
+   "cadena": "0x8B93D8",
+   "funcion": "0x596380",
+   "entrada": "0x8BBC48"
+  },
+  "votenotechangepage": {
+   "cadena": "0x8B8FEC",
+   "funcion": "0x599470",
+   "entrada": "0x8BBDF8"
+  },
+  "watermelonlockrobot": {
+   "cadena": "0x8B9F70",
+   "funcion": "0x59A1C0",
+   "entrada": "0x8BB7C8"
+  },
+  "wordbuy": {
+   "cadena": "0x8B92D8",
+   "funcion": "0x596B80",
+   "entrada": "0x8BBCB0"
+  },
+  "wordbuyconfirm": {
+   "cadena": "0x8B92B4",
+   "funcion": "0x596BD0",
+   "entrada": "0x8BBCC0"
+  },
+  "wordbuyex": {
+   "cadena": "0x8B92E0",
+   "funcion": "0x596A80",
+   "entrada": "0x8BBCA8"
+  }
+ }
+}
