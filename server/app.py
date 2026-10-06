@@ -306,16 +306,71 @@ def _monstruos_de(stage: int):
             for e in d['spawns'] if e.get('monstruo')}
 
 
-def _precio_item(item_id: int) -> int:
-    """Precio de compra, de la columna price de item.xml."""
+_PRECIOS = None
+
+
+def _cargar_precios():
+    """{item_id: (precio_lista, precio_venta)} de las NUEVE tablas de item.
+
+    Antes esto solo miraba la tabla `item`, que es item.xml a secas. Todo el
+    equipo de verdad vive en item2..item9 (el Hephaestus-Hedgehog Bag es el
+    40757 de item2), asi que esas consultas devolvian 0, el max(1, ...) lo
+    convertia en 1 y la tienda pagaba un oro por cualquier cosa.
+
+    La columna de venta es 收購價格 ("precio de compra" visto desde la
+    tienda) y NO esta en la misma posicion en cada tabla -- en `item` cae en
+    la 4 y en `item3` en la 60 -- asi que se busca por nombre, no por
+    indice. Cuando la tabla no la trae se usa la mitad del precio de lista,
+    que es lo que hacia la version vieja.
+    """
+    global _PRECIOS
+    if _PRECIOS is not None:
+        return _PRECIOS
     import sqlite3
+    import inventario as _iv_p
+    _PRECIOS = {}
     db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
+    if not db.exists():
+        return _PRECIOS
     try:
-        r = sqlite3.connect(db).execute(
-            'select price from item where id=?', (str(item_id),)).fetchone()
-        return int(float(r[0])) if r and r[0] else 0
+        con = sqlite3.connect(db)
     except Exception:
-        return 0
+        return _PRECIOS
+
+    def _n(x):
+        try:
+            return int(float(x))
+        except (TypeError, ValueError):
+            return 0
+
+    for tabla in _iv_p.TABLAS_ITEM:
+        try:
+            cols = [r[1] for r in con.execute('pragma table_info(%s)' % tabla)]
+        except Exception:
+            continue
+        if 'price' not in cols:
+            continue
+        venta = '收購價格' if '收購價格' in cols else None
+        sel = 'select id, price, %s from %s' % (
+            ('"%s"' % venta) if venta else 'NULL', tabla)
+        try:
+            filas = list(con.execute(sel + " where id glob '[0-9]*'"))
+        except Exception:
+            continue
+        for iid, pr, vt in filas:
+            lista = _n(pr)
+            v = _n(vt)
+            if not lista and not v:
+                continue
+            ant = _PRECIOS.get(int(iid), (0, 0))
+            _PRECIOS[int(iid)] = (lista or ant[0], v or ant[1])
+    con.close()
+    return _PRECIOS
+
+
+def _precio_item(item_id: int) -> int:
+    """Precio de lista del item, mirando las nueve tablas."""
+    return _cargar_precios().get(int(item_id or 0), (0, 0))[0]
 
 
 # Lo que descuenta la tienda sobre el precio de lista al comprar. La Red
@@ -337,23 +392,17 @@ def _precio_compra(item_id: int) -> int:
 def _precio_venta(item_id: int) -> int:
     """Lo que paga la tienda por ese item.
 
-    item.xml trae su propia columna de precio de venta, distinta de price:
-    la Red Potion 1 vale 40 de compra y 12 de venta, y son justo los numeros
-    de la captura (11 pociones dieron 132 de oro). Antes se usaba price // 2,
-    que habria dado 20. El nombre de esa columna quedo ilegible al montar la
-    base, asi que se lee por posicion; el equipo la trae vacia y para eso se
-    sigue usando la mitad del precio de compra.
+    Sale de la columna 收購價格, que es distinta del precio de lista: la Red
+    Potion 1 vale 40 de lista y 12 de venta, y son justo los numeros de la
+    captura (once pociones dieron 132 de oro). El equipo no suele traerla,
+    y para ese se usa la mitad del precio de lista.
     """
-    import sqlite3
-    db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
-    try:
-        r = sqlite3.connect(db).execute(
-            'select * from item where id=?', (str(item_id),)).fetchone()
-        if r and len(r) > 4 and r[4]:
-            return max(1, int(float(r[4])))
-    except Exception:
-        pass
-    return max(1, _precio_item(item_id) // 2)
+    lista, venta = _cargar_precios().get(int(item_id or 0), (0, 0))
+    if venta > 0:
+        return venta
+    if lista > 0:
+        return max(1, lista // 2)
+    return 1
 
 
 # Ultima casilla utilizable de la mochila base (pestaña Prop: 5x5 = 25 ranuras,
@@ -804,9 +853,30 @@ def _gm_texto(cuerpo: bytes):
         if not trozo or not all((32 <= b < 127) or b in (9, 10, 13) for b in trozo):
             continue
         t = trozo.decode('ascii').strip()
-        primera = (t.lower().split() or [''])[0]
-        if t.startswith('/') or primera in PALABRAS_GM:
+        if t.startswith('/'):
             return t
+        # SIN BARRA la cosa es delicada: este husmeo corre sobre TODOS los
+        # paquetes del cliente y, si acierta, se traga el paquete entero.
+        # Pasaba justo eso al vender: el 0x0028 lleva ids de instancia, que
+        # salen correlativos desde 0x030000, y uno de cada 256 empieza por
+        # el byte 0x69 seguido de 0x00 -- o sea la cadena "i", que estaba en
+        # PALABRAS_GM como atajo de /item. El paquete se consumia, no se
+        # vendia nada y al jugador le salia "usage: /item <id> [qty]" en el
+        # chat. Lo mismo le podia pasar a cualquier otro paquete.
+        #
+        # Asi que sin barra hace falta mucho mas: una palabra de cuatro
+        # letras o mas de la lista, y que el texto sea TODO el cuerpo (lo
+        # que venga detras del NUL tiene que ser relleno a ceros). Un
+        # comando de verdad cumple las dos; un id de instancia no cumple
+        # ninguna.
+        primera = (t.lower().split() or [''])[0]
+        if len(primera) < 4 or primera not in PALABRAS_GM:
+            continue
+        resto = cuerpo[off:]
+        nul2 = resto.find(b'\x00')
+        if nul2 >= 0 and any(resto[nul2:]):
+            continue
+        return t
     return None
 
 

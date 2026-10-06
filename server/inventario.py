@@ -268,12 +268,21 @@ def _bonus(item_id: int) -> dict:
                     has_mp = 'mp' in cols
                     hp_col = 'hp' if has_hp else '0'
                     mp_col = 'mp' if has_mp else '0'
+                    # LA CARGA MAXIMA QUE SUMA LA PIEZA. Es la columna
+                    # 負重, y no estaba: el tooltip del Hephaestus-Hedgehog
+                    # Bag (item2 40757) promete "+25400(24000+1400) Maximum
+                    # Weight" y el 24000 sale de ahi, pero el servidor solo
+                    # sumaba la carga de las pasivas Mantle/Garment/Vestment
+                    # sobre los 2000 de base, asi que la mochila no hacia
+                    # nada. No esta en el mismo sitio en cada tabla, por eso
+                    # se busca por nombre.
+                    carga_col = '"負重"' if '負重' in cols else '0'
                     _filas_b += list(con.execute(
-                        f"select id, def, accuracy, agility, atk_avg, matk, mdef, {hp_col}, {mp_col} from {_t} "
+                        f"select id, def, accuracy, agility, atk_avg, matk, mdef, {hp_col}, {mp_col}, {carga_col} from {_t} "
                         "where id glob '[0-9]*'"))
                 except Exception:
                     continue
-            for i, d, ac, ag, av, ma, md, _hp, _mp in _filas_b:
+            for i, d, ac, ag, av, ma, md, _hp, _mp, _cg in _filas_b:
                 # Algunos valores vienen con decimales en item.xml.
                 def _n(x):
                     try:
@@ -283,8 +292,9 @@ def _bonus(item_id: int) -> dict:
                 _BON[int(i)] = {'def': _n(d), 'accuracy': _n(ac),
                                 'agility': _n(ag), 'atk': _n(av),
                                 'matk': _n(ma), 'mdef': _n(md),
-                                'hp': _n(_hp), 'mp': _n(_mp)}
-    return _BON.get(item_id, {'def': 0, 'accuracy': 0, 'agility': 0, 'atk': 0, 'matk': 0, 'mdef': 0, 'hp': 0, 'mp': 0})
+                                'hp': _n(_hp), 'mp': _n(_mp),
+                                'carga': _n(_cg)}
+    return _BON.get(item_id, {'def': 0, 'accuracy': 0, 'agility': 0, 'atk': 0, 'matk': 0, 'mdef': 0, 'hp': 0, 'mp': 0, 'carga': 0})
 
 
 def bonos_de_habilidades(habilidades):
@@ -398,7 +408,7 @@ def bonos_de_habilidades(habilidades):
 
 def bonos_de_equipo(bolsa, mejoras: dict = None) -> dict:
     """Calcula la suma de atributos que otorgan los items equipados en la bolsa (Gear 1..10 y Fashion 167..174)."""
-    eq = {'def': 0, 'accuracy': 0, 'agility': 0, 'atk_r': 0, 'atk_l': 0, 'matk': 0, 'mdef': 0, 'hp': 0, 'mp': 0}
+    eq = {'def': 0, 'accuracy': 0, 'agility': 0, 'atk_r': 0, 'atk_l': 0, 'matk': 0, 'mdef': 0, 'hp': 0, 'mp': 0, 'carga': 0}
     if not bolsa:
         return eq
 
@@ -448,15 +458,15 @@ def bonos_de_equipo(bolsa, mejoras: dict = None) -> dict:
                 continue
             for _k, _v in bono_gema(_g, r, iid).items():
                 _dest = {'rigor': 'accuracy', 'dfs': 'def',
-                         'agilidad': 'agility'}.get(_k, _k)
+                         'agilidad': 'agility', 'peso': 'carga'}.get(_k, _k)
                 if _dest in ('def', 'accuracy', 'agility', 'matk', 'mdef',
                              'hp', 'mp', 'atk'):
                     x[_dest] = x.get(_dest, 0) + int(_v)
         for _k, _v in (_ex.get('extra') or {}).items():
             _dest = {'rigor': 'accuracy', 'dfs': 'def',
-                     'agilidad': 'agility'}.get(_k, _k)
+                     'agilidad': 'agility', 'peso': 'carga'}.get(_k, _k)
             if _dest in ('def', 'accuracy', 'agility', 'matk', 'mdef',
-                         'hp', 'mp', 'atk'):
+                         'hp', 'mp', 'atk', 'carga'):
                 x[_dest] = x.get(_dest, 0) + int(_v)
         eq['def'] += x.get('def', 0)
         eq['accuracy'] += x.get('accuracy', 0)
@@ -465,6 +475,7 @@ def bonos_de_equipo(bolsa, mejoras: dict = None) -> dict:
         eq['mdef'] += x.get('mdef', 0)
         eq['hp'] += x.get('hp', 0)
         eq['mp'] += x.get('mp', 0)
+        eq['carga'] += x.get('carga', 0)
 
         item_atk = x.get('atk', 0)
 
@@ -742,6 +753,9 @@ def stats(bolsa=None, habilidades: list = None,
         sp_pts = 0
 
     eq = bonos_de_equipo(bolsa, mejoras)
+    # La carga que suman las piezas puestas (sobre todo la mochila) va aqui:
+    # antes el tope eran solo los 2000 de base mas las pasivas de armadura.
+    load_max += eq.get('carga', 0)
     eq_def = eq['def']
     eq_r_atk = eq['atk_r']
     eq_l_atk = eq['atk_l']

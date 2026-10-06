@@ -58,6 +58,26 @@ def test_el_chat_normal_no_se_cuela():
         assert app._gm_texto(texto.encode('ascii') + b'\x00') is None, texto
 
 
+def test_la_venta_no_se_confunde_con_un_comando():
+    """El 0x0028 nunca puede parecer un /item.
+
+    Los ids de instancia salen correlativos desde 0x030000, asi que uno de
+    cada 256 trae el byte 0x69 seguido de un 0x00 -- la cadena "i", que era
+    atajo de /item. El husmeo se tragaba el paquete, no se vendia nada y en
+    el chat salia "usage: /item <id> [qty]".
+    """
+    import struct
+    for inst in (0x030069, 0x03486B, 0x030000, 0x030069 + 256 * 3):
+        cuerpo = struct.pack('<IIII', 1, inst, 0x6AB2232E, 5)
+        assert app._gm_texto(cuerpo) is None, hex(inst)
+
+
+def test_una_letra_suelta_no_es_comando():
+    for letra in ('i', 'a', 'gg'):
+        assert app._gm_texto(letra.encode('ascii') + b'\x00') is None, letra
+        assert app._gm_texto(b'/' + letra.encode('ascii') + b'\x00') is not None, letra
+
+
 if __name__ == '__main__':
     fallos = 0
     for nombre, fn in sorted(globals().items()):
