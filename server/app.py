@@ -1534,6 +1534,47 @@ def _max_sp_info(p):
     return bars, bars * 1000
 
 
+def _recuperar_al_matar(ses, yo, mag, addr=''):
+    """Lo que devuelven Gnash y compania CUANDO el golpe mata.
+
+    No es el robo de Forbidden Curse, que saca un porcentaje del dano en
+    cada golpe: esto solo entra si el objetivo muere, y el porcentaje es
+    sobre el MAXIMO del que lanza. Gnash I-IV dan 10% de HP y de MP, y el
+    V un 15%, que es lo que dice la wiki.
+
+    Devuelve los sub-mensajes, para que quien mate los mande con el resto.
+    """
+    import combate as _cb
+    if not ses.personaje or not mag:
+        return []
+    hp_pct = mag.get('al_matar_hp_pct', 0) or 0
+    mp_pct = mag.get('al_matar_mp_pct', 0) or 0
+    if not hp_pct and not mp_pct:
+        return []
+    fuera = []
+    p = ses.personaje
+    if hp_pct:
+        tope = _vida_max(p)
+        gana = max(1, int(round(tope * hp_pct / 100.0)))
+        antes = p.hp
+        p.hp = min(tope, p.hp + gana)
+        if p.hp != antes:
+            fuera.append(_cb.atributo(yo, p.hp, _cb.KIND_HP))
+            fuera.append(_cb.numero_flotante(yo, p.hp - antes, _cb.TIPO_CURA_HP))
+    if mp_pct:
+        tope = _mana_max(p, getattr(ses, 'inventario', None))
+        gana = max(1, int(round(tope * mp_pct / 100.0)))
+        antes = p.mp
+        p.mp = min(tope, p.mp + gana)
+        if p.mp != antes:
+            fuera.append(_cb.atributo(yo, p.mp, _cb.KIND_MP))
+            fuera.append(_cb.numero_flotante(yo, p.mp - antes, _cb.TIPO_CURA_MP))
+    if fuera:
+        log.info('[%s] %s al matar: +%d%% HP, +%d%% MP (HP %d, MP %d)'
+                 % (addr, mag.get('nombre', '?'), hp_pct, mp_pct, p.hp, p.mp))
+    return fuera
+
+
 def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
     """Procesa respawn, EXP, subida de nivel, oro y drops cuando un monstruo es derrotado."""
     import combate as _cb
@@ -5845,6 +5886,12 @@ class Servidor:
 
 
             # --- Monstruo Muerto: Avisar muerte, Despawn con animacion, Respawn, EXP y Botin ---
+            # Gnash y compania devuelven HP y MP solo SI el golpe mata, asi
+            # que va aqui y no con el robo de Forbidden Curse, que entra en
+            # todos los golpes.
+            _cura_matar = _recuperar_al_matar(ses, yo, mag, addr)
+            if _cura_matar:
+                ses.enviar(*_cura_matar)
             _procesar_muerte_monstruo(ses, m, yo, addr, espera=_ret)
             return
 

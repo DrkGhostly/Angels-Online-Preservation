@@ -981,6 +981,34 @@ def datos_magia(magic_id: int) -> dict:
                 res['drain_hp_pct'] = _num(d.get('動態參數2'), 25)
                 res['drain_mp_pct'] = _num(d.get('動態參數3'), 3)
 
+            # RECUPERAR AL MATAR (Gnash y compania).
+            #
+            # No es el robo de Forbidden Curse: aquel saca un porcentaje del
+            # DAÑO en cada golpe, y este solo devuelve algo SI EL GOLPE MATA.
+            # Lo dice la propia descripcion: "If the attack kills the target,
+            # the caster will recover some HP and MP".
+            #
+            # No vale la formula para reconocerlos -- Gnash es formula 5 y esa
+            # la comparten 89 hechizos -- asi que se mira la descripcion, que
+            # es lo unico que los separa. Son trece en total: los cinco Gnash,
+            # dos Energy Flower, los cinco Skeletal Resurrection y el Wrath of
+            # the Harmful Wind.
+            #
+            # Los porcentajes son 動態參數1 (HP) y 動態參數2 (MP), sobre el
+            # MAXIMO del que lanza, no sobre el daño: Gnash I-IV dan 10 y 10,
+            # y el V 15 y 15, que es justo lo que dice la wiki.
+            #
+            # Los Skeletal Resurrection llevan en 動態參數2 un ID DE HECHIZO
+            # (16767 y siguientes), no un porcentaje, asi que se descartan los
+            # valores que no parezcan tanto por ciento.
+            if 'kills the target' in str(d.get('說明') or ''):
+                _p1 = _num(d.get('動態參數1'), 0)
+                _p2 = _num(d.get('動態參數2'), 0)
+                if 0 < _p1 <= 100:
+                    res['al_matar_hp_pct'] = _p1
+                if 0 < _p2 <= 100:
+                    res['al_matar_mp_pct'] = _p2
+
             # Saltos de rebote (Chain Lightning / Formula 42)
             if res['formula'] == 42 or (5226 <= magic_id <= 5230) or ('chain lightning' in nom_l):
                 res['chain_jumps'] = _num(d.get('動態參數1'), 5)
