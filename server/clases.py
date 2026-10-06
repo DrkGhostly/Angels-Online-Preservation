@@ -206,17 +206,31 @@ def otorgar_hechizos(entity_id: int, numeros) -> bytes:
 
         [LE32 entidad][U8 cantidad] y luego, por hechizo,
         [U8 kind=9][LE32 numero de magic.xml][LE32 nivel]
+
+    Como la cantidad es un U8, en un mensaje no caben mas de 255. Cuando
+    hay mas se devuelven VARIOS, porque antes se recortaba el contador a
+    255 y detras se mandaban todos igual: el cliente leia los 255 primeros
+    y los demas se perdian. A un personaje con 278 hechizos se le caian 23,
+    y entre ellos los ultimos que hubiera aprendido -- Gnash III y V
+    estaban en las posiciones 273 y 276.
     """
     import skills
-    cuerpo = struct.pack('<IB', entity_id, min(255, len(numeros)))
-    for n in numeros:
-        if isinstance(n, (tuple, list)):
-            mid, mlv = n[0], n[1]
-        else:
-            mid = n
-            mlv = skills.nivel_de_magia(mid)
-        cuerpo += struct.pack('<BII', KIND_HECHIZO, mid, mlv)
-    return struct.pack('<H', 0x001D) + cuerpo
+    fuera = []
+    numeros = list(numeros)
+    for i in range(0, max(1, len(numeros)), 255):
+        trozo = numeros[i:i + 255]
+        if not trozo:
+            break
+        cuerpo = struct.pack('<IB', entity_id, len(trozo))
+        for n in trozo:
+            if isinstance(n, (tuple, list)):
+                mid, mlv = n[0], n[1]
+            else:
+                mid = n
+                mlv = skills.nivel_de_magia(mid)
+            cuerpo += struct.pack('<BII', KIND_HECHIZO, mid, mlv)
+        fuera.append(struct.pack('<H', 0x001D) + cuerpo)
+    return b''.join(fuera)
 
 
 def parsear_eleccion(cuerpo: bytes):
