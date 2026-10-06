@@ -90,6 +90,14 @@ class Personaje:
     # al salir.
     sp: int = 0
     buffs: dict = field(default_factory=dict)
+    # --- Los seis sistemas del README de RE:Angels Online ---
+    # Al final de los campos a proposito: meterlos en medio corre todos los
+    # que vengan despues si algo llega a construir la clase por posicion.
+    album: dict = field(default_factory=dict)        # {categoria: valor}
+    logros: list = field(default_factory=list)       # ids conseguidos
+    cartas: list = field(default_factory=list)       # ids de carta
+    estrellas: list = field(default_factory=list)    # [(nombre, nivel)]
+    casa: dict = field(default_factory=dict)         # {'muebles': [ids]}
 
 
 def _cargar_secuencia():
@@ -1151,3 +1159,12 @@ def _barra(p, base):
         r.append({'usada': tipo, 'magic_id': int(mid or 0), 'resto': bytes(4)})
     r += [{'usada': 0, 'magic_id': 0, 'resto': bytes(4)}] * (24 - len(r))
     return m.build(ranuras=r)
+    # --- Los seis sistemas del README de RE:Angels Online ---
+    # Van al FINAL del dataclass a proposito: insertarlos en medio corre
+    # todos los campos que vengan despues para cualquier construccion por
+    # posicion.
+    album: dict = field(default_factory=dict)        # {categoria: valor}
+    logros: list = field(default_factory=list)       # ids conseguidos
+    cartas: list = field(default_factory=list)       # ids de carta
+    estrellas: list = field(default_factory=list)    # [(nombre, nivel)]
+    casa: dict = field(default_factory=dict)         # {'muebles': [ids]}

@@ -162,6 +162,14 @@ def personaje_de(cuenta, indice=0):
         nivel=p.get('nivel', 1),
         exp=p.get('exp', 0),
         banco={int(k): v for k, v in p.get('banco', {}).items()},
+        # Los seis sistemas del README de RE:Angels Online.
+        album={str(k): int(v) for k, v in (p.get('album') or {}).items()},
+        logros=[int(x) for x in (p.get('logros') or [])],
+        cartas=[int(x) for x in (p.get('cartas') or [])],
+        estrellas=[tuple(x) for x in (p.get('estrellas') or [])
+                   if isinstance(x, (list, tuple)) and len(x) >= 2],
+        casa={'muebles': [int(x) for x in
+                          ((p.get('casa') or {}).get('muebles') or [])]},
         # Con su hora de caducidad. Los ya vencidos se tiran al cargar: no
         # tiene sentido devolver un buff de hace tres dias, y las claves
         # vuelven como numeros porque en JSON son texto.
@@ -483,6 +491,29 @@ def guardar_progreso(usuario: str, char_id: int, nivel: int, exp: int,
             ARCHIVO.write_text(json.dumps(d, indent=2, ensure_ascii=False),
                                encoding='utf-8')
             return
+
+
+def guardar_sistemas(usuario: str, char_id: int, p):
+    """Guarda el estado de los seis sistemas: album, logros, cartas,
+    estrellas y casa. Van juntos porque se tocan en los mismos momentos y
+    asi es una sola escritura del archivo."""
+    d = json.loads(ARCHIVO.read_text(encoding='utf-8'))
+    c = d['cuentas'].get(usuario)
+    if not c:
+        return
+    for fila in c.get('personajes', []):
+        if fila.get('char_id') != char_id:
+            continue
+        fila['album'] = {str(k): int(v)
+                         for k, v in (getattr(p, 'album', None) or {}).items()}
+        fila['logros'] = sorted({int(x) for x in (getattr(p, 'logros', None) or [])})
+        fila['cartas'] = sorted({int(x) for x in (getattr(p, 'cartas', None) or [])})
+        fila['estrellas'] = [list(x) for x in (getattr(p, 'estrellas', None) or [])]
+        fila['casa'] = {'muebles': [int(x) for x in
+                                    ((getattr(p, 'casa', None) or {}).get('muebles') or [])]}
+        ARCHIVO.write_text(json.dumps(d, indent=2, ensure_ascii=False),
+                           encoding='utf-8')
+        return
 
 
 def guardar_banco(usuario: str, char_id: int, banco: dict):

@@ -769,6 +769,7 @@ PALABRAS_GM = frozenset((
     'rama', 'skill', 'branch',
     'estacion', 'season', 'modo',
     'rango', 'rank',
+    'sistemas', 'album', 'logros', 'cartas', 'estrellas', 'casa',
 ))
 
 
@@ -820,6 +821,11 @@ def _gm_parsear(texto: str):
     cmd = partes[0].lower()
     if cmd == 'help':
         return ('help',)
+    if cmd in ('sistemas', 'album', 'logros', 'cartas', 'estrellas', 'casa'):
+        # /sistemas            el estado de los seis
+        # /album <categoria> <valor>   pone valor a mano, para probar
+        # /logros              los que cumple ahora mismo
+        return ('sistemas', cmd, partes[1:] if len(partes) > 1 else [])
     if cmd in ('rama', 'skill', 'branch'):
         # /rama <fuera> <dentro>  cambia una rama por otra
         # /rama add <dentro>      anade una rama sin quitar ninguna
@@ -884,6 +890,49 @@ def _probar_gm(ses, cuerpo, addr) -> bool:
         ses.enviar(_cl.aviso(f'Estacion cambiada a: {m_ap.upper()} (reentra al mapa para verla)', tipo=0))
         log.info('[%s] GM estacion -> %s' % (addr, m_ap))
         return True
+    if leido[0] == 'sistemas' and ses.personaje:
+        import album as _alb, logros as _lg, cartas as _ct
+        import estrellas as _es, casas as _cs, tesoros as _ts
+        _p = ses.personaje
+        _que, _args = leido[1], leido[2]
+        if getattr(_p, 'album', None) is None:
+            _p.album = {}
+        if _que == 'album' and len(_args) >= 2:
+            _p.album[_args[0]] = int(_args[1])
+        _res = _alb.resumen(_p.album)
+        _bon = _alb.bonos(_p.album)
+        _nuevos = _lg.comprobar(_p, getattr(_p, 'logros', None) or [],
+                                stats={'hp_max': getattr(_p, 'hp_max', 0),
+                                       'mp_max': getattr(_p, 'mp_max', 0)})
+        lineas = [
+            'Album: total %d (nv %d), bonos %s'
+            % (_res['total']['valor'], _res['total']['nivel'],
+               ', '.join('%s %s' % (k, v) for k, v in sorted(_bon.items())[:5]) or '-'),
+            'Logros: %d de %d, %d puntos; cumple %d sin reclamar'
+            % (len(getattr(_p, 'logros', None) or []), len(_lg.tabla()),
+               _lg.puntos_de(getattr(_p, 'logros', None) or []), len(_nuevos)),
+            'Cartas: %d de %d, %d estrellas'
+            % (_ct.resumen(getattr(_p, 'cartas', None) or [])['total']['tengo'],
+               len(_ct.tabla()), _ct.estrellas_de(getattr(_p, 'cartas', None) or [])),
+            'Estrellas: %d puestas, bonos %s'
+            % (len(getattr(_p, 'estrellas', None) or []),
+               _es.bonos(getattr(_p, 'estrellas', None) or []) or '-'),
+            'Casa: %d muebles, %d puntos de decoracion'
+            % (len((getattr(_p, 'casa', None) or {}).get('muebles') or []),
+               _cs.puntos_de((getattr(_p, 'casa', None) or {}).get('muebles') or [])),
+            'Tesoros: %d mapas pueden salir en este escenario'
+            % len(_ts.en_escena(getattr(_p, 'stage', 0) or 0)),
+        ]
+        if _que == 'logros' and _nuevos:
+            for _l in _nuevos:
+                _lg.otorgar(getattr(_p, 'logros', None) or [], _l)
+            lineas.append('Reclamados %d logros.' % len(_nuevos))
+            if getattr(ses, 'usuario', None):
+                cuentas.guardar_sistemas(ses.usuario, _p.char_id, _p)
+        ses.enviar(*[_cl.aviso(x, tipo=0) for x in lineas])
+        log.info('[%s] /%s -> %s' % (addr, _que, ' | '.join(lineas)))
+        return True
+
     if leido[0] == 'rama' and ses.personaje:
         import clases as _cl_rm
         import skills as _sk_rm
@@ -6031,6 +6080,53 @@ class Servidor:
         # o sea [u8 contenedor][u16 casilla destino][u16 casilla origen]
         # [u32 cantidad]. La pila nueva estrena id de instancia: en la
         # captura la de origen sigue con 215293 y la nueva sale con 215300.
+        # ---------------- Los seis sistemas del README ----------------
+        # Los opcodes salen de desensamblar las nativas de Lua
+        # (tools/opcodes_de_nativas.py):
+        #
+        #     opencollectionbook  0x0032      sendcollect  0x0033
+        #
+        # El CUERPO de cada uno todavia no esta medido, asi que esto lee lo
+        # que puede y, sobre todo, no se traga el paquete en silencio: si
+        # llega algo que no encaja, lo dice en el log con los bytes. Sin
+        # eso no hay forma de ir ajustandolo.
+        if opcode in (0x0032, 0x0033) and ses.rol == 'mundo' and ses.personaje:
+            import album as _alb
+            _p_al = ses.personaje
+            if getattr(_p_al, 'album', None) is None:
+                _p_al.album = {}
+            if opcode == 0x0032:
+                log.info('[%s] album: abrir -> %s'
+                         % (addr, _alb.resumen(_p_al.album)['total']))
+                return
+            # 0x0033, meter una pieza. Se espera la ranura de la mochila;
+            # si el cuerpo no da para eso, se registra y se deja pasar.
+            if len(cuerpo) < 2:
+                log.info('[%s] album: 0x0033 con %d bytes: %s'
+                         % (addr, len(cuerpo), cuerpo.hex()))
+                return
+            _ran = struct.unpack_from('<H', cuerpo, 0)[0]
+            _bolsa_al = getattr(ses, 'inventario', None) or {}
+            _it_al = _bolsa_al.get(_ran)
+            _cat = _alb.categoria_de(_it_al) if _it_al else ''
+            if not _it_al or not _cat:
+                log.info('[%s] album: la ranura %d no tiene nada que entre '
+                         '(item %s, cuerpo %s)'
+                         % (addr, _ran, _it_al, cuerpo.hex()))
+                return
+            _val = _alb.valor_de(_it_al)
+            _p_al.album[_cat] = int(_p_al.album.get(_cat, 0)) + _val
+            _bolsa_al.pop(_ran, None)
+            _cantidades(ses).pop(_ran, None)
+            ses.enviar(*_refrescar(ses, [_ran]), _stats_ses(ses))
+            if getattr(ses, 'usuario', None):
+                _guardar_bolsa(ses, _p_al.char_id)
+                cuentas.guardar_sistemas(ses.usuario, _p_al.char_id, _p_al)
+            log.info('[%s] album: item %d a %s (+%d, ahora %d); bonos %s'
+                     % (addr, _it_al, _cat, _val, _p_al.album[_cat],
+                        _alb.bonos(_p_al.album)))
+            return
+
         if opcode == 0x002F and ses.rol == 'mundo' and ses.personaje and len(cuerpo) >= 9:
             import inventario as _iv
             # El primer byte es el CONTENEDOR, y el mismo mensaje sirve para
