@@ -71,10 +71,6 @@ class Personaje:
     nivel: int = 1
     exp: int = 0
     banco: dict = field(default_factory=dict)
-    # El oro guardado en el banco. Va APARTE de las casillas: no es un
-    # objeto, no ocupa hueco, y el cliente lo deposita con el 0x0038
-    # desde la ranura 0.
-    banco_oro: int = 0
     # Creditos de rango, los que la ficha muestra como "Credit:". Suben con
     # las quests y con los objetos de investitem.xml, que dan de cinco en
     # cinco los mas baratos.

@@ -6031,44 +6031,6 @@ class Servidor:
         # o sea [u8 contenedor][u16 casilla destino][u16 casilla origen]
         # [u32 cantidad]. La pila nueva estrena id de instancia: en la
         # captura la de origen sigue con 215293 y la nueva sale con 215300.
-        # EL ORO AL BANCO. Opcode 0x0038, que salia como "sin esquema".
-        #
-        # Medido dos veces. En las capturas del servidor real mueve ITEMS:
-        #     3e00 1800 00000000   ->  origen 62, destino 24
-        #     3d00 1600 00000000   ->  origen 61, destino 22
-        # Y en el log del usuario, al querer guardar la plata:
-        #     0000 0000 3f8d3177   ->  origen 0, destino 0, cantidad
-        # El 0x77318d3f son 1.999.736.127, que es EXACTAMENTE el oro que
-        # tenia ese personaje en data/cuentas.json. Asi que la forma es
-        # [u16 origen][u16 destino][u32 cantidad] y la ranura 0 es el oro.
-        #
-        # El oro del banco va aparte de las casillas, en banco_oro: no es
-        # un objeto y no ocupa hueco.
-        if opcode == 0x0038 and ses.rol == 'mundo' and ses.personaje and len(cuerpo) >= 8:
-            _p_bk = ses.personaje
-            _ori_bk, _dst_bk, _cant_bk = struct.unpack_from('<HHI', cuerpo, 0)
-            if _ori_bk != 0 or not _cant_bk:
-                log.info('[%s] 0x0038 que no es oro (origen %d, destino %d, '
-                         'cantidad %d): sin implementar'
-                         % (addr, _ori_bk, _dst_bk, _cant_bk))
-                return
-            if getattr(_p_bk, 'banco_oro', None) is None:
-                _p_bk.banco_oro = 0
-            _tengo = int(getattr(_p_bk, 'oro', 0) or 0)
-            _mueve = max(0, min(int(_cant_bk), _tengo))
-            if not _mueve:
-                ses.enviar(_cl.aviso('No tienes oro que guardar.', tipo=0))
-                return
-            _p_bk.oro = _tengo - _mueve
-            _p_bk.banco_oro = int(_p_bk.banco_oro) + _mueve
-            ses.enviar(*_refrescar(ses, [], con_oro=True), _stats_ses(ses))
-            if getattr(ses, 'usuario', None):
-                cuentas.guardar_banco(ses.usuario, _p_bk.char_id,
-                                      _p_bk.banco, _p_bk.banco_oro)
-            log.info('[%s] al banco %d de oro (quedan %d, guardados %d)'
-                     % (addr, _mueve, _p_bk.oro, _p_bk.banco_oro))
-            return
-
         if opcode == 0x002F and ses.rol == 'mundo' and ses.personaje and len(cuerpo) >= 9:
             import inventario as _iv
             # El primer byte es el CONTENEDOR, y el mismo mensaje sirve para

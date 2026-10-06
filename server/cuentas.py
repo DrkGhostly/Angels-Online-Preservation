@@ -162,7 +162,6 @@ def personaje_de(cuenta, indice=0):
         nivel=p.get('nivel', 1),
         exp=p.get('exp', 0),
         banco={int(k): v for k, v in p.get('banco', {}).items()},
-        banco_oro=int(p.get('banco_oro') or 0),
         # Con su hora de caducidad. Los ya vencidos se tiran al cargar: no
         # tiene sentido devolver un buff de hace tres dias, y las claves
         # vuelven como numeros porque en JSON son texto.
@@ -486,21 +485,15 @@ def guardar_progreso(usuario: str, char_id: int, nivel: int, exp: int,
             return
 
 
-def guardar_banco(usuario: str, char_id: int, banco: dict, oro=None):
-    """Guarda los items del almacen y, si viene, el oro guardado.
-
-    El oro del banco va APARTE de las casillas: no es un objeto, no ocupa
-    hueco, y el cliente lo pide con el 0x0038 desde la ranura 0.
-    """
+def guardar_banco(usuario: str, char_id: int, banco: dict):
+    """Guarda los items del almacen/banco del personaje."""
     d = json.loads(ARCHIVO.read_text(encoding='utf-8'))
     c = d['cuentas'].get(usuario)
     if not c:
         return
     for p in c.get('personajes', []):
         if p.get('char_id') == char_id:
-            p['banco'] = {str(k): v for k, v in sorted((banco or {}).items())}
-            if oro is not None:
-                p['banco_oro'] = int(oro)
+            p['banco'] = {str(k): v for k, v in sorted(banco.items())}
             ARCHIVO.write_text(json.dumps(d, indent=2, ensure_ascii=False),
                                encoding='utf-8')
             return
