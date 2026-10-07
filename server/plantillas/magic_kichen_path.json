@@ -1,0 +1,5632 @@
+{
+ "_nota": "magic_kichen_path (stage 73). Poblado desde una captura del cliente GLOBAL, cuyo 0x0008 mide 46 bytes y no trae nombre: el nombre y el nivel salen de content.db por npc_type. Sin objetos de mapa: los 0x000E del Global miden 26 bytes y aqui se guardan crudos, asi que reenviarlos romperia nuestro cliente. Ver tools/poblar_instancia_global.py.",
+ "stage": 73,
+ "spawns": [
+  {
+   "entity_id": 553320505,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    71,
+    11
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 553386042,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    11
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 553451579,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    76,
+    8
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 553517116,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    93,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 553844801,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 553910338,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    94,
+    16
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 553975875,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 554041412,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    99,
+    11
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 554106949,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    141,
+    27
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 555221078,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    16,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 555286615,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    16,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 555352152,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    17,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 555483648,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    37,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 555745796,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    83,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 555811333,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 556859925,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    12,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 556925462,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    18,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 557056536,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    62,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 557122073,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    69,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 557187610,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    76,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 557253147,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 558629424,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    15,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 558694961,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    10,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 558760498,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    17,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 558826035,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    13,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 558891572,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    45,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 558957109,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    100,
+    46
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 559022646,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    104,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 559088183,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    91,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 559153720,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    117,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 559219257,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    112,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 559284794,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    108,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 559350331,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    119,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 560988756,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    19,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 561054293,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    70,
+    62
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 561119830,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 561185367,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    81,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 561250904,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 561316441,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    84,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 561381978,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    85,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 561578589,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 561644126,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    72
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 561709663,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    91,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 561775200,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    84,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 561840737,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    142,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 561906274,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    136,
+    80
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 562102885,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    22,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 562168422,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    35,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 562233959,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    27,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 562299496,
+   "nombre": "Fossa Rat",
+   "npc_type": 902,
+   "sprite": 42338,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    112,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 562365033,
+   "nombre": "Fossa Rat",
+   "npc_type": 902,
+   "sprite": 42338,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    122,
+    85
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 562430570,
+   "nombre": "Fossa Rat",
+   "npc_type": 902,
+   "sprite": 42338,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    131,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 562758255,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    16,
+    97
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 562823792,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    16,
+    104
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 562889329,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    22,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 562954866,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    24,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 563020403,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    33,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 563085940,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    23,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 563151477,
+   "nombre": "Fossa Rat",
+   "npc_type": 902,
+   "sprite": 42338,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    117,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 564134532,
+   "nombre": "Hell Slave",
+   "npc_type": 822,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    32,
+    127
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 564200069,
+   "nombre": "Hell Slave",
+   "npc_type": 822,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    126
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 564265606,
+   "nombre": "Hell Slave",
+   "npc_type": 822,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    93,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 564331143,
+   "nombre": "Hell Slave",
+   "npc_type": 822,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    122
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 565248661,
+   "nombre": "Rotten Seeker",
+   "npc_type": 912,
+   "sprite": 42346,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    19,
+    131
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 565379735,
+   "nombre": "Hell Slave",
+   "npc_type": 822,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    131
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 565576346,
+   "nombre": "Hell Slave",
+   "npc_type": 822,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    84,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 572392194,
+   "nombre": "Busy Jackstraw",
+   "npc_type": 708,
+   "sprite": 42004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    121,
+    19
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 572457731,
+   "nombre": "Busy Jackstraw",
+   "npc_type": 708,
+   "sprite": 42004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    121,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 572523268,
+   "nombre": "Busy Jackstraw",
+   "npc_type": 708,
+   "sprite": 42004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    119,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 572588805,
+   "nombre": "Busy Jackstraw",
+   "npc_type": 708,
+   "sprite": 42004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    118,
+    19
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 572654342,
+   "nombre": "Busy Jackstraw",
+   "npc_type": 708,
+   "sprite": 42004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    119,
+    21
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 572719879,
+   "nombre": "Busy Jackstraw",
+   "npc_type": 708,
+   "sprite": 42004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    121,
+    21
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 1365573689,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    71,
+    11
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1365639226,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    80,
+    14
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1365704763,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    74,
+    13
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1365770300,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    93,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 1365835837,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    151,
+    8
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 1365901374,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    157,
+    9
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 1365966911,
+   "nombre": "Fossa Rat",
+   "npc_type": 902,
+   "sprite": 42338,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    187,
+    14
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1366032448,
+   "nombre": "Fossa Rat",
+   "npc_type": 902,
+   "sprite": 42338,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    179,
+    4
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1366097985,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1366163522,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    86,
+    11
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 1366229059,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    13
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 1366294596,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    99,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 1366360133,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 1366425670,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 1366491207,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    164,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 1366556744,
+   "nombre": "Fossa Rat",
+   "npc_type": 902,
+   "sprite": 42338,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1366622281,
+   "nombre": "Fossa Rat",
+   "npc_type": 902,
+   "sprite": 42338,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    187,
+    7
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1366818892,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    209,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1367212114,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    240,
+    46
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1367277651,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    250,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1367408725,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    255,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1367933443,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    56,
+    26
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1367998980,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    83,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1368064517,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    141,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 1368130054,
+   "nombre": "Fossa Rat",
+   "npc_type": 902,
+   "sprite": 42338,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    36
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1368195591,
+   "nombre": "Fossa Rat",
+   "npc_type": 902,
+   "sprite": 42338,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    179,
+    31
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1368261128,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1368326665,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    225,
+    46
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1368392202,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    262,
+    22
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1368457739,
+   "nombre": "Rat Mosi",
+   "npc_type": 873,
+   "sprite": 42315,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    247,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 1368523276,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    253,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1368588813,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    253,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1368654350,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1368719887,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    213,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1368785424,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1368850961,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    278,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1368916498,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    250,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1369113109,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    7,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 1369178646,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    12,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 1369244183,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    28,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1369309720,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    62,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1369375257,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1369440794,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    74,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1369506331,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1369571868,
+   "nombre": "Fossa Rat",
+   "npc_type": 902,
+   "sprite": 42338,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    166,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1369637405,
+   "nombre": "Fossa Rat",
+   "npc_type": 902,
+   "sprite": 42338,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1369702942,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    235,
+    41
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1369768479,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    212,
+    31
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1369834016,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    234,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1369899553,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    273,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1369965090,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1370030627,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    233,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1370096164,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    232,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1370161701,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    252,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1370423849,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    278,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1370554923,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    280,
+    12
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1370817071,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    276,
+    17
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1370882608,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    9,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 1370948145,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    11,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1371013682,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    15,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1371079219,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    15,
+    51
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1371144756,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1371210293,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    46
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1371275830,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    107,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1371341367,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    95,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1371406904,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    119,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 1371472441,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    112,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 1371537978,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    118,
+    51
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 1371603515,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    118,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 1371669052,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    164,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 1371734589,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    182,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 1371800126,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    184,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 1371996737,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1372062274,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1372258885,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    231,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1372455496,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    267,
+    31
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1372717644,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    230,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1372783181,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    245,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1372848718,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    264,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1372914255,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    262,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1373176403,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    276,
+    31
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1373241940,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    15,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1373307477,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1373373014,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1373438551,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 1373504088,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    81,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1373569625,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    85,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 1373635162,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    90,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 1373700699,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    75
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 1373766236,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 1373831773,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1373897310,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    33,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1373962847,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    83,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 1374028384,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    85,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 1374093921,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    81
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 1374159458,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    82
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 1374224995,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    150,
+    80
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 1374290532,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    171,
+    72
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 1374356069,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    14,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1374421606,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    33,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1374487143,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    23,
+    91
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1374552680,
+   "nombre": "Fossa Rat",
+   "npc_type": 902,
+   "sprite": 42338,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    112,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1374618217,
+   "nombre": "Fossa Rat",
+   "npc_type": 902,
+   "sprite": 42338,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    117,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1374683754,
+   "nombre": "Fossa Rat",
+   "npc_type": 902,
+   "sprite": 42338,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1374749291,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    275,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1374814828,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    265,
+    91
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1374880365,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    296,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1374945902,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    314,
+    90
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1375011439,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    10,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 1375076976,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    25,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 1375142513,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    18,
+    96
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 1375208050,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 915,
+   "sprite": 42001,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    21,
+    101
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 56
+  },
+  {
+   "entity_id": 1375273587,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1375339124,
+   "nombre": "Hungry Fly",
+   "npc_type": 840,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    27,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1375404661,
+   "nombre": "Fossa Rat",
+   "npc_type": 902,
+   "sprite": 42338,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    114,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1375470198,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 1375535735,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    264,
+    91
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1375601272,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    96
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1375666809,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    295,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1375732346,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    311,
+    97
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1375797883,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    321,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1375863420,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    131,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 1375928957,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    109
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 1375994494,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    330,
+    196
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 1376125568,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    230,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1376191105,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    232,
+    119
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1376256642,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    260,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1376322179,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    283,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1376387716,
+   "nombre": "Hell Slave",
+   "npc_type": 822,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    34,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1376453253,
+   "nombre": "Hell Slave",
+   "npc_type": 822,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    47,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1376518790,
+   "nombre": "Hell Slave",
+   "npc_type": 822,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    95,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1376584327,
+   "nombre": "Hell Slave",
+   "npc_type": 822,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    90,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1376649864,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    130,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 1376715401,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    145,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 1376780938,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    217,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1376846475,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    222,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1376912012,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    241,
+    127
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1376977549,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    131
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1377043086,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    290,
+    127
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1377108623,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    282,
+    127
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1377174160,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    309,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1377239697,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    313,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1377305234,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    319,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1377370771,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    308,
+    132
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1377436308,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    327,
+    127
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1377501845,
+   "nombre": "Rotten Seeker",
+   "npc_type": 912,
+   "sprite": 42346,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    18,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 1377567382,
+   "nombre": "Rotten Seeker",
+   "npc_type": 912,
+   "sprite": 42346,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    28,
+    139
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 1377632919,
+   "nombre": "Hell Slave",
+   "npc_type": 822,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    39,
+    131
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1377698456,
+   "nombre": "Hell Slave",
+   "npc_type": 822,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    56,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1377763993,
+   "nombre": "Hell Slave",
+   "npc_type": 822,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    66,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1377829530,
+   "nombre": "Hell Slave",
+   "npc_type": 822,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1377895067,
+   "nombre": "Hell Slave",
+   "npc_type": 822,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    90,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1377960604,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 1378026141,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    135,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 1378091678,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    147,
+    136
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 1378157215,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    185,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1378222752,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    192,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1378288289,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    197,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1378353826,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    225,
+    139
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1378419363,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    241,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1378484900,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    228,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1378550437,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1378615974,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1378681511,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1378747048,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    308,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1378812585,
+   "nombre": "Rotten Seeker",
+   "npc_type": 912,
+   "sprite": 42346,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    15,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 1378878122,
+   "nombre": "Hell Slave",
+   "npc_type": 822,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    14,
+    158
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1378943659,
+   "nombre": "Hell Slave",
+   "npc_type": 822,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    24,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1379009196,
+   "nombre": "Hell Slave",
+   "npc_type": 822,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1379074733,
+   "nombre": "Hell Slave",
+   "npc_type": 822,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    147
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1379140270,
+   "nombre": "Evil Fly",
+   "npc_type": 841,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    108,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1379205807,
+   "nombre": "Evil Fly",
+   "npc_type": 841,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    95,
+    149
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1379271344,
+   "nombre": "Hell Slave",
+   "npc_type": 822,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    119,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1379336881,
+   "nombre": "Evil Fly",
+   "npc_type": 841,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    127,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1379402418,
+   "nombre": "Evil Fly",
+   "npc_type": 841,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1379467955,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    180,
+    139
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1379533492,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    191,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1379599029,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    223,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1379664566,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    228,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1379730103,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    225,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1379795640,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    282,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1379861177,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    314,
+    149
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1379926714,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    313,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1379992251,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    335,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1380057788,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    338,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1380123325,
+   "nombre": "Hell Slave",
+   "npc_type": 822,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    7,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1380188862,
+   "nombre": "Hell Slave",
+   "npc_type": 822,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    66,
+    158
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1380254399,
+   "nombre": "Rotten Seeker",
+   "npc_type": 912,
+   "sprite": 42346,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 1380319936,
+   "nombre": "Hell Slave",
+   "npc_type": 822,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1380385473,
+   "nombre": "Evil Fly",
+   "npc_type": 841,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    104,
+    157
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1380582084,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    168
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1380647621,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    182,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1380713158,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    255,
+    164
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1380778695,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    281,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1380844232,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    297,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1380909769,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    328,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1380975306,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    341,
+    167
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1381040843,
+   "nombre": "Hell Slave",
+   "npc_type": 822,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    9,
+    170
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1381106380,
+   "nombre": "Rotten Seeker",
+   "npc_type": 912,
+   "sprite": 42346,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    8,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 1381171917,
+   "nombre": "Hell Slave",
+   "npc_type": 822,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    11,
+    174
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1381237454,
+   "nombre": "Hell Slave",
+   "npc_type": 822,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    33,
+    172
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1381302991,
+   "nombre": "Hell Slave",
+   "npc_type": 822,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    26,
+    167
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1381368528,
+   "nombre": "Hell Slave",
+   "npc_type": 822,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    42,
+    175
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1381434065,
+   "nombre": "Hell Slave",
+   "npc_type": 822,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    167
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1381499602,
+   "nombre": "Evil Fly",
+   "npc_type": 841,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    71,
+    173
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1381565139,
+   "nombre": "Evil Fly",
+   "npc_type": 841,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    74,
+    183
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1381630676,
+   "nombre": "Rotten Seeker",
+   "npc_type": 912,
+   "sprite": 42346,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    107,
+    178
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 1381696213,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    174,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1381761750,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    180,
+    179
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1381827287,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    180,
+    170
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1381892824,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    213,
+    173
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1381958361,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    175
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1382023898,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    171
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1382089435,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    172
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1382154972,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    260,
+    172
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1382220509,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    313,
+    172
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1382286046,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    322,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1382351583,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    326,
+    167
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1382417120,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    340,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1382482657,
+   "nombre": "Rotten Seeker",
+   "npc_type": 912,
+   "sprite": 42346,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    34,
+    180
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 1382548194,
+   "nombre": "Evil Fly",
+   "npc_type": 841,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    174
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1382613731,
+   "nombre": "Evil Fly",
+   "npc_type": 841,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    80,
+    179
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1382679268,
+   "nombre": "Evil Fly",
+   "npc_type": 841,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    83,
+    191
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1382744805,
+   "nombre": "Rotten Seeker",
+   "npc_type": 912,
+   "sprite": 42346,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    86,
+    189
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 1382810342,
+   "nombre": "Evil Fly",
+   "npc_type": 841,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    102,
+    190
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1382875879,
+   "nombre": "Evil Fly",
+   "npc_type": 841,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    107,
+    189
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1382941416,
+   "nombre": "Rotten Seeker",
+   "npc_type": 912,
+   "sprite": 42346,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    117,
+    179
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 1383006953,
+   "nombre": "Evil Fly",
+   "npc_type": 841,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    111,
+    190
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1383072490,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    202,
+    185
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1383138027,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    201,
+    185
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1383203564,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    177
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1383269101,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    224,
+    178
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1383334638,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    236,
+    191
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1383400175,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    226,
+    188
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1383465712,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    248,
+    184
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1383531249,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    262,
+    189
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1383596786,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    278,
+    176
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1383662323,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    284,
+    185
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1383727860,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    288,
+    186
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1383793397,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    310,
+    179
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1383924471,
+   "nombre": "Rotten Seeker",
+   "npc_type": 912,
+   "sprite": 42346,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    56,
+    189
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 1383990008,
+   "nombre": "Evil Fly",
+   "npc_type": 841,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    84,
+    197
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1384055545,
+   "nombre": "Evil Fly",
+   "npc_type": 841,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    89,
+    202
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 1384121082,
+   "nombre": "Rotten Seeker",
+   "npc_type": 912,
+   "sprite": 42346,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    112,
+    198
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 1384186619,
+   "nombre": "Rotten Seeker",
+   "npc_type": 912,
+   "sprite": 42346,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    119,
+    203
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 1384252156,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    196
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1384317693,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    264,
+    188
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1384383230,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    300,
+    199
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1384448767,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    304,
+    190
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1384514304,
+   "nombre": "Doped Up Elf",
+   "npc_type": 901,
+   "sprite": 42337,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    308,
+    195
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 58
+  },
+  {
+   "entity_id": 1384645378,
+   "nombre": "Busy Jackstraw",
+   "npc_type": 708,
+   "sprite": 42004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    121,
+    19
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 1384710915,
+   "nombre": "Busy Jackstraw",
+   "npc_type": 708,
+   "sprite": 42004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    121,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 1384776452,
+   "nombre": "Busy Jackstraw",
+   "npc_type": 708,
+   "sprite": 42004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    119,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 1384841989,
+   "nombre": "Busy Jackstraw",
+   "npc_type": 708,
+   "sprite": 42004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    118,
+    19
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 1384907526,
+   "nombre": "Busy Jackstraw",
+   "npc_type": 708,
+   "sprite": 42004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    119,
+    21
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 1384973063,
+   "nombre": "Busy Jackstraw",
+   "npc_type": 708,
+   "sprite": 42004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    121,
+    21
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 1385038600,
+   "nombre": "Guard Fasit",
+   "npc_type": 888,
+   "sprite": 42326,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1385104137,
+   "nombre": "Mud Lord",
+   "npc_type": 871,
+   "sprite": 42313,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    46,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 50
+  },
+  {
+   "entity_id": 1385169674,
+   "nombre": "Mud Lord",
+   "npc_type": 871,
+   "sprite": 42313,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    46,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 50
+  },
+  {
+   "entity_id": 1385235211,
+   "nombre": "Mud Lord",
+   "npc_type": 871,
+   "sprite": 42313,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    42,
+    80
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 50
+  },
+  {
+   "entity_id": 1385300748,
+   "nombre": "Mud Lord",
+   "npc_type": 871,
+   "sprite": 42313,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 50
+  },
+  {
+   "entity_id": 1385366285,
+   "nombre": "Mud Lord",
+   "npc_type": 871,
+   "sprite": 42313,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    81
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 50
+  },
+  {
+   "entity_id": 1385431822,
+   "nombre": "Mud Lord",
+   "npc_type": 871,
+   "sprite": 42313,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 50
+  },
+  {
+   "entity_id": 1385562896,
+   "nombre": "Busy Jackstraw",
+   "npc_type": 708,
+   "sprite": 42004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    120,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 1386283803,
+   "nombre": "Azrael 2",
+   "npc_type": 227,
+   "sprite": 42145,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    164
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 1386349340,
+   "nombre": "Busy Jackstraw",
+   "npc_type": 708,
+   "sprite": 42004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    335,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 1386414877,
+   "nombre": "Busy Jackstraw",
+   "npc_type": 708,
+   "sprite": 42004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    338,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 1386480414,
+   "nombre": "Busy Jackstraw",
+   "npc_type": 708,
+   "sprite": 42004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    335,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 1386545951,
+   "nombre": "Guard Fire Barft",
+   "npc_type": 890,
+   "sprite": 42328,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    34,
+    168
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 62
+  },
+  {
+   "entity_id": 1386611488,
+   "nombre": "Busy Jackstraw",
+   "npc_type": 708,
+   "sprite": 42004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    338,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 1386808099,
+   "nombre": "Busy Jackstraw",
+   "npc_type": 708,
+   "sprite": 42004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    342,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 1386873636,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 814,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    177,
+    190
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 1386939173,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 814,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    177,
+    190
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 1387004710,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 814,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    177,
+    190
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 1387070247,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 814,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    177,
+    190
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 1387135784,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    273,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1387201321,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    241,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1387266858,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    230,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1387463469,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    272,
+    19
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1387594543,
+   "nombre": "Tail Rotten Rat",
+   "npc_type": 903,
+   "sprite": 42339,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    250,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1387725617,
+   "nombre": "Busy Jackstraw",
+   "npc_type": 708,
+   "sprite": 42004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    342,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 1387791154,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 814,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 1387856691,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 814,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 1387922228,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 814,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    248,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 1387987765,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 814,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 1388118839,
+   "nombre": "Busy Jackstraw",
+   "npc_type": 708,
+   "sprite": 42004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    342,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 1388184376,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 814,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    322,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 1388249913,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 814,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    319,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 1388315450,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 814,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    319,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 1388380987,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 814,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    322,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 1388446524,
+   "nombre": "Busy Jackstraw",
+   "npc_type": 708,
+   "sprite": 42004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    342,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 1388512061,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 814,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    197
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 1388577598,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 814,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    253,
+    196
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 1388643135,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 814,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    197
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 1388708672,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 814,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    197
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 1388774209,
+   "nombre": "Busy Jackstraw",
+   "npc_type": 708,
+   "sprite": 42004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    342,
+    62
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 1388839746,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 814,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    212,
+    200
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 1388905283,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 814,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    212,
+    200
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 1388970820,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 814,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    203,
+    198
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 1389036357,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 814,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    203,
+    198
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  },
+  {
+   "entity_id": 1389101894,
+   "nombre": "Soul Slalin",
+   "npc_type": 810,
+   "sprite": 42280,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    315,
+    181
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 65
+  },
+  {
+   "entity_id": 1389167431,
+   "nombre": "Busy Jackstraw",
+   "npc_type": 708,
+   "sprite": 42004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    342,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 1389232968,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 814,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 55
+  }
+ ],
+ "recursos": []
+}

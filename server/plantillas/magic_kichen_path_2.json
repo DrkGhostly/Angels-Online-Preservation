@@ -1,0 +1,1777 @@
+{
+ "_nota": "magic_kichen_path_2 (stage 74). Poblado desde una captura del cliente GLOBAL, cuyo 0x0008 mide 46 bytes y no trae nombre: el nombre y el nivel salen de content.db por npc_type. Sin objetos de mapa: los 0x000E del Global miden 26 bytes y aqui se guardan crudos, asi que reenviarlos romperia nuestro cliente. Ver tools/poblar_instancia_global.py.",
+ "stage": 74,
+ "spawns": [
+  {
+   "entity_id": 1573454049,
+   "nombre": "Air Hole",
+   "npc_type": 854,
+   "sprite": 42350,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    247,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 62
+  },
+  {
+   "entity_id": 1573519586,
+   "nombre": "Air Hole",
+   "npc_type": 854,
+   "sprite": 42350,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    185,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 62
+  },
+  {
+   "entity_id": 1573585123,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    172
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1573650660,
+   "nombre": "Air Hole",
+   "npc_type": 854,
+   "sprite": 42350,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 62
+  },
+  {
+   "entity_id": 1573716197,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    248,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1573912808,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    86,
+    176
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1573978345,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    90,
+    175
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1574043882,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    239,
+    172
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1574109419,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    242,
+    179
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1574174956,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    250,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1574240493,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    332,
+    177
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1574306030,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    347,
+    176
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1574371567,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    332,
+    171
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1574437104,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    353,
+    173
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1574502641,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    377,
+    176
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1574568178,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    61,
+    184
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1574633715,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    186
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1574699252,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    100,
+    189
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1574764789,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    99,
+    186
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1574830326,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    98,
+    186
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1574895863,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    185
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1574961400,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    218,
+    189
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1575026937,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    192
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1575092474,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    237,
+    183
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1575158011,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    312,
+    191
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1575223548,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    336,
+    178
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1575289085,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    383,
+    184
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1575354622,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    373,
+    182
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1575420159,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    382,
+    188
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1575485696,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    199
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1575551233,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    84,
+    195
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1575616770,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    122,
+    199
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1575682307,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    196
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1575747844,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    192
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1575813381,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    299,
+    198
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1575878918,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    301,
+    200
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1575944455,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    310,
+    197
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1576009992,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    210
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1576075529,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    98,
+    207
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1576141066,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    117,
+    210
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1576206603,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    116,
+    209
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1576272140,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    130,
+    211
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1576337677,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    141,
+    210
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1576403214,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    180,
+    208
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1576468751,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    186,
+    204
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1576534288,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    181,
+    218
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1576599825,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    196,
+    198
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1576665362,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    247,
+    209
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1576730899,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    257,
+    212
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1576796436,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    298,
+    206
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1576861973,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    293,
+    201
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1576927510,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    74,
+    216
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1576993047,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    86,
+    226
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1577058584,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    90,
+    221
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1577124121,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    220
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1577189658,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    138,
+    221
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1577255195,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    231
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1577320732,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    224
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1577386269,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    218
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1577451806,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    260,
+    212
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1577517343,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    341,
+    224
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1577582880,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    352,
+    223
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1577648417,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    362,
+    233
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1577713954,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    379,
+    226
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1577845028,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    238
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1577910565,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    157,
+    232
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1577976102,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    309,
+    239
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1578041639,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    304,
+    231
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1578107176,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    318,
+    231
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1578172713,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    320,
+    231
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1578238250,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    320,
+    234
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1578303787,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    344,
+    231
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1578369324,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    374,
+    239
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1578434861,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    362,
+    235
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1578500398,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    379,
+    236
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1578565935,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    372,
+    229
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1578697009,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    71,
+    246
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1578762546,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    247
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1578828083,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    313,
+    241
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 1579811138,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1579876675,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    212,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1579942212,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1580007749,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    212,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1580073286,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    222,
+    153
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1580138823,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    227,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1580204360,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    223,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1580269897,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    153
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1580335434,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1580400971,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1580466508,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    223,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1580532045,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1580597582,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    222,
+    153
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1580663119,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    225,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1580728656,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    227,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1580794193,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    225,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1580859730,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    153
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1580925267,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    222,
+    153
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1580990804,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1581056341,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    222,
+    153
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1581121878,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    212,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1581187415,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    212,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1581252952,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    222,
+    153
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1581318489,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1581384026,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    222,
+    153
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1581449563,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1581515100,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    223,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1581580637,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1581777248,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1581842785,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1581908322,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1581973859,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1582039396,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    212,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1582104933,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    212,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1582170470,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1582236007,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    223,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 1582301544,
+   "nombre": "Rock God Mendun",
+   "npc_type": 817,
+   "sprite": 42286,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    142
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 1582367081,
+   "nombre": "Air Hole",
+   "npc_type": 854,
+   "sprite": 42350,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 62
+  },
+  {
+   "entity_id": 1582498155,
+   "nombre": "Air Hole",
+   "npc_type": 854,
+   "sprite": 42350,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    247,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 62
+  }
+ ],
+ "recursos": []
+}

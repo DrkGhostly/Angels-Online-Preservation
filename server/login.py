@@ -674,6 +674,12 @@ def portales_de(stage: int):
 # faltaba en la de la IA. El Lyceum y el Fighting Palace NO van aqui:
 # se tratan aparte y cada consumidor los anade si los necesita.
 PLANTILLAS_POR_STAGE = {
+    # Las dos primeras salas de Magic Kichen Path, la instancia a la
+    # que se entra por el tornado de (250,171) de Lava Cave. Pobladas
+    # desde una captura del cliente GLOBAL, cuyo 0x0008 mide 46 bytes
+    # en vez de 62/63/64 -- ver tools/poblar_instancia_global.py.
+    73  : 'magic_kichen_path.json',
+    74  : 'magic_kichen_path_2.json',
     2   : 'riprap_coast.json',
     3   : 'aurora_city.json',
     4   : 'dawn_harbor.json',
