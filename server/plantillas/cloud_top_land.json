@@ -1,0 +1,4703 @@
+{
+ "_nota": "cloud_top_land (stage 111). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map111.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "stage": 111,
+ "spawns": [
+  {
+   "entity_id": 61100000,
+   "nombre": "Sky Marquis",
+   "npc_type": 3669,
+   "sprite": 42486,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100001,
+   "nombre": "Sky Marquis",
+   "npc_type": 3669,
+   "sprite": 42486,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    100,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100002,
+   "nombre": "Sky Marquis",
+   "npc_type": 3669,
+   "sprite": 42486,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100003,
+   "nombre": "Sky Marquis",
+   "npc_type": 3669,
+   "sprite": 42486,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    95,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100004,
+   "nombre": "Sky Marquis",
+   "npc_type": 3669,
+   "sprite": 42486,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100005,
+   "nombre": "Sky Marquis",
+   "npc_type": 3669,
+   "sprite": 42486,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    95,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100006,
+   "nombre": "Sky Soldier",
+   "npc_type": 3667,
+   "sprite": 42483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    32,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100007,
+   "nombre": "Sky Soldier",
+   "npc_type": 3667,
+   "sprite": 42483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100008,
+   "nombre": "Sky Soldier",
+   "npc_type": 3667,
+   "sprite": 42483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100009,
+   "nombre": "Sky Soldier",
+   "npc_type": 3667,
+   "sprite": 42483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    27,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100010,
+   "nombre": "Sky Soldier",
+   "npc_type": 3667,
+   "sprite": 42483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100011,
+   "nombre": "Sky Soldier",
+   "npc_type": 3667,
+   "sprite": 42483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    27,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100012,
+   "nombre": "Sky Soldier",
+   "npc_type": 3667,
+   "sprite": 42483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100013,
+   "nombre": "Sky Soldier",
+   "npc_type": 3667,
+   "sprite": 42483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100014,
+   "nombre": "Sky Soldier",
+   "npc_type": 3667,
+   "sprite": 42483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    27,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100015,
+   "nombre": "Sky Soldier",
+   "npc_type": 3667,
+   "sprite": 42483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100016,
+   "nombre": "Sky Soldier",
+   "npc_type": 3667,
+   "sprite": 42483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    32,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100017,
+   "nombre": "Sky Soldier",
+   "npc_type": 3667,
+   "sprite": 42483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100018,
+   "nombre": "Sky Soldier",
+   "npc_type": 3667,
+   "sprite": 42483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100019,
+   "nombre": "Sky Soldier",
+   "npc_type": 3667,
+   "sprite": 42483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    32,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100020,
+   "nombre": "Sky Soldier",
+   "npc_type": 3667,
+   "sprite": 42483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100021,
+   "nombre": "Sky Marquis",
+   "npc_type": 3669,
+   "sprite": 42486,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    113
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100022,
+   "nombre": "Sky Marquis",
+   "npc_type": 3669,
+   "sprite": 42486,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    95,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100023,
+   "nombre": "Sky Marquis",
+   "npc_type": 3669,
+   "sprite": 42486,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100024,
+   "nombre": "Sky Marquis",
+   "npc_type": 3669,
+   "sprite": 42486,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    100,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100025,
+   "nombre": "Sky Marquis",
+   "npc_type": 3669,
+   "sprite": 42486,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    113
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100026,
+   "nombre": "Sky Marquis",
+   "npc_type": 3669,
+   "sprite": 42486,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    100,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100027,
+   "nombre": "Sky Marquis",
+   "npc_type": 3669,
+   "sprite": 42486,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    83,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100028,
+   "nombre": "Sky Marquis",
+   "npc_type": 3669,
+   "sprite": 42486,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    105,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100029,
+   "nombre": "Sky Knight",
+   "npc_type": 3668,
+   "sprite": 42484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    17
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100030,
+   "nombre": "Sky Knight",
+   "npc_type": 3668,
+   "sprite": 42484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    233,
+    26
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100031,
+   "nombre": "Sky Knight",
+   "npc_type": 3668,
+   "sprite": 42484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    239,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100032,
+   "nombre": "Sky Knight",
+   "npc_type": 3668,
+   "sprite": 42484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    209,
+    12
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100033,
+   "nombre": "Sky Knight",
+   "npc_type": 3668,
+   "sprite": 42484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    228,
+    21
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100034,
+   "nombre": "Sky Knight",
+   "npc_type": 3668,
+   "sprite": 42484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    209,
+    17
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100035,
+   "nombre": "Sky Knight",
+   "npc_type": 3668,
+   "sprite": 42484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    228,
+    26
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100036,
+   "nombre": "Sky Knight",
+   "npc_type": 3668,
+   "sprite": 42484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    234,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100037,
+   "nombre": "Sky Knight",
+   "npc_type": 3668,
+   "sprite": 42484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    209,
+    22
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100038,
+   "nombre": "Sky Knight",
+   "npc_type": 3668,
+   "sprite": 42484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    228,
+    31
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100039,
+   "nombre": "Sky Knight",
+   "npc_type": 3668,
+   "sprite": 42484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    12
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100040,
+   "nombre": "Sky Knight",
+   "npc_type": 3668,
+   "sprite": 42484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    233,
+    21
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100041,
+   "nombre": "Sky Knight",
+   "npc_type": 3668,
+   "sprite": 42484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    234,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100042,
+   "nombre": "Sky Knight",
+   "npc_type": 3668,
+   "sprite": 42484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    22
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100043,
+   "nombre": "Sky Knight",
+   "npc_type": 3668,
+   "sprite": 42484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    238,
+    21
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100044,
+   "nombre": "Sky Sharpshooter",
+   "npc_type": 3670,
+   "sprite": 42487,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    180,
+    85
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100045,
+   "nombre": "Sky Sharpshooter",
+   "npc_type": 3670,
+   "sprite": 42487,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    222,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100046,
+   "nombre": "Sky Sharpshooter",
+   "npc_type": 3670,
+   "sprite": 42487,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    199,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100047,
+   "nombre": "Sky Sharpshooter",
+   "npc_type": 3670,
+   "sprite": 42487,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    175,
+    80
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100048,
+   "nombre": "Sky Sharpshooter",
+   "npc_type": 3670,
+   "sprite": 42487,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    217,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100049,
+   "nombre": "Sky Sharpshooter",
+   "npc_type": 3670,
+   "sprite": 42487,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    194,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100050,
+   "nombre": "Sky Sharpshooter",
+   "npc_type": 3670,
+   "sprite": 42487,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    175,
+    85
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100051,
+   "nombre": "Sky Sharpshooter",
+   "npc_type": 3670,
+   "sprite": 42487,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    217,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100052,
+   "nombre": "Sky Sharpshooter",
+   "npc_type": 3670,
+   "sprite": 42487,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    194,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100053,
+   "nombre": "Sky Sharpshooter",
+   "npc_type": 3670,
+   "sprite": 42487,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    175,
+    90
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100054,
+   "nombre": "Sky Sharpshooter",
+   "npc_type": 3670,
+   "sprite": 42487,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    217,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100055,
+   "nombre": "Sky Sharpshooter",
+   "npc_type": 3670,
+   "sprite": 42487,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    194,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100056,
+   "nombre": "Sky Sharpshooter",
+   "npc_type": 3670,
+   "sprite": 42487,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    180,
+    80
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100057,
+   "nombre": "Sky Sharpshooter",
+   "npc_type": 3670,
+   "sprite": 42487,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    222,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100058,
+   "nombre": "Sky Sharpshooter",
+   "npc_type": 3670,
+   "sprite": 42487,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    199,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100059,
+   "nombre": "Sky Sharpshooter",
+   "npc_type": 3670,
+   "sprite": 42487,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    180,
+    90
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100060,
+   "nombre": "Sky Sharpshooter",
+   "npc_type": 3670,
+   "sprite": 42487,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    222,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100061,
+   "nombre": "Sky Sharpshooter",
+   "npc_type": 3670,
+   "sprite": 42487,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    199,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100062,
+   "nombre": "Sky Sharpshooter",
+   "npc_type": 3670,
+   "sprite": 42487,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    185,
+    80
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100063,
+   "nombre": "Sky Sharpshooter",
+   "npc_type": 3670,
+   "sprite": 42487,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    227,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100064,
+   "nombre": "Rose Wind Elf",
+   "npc_type": 3664,
+   "sprite": 42472,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 117
+  },
+  {
+   "entity_id": 61100065,
+   "nombre": "Rose Wind Elf",
+   "npc_type": 3664,
+   "sprite": 42472,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    171
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 117
+  },
+  {
+   "entity_id": 61100066,
+   "nombre": "Rose Wind Elf",
+   "npc_type": 3664,
+   "sprite": 42472,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    58,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 117
+  },
+  {
+   "entity_id": 61100067,
+   "nombre": "Rose Wind Elf",
+   "npc_type": 3664,
+   "sprite": 42472,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 117
+  },
+  {
+   "entity_id": 61100068,
+   "nombre": "Rose Wind Elf",
+   "npc_type": 3664,
+   "sprite": 42472,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 117
+  },
+  {
+   "entity_id": 61100069,
+   "nombre": "Rose Wind Elf",
+   "npc_type": 3664,
+   "sprite": 42472,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 117
+  },
+  {
+   "entity_id": 61100070,
+   "nombre": "Rose Wind Elf",
+   "npc_type": 3664,
+   "sprite": 42472,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 117
+  },
+  {
+   "entity_id": 61100071,
+   "nombre": "Rose Wind Elf",
+   "npc_type": 3664,
+   "sprite": 42472,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    171
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 117
+  },
+  {
+   "entity_id": 61100072,
+   "nombre": "Rose Wind Elf",
+   "npc_type": 3664,
+   "sprite": 42472,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 117
+  },
+  {
+   "entity_id": 61100073,
+   "nombre": "Rose Wind Elf",
+   "npc_type": 3664,
+   "sprite": 42472,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 117
+  },
+  {
+   "entity_id": 61100074,
+   "nombre": "Rose Wind Elf",
+   "npc_type": 3664,
+   "sprite": 42472,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    176
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 117
+  },
+  {
+   "entity_id": 61100075,
+   "nombre": "Rose Wind Elf",
+   "npc_type": 3664,
+   "sprite": 42472,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 117
+  },
+  {
+   "entity_id": 61100076,
+   "nombre": "Deathless Evil Angel",
+   "npc_type": 3665,
+   "sprite": 42469,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 119
+  },
+  {
+   "entity_id": 61100077,
+   "nombre": "Deathless Evil Angel",
+   "npc_type": 3665,
+   "sprite": 42469,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 119
+  },
+  {
+   "entity_id": 61100078,
+   "nombre": "Deathless Evil Angel",
+   "npc_type": 3665,
+   "sprite": 42469,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    58,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 119
+  },
+  {
+   "entity_id": 61100079,
+   "nombre": "Deathless Evil Angel",
+   "npc_type": 3665,
+   "sprite": 42469,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 119
+  },
+  {
+   "entity_id": 61100080,
+   "nombre": "Deathless Evil Angel",
+   "npc_type": 3665,
+   "sprite": 42469,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    176
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 119
+  },
+  {
+   "entity_id": 61100081,
+   "nombre": "Deathless Evil Angel",
+   "npc_type": 3665,
+   "sprite": 42469,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    58,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 119
+  },
+  {
+   "entity_id": 61100082,
+   "nombre": "Deathless Evil Angel",
+   "npc_type": 3665,
+   "sprite": 42469,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 119
+  },
+  {
+   "entity_id": 61100083,
+   "nombre": "Deathless Evil Angel",
+   "npc_type": 3665,
+   "sprite": 42469,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 119
+  },
+  {
+   "entity_id": 61100084,
+   "nombre": "Deathless Evil Angel",
+   "npc_type": 3665,
+   "sprite": 42469,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 119
+  },
+  {
+   "entity_id": 61100085,
+   "nombre": "Sky Guard",
+   "npc_type": 3666,
+   "sprite": 42473,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    25,
+    232
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100086,
+   "nombre": "Sky Guard",
+   "npc_type": 3666,
+   "sprite": 42473,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    20,
+    227
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100087,
+   "nombre": "Sky Guard",
+   "npc_type": 3666,
+   "sprite": 42473,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    20,
+    232
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100088,
+   "nombre": "Sky Guard",
+   "npc_type": 3666,
+   "sprite": 42473,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    20,
+    237
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100089,
+   "nombre": "Sky Guard",
+   "npc_type": 3666,
+   "sprite": 42473,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    25,
+    227
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100090,
+   "nombre": "Sky Guard",
+   "npc_type": 3666,
+   "sprite": 42473,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    47,
+    224
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100091,
+   "nombre": "Sky Guard",
+   "npc_type": 3666,
+   "sprite": 42473,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    42,
+    219
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100092,
+   "nombre": "Sky Guard",
+   "npc_type": 3666,
+   "sprite": 42473,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    42,
+    224
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100093,
+   "nombre": "Sky Guard",
+   "npc_type": 3666,
+   "sprite": 42473,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    42,
+    229
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100094,
+   "nombre": "Sky Guard",
+   "npc_type": 3666,
+   "sprite": 42473,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    47,
+    219
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100095,
+   "nombre": "Belia",
+   "npc_type": 3997,
+   "sprite": 42557,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    90,
+    265
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100096,
+   "nombre": "Sky Mage",
+   "npc_type": 3671,
+   "sprite": 42488,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    159,
+    143
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100097,
+   "nombre": "Sky Mage",
+   "npc_type": 3671,
+   "sprite": 42488,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    154,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100098,
+   "nombre": "Sky Mage",
+   "npc_type": 3671,
+   "sprite": 42488,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    154,
+    143
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100099,
+   "nombre": "Sky Mage",
+   "npc_type": 3671,
+   "sprite": 42488,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    154,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100100,
+   "nombre": "Sky Mage",
+   "npc_type": 3671,
+   "sprite": 42488,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100101,
+   "nombre": "Sky Mage",
+   "npc_type": 3671,
+   "sprite": 42488,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100102,
+   "nombre": "Sky Mage",
+   "npc_type": 3671,
+   "sprite": 42488,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100103,
+   "nombre": "Sky Mage",
+   "npc_type": 3671,
+   "sprite": 42488,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100104,
+   "nombre": "Sky Mage",
+   "npc_type": 3671,
+   "sprite": 42488,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    197,
+    154
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100105,
+   "nombre": "Sky Mage",
+   "npc_type": 3671,
+   "sprite": 42488,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    192,
+    149
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100106,
+   "nombre": "Sky Mage",
+   "npc_type": 3671,
+   "sprite": 42488,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    192,
+    154
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100107,
+   "nombre": "Sky Mage",
+   "npc_type": 3671,
+   "sprite": 42488,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    192,
+    159
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100108,
+   "nombre": "Sky Mage",
+   "npc_type": 3671,
+   "sprite": 42488,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    212,
+    162
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100109,
+   "nombre": "Sky Mage",
+   "npc_type": 3671,
+   "sprite": 42488,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    207,
+    157
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100110,
+   "nombre": "Sky Mage",
+   "npc_type": 3671,
+   "sprite": 42488,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    207,
+    162
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100111,
+   "nombre": "Sky Mage",
+   "npc_type": 3671,
+   "sprite": 42488,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    207,
+    167
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100112,
+   "nombre": "Sky Mage",
+   "npc_type": 3671,
+   "sprite": 42488,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    225,
+    173
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100113,
+   "nombre": "Sky Mage",
+   "npc_type": 3671,
+   "sprite": 42488,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    168
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100114,
+   "nombre": "Sky Mage",
+   "npc_type": 3671,
+   "sprite": 42488,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    173
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100115,
+   "nombre": "Sky Mage",
+   "npc_type": 3671,
+   "sprite": 42488,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    178
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100116,
+   "nombre": "Sky Mage",
+   "npc_type": 3672,
+   "sprite": 42489,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    232,
+    175
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100117,
+   "nombre": "Sky Mage",
+   "npc_type": 3672,
+   "sprite": 42489,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    227,
+    178
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100118,
+   "nombre": "Sky Mage",
+   "npc_type": 3672,
+   "sprite": 42489,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    230,
+    170
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100119,
+   "nombre": "Sky Mage",
+   "npc_type": 3672,
+   "sprite": 42489,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    232,
+    180
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100120,
+   "nombre": "Sky Mage",
+   "npc_type": 3672,
+   "sprite": 42489,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    235,
+    170
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100121,
+   "nombre": "Sky Mage",
+   "npc_type": 3672,
+   "sprite": 42489,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    202,
+    153
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100122,
+   "nombre": "Sky Mage",
+   "npc_type": 3672,
+   "sprite": 42489,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    202,
+    158
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100123,
+   "nombre": "Sky Mage",
+   "npc_type": 3672,
+   "sprite": 42489,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    207,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100124,
+   "nombre": "Sky Mage",
+   "npc_type": 3672,
+   "sprite": 42489,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    198,
+    163
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100125,
+   "nombre": "Sky Mage",
+   "npc_type": 3672,
+   "sprite": 42489,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    212,
+    149
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100126,
+   "nombre": "Sky Mage",
+   "npc_type": 3672,
+   "sprite": 42489,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    171,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100127,
+   "nombre": "Sky Mage",
+   "npc_type": 3672,
+   "sprite": 42489,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    166,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100128,
+   "nombre": "Sky Mage",
+   "npc_type": 3672,
+   "sprite": 42489,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    166,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100129,
+   "nombre": "Sky Mage",
+   "npc_type": 3672,
+   "sprite": 42489,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    166,
+    139
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100130,
+   "nombre": "Sky Mage",
+   "npc_type": 3672,
+   "sprite": 42489,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    171,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100131,
+   "nombre": "Sky Elder Priest",
+   "npc_type": 3999,
+   "sprite": 42586,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    227,
+    183
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100132,
+   "nombre": "Sky Elder Priest",
+   "npc_type": 3999,
+   "sprite": 42586,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    212,
+    154
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100133,
+   "nombre": "Sky Elder Priest",
+   "npc_type": 3999,
+   "sprite": 42586,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    171,
+    139
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100134,
+   "nombre": "Lion Knight",
+   "npc_type": 3662,
+   "sprite": 42555,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    174,
+    230
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100135,
+   "nombre": "Sky Patrol Leader",
+   "npc_type": 3998,
+   "sprite": 42585,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    58,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100136,
+   "nombre": "Sky Guard Leader",
+   "npc_type": 4071,
+   "sprite": 42484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    166,
+    224
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100137,
+   "nombre": "Sky Guard Leader",
+   "npc_type": 4071,
+   "sprite": 42484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    219
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100138,
+   "nombre": "Sky Guard Leader",
+   "npc_type": 4071,
+   "sprite": 42484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    224
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100139,
+   "nombre": "Sky Guard Leader",
+   "npc_type": 4071,
+   "sprite": 42484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    155,
+    240
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100140,
+   "nombre": "Sky Guard Leader",
+   "npc_type": 4071,
+   "sprite": 42484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    150,
+    235
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100141,
+   "nombre": "Sky Guard Leader",
+   "npc_type": 4071,
+   "sprite": 42484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    150,
+    240
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100142,
+   "nombre": "Sky Guard Leader",
+   "npc_type": 4071,
+   "sprite": 42484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    150,
+    245
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100143,
+   "nombre": "Sky Marquis Leader",
+   "npc_type": 4072,
+   "sprite": 42487,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    182,
+    234
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100144,
+   "nombre": "Sky Marquis Leader",
+   "npc_type": 4072,
+   "sprite": 42487,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    177,
+    235
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100145,
+   "nombre": "Sky Marquis Leader",
+   "npc_type": 4072,
+   "sprite": 42487,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    179,
+    229
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100146,
+   "nombre": "Sky Army Officer",
+   "npc_type": 4073,
+   "sprite": 42488,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    199,
+    218
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100147,
+   "nombre": "Sky Army Officer",
+   "npc_type": 4073,
+   "sprite": 42488,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    194,
+    213
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100148,
+   "nombre": "Sky Army Officer",
+   "npc_type": 4073,
+   "sprite": 42488,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    194,
+    218
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100149,
+   "nombre": "Sky Marksman",
+   "npc_type": 4069,
+   "sprite": 42486,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    156,
+    214
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100150,
+   "nombre": "Sky Marksman",
+   "npc_type": 4069,
+   "sprite": 42486,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    155,
+    219
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100151,
+   "nombre": "Sky Marksman",
+   "npc_type": 4069,
+   "sprite": 42486,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    213
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100152,
+   "nombre": "Sky Sorcerer",
+   "npc_type": 4070,
+   "sprite": 42489,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    166,
+    204
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100153,
+   "nombre": "Sky Sorcerer",
+   "npc_type": 4070,
+   "sprite": 42489,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    199
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100154,
+   "nombre": "Sky Sorcerer",
+   "npc_type": 4070,
+   "sprite": 42489,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    204
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100155,
+   "nombre": "Sky Sentinel",
+   "npc_type": 4068,
+   "sprite": 42483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    135,
+    219
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100156,
+   "nombre": "Sky Sentinel",
+   "npc_type": 4068,
+   "sprite": 42483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    130,
+    214
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100157,
+   "nombre": "Sky Sentinel",
+   "npc_type": 4068,
+   "sprite": 42483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    130,
+    219
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100158,
+   "nombre": "Sky Sentinel",
+   "npc_type": 4068,
+   "sprite": 42483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    144,
+    209
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100159,
+   "nombre": "Sky Sentinel",
+   "npc_type": 4068,
+   "sprite": 42483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    139,
+    204
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100160,
+   "nombre": "Sky Sentinel",
+   "npc_type": 4068,
+   "sprite": 42483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    139,
+    209
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100161,
+   "nombre": "Wind King Porrosia",
+   "npc_type": 4036,
+   "sprite": 42588,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100162,
+   "nombre": "Bloody Saint Judas",
+   "npc_type": 4037,
+   "sprite": 42589,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    26,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100163,
+   "nombre": "Sky Patrol Marquis",
+   "npc_type": 4040,
+   "sprite": 42486,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    50,
+    264
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100164,
+   "nombre": "Sky Patrol Marquis",
+   "npc_type": 4040,
+   "sprite": 42486,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    45,
+    259
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100165,
+   "nombre": "Sky Patrol Marquis",
+   "npc_type": 4040,
+   "sprite": 42486,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    45,
+    264
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100166,
+   "nombre": "Sky Patrol Soldier",
+   "npc_type": 4039,
+   "sprite": 42483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    50,
+    259
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100167,
+   "nombre": "Sky Patrol Soldier",
+   "npc_type": 4039,
+   "sprite": 42483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    255
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100168,
+   "nombre": "Sky Patrol Soldier",
+   "npc_type": 4039,
+   "sprite": 42483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    260
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100169,
+   "nombre": "Sky Patrol Mage",
+   "npc_type": 4041,
+   "sprite": 42488,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    263
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100170,
+   "nombre": "Sky Patrol Mage",
+   "npc_type": 4041,
+   "sprite": 42488,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    268
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100171,
+   "nombre": "Sky Patrol Mage",
+   "npc_type": 4041,
+   "sprite": 42488,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    269
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100172,
+   "nombre": "Sky Patrol Marquis",
+   "npc_type": 4040,
+   "sprite": 42486,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    88,
+    242
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100173,
+   "nombre": "Sky Patrol Marquis",
+   "npc_type": 4040,
+   "sprite": 42486,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    83,
+    237
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100174,
+   "nombre": "Sky Patrol Marquis",
+   "npc_type": 4040,
+   "sprite": 42486,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    83,
+    242
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100175,
+   "nombre": "Sky Patrol Marquis",
+   "npc_type": 4040,
+   "sprite": 42486,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    93,
+    243
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100176,
+   "nombre": "Sky Patrol Marquis",
+   "npc_type": 4040,
+   "sprite": 42486,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    88,
+    247
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100177,
+   "nombre": "Sky Patrol Marquis",
+   "npc_type": 4040,
+   "sprite": 42486,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    93,
+    248
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100178,
+   "nombre": "Sky Patrol Mage",
+   "npc_type": 4041,
+   "sprite": 42488,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    98,
+    242
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100179,
+   "nombre": "Sky Patrol Mage",
+   "npc_type": 4041,
+   "sprite": 42488,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    98,
+    247
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100180,
+   "nombre": "Sky Patrol Mage",
+   "npc_type": 4041,
+   "sprite": 42488,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    88,
+    252
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100181,
+   "nombre": "Sky Warrior Gray",
+   "npc_type": 4038,
+   "sprite": 42587,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61100182,
+   "nombre": "Virulent Air",
+   "npc_type": 4000,
+   "sprite": 42590,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    189,
+    90
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61100183,
+   "nombre": "Virulent Air",
+   "npc_type": 4000,
+   "sprite": 42590,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    104
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  }
+ ],
+ "recursos": [
+  {
+   "entity_id": 71100000,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2074,
+    8560
+   ],
+   "tile": [
+    64,
+    267
+   ],
+   "crudo": "60e63c04000000001a080000702100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100001,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1971,
+    8496
+   ],
+   "tile": [
+    61,
+    265
+   ],
+   "crudo": "61e63c0400000000b3070000302100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100002,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1869,
+    8464
+   ],
+   "tile": [
+    58,
+    264
+   ],
+   "crudo": "62e63c04000000004d070000102100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100003,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1767,
+    8400
+   ],
+   "tile": [
+    55,
+    262
+   ],
+   "crudo": "63e63c0400000000e7060000d02000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100004,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1665,
+    8368
+   ],
+   "tile": [
+    52,
+    261
+   ],
+   "crudo": "64e63c040000000081060000b02000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100005,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1561,
+    8304
+   ],
+   "tile": [
+    48,
+    259
+   ],
+   "crudo": "65e63c040000000019060000702000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100006,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1459,
+    8272
+   ],
+   "tile": [
+    45,
+    258
+   ],
+   "crudo": "66e63c0400000000b3050000502000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100007,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1559,
+    8208
+   ],
+   "tile": [
+    48,
+    256
+   ],
+   "crudo": "67e63c040000000017060000102000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100008,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1456,
+    8144
+   ],
+   "tile": [
+    45,
+    254
+   ],
+   "crudo": "68e63c0400000000b0050000d01f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100009,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1665,
+    8240
+   ],
+   "tile": [
+    52,
+    257
+   ],
+   "crudo": "69e63c040000000081060000302000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100010,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1666,
+    8144
+   ],
+   "tile": [
+    52,
+    254
+   ],
+   "crudo": "6ae63c040000000082060000d01f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100011,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1768,
+    8208
+   ],
+   "tile": [
+    55,
+    256
+   ],
+   "crudo": "6be63c0400000000e8060000102000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100012,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1767,
+    8112
+   ],
+   "tile": [
+    55,
+    253
+   ],
+   "crudo": "6ce63c0400000000e7060000b01f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100013,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1356,
+    8208
+   ],
+   "tile": [
+    42,
+    256
+   ],
+   "crudo": "6de63c04000000004c050000102000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100014,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1356,
+    8112
+   ],
+   "tile": [
+    42,
+    253
+   ],
+   "crudo": "6ee63c04000000004c050000b01f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100015,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1253,
+    8144
+   ],
+   "tile": [
+    39,
+    254
+   ],
+   "crudo": "6fe63c0400000000e5040000d01f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100016,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1253,
+    8048
+   ],
+   "tile": [
+    39,
+    251
+   ],
+   "crudo": "70e63c0400000000e5040000701f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100017,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1152,
+    8112
+   ],
+   "tile": [
+    36,
+    253
+   ],
+   "crudo": "71e63c040000000080040000b01f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100018,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1369,
+    8016
+   ],
+   "tile": [
+    42,
+    250
+   ],
+   "crudo": "72e63c040000000059050000501f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100019,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1458,
+    8048
+   ],
+   "tile": [
+    45,
+    251
+   ],
+   "crudo": "73e63c0400000000b2050000701f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100020,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1460,
+    7952
+   ],
+   "tile": [
+    45,
+    248
+   ],
+   "crudo": "74e63c0400000000b4050000101f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100021,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1560,
+    8112
+   ],
+   "tile": [
+    48,
+    253
+   ],
+   "crudo": "75e63c040000000018060000b01f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100022,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1562,
+    7984
+   ],
+   "tile": [
+    48,
+    249
+   ],
+   "crudo": "76e63c04000000001a060000301f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100023,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1562,
+    7888
+   ],
+   "tile": [
+    48,
+    246
+   ],
+   "crudo": "77e63c04000000001a060000d01e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100024,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1664,
+    7856
+   ],
+   "tile": [
+    52,
+    245
+   ],
+   "crudo": "78e63c040000000080060000b01e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100025,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1663,
+    7952
+   ],
+   "tile": [
+    51,
+    248
+   ],
+   "crudo": "79e63c04000000007f060000101f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100026,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1661,
+    8048
+   ],
+   "tile": [
+    51,
+    251
+   ],
+   "crudo": "7ae63c04000000007d060000701f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100027,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1771,
+    7792
+   ],
+   "tile": [
+    55,
+    243
+   ],
+   "crudo": "7be63c0400000000eb060000701e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100028,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1765,
+    7888
+   ],
+   "tile": [
+    55,
+    246
+   ],
+   "crudo": "7ce63c0400000000e5060000d01e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100029,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1765,
+    7984
+   ],
+   "tile": [
+    55,
+    249
+   ],
+   "crudo": "7de63c0400000000e5060000301f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100030,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1871,
+    8048
+   ],
+   "tile": [
+    58,
+    251
+   ],
+   "crudo": "7ee63c04000000004f070000701f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100031,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1869,
+    7952
+   ],
+   "tile": [
+    58,
+    248
+   ],
+   "crudo": "7fe63c04000000004d070000101f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100032,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1878,
+    7728
+   ],
+   "tile": [
+    58,
+    241
+   ],
+   "crudo": "80e63c040000000056070000301e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100033,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1869,
+    7856
+   ],
+   "tile": [
+    58,
+    245
+   ],
+   "crudo": "81e63c04000000004d070000b01e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100034,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1869,
+    8144
+   ],
+   "tile": [
+    58,
+    254
+   ],
+   "crudo": "82e63c04000000004d070000d01f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100035,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1871,
+    8240
+   ],
+   "tile": [
+    58,
+    257
+   ],
+   "crudo": "83e63c04000000004f070000302000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100036,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1870,
+    8368
+   ],
+   "tile": [
+    58,
+    261
+   ],
+   "crudo": "84e63c04000000004e070000b02000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100037,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1971,
+    8400
+   ],
+   "tile": [
+    61,
+    262
+   ],
+   "crudo": "85e63c0400000000b3070000d02000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100038,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1970,
+    8304
+   ],
+   "tile": [
+    61,
+    259
+   ],
+   "crudo": "86e63c0400000000b2070000702000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100039,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1970,
+    8208
+   ],
+   "tile": [
+    61,
+    256
+   ],
+   "crudo": "87e63c0400000000b2070000102000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100040,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1971,
+    8112
+   ],
+   "tile": [
+    61,
+    253
+   ],
+   "crudo": "88e63c0400000000b3070000b01f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100041,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1970,
+    8016
+   ],
+   "tile": [
+    61,
+    250
+   ],
+   "crudo": "89e63c0400000000b2070000501f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100042,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1973,
+    7888
+   ],
+   "tile": [
+    61,
+    246
+   ],
+   "crudo": "8ae63c0400000000b5070000d01e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100043,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1971,
+    7792
+   ],
+   "tile": [
+    61,
+    243
+   ],
+   "crudo": "8be63c0400000000b3070000701e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100044,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1975,
+    7696
+   ],
+   "tile": [
+    61,
+    240
+   ],
+   "crudo": "8ce63c0400000000b7070000101e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100045,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2077,
+    7664
+   ],
+   "tile": [
+    64,
+    239
+   ],
+   "crudo": "8de63c04000000001d080000f01d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100046,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2075,
+    7728
+   ],
+   "tile": [
+    64,
+    241
+   ],
+   "crudo": "8ee63c04000000001b080000301e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100047,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2071,
+    7856
+   ],
+   "tile": [
+    64,
+    245
+   ],
+   "crudo": "8fe63c040000000017080000b01e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100048,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2071,
+    7952
+   ],
+   "tile": [
+    64,
+    248
+   ],
+   "crudo": "90e63c040000000017080000101f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100049,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2075,
+    8048
+   ],
+   "tile": [
+    64,
+    251
+   ],
+   "crudo": "91e63c04000000001b080000701f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100050,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2073,
+    8144
+   ],
+   "tile": [
+    64,
+    254
+   ],
+   "crudo": "92e63c040000000019080000d01f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100051,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2179,
+    7984
+   ],
+   "tile": [
+    68,
+    249
+   ],
+   "crudo": "93e63c040000000083080000301f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100052,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2181,
+    7888
+   ],
+   "tile": [
+    68,
+    246
+   ],
+   "crudo": "94e63c040000000085080000d01e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100053,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2177,
+    7792
+   ],
+   "tile": [
+    68,
+    243
+   ],
+   "crudo": "95e63c040000000081080000701e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100054,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2178,
+    7696
+   ],
+   "tile": [
+    68,
+    240
+   ],
+   "crudo": "96e63c040000000082080000101e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100055,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2280,
+    7632
+   ],
+   "tile": [
+    71,
+    238
+   ],
+   "crudo": "97e63c0400000000e8080000d01d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100056,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2280,
+    7760
+   ],
+   "tile": [
+    71,
+    242
+   ],
+   "crudo": "98e63c0400000000e8080000501e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100057,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2279,
+    7856
+   ],
+   "tile": [
+    71,
+    245
+   ],
+   "crudo": "99e63c0400000000e7080000b01e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100058,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2383,
+    7792
+   ],
+   "tile": [
+    74,
+    243
+   ],
+   "crudo": "9ae63c04000000004f090000701e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100059,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2381,
+    7696
+   ],
+   "tile": [
+    74,
+    240
+   ],
+   "crudo": "9be63c04000000004d090000101e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100060,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2381,
+    7888
+   ],
+   "tile": [
+    74,
+    246
+   ],
+   "crudo": "9ce63c04000000004d090000d01e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100061,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2281,
+    7952
+   ],
+   "tile": [
+    71,
+    248
+   ],
+   "crudo": "9de63c0400000000e9080000101f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100062,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2385,
+    8016
+   ],
+   "tile": [
+    74,
+    250
+   ],
+   "crudo": "9ee63c040000000051090000501f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100063,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2281,
+    8048
+   ],
+   "tile": [
+    71,
+    251
+   ],
+   "crudo": "9fe63c0400000000e9080000701f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100064,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2279,
+    8144
+   ],
+   "tile": [
+    71,
+    254
+   ],
+   "crudo": "a0e63c0400000000e7080000d01f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100065,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2277,
+    8272
+   ],
+   "tile": [
+    71,
+    258
+   ],
+   "crudo": "a1e63c0400000000e5080000502000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100066,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2484,
+    7952
+   ],
+   "tile": [
+    77,
+    248
+   ],
+   "crudo": "a2e63c0400000000b4090000101f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100067,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2383,
+    8112
+   ],
+   "tile": [
+    74,
+    253
+   ],
+   "crudo": "a3e63c04000000004f090000b01f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100068,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2484,
+    8048
+   ],
+   "tile": [
+    77,
+    251
+   ],
+   "crudo": "a4e63c0400000000b4090000701f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100069,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2480,
+    7856
+   ],
+   "tile": [
+    77,
+    245
+   ],
+   "crudo": "a5e63c0400000000b0090000b01e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100070,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2586,
+    7984
+   ],
+   "tile": [
+    80,
+    249
+   ],
+   "crudo": "a6e63c04000000001a0a0000301f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100071,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2581,
+    7888
+   ],
+   "tile": [
+    80,
+    246
+   ],
+   "crudo": "a7e63c0400000000150a0000d01e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100072,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2485,
+    7760
+   ],
+   "tile": [
+    77,
+    242
+   ],
+   "crudo": "a8e63c0400000000b5090000501e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100073,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2598,
+    7792
+   ],
+   "tile": [
+    81,
+    243
+   ],
+   "crudo": "a9e63c0400000000260a0000701e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100074,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2688,
+    7856
+   ],
+   "tile": [
+    84,
+    245
+   ],
+   "crudo": "aae63c0400000000800a0000b01e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100075,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2686,
+    7952
+   ],
+   "tile": [
+    83,
+    248
+   ],
+   "crudo": "abe63c04000000007e0a0000101f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100076,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2794,
+    7888
+   ],
+   "tile": [
+    87,
+    246
+   ],
+   "crudo": "ace63c0400000000ea0a0000d01e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100077,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2792,
+    8016
+   ],
+   "tile": [
+    87,
+    250
+   ],
+   "crudo": "ade63c0400000000e80a0000501f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100078,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2896,
+    7952
+   ],
+   "tile": [
+    90,
+    248
+   ],
+   "crudo": "aee63c0400000000500b0000101f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100079,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2790,
+    8112
+   ],
+   "tile": [
+    87,
+    253
+   ],
+   "crudo": "afe63c0400000000e60a0000b01f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100080,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2897,
+    8048
+   ],
+   "tile": [
+    90,
+    251
+   ],
+   "crudo": "b0e63c0400000000510b0000701f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100081,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3099,
+    8048
+   ],
+   "tile": [
+    96,
+    251
+   ],
+   "crudo": "b1e63c04000000001b0c0000701f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100082,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2995,
+    8112
+   ],
+   "tile": [
+    93,
+    253
+   ],
+   "crudo": "b2e63c0400000000b30b0000b01f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100083,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3102,
+    8144
+   ],
+   "tile": [
+    96,
+    254
+   ],
+   "crudo": "b3e63c04000000001e0c0000d01f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100084,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2997,
+    8208
+   ],
+   "tile": [
+    93,
+    256
+   ],
+   "crudo": "b4e63c0400000000b50b0000102000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100085,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2899,
+    8144
+   ],
+   "tile": [
+    90,
+    254
+   ],
+   "crudo": "b5e63c0400000000530b0000d01f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100086,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3202,
+    8112
+   ],
+   "tile": [
+    100,
+    253
+   ],
+   "crudo": "b6e63c0400000000820c0000b01f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100087,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2279,
+    8368
+   ],
+   "tile": [
+    71,
+    261
+   ],
+   "crudo": "b7e63c0400000000e7080000b02000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100088,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2072,
+    8272
+   ],
+   "tile": [
+    64,
+    258
+   ],
+   "crudo": "b8e63c040000000018080000502000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100089,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2176,
+    8400
+   ],
+   "tile": [
+    68,
+    262
+   ],
+   "crudo": "b9e63c040000000080080000d02000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100090,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2070,
+    8368
+   ],
+   "tile": [
+    64,
+    261
+   ],
+   "crudo": "bae63c040000000016080000b02000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100091,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2385,
+    8496
+   ],
+   "tile": [
+    74,
+    265
+   ],
+   "crudo": "bbe63c040000000051090000302100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100092,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2484,
+    8240
+   ],
+   "tile": [
+    77,
+    257
+   ],
+   "crudo": "bce63c0400000000b4090000302000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100093,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2483,
+    8368
+   ],
+   "tile": [
+    77,
+    261
+   ],
+   "crudo": "bde63c0400000000b3090000b02000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100094,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2590,
+    8208
+   ],
+   "tile": [
+    80,
+    256
+   ],
+   "crudo": "bee63c04000000001e0a0000102000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100095,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2691,
+    8048
+   ],
+   "tile": [
+    84,
+    251
+   ],
+   "crudo": "bfe63c0400000000830a0000701f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100096,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2586,
+    8112
+   ],
+   "tile": [
+    80,
+    253
+   ],
+   "crudo": "c0e63c04000000001a0a0000b01f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100097,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2686,
+    8144
+   ],
+   "tile": [
+    83,
+    254
+   ],
+   "crudo": "c1e63c04000000007e0a0000d01f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100098,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2688,
+    8272
+   ],
+   "tile": [
+    84,
+    258
+   ],
+   "crudo": "c2e63c0400000000800a0000502000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100099,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2482,
+    8464
+   ],
+   "tile": [
+    77,
+    264
+   ],
+   "crudo": "c3e63c0400000000b2090000102100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100100,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2281,
+    8464
+   ],
+   "tile": [
+    71,
+    264
+   ],
+   "crudo": "c4e63c0400000000e9080000102100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100101,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2182,
+    8496
+   ],
+   "tile": [
+    68,
+    265
+   ],
+   "crudo": "c5e63c040000000086080000302100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100102,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2071,
+    8464
+   ],
+   "tile": [
+    64,
+    264
+   ],
+   "crudo": "c6e63c040000000017080000102100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100103,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2181,
+    8304
+   ],
+   "tile": [
+    68,
+    259
+   ],
+   "crudo": "c7e63c040000000085080000702000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100104,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2288,
+    8560
+   ],
+   "tile": [
+    71,
+    267
+   ],
+   "crudo": "c8e63c0400000000f0080000702100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100105,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1771,
+    8304
+   ],
+   "tile": [
+    55,
+    259
+   ],
+   "crudo": "c9e63c0400000000eb060000702000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100106,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1562,
+    8496
+   ],
+   "tile": [
+    48,
+    265
+   ],
+   "crudo": "cae63c04000000001a060000302100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100107,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1667,
+    8528
+   ],
+   "tile": [
+    52,
+    266
+   ],
+   "crudo": "cbe63c040000000083060000502100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100108,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1458,
+    8432
+   ],
+   "tile": [
+    45,
+    263
+   ],
+   "crudo": "cce63c0400000000b2050000f02000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100109,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2848,
+    7760
+   ],
+   "tile": [
+    89,
+    242
+   ],
+   "crudo": "cde63c0400000000200b0000501e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100110,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2950,
+    7792
+   ],
+   "tile": [
+    92,
+    243
+   ],
+   "crudo": "cee63c0400000000860b0000701e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100111,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3049,
+    7856
+   ],
+   "tile": [
+    95,
+    245
+   ],
+   "crudo": "cfe63c0400000000e90b0000b01e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100112,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2993,
+    8016
+   ],
+   "tile": [
+    93,
+    250
+   ],
+   "crudo": "d0e63c0400000000b10b0000501f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100113,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2177,
+    8208
+   ],
+   "tile": [
+    68,
+    256
+   ],
+   "crudo": "d1e63c040000000081080000102000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100114,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3202,
+    8208
+   ],
+   "tile": [
+    100,
+    256
+   ],
+   "crudo": "d2e63c0400000000820c0000102000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100115,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3097,
+    8240
+   ],
+   "tile": [
+    96,
+    257
+   ],
+   "crudo": "d3e63c0400000000190c0000302000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100116,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2182,
+    8624
+   ],
+   "tile": [
+    68,
+    269
+   ],
+   "crudo": "d4e63c040000000086080000b02100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100117,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2606,
+    8464
+   ],
+   "tile": [
+    81,
+    264
+   ],
+   "crudo": "d5e63c04000000002e0a0000102100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100118,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2604,
+    8336
+   ],
+   "tile": [
+    81,
+    260
+   ],
+   "crudo": "d6e63c04000000002c0a0000902000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100119,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2707,
+    8464
+   ],
+   "tile": [
+    84,
+    264
+   ],
+   "crudo": "d7e63c0400000000930a0000102100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100120,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2746,
+    8528
+   ],
+   "tile": [
+    85,
+    266
+   ],
+   "crudo": "d8e63c0400000000ba0a0000502100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100121,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2706,
+    8368
+   ],
+   "tile": [
+    84,
+    261
+   ],
+   "crudo": "d9e63c0400000000920a0000b02000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100122,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2794,
+    8304
+   ],
+   "tile": [
+    87,
+    259
+   ],
+   "crudo": "dae63c0400000000ea0a0000702000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100123,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2798,
+    8208
+   ],
+   "tile": [
+    87,
+    256
+   ],
+   "crudo": "dbe63c0400000000ee0a0000102000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100124,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2896,
+    8336
+   ],
+   "tile": [
+    90,
+    260
+   ],
+   "crudo": "dce63c0400000000500b0000902000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100125,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2896,
+    8400
+   ],
+   "tile": [
+    90,
+    262
+   ],
+   "crudo": "dde63c0400000000500b0000d02000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100126,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2998,
+    8304
+   ],
+   "tile": [
+    93,
+    259
+   ],
+   "crudo": "dee63c0400000000b60b0000702000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100127,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2991,
+    8400
+   ],
+   "tile": [
+    93,
+    262
+   ],
+   "crudo": "dfe63c0400000000af0b0000d02000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71100128,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2806,
+    8400
+   ],
+   "tile": [
+    87,
+    262
+   ],
+   "crudo": "e0e63c0400000000f60a0000d02000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  }
+ ]
+}

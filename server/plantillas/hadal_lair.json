@@ -1,0 +1,2978 @@
+{
+ "_nota": "hadal_lair (stage 369). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map369.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "stage": 369,
+ "spawns": [
+  {
+   "entity_id": 86900000,
+   "nombre": "Sephtis's Body",
+   "npc_type": 23184,
+   "sprite": 110970,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    169
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 410
+  },
+  {
+   "entity_id": 86900001,
+   "nombre": "Assault Head",
+   "npc_type": 23185,
+   "sprite": 110971,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    151,
+    164
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 410
+  },
+  {
+   "entity_id": 86900002,
+   "nombre": "Bolt Head",
+   "npc_type": 23186,
+   "sprite": 110972,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    146,
+    163
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 410
+  },
+  {
+   "entity_id": 86900003,
+   "nombre": "Tremor Head",
+   "npc_type": 23187,
+   "sprite": 110973,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    159,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 410
+  },
+  {
+   "entity_id": 86900004,
+   "nombre": "Venom Head",
+   "npc_type": 23190,
+   "sprite": 111125,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    123,
+    168
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 410
+  },
+  {
+   "entity_id": 86900005,
+   "nombre": "Life Head",
+   "npc_type": 23188,
+   "sprite": 110974,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    167
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 410
+  },
+  {
+   "entity_id": 86900006,
+   "nombre": "Death Head",
+   "npc_type": 23189,
+   "sprite": 110975,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    115,
+    170
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 410
+  },
+  {
+   "entity_id": 86900007,
+   "nombre": "Frost Head",
+   "npc_type": 23191,
+   "sprite": 111126,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    168
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 410
+  },
+  {
+   "entity_id": 86900008,
+   "nombre": "Decay Head",
+   "npc_type": 23192,
+   "sprite": 111127,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    167
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 410
+  },
+  {
+   "entity_id": 86900009,
+   "nombre": "Thunder Head",
+   "npc_type": 23193,
+   "sprite": 111128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    191,
+    168
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 410
+  },
+  {
+   "entity_id": 86900010,
+   "nombre": "Radiant Squid",
+   "npc_type": 23170,
+   "sprite": 111115,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86900011,
+   "nombre": "Radiant Squid",
+   "npc_type": 23170,
+   "sprite": 111115,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    267,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86900012,
+   "nombre": "Radiant Squid",
+   "npc_type": 23170,
+   "sprite": 111115,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86900013,
+   "nombre": "Radiant Squid",
+   "npc_type": 23170,
+   "sprite": 111115,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    262,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86900014,
+   "nombre": "Radiant Squid",
+   "npc_type": 23170,
+   "sprite": 111115,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86900015,
+   "nombre": "Radiant Squid",
+   "npc_type": 23170,
+   "sprite": 111115,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    262,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86900016,
+   "nombre": "Radiant Squid",
+   "npc_type": 23170,
+   "sprite": 111115,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86900017,
+   "nombre": "Radiant Squid",
+   "npc_type": 23170,
+   "sprite": 111115,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    262,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86900018,
+   "nombre": "Radiant Squid",
+   "npc_type": 23170,
+   "sprite": 111115,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86900019,
+   "nombre": "Radiant Squid",
+   "npc_type": 23170,
+   "sprite": 111115,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    267,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86900020,
+   "nombre": "Radiant Squid",
+   "npc_type": 23170,
+   "sprite": 111115,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86900021,
+   "nombre": "Radiant Squid",
+   "npc_type": 23170,
+   "sprite": 111115,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    267,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86900022,
+   "nombre": "Radiant Squid",
+   "npc_type": 23170,
+   "sprite": 111115,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86900023,
+   "nombre": "Radiant Squid",
+   "npc_type": 23170,
+   "sprite": 111115,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    272,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86900024,
+   "nombre": "Radiant Squid",
+   "npc_type": 23170,
+   "sprite": 111115,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86900025,
+   "nombre": "Spiky Squid",
+   "npc_type": 23171,
+   "sprite": 111116,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86900026,
+   "nombre": "Spiky Squid",
+   "npc_type": 23171,
+   "sprite": 111116,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    272,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86900027,
+   "nombre": "Spiky Squid",
+   "npc_type": 23171,
+   "sprite": 111116,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86900028,
+   "nombre": "Spiky Squid",
+   "npc_type": 23171,
+   "sprite": 111116,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    272,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86900029,
+   "nombre": "Spiky Squid",
+   "npc_type": 23171,
+   "sprite": 111116,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86900030,
+   "nombre": "Spiky Squid",
+   "npc_type": 23171,
+   "sprite": 111116,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    257,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86900031,
+   "nombre": "Spiky Squid",
+   "npc_type": 23171,
+   "sprite": 111116,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86900032,
+   "nombre": "Spiky Squid",
+   "npc_type": 23171,
+   "sprite": 111116,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    257,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86900033,
+   "nombre": "Spiky Squid",
+   "npc_type": 23171,
+   "sprite": 111116,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86900034,
+   "nombre": "Spiky Squid",
+   "npc_type": 23171,
+   "sprite": 111116,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    262,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86900035,
+   "nombre": "Spiky Squid",
+   "npc_type": 23171,
+   "sprite": 111116,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86900036,
+   "nombre": "Spiky Squid",
+   "npc_type": 23171,
+   "sprite": 111116,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86900037,
+   "nombre": "Spiky Squid",
+   "npc_type": 23171,
+   "sprite": 111116,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86900038,
+   "nombre": "Spiky Squid",
+   "npc_type": 23171,
+   "sprite": 111116,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    267,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86900039,
+   "nombre": "Spiky Squid",
+   "npc_type": 23171,
+   "sprite": 111116,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86900040,
+   "nombre": "White Serpent",
+   "npc_type": 23179,
+   "sprite": 111123,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 405
+  },
+  {
+   "entity_id": 86900041,
+   "nombre": "E-Spiky Squid",
+   "npc_type": 23176,
+   "sprite": 111116,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    29,
+    62
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 401
+  },
+  {
+   "entity_id": 86900042,
+   "nombre": "E-Spiky Squid",
+   "npc_type": 23176,
+   "sprite": 111116,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    20,
+    62
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 401
+  },
+  {
+   "entity_id": 86900043,
+   "nombre": "E-Spiky Squid",
+   "npc_type": 23176,
+   "sprite": 111116,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    20,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 401
+  },
+  {
+   "entity_id": 86900044,
+   "nombre": "E-Spiky Squid",
+   "npc_type": 23176,
+   "sprite": 111116,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    24,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 401
+  },
+  {
+   "entity_id": 86900045,
+   "nombre": "E-Spiky Squid",
+   "npc_type": 23176,
+   "sprite": 111116,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    15,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 401
+  },
+  {
+   "entity_id": 86900046,
+   "nombre": "Green Witch",
+   "npc_type": 23172,
+   "sprite": 111117,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    25,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900047,
+   "nombre": "Green Witch",
+   "npc_type": 23172,
+   "sprite": 111117,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    15,
+    62
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900048,
+   "nombre": "Green Witch",
+   "npc_type": 23172,
+   "sprite": 111117,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    18,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900049,
+   "nombre": "Green Witch",
+   "npc_type": 23172,
+   "sprite": 111117,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    29,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900050,
+   "nombre": "Green Witch",
+   "npc_type": 23172,
+   "sprite": 111117,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    13,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900051,
+   "nombre": "Green Witch",
+   "npc_type": 23172,
+   "sprite": 111117,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900052,
+   "nombre": "Green Witch",
+   "npc_type": 23172,
+   "sprite": 111117,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    34,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900053,
+   "nombre": "Green Witch",
+   "npc_type": 23172,
+   "sprite": 111117,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    10,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900054,
+   "nombre": "Green Witch",
+   "npc_type": 23172,
+   "sprite": 111117,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    15,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900055,
+   "nombre": "Green Witch",
+   "npc_type": 23172,
+   "sprite": 111117,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    34,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900056,
+   "nombre": "Green Witch",
+   "npc_type": 23172,
+   "sprite": 111117,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    10,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900057,
+   "nombre": "Green Witch",
+   "npc_type": 23172,
+   "sprite": 111117,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    20,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900058,
+   "nombre": "Green Witch",
+   "npc_type": 23172,
+   "sprite": 111117,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    35,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900059,
+   "nombre": "Green Witch",
+   "npc_type": 23172,
+   "sprite": 111117,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    10,
+    62
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900060,
+   "nombre": "Green Witch",
+   "npc_type": 23172,
+   "sprite": 111117,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    25,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900061,
+   "nombre": "Green Witch",
+   "npc_type": 23172,
+   "sprite": 111117,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    34,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900062,
+   "nombre": "Green Witch",
+   "npc_type": 23172,
+   "sprite": 111117,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    10,
+    72
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900063,
+   "nombre": "Green Witch",
+   "npc_type": 23172,
+   "sprite": 111117,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    15,
+    72
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900064,
+   "nombre": "Green Witch",
+   "npc_type": 23172,
+   "sprite": 111117,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    20,
+    72
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900065,
+   "nombre": "Green Witch",
+   "npc_type": 23172,
+   "sprite": 111117,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    25,
+    72
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900066,
+   "nombre": "Green Witch",
+   "npc_type": 23172,
+   "sprite": 111117,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900067,
+   "nombre": "Green Witch",
+   "npc_type": 23172,
+   "sprite": 111117,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    39,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900068,
+   "nombre": "Green Witch",
+   "npc_type": 23172,
+   "sprite": 111117,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    8,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900069,
+   "nombre": "Green Witch",
+   "npc_type": 23172,
+   "sprite": 111117,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    35,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900070,
+   "nombre": "Green Witch",
+   "npc_type": 23172,
+   "sprite": 111117,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    39,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900071,
+   "nombre": "Trio Rider",
+   "npc_type": 23173,
+   "sprite": 111118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    39,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900072,
+   "nombre": "Trio Rider",
+   "npc_type": 23173,
+   "sprite": 111118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    75
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900073,
+   "nombre": "Trio Rider",
+   "npc_type": 23173,
+   "sprite": 111118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    10,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900074,
+   "nombre": "Trio Rider",
+   "npc_type": 23173,
+   "sprite": 111118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    51
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900075,
+   "nombre": "Trio Rider",
+   "npc_type": 23173,
+   "sprite": 111118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    5,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900076,
+   "nombre": "Trio Rider",
+   "npc_type": 23173,
+   "sprite": 111118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    15,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900077,
+   "nombre": "Trio Rider",
+   "npc_type": 23173,
+   "sprite": 111118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    35,
+    75
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900078,
+   "nombre": "Trio Rider",
+   "npc_type": 23173,
+   "sprite": 111118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    5,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900079,
+   "nombre": "Trio Rider",
+   "npc_type": 23173,
+   "sprite": 111118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    20,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900080,
+   "nombre": "Trio Rider",
+   "npc_type": 23173,
+   "sprite": 111118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    75
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900081,
+   "nombre": "Trio Rider",
+   "npc_type": 23173,
+   "sprite": 111118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    5,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900082,
+   "nombre": "Trio Rider",
+   "npc_type": 23173,
+   "sprite": 111118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    25,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900083,
+   "nombre": "Trio Rider",
+   "npc_type": 23173,
+   "sprite": 111118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    14,
+    77
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900084,
+   "nombre": "Trio Rider",
+   "npc_type": 23173,
+   "sprite": 111118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    5,
+    62
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900085,
+   "nombre": "Trio Rider",
+   "npc_type": 23173,
+   "sprite": 111118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    8,
+    77
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900086,
+   "nombre": "Trio Rider",
+   "npc_type": 23173,
+   "sprite": 111118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    19,
+    77
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900087,
+   "nombre": "Trio Rider",
+   "npc_type": 23173,
+   "sprite": 111118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    5,
+    72
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900088,
+   "nombre": "Trio Rider",
+   "npc_type": 23173,
+   "sprite": 111118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    24,
+    77
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900089,
+   "nombre": "Trio Rider",
+   "npc_type": 23173,
+   "sprite": 111118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900090,
+   "nombre": "Trio Rider",
+   "npc_type": 23173,
+   "sprite": 111118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    3,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900091,
+   "nombre": "Trio Rider",
+   "npc_type": 23173,
+   "sprite": 111118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900092,
+   "nombre": "Trio Rider",
+   "npc_type": 23173,
+   "sprite": 111118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900093,
+   "nombre": "Trio Rider",
+   "npc_type": 23173,
+   "sprite": 111118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    3,
+    77
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900094,
+   "nombre": "Trio Rider",
+   "npc_type": 23173,
+   "sprite": 111118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    35,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900095,
+   "nombre": "Trio Rider",
+   "npc_type": 23173,
+   "sprite": 111118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86900096,
+   "nombre": "Midgard Serpent",
+   "npc_type": 23182,
+   "sprite": 111124,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 410
+  },
+  {
+   "entity_id": 86900097,
+   "nombre": "Purple Mutant",
+   "npc_type": 23174,
+   "sprite": 111119,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    215,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900098,
+   "nombre": "Purple Mutant",
+   "npc_type": 23174,
+   "sprite": 111119,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900099,
+   "nombre": "Purple Mutant",
+   "npc_type": 23174,
+   "sprite": 111119,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900100,
+   "nombre": "Purple Mutant",
+   "npc_type": 23174,
+   "sprite": 111119,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900101,
+   "nombre": "Purple Mutant",
+   "npc_type": 23174,
+   "sprite": 111119,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    215,
+    119
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900102,
+   "nombre": "Purple Mutant",
+   "npc_type": 23174,
+   "sprite": 111119,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900103,
+   "nombre": "Purple Mutant",
+   "npc_type": 23174,
+   "sprite": 111119,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    215,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900104,
+   "nombre": "Purple Mutant",
+   "npc_type": 23174,
+   "sprite": 111119,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900105,
+   "nombre": "Purple Mutant",
+   "npc_type": 23174,
+   "sprite": 111119,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    119
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900106,
+   "nombre": "Purple Mutant",
+   "npc_type": 23174,
+   "sprite": 111119,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900107,
+   "nombre": "Purple Mutant",
+   "npc_type": 23174,
+   "sprite": 111119,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900108,
+   "nombre": "Purple Mutant",
+   "npc_type": 23174,
+   "sprite": 111119,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    215,
+    114
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900109,
+   "nombre": "Purple Mutant",
+   "npc_type": 23174,
+   "sprite": 111119,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900110,
+   "nombre": "Purple Mutant",
+   "npc_type": 23174,
+   "sprite": 111119,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    113
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900111,
+   "nombre": "Purple Mutant",
+   "npc_type": 23174,
+   "sprite": 111119,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900112,
+   "nombre": "Purple Mutant",
+   "npc_type": 23174,
+   "sprite": 111119,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900113,
+   "nombre": "Purple Mutant",
+   "npc_type": 23174,
+   "sprite": 111119,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900114,
+   "nombre": "Purple Mutant",
+   "npc_type": 23174,
+   "sprite": 111119,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900115,
+   "nombre": "Purple Mutant",
+   "npc_type": 23174,
+   "sprite": 111119,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900116,
+   "nombre": "Purple Mutant",
+   "npc_type": 23174,
+   "sprite": 111119,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900117,
+   "nombre": "Purple Mutant",
+   "npc_type": 23174,
+   "sprite": 111119,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    114
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900118,
+   "nombre": "Purple Mutant",
+   "npc_type": 23174,
+   "sprite": 111119,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900119,
+   "nombre": "Purple Mutant",
+   "npc_type": 23174,
+   "sprite": 111119,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900120,
+   "nombre": "Purple Mutant",
+   "npc_type": 23174,
+   "sprite": 111119,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    113
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900121,
+   "nombre": "Purple Mutant",
+   "npc_type": 23174,
+   "sprite": 111119,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    225,
+    114
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900122,
+   "nombre": "Blue Mutant",
+   "npc_type": 23175,
+   "sprite": 111120,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    225,
+    119
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900123,
+   "nombre": "Blue Mutant",
+   "npc_type": 23175,
+   "sprite": 111120,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    113
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900124,
+   "nombre": "Blue Mutant",
+   "npc_type": 23175,
+   "sprite": 111120,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    225,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900125,
+   "nombre": "Blue Mutant",
+   "npc_type": 23175,
+   "sprite": 111120,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    215,
+    109
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900126,
+   "nombre": "Blue Mutant",
+   "npc_type": 23175,
+   "sprite": 111120,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    225,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900127,
+   "nombre": "Blue Mutant",
+   "npc_type": 23175,
+   "sprite": 111120,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    109
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900128,
+   "nombre": "Blue Mutant",
+   "npc_type": 23175,
+   "sprite": 111120,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    226,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900129,
+   "nombre": "Blue Mutant",
+   "npc_type": 23175,
+   "sprite": 111120,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900130,
+   "nombre": "Blue Mutant",
+   "npc_type": 23175,
+   "sprite": 111120,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    201,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900131,
+   "nombre": "Blue Mutant",
+   "npc_type": 23175,
+   "sprite": 111120,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    113
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900132,
+   "nombre": "Blue Mutant",
+   "npc_type": 23175,
+   "sprite": 111120,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900133,
+   "nombre": "Blue Mutant",
+   "npc_type": 23175,
+   "sprite": 111120,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900134,
+   "nombre": "Blue Mutant",
+   "npc_type": 23175,
+   "sprite": 111120,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    139
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900135,
+   "nombre": "Blue Mutant",
+   "npc_type": 23175,
+   "sprite": 111120,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900136,
+   "nombre": "Blue Mutant",
+   "npc_type": 23175,
+   "sprite": 111120,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    139
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900137,
+   "nombre": "Blue Mutant",
+   "npc_type": 23175,
+   "sprite": 111120,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900138,
+   "nombre": "Blue Mutant",
+   "npc_type": 23175,
+   "sprite": 111120,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    139
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900139,
+   "nombre": "Blue Mutant",
+   "npc_type": 23175,
+   "sprite": 111120,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900140,
+   "nombre": "Blue Mutant",
+   "npc_type": 23175,
+   "sprite": 111120,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    225,
+    109
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900141,
+   "nombre": "Blue Mutant",
+   "npc_type": 23175,
+   "sprite": 111120,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900142,
+   "nombre": "Blue Mutant",
+   "npc_type": 23175,
+   "sprite": 111120,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    226,
+    139
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900143,
+   "nombre": "Blue Mutant",
+   "npc_type": 23175,
+   "sprite": 111120,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900144,
+   "nombre": "Blue Mutant",
+   "npc_type": 23175,
+   "sprite": 111120,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    230,
+    109
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900145,
+   "nombre": "Blue Mutant",
+   "npc_type": 23175,
+   "sprite": 111120,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900146,
+   "nombre": "Blue Mutant",
+   "npc_type": 23175,
+   "sprite": 111120,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    230,
+    114
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86900147,
+   "nombre": "Abaddon",
+   "npc_type": 23183,
+   "sprite": 111059,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    56,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 410
+  },
+  {
+   "entity_id": 86900148,
+   "nombre": "Abaddon's Hatchling",
+   "npc_type": 23194,
+   "sprite": 111058,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    52,
+    136
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 410
+  },
+  {
+   "entity_id": 86900149,
+   "nombre": "Abaddon's Hatchling",
+   "npc_type": 23194,
+   "sprite": 111058,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 410
+  },
+  {
+   "entity_id": 86900150,
+   "nombre": "Abaddon's Hatchling",
+   "npc_type": 23194,
+   "sprite": 111058,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    57,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 410
+  },
+  {
+   "entity_id": 86900151,
+   "nombre": "Abaddon's Hatchling",
+   "npc_type": 23194,
+   "sprite": 111058,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    47,
+    131
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 410
+  },
+  {
+   "entity_id": 86900152,
+   "nombre": "Abaddon's Hatchling",
+   "npc_type": 23194,
+   "sprite": 111058,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    47,
+    136
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 410
+  },
+  {
+   "entity_id": 86900153,
+   "nombre": "Fathom Beast",
+   "npc_type": 23181,
+   "sprite": 111122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    113,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 405
+  },
+  {
+   "entity_id": 86900154,
+   "nombre": "Fathom Queen",
+   "npc_type": 23180,
+   "sprite": 111121,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    193,
+    143
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 405
+  },
+  {
+   "entity_id": 86900155,
+   "nombre": "E-Trio Rider",
+   "npc_type": 23177,
+   "sprite": 111118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    189,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 402
+  },
+  {
+   "entity_id": 86900156,
+   "nombre": "E-Trio Rider",
+   "npc_type": 23177,
+   "sprite": 111118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    118,
+    142
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 402
+  },
+  {
+   "entity_id": 86900157,
+   "nombre": "E-Trio Rider",
+   "npc_type": 23177,
+   "sprite": 111118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    188,
+    143
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 402
+  },
+  {
+   "entity_id": 86900158,
+   "nombre": "E-Trio Rider",
+   "npc_type": 23177,
+   "sprite": 111118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    113,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 402
+  },
+  {
+   "entity_id": 86900159,
+   "nombre": "E-Trio Rider",
+   "npc_type": 23177,
+   "sprite": 111118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    184,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 402
+  },
+  {
+   "entity_id": 86900160,
+   "nombre": "E-Blue Mutant",
+   "npc_type": 23178,
+   "sprite": 111120,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    184,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 403
+  },
+  {
+   "entity_id": 86900161,
+   "nombre": "E-Blue Mutant",
+   "npc_type": 23178,
+   "sprite": 111120,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    118,
+    147
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 403
+  },
+  {
+   "entity_id": 86900162,
+   "nombre": "E-Blue Mutant",
+   "npc_type": 23178,
+   "sprite": 111120,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    189,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 403
+  },
+  {
+   "entity_id": 86900163,
+   "nombre": "E-Blue Mutant",
+   "npc_type": 23178,
+   "sprite": 111120,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    118,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 403
+  },
+  {
+   "entity_id": 86900164,
+   "nombre": "E-Blue Mutant",
+   "npc_type": 23178,
+   "sprite": 111120,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    198,
+    143
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 403
+  },
+  {
+   "entity_id": 86900165,
+   "nombre": "White Serpent's Body",
+   "npc_type": 23201,
+   "sprite": 111129,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  }
+ ],
+ "recursos": [
+  {
+   "entity_id": 96900000,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    1311,
+    1552
+   ],
+   "tile": [
+    40,
+    48
+   ],
+   "crudo": "a093c605020000001f050000100600000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 96900001,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    1056,
+    1424
+   ],
+   "tile": [
+    33,
+    44
+   ],
+   "crudo": "a193c6050200000020040000900500000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 96900002,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    8733,
+    4272
+   ],
+   "tile": [
+    272,
+    133
+   ],
+   "crudo": "a293c605020000001d220000b01000000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 96900003,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    7183,
+    4112
+   ],
+   "tile": [
+    224,
+    128
+   ],
+   "crudo": "a393c605000000000f1c0000101000000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 96900004,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    2374,
+    3824
+   ],
+   "tile": [
+    74,
+    119
+   ],
+   "crudo": "a493c6050200000046090000f00e00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 96900005,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    2641,
+    3952
+   ],
+   "tile": [
+    82,
+    123
+   ],
+   "crudo": "a593c60502000000510a0000700f00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 96900006,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4752,
+    4176
+   ],
+   "tile": [
+    148,
+    130
+   ],
+   "crudo": "a693c6050000000090120000501000000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 96900007,
+   "sprite": 60146,
+   "capa": 0,
+   "px": [
+    8813,
+    944
+   ],
+   "tile": [
+    275,
+    29
+   ],
+   "crudo": "a793c605000000006d220000b00300000000000027000000000000001a000000dc06f2ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60146"
+  },
+  {
+   "entity_id": 96900008,
+   "sprite": 60146,
+   "capa": 0,
+   "px": [
+    8145,
+    592
+   ],
+   "tile": [
+    254,
+    18
+   ],
+   "crudo": "a893c60500000000d11f0000500200000000000027000000000000001a000000dc06f2ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60146"
+  },
+  {
+   "entity_id": 96900009,
+   "sprite": 60146,
+   "capa": 0,
+   "px": [
+    5570,
+    304
+   ],
+   "tile": [
+    174,
+    9
+   ],
+   "crudo": "a993c60500000000c2150000300100000000000027000000000000001a000000dc06f2ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60146"
+  },
+  {
+   "entity_id": 96900010,
+   "sprite": 60146,
+   "capa": 2,
+   "px": [
+    2312,
+    400
+   ],
+   "tile": [
+    72,
+    12
+   ],
+   "crudo": "aa93c6050200000008090000900100000000000027000000000000001a000000dc06f2ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60146"
+  },
+  {
+   "entity_id": 96900011,
+   "sprite": 60146,
+   "capa": 0,
+   "px": [
+    231,
+    1808
+   ],
+   "tile": [
+    7,
+    56
+   ],
+   "crudo": "ab93c60500000000e7000000100700000000000027000000000000001a000000dc06f2ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60146"
+  },
+  {
+   "entity_id": 96900012,
+   "sprite": 60146,
+   "capa": 0,
+   "px": [
+    2323,
+    2640
+   ],
+   "tile": [
+    72,
+    82
+   ],
+   "crudo": "ac93c6050000000013090000500a00000000000027000000000000001a000000dc06f2ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60146"
+  },
+  {
+   "entity_id": 96900013,
+   "sprite": 60146,
+   "capa": 2,
+   "px": [
+    3783,
+    1424
+   ],
+   "tile": [
+    118,
+    44
+   ],
+   "crudo": "ad93c60502000000c70e0000900500000000000027000000000000001a000000dc06f2ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60146"
+  },
+  {
+   "entity_id": 96900014,
+   "sprite": 60146,
+   "capa": 2,
+   "px": [
+    6376,
+    2640
+   ],
+   "tile": [
+    199,
+    82
+   ],
+   "crudo": "ae93c60502000000e8180000500a00000000000027000000000000001a000000dc06f2ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60146"
+  },
+  {
+   "entity_id": 96900015,
+   "sprite": 60146,
+   "capa": 0,
+   "px": [
+    9086,
+    3504
+   ],
+   "tile": [
+    283,
+    109
+   ],
+   "crudo": "af93c605000000007e230000b00d00000000000027000000000000001a000000dc06f2ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60146"
+  },
+  {
+   "entity_id": 96900016,
+   "sprite": 60146,
+   "capa": 0,
+   "px": [
+    7956,
+    4144
+   ],
+   "tile": [
+    248,
+    129
+   ],
+   "crudo": "b093c60500000000141f0000301000000000000027000000000000001a000000dc06f2ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60146"
+  },
+  {
+   "entity_id": 96900017,
+   "sprite": 60146,
+   "capa": 0,
+   "px": [
+    8179,
+    5328
+   ],
+   "tile": [
+    255,
+    166
+   ],
+   "crudo": "b193c60500000000f31f0000d01400000000000027000000000000001a000000dc06f2ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60146"
+  },
+  {
+   "entity_id": 96900018,
+   "sprite": 60146,
+   "capa": 2,
+   "px": [
+    4910,
+    3280
+   ],
+   "tile": [
+    153,
+    102
+   ],
+   "crudo": "b293c605020000002e130000d00c00000000000027000000000000001a000000dc06f2ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60146"
+  },
+  {
+   "entity_id": 96900019,
+   "sprite": 60146,
+   "capa": 0,
+   "px": [
+    2773,
+    2704
+   ],
+   "tile": [
+    86,
+    84
+   ],
+   "crudo": "b393c60500000000d50a0000900a00000000000027000000000000001a000000dc06f2ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60146"
+  },
+  {
+   "entity_id": 96900020,
+   "sprite": 60146,
+   "capa": 2,
+   "px": [
+    2781,
+    4048
+   ],
+   "tile": [
+    86,
+    126
+   ],
+   "crudo": "b493c60502000000dd0a0000d00f00000000000027000000000000001a000000dc06f2ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60146"
+  },
+  {
+   "entity_id": 96900021,
+   "sprite": 60146,
+   "capa": 0,
+   "px": [
+    1658,
+    3984
+   ],
+   "tile": [
+    51,
+    124
+   ],
+   "crudo": "b593c605000000007a060000900f00000000000027000000000000001a000000dc06f2ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60146"
+  },
+  {
+   "entity_id": 96900022,
+   "sprite": 60146,
+   "capa": 0,
+   "px": [
+    1420,
+    5264
+   ],
+   "tile": [
+    44,
+    164
+   ],
+   "crudo": "b693c605000000008c050000901400000000000027000000000000001a000000dc06f2ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60146"
+  },
+  {
+   "entity_id": 96900023,
+   "sprite": 60146,
+   "capa": 0,
+   "px": [
+    4195,
+    4592
+   ],
+   "tile": [
+    131,
+    143
+   ],
+   "crudo": "b793c6050000000063100000f01100000000000027000000000000001a000000dc06f2ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60146"
+  },
+  {
+   "entity_id": 96900024,
+   "sprite": 60146,
+   "capa": 0,
+   "px": [
+    6453,
+    4528
+   ],
+   "tile": [
+    201,
+    141
+   ],
+   "crudo": "b893c6050000000035190000b01100000000000027000000000000001a000000dc06f2ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60146"
+  },
+  {
+   "entity_id": 96900025,
+   "sprite": 60146,
+   "capa": 0,
+   "px": [
+    4159,
+    5648
+   ],
+   "tile": [
+    129,
+    176
+   ],
+   "crudo": "b993c605000000003f100000101600000000000027000000000000001a000000dc06f2ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60146"
+  },
+  {
+   "entity_id": 96900026,
+   "sprite": 60146,
+   "capa": 0,
+   "px": [
+    4145,
+    5072
+   ],
+   "tile": [
+    129,
+    158
+   ],
+   "crudo": "ba93c6050000000031100000d01300000000000027000000000000001a000000dc06f2ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60146"
+  },
+  {
+   "entity_id": 96900027,
+   "sprite": 60146,
+   "capa": 0,
+   "px": [
+    7740,
+    5168
+   ],
+   "tile": [
+    241,
+    161
+   ],
+   "crudo": "bb93c605000000003c1e0000301400000000000027000000000000001a000000dc06f2ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60146"
+  },
+  {
+   "entity_id": 96900028,
+   "sprite": 60146,
+   "capa": 0,
+   "px": [
+    9148,
+    3632
+   ],
+   "tile": [
+    285,
+    113
+   ],
+   "crudo": "bc93c60500000000bc230000300e00000000000027000000000000001a000000dc06f2ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60146"
+  },
+  {
+   "entity_id": 96900029,
+   "sprite": 60146,
+   "capa": 2,
+   "px": [
+    6480,
+    1072
+   ],
+   "tile": [
+    202,
+    33
+   ],
+   "crudo": "bd93c6050200000050190000300400000000000027000000000000001a000000dc06f2ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60146"
+  },
+  {
+   "entity_id": 96900030,
+   "sprite": 60146,
+   "capa": 0,
+   "px": [
+    1573,
+    3344
+   ],
+   "tile": [
+    49,
+    104
+   ],
+   "crudo": "be93c6050000000025060000100d00000000000027000000000000001a000000dc06f2ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60146"
+  },
+  {
+   "entity_id": 96900031,
+   "sprite": 60146,
+   "capa": 2,
+   "px": [
+    6201,
+    304
+   ],
+   "tile": [
+    193,
+    9
+   ],
+   "crudo": "bf93c6050200000039180000300100000000000027000000000000001a000000dc06f2ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60146"
+  }
+ ]
+}

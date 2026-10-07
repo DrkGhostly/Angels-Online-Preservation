@@ -1,0 +1,7938 @@
+{
+ "_nota": "mundo_warship (stage 229). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map229.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "stage": 229,
+ "spawns": [
+  {
+   "entity_id": 72900000,
+   "nombre": "Mech Brain Galin",
+   "npc_type": 11878,
+   "sprite": 43551,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    281,
+    164
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220
+  },
+  {
+   "entity_id": 72900001,
+   "nombre": "Jazone Knight",
+   "npc_type": 11728,
+   "sprite": 43552,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    12
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220
+  },
+  {
+   "entity_id": 72900002,
+   "nombre": "ET Queen Aylena",
+   "npc_type": 11879,
+   "sprite": 43553,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    23,
+    162
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220
+  },
+  {
+   "entity_id": 72900003,
+   "nombre": "Starcore Ashe",
+   "npc_type": 11865,
+   "sprite": 43526,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900004,
+   "nombre": "Starcore Ashe",
+   "npc_type": 11865,
+   "sprite": 43526,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900005,
+   "nombre": "Starcore Ashe",
+   "npc_type": 11865,
+   "sprite": 43526,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900006,
+   "nombre": "Starcore Ashe",
+   "npc_type": 11865,
+   "sprite": 43526,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900007,
+   "nombre": "Starcore Ashe",
+   "npc_type": 11865,
+   "sprite": 43526,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900008,
+   "nombre": "Starcore Ashe",
+   "npc_type": 11865,
+   "sprite": 43526,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900009,
+   "nombre": "Starcore Ashe",
+   "npc_type": 11865,
+   "sprite": 43526,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900010,
+   "nombre": "Starcore Ashe",
+   "npc_type": 11865,
+   "sprite": 43526,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900011,
+   "nombre": "Starcore Ashe",
+   "npc_type": 11865,
+   "sprite": 43526,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900012,
+   "nombre": "Starcore Ashe",
+   "npc_type": 11865,
+   "sprite": 43526,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900013,
+   "nombre": "Starcore Ashe",
+   "npc_type": 11865,
+   "sprite": 43526,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900014,
+   "nombre": "Starcore Ashe",
+   "npc_type": 11865,
+   "sprite": 43526,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900015,
+   "nombre": "Starcore Ashe",
+   "npc_type": 11865,
+   "sprite": 43526,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900016,
+   "nombre": "Starcore Ashe",
+   "npc_type": 11865,
+   "sprite": 43526,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900017,
+   "nombre": "Starcore Ashe",
+   "npc_type": 11865,
+   "sprite": 43526,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900018,
+   "nombre": "Starcore Ashe",
+   "npc_type": 11865,
+   "sprite": 43526,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900019,
+   "nombre": "Starcore Ashe",
+   "npc_type": 11865,
+   "sprite": 43526,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900020,
+   "nombre": "Starcore Ashe",
+   "npc_type": 11865,
+   "sprite": 43526,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900021,
+   "nombre": "Starcore Ashe",
+   "npc_type": 11865,
+   "sprite": 43526,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900022,
+   "nombre": "Starcore Ashe",
+   "npc_type": 11865,
+   "sprite": 43526,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900023,
+   "nombre": "Starcore Ashe",
+   "npc_type": 11865,
+   "sprite": 43526,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    276,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900024,
+   "nombre": "Starcore Ashe",
+   "npc_type": 11865,
+   "sprite": 43526,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    276,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900025,
+   "nombre": "Starcore Ashe",
+   "npc_type": 11865,
+   "sprite": 43526,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    276,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900026,
+   "nombre": "Starcore Ashe",
+   "npc_type": 11865,
+   "sprite": 43526,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    276,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900027,
+   "nombre": "Starcore Ashe",
+   "npc_type": 11865,
+   "sprite": 43526,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    276,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900028,
+   "nombre": "Carnivorous Flora",
+   "npc_type": 11866,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    281,
+    13
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900029,
+   "nombre": "Carnivorous Flora",
+   "npc_type": 11866,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    281,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900030,
+   "nombre": "Carnivorous Flora",
+   "npc_type": 11866,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    281,
+    8
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900031,
+   "nombre": "Carnivorous Flora",
+   "npc_type": 11866,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    286,
+    8
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900032,
+   "nombre": "Carnivorous Flora",
+   "npc_type": 11866,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    286,
+    13
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900033,
+   "nombre": "Carnivorous Flora",
+   "npc_type": 11866,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    286,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900034,
+   "nombre": "Carnivorous Flora",
+   "npc_type": 11866,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    281,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900035,
+   "nombre": "Carnivorous Flora",
+   "npc_type": 11866,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    286,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900036,
+   "nombre": "Carnivorous Flora",
+   "npc_type": 11866,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    269,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900037,
+   "nombre": "Carnivorous Flora",
+   "npc_type": 11866,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    274,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900038,
+   "nombre": "Carnivorous Flora",
+   "npc_type": 11866,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    281,
+    3
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900039,
+   "nombre": "Carnivorous Flora",
+   "npc_type": 11866,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    286,
+    3
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900040,
+   "nombre": "Carnivorous Flora",
+   "npc_type": 11866,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    291,
+    3
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900041,
+   "nombre": "Carnivorous Flora",
+   "npc_type": 11866,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    291,
+    8
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900042,
+   "nombre": "Carnivorous Flora",
+   "npc_type": 11866,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    291,
+    13
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900043,
+   "nombre": "Carnivorous Flora",
+   "npc_type": 11866,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    291,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900044,
+   "nombre": "Carnivorous Flora",
+   "npc_type": 11866,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    291,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900045,
+   "nombre": "Carnivorous Flora",
+   "npc_type": 11866,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    279,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900046,
+   "nombre": "Carnivorous Flora",
+   "npc_type": 11866,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    284,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900047,
+   "nombre": "Carnivorous Flora",
+   "npc_type": 11866,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    289,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900048,
+   "nombre": "Carnivorous Flora",
+   "npc_type": 11866,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    264,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900049,
+   "nombre": "Carnivorous Flora",
+   "npc_type": 11866,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    264,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900050,
+   "nombre": "Carnivorous Flora",
+   "npc_type": 11866,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    269,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900051,
+   "nombre": "Carnivorous Flora",
+   "npc_type": 11866,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    274,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900052,
+   "nombre": "Carnivorous Flora",
+   "npc_type": 11866,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    294,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 72900053,
+   "nombre": "Milky Way Cop",
+   "npc_type": 11868,
+   "sprite": 43535,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    282,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900054,
+   "nombre": "Milky Way Cop",
+   "npc_type": 11868,
+   "sprite": 43535,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    277,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900055,
+   "nombre": "Milky Way Cop",
+   "npc_type": 11868,
+   "sprite": 43535,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    277,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900056,
+   "nombre": "Milky Way Cop",
+   "npc_type": 11868,
+   "sprite": 43535,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    277,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900057,
+   "nombre": "Milky Way Cop",
+   "npc_type": 11868,
+   "sprite": 43535,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    282,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900058,
+   "nombre": "Milky Way Cop",
+   "npc_type": 11868,
+   "sprite": 43535,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    282,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900059,
+   "nombre": "Milky Way Cop",
+   "npc_type": 11868,
+   "sprite": 43535,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    287,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900060,
+   "nombre": "Milky Way Cop",
+   "npc_type": 11868,
+   "sprite": 43535,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    287,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900061,
+   "nombre": "Milky Way Cop",
+   "npc_type": 11868,
+   "sprite": 43535,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    287,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900062,
+   "nombre": "Milky Way Cop",
+   "npc_type": 11868,
+   "sprite": 43535,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    272,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900063,
+   "nombre": "Milky Way Cop",
+   "npc_type": 11868,
+   "sprite": 43535,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    272,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900064,
+   "nombre": "Milky Way Cop",
+   "npc_type": 11868,
+   "sprite": 43535,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    272,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900065,
+   "nombre": "Milky Way Cop",
+   "npc_type": 11868,
+   "sprite": 43535,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    272,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900066,
+   "nombre": "Milky Way Cop",
+   "npc_type": 11868,
+   "sprite": 43535,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    272,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900067,
+   "nombre": "Milky Way Cop",
+   "npc_type": 11868,
+   "sprite": 43535,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    277,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900068,
+   "nombre": "Milky Way Cop",
+   "npc_type": 11868,
+   "sprite": 43535,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    277,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900069,
+   "nombre": "Milky Way Cop",
+   "npc_type": 11868,
+   "sprite": 43535,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    282,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900070,
+   "nombre": "Milky Way Cop",
+   "npc_type": 11868,
+   "sprite": 43535,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    282,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900071,
+   "nombre": "Milky Way Cop",
+   "npc_type": 11868,
+   "sprite": 43535,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    287,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900072,
+   "nombre": "Milky Way Cop",
+   "npc_type": 11868,
+   "sprite": 43535,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    287,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900073,
+   "nombre": "Milky Way Cop",
+   "npc_type": 11868,
+   "sprite": 43535,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    292,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900074,
+   "nombre": "Milky Way Cop",
+   "npc_type": 11868,
+   "sprite": 43535,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    292,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900075,
+   "nombre": "Milky Way Cop",
+   "npc_type": 11868,
+   "sprite": 43535,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    292,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900076,
+   "nombre": "Milky Way Cop",
+   "npc_type": 11868,
+   "sprite": 43535,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    292,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900077,
+   "nombre": "Milky Way Cop",
+   "npc_type": 11868,
+   "sprite": 43535,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    292,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900078,
+   "nombre": "Milky Way Cop",
+   "npc_type": 11868,
+   "sprite": 43535,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    267,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900079,
+   "nombre": "Milky Way Cop",
+   "npc_type": 11868,
+   "sprite": 43535,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    267,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900080,
+   "nombre": "Milky Way Cop",
+   "npc_type": 11868,
+   "sprite": 43535,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    267,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900081,
+   "nombre": "Milky Way Cop",
+   "npc_type": 11868,
+   "sprite": 43535,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    267,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900082,
+   "nombre": "Milky Way Cop",
+   "npc_type": 11868,
+   "sprite": 43535,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    267,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900083,
+   "nombre": "Starbarrel Mech",
+   "npc_type": 11870,
+   "sprite": 43544,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    262,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900084,
+   "nombre": "Starbarrel Mech",
+   "npc_type": 11870,
+   "sprite": 43544,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    262,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900085,
+   "nombre": "Starbarrel Mech",
+   "npc_type": 11870,
+   "sprite": 43544,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    262,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900086,
+   "nombre": "Starbarrel Mech",
+   "npc_type": 11870,
+   "sprite": 43544,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    262,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900087,
+   "nombre": "Starbarrel Mech",
+   "npc_type": 11870,
+   "sprite": 43544,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    262,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900088,
+   "nombre": "Starbarrel Mech",
+   "npc_type": 11870,
+   "sprite": 43544,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    267,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900089,
+   "nombre": "Starbarrel Mech",
+   "npc_type": 11870,
+   "sprite": 43544,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    257,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900090,
+   "nombre": "Starbarrel Mech",
+   "npc_type": 11870,
+   "sprite": 43544,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    257,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900091,
+   "nombre": "Starbarrel Mech",
+   "npc_type": 11870,
+   "sprite": 43544,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    257,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900092,
+   "nombre": "Starbarrel Mech",
+   "npc_type": 11870,
+   "sprite": 43544,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    257,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900093,
+   "nombre": "Starbarrel Mech",
+   "npc_type": 11870,
+   "sprite": 43544,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    257,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900094,
+   "nombre": "Starbarrel Mech",
+   "npc_type": 11870,
+   "sprite": 43544,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    257,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900095,
+   "nombre": "Starbarrel Mech",
+   "npc_type": 11870,
+   "sprite": 43544,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    257,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900096,
+   "nombre": "Starbarrel Mech",
+   "npc_type": 11870,
+   "sprite": 43544,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    262,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900097,
+   "nombre": "Starbarrel Mech",
+   "npc_type": 11870,
+   "sprite": 43544,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    262,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900098,
+   "nombre": "Starbarrel Mech",
+   "npc_type": 11870,
+   "sprite": 43544,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    267,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900099,
+   "nombre": "Starbarrel Mech",
+   "npc_type": 11870,
+   "sprite": 43544,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    272,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900100,
+   "nombre": "Starbarrel Mech",
+   "npc_type": 11870,
+   "sprite": 43544,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    272,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900101,
+   "nombre": "Starbarrel Mech",
+   "npc_type": 11870,
+   "sprite": 43544,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    277,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900102,
+   "nombre": "Starbarrel Mech",
+   "npc_type": 11870,
+   "sprite": 43544,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    277,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900103,
+   "nombre": "Starbarrel Mech",
+   "npc_type": 11870,
+   "sprite": 43544,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    282,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900104,
+   "nombre": "Starbarrel Mech",
+   "npc_type": 11870,
+   "sprite": 43544,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    282,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900105,
+   "nombre": "Starbarrel Mech",
+   "npc_type": 11870,
+   "sprite": 43544,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    287,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900106,
+   "nombre": "Starbarrel Mech",
+   "npc_type": 11870,
+   "sprite": 43544,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    287,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900107,
+   "nombre": "Starbarrel Mech",
+   "npc_type": 11870,
+   "sprite": 43544,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    252,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900108,
+   "nombre": "Starbarrel Mech",
+   "npc_type": 11870,
+   "sprite": 43544,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    252,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900109,
+   "nombre": "Starbarrel Mech",
+   "npc_type": 11870,
+   "sprite": 43544,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    252,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900110,
+   "nombre": "Starbarrel Mech",
+   "npc_type": 11870,
+   "sprite": 43544,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    252,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900111,
+   "nombre": "Starbarrel Mech",
+   "npc_type": 11870,
+   "sprite": 43544,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    252,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900112,
+   "nombre": "Starbarrel Mech",
+   "npc_type": 11870,
+   "sprite": 43544,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    252,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900113,
+   "nombre": "Outerspace Tourist",
+   "npc_type": 11872,
+   "sprite": 43547,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    292,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900114,
+   "nombre": "Outerspace Tourist",
+   "npc_type": 11872,
+   "sprite": 43547,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    292,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900115,
+   "nombre": "Outerspace Tourist",
+   "npc_type": 11872,
+   "sprite": 43547,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900116,
+   "nombre": "Outerspace Tourist",
+   "npc_type": 11872,
+   "sprite": 43547,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    263,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900117,
+   "nombre": "Outerspace Tourist",
+   "npc_type": 11872,
+   "sprite": 43547,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    268,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900118,
+   "nombre": "Outerspace Tourist",
+   "npc_type": 11872,
+   "sprite": 43547,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    273,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900119,
+   "nombre": "Outerspace Tourist",
+   "npc_type": 11872,
+   "sprite": 43547,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    278,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900120,
+   "nombre": "Outerspace Tourist",
+   "npc_type": 11872,
+   "sprite": 43547,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    283,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900121,
+   "nombre": "Outerspace Tourist",
+   "npc_type": 11872,
+   "sprite": 43547,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    288,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900122,
+   "nombre": "Outerspace Tourist",
+   "npc_type": 11872,
+   "sprite": 43547,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    293,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900123,
+   "nombre": "Outerspace Tourist",
+   "npc_type": 11872,
+   "sprite": 43547,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    297,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900124,
+   "nombre": "Outerspace Tourist",
+   "npc_type": 11872,
+   "sprite": 43547,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    297,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900125,
+   "nombre": "Outerspace Tourist",
+   "npc_type": 11872,
+   "sprite": 43547,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    297,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900126,
+   "nombre": "Outerspace Tourist",
+   "npc_type": 11872,
+   "sprite": 43547,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    297,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900127,
+   "nombre": "Outerspace Tourist",
+   "npc_type": 11872,
+   "sprite": 43547,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    297,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900128,
+   "nombre": "Outerspace Tourist",
+   "npc_type": 11872,
+   "sprite": 43547,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    297,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900129,
+   "nombre": "Outerspace Tourist",
+   "npc_type": 11872,
+   "sprite": 43547,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    297,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900130,
+   "nombre": "Outerspace Tourist",
+   "npc_type": 11872,
+   "sprite": 43547,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    297,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900131,
+   "nombre": "Outerspace Tourist",
+   "npc_type": 11872,
+   "sprite": 43547,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    75
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900132,
+   "nombre": "Outerspace Tourist",
+   "npc_type": 11872,
+   "sprite": 43547,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    75
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900133,
+   "nombre": "Outerspace Tourist",
+   "npc_type": 11872,
+   "sprite": 43547,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    75
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900134,
+   "nombre": "Outerspace Tourist",
+   "npc_type": 11872,
+   "sprite": 43547,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    75
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900135,
+   "nombre": "Outerspace Tourist",
+   "npc_type": 11872,
+   "sprite": 43547,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    276,
+    75
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900136,
+   "nombre": "Outerspace Tourist",
+   "npc_type": 11872,
+   "sprite": 43547,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    281,
+    75
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900137,
+   "nombre": "Outerspace Tourist",
+   "npc_type": 11872,
+   "sprite": 43547,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    286,
+    75
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900138,
+   "nombre": "Outerspace Tourist",
+   "npc_type": 11872,
+   "sprite": 43547,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    291,
+    75
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900139,
+   "nombre": "Outerspace Tourist",
+   "npc_type": 11872,
+   "sprite": 43547,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    298,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900140,
+   "nombre": "Outerspace Tourist",
+   "npc_type": 11872,
+   "sprite": 43547,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    253,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900141,
+   "nombre": "Outerspace Tourist",
+   "npc_type": 11872,
+   "sprite": 43547,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900142,
+   "nombre": "Outerspace Tourist",
+   "npc_type": 11872,
+   "sprite": 43547,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    252,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900143,
+   "nombre": "Spaceout Cactus",
+   "npc_type": 11869,
+   "sprite": 43529,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    12
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900144,
+   "nombre": "Spaceout Cactus",
+   "npc_type": 11869,
+   "sprite": 43529,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    7
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900145,
+   "nombre": "Spaceout Cactus",
+   "npc_type": 11869,
+   "sprite": 43529,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    12
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900146,
+   "nombre": "Spaceout Cactus",
+   "npc_type": 11869,
+   "sprite": 43529,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    17
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900147,
+   "nombre": "Spaceout Cactus",
+   "npc_type": 11869,
+   "sprite": 43529,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    7
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900148,
+   "nombre": "Spaceout Cactus",
+   "npc_type": 11869,
+   "sprite": 43529,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    17
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900149,
+   "nombre": "Spaceout Cactus",
+   "npc_type": 11869,
+   "sprite": 43529,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    7
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900150,
+   "nombre": "Spaceout Cactus",
+   "npc_type": 11869,
+   "sprite": 43529,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    12
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900151,
+   "nombre": "Spaceout Cactus",
+   "npc_type": 11869,
+   "sprite": 43529,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    17
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900152,
+   "nombre": "Spaceout Cactus",
+   "npc_type": 11869,
+   "sprite": 43529,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    185,
+    2
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900153,
+   "nombre": "Spaceout Cactus",
+   "npc_type": 11869,
+   "sprite": 43529,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    185,
+    7
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900154,
+   "nombre": "Spaceout Cactus",
+   "npc_type": 11869,
+   "sprite": 43529,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    185,
+    12
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900155,
+   "nombre": "Spaceout Cactus",
+   "npc_type": 11869,
+   "sprite": 43529,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    185,
+    17
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900156,
+   "nombre": "Spaceout Cactus",
+   "npc_type": 11869,
+   "sprite": 43529,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    185,
+    22
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900157,
+   "nombre": "Spaceout Cactus",
+   "npc_type": 11869,
+   "sprite": 43529,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    2
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900158,
+   "nombre": "Spaceout Cactus",
+   "npc_type": 11869,
+   "sprite": 43529,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    22
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900159,
+   "nombre": "Spaceout Cactus",
+   "npc_type": 11869,
+   "sprite": 43529,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    2
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900160,
+   "nombre": "Spaceout Cactus",
+   "npc_type": 11869,
+   "sprite": 43529,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    22
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900161,
+   "nombre": "Spaceout Cactus",
+   "npc_type": 11869,
+   "sprite": 43529,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    2
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900162,
+   "nombre": "Spaceout Cactus",
+   "npc_type": 11869,
+   "sprite": 43529,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    22
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900163,
+   "nombre": "Spaceout Cactus",
+   "npc_type": 11869,
+   "sprite": 43529,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    2
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900164,
+   "nombre": "Spaceout Cactus",
+   "npc_type": 11869,
+   "sprite": 43529,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    7
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900165,
+   "nombre": "Spaceout Cactus",
+   "npc_type": 11869,
+   "sprite": 43529,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    12
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900166,
+   "nombre": "Spaceout Cactus",
+   "npc_type": 11869,
+   "sprite": 43529,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    17
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900167,
+   "nombre": "Spaceout Cactus",
+   "npc_type": 11869,
+   "sprite": 43529,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    22
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900168,
+   "nombre": "Spaceout Cactus",
+   "npc_type": 11869,
+   "sprite": 43529,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    180,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900169,
+   "nombre": "Spaceout Cactus",
+   "npc_type": 11869,
+   "sprite": 43529,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    180,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900170,
+   "nombre": "Spaceout Cactus",
+   "npc_type": 11869,
+   "sprite": 43529,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    180,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900171,
+   "nombre": "Spaceout Cactus",
+   "npc_type": 11869,
+   "sprite": 43529,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    180,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900172,
+   "nombre": "Spaceout Cactus",
+   "npc_type": 11869,
+   "sprite": 43529,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    180,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 72900173,
+   "nombre": "Starry Eagle Lieutenant",
+   "npc_type": 11871,
+   "sprite": 43538,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    180,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900174,
+   "nombre": "Starry Eagle Lieutenant",
+   "npc_type": 11871,
+   "sprite": 43538,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    185,
+    27
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900175,
+   "nombre": "Starry Eagle Lieutenant",
+   "npc_type": 11871,
+   "sprite": 43538,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    27
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900176,
+   "nombre": "Starry Eagle Lieutenant",
+   "npc_type": 11871,
+   "sprite": 43538,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    27
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900177,
+   "nombre": "Starry Eagle Lieutenant",
+   "npc_type": 11871,
+   "sprite": 43538,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    27
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900178,
+   "nombre": "Starry Eagle Lieutenant",
+   "npc_type": 11871,
+   "sprite": 43538,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    175,
+    2
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900179,
+   "nombre": "Starry Eagle Lieutenant",
+   "npc_type": 11871,
+   "sprite": 43538,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    175,
+    7
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900180,
+   "nombre": "Starry Eagle Lieutenant",
+   "npc_type": 11871,
+   "sprite": 43538,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    175,
+    12
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900181,
+   "nombre": "Starry Eagle Lieutenant",
+   "npc_type": 11871,
+   "sprite": 43538,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    175,
+    17
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900182,
+   "nombre": "Starry Eagle Lieutenant",
+   "npc_type": 11871,
+   "sprite": 43538,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    175,
+    22
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900183,
+   "nombre": "Starry Eagle Lieutenant",
+   "npc_type": 11871,
+   "sprite": 43538,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    175,
+    27
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900184,
+   "nombre": "Starry Eagle Lieutenant",
+   "npc_type": 11871,
+   "sprite": 43538,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    180,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900185,
+   "nombre": "Starry Eagle Lieutenant",
+   "npc_type": 11871,
+   "sprite": 43538,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900186,
+   "nombre": "Starry Eagle Lieutenant",
+   "npc_type": 11871,
+   "sprite": 43538,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    185,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900187,
+   "nombre": "Starry Eagle Lieutenant",
+   "npc_type": 11871,
+   "sprite": 43538,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900188,
+   "nombre": "Starry Eagle Lieutenant",
+   "npc_type": 11871,
+   "sprite": 43538,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900189,
+   "nombre": "Starry Eagle Lieutenant",
+   "npc_type": 11871,
+   "sprite": 43538,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900190,
+   "nombre": "Starry Eagle Lieutenant",
+   "npc_type": 11871,
+   "sprite": 43538,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    27
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900191,
+   "nombre": "Starry Eagle Lieutenant",
+   "npc_type": 11871,
+   "sprite": 43538,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900192,
+   "nombre": "Starry Eagle Lieutenant",
+   "npc_type": 11871,
+   "sprite": 43538,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    170,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900193,
+   "nombre": "Starry Eagle Lieutenant",
+   "npc_type": 11871,
+   "sprite": 43538,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    170,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900194,
+   "nombre": "Starry Eagle Lieutenant",
+   "npc_type": 11871,
+   "sprite": 43538,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    170,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900195,
+   "nombre": "Starry Eagle Lieutenant",
+   "npc_type": 11871,
+   "sprite": 43538,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    170,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900196,
+   "nombre": "Starry Eagle Lieutenant",
+   "npc_type": 11871,
+   "sprite": 43538,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    170,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900197,
+   "nombre": "Starry Eagle Lieutenant",
+   "npc_type": 11871,
+   "sprite": 43538,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    170,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900198,
+   "nombre": "Starry Eagle Lieutenant",
+   "npc_type": 11871,
+   "sprite": 43538,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900199,
+   "nombre": "Starry Eagle Lieutenant",
+   "npc_type": 11871,
+   "sprite": 43538,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900200,
+   "nombre": "Starry Eagle Lieutenant",
+   "npc_type": 11871,
+   "sprite": 43538,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900201,
+   "nombre": "Starry Eagle Lieutenant",
+   "npc_type": 11871,
+   "sprite": 43538,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900202,
+   "nombre": "Starry Eagle Lieutenant",
+   "npc_type": 11871,
+   "sprite": 43538,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900203,
+   "nombre": "Elite - Meerkat Gunner",
+   "npc_type": 11966,
+   "sprite": 43637,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 72900204,
+   "nombre": "Elite - Meerkat Gunner",
+   "npc_type": 11966,
+   "sprite": 43637,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 72900205,
+   "nombre": "Elite - Meerkat Gunner",
+   "npc_type": 11966,
+   "sprite": 43637,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 72900206,
+   "nombre": "Elite - Meerkat Gunner",
+   "npc_type": 11966,
+   "sprite": 43637,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 72900207,
+   "nombre": "Elite - Meerkat Gunner",
+   "npc_type": 11966,
+   "sprite": 43637,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 72900208,
+   "nombre": "Titanium Brain",
+   "npc_type": 11874,
+   "sprite": 43597,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 72900209,
+   "nombre": "Titanium Brain",
+   "npc_type": 11874,
+   "sprite": 43597,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 72900210,
+   "nombre": "Titanium Brain",
+   "npc_type": 11874,
+   "sprite": 43597,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 72900211,
+   "nombre": "Titanium Brain",
+   "npc_type": 11874,
+   "sprite": 43597,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 72900212,
+   "nombre": "Titanium Brain",
+   "npc_type": 11874,
+   "sprite": 43597,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 72900213,
+   "nombre": "Titanium Brain",
+   "npc_type": 11874,
+   "sprite": 43597,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 72900214,
+   "nombre": "Titanium Brain",
+   "npc_type": 11874,
+   "sprite": 43597,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 72900215,
+   "nombre": "Titanium Brain",
+   "npc_type": 11874,
+   "sprite": 43597,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 72900216,
+   "nombre": "Titanium Brain",
+   "npc_type": 11874,
+   "sprite": 43597,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 72900217,
+   "nombre": "Titanium Brain",
+   "npc_type": 11874,
+   "sprite": 43597,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 72900218,
+   "nombre": "Titanium Brain",
+   "npc_type": 11874,
+   "sprite": 43597,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 72900219,
+   "nombre": "Titanium Brain",
+   "npc_type": 11874,
+   "sprite": 43597,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 72900220,
+   "nombre": "Titanium Brain",
+   "npc_type": 11874,
+   "sprite": 43597,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 72900221,
+   "nombre": "Titanium Brain",
+   "npc_type": 11874,
+   "sprite": 43597,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 72900222,
+   "nombre": "Titanium Brain",
+   "npc_type": 11874,
+   "sprite": 43597,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 72900223,
+   "nombre": "Titanium Brain",
+   "npc_type": 11874,
+   "sprite": 43597,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 72900224,
+   "nombre": "Titanium Brain",
+   "npc_type": 11874,
+   "sprite": 43597,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    188,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 72900225,
+   "nombre": "Titanium Brain",
+   "npc_type": 11874,
+   "sprite": 43597,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    188,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 72900226,
+   "nombre": "Titanium Brain",
+   "npc_type": 11874,
+   "sprite": 43597,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    188,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 72900227,
+   "nombre": "Titanium Brain",
+   "npc_type": 11874,
+   "sprite": 43597,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    188,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 72900228,
+   "nombre": "Elite - Carnivorous Flora Type A",
+   "npc_type": 11969,
+   "sprite": 43640,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    193,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 72900229,
+   "nombre": "Elite - Carnivorous Flora Type A",
+   "npc_type": 11969,
+   "sprite": 43640,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    193,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 72900230,
+   "nombre": "Elite - Carnivorous Flora Type A",
+   "npc_type": 11969,
+   "sprite": 43640,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    193,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 72900231,
+   "nombre": "Elite - Carnivorous Flora Type A",
+   "npc_type": 11969,
+   "sprite": 43640,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    193,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 72900232,
+   "nombre": "Elite - Carnivorous Flora Type A",
+   "npc_type": 11969,
+   "sprite": 43640,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    198,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 72900233,
+   "nombre": "Saturn Visitor",
+   "npc_type": 11875,
+   "sprite": 43572,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    114
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900234,
+   "nombre": "Saturn Visitor",
+   "npc_type": 11875,
+   "sprite": 43572,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    109
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900235,
+   "nombre": "Saturn Visitor",
+   "npc_type": 11875,
+   "sprite": 43572,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    114
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900236,
+   "nombre": "Saturn Visitor",
+   "npc_type": 11875,
+   "sprite": 43572,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    119
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900237,
+   "nombre": "Saturn Visitor",
+   "npc_type": 11875,
+   "sprite": 43572,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    109
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900238,
+   "nombre": "Saturn Visitor",
+   "npc_type": 11875,
+   "sprite": 43572,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    119
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900239,
+   "nombre": "Saturn Visitor",
+   "npc_type": 11875,
+   "sprite": 43572,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    109
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900240,
+   "nombre": "Saturn Visitor",
+   "npc_type": 11875,
+   "sprite": 43572,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    114
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900241,
+   "nombre": "Saturn Visitor",
+   "npc_type": 11875,
+   "sprite": 43572,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    119
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900242,
+   "nombre": "Saturn Visitor",
+   "npc_type": 11875,
+   "sprite": 43572,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    104
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900243,
+   "nombre": "Saturn Visitor",
+   "npc_type": 11875,
+   "sprite": 43572,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    109
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900244,
+   "nombre": "Saturn Visitor",
+   "npc_type": 11875,
+   "sprite": 43572,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    114
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900245,
+   "nombre": "Saturn Visitor",
+   "npc_type": 11875,
+   "sprite": 43572,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    119
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900246,
+   "nombre": "Saturn Visitor",
+   "npc_type": 11875,
+   "sprite": 43572,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900247,
+   "nombre": "Saturn Visitor",
+   "npc_type": 11875,
+   "sprite": 43572,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    104
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900248,
+   "nombre": "Saturn Visitor",
+   "npc_type": 11875,
+   "sprite": 43572,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900249,
+   "nombre": "Saturn Visitor",
+   "npc_type": 11875,
+   "sprite": 43572,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    104
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900250,
+   "nombre": "Saturn Visitor",
+   "npc_type": 11875,
+   "sprite": 43572,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900251,
+   "nombre": "Saturn Visitor",
+   "npc_type": 11875,
+   "sprite": 43572,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    104
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900252,
+   "nombre": "Saturn Visitor",
+   "npc_type": 11875,
+   "sprite": 43572,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900253,
+   "nombre": "Saturn Visitor",
+   "npc_type": 11875,
+   "sprite": 43572,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    104
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900254,
+   "nombre": "Saturn Visitor",
+   "npc_type": 11875,
+   "sprite": 43572,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    109
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900255,
+   "nombre": "Saturn Visitor",
+   "npc_type": 11875,
+   "sprite": 43572,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    114
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900256,
+   "nombre": "Saturn Visitor",
+   "npc_type": 11875,
+   "sprite": 43572,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    119
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900257,
+   "nombre": "Saturn Visitor",
+   "npc_type": 11875,
+   "sprite": 43572,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900258,
+   "nombre": "Mars Visitor",
+   "npc_type": 11876,
+   "sprite": 43523,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    97,
+    109
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900259,
+   "nombre": "Mars Visitor",
+   "npc_type": 11876,
+   "sprite": 43523,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    97,
+    114
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900260,
+   "nombre": "Mars Visitor",
+   "npc_type": 11876,
+   "sprite": 43523,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    97,
+    119
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900261,
+   "nombre": "Mars Visitor",
+   "npc_type": 11876,
+   "sprite": 43523,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    97,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900262,
+   "nombre": "Mars Visitor",
+   "npc_type": 11876,
+   "sprite": 43523,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900263,
+   "nombre": "Mars Visitor",
+   "npc_type": 11876,
+   "sprite": 43523,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900264,
+   "nombre": "Mars Visitor",
+   "npc_type": 11876,
+   "sprite": 43523,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900265,
+   "nombre": "Mars Visitor",
+   "npc_type": 11876,
+   "sprite": 43523,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900266,
+   "nombre": "Mars Visitor",
+   "npc_type": 11876,
+   "sprite": 43523,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    97,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900267,
+   "nombre": "Mars Visitor",
+   "npc_type": 11876,
+   "sprite": 43523,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    97,
+    104
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900268,
+   "nombre": "Mars Visitor",
+   "npc_type": 11876,
+   "sprite": 43523,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    102,
+    104
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900269,
+   "nombre": "Mars Visitor",
+   "npc_type": 11876,
+   "sprite": 43523,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    102,
+    109
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900270,
+   "nombre": "Mars Visitor",
+   "npc_type": 11876,
+   "sprite": 43523,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    102,
+    114
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900271,
+   "nombre": "Mars Visitor",
+   "npc_type": 11876,
+   "sprite": 43523,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    102,
+    119
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900272,
+   "nombre": "Mars Visitor",
+   "npc_type": 11876,
+   "sprite": 43523,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    102,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900273,
+   "nombre": "Mars Visitor",
+   "npc_type": 11876,
+   "sprite": 43523,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    102,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900274,
+   "nombre": "Mars Visitor",
+   "npc_type": 11876,
+   "sprite": 43523,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900275,
+   "nombre": "Mars Visitor",
+   "npc_type": 11876,
+   "sprite": 43523,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900276,
+   "nombre": "Mars Visitor",
+   "npc_type": 11876,
+   "sprite": 43523,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900277,
+   "nombre": "Mars Visitor",
+   "npc_type": 11876,
+   "sprite": 43523,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900278,
+   "nombre": "Mars Visitor",
+   "npc_type": 11876,
+   "sprite": 43523,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900279,
+   "nombre": "Mars Visitor",
+   "npc_type": 11876,
+   "sprite": 43523,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900280,
+   "nombre": "Mars Visitor",
+   "npc_type": 11876,
+   "sprite": 43523,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    97,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900281,
+   "nombre": "Mars Visitor",
+   "npc_type": 11876,
+   "sprite": 43523,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    102,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900282,
+   "nombre": "Mars Visitor",
+   "npc_type": 11876,
+   "sprite": 43523,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    71,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 72900283,
+   "nombre": "Starway Cruiser",
+   "npc_type": 11877,
+   "sprite": 43541,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    76,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900284,
+   "nombre": "Starway Cruiser",
+   "npc_type": 11877,
+   "sprite": 43541,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    81,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900285,
+   "nombre": "Starway Cruiser",
+   "npc_type": 11877,
+   "sprite": 43541,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    86,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900286,
+   "nombre": "Starway Cruiser",
+   "npc_type": 11877,
+   "sprite": 43541,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    91,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900287,
+   "nombre": "Starway Cruiser",
+   "npc_type": 11877,
+   "sprite": 43541,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900288,
+   "nombre": "Starway Cruiser",
+   "npc_type": 11877,
+   "sprite": 43541,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900289,
+   "nombre": "Starway Cruiser",
+   "npc_type": 11877,
+   "sprite": 43541,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    104
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900290,
+   "nombre": "Starway Cruiser",
+   "npc_type": 11877,
+   "sprite": 43541,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    109
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900291,
+   "nombre": "Starway Cruiser",
+   "npc_type": 11877,
+   "sprite": 43541,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    114
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900292,
+   "nombre": "Starway Cruiser",
+   "npc_type": 11877,
+   "sprite": 43541,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    119
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900293,
+   "nombre": "Starway Cruiser",
+   "npc_type": 11877,
+   "sprite": 43541,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900294,
+   "nombre": "Starway Cruiser",
+   "npc_type": 11877,
+   "sprite": 43541,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900295,
+   "nombre": "Starway Cruiser",
+   "npc_type": 11877,
+   "sprite": 43541,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    66,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900296,
+   "nombre": "Starway Cruiser",
+   "npc_type": 11877,
+   "sprite": 43541,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900297,
+   "nombre": "Starway Cruiser",
+   "npc_type": 11877,
+   "sprite": 43541,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    71,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900298,
+   "nombre": "Starway Cruiser",
+   "npc_type": 11877,
+   "sprite": 43541,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    76,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900299,
+   "nombre": "Starway Cruiser",
+   "npc_type": 11877,
+   "sprite": 43541,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    81,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900300,
+   "nombre": "Starway Cruiser",
+   "npc_type": 11877,
+   "sprite": 43541,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    86,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900301,
+   "nombre": "Starway Cruiser",
+   "npc_type": 11877,
+   "sprite": 43541,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    91,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900302,
+   "nombre": "Starway Cruiser",
+   "npc_type": 11877,
+   "sprite": 43541,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900303,
+   "nombre": "Starway Cruiser",
+   "npc_type": 11877,
+   "sprite": 43541,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900304,
+   "nombre": "Starway Cruiser",
+   "npc_type": 11877,
+   "sprite": 43541,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900305,
+   "nombre": "Starway Cruiser",
+   "npc_type": 11877,
+   "sprite": 43541,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900306,
+   "nombre": "Starway Cruiser",
+   "npc_type": 11877,
+   "sprite": 43541,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    107,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900307,
+   "nombre": "Starway Cruiser",
+   "npc_type": 11877,
+   "sprite": 43541,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    107,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900308,
+   "nombre": "Water Elf",
+   "npc_type": 3,
+   "sprite": 42057,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    192,
+    174
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 4
+  },
+  {
+   "entity_id": 72900309,
+   "nombre": "Fiery Satellite Crystal",
+   "npc_type": 11955,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    269,
+    171
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900310,
+   "nombre": "Fiery Satellite Crystal",
+   "npc_type": 11955,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    264,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900311,
+   "nombre": "Fiery Satellite Crystal",
+   "npc_type": 11955,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    264,
+    171
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900312,
+   "nombre": "Fiery Satellite Crystal",
+   "npc_type": 11955,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    264,
+    176
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900313,
+   "nombre": "Fiery Satellite Crystal",
+   "npc_type": 11955,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    269,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900314,
+   "nombre": "Fiery Satellite Crystal",
+   "npc_type": 11955,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    269,
+    176
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900315,
+   "nombre": "Fiery Satellite Crystal",
+   "npc_type": 11955,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    274,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900316,
+   "nombre": "Fiery Satellite Crystal",
+   "npc_type": 11955,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    274,
+    171
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900317,
+   "nombre": "Fiery Satellite Crystal",
+   "npc_type": 11955,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    274,
+    176
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900318,
+   "nombre": "Fiery Satellite Crystal",
+   "npc_type": 11955,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900319,
+   "nombre": "Fiery Satellite Crystal",
+   "npc_type": 11955,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900320,
+   "nombre": "Fiery Satellite Crystal",
+   "npc_type": 11955,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    171
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900321,
+   "nombre": "Fiery Satellite Crystal",
+   "npc_type": 11955,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    176
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900322,
+   "nombre": "Fiery Satellite Crystal",
+   "npc_type": 11955,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    264,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900323,
+   "nombre": "Fiery Satellite Crystal",
+   "npc_type": 11955,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    269,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900324,
+   "nombre": "Fiery Satellite Crystal",
+   "npc_type": 11955,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    274,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900325,
+   "nombre": "Fiery Satellite Crystal",
+   "npc_type": 11955,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    279,
+    169
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900326,
+   "nombre": "Fiery Satellite Crystal",
+   "npc_type": 11955,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    279,
+    174
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900327,
+   "nombre": "Fiery Satellite Crystal",
+   "npc_type": 11955,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    279,
+    179
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900328,
+   "nombre": "Fiery Satellite Crystal",
+   "npc_type": 11955,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    279,
+    159
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900329,
+   "nombre": "Fiery Satellite Crystal",
+   "npc_type": 11955,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    254,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900330,
+   "nombre": "Fiery Satellite Crystal",
+   "npc_type": 11955,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    254,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900331,
+   "nombre": "Fiery Satellite Crystal",
+   "npc_type": 11955,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    254,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900332,
+   "nombre": "Fiery Satellite Crystal",
+   "npc_type": 11955,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    254,
+    171
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900333,
+   "nombre": "Fiery Satellite Crystal",
+   "npc_type": 11955,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    254,
+    176
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900334,
+   "nombre": "Fiery Satellite Crystal",
+   "npc_type": 11955,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900335,
+   "nombre": "Fiery Satellite Crystal",
+   "npc_type": 11955,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    264,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900336,
+   "nombre": "Fiery Satellite Crystal",
+   "npc_type": 11955,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    269,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900337,
+   "nombre": "Fiery Satellite Crystal",
+   "npc_type": 11955,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    274,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900338,
+   "nombre": "Fiery Satellite Crystal",
+   "npc_type": 11955,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    284,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900339,
+   "nombre": "Thunder Satellite Crystal",
+   "npc_type": 11956,
+   "sprite": 42361,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    284,
+    169
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900340,
+   "nombre": "Thunder Satellite Crystal",
+   "npc_type": 11956,
+   "sprite": 42361,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    284,
+    174
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900341,
+   "nombre": "Thunder Satellite Crystal",
+   "npc_type": 11956,
+   "sprite": 42361,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    284,
+    179
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900342,
+   "nombre": "Thunder Satellite Crystal",
+   "npc_type": 11956,
+   "sprite": 42361,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    286,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900343,
+   "nombre": "Thunder Satellite Crystal",
+   "npc_type": 11956,
+   "sprite": 42361,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    279,
+    154
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900344,
+   "nombre": "Thunder Satellite Crystal",
+   "npc_type": 11956,
+   "sprite": 42361,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    289,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900345,
+   "nombre": "Thunder Satellite Crystal",
+   "npc_type": 11956,
+   "sprite": 42361,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    289,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900346,
+   "nombre": "Thunder Satellite Crystal",
+   "npc_type": 11956,
+   "sprite": 42361,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    289,
+    171
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900347,
+   "nombre": "Thunder Satellite Crystal",
+   "npc_type": 11956,
+   "sprite": 42361,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    289,
+    176
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900348,
+   "nombre": "Thunder Satellite Crystal",
+   "npc_type": 11956,
+   "sprite": 42361,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    252,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900349,
+   "nombre": "Thunder Satellite Crystal",
+   "npc_type": 11956,
+   "sprite": 42361,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    257,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900350,
+   "nombre": "Thunder Satellite Crystal",
+   "npc_type": 11956,
+   "sprite": 42361,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    262,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900351,
+   "nombre": "Thunder Satellite Crystal",
+   "npc_type": 11956,
+   "sprite": 42361,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    267,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900352,
+   "nombre": "Thunder Satellite Crystal",
+   "npc_type": 11956,
+   "sprite": 42361,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    272,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900353,
+   "nombre": "Thunder Satellite Crystal",
+   "npc_type": 11956,
+   "sprite": 42361,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    284,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900354,
+   "nombre": "Thunder Satellite Crystal",
+   "npc_type": 11956,
+   "sprite": 42361,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    291,
+    157
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900355,
+   "nombre": "Thunder Satellite Crystal",
+   "npc_type": 11956,
+   "sprite": 42361,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    277,
+    149
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900356,
+   "nombre": "Thunder Satellite Crystal",
+   "npc_type": 11956,
+   "sprite": 42361,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900357,
+   "nombre": "Thunder Satellite Crystal",
+   "npc_type": 11956,
+   "sprite": 42361,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900358,
+   "nombre": "Thunder Satellite Crystal",
+   "npc_type": 11956,
+   "sprite": 42361,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900359,
+   "nombre": "Thunder Satellite Crystal",
+   "npc_type": 11956,
+   "sprite": 42361,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    171
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900360,
+   "nombre": "Thunder Satellite Crystal",
+   "npc_type": 11956,
+   "sprite": 42361,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    176
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900361,
+   "nombre": "Thunder Satellite Crystal",
+   "npc_type": 11956,
+   "sprite": 42361,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    289,
+    147
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900362,
+   "nombre": "Thunder Satellite Crystal",
+   "npc_type": 11956,
+   "sprite": 42361,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    294,
+    147
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900363,
+   "nombre": "Thunder Satellite Crystal",
+   "npc_type": 11956,
+   "sprite": 42361,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    294,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900364,
+   "nombre": "Thunder Satellite Crystal",
+   "npc_type": 11956,
+   "sprite": 42361,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    294,
+    162
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900365,
+   "nombre": "Thunder Satellite Crystal",
+   "npc_type": 11956,
+   "sprite": 42361,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    294,
+    167
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900366,
+   "nombre": "Thunder Satellite Crystal",
+   "npc_type": 11956,
+   "sprite": 42361,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    294,
+    172
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900367,
+   "nombre": "Thunder Satellite Crystal",
+   "npc_type": 11956,
+   "sprite": 42361,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    294,
+    177
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900368,
+   "nombre": "Thunder Satellite Crystal",
+   "npc_type": 11956,
+   "sprite": 42361,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    247,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900369,
+   "nombre": "Icy Satellite Crystal",
+   "npc_type": 11957,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    252,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900370,
+   "nombre": "Icy Satellite Crystal",
+   "npc_type": 11957,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    257,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900371,
+   "nombre": "Icy Satellite Crystal",
+   "npc_type": 11957,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    262,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900372,
+   "nombre": "Icy Satellite Crystal",
+   "npc_type": 11957,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    267,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900373,
+   "nombre": "Icy Satellite Crystal",
+   "npc_type": 11957,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    272,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900374,
+   "nombre": "Icy Satellite Crystal",
+   "npc_type": 11957,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    282,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900375,
+   "nombre": "Icy Satellite Crystal",
+   "npc_type": 11957,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    296,
+    157
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900376,
+   "nombre": "Icy Satellite Crystal",
+   "npc_type": 11957,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    277,
+    144
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900377,
+   "nombre": "Icy Satellite Crystal",
+   "npc_type": 11957,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    299,
+    143
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900378,
+   "nombre": "Icy Satellite Crystal",
+   "npc_type": 11957,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    299,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900379,
+   "nombre": "Icy Satellite Crystal",
+   "npc_type": 11957,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    299,
+    162
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900380,
+   "nombre": "Icy Satellite Crystal",
+   "npc_type": 11957,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    299,
+    167
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900381,
+   "nombre": "Icy Satellite Crystal",
+   "npc_type": 11957,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    299,
+    172
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900382,
+   "nombre": "Icy Satellite Crystal",
+   "npc_type": 11957,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    299,
+    177
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900383,
+   "nombre": "Icy Satellite Crystal",
+   "npc_type": 11957,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    287,
+    142
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900384,
+   "nombre": "Icy Satellite Crystal",
+   "npc_type": 11957,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    292,
+    142
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900385,
+   "nombre": "Icy Satellite Crystal",
+   "npc_type": 11957,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    247,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900386,
+   "nombre": "Icy Satellite Crystal",
+   "npc_type": 11957,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    247,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900387,
+   "nombre": "Icy Satellite Crystal",
+   "npc_type": 11957,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    252,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900388,
+   "nombre": "Icy Satellite Crystal",
+   "npc_type": 11957,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    257,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900389,
+   "nombre": "Icy Satellite Crystal",
+   "npc_type": 11957,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    262,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900390,
+   "nombre": "Icy Satellite Crystal",
+   "npc_type": 11957,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    267,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900391,
+   "nombre": "Icy Satellite Crystal",
+   "npc_type": 11957,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    272,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900392,
+   "nombre": "Icy Satellite Crystal",
+   "npc_type": 11957,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    282,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900393,
+   "nombre": "Icy Satellite Crystal",
+   "npc_type": 11957,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    277,
+    139
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900394,
+   "nombre": "Icy Satellite Crystal",
+   "npc_type": 11957,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    244,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900395,
+   "nombre": "Icy Satellite Crystal",
+   "npc_type": 11957,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    244,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900396,
+   "nombre": "Icy Satellite Crystal",
+   "npc_type": 11957,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    244,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900397,
+   "nombre": "Icy Satellite Crystal",
+   "npc_type": 11957,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    244,
+    171
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900398,
+   "nombre": "Icy Satellite Crystal",
+   "npc_type": 11957,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    244,
+    176
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 72900399,
+   "nombre": "Earth Elf",
+   "npc_type": 4,
+   "sprite": 42058,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    184,
+    173
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 7
+  },
+  {
+   "entity_id": 72900400,
+   "nombre": "Earth Elf",
+   "npc_type": 4,
+   "sprite": 42058,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    189,
+    169
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 7
+  },
+  {
+   "entity_id": 72900401,
+   "nombre": "Earth Elf",
+   "npc_type": 4,
+   "sprite": 42058,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    181,
+    168
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 7
+  },
+  {
+   "entity_id": 72900402,
+   "nombre": "Earth Elf",
+   "npc_type": 4,
+   "sprite": 42058,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    186,
+    164
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 7
+  },
+  {
+   "entity_id": 72900403,
+   "nombre": "Earth Elf",
+   "npc_type": 4,
+   "sprite": 42058,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    194,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 7
+  },
+  {
+   "entity_id": 72900404,
+   "nombre": "Wind Elf",
+   "npc_type": 1,
+   "sprite": 42055,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    298,
+    1
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 4
+  },
+  {
+   "entity_id": 72900405,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    15,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900406,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    10,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900407,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    10,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900408,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    10,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900409,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    15,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900410,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    15,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900411,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    20,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900412,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    20,
+    167
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900413,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    5,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900414,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    5,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900415,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    5,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900416,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    5,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900417,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    5,
+    171
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900418,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    10,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900419,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    10,
+    171
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900420,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    15,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900421,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    15,
+    171
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900422,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    20,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900423,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    25,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900424,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    25,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900425,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    25,
+    167
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900426,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    20,
+    172
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900427,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    25,
+    172
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900428,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    28,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900429,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    0,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900430,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    0,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900431,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    0,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900432,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    0,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900433,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    0,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900434,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    0,
+    171
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900435,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    0,
+    176
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900436,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    5,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900437,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    5,
+    176
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900438,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    10,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900439,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    10,
+    176
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900440,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    15,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900441,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    15,
+    176
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900442,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    20,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900443,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    25,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900444,
+   "nombre": "Abnormal Parasite",
+   "npc_type": 11954,
+   "sprite": 42546,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220,
+   "declarados": 50
+  },
+  {
+   "entity_id": 72900445,
+   "nombre": "Elite - Starcore Ashe",
+   "npc_type": 11965,
+   "sprite": 43636,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    253,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 72900446,
+   "nombre": "Elite - Starcore Ashe",
+   "npc_type": 11965,
+   "sprite": 43636,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 72900447,
+   "nombre": "Elite - Starcore Ashe",
+   "npc_type": 11965,
+   "sprite": 43636,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 72900448,
+   "nombre": "Elite - Starcore Ashe",
+   "npc_type": 11965,
+   "sprite": 43636,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 72900449,
+   "nombre": "Elite - Starcore Ashe",
+   "npc_type": 11965,
+   "sprite": 43636,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 72900450,
+   "nombre": "Meerkat Gunner",
+   "npc_type": 11867,
+   "sprite": 43550,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900451,
+   "nombre": "Meerkat Gunner",
+   "npc_type": 11867,
+   "sprite": 43550,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900452,
+   "nombre": "Meerkat Gunner",
+   "npc_type": 11867,
+   "sprite": 43550,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900453,
+   "nombre": "Meerkat Gunner",
+   "npc_type": 11867,
+   "sprite": 43550,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    165,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900454,
+   "nombre": "Meerkat Gunner",
+   "npc_type": 11867,
+   "sprite": 43550,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    165,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900455,
+   "nombre": "Meerkat Gunner",
+   "npc_type": 11867,
+   "sprite": 43550,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    165,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900456,
+   "nombre": "Meerkat Gunner",
+   "npc_type": 11867,
+   "sprite": 43550,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    165,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900457,
+   "nombre": "Meerkat Gunner",
+   "npc_type": 11867,
+   "sprite": 43550,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    165,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900458,
+   "nombre": "Meerkat Gunner",
+   "npc_type": 11867,
+   "sprite": 43550,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    165,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900459,
+   "nombre": "Meerkat Gunner",
+   "npc_type": 11867,
+   "sprite": 43550,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    203,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900460,
+   "nombre": "Meerkat Gunner",
+   "npc_type": 11867,
+   "sprite": 43550,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    215,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900461,
+   "nombre": "Meerkat Gunner",
+   "npc_type": 11867,
+   "sprite": 43550,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    215,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900462,
+   "nombre": "Meerkat Gunner",
+   "npc_type": 11867,
+   "sprite": 43550,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    215,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900463,
+   "nombre": "Meerkat Gunner",
+   "npc_type": 11867,
+   "sprite": 43550,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    215,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900464,
+   "nombre": "Meerkat Gunner",
+   "npc_type": 11867,
+   "sprite": 43550,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    215,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900465,
+   "nombre": "Meerkat Gunner",
+   "npc_type": 11867,
+   "sprite": 43550,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    215,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900466,
+   "nombre": "Meerkat Gunner",
+   "npc_type": 11867,
+   "sprite": 43550,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    215,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900467,
+   "nombre": "Meerkat Gunner",
+   "npc_type": 11867,
+   "sprite": 43550,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    215,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900468,
+   "nombre": "Meerkat Gunner",
+   "npc_type": 11867,
+   "sprite": 43550,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900469,
+   "nombre": "Meerkat Gunner",
+   "npc_type": 11867,
+   "sprite": 43550,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900470,
+   "nombre": "Meerkat Gunner",
+   "npc_type": 11867,
+   "sprite": 43550,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    162,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900471,
+   "nombre": "Meerkat Gunner",
+   "npc_type": 11867,
+   "sprite": 43550,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    208,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900472,
+   "nombre": "Meerkat Gunner",
+   "npc_type": 11867,
+   "sprite": 43550,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    213,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900473,
+   "nombre": "Meerkat Gunner",
+   "npc_type": 11867,
+   "sprite": 43550,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    218,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900474,
+   "nombre": "Meerkat Gunner",
+   "npc_type": 11867,
+   "sprite": 43550,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    160,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900475,
+   "nombre": "Meerkat Gunner",
+   "npc_type": 11867,
+   "sprite": 43550,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    160,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900476,
+   "nombre": "Meerkat Gunner",
+   "npc_type": 11867,
+   "sprite": 43550,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    160,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900477,
+   "nombre": "Meerkat Gunner",
+   "npc_type": 11867,
+   "sprite": 43550,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    160,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900478,
+   "nombre": "Meerkat Gunner",
+   "npc_type": 11867,
+   "sprite": 43550,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    160,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900479,
+   "nombre": "Meerkat Gunner",
+   "npc_type": 11867,
+   "sprite": 43550,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    160,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 202
+  },
+  {
+   "entity_id": 72900480,
+   "nombre": "Elite - Spaceout Cactus",
+   "npc_type": 11967,
+   "sprite": 43638,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 72900481,
+   "nombre": "Elite - Spaceout Cactus",
+   "npc_type": 11967,
+   "sprite": 43638,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 72900482,
+   "nombre": "Elite - Spaceout Cactus",
+   "npc_type": 11967,
+   "sprite": 43638,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 72900483,
+   "nombre": "Elite - Spaceout Cactus",
+   "npc_type": 11967,
+   "sprite": 43638,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 72900484,
+   "nombre": "Elite - Spaceout Cactus",
+   "npc_type": 11967,
+   "sprite": 43638,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 72900485,
+   "nombre": "Elite - Starbarrel Mech",
+   "npc_type": 11968,
+   "sprite": 43639,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    252,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 72900486,
+   "nombre": "Elite - Starbarrel Mech",
+   "npc_type": 11968,
+   "sprite": 43639,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    75
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 72900487,
+   "nombre": "Elite - Starbarrel Mech",
+   "npc_type": 11968,
+   "sprite": 43639,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    248,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 72900488,
+   "nombre": "Elite - Starbarrel Mech",
+   "npc_type": 11968,
+   "sprite": 43639,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    247,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 72900489,
+   "nombre": "Elite - Starbarrel Mech",
+   "npc_type": 11968,
+   "sprite": 43639,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    247,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 72900490,
+   "nombre": "Carnivorous Flora Type A",
+   "npc_type": 11873,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    198,
+    42
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900491,
+   "nombre": "Carnivorous Flora Type A",
+   "npc_type": 11873,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    198,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900492,
+   "nombre": "Carnivorous Flora Type A",
+   "npc_type": 11873,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    198,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900493,
+   "nombre": "Carnivorous Flora Type A",
+   "npc_type": 11873,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    198,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900494,
+   "nombre": "Carnivorous Flora Type A",
+   "npc_type": 11873,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    188,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900495,
+   "nombre": "Carnivorous Flora Type A",
+   "npc_type": 11873,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    193,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900496,
+   "nombre": "Carnivorous Flora Type A",
+   "npc_type": 11873,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    203,
+    42
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900497,
+   "nombre": "Carnivorous Flora Type A",
+   "npc_type": 11873,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    203,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900498,
+   "nombre": "Carnivorous Flora Type A",
+   "npc_type": 11873,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    203,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900499,
+   "nombre": "Carnivorous Flora Type A",
+   "npc_type": 11873,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    203,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900500,
+   "nombre": "Carnivorous Flora Type A",
+   "npc_type": 11873,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    198,
+    62
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900501,
+   "nombre": "Carnivorous Flora Type A",
+   "npc_type": 11873,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    203,
+    62
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900502,
+   "nombre": "Carnivorous Flora Type A",
+   "npc_type": 11873,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900503,
+   "nombre": "Carnivorous Flora Type A",
+   "npc_type": 11873,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900504,
+   "nombre": "Carnivorous Flora Type A",
+   "npc_type": 11873,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900505,
+   "nombre": "Carnivorous Flora Type A",
+   "npc_type": 11873,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900506,
+   "nombre": "Carnivorous Flora Type A",
+   "npc_type": 11873,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    188,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900507,
+   "nombre": "Carnivorous Flora Type A",
+   "npc_type": 11873,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    193,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900508,
+   "nombre": "Carnivorous Flora Type A",
+   "npc_type": 11873,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    167,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 72900509,
+   "nombre": "Carnivorous Flora Type A",
+   "npc_type": 11873,
+   "sprite": 43532,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    208,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  }
+ ],
+ "recursos": [
+  {
+   "entity_id": 82900000,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    7014,
+    1296
+   ],
+   "tile": [
+    219,
+    40
+   ],
+   "crudo": "20f4f00402000000661b0000100500000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 82900001,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    7183,
+    1392
+   ],
+   "tile": [
+    224,
+    43
+   ],
+   "crudo": "21f4f004020000000f1c0000700500000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 82900002,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    3082,
+    3312
+   ],
+   "tile": [
+    96,
+    103
+   ],
+   "crudo": "22f4f004020000000a0c0000f00c00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 82900003,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    3428,
+    3504
+   ],
+   "tile": [
+    107,
+    109
+   ],
+   "crudo": "23f4f00402000000640d0000b00d00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 82900004,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    3172,
+    3376
+   ],
+   "tile": [
+    99,
+    105
+   ],
+   "crudo": "24f4f00402000000640c0000300d00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 82900005,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    9149,
+    176
+   ],
+   "tile": [
+    285,
+    5
+   ],
+   "crudo": "25f4f00400000000bd230000b00000000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 82900006,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    9374,
+    304
+   ],
+   "tile": [
+    292,
+    9
+   ],
+   "crudo": "26f4f004000000009e240000300100000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 82900007,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1942,
+    2512
+   ],
+   "tile": [
+    60,
+    78
+   ],
+   "crudo": "27f4f0040000000096070000d00900000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 82900008,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1700,
+    2512
+   ],
+   "tile": [
+    53,
+    78
+   ],
+   "crudo": "28f4f00400000000a4060000d00900000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 82900009,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    7620,
+    4368
+   ],
+   "tile": [
+    238,
+    136
+   ],
+   "crudo": "29f4f00400000000c41d0000101100000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 82900010,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    6453,
+    4848
+   ],
+   "tile": [
+    201,
+    151
+   ],
+   "crudo": "2af4f0040000000035190000f01200000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 82900011,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5775,
+    4048
+   ],
+   "tile": [
+    180,
+    126
+   ],
+   "crudo": "2bf4f004000000008f160000d00f00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 82900012,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    7561,
+    3696
+   ],
+   "tile": [
+    236,
+    115
+   ],
+   "crudo": "2cf4f00400000000891d0000700e00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 82900013,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    8284,
+    3984
+   ],
+   "tile": [
+    258,
+    124
+   ],
+   "crudo": "2df4f004000000005c200000900f00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 82900014,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    9243,
+    272
+   ],
+   "tile": [
+    288,
+    8
+   ],
+   "crudo": "2ef4f004000000001b240000100100000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 82900015,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    3029,
+    1232
+   ],
+   "tile": [
+    94,
+    38
+   ],
+   "crudo": "2ff4f00400000000d50b0000d00400000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  }
+ ]
+}

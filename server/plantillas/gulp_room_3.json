@@ -1,0 +1,5273 @@
+{
+ "_nota": "gulp_room_3 (stage 78). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map078.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "stage": 78,
+ "spawns": [
+  {
+   "entity_id": 57800000,
+   "nombre": "Wind Elf",
+   "npc_type": 1,
+   "sprite": 42055,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    121
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 4,
+   "apagado": true
+  },
+  {
+   "entity_id": 57800001,
+   "nombre": "Fire Elf",
+   "npc_type": 2,
+   "sprite": 42056,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 7,
+   "apagado": true
+  },
+  {
+   "entity_id": 57800002,
+   "nombre": "Water Elf",
+   "npc_type": 3,
+   "sprite": 42057,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    201,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 4,
+   "apagado": true
+  },
+  {
+   "entity_id": 57800003,
+   "nombre": "Hell Evil Eye",
+   "npc_type": 1071,
+   "sprite": 42374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    266
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57800004,
+   "nombre": "Hell Evil Eye",
+   "npc_type": 1071,
+   "sprite": 42374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    261
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57800005,
+   "nombre": "Hell Evil Eye",
+   "npc_type": 1071,
+   "sprite": 42374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    266
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57800006,
+   "nombre": "Hell Evil Eye",
+   "npc_type": 1071,
+   "sprite": 42374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    271
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57800007,
+   "nombre": "Hell Evil Eye",
+   "npc_type": 1071,
+   "sprite": 42374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    261
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57800008,
+   "nombre": "Hell Evil Eye",
+   "npc_type": 1071,
+   "sprite": 42374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    271
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57800009,
+   "nombre": "Hell Evil Eye",
+   "npc_type": 1071,
+   "sprite": 42374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    261
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57800010,
+   "nombre": "Hell Evil Eye",
+   "npc_type": 1071,
+   "sprite": 42374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    266
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57800011,
+   "nombre": "Hell Evil Eye",
+   "npc_type": 1071,
+   "sprite": 42374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    271
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57800012,
+   "nombre": "Hell Evil Eye",
+   "npc_type": 1071,
+   "sprite": 42374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    256
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57800013,
+   "nombre": "Hell Evil Eye",
+   "npc_type": 1071,
+   "sprite": 42374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    261
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57800014,
+   "nombre": "Hell Evil Eye",
+   "npc_type": 1071,
+   "sprite": 42374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    266
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57800015,
+   "nombre": "Hell Evil Eye",
+   "npc_type": 1071,
+   "sprite": 42374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    271
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57800016,
+   "nombre": "Hell Evil Eye",
+   "npc_type": 1071,
+   "sprite": 42374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    276
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57800017,
+   "nombre": "Hell Evil Eye",
+   "npc_type": 1071,
+   "sprite": 42374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    256
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57800018,
+   "nombre": "Hell Evil Eye",
+   "npc_type": 1071,
+   "sprite": 42374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    276
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57800019,
+   "nombre": "Hell Evil Eye",
+   "npc_type": 1071,
+   "sprite": 42374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    256
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57800020,
+   "nombre": "Hell Slave",
+   "npc_type": 823,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    276
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57800021,
+   "nombre": "Hell Slave",
+   "npc_type": 823,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    272
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57800022,
+   "nombre": "Hell Slave",
+   "npc_type": 823,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    282
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57800023,
+   "nombre": "Hell Slave",
+   "npc_type": 823,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    282
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57800024,
+   "nombre": "Hell Slave",
+   "npc_type": 823,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    272
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57800025,
+   "nombre": "Hell Slave",
+   "npc_type": 823,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    121,
+    270
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57800026,
+   "nombre": "Hell Slave",
+   "npc_type": 823,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    111,
+    285
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57800027,
+   "nombre": "Hell Slave",
+   "npc_type": 823,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    141,
+    282
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57800028,
+   "nombre": "Hell Slave",
+   "npc_type": 823,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    144,
+    270
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57800029,
+   "nombre": "Hell Slave",
+   "npc_type": 823,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    169,
+    274
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57800030,
+   "nombre": "Exit Guide",
+   "npc_type": 2095,
+   "sprite": 40172,
+   "klass": 200,
+   "monstruo": false,
+   "tile": [
+    190,
+    158
+   ],
+   "direccion": 2,
+   "visible": 0
+  },
+  {
+   "entity_id": 57800031,
+   "nombre": "Exit Guide",
+   "npc_type": 2095,
+   "sprite": 40172,
+   "klass": 200,
+   "monstruo": false,
+   "tile": [
+    263,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0
+  },
+  {
+   "entity_id": 57800032,
+   "nombre": "Hell Miner",
+   "npc_type": 829,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    256
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57800033,
+   "nombre": "Hell Slave",
+   "npc_type": 823,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    276
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57800034,
+   "nombre": "Hell Slave",
+   "npc_type": 823,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    267
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57800035,
+   "nombre": "Hell Slave",
+   "npc_type": 823,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    69,
+    256
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57800036,
+   "nombre": "Hell Slave",
+   "npc_type": 823,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    272
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57800037,
+   "nombre": "Hell Miner",
+   "npc_type": 829,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    69,
+    261
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57800038,
+   "nombre": "Hell Miner",
+   "npc_type": 829,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    69,
+    277
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57800039,
+   "nombre": "Hell Slave",
+   "npc_type": 823,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    251
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57800040,
+   "nombre": "Hell Slave",
+   "npc_type": 823,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    74,
+    277
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57800041,
+   "nombre": "Hell Miner",
+   "npc_type": 829,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    256
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57800042,
+   "nombre": "Hell Slave",
+   "npc_type": 823,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    261
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57800043,
+   "nombre": "Hell Slave",
+   "npc_type": 823,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    267
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57800044,
+   "nombre": "Hell Miner",
+   "npc_type": 829,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    266
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57800045,
+   "nombre": "Hell Slave",
+   "npc_type": 823,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    271
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57800046,
+   "nombre": "Hell Slave",
+   "npc_type": 823,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    79,
+    277
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57800047,
+   "nombre": "Hell Miner",
+   "npc_type": 829,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    276
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57800048,
+   "nombre": "Hell Slave",
+   "npc_type": 823,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    281
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57800049,
+   "nombre": "Hell Slave",
+   "npc_type": 823,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    267
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57800050,
+   "nombre": "Hell Miner",
+   "npc_type": 829,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    251
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57800051,
+   "nombre": "Hell Slave",
+   "npc_type": 823,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    281
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57800052,
+   "nombre": "Hell Slave",
+   "npc_type": 823,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    272
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57800053,
+   "nombre": "Hell Miner",
+   "npc_type": 829,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    251
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57800054,
+   "nombre": "Hell Slave",
+   "npc_type": 823,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    281
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57800055,
+   "nombre": "Hell Slave",
+   "npc_type": 823,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    84,
+    277
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57800056,
+   "nombre": "Hell Slave",
+   "npc_type": 823,
+   "sprite": 42281,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    282
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57800057,
+   "nombre": "Bloody Demon",
+   "npc_type": 914,
+   "sprite": 42348,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    251
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57800058,
+   "nombre": "Bloody Demon",
+   "npc_type": 914,
+   "sprite": 42348,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    282
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57800059,
+   "nombre": "Bloody Demon",
+   "npc_type": 914,
+   "sprite": 42348,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    287
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57800060,
+   "nombre": "Bloody Demon",
+   "npc_type": 914,
+   "sprite": 42348,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    277
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57800061,
+   "nombre": "Bloody Demon",
+   "npc_type": 914,
+   "sprite": 42348,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    267
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57800062,
+   "nombre": "Bloody Demon",
+   "npc_type": 914,
+   "sprite": 42348,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    116,
+    265
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57800063,
+   "nombre": "Bloody Demon",
+   "npc_type": 914,
+   "sprite": 42348,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    280
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57800064,
+   "nombre": "Bloody Demon",
+   "npc_type": 914,
+   "sprite": 42348,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    136,
+    277
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57800065,
+   "nombre": "Bloody Demon",
+   "npc_type": 914,
+   "sprite": 42348,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    139,
+    265
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57800066,
+   "nombre": "Bloody Demon",
+   "npc_type": 914,
+   "sprite": 42348,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    164,
+    269
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57800067,
+   "nombre": "Overlord Legte",
+   "npc_type": 818,
+   "sprite": 42301,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    274,
+    274
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57800068,
+   "nombre": "Hell Miner",
+   "npc_type": 829,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    281
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57800069,
+   "nombre": "Hell Miner",
+   "npc_type": 829,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    282
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57800070,
+   "nombre": "Hell Miner",
+   "npc_type": 829,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    287
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57800071,
+   "nombre": "Trapped Shar",
+   "npc_type": 850,
+   "sprite": 42366,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    184,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 83
+  },
+  {
+   "entity_id": 57800072,
+   "nombre": "Exit Guide",
+   "npc_type": 2095,
+   "sprite": 40172,
+   "klass": 200,
+   "monstruo": false,
+   "tile": [
+    299,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0
+  }
+ ],
+ "recursos": [
+  {
+   "entity_id": 67800000,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2137,
+    7888
+   ],
+   "tile": [
+    66,
+    246
+   ],
+   "crudo": "c08b0a040000000059080000d01e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800001,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2269,
+    8016
+   ],
+   "tile": [
+    70,
+    250
+   ],
+   "crudo": "c18b0a0400000000dd080000501f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800002,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2447,
+    7984
+   ],
+   "tile": [
+    76,
+    249
+   ],
+   "crudo": "c28b0a04000000008f090000301f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800003,
+   "sprite": 60097,
+   "capa": 0,
+   "px": [
+    9024,
+    8880
+   ],
+   "tile": [
+    282,
+    277
+   ],
+   "crudo": "c38b0a040000000040230000b02200000000000027000000000000001a000000dc06c1ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60097"
+  },
+  {
+   "entity_id": 67800004,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2173,
+    2896
+   ],
+   "tile": [
+    67,
+    90
+   ],
+   "crudo": "c48b0a04000000007d080000500b00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800005,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2112,
+    2864
+   ],
+   "tile": [
+    66,
+    89
+   ],
+   "crudo": "c58b0a040000000040080000300b00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800006,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2748,
+    2640
+   ],
+   "tile": [
+    85,
+    82
+   ],
+   "crudo": "c68b0a0400000000bc0a0000500a00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800007,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2693,
+    2608
+   ],
+   "tile": [
+    84,
+    81
+   ],
+   "crudo": "c78b0a0400000000850a0000300a00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800008,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3337,
+    2352
+   ],
+   "tile": [
+    104,
+    73
+   ],
+   "crudo": "c88b0a0400000000090d0000300900000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800009,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3275,
+    2320
+   ],
+   "tile": [
+    102,
+    72
+   ],
+   "crudo": "c98b0a0400000000cb0c0000100900000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800010,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3925,
+    2096
+   ],
+   "tile": [
+    122,
+    65
+   ],
+   "crudo": "ca8b0a0400000000550f0000300800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800011,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3867,
+    2032
+   ],
+   "tile": [
+    120,
+    63
+   ],
+   "crudo": "cb8b0a04000000001b0f0000f00700000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800012,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4499,
+    1872
+   ],
+   "tile": [
+    140,
+    58
+   ],
+   "crudo": "cc8b0a040000000093110000500700000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800013,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4435,
+    1840
+   ],
+   "tile": [
+    138,
+    57
+   ],
+   "crudo": "cd8b0a040000000053110000300700000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800014,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5506,
+    5040
+   ],
+   "tile": [
+    172,
+    157
+   ],
+   "crudo": "ce8b0a040000000082150000b01300000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800015,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5568,
+    5072
+   ],
+   "tile": [
+    174,
+    158
+   ],
+   "crudo": "cf8b0a0400000000c0150000d01300000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800016,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4929,
+    4720
+   ],
+   "tile": [
+    154,
+    147
+   ],
+   "crudo": "d08b0a040000000041130000701200000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800017,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4992,
+    4784
+   ],
+   "tile": [
+    156,
+    149
+   ],
+   "crudo": "d18b0a040000000080130000b01200000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800018,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4448,
+    4528
+   ],
+   "tile": [
+    139,
+    141
+   ],
+   "crudo": "d28b0a040000000060110000b01100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800019,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4384,
+    4464
+   ],
+   "tile": [
+    137,
+    139
+   ],
+   "crudo": "d38b0a040000000020110000701100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800020,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3809,
+    4208
+   ],
+   "tile": [
+    119,
+    131
+   ],
+   "crudo": "d48b0a0400000000e10e0000701000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800021,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3872,
+    4240
+   ],
+   "tile": [
+    121,
+    132
+   ],
+   "crudo": "d58b0a0400000000200f0000901000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800022,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3232,
+    3920
+   ],
+   "tile": [
+    101,
+    122
+   ],
+   "crudo": "d68b0a0400000000a00c0000500f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800023,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3296,
+    3984
+   ],
+   "tile": [
+    103,
+    124
+   ],
+   "crudo": "d78b0a0400000000e00c0000900f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800024,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2687,
+    3664
+   ],
+   "tile": [
+    83,
+    114
+   ],
+   "crudo": "d88b0a04000000007f0a0000500e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800025,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2751,
+    3696
+   ],
+   "tile": [
+    85,
+    115
+   ],
+   "crudo": "d98b0a0400000000bf0a0000700e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800026,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2208,
+    3472
+   ],
+   "tile": [
+    69,
+    108
+   ],
+   "crudo": "da8b0a0400000000a0080000900d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800027,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2143,
+    3376
+   ],
+   "tile": [
+    66,
+    105
+   ],
+   "crudo": "db8b0a04000000005f080000300d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800028,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2079,
+    3344
+   ],
+   "tile": [
+    64,
+    104
+   ],
+   "crudo": "dc8b0a04000000001f080000100d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800029,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2079,
+    3152
+   ],
+   "tile": [
+    64,
+    98
+   ],
+   "crudo": "dd8b0a04000000001f080000500c00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800030,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2144,
+    3088
+   ],
+   "tile": [
+    67,
+    96
+   ],
+   "crudo": "de8b0a040000000060080000100c00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800031,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2656,
+    2896
+   ],
+   "tile": [
+    83,
+    90
+   ],
+   "crudo": "df8b0a0400000000600a0000500b00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800032,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2720,
+    2864
+   ],
+   "tile": [
+    85,
+    89
+   ],
+   "crudo": "e08b0a0400000000a00a0000300b00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800033,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3232,
+    2640
+   ],
+   "tile": [
+    101,
+    82
+   ],
+   "crudo": "e18b0a0400000000a00c0000500a00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800034,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3296,
+    2576
+   ],
+   "tile": [
+    103,
+    80
+   ],
+   "crudo": "e28b0a0400000000e00c0000100a00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800035,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3838,
+    2384
+   ],
+   "tile": [
+    119,
+    74
+   ],
+   "crudo": "e38b0a0400000000fe0e0000500900000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800036,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3904,
+    2288
+   ],
+   "tile": [
+    122,
+    71
+   ],
+   "crudo": "e48b0a0400000000400f0000f00800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800037,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4414,
+    2096
+   ],
+   "tile": [
+    137,
+    65
+   ],
+   "crudo": "e58b0a04000000003e110000300800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800038,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4480,
+    2032
+   ],
+   "tile": [
+    140,
+    63
+   ],
+   "crudo": "e68b0a040000000080110000f00700000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800039,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4993,
+    1840
+   ],
+   "tile": [
+    156,
+    57
+   ],
+   "crudo": "e78b0a040000000081130000300700000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800040,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5057,
+    1776
+   ],
+   "tile": [
+    158,
+    55
+   ],
+   "crudo": "e88b0a0400000000c1130000f00600000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800041,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5571,
+    1584
+   ],
+   "tile": [
+    174,
+    49
+   ],
+   "crudo": "e98b0a0400000000c3150000300600000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800042,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5635,
+    1520
+   ],
+   "tile": [
+    176,
+    47
+   ],
+   "crudo": "ea8b0a040000000003160000f00500000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800043,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6268,
+    1584
+   ],
+   "tile": [
+    195,
+    49
+   ],
+   "crudo": "eb8b0a04000000007c180000300600000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800044,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6192,
+    1552
+   ],
+   "tile": [
+    193,
+    48
+   ],
+   "crudo": "ec8b0a040000000030180000100600000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800045,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6852,
+    1872
+   ],
+   "tile": [
+    214,
+    58
+   ],
+   "crudo": "ed8b0a0400000000c41a0000500700000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800046,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6782,
+    1776
+   ],
+   "tile": [
+    211,
+    55
+   ],
+   "crudo": "ee8b0a04000000007e1a0000f00600000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800047,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7430,
+    2128
+   ],
+   "tile": [
+    232,
+    66
+   ],
+   "crudo": "ef8b0a0400000000061d0000500800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800048,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7359,
+    2064
+   ],
+   "tile": [
+    229,
+    64
+   ],
+   "crudo": "f08b0a0400000000bf1c0000100800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800049,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    8009,
+    2384
+   ],
+   "tile": [
+    250,
+    74
+   ],
+   "crudo": "f18b0a0400000000491f0000500900000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800050,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7947,
+    2320
+   ],
+   "tile": [
+    248,
+    72
+   ],
+   "crudo": "f28b0a04000000000b1f0000100900000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800051,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    8540,
+    2704
+   ],
+   "tile": [
+    266,
+    84
+   ],
+   "crudo": "f38b0a04000000005c210000900a00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800052,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    8480,
+    2640
+   ],
+   "tile": [
+    265,
+    82
+   ],
+   "crudo": "f48b0a040000000020210000500a00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800053,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    9120,
+    2928
+   ],
+   "tile": [
+    285,
+    91
+   ],
+   "crudo": "f58b0a0400000000a0230000700b00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800054,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    9055,
+    2864
+   ],
+   "tile": [
+    282,
+    89
+   ],
+   "crudo": "f68b0a04000000005f230000300b00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800055,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    9712,
+    3184
+   ],
+   "tile": [
+    303,
+    99
+   ],
+   "crudo": "f78b0a0400000000f0250000700c00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800056,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    9631,
+    3120
+   ],
+   "tile": [
+    300,
+    97
+   ],
+   "crudo": "f88b0a04000000009f250000300c00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800057,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    9576,
+    3440
+   ],
+   "tile": [
+    299,
+    107
+   ],
+   "crudo": "f98b0a040000000068250000700d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800058,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    9647,
+    3408
+   ],
+   "tile": [
+    301,
+    106
+   ],
+   "crudo": "fa8b0a0400000000af250000500d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800059,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    8996,
+    3696
+   ],
+   "tile": [
+    281,
+    115
+   ],
+   "crudo": "fb8b0a040000000024230000700e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800060,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    9070,
+    3664
+   ],
+   "tile": [
+    283,
+    114
+   ],
+   "crudo": "fc8b0a04000000006e230000500e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800061,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    8415,
+    3984
+   ],
+   "tile": [
+    262,
+    124
+   ],
+   "crudo": "fd8b0a0400000000df200000900f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800062,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    8484,
+    3920
+   ],
+   "tile": [
+    265,
+    122
+   ],
+   "crudo": "fe8b0a040000000024210000500f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800063,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7823,
+    4240
+   ],
+   "tile": [
+    244,
+    132
+   ],
+   "crudo": "ff8b0a04000000008f1e0000901000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800064,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7904,
+    4208
+   ],
+   "tile": [
+    247,
+    131
+   ],
+   "crudo": "008c0a0400000000e01e0000701000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800065,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7226,
+    4496
+   ],
+   "tile": [
+    225,
+    140
+   ],
+   "crudo": "018c0a04000000003a1c0000901100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800066,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7295,
+    4432
+   ],
+   "tile": [
+    227,
+    138
+   ],
+   "crudo": "028c0a04000000007f1c0000501100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800067,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6655,
+    4784
+   ],
+   "tile": [
+    207,
+    149
+   ],
+   "crudo": "038c0a0400000000ff190000b01200000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800068,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6736,
+    4752
+   ],
+   "tile": [
+    210,
+    148
+   ],
+   "crudo": "048c0a0400000000501a0000901200000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800069,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6048,
+    5104
+   ],
+   "tile": [
+    189,
+    159
+   ],
+   "crudo": "058c0a0400000000a0170000f01300000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800070,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6126,
+    5040
+   ],
+   "tile": [
+    191,
+    157
+   ],
+   "crudo": "068c0a0400000000ee170000b01300000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800071,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5487,
+    4752
+   ],
+   "tile": [
+    171,
+    148
+   ],
+   "crudo": "078c0a04000000006f150000901200000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800072,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5566,
+    4720
+   ],
+   "tile": [
+    173,
+    147
+   ],
+   "crudo": "088c0a0400000000be150000701200000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800073,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6176,
+    4752
+   ],
+   "tile": [
+    193,
+    148
+   ],
+   "crudo": "098c0a040000000020180000901200000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800074,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6110,
+    4688
+   ],
+   "tile": [
+    190,
+    146
+   ],
+   "crudo": "0a8c0a0400000000de170000501200000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800075,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4928,
+    4464
+   ],
+   "tile": [
+    154,
+    139
+   ],
+   "crudo": "0b8c0a040000000040130000701100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800076,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4994,
+    4432
+   ],
+   "tile": [
+    156,
+    138
+   ],
+   "crudo": "0c8c0a040000000082130000501100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800077,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5625,
+    4496
+   ],
+   "tile": [
+    175,
+    140
+   ],
+   "crudo": "0d8c0a0400000000f9150000901100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800078,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5568,
+    4432
+   ],
+   "tile": [
+    174,
+    138
+   ],
+   "crudo": "0e8c0a0400000000c0150000501100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800079,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4353,
+    4208
+   ],
+   "tile": [
+    136,
+    131
+   ],
+   "crudo": "0f8c0a040000000001110000701000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800080,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4431,
+    4176
+   ],
+   "tile": [
+    138,
+    130
+   ],
+   "crudo": "108c0a04000000004f110000501000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800081,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3790,
+    3952
+   ],
+   "tile": [
+    118,
+    123
+   ],
+   "crudo": "118c0a0400000000ce0e0000700f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800082,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3869,
+    3920
+   ],
+   "tile": [
+    120,
+    122
+   ],
+   "crudo": "128c0a04000000001d0f0000500f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800083,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4479,
+    3952
+   ],
+   "tile": [
+    139,
+    123
+   ],
+   "crudo": "138c0a04000000007f110000700f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800084,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4409,
+    3920
+   ],
+   "tile": [
+    137,
+    122
+   ],
+   "crudo": "148c0a040000000039110000500f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800085,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3219,
+    3696
+   ],
+   "tile": [
+    100,
+    115
+   ],
+   "crudo": "158c0a0400000000930c0000700e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800086,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3288,
+    3632
+   ],
+   "tile": [
+    102,
+    113
+   ],
+   "crudo": "168c0a0400000000d80c0000300e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800087,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3907,
+    3696
+   ],
+   "tile": [
+    122,
+    115
+   ],
+   "crudo": "178c0a0400000000430f0000700e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800088,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3838,
+    3632
+   ],
+   "tile": [
+    119,
+    113
+   ],
+   "crudo": "188c0a0400000000fe0e0000300e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800089,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2639,
+    3408
+   ],
+   "tile": [
+    82,
+    106
+   ],
+   "crudo": "198c0a04000000004f0a0000500d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800090,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2716,
+    3376
+   ],
+   "tile": [
+    84,
+    105
+   ],
+   "crudo": "1a8c0a04000000009c0a0000300d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800091,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3330,
+    3440
+   ],
+   "tile": [
+    104,
+    107
+   ],
+   "crudo": "1b8c0a0400000000020d0000700d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800092,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3261,
+    3376
+   ],
+   "tile": [
+    101,
+    105
+   ],
+   "crudo": "1c8c0a0400000000bd0c0000300d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800093,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6080,
+    4464
+   ],
+   "tile": [
+    190,
+    139
+   ],
+   "crudo": "1d8c0a0400000000c0170000701100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800094,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6158,
+    4432
+   ],
+   "tile": [
+    192,
+    138
+   ],
+   "crudo": "1e8c0a04000000000e180000501100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800095,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6784,
+    4496
+   ],
+   "tile": [
+    212,
+    140
+   ],
+   "crudo": "1f8c0a0400000000801a0000901100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800096,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6704,
+    4464
+   ],
+   "tile": [
+    209,
+    139
+   ],
+   "crudo": "208c0a0400000000301a0000701100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800097,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5551,
+    4240
+   ],
+   "tile": [
+    173,
+    132
+   ],
+   "crudo": "218c0a0400000000af150000901000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800098,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5600,
+    4176
+   ],
+   "tile": [
+    175,
+    130
+   ],
+   "crudo": "228c0a0400000000e0150000501000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800099,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6207,
+    4208
+   ],
+   "tile": [
+    193,
+    131
+   ],
+   "crudo": "238c0a04000000003f180000701000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800100,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6128,
+    4176
+   ],
+   "tile": [
+    191,
+    130
+   ],
+   "crudo": "248c0a0400000000f0170000501000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800101,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4943,
+    3952
+   ],
+   "tile": [
+    154,
+    123
+   ],
+   "crudo": "258c0a04000000004f130000700f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800102,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5021,
+    3920
+   ],
+   "tile": [
+    156,
+    122
+   ],
+   "crudo": "268c0a04000000009d130000500f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800103,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5647,
+    3952
+   ],
+   "tile": [
+    176,
+    123
+   ],
+   "crudo": "278c0a04000000000f160000700f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800104,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5567,
+    3920
+   ],
+   "tile": [
+    173,
+    122
+   ],
+   "crudo": "288c0a0400000000bf150000500f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800105,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4381,
+    3696
+   ],
+   "tile": [
+    136,
+    115
+   ],
+   "crudo": "298c0a04000000001d110000700e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800106,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4449,
+    3632
+   ],
+   "tile": [
+    139,
+    113
+   ],
+   "crudo": "2a8c0a040000000061110000300e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800107,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3807,
+    3408
+   ],
+   "tile": [
+    118,
+    106
+   ],
+   "crudo": "2b8c0a0400000000df0e0000500d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800108,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3875,
+    3376
+   ],
+   "tile": [
+    121,
+    105
+   ],
+   "crudo": "2c8c0a0400000000230f0000300d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800109,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4511,
+    3440
+   ],
+   "tile": [
+    140,
+    107
+   ],
+   "crudo": "2d8c0a04000000009f110000700d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800110,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4433,
+    3376
+   ],
+   "tile": [
+    138,
+    105
+   ],
+   "crudo": "2e8c0a040000000051110000300d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800111,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3231,
+    3152
+   ],
+   "tile": [
+    100,
+    98
+   ],
+   "crudo": "2f8c0a04000000009f0c0000500c00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800112,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3306,
+    3120
+   ],
+   "tile": [
+    103,
+    97
+   ],
+   "crudo": "308c0a0400000000ea0c0000300c00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800113,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3921,
+    3152
+   ],
+   "tile": [
+    122,
+    98
+   ],
+   "crudo": "318c0a0400000000510f0000500c00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800114,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3846,
+    3120
+   ],
+   "tile": [
+    120,
+    97
+   ],
+   "crudo": "328c0a0400000000060f0000300c00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800115,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2759,
+    3184
+   ],
+   "tile": [
+    86,
+    99
+   ],
+   "crudo": "338c0a0400000000c70a0000700c00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800116,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2688,
+    3120
+   ],
+   "tile": [
+    84,
+    97
+   ],
+   "crudo": "348c0a0400000000800a0000300c00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800117,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7314,
+    4272
+   ],
+   "tile": [
+    228,
+    133
+   ],
+   "crudo": "358c0a0400000000921c0000b01000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800118,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7263,
+    4208
+   ],
+   "tile": [
+    226,
+    131
+   ],
+   "crudo": "368c0a04000000005f1c0000701000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800119,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6671,
+    4208
+   ],
+   "tile": [
+    208,
+    131
+   ],
+   "crudo": "378c0a04000000000f1a0000701000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800120,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6748,
+    4176
+   ],
+   "tile": [
+    210,
+    130
+   ],
+   "crudo": "388c0a04000000005c1a0000501000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800121,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6095,
+    3952
+   ],
+   "tile": [
+    190,
+    123
+   ],
+   "crudo": "398c0a0400000000cf170000700f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800122,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6176,
+    3920
+   ],
+   "tile": [
+    193,
+    122
+   ],
+   "crudo": "3a8c0a040000000020180000500f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800123,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6783,
+    3952
+   ],
+   "tile": [
+    211,
+    123
+   ],
+   "crudo": "3b8c0a04000000007f1a0000700f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800124,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6704,
+    3920
+   ],
+   "tile": [
+    209,
+    122
+   ],
+   "crudo": "3c8c0a0400000000301a0000500f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800125,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5536,
+    3696
+   ],
+   "tile": [
+    173,
+    115
+   ],
+   "crudo": "3d8c0a0400000000a0150000700e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800126,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5615,
+    3664
+   ],
+   "tile": [
+    175,
+    114
+   ],
+   "crudo": "3e8c0a0400000000ef150000500e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800127,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6214,
+    3696
+   ],
+   "tile": [
+    194,
+    115
+   ],
+   "crudo": "3f8c0a040000000046180000700e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800128,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6143,
+    3632
+   ],
+   "tile": [
+    191,
+    113
+   ],
+   "crudo": "408c0a0400000000ff170000300e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800129,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5647,
+    3440
+   ],
+   "tile": [
+    176,
+    107
+   ],
+   "crudo": "418c0a04000000000f160000700d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800130,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5584,
+    3408
+   ],
+   "tile": [
+    174,
+    106
+   ],
+   "crudo": "428c0a0400000000d0150000500d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800131,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4957,
+    3440
+   ],
+   "tile": [
+    154,
+    107
+   ],
+   "crudo": "438c0a04000000005d130000700d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800132,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4389,
+    3152
+   ],
+   "tile": [
+    137,
+    98
+   ],
+   "crudo": "448c0a040000000025110000500c00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800133,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4463,
+    3120
+   ],
+   "tile": [
+    139,
+    97
+   ],
+   "crudo": "458c0a04000000006f110000300c00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800134,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5071,
+    3152
+   ],
+   "tile": [
+    158,
+    98
+   ],
+   "crudo": "468c0a0400000000cf130000500c00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800135,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5008,
+    3088
+   ],
+   "tile": [
+    156,
+    96
+   ],
+   "crudo": "478c0a040000000090130000100c00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800136,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4432,
+    2864
+   ],
+   "tile": [
+    138,
+    89
+   ],
+   "crudo": "488c0a040000000050110000300b00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800137,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4504,
+    2896
+   ],
+   "tile": [
+    140,
+    90
+   ],
+   "crudo": "498c0a040000000098110000500b00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800138,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4512,
+    2352
+   ],
+   "tile": [
+    141,
+    73
+   ],
+   "crudo": "4a8c0a0400000000a0110000300900000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800139,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4440,
+    2320
+   ],
+   "tile": [
+    138,
+    72
+   ],
+   "crudo": "4b8c0a040000000058110000100900000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800140,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7264,
+    3952
+   ],
+   "tile": [
+    227,
+    123
+   ],
+   "crudo": "4c8c0a0400000000601c0000700f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800141,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7327,
+    3888
+   ],
+   "tile": [
+    228,
+    121
+   ],
+   "crudo": "4d8c0a04000000009f1c0000300f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800142,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7951,
+    3952
+   ],
+   "tile": [
+    248,
+    123
+   ],
+   "crudo": "4e8c0a04000000000f1f0000700f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800143,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7870,
+    3920
+   ],
+   "tile": [
+    245,
+    122
+   ],
+   "crudo": "4f8c0a0400000000be1e0000500f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800144,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6688,
+    3696
+   ],
+   "tile": [
+    209,
+    115
+   ],
+   "crudo": "508c0a0400000000201a0000700e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800145,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6753,
+    3632
+   ],
+   "tile": [
+    211,
+    113
+   ],
+   "crudo": "518c0a0400000000611a0000300e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800146,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7392,
+    3696
+   ],
+   "tile": [
+    231,
+    115
+   ],
+   "crudo": "528c0a0400000000e01c0000700e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800147,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7297,
+    3664
+   ],
+   "tile": [
+    228,
+    114
+   ],
+   "crudo": "538c0a0400000000811c0000500e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800148,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6112,
+    3408
+   ],
+   "tile": [
+    191,
+    106
+   ],
+   "crudo": "548c0a0400000000e0170000500d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800149,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6207,
+    3376
+   ],
+   "tile": [
+    193,
+    105
+   ],
+   "crudo": "558c0a04000000003f180000300d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800150,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6814,
+    3440
+   ],
+   "tile": [
+    212,
+    107
+   ],
+   "crudo": "568c0a04000000009e1a0000700d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800151,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6736,
+    3408
+   ],
+   "tile": [
+    210,
+    106
+   ],
+   "crudo": "578c0a0400000000501a0000500d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800152,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5538,
+    3152
+   ],
+   "tile": [
+    173,
+    98
+   ],
+   "crudo": "588c0a0400000000a2150000500c00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800153,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5616,
+    3088
+   ],
+   "tile": [
+    175,
+    96
+   ],
+   "crudo": "598c0a0400000000f0150000100c00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800154,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6158,
+    3120
+   ],
+   "tile": [
+    192,
+    97
+   ],
+   "crudo": "5a8c0a04000000000e180000300c00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800155,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6240,
+    3152
+   ],
+   "tile": [
+    195,
+    98
+   ],
+   "crudo": "5b8c0a040000000060180000500c00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800156,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4974,
+    2896
+   ],
+   "tile": [
+    155,
+    90
+   ],
+   "crudo": "5c8c0a04000000006e130000500b00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800157,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5055,
+    2864
+   ],
+   "tile": [
+    157,
+    89
+   ],
+   "crudo": "5d8c0a0400000000bf130000300b00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800158,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5679,
+    2896
+   ],
+   "tile": [
+    177,
+    90
+   ],
+   "crudo": "5e8c0a04000000002f160000500b00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800159,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5600,
+    2864
+   ],
+   "tile": [
+    175,
+    89
+   ],
+   "crudo": "5f8c0a0400000000e0150000300b00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800160,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4399,
+    2608
+   ],
+   "tile": [
+    137,
+    81
+   ],
+   "crudo": "608c0a04000000002f110000300a00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800161,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4465,
+    2576
+   ],
+   "tile": [
+    139,
+    80
+   ],
+   "crudo": "618c0a040000000071110000100a00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800162,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5089,
+    2640
+   ],
+   "tile": [
+    159,
+    82
+   ],
+   "crudo": "628c0a0400000000e1130000500a00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800163,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5023,
+    2576
+   ],
+   "tile": [
+    156,
+    80
+   ],
+   "crudo": "638c0a04000000009f130000100a00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800164,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3921,
+    2640
+   ],
+   "tile": [
+    122,
+    82
+   ],
+   "crudo": "648c0a0400000000510f0000500a00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800165,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3841,
+    2576
+   ],
+   "tile": [
+    120,
+    80
+   ],
+   "crudo": "658c0a0400000000010f0000100a00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800166,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7854,
+    3696
+   ],
+   "tile": [
+    245,
+    115
+   ],
+   "crudo": "668c0a0400000000ae1e0000700e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800167,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7920,
+    3632
+   ],
+   "tile": [
+    247,
+    113
+   ],
+   "crudo": "678c0a0400000000f01e0000300e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800168,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    8527,
+    3696
+   ],
+   "tile": [
+    266,
+    115
+   ],
+   "crudo": "688c0a04000000004f210000700e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800169,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    8447,
+    3664
+   ],
+   "tile": [
+    263,
+    114
+   ],
+   "crudo": "698c0a0400000000ff200000500e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800170,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7279,
+    3440
+   ],
+   "tile": [
+    227,
+    107
+   ],
+   "crudo": "6a8c0a04000000006f1c0000700d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800171,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7359,
+    3376
+   ],
+   "tile": [
+    229,
+    105
+   ],
+   "crudo": "6b8c0a0400000000bf1c0000300d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800172,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7951,
+    3440
+   ],
+   "tile": [
+    248,
+    107
+   ],
+   "crudo": "6c8c0a04000000000f1f0000700d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800173,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7886,
+    3408
+   ],
+   "tile": [
+    246,
+    106
+   ],
+   "crudo": "6d8c0a0400000000ce1e0000500d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800174,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6704,
+    3152
+   ],
+   "tile": [
+    209,
+    98
+   ],
+   "crudo": "6e8c0a0400000000301a0000500c00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800175,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6783,
+    3120
+   ],
+   "tile": [
+    211,
+    97
+   ],
+   "crudo": "6f8c0a04000000007f1a0000300c00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800176,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7311,
+    3152
+   ],
+   "tile": [
+    228,
+    98
+   ],
+   "crudo": "708c0a04000000008f1c0000500c00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800177,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7376,
+    3184
+   ],
+   "tile": [
+    230,
+    99
+   ],
+   "crudo": "718c0a0400000000d01c0000700c00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800178,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6127,
+    2896
+   ],
+   "tile": [
+    191,
+    90
+   ],
+   "crudo": "728c0a0400000000ef170000500b00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800179,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6208,
+    2864
+   ],
+   "tile": [
+    194,
+    89
+   ],
+   "crudo": "738c0a040000000040180000300b00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800180,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5554,
+    2640
+   ],
+   "tile": [
+    173,
+    82
+   ],
+   "crudo": "748c0a0400000000b2150000500a00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800181,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5635,
+    2608
+   ],
+   "tile": [
+    176,
+    81
+   ],
+   "crudo": "758c0a040000000003160000300a00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800182,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6255,
+    2640
+   ],
+   "tile": [
+    195,
+    82
+   ],
+   "crudo": "768c0a04000000006f180000500a00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800183,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6176,
+    2608
+   ],
+   "tile": [
+    193,
+    81
+   ],
+   "crudo": "778c0a040000000020180000300a00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800184,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5599,
+    2352
+   ],
+   "tile": [
+    174,
+    73
+   ],
+   "crudo": "788c0a0400000000df150000300900000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800185,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5665,
+    2384
+   ],
+   "tile": [
+    177,
+    74
+   ],
+   "crudo": "798c0a040000000021160000500900000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800186,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5021,
+    2064
+   ],
+   "tile": [
+    156,
+    64
+   ],
+   "crudo": "7a8c0a04000000009d130000100800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800187,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5102,
+    2096
+   ],
+   "tile": [
+    159,
+    65
+   ],
+   "crudo": "7b8c0a0400000000ee130000300800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800188,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    8431,
+    3472
+   ],
+   "tile": [
+    263,
+    108
+   ],
+   "crudo": "7c8c0a0400000000ef200000900d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800189,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    8495,
+    3440
+   ],
+   "tile": [
+    265,
+    107
+   ],
+   "crudo": "7d8c0a04000000002f210000700d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800190,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    9103,
+    3440
+   ],
+   "tile": [
+    284,
+    107
+   ],
+   "crudo": "7e8c0a04000000008f230000700d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800191,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    9038,
+    3408
+   ],
+   "tile": [
+    282,
+    106
+   ],
+   "crudo": "7f8c0a04000000004e230000500d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800192,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7854,
+    3152
+   ],
+   "tile": [
+    245,
+    98
+   ],
+   "crudo": "808c0a0400000000ae1e0000500c00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800193,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7930,
+    3120
+   ],
+   "tile": [
+    247,
+    97
+   ],
+   "crudo": "818c0a0400000000fa1e0000300c00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800194,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    8545,
+    3184
+   ],
+   "tile": [
+    267,
+    99
+   ],
+   "crudo": "828c0a040000000061210000700c00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800195,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    8464,
+    3152
+   ],
+   "tile": [
+    264,
+    98
+   ],
+   "crudo": "838c0a040000000010210000500c00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800196,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7296,
+    2896
+   ],
+   "tile": [
+    228,
+    90
+   ],
+   "crudo": "848c0a0400000000801c0000500b00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800197,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7377,
+    2864
+   ],
+   "tile": [
+    230,
+    89
+   ],
+   "crudo": "858c0a0400000000d11c0000300b00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800198,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7985,
+    2928
+   ],
+   "tile": [
+    249,
+    91
+   ],
+   "crudo": "868c0a0400000000311f0000700b00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800199,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7912,
+    2864
+   ],
+   "tile": [
+    247,
+    89
+   ],
+   "crudo": "878c0a0400000000e81e0000300b00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800200,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6721,
+    2640
+   ],
+   "tile": [
+    210,
+    82
+   ],
+   "crudo": "888c0a0400000000411a0000500a00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800201,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6788,
+    2608
+   ],
+   "tile": [
+    212,
+    81
+   ],
+   "crudo": "898c0a0400000000841a0000300a00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800202,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7423,
+    2640
+   ],
+   "tile": [
+    231,
+    82
+   ],
+   "crudo": "8a8c0a0400000000ff1c0000500a00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800203,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7342,
+    2608
+   ],
+   "tile": [
+    229,
+    81
+   ],
+   "crudo": "8b8c0a0400000000ae1c0000300a00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800204,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6143,
+    2384
+   ],
+   "tile": [
+    191,
+    74
+   ],
+   "crudo": "8c8c0a0400000000ff170000500900000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800205,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6216,
+    2320
+   ],
+   "tile": [
+    194,
+    72
+   ],
+   "crudo": "8d8c0a040000000048180000100900000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800206,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6833,
+    2384
+   ],
+   "tile": [
+    213,
+    74
+   ],
+   "crudo": "8e8c0a0400000000b11a0000500900000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800207,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6763,
+    2320
+   ],
+   "tile": [
+    211,
+    72
+   ],
+   "crudo": "8f8c0a04000000006b1a0000100900000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800208,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5551,
+    2096
+   ],
+   "tile": [
+    173,
+    65
+   ],
+   "crudo": "908c0a0400000000af150000300800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800209,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5629,
+    2064
+   ],
+   "tile": [
+    175,
+    64
+   ],
+   "crudo": "918c0a0400000000fd150000100800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800210,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6191,
+    2096
+   ],
+   "tile": [
+    193,
+    65
+   ],
+   "crudo": "928c0a04000000002f180000300800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800211,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6273,
+    2128
+   ],
+   "tile": [
+    196,
+    66
+   ],
+   "crudo": "938c0a040000000081180000500800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800212,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5694,
+    1840
+   ],
+   "tile": [
+    177,
+    57
+   ],
+   "crudo": "948c0a04000000003e160000300700000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800213,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5616,
+    1808
+   ],
+   "tile": [
+    175,
+    56
+   ],
+   "crudo": "958c0a0400000000f0150000100700000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800214,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    9007,
+    3184
+   ],
+   "tile": [
+    281,
+    99
+   ],
+   "crudo": "968c0a04000000002f230000700c00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800215,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    9072,
+    3120
+   ],
+   "tile": [
+    283,
+    97
+   ],
+   "crudo": "978c0a040000000070230000300c00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800216,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    8430,
+    2896
+   ],
+   "tile": [
+    263,
+    90
+   ],
+   "crudo": "988c0a0400000000ee200000500b00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800217,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    8512,
+    2864
+   ],
+   "tile": [
+    266,
+    89
+   ],
+   "crudo": "998c0a040000000040210000300b00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800218,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7886,
+    2640
+   ],
+   "tile": [
+    246,
+    82
+   ],
+   "crudo": "9a8c0a0400000000ce1e0000500a00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800219,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7968,
+    2608
+   ],
+   "tile": [
+    249,
+    81
+   ],
+   "crudo": "9b8c0a0400000000201f0000300a00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800220,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7311,
+    2384
+   ],
+   "tile": [
+    228,
+    74
+   ],
+   "crudo": "9c8c0a04000000008f1c0000500900000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800221,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7389,
+    2320
+   ],
+   "tile": [
+    230,
+    72
+   ],
+   "crudo": "9d8c0a0400000000dd1c0000100900000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800222,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6722,
+    2096
+   ],
+   "tile": [
+    210,
+    65
+   ],
+   "crudo": "9e8c0a0400000000421a0000300800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800223,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6799,
+    2064
+   ],
+   "tile": [
+    212,
+    64
+   ],
+   "crudo": "9f8c0a04000000008f1a0000100800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800224,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6161,
+    1840
+   ],
+   "tile": [
+    192,
+    57
+   ],
+   "crudo": "a08c0a040000000011180000300700000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800225,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6223,
+    1808
+   ],
+   "tile": [
+    194,
+    56
+   ],
+   "crudo": "a18c0a04000000004f180000100700000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800226,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5011,
+    1552
+   ],
+   "tile": [
+    156,
+    48
+   ],
+   "crudo": "a28c0a040000000093130000100600000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800227,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5070,
+    1584
+   ],
+   "tile": [
+    158,
+    49
+   ],
+   "crudo": "a38c0a0400000000ce130000300600000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800228,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5589,
+    1328
+   ],
+   "tile": [
+    174,
+    41
+   ],
+   "crudo": "a48c0a0400000000d5150000300500000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800229,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5652,
+    1328
+   ],
+   "tile": [
+    176,
+    41
+   ],
+   "crudo": "a58c0a040000000014160000300500000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800230,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6181,
+    1328
+   ],
+   "tile": [
+    193,
+    41
+   ],
+   "crudo": "a68c0a040000000025180000300500000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800231,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6233,
+    1296
+   ],
+   "tile": [
+    194,
+    40
+   ],
+   "crudo": "a78c0a040000000059180000100500000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800232,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6763,
+    1584
+   ],
+   "tile": [
+    211,
+    49
+   ],
+   "crudo": "a88c0a04000000006b1a0000300600000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800233,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6826,
+    1552
+   ],
+   "tile": [
+    213,
+    48
+   ],
+   "crudo": "a98c0a0400000000aa1a0000100600000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800234,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7339,
+    1872
+   ],
+   "tile": [
+    229,
+    58
+   ],
+   "crudo": "aa8c0a0400000000ab1c0000500700000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800235,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7408,
+    1840
+   ],
+   "tile": [
+    231,
+    57
+   ],
+   "crudo": "ab8c0a0400000000f01c0000300700000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800236,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7954,
+    2096
+   ],
+   "tile": [
+    248,
+    65
+   ],
+   "crudo": "ac8c0a0400000000121f0000300800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800237,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7904,
+    2128
+   ],
+   "tile": [
+    247,
+    66
+   ],
+   "crudo": "ad8c0a0400000000e01e0000500800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800238,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    8489,
+    2384
+   ],
+   "tile": [
+    265,
+    74
+   ],
+   "crudo": "ae8c0a040000000029210000500900000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800239,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    8546,
+    2352
+   ],
+   "tile": [
+    267,
+    73
+   ],
+   "crudo": "af8c0a040000000062210000300900000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800240,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    9129,
+    2672
+   ],
+   "tile": [
+    285,
+    83
+   ],
+   "crudo": "b08c0a0400000000a9230000700a00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800241,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    9649,
+    2960
+   ],
+   "tile": [
+    301,
+    92
+   ],
+   "crudo": "b18c0a0400000000b1250000900b00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800242,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    9710,
+    2928
+   ],
+   "tile": [
+    303,
+    91
+   ],
+   "crudo": "b28c0a0400000000ee250000700b00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800243,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10190,
+    3184
+   ],
+   "tile": [
+    318,
+    99
+   ],
+   "crudo": "b38c0a0400000000ce270000700c00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800244,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10248,
+    3152
+   ],
+   "tile": [
+    320,
+    98
+   ],
+   "crudo": "b48c0a040000000008280000500c00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800245,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10135,
+    3472
+   ],
+   "tile": [
+    316,
+    108
+   ],
+   "crudo": "b58c0a040000000097270000900d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800246,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    9677,
+    3728
+   ],
+   "tile": [
+    302,
+    116
+   ],
+   "crudo": "b68c0a0400000000cd250000900e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800247,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    9620,
+    3664
+   ],
+   "tile": [
+    300,
+    114
+   ],
+   "crudo": "b78c0a040000000094250000500e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800248,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    9079,
+    3952
+   ],
+   "tile": [
+    283,
+    123
+   ],
+   "crudo": "b88c0a040000000077230000700f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800249,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    9031,
+    3920
+   ],
+   "tile": [
+    282,
+    122
+   ],
+   "crudo": "b98c0a040000000047230000500f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800250,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    8489,
+    4208
+   ],
+   "tile": [
+    265,
+    131
+   ],
+   "crudo": "ba8c0a040000000029210000701000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800251,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    8428,
+    4208
+   ],
+   "tile": [
+    263,
+    131
+   ],
+   "crudo": "bb8c0a0400000000ec200000701000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800252,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7826,
+    4496
+   ],
+   "tile": [
+    244,
+    140
+   ],
+   "crudo": "bc8c0a0400000000921e0000901100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800253,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7787,
+    4464
+   ],
+   "tile": [
+    243,
+    139
+   ],
+   "crudo": "bd8c0a04000000006b1e0000701100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800254,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7279,
+    4848
+   ],
+   "tile": [
+    227,
+    151
+   ],
+   "crudo": "be8c0a04000000006f1c0000f01200000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800255,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7225,
+    4816
+   ],
+   "tile": [
+    225,
+    150
+   ],
+   "crudo": "bf8c0a0400000000391c0000d01200000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800256,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6716,
+    5008
+   ],
+   "tile": [
+    209,
+    156
+   ],
+   "crudo": "c08c0a04000000003c1a0000901300000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800257,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6663,
+    4944
+   ],
+   "tile": [
+    208,
+    154
+   ],
+   "crudo": "c18c0a0400000000071a0000501300000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800258,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6132,
+    5328
+   ],
+   "tile": [
+    191,
+    166
+   ],
+   "crudo": "c28c0a0400000000f4170000d01400000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800259,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6067,
+    5328
+   ],
+   "tile": [
+    189,
+    166
+   ],
+   "crudo": "c38c0a0400000000b3170000d01400000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800260,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5561,
+    5328
+   ],
+   "tile": [
+    173,
+    166
+   ],
+   "crudo": "c48c0a0400000000b9150000d01400000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800261,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5483,
+    5328
+   ],
+   "tile": [
+    171,
+    166
+   ],
+   "crudo": "c58c0a04000000006b150000d01400000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800262,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5538,
+    5360
+   ],
+   "tile": [
+    173,
+    167
+   ],
+   "crudo": "c68c0a0400000000a2150000f01400000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800263,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5002,
+    5040
+   ],
+   "tile": [
+    156,
+    157
+   ],
+   "crudo": "c78c0a04000000008a130000b01300000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800264,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4940,
+    5072
+   ],
+   "tile": [
+    154,
+    158
+   ],
+   "crudo": "c88c0a04000000004c130000d01300000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800265,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4434,
+    4752
+   ],
+   "tile": [
+    138,
+    148
+   ],
+   "crudo": "c98c0a040000000052110000901200000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800266,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4370,
+    4784
+   ],
+   "tile": [
+    136,
+    149
+   ],
+   "crudo": "ca8c0a040000000012110000b01200000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800267,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3817,
+    4496
+   ],
+   "tile": [
+    119,
+    140
+   ],
+   "crudo": "cb8c0a0400000000e90e0000901100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800268,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3869,
+    4432
+   ],
+   "tile": [
+    120,
+    138
+   ],
+   "crudo": "cc8c0a04000000001d0f0000501100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800269,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3309,
+    4208
+   ],
+   "tile": [
+    103,
+    131
+   ],
+   "crudo": "cd8c0a0400000000ed0c0000701000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800270,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    3250,
+    4240
+   ],
+   "tile": [
+    101,
+    132
+   ],
+   "crudo": "ce8c0a0400000000b20c0000901000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800271,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2670,
+    3952
+   ],
+   "tile": [
+    83,
+    123
+   ],
+   "crudo": "cf8c0a04000000006e0a0000700f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800272,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2754,
+    3920
+   ],
+   "tile": [
+    86,
+    122
+   ],
+   "crudo": "d08c0a0400000000c20a0000500f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800273,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2101,
+    3696
+   ],
+   "tile": [
+    65,
+    115
+   ],
+   "crudo": "d18c0a040000000035080000700e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800274,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2150,
+    3664
+   ],
+   "tile": [
+    67,
+    114
+   ],
+   "crudo": "d28c0a040000000066080000500e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800275,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1517,
+    3440
+   ],
+   "tile": [
+    47,
+    107
+   ],
+   "crudo": "d38c0a0400000000ed050000700d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800276,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1590,
+    3376
+   ],
+   "tile": [
+    49,
+    105
+   ],
+   "crudo": "d48c0a040000000036060000300d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67800277,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1579,
+    3472
+   ],
+   "tile": [
+    49,
+    108
+   ],
+   "crudo": "d58c0a04000000002b060000900d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  }
+ ]
+}

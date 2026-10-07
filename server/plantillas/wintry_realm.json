@@ -1,0 +1,2243 @@
+{
+ "_nota": "wintry_realm (stage 387). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map387.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "stage": 387,
+ "spawns": [
+  {
+   "entity_id": 88700000,
+   "nombre": "Mighty Leon",
+   "npc_type": 23353,
+   "sprite": 111143,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 88700001,
+   "nombre": "Ice Giant Hydea",
+   "npc_type": 23354,
+   "sprite": 111144,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    39,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 88700002,
+   "nombre": "Seasonia",
+   "npc_type": 23355,
+   "sprite": 111148,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 88700003,
+   "nombre": "Cute Penguin",
+   "npc_type": 23341,
+   "sprite": 111183,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 405
+  },
+  {
+   "entity_id": 88700004,
+   "nombre": "Cute Penguin",
+   "npc_type": 23341,
+   "sprite": 111183,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    226,
+    51
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 405
+  },
+  {
+   "entity_id": 88700005,
+   "nombre": "Cute Penguin",
+   "npc_type": 23341,
+   "sprite": 111183,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    233,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 405
+  },
+  {
+   "entity_id": 88700006,
+   "nombre": "Cute Penguin",
+   "npc_type": 23341,
+   "sprite": 111183,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    215,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 405
+  },
+  {
+   "entity_id": 88700007,
+   "nombre": "Cute Penguin",
+   "npc_type": 23341,
+   "sprite": 111183,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 405
+  },
+  {
+   "entity_id": 88700008,
+   "nombre": "Cute Penguin",
+   "npc_type": 23341,
+   "sprite": 111183,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    228,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 405
+  },
+  {
+   "entity_id": 88700009,
+   "nombre": "Cute Penguin",
+   "npc_type": 23341,
+   "sprite": 111183,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    215,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 405
+  },
+  {
+   "entity_id": 88700010,
+   "nombre": "Cute Penguin",
+   "npc_type": 23341,
+   "sprite": 111183,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    225,
+    46
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 405
+  },
+  {
+   "entity_id": 88700011,
+   "nombre": "Cute Penguin",
+   "npc_type": 23341,
+   "sprite": 111183,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    231,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 405
+  },
+  {
+   "entity_id": 88700012,
+   "nombre": "Cute Penguin",
+   "npc_type": 23341,
+   "sprite": 111183,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    215,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 405
+  },
+  {
+   "entity_id": 88700013,
+   "nombre": "Cute Penguin",
+   "npc_type": 23341,
+   "sprite": 111183,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    230,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 405
+  },
+  {
+   "entity_id": 88700014,
+   "nombre": "Cute Penguin",
+   "npc_type": 23341,
+   "sprite": 111183,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    233,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 405
+  },
+  {
+   "entity_id": 88700015,
+   "nombre": "Cute Penguin",
+   "npc_type": 23341,
+   "sprite": 111183,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 405
+  },
+  {
+   "entity_id": 88700016,
+   "nombre": "Cute Penguin",
+   "npc_type": 23341,
+   "sprite": 111183,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    218,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 405
+  },
+  {
+   "entity_id": 88700017,
+   "nombre": "Cute Penguin",
+   "npc_type": 23341,
+   "sprite": 111183,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    236,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 405
+  },
+  {
+   "entity_id": 88700018,
+   "nombre": "Ice Sentry",
+   "npc_type": 23342,
+   "sprite": 111185,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    225,
+    41
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 406
+  },
+  {
+   "entity_id": 88700019,
+   "nombre": "Ice Sentry",
+   "npc_type": 23342,
+   "sprite": 111185,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    223,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 406
+  },
+  {
+   "entity_id": 88700020,
+   "nombre": "Ice Sentry",
+   "npc_type": 23342,
+   "sprite": 111185,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    238,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 406
+  },
+  {
+   "entity_id": 88700021,
+   "nombre": "Ice Sentry",
+   "npc_type": 23342,
+   "sprite": 111185,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 406
+  },
+  {
+   "entity_id": 88700022,
+   "nombre": "Ice Sentry",
+   "npc_type": 23342,
+   "sprite": 111185,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    235,
+    42
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 406
+  },
+  {
+   "entity_id": 88700023,
+   "nombre": "Ice Sentry",
+   "npc_type": 23342,
+   "sprite": 111185,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    238,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 406
+  },
+  {
+   "entity_id": 88700024,
+   "nombre": "Ice Sentry",
+   "npc_type": 23342,
+   "sprite": 111185,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 406
+  },
+  {
+   "entity_id": 88700025,
+   "nombre": "Ice Sentry",
+   "npc_type": 23342,
+   "sprite": 111185,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    228,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 406
+  },
+  {
+   "entity_id": 88700026,
+   "nombre": "Ice Sentry",
+   "npc_type": 23342,
+   "sprite": 111185,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    241,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 406
+  },
+  {
+   "entity_id": 88700027,
+   "nombre": "Ice Sentry",
+   "npc_type": 23342,
+   "sprite": 111185,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 406
+  },
+  {
+   "entity_id": 88700028,
+   "nombre": "Ice Sentry",
+   "npc_type": 23342,
+   "sprite": 111185,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    230,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 406
+  },
+  {
+   "entity_id": 88700029,
+   "nombre": "Ice Sentry",
+   "npc_type": 23342,
+   "sprite": 111185,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    223,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 406
+  },
+  {
+   "entity_id": 88700030,
+   "nombre": "Ice Sentry",
+   "npc_type": 23342,
+   "sprite": 111185,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 406
+  },
+  {
+   "entity_id": 88700031,
+   "nombre": "Ice Sentry",
+   "npc_type": 23342,
+   "sprite": 111185,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    215,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 406
+  },
+  {
+   "entity_id": 88700032,
+   "nombre": "Ice Sentry",
+   "npc_type": 23342,
+   "sprite": 111185,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    233,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 406
+  },
+  {
+   "entity_id": 88700033,
+   "nombre": "Winter Tree Demon ",
+   "npc_type": 23343,
+   "sprite": 111202,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 407
+  },
+  {
+   "entity_id": 88700034,
+   "nombre": "Winter Tree Demon ",
+   "npc_type": 23343,
+   "sprite": 111202,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 407
+  },
+  {
+   "entity_id": 88700035,
+   "nombre": "Winter Tree Demon ",
+   "npc_type": 23343,
+   "sprite": 111202,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    238,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 407
+  },
+  {
+   "entity_id": 88700036,
+   "nombre": "Winter Tree Demon ",
+   "npc_type": 23343,
+   "sprite": 111202,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    225,
+    36
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 407
+  },
+  {
+   "entity_id": 88700037,
+   "nombre": "Winter Tree Demon ",
+   "npc_type": 23343,
+   "sprite": 111202,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    213,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 407
+  },
+  {
+   "entity_id": 88700038,
+   "nombre": "Winter Tree Demon ",
+   "npc_type": 23343,
+   "sprite": 111202,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 407
+  },
+  {
+   "entity_id": 88700039,
+   "nombre": "Winter Tree Demon ",
+   "npc_type": 23343,
+   "sprite": 111202,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    230,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 407
+  },
+  {
+   "entity_id": 88700040,
+   "nombre": "Winter Tree Demon ",
+   "npc_type": 23343,
+   "sprite": 111202,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    218,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 407
+  },
+  {
+   "entity_id": 88700041,
+   "nombre": "Winter Tree Demon ",
+   "npc_type": 23343,
+   "sprite": 111202,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 407
+  },
+  {
+   "entity_id": 88700042,
+   "nombre": "Winter Tree Demon ",
+   "npc_type": 23343,
+   "sprite": 111202,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 407
+  },
+  {
+   "entity_id": 88700043,
+   "nombre": "Winter Tree Demon ",
+   "npc_type": 23343,
+   "sprite": 111202,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    235,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 407
+  },
+  {
+   "entity_id": 88700044,
+   "nombre": "Winter Tree Demon ",
+   "npc_type": 23343,
+   "sprite": 111202,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    62
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 407
+  },
+  {
+   "entity_id": 88700045,
+   "nombre": "Winter Tree Demon ",
+   "npc_type": 23343,
+   "sprite": 111202,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 407
+  },
+  {
+   "entity_id": 88700046,
+   "nombre": "Winter Tree Demon ",
+   "npc_type": 23343,
+   "sprite": 111202,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    240,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 407
+  },
+  {
+   "entity_id": 88700047,
+   "nombre": "Winter Tree Demon ",
+   "npc_type": 23343,
+   "sprite": 111202,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    228,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 407
+  },
+  {
+   "entity_id": 88700048,
+   "nombre": "Racer Penguin",
+   "npc_type": 23344,
+   "sprite": 111222,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    134,
+    62
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 408
+  },
+  {
+   "entity_id": 88700049,
+   "nombre": "Racer Penguin",
+   "npc_type": 23344,
+   "sprite": 111222,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 408
+  },
+  {
+   "entity_id": 88700050,
+   "nombre": "Racer Penguin",
+   "npc_type": 23344,
+   "sprite": 111222,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    131,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 408
+  },
+  {
+   "entity_id": 88700051,
+   "nombre": "Racer Penguin",
+   "npc_type": 23344,
+   "sprite": 111222,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    124,
+    41
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 408
+  },
+  {
+   "entity_id": 88700052,
+   "nombre": "Racer Penguin",
+   "npc_type": 23344,
+   "sprite": 111222,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    129,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 408
+  },
+  {
+   "entity_id": 88700053,
+   "nombre": "Racer Penguin",
+   "npc_type": 23344,
+   "sprite": 111222,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    127,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 408
+  },
+  {
+   "entity_id": 88700054,
+   "nombre": "Racer Penguin",
+   "npc_type": 23344,
+   "sprite": 111222,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    126,
+    46
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 408
+  },
+  {
+   "entity_id": 88700055,
+   "nombre": "Racer Penguin",
+   "npc_type": 23344,
+   "sprite": 111222,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    119,
+    36
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 408
+  },
+  {
+   "entity_id": 88700056,
+   "nombre": "Racer Penguin",
+   "npc_type": 23344,
+   "sprite": 111222,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    129,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 408
+  },
+  {
+   "entity_id": 88700057,
+   "nombre": "Racer Penguin",
+   "npc_type": 23344,
+   "sprite": 111222,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    136,
+    51
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 408
+  },
+  {
+   "entity_id": 88700058,
+   "nombre": "Racer Penguin",
+   "npc_type": 23344,
+   "sprite": 111222,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    131,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 408
+  },
+  {
+   "entity_id": 88700059,
+   "nombre": "Racer Penguin",
+   "npc_type": 23344,
+   "sprite": 111222,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    119,
+    41
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 408
+  },
+  {
+   "entity_id": 88700060,
+   "nombre": "Racer Penguin",
+   "npc_type": 23344,
+   "sprite": 111222,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    134,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 408
+  },
+  {
+   "entity_id": 88700061,
+   "nombre": "Racer Penguin",
+   "npc_type": 23344,
+   "sprite": 111222,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 408
+  },
+  {
+   "entity_id": 88700062,
+   "nombre": "Racer Penguin",
+   "npc_type": 23344,
+   "sprite": 111222,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    136,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 408
+  },
+  {
+   "entity_id": 88700063,
+   "nombre": "Racer Penguin",
+   "npc_type": 23344,
+   "sprite": 111222,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    119,
+    46
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 408
+  },
+  {
+   "entity_id": 88700064,
+   "nombre": "Racer Penguin",
+   "npc_type": 23344,
+   "sprite": 111222,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    139,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 408
+  },
+  {
+   "entity_id": 88700065,
+   "nombre": "Racer Penguin",
+   "npc_type": 23344,
+   "sprite": 111222,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    124,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 408
+  },
+  {
+   "entity_id": 88700066,
+   "nombre": "Racer Penguin",
+   "npc_type": 23344,
+   "sprite": 111222,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    122,
+    51
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 408
+  },
+  {
+   "entity_id": 88700067,
+   "nombre": "Racer Penguin",
+   "npc_type": 23344,
+   "sprite": 111222,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    124,
+    36
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 408
+  },
+  {
+   "entity_id": 88700068,
+   "nombre": "Racer Penguin",
+   "npc_type": 23344,
+   "sprite": 111222,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    139,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 408
+  },
+  {
+   "entity_id": 88700069,
+   "nombre": "Racer Penguin",
+   "npc_type": 23344,
+   "sprite": 111222,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    123,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 408
+  },
+  {
+   "entity_id": 88700070,
+   "nombre": "Racer Penguin",
+   "npc_type": 23344,
+   "sprite": 111222,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    129,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 408
+  },
+  {
+   "entity_id": 88700071,
+   "nombre": "Racer Penguin",
+   "npc_type": 23344,
+   "sprite": 111222,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    129,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 408
+  },
+  {
+   "entity_id": 88700072,
+   "nombre": "Racer Penguin",
+   "npc_type": 23344,
+   "sprite": 111222,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    142,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 408
+  },
+  {
+   "entity_id": 88700073,
+   "nombre": "Floating Snow Girl",
+   "npc_type": 23345,
+   "sprite": 111224,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    125,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 411
+  },
+  {
+   "entity_id": 88700074,
+   "nombre": "Floating Snow Girl",
+   "npc_type": 23345,
+   "sprite": 111224,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    141,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 411
+  },
+  {
+   "entity_id": 88700075,
+   "nombre": "Floating Snow Girl",
+   "npc_type": 23345,
+   "sprite": 111224,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    134,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 411
+  },
+  {
+   "entity_id": 88700076,
+   "nombre": "Floating Snow Girl",
+   "npc_type": 23345,
+   "sprite": 111224,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    114,
+    31
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 411
+  },
+  {
+   "entity_id": 88700077,
+   "nombre": "Floating Snow Girl",
+   "npc_type": 23345,
+   "sprite": 111224,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    139,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 411
+  },
+  {
+   "entity_id": 88700078,
+   "nombre": "Floating Snow Girl",
+   "npc_type": 23345,
+   "sprite": 111224,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    144,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 411
+  },
+  {
+   "entity_id": 88700079,
+   "nombre": "Floating Snow Girl",
+   "npc_type": 23345,
+   "sprite": 111224,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    139,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 411
+  },
+  {
+   "entity_id": 88700080,
+   "nombre": "Floating Snow Girl",
+   "npc_type": 23345,
+   "sprite": 111224,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    114,
+    36
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 411
+  },
+  {
+   "entity_id": 88700081,
+   "nombre": "Floating Snow Girl",
+   "npc_type": 23345,
+   "sprite": 111224,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    130,
+    72
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 411
+  },
+  {
+   "entity_id": 88700082,
+   "nombre": "Floating Snow Girl",
+   "npc_type": 23345,
+   "sprite": 111224,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    144,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 411
+  },
+  {
+   "entity_id": 88700083,
+   "nombre": "Floating Snow Girl",
+   "npc_type": 23345,
+   "sprite": 111224,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    119,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 411
+  },
+  {
+   "entity_id": 88700084,
+   "nombre": "Floating Snow Girl",
+   "npc_type": 23345,
+   "sprite": 111224,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    114,
+    41
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 411
+  },
+  {
+   "entity_id": 88700085,
+   "nombre": "Floating Snow Girl",
+   "npc_type": 23345,
+   "sprite": 111224,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    144,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 411
+  },
+  {
+   "entity_id": 88700086,
+   "nombre": "Floating Snow Girl",
+   "npc_type": 23345,
+   "sprite": 111224,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    118,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 411
+  },
+  {
+   "entity_id": 88700087,
+   "nombre": "Floating Snow Girl",
+   "npc_type": 23345,
+   "sprite": 111224,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    144,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 411
+  },
+  {
+   "entity_id": 88700088,
+   "nombre": "Floating Snow Girl",
+   "npc_type": 23345,
+   "sprite": 111224,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    114,
+    46
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 411
+  },
+  {
+   "entity_id": 88700089,
+   "nombre": "Floating Snow Girl",
+   "npc_type": 23345,
+   "sprite": 111224,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    144,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 411
+  },
+  {
+   "entity_id": 88700090,
+   "nombre": "Floating Snow Girl",
+   "npc_type": 23345,
+   "sprite": 111224,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    118,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 411
+  },
+  {
+   "entity_id": 88700091,
+   "nombre": "Floating Snow Girl",
+   "npc_type": 23345,
+   "sprite": 111224,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    144,
+    42
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 411
+  },
+  {
+   "entity_id": 88700092,
+   "nombre": "Floating Snow Girl",
+   "npc_type": 23345,
+   "sprite": 111224,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    114,
+    51
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 411
+  },
+  {
+   "entity_id": 88700093,
+   "nombre": "Floating Snow Girl",
+   "npc_type": 23345,
+   "sprite": 111224,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    146,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 411
+  },
+  {
+   "entity_id": 88700094,
+   "nombre": "Floating Snow Girl",
+   "npc_type": 23345,
+   "sprite": 111224,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    117,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 411
+  },
+  {
+   "entity_id": 88700095,
+   "nombre": "Floating Snow Girl",
+   "npc_type": 23345,
+   "sprite": 111224,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    134,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 411
+  },
+  {
+   "entity_id": 88700096,
+   "nombre": "Floating Snow Girl",
+   "npc_type": 23345,
+   "sprite": 111224,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    119,
+    31
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 411
+  },
+  {
+   "entity_id": 88700097,
+   "nombre": "Floating Snow Girl",
+   "npc_type": 23345,
+   "sprite": 111224,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    147,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 411
+  },
+  {
+   "entity_id": 88700098,
+   "nombre": "Yeti",
+   "npc_type": 23346,
+   "sprite": 43421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    120,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 412
+  },
+  {
+   "entity_id": 88700099,
+   "nombre": "Yeti",
+   "npc_type": 23346,
+   "sprite": 43421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    149,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 412
+  },
+  {
+   "entity_id": 88700100,
+   "nombre": "Yeti",
+   "npc_type": 23346,
+   "sprite": 43421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    139,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 412
+  },
+  {
+   "entity_id": 88700101,
+   "nombre": "Yeti",
+   "npc_type": 23346,
+   "sprite": 43421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    124,
+    31
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 412
+  },
+  {
+   "entity_id": 88700102,
+   "nombre": "Yeti",
+   "npc_type": 23346,
+   "sprite": 43421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    125,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 412
+  },
+  {
+   "entity_id": 88700103,
+   "nombre": "Yeti",
+   "npc_type": 23346,
+   "sprite": 43421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    149,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 412
+  },
+  {
+   "entity_id": 88700104,
+   "nombre": "Yeti",
+   "npc_type": 23346,
+   "sprite": 43421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    114,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 412
+  },
+  {
+   "entity_id": 88700105,
+   "nombre": "Yeti",
+   "npc_type": 23346,
+   "sprite": 43421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    129,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 412
+  },
+  {
+   "entity_id": 88700106,
+   "nombre": "Yeti",
+   "npc_type": 23346,
+   "sprite": 43421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    135,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 412
+  },
+  {
+   "entity_id": 88700107,
+   "nombre": "Yeti",
+   "npc_type": 23346,
+   "sprite": 43421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    149,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 412
+  },
+  {
+   "entity_id": 88700108,
+   "nombre": "Yeti",
+   "npc_type": 23346,
+   "sprite": 43421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    113,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 412
+  },
+  {
+   "entity_id": 88700109,
+   "nombre": "Yeti",
+   "npc_type": 23346,
+   "sprite": 43421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    134,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 412
+  },
+  {
+   "entity_id": 88700110,
+   "nombre": "Yeti",
+   "npc_type": 23346,
+   "sprite": 43421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    130,
+    77
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 412
+  },
+  {
+   "entity_id": 88700111,
+   "nombre": "Yeti",
+   "npc_type": 23346,
+   "sprite": 43421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    149,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 412
+  },
+  {
+   "entity_id": 88700112,
+   "nombre": "Yeti",
+   "npc_type": 23346,
+   "sprite": 43421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    113,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 412
+  },
+  {
+   "entity_id": 88700113,
+   "nombre": "Yeti",
+   "npc_type": 23346,
+   "sprite": 43421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    109,
+    26
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 412
+  },
+  {
+   "entity_id": 88700114,
+   "nombre": "Yeti",
+   "npc_type": 23346,
+   "sprite": 43421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    149,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 412
+  },
+  {
+   "entity_id": 88700115,
+   "nombre": "Yeti",
+   "npc_type": 23346,
+   "sprite": 43421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    149,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 412
+  },
+  {
+   "entity_id": 88700116,
+   "nombre": "Yeti",
+   "npc_type": 23346,
+   "sprite": 43421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    144,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 412
+  },
+  {
+   "entity_id": 88700117,
+   "nombre": "Yeti",
+   "npc_type": 23346,
+   "sprite": 43421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    109,
+    31
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 412
+  },
+  {
+   "entity_id": 88700118,
+   "nombre": "Yeti",
+   "npc_type": 23346,
+   "sprite": 43421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    140,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 412
+  },
+  {
+   "entity_id": 88700119,
+   "nombre": "Yeti",
+   "npc_type": 23346,
+   "sprite": 43421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    151,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 412
+  },
+  {
+   "entity_id": 88700120,
+   "nombre": "Yeti",
+   "npc_type": 23346,
+   "sprite": 43421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    149,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 412
+  },
+  {
+   "entity_id": 88700121,
+   "nombre": "Yeti",
+   "npc_type": 23346,
+   "sprite": 43421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    109,
+    36
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 412
+  },
+  {
+   "entity_id": 88700122,
+   "nombre": "Yeti",
+   "npc_type": 23346,
+   "sprite": 43421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    145,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 412
+  },
+  {
+   "entity_id": 88700123,
+   "nombre": "Snow Wraith Loft",
+   "npc_type": 23350,
+   "sprite": 111191,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    270,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 418
+  },
+  {
+   "entity_id": 88700124,
+   "nombre": "Ice Sprite Fritz",
+   "npc_type": 23351,
+   "sprite": 111187,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    150,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 418
+  },
+  {
+   "entity_id": 88700125,
+   "nombre": "E-Winter Tree Demon",
+   "npc_type": 23347,
+   "sprite": 111202,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 414
+  },
+  {
+   "entity_id": 88700126,
+   "nombre": "E-Winter Tree Demon",
+   "npc_type": 23347,
+   "sprite": 111202,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    131,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 414
+  },
+  {
+   "entity_id": 88700127,
+   "nombre": "E-Winter Tree Demon",
+   "npc_type": 23347,
+   "sprite": 111202,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    129,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 414
+  },
+  {
+   "entity_id": 88700128,
+   "nombre": "E-Winter Tree Demon",
+   "npc_type": 23347,
+   "sprite": 111202,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    123,
+    119
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 414
+  },
+  {
+   "entity_id": 88700129,
+   "nombre": "E-Winter Tree Demon",
+   "npc_type": 23347,
+   "sprite": 111202,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    127,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 414
+  },
+  {
+   "entity_id": 88700130,
+   "nombre": "E-Racer Penguin",
+   "npc_type": 23348,
+   "sprite": 111222,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    127,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 415
+  },
+  {
+   "entity_id": 88700131,
+   "nombre": "E-Racer Penguin",
+   "npc_type": 23348,
+   "sprite": 111222,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    126,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 415
+  },
+  {
+   "entity_id": 88700132,
+   "nombre": "E-Racer Penguin",
+   "npc_type": 23348,
+   "sprite": 111222,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    124,
+    113
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 415
+  },
+  {
+   "entity_id": 88700133,
+   "nombre": "E-Racer Penguin",
+   "npc_type": 23348,
+   "sprite": 111222,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    118,
+    114
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 415
+  },
+  {
+   "entity_id": 88700134,
+   "nombre": "E-Racer Penguin",
+   "npc_type": 23348,
+   "sprite": 111222,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 415
+  },
+  {
+   "entity_id": 88700135,
+   "nombre": "E-Floating Snow Girl",
+   "npc_type": 23349,
+   "sprite": 111224,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    136,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 416
+  },
+  {
+   "entity_id": 88700136,
+   "nombre": "E-Floating Snow Girl",
+   "npc_type": 23349,
+   "sprite": 111224,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    134,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 416
+  },
+  {
+   "entity_id": 88700137,
+   "nombre": "E-Floating Snow Girl",
+   "npc_type": 23349,
+   "sprite": 111224,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 416
+  },
+  {
+   "entity_id": 88700138,
+   "nombre": "E-Floating Snow Girl",
+   "npc_type": 23349,
+   "sprite": 111224,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    118,
+    119
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 416
+  },
+  {
+   "entity_id": 88700139,
+   "nombre": "E-Floating Snow Girl",
+   "npc_type": 23349,
+   "sprite": 111224,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 416
+  },
+  {
+   "entity_id": 88700140,
+   "nombre": "Colossus Fauros",
+   "npc_type": 23352,
+   "sprite": 111218,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 418
+  }
+ ],
+ "recursos": [
+  {
+   "entity_id": 98700000,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    8128,
+    4432
+   ],
+   "tile": [
+    254,
+    138
+   ],
+   "crudo": "e00ae20500000000c01f0000501100000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 98700001,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    8327,
+    4336
+   ],
+   "tile": [
+    260,
+    135
+   ],
+   "crudo": "e10ae2050000000087200000f01000000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 98700002,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    7208,
+    4528
+   ],
+   "tile": [
+    225,
+    141
+   ],
+   "crudo": "e20ae20502000000281c0000b01100000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 98700003,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    6981,
+    4432
+   ],
+   "tile": [
+    218,
+    138
+   ],
+   "crudo": "e30ae20502000000451b0000501100000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 98700004,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    1992,
+    1232
+   ],
+   "tile": [
+    62,
+    38
+   ],
+   "crudo": "e40ae20502000000c8070000d00400000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 98700005,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    1789,
+    1136
+   ],
+   "tile": [
+    55,
+    35
+   ],
+   "crudo": "e50ae20502000000fd060000700400000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 98700006,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    1183,
+    4144
+   ],
+   "tile": [
+    36,
+    129
+   ],
+   "crudo": "e60ae205000000009f040000301000000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 98700007,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    1395,
+    4016
+   ],
+   "tile": [
+    43,
+    125
+   ],
+   "crudo": "e70ae2050000000073050000b00f00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  }
+ ]
+}

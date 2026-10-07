@@ -1,0 +1,7023 @@
+{
+ "_nota": "floral_palace (stage 281). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map281.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "stage": 281,
+ "spawns": [
+  {
+   "entity_id": 78100000,
+   "nombre": "Razor Jabberku",
+   "npc_type": 17094,
+   "sprite": 110051,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 290
+  },
+  {
+   "entity_id": 78100001,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100002,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100003,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100004,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100005,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100006,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100007,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100008,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100009,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100010,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100011,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100012,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100013,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100014,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100015,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100016,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100017,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100018,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100019,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100020,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100021,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    276,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100022,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    276,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100023,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    276,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100024,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    276,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100025,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    276,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100026,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    51
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100027,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100028,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100029,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100030,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100031,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100032,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    81
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100033,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    51
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100034,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    81
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100035,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    51
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100036,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    81
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100037,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    51
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100038,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    81
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100039,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    51
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100040,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    81
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 100
+  },
+  {
+   "entity_id": 78100041,
+   "nombre": "Torrential Corps",
+   "npc_type": 17096,
+   "sprite": 43807,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 78100042,
+   "nombre": "Torrential Corps",
+   "npc_type": 17096,
+   "sprite": 43807,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    281,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 78100043,
+   "nombre": "Earth Goddess Rhea",
+   "npc_type": 17093,
+   "sprite": 110049,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    264,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 290
+  },
+  {
+   "entity_id": 78100044,
+   "nombre": "Queen Franca",
+   "npc_type": 17095,
+   "sprite": 110050,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    276,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 290
+  },
+  {
+   "entity_id": 78100045,
+   "nombre": "Eightwing",
+   "npc_type": 17075,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    28,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 275
+  },
+  {
+   "entity_id": 78100046,
+   "nombre": "Eightwing",
+   "npc_type": 17075,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    157
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 275
+  },
+  {
+   "entity_id": 78100047,
+   "nombre": "Eightwing",
+   "npc_type": 17075,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    157
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 275
+  },
+  {
+   "entity_id": 78100048,
+   "nombre": "Eightwing",
+   "npc_type": 17075,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    157
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 275
+  },
+  {
+   "entity_id": 78100049,
+   "nombre": "Eightwing",
+   "npc_type": 17075,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    23,
+    147
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 275
+  },
+  {
+   "entity_id": 78100050,
+   "nombre": "Eightwing",
+   "npc_type": 17075,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    33,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 275
+  },
+  {
+   "entity_id": 78100051,
+   "nombre": "Eightwing",
+   "npc_type": 17075,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    162
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 275
+  },
+  {
+   "entity_id": 78100052,
+   "nombre": "Eightwing",
+   "npc_type": 17075,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    162
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 275
+  },
+  {
+   "entity_id": 78100053,
+   "nombre": "Eightwing",
+   "npc_type": 17075,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    23,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 275
+  },
+  {
+   "entity_id": 78100054,
+   "nombre": "Eightwing",
+   "npc_type": 17075,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    26,
+    157
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 275
+  },
+  {
+   "entity_id": 78100055,
+   "nombre": "Eightwing",
+   "npc_type": 17075,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    38,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 275
+  },
+  {
+   "entity_id": 78100056,
+   "nombre": "Eightwing",
+   "npc_type": 17075,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    162
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 275
+  },
+  {
+   "entity_id": 78100057,
+   "nombre": "Eightwing",
+   "npc_type": 17075,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    28,
+    147
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 275
+  },
+  {
+   "entity_id": 78100058,
+   "nombre": "Eightwing",
+   "npc_type": 17075,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    26,
+    162
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 275
+  },
+  {
+   "entity_id": 78100059,
+   "nombre": "Eightwing",
+   "npc_type": 17075,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 275
+  },
+  {
+   "entity_id": 78100060,
+   "nombre": "Eightwing",
+   "npc_type": 17075,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    46,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 275
+  },
+  {
+   "entity_id": 78100061,
+   "nombre": "Eightwing",
+   "npc_type": 17075,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    33,
+    147
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 275
+  },
+  {
+   "entity_id": 78100062,
+   "nombre": "Eightwing",
+   "npc_type": 17075,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    38,
+    147
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 275
+  },
+  {
+   "entity_id": 78100063,
+   "nombre": "Eightwing",
+   "npc_type": 17075,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    26,
+    167
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 275
+  },
+  {
+   "entity_id": 78100064,
+   "nombre": "Eightwing",
+   "npc_type": 17075,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    46,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 275
+  },
+  {
+   "entity_id": 78100065,
+   "nombre": "Eightwing",
+   "npc_type": 17075,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    21,
+    157
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 275
+  },
+  {
+   "entity_id": 78100066,
+   "nombre": "Eightwing",
+   "npc_type": 17075,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    21,
+    162
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 275
+  },
+  {
+   "entity_id": 78100067,
+   "nombre": "Eightwing",
+   "npc_type": 17075,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    167
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 275
+  },
+  {
+   "entity_id": 78100068,
+   "nombre": "Eightwing",
+   "npc_type": 17075,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    46,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 275
+  },
+  {
+   "entity_id": 78100069,
+   "nombre": "Eightwing",
+   "npc_type": 17075,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    18,
+    142
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 275
+  },
+  {
+   "entity_id": 78100070,
+   "nombre": "Smiling Sprite",
+   "npc_type": 17076,
+   "sprite": 110097,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    18,
+    147
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 276
+  },
+  {
+   "entity_id": 78100071,
+   "nombre": "Smiling Sprite",
+   "npc_type": 17076,
+   "sprite": 110097,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    21,
+    167
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 276
+  },
+  {
+   "entity_id": 78100072,
+   "nombre": "Smiling Sprite",
+   "npc_type": 17076,
+   "sprite": 110097,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    167
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 276
+  },
+  {
+   "entity_id": 78100073,
+   "nombre": "Smiling Sprite",
+   "npc_type": 17076,
+   "sprite": 110097,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    167
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 276
+  },
+  {
+   "entity_id": 78100074,
+   "nombre": "Smiling Sprite",
+   "npc_type": 17076,
+   "sprite": 110097,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    18,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 276
+  },
+  {
+   "entity_id": 78100075,
+   "nombre": "Smiling Sprite",
+   "npc_type": 17076,
+   "sprite": 110097,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 276
+  },
+  {
+   "entity_id": 78100076,
+   "nombre": "Smiling Sprite",
+   "npc_type": 17076,
+   "sprite": 110097,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 276
+  },
+  {
+   "entity_id": 78100077,
+   "nombre": "Smiling Sprite",
+   "npc_type": 17076,
+   "sprite": 110097,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 276
+  },
+  {
+   "entity_id": 78100078,
+   "nombre": "Smiling Sprite",
+   "npc_type": 17076,
+   "sprite": 110097,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    23,
+    142
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 276
+  },
+  {
+   "entity_id": 78100079,
+   "nombre": "Smiling Sprite",
+   "npc_type": 17076,
+   "sprite": 110097,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    28,
+    142
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 276
+  },
+  {
+   "entity_id": 78100080,
+   "nombre": "Smiling Sprite",
+   "npc_type": 17076,
+   "sprite": 110097,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    46,
+    170
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 276
+  },
+  {
+   "entity_id": 78100081,
+   "nombre": "Smiling Sprite",
+   "npc_type": 17076,
+   "sprite": 110097,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 276
+  },
+  {
+   "entity_id": 78100082,
+   "nombre": "Smiling Sprite",
+   "npc_type": 17076,
+   "sprite": 110097,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    33,
+    142
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 276
+  },
+  {
+   "entity_id": 78100083,
+   "nombre": "Smiling Sprite",
+   "npc_type": 17076,
+   "sprite": 110097,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    38,
+    142
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 276
+  },
+  {
+   "entity_id": 78100084,
+   "nombre": "Smiling Sprite",
+   "npc_type": 17076,
+   "sprite": 110097,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    21,
+    172
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 276
+  },
+  {
+   "entity_id": 78100085,
+   "nombre": "Smiling Sprite",
+   "npc_type": 17076,
+   "sprite": 110097,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 276
+  },
+  {
+   "entity_id": 78100086,
+   "nombre": "Smiling Sprite",
+   "npc_type": 17076,
+   "sprite": 110097,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    16,
+    157
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 276
+  },
+  {
+   "entity_id": 78100087,
+   "nombre": "Smiling Sprite",
+   "npc_type": 17076,
+   "sprite": 110097,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    16,
+    162
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 276
+  },
+  {
+   "entity_id": 78100088,
+   "nombre": "Smiling Sprite",
+   "npc_type": 17076,
+   "sprite": 110097,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    26,
+    172
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 276
+  },
+  {
+   "entity_id": 78100089,
+   "nombre": "Smiling Sprite",
+   "npc_type": 17076,
+   "sprite": 110097,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 276
+  },
+  {
+   "entity_id": 78100090,
+   "nombre": "Smiling Sprite",
+   "npc_type": 17076,
+   "sprite": 110097,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    13,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 276
+  },
+  {
+   "entity_id": 78100091,
+   "nombre": "Smiling Sprite",
+   "npc_type": 17076,
+   "sprite": 110097,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    16,
+    167
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 276
+  },
+  {
+   "entity_id": 78100092,
+   "nombre": "Smiling Sprite",
+   "npc_type": 17076,
+   "sprite": 110097,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    172
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 276
+  },
+  {
+   "entity_id": 78100093,
+   "nombre": "Smiling Sprite",
+   "npc_type": 17076,
+   "sprite": 110097,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    170
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 276
+  },
+  {
+   "entity_id": 78100094,
+   "nombre": "Smiling Sprite",
+   "npc_type": 17076,
+   "sprite": 110097,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    13,
+    142
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 276
+  },
+  {
+   "entity_id": 78100095,
+   "nombre": "Bouncy Leafball",
+   "npc_type": 17077,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    13,
+    147
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 277
+  },
+  {
+   "entity_id": 78100096,
+   "nombre": "Bouncy Leafball",
+   "npc_type": 17077,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    16,
+    172
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 277
+  },
+  {
+   "entity_id": 78100097,
+   "nombre": "Bouncy Leafball",
+   "npc_type": 17077,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    172
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 277
+  },
+  {
+   "entity_id": 78100098,
+   "nombre": "Bouncy Leafball",
+   "npc_type": 17077,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    172
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 277
+  },
+  {
+   "entity_id": 78100099,
+   "nombre": "Bouncy Leafball",
+   "npc_type": 17077,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    13,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 277
+  },
+  {
+   "entity_id": 78100100,
+   "nombre": "Bouncy Leafball",
+   "npc_type": 17077,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 277
+  },
+  {
+   "entity_id": 78100101,
+   "nombre": "Bouncy Leafball",
+   "npc_type": 17077,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 277
+  },
+  {
+   "entity_id": 78100102,
+   "nombre": "Bouncy Leafball",
+   "npc_type": 17077,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 277
+  },
+  {
+   "entity_id": 78100103,
+   "nombre": "Bouncy Leafball",
+   "npc_type": 17077,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    18,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 277
+  },
+  {
+   "entity_id": 78100104,
+   "nombre": "Bouncy Leafball",
+   "npc_type": 17077,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    23,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 277
+  },
+  {
+   "entity_id": 78100105,
+   "nombre": "Bouncy Leafball",
+   "npc_type": 17077,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 277
+  },
+  {
+   "entity_id": 78100106,
+   "nombre": "Bouncy Leafball",
+   "npc_type": 17077,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 277
+  },
+  {
+   "entity_id": 78100107,
+   "nombre": "Bouncy Leafball",
+   "npc_type": 17077,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    28,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 277
+  },
+  {
+   "entity_id": 78100108,
+   "nombre": "Bouncy Leafball",
+   "npc_type": 17077,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    33,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 277
+  },
+  {
+   "entity_id": 78100109,
+   "nombre": "Bouncy Leafball",
+   "npc_type": 17077,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    46,
+    175
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 277
+  },
+  {
+   "entity_id": 78100110,
+   "nombre": "Bouncy Leafball",
+   "npc_type": 17077,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    175
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 277
+  },
+  {
+   "entity_id": 78100111,
+   "nombre": "Bouncy Leafball",
+   "npc_type": 17077,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    38,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 277
+  },
+  {
+   "entity_id": 78100112,
+   "nombre": "Bouncy Leafball",
+   "npc_type": 17077,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    11,
+    157
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 277
+  },
+  {
+   "entity_id": 78100113,
+   "nombre": "Bouncy Leafball",
+   "npc_type": 17077,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    16,
+    177
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 277
+  },
+  {
+   "entity_id": 78100114,
+   "nombre": "Bouncy Leafball",
+   "npc_type": 17077,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    56,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 277
+  },
+  {
+   "entity_id": 78100115,
+   "nombre": "Bouncy Leafball",
+   "npc_type": 17077,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    11,
+    162
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 277
+  },
+  {
+   "entity_id": 78100116,
+   "nombre": "Bouncy Leafball",
+   "npc_type": 17077,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    11,
+    167
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 277
+  },
+  {
+   "entity_id": 78100117,
+   "nombre": "Bouncy Leafball",
+   "npc_type": 17077,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    21,
+    177
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 277
+  },
+  {
+   "entity_id": 78100118,
+   "nombre": "Bouncy Leafball",
+   "npc_type": 17077,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    56,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 277
+  },
+  {
+   "entity_id": 78100119,
+   "nombre": "Bouncy Leafball",
+   "npc_type": 17077,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 277
+  },
+  {
+   "entity_id": 78100120,
+   "nombre": "Spiky Snail",
+   "npc_type": 17078,
+   "sprite": 110167,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    8,
+    132
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 278
+  },
+  {
+   "entity_id": 78100121,
+   "nombre": "Spiky Snail",
+   "npc_type": 17078,
+   "sprite": 110167,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    11,
+    172
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 278
+  },
+  {
+   "entity_id": 78100122,
+   "nombre": "Spiky Snail",
+   "npc_type": 17078,
+   "sprite": 110167,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    26,
+    177
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 278
+  },
+  {
+   "entity_id": 78100123,
+   "nombre": "Spiky Snail",
+   "npc_type": 17078,
+   "sprite": 110167,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    56,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 278
+  },
+  {
+   "entity_id": 78100124,
+   "nombre": "Spiky Snail",
+   "npc_type": 17078,
+   "sprite": 110167,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    8,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 278
+  },
+  {
+   "entity_id": 78100125,
+   "nombre": "Spiky Snail",
+   "npc_type": 17078,
+   "sprite": 110167,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    11,
+    177
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 278
+  },
+  {
+   "entity_id": 78100126,
+   "nombre": "Spiky Snail",
+   "npc_type": 17078,
+   "sprite": 110167,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    177
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 278
+  },
+  {
+   "entity_id": 78100127,
+   "nombre": "Spiky Snail",
+   "npc_type": 17078,
+   "sprite": 110167,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    56,
+    170
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 278
+  },
+  {
+   "entity_id": 78100128,
+   "nombre": "Spiky Snail",
+   "npc_type": 17078,
+   "sprite": 110167,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    8,
+    142
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 278
+  },
+  {
+   "entity_id": 78100129,
+   "nombre": "Spiky Snail",
+   "npc_type": 17078,
+   "sprite": 110167,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    177
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 278
+  },
+  {
+   "entity_id": 78100130,
+   "nombre": "Spiky Snail",
+   "npc_type": 17078,
+   "sprite": 110167,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    177
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 278
+  },
+  {
+   "entity_id": 78100131,
+   "nombre": "Spiky Snail",
+   "npc_type": 17078,
+   "sprite": 110167,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    56,
+    175
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 278
+  },
+  {
+   "entity_id": 78100132,
+   "nombre": "Spiky Snail",
+   "npc_type": 17078,
+   "sprite": 110167,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    8,
+    147
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 278
+  },
+  {
+   "entity_id": 78100133,
+   "nombre": "Spiky Snail",
+   "npc_type": 17078,
+   "sprite": 110167,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 278
+  },
+  {
+   "entity_id": 78100134,
+   "nombre": "Spiky Snail",
+   "npc_type": 17078,
+   "sprite": 110167,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 278
+  },
+  {
+   "entity_id": 78100135,
+   "nombre": "Spiky Snail",
+   "npc_type": 17078,
+   "sprite": 110167,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    58,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 278
+  },
+  {
+   "entity_id": 78100136,
+   "nombre": "Spiky Snail",
+   "npc_type": 17078,
+   "sprite": 110167,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    8,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 278
+  },
+  {
+   "entity_id": 78100137,
+   "nombre": "Spiky Snail",
+   "npc_type": 17078,
+   "sprite": 110167,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    13,
+    132
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 278
+  },
+  {
+   "entity_id": 78100138,
+   "nombre": "Spiky Snail",
+   "npc_type": 17078,
+   "sprite": 110167,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    58,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 278
+  },
+  {
+   "entity_id": 78100139,
+   "nombre": "Spiky Snail",
+   "npc_type": 17078,
+   "sprite": 110167,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    58,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 278
+  },
+  {
+   "entity_id": 78100140,
+   "nombre": "Spiky Snail",
+   "npc_type": 17078,
+   "sprite": 110167,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    18,
+    132
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 278
+  },
+  {
+   "entity_id": 78100141,
+   "nombre": "Spiky Snail",
+   "npc_type": 17078,
+   "sprite": 110167,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    23,
+    132
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 278
+  },
+  {
+   "entity_id": 78100142,
+   "nombre": "Spiky Snail",
+   "npc_type": 17078,
+   "sprite": 110167,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    58,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 278
+  },
+  {
+   "entity_id": 78100143,
+   "nombre": "Spiky Snail",
+   "npc_type": 17078,
+   "sprite": 110167,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    61,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 278
+  },
+  {
+   "entity_id": 78100144,
+   "nombre": "Spiky Snail",
+   "npc_type": 17078,
+   "sprite": 110167,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    28,
+    132
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 278
+  },
+  {
+   "entity_id": 78100145,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    102,
+    126
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100146,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100147,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100148,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    97,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100149,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    113
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100150,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    107,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100151,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    97,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100152,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100153,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100154,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    102,
+    131
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100155,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    113
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100156,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    111,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100157,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    107,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100158,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100159,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    111,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100160,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    95,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100161,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100162,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    112,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100163,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    107,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100164,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    91,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100165,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    112,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100166,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100167,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    91,
+    113
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100168,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    111,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100169,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    100,
+    136
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100170,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    91,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100171,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    116,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100172,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    112,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100173,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100174,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    116,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100175,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    90,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100176,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100177,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    116,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100178,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    90,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100179,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100180,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    117,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100181,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    95,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100182,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    111,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100183,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    117,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100184,
+   "nombre": "Ocean Jelly",
+   "npc_type": 17079,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    105,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 279,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100185,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    110,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100186,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100187,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    117,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100188,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    115,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100189,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100190,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    116,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100191,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    100,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100192,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    86,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100193,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    121,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100194,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    86,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100195,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    86,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100196,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    121,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100197,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    85,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100198,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    91,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100199,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    121,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100200,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    85,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100201,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100202,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    121,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100203,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    85,
+    143
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100204,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100205,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    120,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100206,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    90,
+    143
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100207,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100208,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    122,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100209,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    95,
+    143
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100210,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    111,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100211,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    122,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100212,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    105,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100213,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    116,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100214,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    122,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100215,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    110,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100216,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100217,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    125,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100218,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    115,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100219,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100220,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    121,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100221,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    120,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100222,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    81,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100223,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    126,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100224,
+   "nombre": "Satin Tailor",
+   "npc_type": 17080,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    100,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 280,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100225,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    81,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100226,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    81,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100227,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    126,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100228,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    81,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100229,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    86,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100230,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    126,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100231,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    80,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100232,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    91,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100233,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    126,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100234,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    80,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100235,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100236,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    126,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100237,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    80,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100238,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100239,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    125,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100240,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    80,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100241,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100242,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    127,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100243,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    85,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100244,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    111,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100245,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    127,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100246,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    90,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100247,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    116,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100248,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    127,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100249,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    95,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100250,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    121,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100251,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    130,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100252,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100253,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100254,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    130,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100255,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    105,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100256,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100257,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    126,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100258,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    110,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100259,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    76,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100260,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    131,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100261,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    115,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100262,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    76,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100263,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    131,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100264,
+   "nombre": "Drifting Flutterfae",
+   "npc_type": 17081,
+   "sprite": 110122,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    120,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 281,
+   "declarados": 50
+  },
+  {
+   "entity_id": 78100265,
+   "nombre": "Bihorn Crocodiles",
+   "npc_type": 17084,
+   "sprite": 110164,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    80,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 285
+  },
+  {
+   "entity_id": 78100266,
+   "nombre": "Bihorn Crocodiles",
+   "npc_type": 17084,
+   "sprite": 110164,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 285
+  },
+  {
+   "entity_id": 78100267,
+   "nombre": "Bihorn Crocodiles",
+   "npc_type": 17084,
+   "sprite": 110164,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    70,
+    46
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 285
+  },
+  {
+   "entity_id": 78100268,
+   "nombre": "Bihorn Crocodiles",
+   "npc_type": 17084,
+   "sprite": 110164,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    75,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 285
+  },
+  {
+   "entity_id": 78100269,
+   "nombre": "Bihorn Crocodiles",
+   "npc_type": 17084,
+   "sprite": 110164,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 285
+  },
+  {
+   "entity_id": 78100270,
+   "nombre": "Bihorn Crocodiles",
+   "npc_type": 17084,
+   "sprite": 110164,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    41
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 285
+  },
+  {
+   "entity_id": 78100271,
+   "nombre": "Bihorn Crocodiles",
+   "npc_type": 17084,
+   "sprite": 110164,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    75,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 285
+  },
+  {
+   "entity_id": 78100272,
+   "nombre": "Bihorn Crocodiles",
+   "npc_type": 17084,
+   "sprite": 110164,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 285
+  },
+  {
+   "entity_id": 78100273,
+   "nombre": "Bihorn Crocodiles",
+   "npc_type": 17084,
+   "sprite": 110164,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    70,
+    41
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 285
+  },
+  {
+   "entity_id": 78100274,
+   "nombre": "Bihorn Crocodiles",
+   "npc_type": 17084,
+   "sprite": 110164,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    75,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 285
+  },
+  {
+   "entity_id": 78100275,
+   "nombre": "Bihorn Crocodiles",
+   "npc_type": 17084,
+   "sprite": 110164,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 285
+  },
+  {
+   "entity_id": 78100276,
+   "nombre": "Bihorn Crocodiles",
+   "npc_type": 17084,
+   "sprite": 110164,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    70,
+    51
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 285
+  },
+  {
+   "entity_id": 78100277,
+   "nombre": "Bihorn Crocodiles",
+   "npc_type": 17084,
+   "sprite": 110164,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    80,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 285
+  },
+  {
+   "entity_id": 78100278,
+   "nombre": "Bihorn Crocodiles",
+   "npc_type": 17084,
+   "sprite": 110164,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 285
+  },
+  {
+   "entity_id": 78100279,
+   "nombre": "Bihorn Crocodiles",
+   "npc_type": 17084,
+   "sprite": 110164,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    75,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 285
+  },
+  {
+   "entity_id": 78100280,
+   "nombre": "Bihorn Crocodiles",
+   "npc_type": 17084,
+   "sprite": 110164,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    80,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 285
+  },
+  {
+   "entity_id": 78100281,
+   "nombre": "Bihorn Crocodiles",
+   "npc_type": 17084,
+   "sprite": 110164,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    70,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 285
+  },
+  {
+   "entity_id": 78100282,
+   "nombre": "Bihorn Crocodiles",
+   "npc_type": 17084,
+   "sprite": 110164,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    36
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 285
+  },
+  {
+   "entity_id": 78100283,
+   "nombre": "Bihorn Crocodiles",
+   "npc_type": 17084,
+   "sprite": 110164,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    85,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 285
+  },
+  {
+   "entity_id": 78100284,
+   "nombre": "Bihorn Crocodiles",
+   "npc_type": 17084,
+   "sprite": 110164,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 285
+  },
+  {
+   "entity_id": 78100285,
+   "nombre": "Turret Plant",
+   "npc_type": 17082,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    85,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 282
+  },
+  {
+   "entity_id": 78100286,
+   "nombre": "Turret Plant",
+   "npc_type": 17082,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 282
+  },
+  {
+   "entity_id": 78100287,
+   "nombre": "Turret Plant",
+   "npc_type": 17082,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    36
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 282
+  },
+  {
+   "entity_id": 78100288,
+   "nombre": "Turret Plant",
+   "npc_type": 17082,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    85,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 282
+  },
+  {
+   "entity_id": 78100289,
+   "nombre": "Turret Plant",
+   "npc_type": 17082,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 282
+  },
+  {
+   "entity_id": 78100290,
+   "nombre": "Turret Plant",
+   "npc_type": 17082,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    70,
+    36
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 282
+  },
+  {
+   "entity_id": 78100291,
+   "nombre": "Turret Plant",
+   "npc_type": 17082,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    75,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 282
+  },
+  {
+   "entity_id": 78100292,
+   "nombre": "Turret Plant",
+   "npc_type": 17082,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 282
+  },
+  {
+   "entity_id": 78100293,
+   "nombre": "Turret Plant",
+   "npc_type": 17082,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    80,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 282
+  },
+  {
+   "entity_id": 78100294,
+   "nombre": "Turret Plant",
+   "npc_type": 17082,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    80,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 282
+  },
+  {
+   "entity_id": 78100295,
+   "nombre": "Turret Plant",
+   "npc_type": 17082,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 282
+  },
+  {
+   "entity_id": 78100296,
+   "nombre": "Turret Plant",
+   "npc_type": 17082,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    75,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 282
+  },
+  {
+   "entity_id": 78100297,
+   "nombre": "Turret Plant",
+   "npc_type": 17082,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    85,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 282
+  },
+  {
+   "entity_id": 78100298,
+   "nombre": "Turret Plant",
+   "npc_type": 17082,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 282
+  },
+  {
+   "entity_id": 78100299,
+   "nombre": "Turret Plant",
+   "npc_type": 17082,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    80,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 282
+  },
+  {
+   "entity_id": 78100300,
+   "nombre": "Turret Plant",
+   "npc_type": 17082,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    85,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 282
+  },
+  {
+   "entity_id": 78100301,
+   "nombre": "Turret Plant",
+   "npc_type": 17082,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 282
+  },
+  {
+   "entity_id": 78100302,
+   "nombre": "Turret Plant",
+   "npc_type": 17082,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    31
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 282
+  },
+  {
+   "entity_id": 78100303,
+   "nombre": "Turret Plant",
+   "npc_type": 17082,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    90,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 282
+  },
+  {
+   "entity_id": 78100304,
+   "nombre": "Turret Plant",
+   "npc_type": 17082,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    70,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 282
+  },
+  {
+   "entity_id": 78100305,
+   "nombre": "Rainbow Fern",
+   "npc_type": 17083,
+   "sprite": 110170,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    90,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 283
+  },
+  {
+   "entity_id": 78100306,
+   "nombre": "Rainbow Fern",
+   "npc_type": 17083,
+   "sprite": 110170,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    75,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 283
+  },
+  {
+   "entity_id": 78100307,
+   "nombre": "Rainbow Fern",
+   "npc_type": 17083,
+   "sprite": 110170,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    31
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 283
+  },
+  {
+   "entity_id": 78100308,
+   "nombre": "Rainbow Fern",
+   "npc_type": 17083,
+   "sprite": 110170,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    90,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 283
+  },
+  {
+   "entity_id": 78100309,
+   "nombre": "Rainbow Fern",
+   "npc_type": 17083,
+   "sprite": 110170,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    50,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 283
+  },
+  {
+   "entity_id": 78100310,
+   "nombre": "Rainbow Fern",
+   "npc_type": 17083,
+   "sprite": 110170,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    31
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 283
+  },
+  {
+   "entity_id": 78100311,
+   "nombre": "Rainbow Fern",
+   "npc_type": 17083,
+   "sprite": 110170,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    90,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 283
+  },
+  {
+   "entity_id": 78100312,
+   "nombre": "Rainbow Fern",
+   "npc_type": 17083,
+   "sprite": 110170,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    50,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 283
+  },
+  {
+   "entity_id": 78100313,
+   "nombre": "Rainbow Fern",
+   "npc_type": 17083,
+   "sprite": 110170,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    70,
+    31
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 283
+  },
+  {
+   "entity_id": 78100314,
+   "nombre": "Rainbow Fern",
+   "npc_type": 17083,
+   "sprite": 110170,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    90,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 283
+  },
+  {
+   "entity_id": 78100315,
+   "nombre": "Rainbow Fern",
+   "npc_type": 17083,
+   "sprite": 110170,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    50,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 283
+  },
+  {
+   "entity_id": 78100316,
+   "nombre": "Rainbow Fern",
+   "npc_type": 17083,
+   "sprite": 110170,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    85,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 283
+  },
+  {
+   "entity_id": 78100317,
+   "nombre": "Rainbow Fern",
+   "npc_type": 17083,
+   "sprite": 110170,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    75,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 283
+  },
+  {
+   "entity_id": 78100318,
+   "nombre": "Rainbow Fern",
+   "npc_type": 17083,
+   "sprite": 110170,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    50,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 283
+  },
+  {
+   "entity_id": 78100319,
+   "nombre": "Rainbow Fern",
+   "npc_type": 17083,
+   "sprite": 110170,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    80,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 283
+  },
+  {
+   "entity_id": 78100320,
+   "nombre": "Rainbow Fern",
+   "npc_type": 17083,
+   "sprite": 110170,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    80,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 283
+  },
+  {
+   "entity_id": 78100321,
+   "nombre": "Rainbow Fern",
+   "npc_type": 17083,
+   "sprite": 110170,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    50,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 283
+  },
+  {
+   "entity_id": 78100322,
+   "nombre": "Rainbow Fern",
+   "npc_type": 17083,
+   "sprite": 110170,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    85,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 283
+  },
+  {
+   "entity_id": 78100323,
+   "nombre": "Rainbow Fern",
+   "npc_type": 17083,
+   "sprite": 110170,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    85,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 283
+  },
+  {
+   "entity_id": 78100324,
+   "nombre": "Rainbow Fern",
+   "npc_type": 17083,
+   "sprite": 110170,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    50,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 283
+  },
+  {
+   "entity_id": 78100325,
+   "nombre": "Violet Fiona",
+   "npc_type": 17090,
+   "sprite": 110098,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100326,
+   "nombre": "Royal Lancelot",
+   "npc_type": 17091,
+   "sprite": 110108,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    218,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 288
+  },
+  {
+   "entity_id": 78100327,
+   "nombre": "Periwinkle Quein",
+   "npc_type": 17092,
+   "sprite": 110123,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    228,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 289
+  },
+  {
+   "entity_id": 78100328,
+   "nombre": "Elite - Eightwing",
+   "npc_type": 17085,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    201,
+    19
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100329,
+   "nombre": "Elite - Eightwing",
+   "npc_type": 17085,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    14
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100330,
+   "nombre": "Elite - Eightwing",
+   "npc_type": 17085,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    196,
+    14
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100331,
+   "nombre": "Elite - Eightwing",
+   "npc_type": 17085,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    209,
+    9
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100332,
+   "nombre": "Elite - Eightwing",
+   "npc_type": 17085,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    196,
+    19
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100333,
+   "nombre": "Elite - Eightwing",
+   "npc_type": 17085,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    209,
+    14
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100334,
+   "nombre": "Elite - Eightwing",
+   "npc_type": 17085,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    196,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100335,
+   "nombre": "Elite - Eightwing",
+   "npc_type": 17085,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    209,
+    19
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100336,
+   "nombre": "Elite - Eightwing",
+   "npc_type": 17085,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    201,
+    14
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100337,
+   "nombre": "Elite - Eightwing",
+   "npc_type": 17085,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    9
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100338,
+   "nombre": "Elite - Eightwing",
+   "npc_type": 17085,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    201,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100339,
+   "nombre": "Elite - Eightwing",
+   "npc_type": 17085,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    19
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100340,
+   "nombre": "Elite - Eightwing",
+   "npc_type": 17085,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100341,
+   "nombre": "Elite - Eightwing",
+   "npc_type": 17085,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    9
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100342,
+   "nombre": "Elite - Eightwing",
+   "npc_type": 17085,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    191,
+    9
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100343,
+   "nombre": "Elite - Eightwing",
+   "npc_type": 17085,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    14
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100344,
+   "nombre": "Elite - Eightwing",
+   "npc_type": 17085,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    191,
+    14
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100345,
+   "nombre": "Elite - Eightwing",
+   "npc_type": 17085,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    19
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100346,
+   "nombre": "Elite - Eightwing",
+   "npc_type": 17085,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    191,
+    19
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100347,
+   "nombre": "Elite - Eightwing",
+   "npc_type": 17085,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    204,
+    4
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100348,
+   "nombre": "Elite - Eightwing",
+   "npc_type": 17085,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    191,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100349,
+   "nombre": "Elite - Eightwing",
+   "npc_type": 17085,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    204,
+    9
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100350,
+   "nombre": "Elite - Eightwing",
+   "npc_type": 17085,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    191,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100351,
+   "nombre": "Elite - Eightwing",
+   "npc_type": 17085,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    209,
+    4
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100352,
+   "nombre": "Elite - Eightwing",
+   "npc_type": 17085,
+   "sprite": 110093,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    196,
+    9
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100353,
+   "nombre": "Elite - Bouncy Leafball",
+   "npc_type": 17086,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    196,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100354,
+   "nombre": "Elite - Bouncy Leafball",
+   "npc_type": 17086,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100355,
+   "nombre": "Elite - Bouncy Leafball",
+   "npc_type": 17086,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    201,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100356,
+   "nombre": "Elite - Bouncy Leafball",
+   "npc_type": 17086,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    4
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100357,
+   "nombre": "Elite - Bouncy Leafball",
+   "npc_type": 17086,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100358,
+   "nombre": "Elite - Bouncy Leafball",
+   "npc_type": 17086,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    4
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100359,
+   "nombre": "Elite - Bouncy Leafball",
+   "npc_type": 17086,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100360,
+   "nombre": "Elite - Bouncy Leafball",
+   "npc_type": 17086,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    223,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100361,
+   "nombre": "Elite - Bouncy Leafball",
+   "npc_type": 17086,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    186,
+    4
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100362,
+   "nombre": "Elite - Bouncy Leafball",
+   "npc_type": 17086,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    224,
+    4
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100363,
+   "nombre": "Elite - Bouncy Leafball",
+   "npc_type": 17086,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    186,
+    9
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100364,
+   "nombre": "Elite - Bouncy Leafball",
+   "npc_type": 17086,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    224,
+    9
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100365,
+   "nombre": "Elite - Bouncy Leafball",
+   "npc_type": 17086,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    186,
+    14
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100366,
+   "nombre": "Elite - Bouncy Leafball",
+   "npc_type": 17086,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    224,
+    14
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100367,
+   "nombre": "Elite - Bouncy Leafball",
+   "npc_type": 17086,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    186,
+    19
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100368,
+   "nombre": "Elite - Bouncy Leafball",
+   "npc_type": 17086,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    224,
+    19
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100369,
+   "nombre": "Elite - Bouncy Leafball",
+   "npc_type": 17086,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    186,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100370,
+   "nombre": "Elite - Bouncy Leafball",
+   "npc_type": 17086,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    228,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100371,
+   "nombre": "Elite - Bouncy Leafball",
+   "npc_type": 17086,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    186,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100372,
+   "nombre": "Elite - Bouncy Leafball",
+   "npc_type": 17086,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    199,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100373,
+   "nombre": "Elite - Bouncy Leafball",
+   "npc_type": 17086,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    186,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100374,
+   "nombre": "Elite - Bouncy Leafball",
+   "npc_type": 17086,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100375,
+   "nombre": "Elite - Bouncy Leafball",
+   "npc_type": 17086,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    191,
+    4
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100376,
+   "nombre": "Elite - Bouncy Leafball",
+   "npc_type": 17086,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100377,
+   "nombre": "Elite - Bouncy Leafball",
+   "npc_type": 17086,
+   "sprite": 110103,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    191,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 286
+  },
+  {
+   "entity_id": 78100378,
+   "nombre": "Elite - Ocean Jelly",
+   "npc_type": 17087,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    208,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100379,
+   "nombre": "Elite - Ocean Jelly",
+   "npc_type": 17087,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    142
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100380,
+   "nombre": "Elite - Ocean Jelly",
+   "npc_type": 17087,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    238,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100381,
+   "nombre": "Elite - Ocean Jelly",
+   "npc_type": 17087,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    203,
+    143
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100382,
+   "nombre": "Elite - Ocean Jelly",
+   "npc_type": 17087,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100383,
+   "nombre": "Elite - Ocean Jelly",
+   "npc_type": 17087,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    233,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100384,
+   "nombre": "Elite - Ocean Jelly",
+   "npc_type": 17087,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    203,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100385,
+   "nombre": "Elite - Ocean Jelly",
+   "npc_type": 17087,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    142
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100386,
+   "nombre": "Elite - Ocean Jelly",
+   "npc_type": 17087,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    233,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100387,
+   "nombre": "Elite - Ocean Jelly",
+   "npc_type": 17087,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    203,
+    153
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100388,
+   "nombre": "Elite - Ocean Jelly",
+   "npc_type": 17087,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    147
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100389,
+   "nombre": "Elite - Ocean Jelly",
+   "npc_type": 17087,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    233,
+    139
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100390,
+   "nombre": "Elite - Ocean Jelly",
+   "npc_type": 17087,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    208,
+    143
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100391,
+   "nombre": "Elite - Ocean Jelly",
+   "npc_type": 17087,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100392,
+   "nombre": "Elite - Ocean Jelly",
+   "npc_type": 17087,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    238,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100393,
+   "nombre": "Elite - Ocean Jelly",
+   "npc_type": 17087,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    208,
+    153
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100394,
+   "nombre": "Elite - Ocean Jelly",
+   "npc_type": 17087,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    147
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100395,
+   "nombre": "Elite - Ocean Jelly",
+   "npc_type": 17087,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    238,
+    139
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100396,
+   "nombre": "Elite - Ocean Jelly",
+   "npc_type": 17087,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    213,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100397,
+   "nombre": "Elite - Ocean Jelly",
+   "npc_type": 17087,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    226,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100398,
+   "nombre": "Elite - Ocean Jelly",
+   "npc_type": 17087,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100399,
+   "nombre": "Elite - Ocean Jelly",
+   "npc_type": 17087,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    213,
+    157
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100400,
+   "nombre": "Elite - Ocean Jelly",
+   "npc_type": 17087,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    226,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100401,
+   "nombre": "Elite - Ocean Jelly",
+   "npc_type": 17087,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100402,
+   "nombre": "Elite - Ocean Jelly",
+   "npc_type": 17087,
+   "sprite": 110113,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    198,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100403,
+   "nombre": "Elite - Satin Tailor",
+   "npc_type": 17088,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    198,
+    143
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100404,
+   "nombre": "Elite - Satin Tailor",
+   "npc_type": 17088,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    226,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100405,
+   "nombre": "Elite - Satin Tailor",
+   "npc_type": 17088,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    139
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100406,
+   "nombre": "Elite - Satin Tailor",
+   "npc_type": 17088,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    198,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100407,
+   "nombre": "Elite - Satin Tailor",
+   "npc_type": 17088,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    132
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100408,
+   "nombre": "Elite - Satin Tailor",
+   "npc_type": 17088,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    228,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100409,
+   "nombre": "Elite - Satin Tailor",
+   "npc_type": 17088,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    198,
+    153
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100410,
+   "nombre": "Elite - Satin Tailor",
+   "npc_type": 17088,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100411,
+   "nombre": "Elite - Satin Tailor",
+   "npc_type": 17088,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    228,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100412,
+   "nombre": "Elite - Satin Tailor",
+   "npc_type": 17088,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    198,
+    158
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100413,
+   "nombre": "Elite - Satin Tailor",
+   "npc_type": 17088,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    132
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100414,
+   "nombre": "Elite - Satin Tailor",
+   "npc_type": 17088,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    233,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100415,
+   "nombre": "Elite - Satin Tailor",
+   "npc_type": 17088,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    203,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100416,
+   "nombre": "Elite - Satin Tailor",
+   "npc_type": 17088,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    218,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100417,
+   "nombre": "Elite - Satin Tailor",
+   "npc_type": 17088,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    233,
+    144
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100418,
+   "nombre": "Elite - Satin Tailor",
+   "npc_type": 17088,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    203,
+    158
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100419,
+   "nombre": "Elite - Satin Tailor",
+   "npc_type": 17088,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    132
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100420,
+   "nombre": "Elite - Satin Tailor",
+   "npc_type": 17088,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    238,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100421,
+   "nombre": "Elite - Satin Tailor",
+   "npc_type": 17088,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    208,
+    158
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100422,
+   "nombre": "Elite - Satin Tailor",
+   "npc_type": 17088,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    231,
+    149
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100423,
+   "nombre": "Elite - Satin Tailor",
+   "npc_type": 17088,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    238,
+    144
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100424,
+   "nombre": "Elite - Satin Tailor",
+   "npc_type": 17088,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    218,
+    157
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100425,
+   "nombre": "Elite - Satin Tailor",
+   "npc_type": 17088,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    231,
+    154
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100426,
+   "nombre": "Elite - Satin Tailor",
+   "npc_type": 17088,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100427,
+   "nombre": "Elite - Satin Tailor",
+   "npc_type": 17088,
+   "sprite": 110118,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    213,
+    162
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 287
+  },
+  {
+   "entity_id": 78100428,
+   "nombre": "Elite - Turret Plant",
+   "npc_type": 17089,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    218,
+    162
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 288
+  },
+  {
+   "entity_id": 78100429,
+   "nombre": "Elite - Turret Plant",
+   "npc_type": 17089,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    223,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 288
+  },
+  {
+   "entity_id": 78100430,
+   "nombre": "Elite - Turret Plant",
+   "npc_type": 17089,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    144
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 288
+  },
+  {
+   "entity_id": 78100431,
+   "nombre": "Elite - Turret Plant",
+   "npc_type": 17089,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    193,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 288
+  },
+  {
+   "entity_id": 78100432,
+   "nombre": "Elite - Turret Plant",
+   "npc_type": 17089,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    127
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 288
+  },
+  {
+   "entity_id": 78100433,
+   "nombre": "Elite - Turret Plant",
+   "npc_type": 17089,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    248,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 288
+  },
+  {
+   "entity_id": 78100434,
+   "nombre": "Elite - Turret Plant",
+   "npc_type": 17089,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    193,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 288
+  },
+  {
+   "entity_id": 78100435,
+   "nombre": "Elite - Turret Plant",
+   "npc_type": 17089,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    132
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 288
+  },
+  {
+   "entity_id": 78100436,
+   "nombre": "Elite - Turret Plant",
+   "npc_type": 17089,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    248,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 288
+  },
+  {
+   "entity_id": 78100437,
+   "nombre": "Elite - Turret Plant",
+   "npc_type": 17089,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    193,
+    143
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 288
+  },
+  {
+   "entity_id": 78100438,
+   "nombre": "Elite - Turret Plant",
+   "npc_type": 17089,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    127
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 288
+  },
+  {
+   "entity_id": 78100439,
+   "nombre": "Elite - Turret Plant",
+   "npc_type": 17089,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    248,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 288
+  },
+  {
+   "entity_id": 78100440,
+   "nombre": "Elite - Turret Plant",
+   "npc_type": 17089,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    193,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 288
+  },
+  {
+   "entity_id": 78100441,
+   "nombre": "Elite - Turret Plant",
+   "npc_type": 17089,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    127
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 288
+  },
+  {
+   "entity_id": 78100442,
+   "nombre": "Elite - Turret Plant",
+   "npc_type": 17089,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    248,
+    139
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 288
+  },
+  {
+   "entity_id": 78100443,
+   "nombre": "Elite - Turret Plant",
+   "npc_type": 17089,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    193,
+    153
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 288
+  },
+  {
+   "entity_id": 78100444,
+   "nombre": "Elite - Turret Plant",
+   "npc_type": 17089,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    127
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 288
+  },
+  {
+   "entity_id": 78100445,
+   "nombre": "Elite - Turret Plant",
+   "npc_type": 17089,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    248,
+    144
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 288
+  },
+  {
+   "entity_id": 78100446,
+   "nombre": "Elite - Turret Plant",
+   "npc_type": 17089,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    193,
+    158
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 288
+  },
+  {
+   "entity_id": 78100447,
+   "nombre": "Elite - Turret Plant",
+   "npc_type": 17089,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    236,
+    149
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 288
+  },
+  {
+   "entity_id": 78100448,
+   "nombre": "Elite - Turret Plant",
+   "npc_type": 17089,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    223,
+    119
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 288
+  },
+  {
+   "entity_id": 78100449,
+   "nombre": "Elite - Turret Plant",
+   "npc_type": 17089,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    193,
+    163
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 288
+  },
+  {
+   "entity_id": 78100450,
+   "nombre": "Elite - Turret Plant",
+   "npc_type": 17089,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    236,
+    154
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 288
+  },
+  {
+   "entity_id": 78100451,
+   "nombre": "Elite - Turret Plant",
+   "npc_type": 17089,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    228,
+    119
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 288
+  },
+  {
+   "entity_id": 78100452,
+   "nombre": "Elite - Turret Plant",
+   "npc_type": 17089,
+   "sprite": 110128,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    198,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 288
+  }
+ ],
+ "recursos": [
+  {
+   "entity_id": 88100000,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    3248,
+    2256
+   ],
+   "tile": [
+    101,
+    70
+   ],
+   "crudo": "a04c400500000000b00c0000d00800000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 88100001,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4883,
+    3056
+   ],
+   "tile": [
+    152,
+    95
+   ],
+   "crudo": "a14c40050000000013130000f00b00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 88100002,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    6577,
+    3888
+   ],
+   "tile": [
+    205,
+    121
+   ],
+   "crudo": "a24c400500000000b1190000300f00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 88100003,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    6583,
+    2224
+   ],
+   "tile": [
+    205,
+    69
+   ],
+   "crudo": "a34c400500000000b7190000b00800000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  }
+ ]
+}

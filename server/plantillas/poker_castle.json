@@ -1,0 +1,6458 @@
+{
+ "_nota": "poker_castle (stage 158). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map158.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "stage": 158,
+ "spawns": [
+  {
+   "entity_id": 65800000,
+   "nombre": "Cheese Guardian",
+   "npc_type": 7266,
+   "sprite": 43010,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    172,
+    21
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800001,
+   "nombre": "Cheese Guardian",
+   "npc_type": 7266,
+   "sprite": 43010,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    167,
+    16
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800002,
+   "nombre": "Cheese Guardian",
+   "npc_type": 7266,
+   "sprite": 43010,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    167,
+    21
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800003,
+   "nombre": "Cheese Guardian",
+   "npc_type": 7266,
+   "sprite": 43010,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    177,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800004,
+   "nombre": "Cheese Guardian",
+   "npc_type": 7266,
+   "sprite": 43010,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    172,
+    13
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800005,
+   "nombre": "Cheese Guardian",
+   "npc_type": 7266,
+   "sprite": 43010,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    177,
+    13
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800006,
+   "nombre": "Cheese Guardian",
+   "npc_type": 7266,
+   "sprite": 43010,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    182,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800007,
+   "nombre": "Cheese Guardian",
+   "npc_type": 7266,
+   "sprite": 43010,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    182,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800008,
+   "nombre": "Cheese Guardian",
+   "npc_type": 7266,
+   "sprite": 43010,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    182,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800009,
+   "nombre": "Cheese Guardian",
+   "npc_type": 7266,
+   "sprite": 43010,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    187,
+    13
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800010,
+   "nombre": "Cheese Guardian",
+   "npc_type": 7266,
+   "sprite": 43010,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    187,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800011,
+   "nombre": "Cheese Guardian",
+   "npc_type": 7266,
+   "sprite": 43010,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    187,
+    8
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800012,
+   "nombre": "Fruit Blocker Dich",
+   "npc_type": 7278,
+   "sprite": 43018,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 155
+  },
+  {
+   "entity_id": 65800013,
+   "nombre": "Diamond Poker Spearman",
+   "npc_type": 7262,
+   "sprite": 42948,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800014,
+   "nombre": "Diamond Poker Spearman",
+   "npc_type": 7262,
+   "sprite": 42948,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    111,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800015,
+   "nombre": "Cheese Guardian",
+   "npc_type": 7266,
+   "sprite": 43010,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    19
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800016,
+   "nombre": "Cheese Guardian",
+   "npc_type": 7266,
+   "sprite": 43010,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800017,
+   "nombre": "Cheese Guardian",
+   "npc_type": 7266,
+   "sprite": 43010,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    192,
+    14
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800018,
+   "nombre": "Cheese Guardian",
+   "npc_type": 7266,
+   "sprite": 43010,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    19
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800019,
+   "nombre": "Cheese Guardian",
+   "npc_type": 7266,
+   "sprite": 43010,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800020,
+   "nombre": "Cheese Guardian",
+   "npc_type": 7266,
+   "sprite": 43010,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800021,
+   "nombre": "Cheese Guardian",
+   "npc_type": 7266,
+   "sprite": 43010,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    19
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800022,
+   "nombre": "Cheese Guardian",
+   "npc_type": 7266,
+   "sprite": 43010,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800023,
+   "nombre": "Cheese Guardian",
+   "npc_type": 7266,
+   "sprite": 43010,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800024,
+   "nombre": "Cheese Guardian",
+   "npc_type": 7266,
+   "sprite": 43010,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800025,
+   "nombre": "Cheese Guardian",
+   "npc_type": 7266,
+   "sprite": 43010,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800026,
+   "nombre": "Cheese Guardian",
+   "npc_type": 7266,
+   "sprite": 43010,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    19
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800027,
+   "nombre": "Club Poker Spearman",
+   "npc_type": 7261,
+   "sprite": 42949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    97,
+    77
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800028,
+   "nombre": "Club Poker Spearman",
+   "npc_type": 7261,
+   "sprite": 42949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    146,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800029,
+   "nombre": "Club Poker Spearman",
+   "npc_type": 7261,
+   "sprite": 42949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    80
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800030,
+   "nombre": "Club Poker Spearman",
+   "npc_type": 7261,
+   "sprite": 42949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    72
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800031,
+   "nombre": "Club Poker Spearman",
+   "npc_type": 7261,
+   "sprite": 42949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    141,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800032,
+   "nombre": "Club Poker Spearman",
+   "npc_type": 7261,
+   "sprite": 42949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    123,
+    75
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800033,
+   "nombre": "Club Poker Spearman",
+   "npc_type": 7261,
+   "sprite": 42949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    77
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800034,
+   "nombre": "Club Poker Spearman",
+   "npc_type": 7261,
+   "sprite": 42949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    141,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800035,
+   "nombre": "Club Poker Spearman",
+   "npc_type": 7261,
+   "sprite": 42949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    123,
+    80
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800036,
+   "nombre": "Club Poker Spearman",
+   "npc_type": 7261,
+   "sprite": 42949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    82
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800037,
+   "nombre": "Club Poker Spearman",
+   "npc_type": 7261,
+   "sprite": 42949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    141,
+    81
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800038,
+   "nombre": "Club Poker Spearman",
+   "npc_type": 7261,
+   "sprite": 42949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    123,
+    85
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800039,
+   "nombre": "Club Poker Spearman",
+   "npc_type": 7261,
+   "sprite": 42949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    97,
+    72
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800040,
+   "nombre": "Club Poker Spearman",
+   "npc_type": 7261,
+   "sprite": 42949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    146,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800041,
+   "nombre": "Club Poker Spearman",
+   "npc_type": 7261,
+   "sprite": 42949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    75
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800042,
+   "nombre": "Diamond Poker Spearman",
+   "npc_type": 7262,
+   "sprite": 42948,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800043,
+   "nombre": "Diamond Poker Spearman",
+   "npc_type": 7262,
+   "sprite": 42948,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    72
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800044,
+   "nombre": "Diamond Poker Spearman",
+   "npc_type": 7262,
+   "sprite": 42948,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800045,
+   "nombre": "Diamond Poker Spearman",
+   "npc_type": 7262,
+   "sprite": 42948,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    97,
+    82
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800046,
+   "nombre": "Diamond Poker Spearman",
+   "npc_type": 7262,
+   "sprite": 42948,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    146,
+    81
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800047,
+   "nombre": "Diamond Poker Spearman",
+   "npc_type": 7262,
+   "sprite": 42948,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    85
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800048,
+   "nombre": "Diamond Poker Spearman",
+   "npc_type": 7262,
+   "sprite": 42948,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    102,
+    72
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800049,
+   "nombre": "Diamond Poker Spearman",
+   "npc_type": 7262,
+   "sprite": 42948,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    151,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800050,
+   "nombre": "Diamond Poker Spearman",
+   "npc_type": 7262,
+   "sprite": 42948,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    75
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800051,
+   "nombre": "Diamond Poker Spearman",
+   "npc_type": 7262,
+   "sprite": 42948,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    95,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800052,
+   "nombre": "Diamond Poker Spearman",
+   "npc_type": 7262,
+   "sprite": 42948,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    90,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800053,
+   "nombre": "Diamond Poker Spearman",
+   "npc_type": 7262,
+   "sprite": 42948,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    90,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800054,
+   "nombre": "Diamond Poker Spearman",
+   "npc_type": 7262,
+   "sprite": 42948,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    134,
+    80
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800055,
+   "nombre": "Diamond Poker Spearman",
+   "npc_type": 7262,
+   "sprite": 42948,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    130,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800056,
+   "nombre": "Diamond Poker Spearman",
+   "npc_type": 7262,
+   "sprite": 42948,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    135,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800057,
+   "nombre": "Heart Poker Spearman",
+   "npc_type": 7263,
+   "sprite": 42947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    104,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800058,
+   "nombre": "Heart Poker Spearman",
+   "npc_type": 7263,
+   "sprite": 42947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    99,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800059,
+   "nombre": "Heart Poker Spearman",
+   "npc_type": 7263,
+   "sprite": 42947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    99,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800060,
+   "nombre": "Diamond Poker Spearman",
+   "npc_type": 7262,
+   "sprite": 42948,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    102,
+    77
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800061,
+   "nombre": "Diamond Poker Spearman",
+   "npc_type": 7262,
+   "sprite": 42948,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    151,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800062,
+   "nombre": "Diamond Poker Spearman",
+   "npc_type": 7262,
+   "sprite": 42948,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    85
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800063,
+   "nombre": "Heart Poker Spearman",
+   "npc_type": 7263,
+   "sprite": 42947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    97,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800064,
+   "nombre": "Heart Poker Spearman",
+   "npc_type": 7263,
+   "sprite": 42947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    102,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800065,
+   "nombre": "Heart Poker Spearman",
+   "npc_type": 7263,
+   "sprite": 42947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    62
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800066,
+   "nombre": "Heart Poker Spearman",
+   "npc_type": 7263,
+   "sprite": 42947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    81,
+    82
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800067,
+   "nombre": "Heart Poker Spearman",
+   "npc_type": 7263,
+   "sprite": 42947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    76,
+    77
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800068,
+   "nombre": "Heart Poker Spearman",
+   "npc_type": 7263,
+   "sprite": 42947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    76,
+    82
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800069,
+   "nombre": "Heart Poker Spearman",
+   "npc_type": 7263,
+   "sprite": 42947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    110,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800070,
+   "nombre": "Heart Poker Spearman",
+   "npc_type": 7263,
+   "sprite": 42947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    105,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800071,
+   "nombre": "Heart Poker Spearman",
+   "npc_type": 7263,
+   "sprite": 42947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    105,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800072,
+   "nombre": "Heart Poker Spearman",
+   "npc_type": 7263,
+   "sprite": 42947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    125,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800073,
+   "nombre": "Heart Poker Spearman",
+   "npc_type": 7263,
+   "sprite": 42947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    138,
+    86
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800074,
+   "nombre": "Heart Poker Spearman",
+   "npc_type": 7263,
+   "sprite": 42947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    140,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800075,
+   "nombre": "Heart Poker Spearman",
+   "npc_type": 7263,
+   "sprite": 42947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    131,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800076,
+   "nombre": "Heart Poker Spearman",
+   "npc_type": 7263,
+   "sprite": 42947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    126,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800077,
+   "nombre": "Heart Poker Spearman",
+   "npc_type": 7263,
+   "sprite": 42947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    126,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800078,
+   "nombre": "Heart Poker Spearman",
+   "npc_type": 7263,
+   "sprite": 42947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    135,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800079,
+   "nombre": "Heart Poker Spearman",
+   "npc_type": 7263,
+   "sprite": 42947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    140,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800080,
+   "nombre": "Heart Poker Spearman",
+   "npc_type": 7263,
+   "sprite": 42947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    130,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800081,
+   "nombre": "Club Poker Spearman",
+   "npc_type": 7261,
+   "sprite": 42949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    114,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800082,
+   "nombre": "Diamond Poker Spearman",
+   "npc_type": 7262,
+   "sprite": 42948,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    112,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800083,
+   "nombre": "Diamond Poker Spearman",
+   "npc_type": 7262,
+   "sprite": 42948,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    118,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800084,
+   "nombre": "Heart Poker Spearman",
+   "npc_type": 7263,
+   "sprite": 42947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    112,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800085,
+   "nombre": "Heart Poker Spearman",
+   "npc_type": 7263,
+   "sprite": 42947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    119,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800086,
+   "nombre": "Club Poker Spearman",
+   "npc_type": 7261,
+   "sprite": 42949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    117,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800087,
+   "nombre": "Diamond Poker Spearman",
+   "npc_type": 7262,
+   "sprite": 42948,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    123,
+    46
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800088,
+   "nombre": "Diamond Poker Spearman",
+   "npc_type": 7262,
+   "sprite": 42948,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    118,
+    41
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800089,
+   "nombre": "Diamond Poker Spearman",
+   "npc_type": 7262,
+   "sprite": 42948,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    118,
+    46
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800090,
+   "nombre": "Fat Dessert Angel",
+   "npc_type": 7260,
+   "sprite": 43008,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800091,
+   "nombre": "Fat Dessert Angel",
+   "npc_type": 7260,
+   "sprite": 43008,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800092,
+   "nombre": "Fat Dessert Angel",
+   "npc_type": 7260,
+   "sprite": 43008,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800093,
+   "nombre": "Fat Dessert Angel",
+   "npc_type": 7260,
+   "sprite": 43008,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800094,
+   "nombre": "Fat Dessert Angel",
+   "npc_type": 7260,
+   "sprite": 43008,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800095,
+   "nombre": "Fat Dessert Angel",
+   "npc_type": 7260,
+   "sprite": 43008,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800096,
+   "nombre": "Fat Dessert Angel",
+   "npc_type": 7260,
+   "sprite": 43008,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800097,
+   "nombre": "Fat Dessert Angel",
+   "npc_type": 7260,
+   "sprite": 43008,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800098,
+   "nombre": "Fat Dessert Angel",
+   "npc_type": 7260,
+   "sprite": 43008,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800099,
+   "nombre": "Fat Dessert Angel",
+   "npc_type": 7260,
+   "sprite": 43008,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800100,
+   "nombre": "Fat Dessert Angel",
+   "npc_type": 7260,
+   "sprite": 43008,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800101,
+   "nombre": "Fat Dessert Angel",
+   "npc_type": 7260,
+   "sprite": 43008,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800102,
+   "nombre": "Fat Dessert Angel",
+   "npc_type": 7260,
+   "sprite": 43008,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    39,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800103,
+   "nombre": "Fat Dessert Angel",
+   "npc_type": 7260,
+   "sprite": 43008,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800104,
+   "nombre": "Fat Dessert Angel",
+   "npc_type": 7260,
+   "sprite": 43008,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    39,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800105,
+   "nombre": "Fat Dessert Angel",
+   "npc_type": 7260,
+   "sprite": 43008,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800106,
+   "nombre": "Fat Dessert Angel",
+   "npc_type": 7260,
+   "sprite": 43008,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    39,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800107,
+   "nombre": "Fat Dessert Angel",
+   "npc_type": 7260,
+   "sprite": 43008,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800108,
+   "nombre": "Fat Dessert Angel",
+   "npc_type": 7260,
+   "sprite": 43008,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    39,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800109,
+   "nombre": "Fat Dessert Angel",
+   "npc_type": 7260,
+   "sprite": 43008,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800110,
+   "nombre": "Fat Dessert Angel",
+   "npc_type": 7260,
+   "sprite": 43008,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    39,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800111,
+   "nombre": "Fat Dessert Angel",
+   "npc_type": 7260,
+   "sprite": 43008,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    39,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800112,
+   "nombre": "Fat Dessert Angel",
+   "npc_type": 7260,
+   "sprite": 43008,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800113,
+   "nombre": "Fat Dessert Angel",
+   "npc_type": 7260,
+   "sprite": 43008,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800114,
+   "nombre": "Fat Dessert Angel",
+   "npc_type": 7260,
+   "sprite": 43008,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800115,
+   "nombre": "Fat Dessert Angel",
+   "npc_type": 7260,
+   "sprite": 43008,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800116,
+   "nombre": "Fat Dessert Angel",
+   "npc_type": 7260,
+   "sprite": 43008,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800117,
+   "nombre": "Fat Dessert Angel",
+   "npc_type": 7260,
+   "sprite": 43008,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800118,
+   "nombre": "Fat Dessert Angel",
+   "npc_type": 7260,
+   "sprite": 43008,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800119,
+   "nombre": "Fat Dessert Angel",
+   "npc_type": 7260,
+   "sprite": 43008,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800120,
+   "nombre": "Fat Bandit",
+   "npc_type": 7259,
+   "sprite": 43007,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    34,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 136
+  },
+  {
+   "entity_id": 65800121,
+   "nombre": "Fat Bandit",
+   "npc_type": 7259,
+   "sprite": 43007,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 136
+  },
+  {
+   "entity_id": 65800122,
+   "nombre": "Fat Bandit",
+   "npc_type": 7259,
+   "sprite": 43007,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    34,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 136
+  },
+  {
+   "entity_id": 65800123,
+   "nombre": "Fat Bandit",
+   "npc_type": 7259,
+   "sprite": 43007,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 136
+  },
+  {
+   "entity_id": 65800124,
+   "nombre": "Fat Bandit",
+   "npc_type": 7259,
+   "sprite": 43007,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    34,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 136
+  },
+  {
+   "entity_id": 65800125,
+   "nombre": "Fat Bandit",
+   "npc_type": 7259,
+   "sprite": 43007,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 136
+  },
+  {
+   "entity_id": 65800126,
+   "nombre": "Fat Bandit",
+   "npc_type": 7259,
+   "sprite": 43007,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    34,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 136
+  },
+  {
+   "entity_id": 65800127,
+   "nombre": "Fat Bandit",
+   "npc_type": 7259,
+   "sprite": 43007,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 136
+  },
+  {
+   "entity_id": 65800128,
+   "nombre": "Fat Bandit",
+   "npc_type": 7259,
+   "sprite": 43007,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    34,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 136
+  },
+  {
+   "entity_id": 65800129,
+   "nombre": "Fat Bandit",
+   "npc_type": 7259,
+   "sprite": 43007,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 136
+  },
+  {
+   "entity_id": 65800130,
+   "nombre": "Fat Bandit",
+   "npc_type": 7259,
+   "sprite": 43007,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    34,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 136
+  },
+  {
+   "entity_id": 65800131,
+   "nombre": "Fat Bandit",
+   "npc_type": 7259,
+   "sprite": 43007,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 136
+  },
+  {
+   "entity_id": 65800132,
+   "nombre": "Fat Bandit",
+   "npc_type": 7259,
+   "sprite": 43007,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    34,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 136
+  },
+  {
+   "entity_id": 65800133,
+   "nombre": "Fat Bandit",
+   "npc_type": 7259,
+   "sprite": 43007,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    34,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 136
+  },
+  {
+   "entity_id": 65800134,
+   "nombre": "Fat Bandit",
+   "npc_type": 7259,
+   "sprite": 43007,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    39,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 136
+  },
+  {
+   "entity_id": 65800135,
+   "nombre": "Fat Bandit",
+   "npc_type": 7259,
+   "sprite": 43007,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    39,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 136
+  },
+  {
+   "entity_id": 65800136,
+   "nombre": "Fat Bandit",
+   "npc_type": 7259,
+   "sprite": 43007,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 136
+  },
+  {
+   "entity_id": 65800137,
+   "nombre": "Fat Bandit",
+   "npc_type": 7259,
+   "sprite": 43007,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 136
+  },
+  {
+   "entity_id": 65800138,
+   "nombre": "Fat Bandit",
+   "npc_type": 7259,
+   "sprite": 43007,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 136
+  },
+  {
+   "entity_id": 65800139,
+   "nombre": "Fat Bandit",
+   "npc_type": 7259,
+   "sprite": 43007,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 136
+  },
+  {
+   "entity_id": 65800140,
+   "nombre": "Heart Poker Spearman",
+   "npc_type": 7263,
+   "sprite": 42947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    107,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800141,
+   "nombre": "Goddess Ward",
+   "npc_type": 7279,
+   "sprite": 42968,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    263,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 160
+  },
+  {
+   "entity_id": 65800142,
+   "nombre": "Club Poker Spearman",
+   "npc_type": 7261,
+   "sprite": 42949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    102,
+    82
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800143,
+   "nombre": "Club Poker Spearman",
+   "npc_type": 7261,
+   "sprite": 42949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    151,
+    81
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800144,
+   "nombre": "Club Poker Spearman",
+   "npc_type": 7261,
+   "sprite": 42949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    118,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800145,
+   "nombre": "Fat Lantern Demon Anglia",
+   "npc_type": 7277,
+   "sprite": 43017,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    169,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 151
+  },
+  {
+   "entity_id": 65800146,
+   "nombre": "Spade Poker Spearman",
+   "npc_type": 7264,
+   "sprite": 42946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 142
+  },
+  {
+   "entity_id": 65800147,
+   "nombre": "Spade Poker Spearman",
+   "npc_type": 7264,
+   "sprite": 42946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 142
+  },
+  {
+   "entity_id": 65800148,
+   "nombre": "Spade Poker Spearman",
+   "npc_type": 7264,
+   "sprite": 42946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 142
+  },
+  {
+   "entity_id": 65800149,
+   "nombre": "Spade Poker Spearman",
+   "npc_type": 7264,
+   "sprite": 42946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 142
+  },
+  {
+   "entity_id": 65800150,
+   "nombre": "Spade Poker Spearman",
+   "npc_type": 7264,
+   "sprite": 42946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 142
+  },
+  {
+   "entity_id": 65800151,
+   "nombre": "Spade Poker Spearman",
+   "npc_type": 7264,
+   "sprite": 42946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 142
+  },
+  {
+   "entity_id": 65800152,
+   "nombre": "Spade Poker Spearman",
+   "npc_type": 7264,
+   "sprite": 42946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 142
+  },
+  {
+   "entity_id": 65800153,
+   "nombre": "Spade Poker Spearman",
+   "npc_type": 7264,
+   "sprite": 42946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 142
+  },
+  {
+   "entity_id": 65800154,
+   "nombre": "Spade Poker Spearman",
+   "npc_type": 7264,
+   "sprite": 42946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 142
+  },
+  {
+   "entity_id": 65800155,
+   "nombre": "Spade Poker Spearman",
+   "npc_type": 7264,
+   "sprite": 42946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 142
+  },
+  {
+   "entity_id": 65800156,
+   "nombre": "Spade Poker Spearman",
+   "npc_type": 7264,
+   "sprite": 42946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 142
+  },
+  {
+   "entity_id": 65800157,
+   "nombre": "Spade Poker Spearman",
+   "npc_type": 7264,
+   "sprite": 42946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    174,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 142
+  },
+  {
+   "entity_id": 65800158,
+   "nombre": "Spade Poker Spearman",
+   "npc_type": 7264,
+   "sprite": 42946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 142
+  },
+  {
+   "entity_id": 65800159,
+   "nombre": "Spade Poker Spearman",
+   "npc_type": 7264,
+   "sprite": 42946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 142
+  },
+  {
+   "entity_id": 65800160,
+   "nombre": "Spade Poker Spearman",
+   "npc_type": 7264,
+   "sprite": 42946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 142
+  },
+  {
+   "entity_id": 65800161,
+   "nombre": "Spade Poker Spearman",
+   "npc_type": 7264,
+   "sprite": 42946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 142
+  },
+  {
+   "entity_id": 65800162,
+   "nombre": "Spade Poker Spearman",
+   "npc_type": 7264,
+   "sprite": 42946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 142
+  },
+  {
+   "entity_id": 65800163,
+   "nombre": "Spade Poker Spearman",
+   "npc_type": 7264,
+   "sprite": 42946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 142
+  },
+  {
+   "entity_id": 65800164,
+   "nombre": "Spade Poker Spearman",
+   "npc_type": 7264,
+   "sprite": 42946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 142
+  },
+  {
+   "entity_id": 65800165,
+   "nombre": "Spade Poker Spearman",
+   "npc_type": 7264,
+   "sprite": 42946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 142
+  },
+  {
+   "entity_id": 65800166,
+   "nombre": "Black Heart Chef",
+   "npc_type": 7265,
+   "sprite": 43009,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 143
+  },
+  {
+   "entity_id": 65800167,
+   "nombre": "Black Heart Chef",
+   "npc_type": 7265,
+   "sprite": 43009,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 143
+  },
+  {
+   "entity_id": 65800168,
+   "nombre": "Black Heart Chef",
+   "npc_type": 7265,
+   "sprite": 43009,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 143
+  },
+  {
+   "entity_id": 65800169,
+   "nombre": "Black Heart Chef",
+   "npc_type": 7265,
+   "sprite": 43009,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 143
+  },
+  {
+   "entity_id": 65800170,
+   "nombre": "Black Heart Chef",
+   "npc_type": 7265,
+   "sprite": 43009,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 143
+  },
+  {
+   "entity_id": 65800171,
+   "nombre": "Black Heart Chef",
+   "npc_type": 7265,
+   "sprite": 43009,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    179,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 143
+  },
+  {
+   "entity_id": 65800172,
+   "nombre": "Black Heart Chef",
+   "npc_type": 7265,
+   "sprite": 43009,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 143
+  },
+  {
+   "entity_id": 65800173,
+   "nombre": "Black Heart Chef",
+   "npc_type": 7265,
+   "sprite": 43009,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 143
+  },
+  {
+   "entity_id": 65800174,
+   "nombre": "Black Heart Chef",
+   "npc_type": 7265,
+   "sprite": 43009,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 143
+  },
+  {
+   "entity_id": 65800175,
+   "nombre": "Black Heart Chef",
+   "npc_type": 7265,
+   "sprite": 43009,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 143
+  },
+  {
+   "entity_id": 65800176,
+   "nombre": "Black Heart Chef",
+   "npc_type": 7265,
+   "sprite": 43009,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 143
+  },
+  {
+   "entity_id": 65800177,
+   "nombre": "Black Heart Chef",
+   "npc_type": 7265,
+   "sprite": 43009,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 143
+  },
+  {
+   "entity_id": 65800178,
+   "nombre": "Black Heart Chef",
+   "npc_type": 7265,
+   "sprite": 43009,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 143
+  },
+  {
+   "entity_id": 65800179,
+   "nombre": "Black Heart Chef",
+   "npc_type": 7265,
+   "sprite": 43009,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 143
+  },
+  {
+   "entity_id": 65800180,
+   "nombre": "Black Heart Chef",
+   "npc_type": 7265,
+   "sprite": 43009,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 143
+  },
+  {
+   "entity_id": 65800181,
+   "nombre": "Black Heart Chef",
+   "npc_type": 7265,
+   "sprite": 43009,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 143
+  },
+  {
+   "entity_id": 65800182,
+   "nombre": "Black Heart Chef",
+   "npc_type": 7265,
+   "sprite": 43009,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 143
+  },
+  {
+   "entity_id": 65800183,
+   "nombre": "Black Heart Chef",
+   "npc_type": 7265,
+   "sprite": 43009,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 143
+  },
+  {
+   "entity_id": 65800184,
+   "nombre": "Black Heart Chef",
+   "npc_type": 7265,
+   "sprite": 43009,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    156,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 143
+  },
+  {
+   "entity_id": 65800185,
+   "nombre": "Black Heart Chef",
+   "npc_type": 7265,
+   "sprite": 43009,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 143
+  },
+  {
+   "entity_id": 65800186,
+   "nombre": "Black Heart Chef",
+   "npc_type": 7265,
+   "sprite": 43009,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 143
+  },
+  {
+   "entity_id": 65800187,
+   "nombre": "Black Heart Chef",
+   "npc_type": 7265,
+   "sprite": 43009,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    42
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 143
+  },
+  {
+   "entity_id": 65800188,
+   "nombre": "Black Heart Chef",
+   "npc_type": 7265,
+   "sprite": 43009,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    166,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 143
+  },
+  {
+   "entity_id": 65800189,
+   "nombre": "Black Heart Chef",
+   "npc_type": 7265,
+   "sprite": 43009,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 143
+  },
+  {
+   "entity_id": 65800190,
+   "nombre": "Black Heart Chef",
+   "npc_type": 7265,
+   "sprite": 43009,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 143
+  },
+  {
+   "entity_id": 65800191,
+   "nombre": "Toy Sniper",
+   "npc_type": 7267,
+   "sprite": 43012,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800192,
+   "nombre": "Toy Sniper",
+   "npc_type": 7267,
+   "sprite": 43012,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    143
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800193,
+   "nombre": "Toy Sniper",
+   "npc_type": 7267,
+   "sprite": 43012,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    45,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800194,
+   "nombre": "Toy Sniper",
+   "npc_type": 7267,
+   "sprite": 43012,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    46,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800195,
+   "nombre": "Toy Sniper",
+   "npc_type": 7267,
+   "sprite": 43012,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800196,
+   "nombre": "Toy Sniper",
+   "npc_type": 7267,
+   "sprite": 43012,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    143
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800197,
+   "nombre": "Toy Sniper",
+   "npc_type": 7267,
+   "sprite": 43012,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    46,
+    153
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800198,
+   "nombre": "Toy Sniper",
+   "npc_type": 7267,
+   "sprite": 43012,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    56,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800199,
+   "nombre": "Toy Sniper",
+   "npc_type": 7267,
+   "sprite": 43012,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    50,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800200,
+   "nombre": "Toy Sniper",
+   "npc_type": 7267,
+   "sprite": 43012,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    153
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800201,
+   "nombre": "Toy Sniper",
+   "npc_type": 7267,
+   "sprite": 43012,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    56,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800202,
+   "nombre": "Toy Sniper",
+   "npc_type": 7267,
+   "sprite": 43012,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800203,
+   "nombre": "Toy Sniper",
+   "npc_type": 7267,
+   "sprite": 43012,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    56,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800204,
+   "nombre": "Toy Sniper",
+   "npc_type": 7267,
+   "sprite": 43012,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    153
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800205,
+   "nombre": "Toy Sniper",
+   "npc_type": 7267,
+   "sprite": 43012,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800206,
+   "nombre": "Toy Sniper",
+   "npc_type": 7267,
+   "sprite": 43012,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800207,
+   "nombre": "Toy Sniper",
+   "npc_type": 7267,
+   "sprite": 43012,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800208,
+   "nombre": "Toy Sniper",
+   "npc_type": 7267,
+   "sprite": 43012,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    45,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800209,
+   "nombre": "Toy Sniper",
+   "npc_type": 7267,
+   "sprite": 43012,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    158
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800210,
+   "nombre": "Toy Sniper",
+   "npc_type": 7267,
+   "sprite": 43012,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 144
+  },
+  {
+   "entity_id": 65800211,
+   "nombre": "Club Poker Priest",
+   "npc_type": 7268,
+   "sprite": 42953,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    46,
+    158
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800212,
+   "nombre": "Club Poker Priest",
+   "npc_type": 7268,
+   "sprite": 42953,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    39,
+    139
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800213,
+   "nombre": "Club Poker Priest",
+   "npc_type": 7268,
+   "sprite": 42953,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    50,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800214,
+   "nombre": "Club Poker Priest",
+   "npc_type": 7268,
+   "sprite": 42953,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    158
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800215,
+   "nombre": "Club Poker Priest",
+   "npc_type": 7268,
+   "sprite": 42953,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    61,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800216,
+   "nombre": "Club Poker Priest",
+   "npc_type": 7268,
+   "sprite": 42953,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800217,
+   "nombre": "Club Poker Priest",
+   "npc_type": 7268,
+   "sprite": 42953,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    61,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800218,
+   "nombre": "Club Poker Priest",
+   "npc_type": 7268,
+   "sprite": 42953,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    61,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800219,
+   "nombre": "Club Poker Priest",
+   "npc_type": 7268,
+   "sprite": 42953,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    144
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800220,
+   "nombre": "Club Poker Priest",
+   "npc_type": 7268,
+   "sprite": 42953,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    56,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800221,
+   "nombre": "Club Poker Priest",
+   "npc_type": 7268,
+   "sprite": 42953,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    149
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800222,
+   "nombre": "Club Poker Priest",
+   "npc_type": 7268,
+   "sprite": 42953,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800223,
+   "nombre": "Club Poker Priest",
+   "npc_type": 7268,
+   "sprite": 42953,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    61,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800224,
+   "nombre": "Club Poker Priest",
+   "npc_type": 7268,
+   "sprite": 42953,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    154
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800225,
+   "nombre": "Club Poker Priest",
+   "npc_type": 7268,
+   "sprite": 42953,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800226,
+   "nombre": "Club Poker Priest",
+   "npc_type": 7268,
+   "sprite": 42953,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    139
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800227,
+   "nombre": "Club Poker Priest",
+   "npc_type": 7268,
+   "sprite": 42953,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    35,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800228,
+   "nombre": "Club Poker Priest",
+   "npc_type": 7268,
+   "sprite": 42953,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800229,
+   "nombre": "Club Poker Priest",
+   "npc_type": 7268,
+   "sprite": 42953,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800230,
+   "nombre": "Club Poker Priest",
+   "npc_type": 7268,
+   "sprite": 42953,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    35,
+    159
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800231,
+   "nombre": "Club Poker Priest",
+   "npc_type": 7268,
+   "sprite": 42953,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    34,
+    139
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800232,
+   "nombre": "Club Poker Priest",
+   "npc_type": 7268,
+   "sprite": 42953,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    163
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800233,
+   "nombre": "Club Poker Priest",
+   "npc_type": 7268,
+   "sprite": 42953,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800234,
+   "nombre": "Club Poker Priest",
+   "npc_type": 7268,
+   "sprite": 42953,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    46,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800235,
+   "nombre": "Club Poker Priest",
+   "npc_type": 7268,
+   "sprite": 42953,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    45,
+    163
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800236,
+   "nombre": "Toy Colonel",
+   "npc_type": 7269,
+   "sprite": 43011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    50,
+    163
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800237,
+   "nombre": "Toy Colonel",
+   "npc_type": 7269,
+   "sprite": 43011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    66,
+    144
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800238,
+   "nombre": "Toy Colonel",
+   "npc_type": 7269,
+   "sprite": 43011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800239,
+   "nombre": "Toy Colonel",
+   "npc_type": 7269,
+   "sprite": 43011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    66,
+    149
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800240,
+   "nombre": "Toy Colonel",
+   "npc_type": 7269,
+   "sprite": 43011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    66,
+    154
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800241,
+   "nombre": "Toy Colonel",
+   "npc_type": 7269,
+   "sprite": 43011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800242,
+   "nombre": "Toy Colonel",
+   "npc_type": 7269,
+   "sprite": 43011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    66,
+    159
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800243,
+   "nombre": "Toy Colonel",
+   "npc_type": 7269,
+   "sprite": 43011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    144
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800244,
+   "nombre": "Toy Colonel",
+   "npc_type": 7269,
+   "sprite": 43011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    149
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800245,
+   "nombre": "Toy Colonel",
+   "npc_type": 7269,
+   "sprite": 43011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    35,
+    164
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800246,
+   "nombre": "Toy Colonel",
+   "npc_type": 7269,
+   "sprite": 43011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    154
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800247,
+   "nombre": "Toy Colonel",
+   "npc_type": 7269,
+   "sprite": 43011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800248,
+   "nombre": "Toy Colonel",
+   "npc_type": 7269,
+   "sprite": 43011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    66,
+    164
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800249,
+   "nombre": "Toy Colonel",
+   "npc_type": 7269,
+   "sprite": 43011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    69,
+    139
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800250,
+   "nombre": "Toy Colonel",
+   "npc_type": 7269,
+   "sprite": 43011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800251,
+   "nombre": "Toy Colonel",
+   "npc_type": 7269,
+   "sprite": 43011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800252,
+   "nombre": "Toy Colonel",
+   "npc_type": 7269,
+   "sprite": 43011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800253,
+   "nombre": "Toy Colonel",
+   "npc_type": 7269,
+   "sprite": 43011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    56,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800254,
+   "nombre": "Toy Colonel",
+   "npc_type": 7269,
+   "sprite": 43011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800255,
+   "nombre": "Toy Colonel",
+   "npc_type": 7269,
+   "sprite": 43011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    159
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800256,
+   "nombre": "Toy Colonel",
+   "npc_type": 7269,
+   "sprite": 43011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    61,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800257,
+   "nombre": "Toy Colonel",
+   "npc_type": 7269,
+   "sprite": 43011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    70,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800258,
+   "nombre": "Toy Colonel",
+   "npc_type": 7269,
+   "sprite": 43011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    164
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800259,
+   "nombre": "Toy Colonel",
+   "npc_type": 7269,
+   "sprite": 43011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800260,
+   "nombre": "Toy Colonel",
+   "npc_type": 7269,
+   "sprite": 43011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    70,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 65800261,
+   "nombre": "Poker Colonel Kello",
+   "npc_type": 7276,
+   "sprite": 43016,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    66,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 151
+  },
+  {
+   "entity_id": 65800262,
+   "nombre": "Cheese Assassin",
+   "npc_type": 7270,
+   "sprite": 43013,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800263,
+   "nombre": "Cheese Assassin",
+   "npc_type": 7270,
+   "sprite": 43013,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    253,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800264,
+   "nombre": "Cheese Assassin",
+   "npc_type": 7270,
+   "sprite": 43013,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    253,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800265,
+   "nombre": "Cheese Assassin",
+   "npc_type": 7270,
+   "sprite": 43013,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    253,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800266,
+   "nombre": "Cheese Assassin",
+   "npc_type": 7270,
+   "sprite": 43013,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800267,
+   "nombre": "Cheese Assassin",
+   "npc_type": 7270,
+   "sprite": 43013,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800268,
+   "nombre": "Cheese Assassin",
+   "npc_type": 7270,
+   "sprite": 43013,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    263,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800269,
+   "nombre": "Cheese Assassin",
+   "npc_type": 7270,
+   "sprite": 43013,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    263,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800270,
+   "nombre": "Cheese Assassin",
+   "npc_type": 7270,
+   "sprite": 43013,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    263,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800271,
+   "nombre": "Cheese Assassin",
+   "npc_type": 7270,
+   "sprite": 43013,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    248,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800272,
+   "nombre": "Cheese Assassin",
+   "npc_type": 7270,
+   "sprite": 43013,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    248,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800273,
+   "nombre": "Cheese Assassin",
+   "npc_type": 7270,
+   "sprite": 43013,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    248,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800274,
+   "nombre": "Cheese Assassin",
+   "npc_type": 7270,
+   "sprite": 43013,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    248,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800275,
+   "nombre": "Cheese Assassin",
+   "npc_type": 7270,
+   "sprite": 43013,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    248,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800276,
+   "nombre": "Cheese Assassin",
+   "npc_type": 7270,
+   "sprite": 43013,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    253,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800277,
+   "nombre": "Cheese Assassin",
+   "npc_type": 7270,
+   "sprite": 43013,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    253,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800278,
+   "nombre": "Cheese Assassin",
+   "npc_type": 7270,
+   "sprite": 43013,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800279,
+   "nombre": "Cheese Assassin",
+   "npc_type": 7270,
+   "sprite": 43013,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800280,
+   "nombre": "Cheese Assassin",
+   "npc_type": 7270,
+   "sprite": 43013,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    263,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800281,
+   "nombre": "Cheese Assassin",
+   "npc_type": 7270,
+   "sprite": 43013,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    268,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800282,
+   "nombre": "Cheese Assassin",
+   "npc_type": 7270,
+   "sprite": 43013,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    268,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800283,
+   "nombre": "Cheese Assassin",
+   "npc_type": 7270,
+   "sprite": 43013,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    268,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800284,
+   "nombre": "Cheese Assassin",
+   "npc_type": 7270,
+   "sprite": 43013,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    268,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800285,
+   "nombre": "Cheese Assassin",
+   "npc_type": 7270,
+   "sprite": 43013,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    268,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800286,
+   "nombre": "Cheese Assassin",
+   "npc_type": 7270,
+   "sprite": 43013,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800287,
+   "nombre": "Cheese Assassin",
+   "npc_type": 7270,
+   "sprite": 43013,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800288,
+   "nombre": "Cheese Assassin",
+   "npc_type": 7270,
+   "sprite": 43013,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800289,
+   "nombre": "Cheese Assassin",
+   "npc_type": 7270,
+   "sprite": 43013,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800290,
+   "nombre": "Cheese Assassin",
+   "npc_type": 7270,
+   "sprite": 43013,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800291,
+   "nombre": "Cheese Assassin",
+   "npc_type": 7270,
+   "sprite": 43013,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800292,
+   "nombre": "Diamond Poker Priest",
+   "npc_type": 7271,
+   "sprite": 42952,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    17,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800293,
+   "nombre": "Diamond Poker Priest",
+   "npc_type": 7271,
+   "sprite": 42952,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    12,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800294,
+   "nombre": "Diamond Poker Priest",
+   "npc_type": 7271,
+   "sprite": 42952,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    12,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 146
+  },
+  {
+   "entity_id": 65800295,
+   "nombre": "Goddess Aglaia",
+   "npc_type": 7280,
+   "sprite": 42969,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    27,
+    97
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 160
+  },
+  {
+   "entity_id": 65800296,
+   "nombre": "Goddess Thalia",
+   "npc_type": 7281,
+   "sprite": 42970,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    146,
+    106
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 162
+  },
+  {
+   "entity_id": 65800297,
+   "nombre": "Heart Poker Priest",
+   "npc_type": 7272,
+   "sprite": 42951,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    146,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800298,
+   "nombre": "Heart Poker Priest",
+   "npc_type": 7272,
+   "sprite": 42951,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    141,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800299,
+   "nombre": "Heart Poker Priest",
+   "npc_type": 7272,
+   "sprite": 42951,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    141,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800300,
+   "nombre": "Heart Poker Priest",
+   "npc_type": 7272,
+   "sprite": 42951,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    141,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800301,
+   "nombre": "Heart Poker Priest",
+   "npc_type": 7272,
+   "sprite": 42951,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    146,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800302,
+   "nombre": "Heart Poker Priest",
+   "npc_type": 7272,
+   "sprite": 42951,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    151,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800303,
+   "nombre": "Heart Poker Priest",
+   "npc_type": 7272,
+   "sprite": 42951,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    151,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800304,
+   "nombre": "Heart Poker Priest",
+   "npc_type": 7272,
+   "sprite": 42951,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    151,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800305,
+   "nombre": "Heart Poker Priest",
+   "npc_type": 7272,
+   "sprite": 42951,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    136,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800306,
+   "nombre": "Heart Poker Priest",
+   "npc_type": 7272,
+   "sprite": 42951,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    136,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800307,
+   "nombre": "Heart Poker Priest",
+   "npc_type": 7272,
+   "sprite": 42951,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    136,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800308,
+   "nombre": "Heart Poker Priest",
+   "npc_type": 7272,
+   "sprite": 42951,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    136,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800309,
+   "nombre": "Heart Poker Priest",
+   "npc_type": 7272,
+   "sprite": 42951,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    136,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800310,
+   "nombre": "Heart Poker Priest",
+   "npc_type": 7272,
+   "sprite": 42951,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    141,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800311,
+   "nombre": "Heart Poker Priest",
+   "npc_type": 7272,
+   "sprite": 42951,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    141,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800312,
+   "nombre": "Heart Poker Priest",
+   "npc_type": 7272,
+   "sprite": 42951,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    146,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800313,
+   "nombre": "Heart Poker Priest",
+   "npc_type": 7272,
+   "sprite": 42951,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    151,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800314,
+   "nombre": "Heart Poker Priest",
+   "npc_type": 7272,
+   "sprite": 42951,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    151,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800315,
+   "nombre": "Heart Poker Priest",
+   "npc_type": 7272,
+   "sprite": 42951,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    156,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800316,
+   "nombre": "Heart Poker Priest",
+   "npc_type": 7272,
+   "sprite": 42951,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    156,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800317,
+   "nombre": "Gothicllo",
+   "npc_type": 7282,
+   "sprite": 42971,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    139,
+    154
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 165
+  },
+  {
+   "entity_id": 65800318,
+   "nombre": "Spade Poker Priest",
+   "npc_type": 7273,
+   "sprite": 42950,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    201,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800319,
+   "nombre": "Spade Poker Priest",
+   "npc_type": 7273,
+   "sprite": 42950,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    196,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800320,
+   "nombre": "Spade Poker Priest",
+   "npc_type": 7273,
+   "sprite": 42950,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    196,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800321,
+   "nombre": "Spade Poker Priest",
+   "npc_type": 7273,
+   "sprite": 42950,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    196,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800322,
+   "nombre": "Spade Poker Priest",
+   "npc_type": 7273,
+   "sprite": 42950,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    201,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800323,
+   "nombre": "Spade Poker Priest",
+   "npc_type": 7273,
+   "sprite": 42950,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    201,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800324,
+   "nombre": "Spade Poker Priest",
+   "npc_type": 7273,
+   "sprite": 42950,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800325,
+   "nombre": "Spade Poker Priest",
+   "npc_type": 7273,
+   "sprite": 42950,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800326,
+   "nombre": "Spade Poker Priest",
+   "npc_type": 7273,
+   "sprite": 42950,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800327,
+   "nombre": "Spade Poker Priest",
+   "npc_type": 7273,
+   "sprite": 42950,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    191,
+    136
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800328,
+   "nombre": "Spade Poker Priest",
+   "npc_type": 7273,
+   "sprite": 42950,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    191,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800329,
+   "nombre": "Spade Poker Priest",
+   "npc_type": 7273,
+   "sprite": 42950,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    191,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800330,
+   "nombre": "Spade Poker Priest",
+   "npc_type": 7273,
+   "sprite": 42950,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    191,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800331,
+   "nombre": "Spade Poker Priest",
+   "npc_type": 7273,
+   "sprite": 42950,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    191,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800332,
+   "nombre": "Spade Poker Priest",
+   "npc_type": 7273,
+   "sprite": 42950,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    196,
+    136
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800333,
+   "nombre": "Spade Poker Priest",
+   "npc_type": 7273,
+   "sprite": 42950,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    196,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800334,
+   "nombre": "Spade Poker Priest",
+   "npc_type": 7273,
+   "sprite": 42950,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    201,
+    136
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800335,
+   "nombre": "Spade Poker Priest",
+   "npc_type": 7273,
+   "sprite": 42950,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    201,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800336,
+   "nombre": "Spade Poker Priest",
+   "npc_type": 7273,
+   "sprite": 42950,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    136
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800337,
+   "nombre": "Spade Poker Priest",
+   "npc_type": 7273,
+   "sprite": 42950,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800338,
+   "nombre": "Spade Poker Priest",
+   "npc_type": 7273,
+   "sprite": 42950,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    136
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800339,
+   "nombre": "Spade Poker Priest",
+   "npc_type": 7273,
+   "sprite": 42950,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800340,
+   "nombre": "Spade Poker Priest",
+   "npc_type": 7273,
+   "sprite": 42950,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800341,
+   "nombre": "Spade Poker Priest",
+   "npc_type": 7273,
+   "sprite": 42950,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800342,
+   "nombre": "Spade Poker Priest",
+   "npc_type": 7273,
+   "sprite": 42950,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 148
+  },
+  {
+   "entity_id": 65800343,
+   "nombre": "Fruit Guardian",
+   "npc_type": 7274,
+   "sprite": 43014,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    188,
+    131
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800344,
+   "nombre": "Fruit Guardian",
+   "npc_type": 7274,
+   "sprite": 43014,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    193,
+    131
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800345,
+   "nombre": "Fruit Guardian",
+   "npc_type": 7274,
+   "sprite": 43014,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    198,
+    131
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800346,
+   "nombre": "Fruit Guardian",
+   "npc_type": 7274,
+   "sprite": 43014,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    203,
+    131
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800347,
+   "nombre": "Fruit Guardian",
+   "npc_type": 7274,
+   "sprite": 43014,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    208,
+    131
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800348,
+   "nombre": "Fruit Guardian",
+   "npc_type": 7274,
+   "sprite": 43014,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    213,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800349,
+   "nombre": "Fruit Guardian",
+   "npc_type": 7274,
+   "sprite": 43014,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    186,
+    136
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800350,
+   "nombre": "Fruit Guardian",
+   "npc_type": 7274,
+   "sprite": 43014,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    186,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800351,
+   "nombre": "Fruit Guardian",
+   "npc_type": 7274,
+   "sprite": 43014,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    186,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800352,
+   "nombre": "Fruit Guardian",
+   "npc_type": 7274,
+   "sprite": 43014,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    186,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800353,
+   "nombre": "Fruit Guardian",
+   "npc_type": 7274,
+   "sprite": 43014,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    186,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800354,
+   "nombre": "Fruit Guardian",
+   "npc_type": 7274,
+   "sprite": 43014,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800355,
+   "nombre": "Fruit Guardian",
+   "npc_type": 7274,
+   "sprite": 43014,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800356,
+   "nombre": "Fruit Guardian",
+   "npc_type": 7274,
+   "sprite": 43014,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800357,
+   "nombre": "Fruit Guardian",
+   "npc_type": 7274,
+   "sprite": 43014,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800358,
+   "nombre": "Fruit Guardian",
+   "npc_type": 7274,
+   "sprite": 43014,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800359,
+   "nombre": "Fruit Guardian",
+   "npc_type": 7274,
+   "sprite": 43014,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    126
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800360,
+   "nombre": "Fruit Guardian",
+   "npc_type": 7274,
+   "sprite": 43014,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    131
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800361,
+   "nombre": "Fruit Guardian",
+   "npc_type": 7274,
+   "sprite": 43014,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    188,
+    126
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800362,
+   "nombre": "Fruit Guardian",
+   "npc_type": 7274,
+   "sprite": 43014,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    193,
+    126
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800363,
+   "nombre": "Fruit Guardian",
+   "npc_type": 7274,
+   "sprite": 43014,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    198,
+    126
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800364,
+   "nombre": "Fruit Guardian",
+   "npc_type": 7274,
+   "sprite": 43014,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    203,
+    126
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800365,
+   "nombre": "Fruit Guardian",
+   "npc_type": 7274,
+   "sprite": 43014,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    208,
+    126
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800366,
+   "nombre": "Fruit Guardian",
+   "npc_type": 7274,
+   "sprite": 43014,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800367,
+   "nombre": "Fruit Guardian",
+   "npc_type": 7274,
+   "sprite": 43014,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    182,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800368,
+   "nombre": "Fruit Guardian",
+   "npc_type": 7274,
+   "sprite": 43014,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    187,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800369,
+   "nombre": "Fruit Guardian",
+   "npc_type": 7274,
+   "sprite": 43014,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    192,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800370,
+   "nombre": "Fruit Guardian",
+   "npc_type": 7274,
+   "sprite": 43014,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    197,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800371,
+   "nombre": "Fruit Guardian",
+   "npc_type": 7274,
+   "sprite": 43014,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    202,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800372,
+   "nombre": "Fruit Guardian",
+   "npc_type": 7274,
+   "sprite": 43014,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    207,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800373,
+   "nombre": "Cursed Berry Killer",
+   "npc_type": 7275,
+   "sprite": 43015,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    181,
+    136
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800374,
+   "nombre": "Cursed Berry Killer",
+   "npc_type": 7275,
+   "sprite": 43015,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    181,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800375,
+   "nombre": "Cursed Berry Killer",
+   "npc_type": 7275,
+   "sprite": 43015,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    181,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800376,
+   "nombre": "Cursed Berry Killer",
+   "npc_type": 7275,
+   "sprite": 43015,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    181,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800377,
+   "nombre": "Cursed Berry Killer",
+   "npc_type": 7275,
+   "sprite": 43015,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    181,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800378,
+   "nombre": "Cursed Berry Killer",
+   "npc_type": 7275,
+   "sprite": 43015,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    213,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800379,
+   "nombre": "Cursed Berry Killer",
+   "npc_type": 7275,
+   "sprite": 43015,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800380,
+   "nombre": "Cursed Berry Killer",
+   "npc_type": 7275,
+   "sprite": 43015,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800381,
+   "nombre": "Cursed Berry Killer",
+   "npc_type": 7275,
+   "sprite": 43015,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    177,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800382,
+   "nombre": "Cursed Berry Killer",
+   "npc_type": 7275,
+   "sprite": 43015,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800383,
+   "nombre": "Cursed Berry Killer",
+   "npc_type": 7275,
+   "sprite": 43015,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    139
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800384,
+   "nombre": "Cursed Berry Killer",
+   "npc_type": 7275,
+   "sprite": 43015,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    144
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800385,
+   "nombre": "Cursed Berry Killer",
+   "npc_type": 7275,
+   "sprite": 43015,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    149
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800386,
+   "nombre": "Cursed Berry Killer",
+   "npc_type": 7275,
+   "sprite": 43015,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    154
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800387,
+   "nombre": "Cursed Berry Killer",
+   "npc_type": 7275,
+   "sprite": 43015,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    218,
+    122
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800388,
+   "nombre": "Cursed Berry Killer",
+   "npc_type": 7275,
+   "sprite": 43015,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    218,
+    127
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800389,
+   "nombre": "Cursed Berry Killer",
+   "npc_type": 7275,
+   "sprite": 43015,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    121
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800390,
+   "nombre": "Cursed Berry Killer",
+   "npc_type": 7275,
+   "sprite": 43015,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    188,
+    121
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800391,
+   "nombre": "Cursed Berry Killer",
+   "npc_type": 7275,
+   "sprite": 43015,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    193,
+    121
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800392,
+   "nombre": "Cursed Berry Killer",
+   "npc_type": 7275,
+   "sprite": 43015,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    198,
+    121
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800393,
+   "nombre": "Cursed Berry Killer",
+   "npc_type": 7275,
+   "sprite": 43015,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    203,
+    121
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800394,
+   "nombre": "Cursed Berry Killer",
+   "npc_type": 7275,
+   "sprite": 43015,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    208,
+    121
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800395,
+   "nombre": "Cursed Berry Killer",
+   "npc_type": 7275,
+   "sprite": 43015,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    212,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800396,
+   "nombre": "Cursed Berry Killer",
+   "npc_type": 7275,
+   "sprite": 43015,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    217,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800397,
+   "nombre": "Cursed Berry Killer",
+   "npc_type": 7275,
+   "sprite": 43015,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    174,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800398,
+   "nombre": "Cursed Berry Killer",
+   "npc_type": 7275,
+   "sprite": 43015,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    179,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800399,
+   "nombre": "Cursed Berry Killer",
+   "npc_type": 7275,
+   "sprite": 43015,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    184,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800400,
+   "nombre": "Cursed Berry Killer",
+   "npc_type": 7275,
+   "sprite": 43015,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    189,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800401,
+   "nombre": "Cursed Berry Killer",
+   "npc_type": 7275,
+   "sprite": 43015,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    194,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800402,
+   "nombre": "Cursed Berry Killer",
+   "npc_type": 7275,
+   "sprite": 43015,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    199,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 150
+  },
+  {
+   "entity_id": 65800403,
+   "nombre": "Heart Poker Spearman",
+   "npc_type": 7263,
+   "sprite": 42947,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800404,
+   "nombre": "Searing Light Beam",
+   "npc_type": 7394,
+   "sprite": 43025,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    164,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 65800405,
+   "nombre": "Tasty Dessert",
+   "npc_type": 7395,
+   "sprite": 42416,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    131,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 65800406,
+   "nombre": "Tasty Dessert",
+   "npc_type": 7396,
+   "sprite": 42416,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    134,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 65800407,
+   "nombre": "Tasty Dessert",
+   "npc_type": 7395,
+   "sprite": 42416,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    129,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 65800408,
+   "nombre": "Tasty Dessert",
+   "npc_type": 7395,
+   "sprite": 42416,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    126,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 65800409,
+   "nombre": "Tasty Dessert",
+   "npc_type": 7395,
+   "sprite": 42416,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    124,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 65800410,
+   "nombre": "Tasty Dessert",
+   "npc_type": 7395,
+   "sprite": 42416,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    136,
+    143
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 65800411,
+   "nombre": "Tasty Dessert",
+   "npc_type": 7395,
+   "sprite": 42416,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    123,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 65800412,
+   "nombre": "Tasty Dessert",
+   "npc_type": 7395,
+   "sprite": 42416,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 65800413,
+   "nombre": "Tasty Dessert",
+   "npc_type": 7395,
+   "sprite": 42416,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    121,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 65800414,
+   "nombre": "Tasty Dessert",
+   "npc_type": 7395,
+   "sprite": 42416,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    121,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  }
+ ],
+ "recursos": [
+  {
+   "entity_id": 75800000,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    4337,
+    1424
+   ],
+   "tile": [
+    135,
+    44
+   ],
+   "crudo": "c09d840400000000f1100000900500000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 75800001,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    3052,
+    3088
+   ],
+   "tile": [
+    95,
+    96
+   ],
+   "crudo": "c19d840402000000ec0b0000100c00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 75800002,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    7328,
+    1776
+   ],
+   "tile": [
+    229,
+    55
+   ],
+   "crudo": "c29d840400000000a01c0000f00600000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 75800003,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    7526,
+    1936
+   ],
+   "tile": [
+    235,
+    60
+   ],
+   "crudo": "c39d840400000000661d0000900700000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 75800004,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    905,
+    3664
+   ],
+   "tile": [
+    28,
+    114
+   ],
+   "crudo": "c49d84040000000089030000500e00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 75800005,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    988,
+    3856
+   ],
+   "tile": [
+    30,
+    120
+   ],
+   "crudo": "c59d840400000000dc030000100f00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 75800006,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    4960,
+    2416
+   ],
+   "tile": [
+    155,
+    75
+   ],
+   "crudo": "c69d84040000000060130000700900000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 75800007,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    5070,
+    2608
+   ],
+   "tile": [
+    158,
+    81
+   ],
+   "crudo": "c79d840400000000ce130000300a00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 75800008,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    5061,
+    3856
+   ],
+   "tile": [
+    158,
+    120
+   ],
+   "crudo": "c89d840400000000c5130000100f00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 75800009,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    7235,
+    3152
+   ],
+   "tile": [
+    226,
+    98
+   ],
+   "crudo": "c99d840402000000431c0000500c00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 75800010,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    5875,
+    4848
+   ],
+   "tile": [
+    183,
+    151
+   ],
+   "crudo": "ca9d840402000000f3160000f01200000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 75800011,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    6108,
+    4720
+   ],
+   "tile": [
+    190,
+    147
+   ],
+   "crudo": "cb9d840402000000dc170000701200000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 75800012,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    5605,
+    752
+   ],
+   "tile": [
+    175,
+    23
+   ],
+   "crudo": "cc9d840402000000e5150000f00200000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 75800013,
+   "sprite": 60068,
+   "capa": 2,
+   "px": [
+    2999,
+    5328
+   ],
+   "tile": [
+    93,
+    166
+   ],
+   "crudo": "cd9d840402000000b70b0000d01400000000000027000000000000001a000000dc06a4ea00004080020000",
+   "copiado_de": "cuerpo de una captura del objeto 60068"
+  },
+  {
+   "entity_id": 75800014,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    2414,
+    1360
+   ],
+   "tile": [
+    75,
+    42
+   ],
+   "crudo": "ce9d8404000000006e090000500500000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  }
+ ]
+}

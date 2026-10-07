@@ -1,0 +1,9923 @@
+{
+ "_nota": "botti_palace (stage 145). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map145.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "stage": 145,
+ "spawns": [
+  {
+   "entity_id": 64500000,
+   "nombre": "Fallen Warrior",
+   "npc_type": 6265,
+   "sprite": 42022,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    343,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500001,
+   "nombre": "Fallen Warrior",
+   "npc_type": 6265,
+   "sprite": 42022,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    338,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500002,
+   "nombre": "Fallen Warrior",
+   "npc_type": 6265,
+   "sprite": 42022,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    338,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500003,
+   "nombre": "Fallen Warrior",
+   "npc_type": 6265,
+   "sprite": 42022,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    338,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500004,
+   "nombre": "Fallen Warrior",
+   "npc_type": 6265,
+   "sprite": 42022,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    343,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500005,
+   "nombre": "Fallen Warrior",
+   "npc_type": 6265,
+   "sprite": 42022,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    343,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500006,
+   "nombre": "Fallen Warrior",
+   "npc_type": 6265,
+   "sprite": 42022,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    348,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500007,
+   "nombre": "Fallen Warrior",
+   "npc_type": 6265,
+   "sprite": 42022,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    348,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500008,
+   "nombre": "Fallen Warrior",
+   "npc_type": 6265,
+   "sprite": 42022,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    348,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500009,
+   "nombre": "Fallen Warrior",
+   "npc_type": 6265,
+   "sprite": 42022,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    333,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500010,
+   "nombre": "Fallen Warrior",
+   "npc_type": 6265,
+   "sprite": 42022,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    333,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500011,
+   "nombre": "Fallen Warrior",
+   "npc_type": 6265,
+   "sprite": 42022,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    333,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500012,
+   "nombre": "Fallen Warrior",
+   "npc_type": 6265,
+   "sprite": 42022,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    333,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500013,
+   "nombre": "Fallen Warrior",
+   "npc_type": 6265,
+   "sprite": 42022,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    333,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500014,
+   "nombre": "Fallen Warrior",
+   "npc_type": 6265,
+   "sprite": 42022,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    338,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500015,
+   "nombre": "Fallen Priest",
+   "npc_type": 6267,
+   "sprite": 42025,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    338,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500016,
+   "nombre": "Fallen Priest",
+   "npc_type": 6267,
+   "sprite": 42025,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    343,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500017,
+   "nombre": "Fallen Priest",
+   "npc_type": 6267,
+   "sprite": 42025,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    343,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500018,
+   "nombre": "Fallen Priest",
+   "npc_type": 6267,
+   "sprite": 42025,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    348,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500019,
+   "nombre": "Fallen Priest",
+   "npc_type": 6267,
+   "sprite": 42025,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    348,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500020,
+   "nombre": "Fallen Priest",
+   "npc_type": 6267,
+   "sprite": 42025,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    353,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500021,
+   "nombre": "Fallen Archer",
+   "npc_type": 6266,
+   "sprite": 42023,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    353,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500022,
+   "nombre": "Fallen Archer",
+   "npc_type": 6266,
+   "sprite": 42023,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    353,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500023,
+   "nombre": "Fallen Archer",
+   "npc_type": 6266,
+   "sprite": 42023,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    353,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500024,
+   "nombre": "Fallen Archer",
+   "npc_type": 6266,
+   "sprite": 42023,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    353,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500025,
+   "nombre": "Fallen Archer",
+   "npc_type": 6266,
+   "sprite": 42023,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    328,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500026,
+   "nombre": "Fallen Archer",
+   "npc_type": 6266,
+   "sprite": 42023,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    328,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500027,
+   "nombre": "Fallen Archer",
+   "npc_type": 6266,
+   "sprite": 42023,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    328,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500028,
+   "nombre": "Fallen Archer",
+   "npc_type": 6266,
+   "sprite": 42023,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    328,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500029,
+   "nombre": "Fallen Archer",
+   "npc_type": 6266,
+   "sprite": 42023,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    328,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500030,
+   "nombre": "Fallen Archer",
+   "npc_type": 6266,
+   "sprite": 42023,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    328,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500031,
+   "nombre": "Fallen Archer",
+   "npc_type": 6266,
+   "sprite": 42023,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    328,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500032,
+   "nombre": "Fallen Archer",
+   "npc_type": 6266,
+   "sprite": 42023,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    333,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500033,
+   "nombre": "Fallen Archer",
+   "npc_type": 6266,
+   "sprite": 42023,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    333,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500034,
+   "nombre": "Fallen Archer",
+   "npc_type": 6266,
+   "sprite": 42023,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    338,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500035,
+   "nombre": "Fallen Archer",
+   "npc_type": 6266,
+   "sprite": 42023,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    338,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500036,
+   "nombre": "Fallen Archer",
+   "npc_type": 6266,
+   "sprite": 42023,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    343,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500037,
+   "nombre": "Fallen Archer",
+   "npc_type": 6266,
+   "sprite": 42023,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    343,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 64500038,
+   "nombre": "Bird Hater",
+   "npc_type": 6256,
+   "sprite": 42889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    127,
+    229
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500039,
+   "nombre": "Bird Hater",
+   "npc_type": 6256,
+   "sprite": 42889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    122,
+    224
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500040,
+   "nombre": "Bird Hater",
+   "npc_type": 6256,
+   "sprite": 42889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    122,
+    229
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500041,
+   "nombre": "Bird Hater",
+   "npc_type": 6256,
+   "sprite": 42889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    122,
+    234
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500042,
+   "nombre": "Bird Hater",
+   "npc_type": 6256,
+   "sprite": 42889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    127,
+    224
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500043,
+   "nombre": "Bird Hater",
+   "npc_type": 6256,
+   "sprite": 42889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    127,
+    234
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500044,
+   "nombre": "Bird Hater",
+   "npc_type": 6256,
+   "sprite": 42889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    224
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500045,
+   "nombre": "Bird Hater",
+   "npc_type": 6256,
+   "sprite": 42889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    229
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500046,
+   "nombre": "Bird Hater",
+   "npc_type": 6256,
+   "sprite": 42889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    234
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500047,
+   "nombre": "Bird Hater",
+   "npc_type": 6256,
+   "sprite": 42889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    117,
+    219
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500048,
+   "nombre": "Bird Hater",
+   "npc_type": 6256,
+   "sprite": 42889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    112,
+    237
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500049,
+   "nombre": "Bird Hater",
+   "npc_type": 6256,
+   "sprite": 42889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    107,
+    232
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500050,
+   "nombre": "Bird Hater",
+   "npc_type": 6256,
+   "sprite": 42889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    107,
+    237
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500051,
+   "nombre": "Bird Hater",
+   "npc_type": 6256,
+   "sprite": 42889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    107,
+    242
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500052,
+   "nombre": "Bird Hater",
+   "npc_type": 6256,
+   "sprite": 42889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    112,
+    232
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500053,
+   "nombre": "Bird Hater",
+   "npc_type": 6256,
+   "sprite": 42889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    112,
+    242
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500054,
+   "nombre": "Bird Hater",
+   "npc_type": 6256,
+   "sprite": 42889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    117,
+    232
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500055,
+   "nombre": "Bird Hater",
+   "npc_type": 6256,
+   "sprite": 42889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    117,
+    237
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500056,
+   "nombre": "Bird Hater",
+   "npc_type": 6256,
+   "sprite": 42889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    117,
+    242
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500057,
+   "nombre": "Bird Hater",
+   "npc_type": 6256,
+   "sprite": 42889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    102,
+    227
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500058,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    188
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500059,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    183
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500060,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    188
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500061,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    193
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500062,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    183
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500063,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    180
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500064,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    175
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500065,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    180
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500066,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    185
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500067,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    175
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500068,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    68,
+    190
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500069,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    190
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500070,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    195
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500071,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    185
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500072,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    68,
+    195
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500073,
+   "nombre": "Bloody Hoof",
+   "npc_type": 6174,
+   "sprite": 42877,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    194,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 64500074,
+   "nombre": "Lilith",
+   "npc_type": 6175,
+   "sprite": 42878,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    320,
+    217
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 145
+  },
+  {
+   "entity_id": 64500075,
+   "nombre": "Charming Daphne",
+   "npc_type": 6167,
+   "sprite": 42854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    193
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500076,
+   "nombre": "Mystic Keith",
+   "npc_type": 6168,
+   "sprite": 42861,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    237,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500077,
+   "nombre": "Fallen Martin",
+   "npc_type": 6170,
+   "sprite": 42798,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    358,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 135
+  },
+  {
+   "entity_id": 64500078,
+   "nombre": "Dancing Simon",
+   "npc_type": 6169,
+   "sprite": 42797,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    125,
+    239
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 133
+  },
+  {
+   "entity_id": 64500079,
+   "nombre": "Rayman",
+   "npc_type": 6172,
+   "sprite": 42868,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    336,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 133
+  },
+  {
+   "entity_id": 64500080,
+   "nombre": "Priest Terence",
+   "npc_type": 6173,
+   "sprite": 42876,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    331,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 135
+  },
+  {
+   "entity_id": 64500081,
+   "nombre": "Botti Warden",
+   "npc_type": 6171,
+   "sprite": 42845,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    114
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 135
+  },
+  {
+   "entity_id": 64500082,
+   "nombre": "Charming Body",
+   "npc_type": 6281,
+   "sprite": 42854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    188
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500083,
+   "nombre": "Charming Body",
+   "npc_type": 6281,
+   "sprite": 42854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    179
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500084,
+   "nombre": "Charming Body",
+   "npc_type": 6281,
+   "sprite": 42854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    69,
+    178
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500085,
+   "nombre": "Charming Body",
+   "npc_type": 6281,
+   "sprite": 42854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    174
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500086,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    186
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500087,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    181
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500088,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    186
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500089,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    191
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500090,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    181
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500091,
+   "nombre": "Dead Eye",
+   "npc_type": 6155,
+   "sprite": 42776,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500092,
+   "nombre": "Dead Eye",
+   "npc_type": 6155,
+   "sprite": 42776,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    241,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500093,
+   "nombre": "Dead Eye",
+   "npc_type": 6155,
+   "sprite": 42776,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    242,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500094,
+   "nombre": "Dead Eye",
+   "npc_type": 6155,
+   "sprite": 42776,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500095,
+   "nombre": "Dead Eye",
+   "npc_type": 6155,
+   "sprite": 42776,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    247,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500096,
+   "nombre": "Dead Eye",
+   "npc_type": 6155,
+   "sprite": 42776,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    217,
+    41
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500097,
+   "nombre": "Dead Eye",
+   "npc_type": 6155,
+   "sprite": 42776,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    212,
+    36
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500098,
+   "nombre": "Dead Eye",
+   "npc_type": 6155,
+   "sprite": 42776,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    212,
+    41
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500099,
+   "nombre": "Dead Eye",
+   "npc_type": 6155,
+   "sprite": 42776,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    212,
+    46
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500100,
+   "nombre": "Dead Eye",
+   "npc_type": 6155,
+   "sprite": 42776,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    217,
+    36
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500101,
+   "nombre": "Dead Eye",
+   "npc_type": 6155,
+   "sprite": 42776,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    217,
+    46
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500102,
+   "nombre": "Dead Eye",
+   "npc_type": 6155,
+   "sprite": 42776,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    222,
+    36
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500103,
+   "nombre": "Dead Eye",
+   "npc_type": 6155,
+   "sprite": 42776,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    222,
+    41
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500104,
+   "nombre": "Dead Eye",
+   "npc_type": 6155,
+   "sprite": 42776,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    222,
+    46
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500105,
+   "nombre": "Dead Eye",
+   "npc_type": 6155,
+   "sprite": 42776,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    207,
+    31
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500106,
+   "nombre": "Dead Eye",
+   "npc_type": 6155,
+   "sprite": 42776,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    202,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500107,
+   "nombre": "Dead Eye",
+   "npc_type": 6155,
+   "sprite": 42776,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    197,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500108,
+   "nombre": "Dead Eye",
+   "npc_type": 6155,
+   "sprite": 42776,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    197,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500109,
+   "nombre": "Dead Eye",
+   "npc_type": 6155,
+   "sprite": 42776,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    197,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500110,
+   "nombre": "Dead Eye",
+   "npc_type": 6155,
+   "sprite": 42776,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    202,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500111,
+   "nombre": "Dead Eye",
+   "npc_type": 6155,
+   "sprite": 42776,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    230,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500112,
+   "nombre": "Dead Eye",
+   "npc_type": 6155,
+   "sprite": 42776,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    225,
+    27
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500113,
+   "nombre": "Dead Eye",
+   "npc_type": 6155,
+   "sprite": 42776,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    227,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500114,
+   "nombre": "Dead Eye",
+   "npc_type": 6155,
+   "sprite": 42776,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    230,
+    27
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500115,
+   "nombre": "Dead Eye",
+   "npc_type": 6155,
+   "sprite": 42776,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    232,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500116,
+   "nombre": "Dead Eye",
+   "npc_type": 6155,
+   "sprite": 42776,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    235,
+    27
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500117,
+   "nombre": "Dead Eye",
+   "npc_type": 6155,
+   "sprite": 42776,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    235,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500118,
+   "nombre": "Dead Eye",
+   "npc_type": 6155,
+   "sprite": 42776,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    22
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500119,
+   "nombre": "Dead Eye",
+   "npc_type": 6155,
+   "sprite": 42776,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    27
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500120,
+   "nombre": "Dead Eye",
+   "npc_type": 6155,
+   "sprite": 42776,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    225,
+    22
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500121,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    348,
+    62
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500122,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    326,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500123,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    331,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500124,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    336,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500125,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    341,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500126,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    353,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500127,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    358,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500128,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    358,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500129,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    358,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500130,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    358,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500131,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    363,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500132,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    363,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500133,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    363,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500134,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    363,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500135,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    368,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500136,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    349,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500137,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    354,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500138,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    344,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500139,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    349,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500140,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    354,
+    51
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500141,
+   "nombre": "Palace Envoy",
+   "npc_type": 6166,
+   "sprite": 42873,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    331,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500142,
+   "nombre": "Palace Envoy",
+   "npc_type": 6166,
+   "sprite": 42873,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    191,
+    232
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500143,
+   "nombre": "Palace Envoy",
+   "npc_type": 6166,
+   "sprite": 42873,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    188,
+    225
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500144,
+   "nombre": "Palace Envoy",
+   "npc_type": 6166,
+   "sprite": 42873,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    204,
+    235
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500145,
+   "nombre": "Palace Envoy",
+   "npc_type": 6166,
+   "sprite": 42873,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    239
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500146,
+   "nombre": "Palace Envoy",
+   "npc_type": 6166,
+   "sprite": 42873,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    210
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500147,
+   "nombre": "Palace Envoy",
+   "npc_type": 6166,
+   "sprite": 42873,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    331,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500148,
+   "nombre": "Palace Envoy",
+   "npc_type": 6166,
+   "sprite": 42873,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    186,
+    230
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500149,
+   "nombre": "Palace Envoy",
+   "npc_type": 6166,
+   "sprite": 42873,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    220
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500150,
+   "nombre": "Palace Envoy",
+   "npc_type": 6166,
+   "sprite": 42873,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    199,
+    230
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500151,
+   "nombre": "Palace Envoy",
+   "npc_type": 6166,
+   "sprite": 42873,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    234
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500152,
+   "nombre": "Palace Envoy",
+   "npc_type": 6166,
+   "sprite": 42873,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    336,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500153,
+   "nombre": "Palace Envoy",
+   "npc_type": 6166,
+   "sprite": 42873,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    186,
+    235
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500154,
+   "nombre": "Palace Envoy",
+   "npc_type": 6166,
+   "sprite": 42873,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    225
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500155,
+   "nombre": "Palace Envoy",
+   "npc_type": 6166,
+   "sprite": 42873,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    199,
+    235
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500156,
+   "nombre": "Palace Envoy",
+   "npc_type": 6166,
+   "sprite": 42873,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    239
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500157,
+   "nombre": "Palace Envoy",
+   "npc_type": 6166,
+   "sprite": 42873,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    336,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500158,
+   "nombre": "Palace Envoy",
+   "npc_type": 6166,
+   "sprite": 42873,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    191,
+    237
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500159,
+   "nombre": "Palace Envoy",
+   "npc_type": 6166,
+   "sprite": 42873,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    188,
+    220
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500160,
+   "nombre": "Palace Envoy",
+   "npc_type": 6166,
+   "sprite": 42873,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    199,
+    240
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500161,
+   "nombre": "Palace Envoy",
+   "npc_type": 6166,
+   "sprite": 42873,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    244
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500162,
+   "nombre": "Fast Eyebasher",
+   "npc_type": 6164,
+   "sprite": 42867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    341,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500163,
+   "nombre": "Fast Eyebasher",
+   "npc_type": 6164,
+   "sprite": 42867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    193,
+    227
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500164,
+   "nombre": "Fast Eyebasher",
+   "npc_type": 6164,
+   "sprite": 42867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    193,
+    220
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500165,
+   "nombre": "Fast Eyebasher",
+   "npc_type": 6164,
+   "sprite": 42867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    204,
+    230
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500166,
+   "nombre": "Fast Eyebasher",
+   "npc_type": 6164,
+   "sprite": 42867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    234
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500167,
+   "nombre": "Fast Eyebasher",
+   "npc_type": 6164,
+   "sprite": 42867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    205
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500168,
+   "nombre": "Fast Eyebasher",
+   "npc_type": 6164,
+   "sprite": 42867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    341,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500169,
+   "nombre": "Fast Eyebasher",
+   "npc_type": 6164,
+   "sprite": 42867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    198,
+    225
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500170,
+   "nombre": "Fast Eyebasher",
+   "npc_type": 6164,
+   "sprite": 42867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    181,
+    230
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500171,
+   "nombre": "Fast Eyebasher",
+   "npc_type": 6164,
+   "sprite": 42867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    204,
+    240
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500172,
+   "nombre": "Fast Eyebasher",
+   "npc_type": 6164,
+   "sprite": 42867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    244
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500173,
+   "nombre": "Fast Eyebasher",
+   "npc_type": 6164,
+   "sprite": 42867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    210
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500174,
+   "nombre": "Fast Eyebasher",
+   "npc_type": 6164,
+   "sprite": 42867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    341,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500175,
+   "nombre": "Fast Eyebasher",
+   "npc_type": 6164,
+   "sprite": 42867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    240
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500176,
+   "nombre": "Fast Eyebasher",
+   "npc_type": 6164,
+   "sprite": 42867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    215
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500177,
+   "nombre": "Fast Eyebasher",
+   "npc_type": 6164,
+   "sprite": 42867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    209,
+    230
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500178,
+   "nombre": "Fast Eyebasher",
+   "npc_type": 6164,
+   "sprite": 42867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    224,
+    234
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500179,
+   "nombre": "Fast Eyebasher",
+   "npc_type": 6164,
+   "sprite": 42867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    215
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500180,
+   "nombre": "Fast Eyebasher",
+   "npc_type": 6164,
+   "sprite": 42867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    326,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500181,
+   "nombre": "Fast Eyebasher",
+   "npc_type": 6164,
+   "sprite": 42867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    181,
+    235
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500182,
+   "nombre": "Fast Eyebasher",
+   "npc_type": 6164,
+   "sprite": 42867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    220
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500183,
+   "nombre": "Fast Eyebasher",
+   "npc_type": 6164,
+   "sprite": 42867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    209,
+    235
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500184,
+   "nombre": "Fast Eyebasher",
+   "npc_type": 6164,
+   "sprite": 42867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    224,
+    239
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500185,
+   "nombre": "Fast Eyebasher",
+   "npc_type": 6164,
+   "sprite": 42867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    205
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500186,
+   "nombre": "Fast Eyebasher",
+   "npc_type": 6164,
+   "sprite": 42867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    326,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500187,
+   "nombre": "Fast Eyebasher",
+   "npc_type": 6164,
+   "sprite": 42867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    188,
+    242
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500188,
+   "nombre": "Fast Eyebasher",
+   "npc_type": 6164,
+   "sprite": 42867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    225
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500189,
+   "nombre": "Fast Eyebasher",
+   "npc_type": 6164,
+   "sprite": 42867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    209,
+    240
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500190,
+   "nombre": "Fast Eyebasher",
+   "npc_type": 6164,
+   "sprite": 42867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    224,
+    244
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500191,
+   "nombre": "Fast Eyebasher",
+   "npc_type": 6164,
+   "sprite": 42867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    215
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500192,
+   "nombre": "Palace Envoy",
+   "npc_type": 6166,
+   "sprite": 42873,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    326,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500193,
+   "nombre": "Palace Envoy",
+   "npc_type": 6166,
+   "sprite": 42873,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    193,
+    242
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500194,
+   "nombre": "Palace Envoy",
+   "npc_type": 6166,
+   "sprite": 42873,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    215
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500195,
+   "nombre": "Palace Envoy",
+   "npc_type": 6166,
+   "sprite": 42873,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    198,
+    245
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500196,
+   "nombre": "Palace Envoy",
+   "npc_type": 6166,
+   "sprite": 42873,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    209,
+    245
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500197,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    326,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500198,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    198,
+    220
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500199,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    188,
+    215
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500200,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    203,
+    225
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500201,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    229
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500202,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    326,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500203,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    203,
+    220
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500204,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    193,
+    215
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500205,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    203,
+    245
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500206,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    249
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500207,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    331,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500208,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    240
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500209,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    198,
+    215
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500210,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    208,
+    225
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500211,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    229
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500212,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    331,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500213,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    245
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500214,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    230
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500215,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    213,
+    224
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500216,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    249
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500217,
+   "nombre": "Candle Dancing Girl",
+   "npc_type": 6160,
+   "sprite": 42792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    336,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500218,
+   "nombre": "Candle Dancing Girl",
+   "npc_type": 6160,
+   "sprite": 42792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    245
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500219,
+   "nombre": "Candle Dancing Girl",
+   "npc_type": 6160,
+   "sprite": 42792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    235
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500220,
+   "nombre": "Candle Dancing Girl",
+   "npc_type": 6160,
+   "sprite": 42792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    192,
+    247
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500221,
+   "nombre": "Candle Dancing Girl",
+   "npc_type": 6160,
+   "sprite": 42792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    224,
+    229
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500222,
+   "nombre": "Candle Dancing Girl",
+   "npc_type": 6160,
+   "sprite": 42792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    226,
+    205
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500223,
+   "nombre": "Candle Dancing Girl",
+   "npc_type": 6160,
+   "sprite": 42792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    218,
+    220
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500224,
+   "nombre": "Candle Dancing Girl",
+   "npc_type": 6160,
+   "sprite": 42792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    288,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500225,
+   "nombre": "Candle Dancing Girl",
+   "npc_type": 6160,
+   "sprite": 42792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    336,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500226,
+   "nombre": "Candle Dancing Girl",
+   "npc_type": 6160,
+   "sprite": 42792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    203,
+    215
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500227,
+   "nombre": "Candle Dancing Girl",
+   "npc_type": 6160,
+   "sprite": 42792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    210
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500228,
+   "nombre": "Candle Dancing Girl",
+   "npc_type": 6160,
+   "sprite": 42792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    197,
+    250
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500229,
+   "nombre": "Candle Dancing Girl",
+   "npc_type": 6160,
+   "sprite": 42792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    224,
+    249
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500230,
+   "nombre": "Candle Dancing Girl",
+   "npc_type": 6160,
+   "sprite": 42792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    226,
+    210
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500231,
+   "nombre": "Candle Dancing Girl",
+   "npc_type": 6160,
+   "sprite": 42792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    214
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500232,
+   "nombre": "Candle Dancing Girl",
+   "npc_type": 6160,
+   "sprite": 42792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    283,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500233,
+   "nombre": "Candle Dancing Girl",
+   "npc_type": 6160,
+   "sprite": 42792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    341,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500234,
+   "nombre": "Candle Dancing Girl",
+   "npc_type": 6160,
+   "sprite": 42792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    208,
+    219
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500235,
+   "nombre": "Candle Dancing Girl",
+   "npc_type": 6160,
+   "sprite": 42792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    215
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500236,
+   "nombre": "Candle Dancing Girl",
+   "npc_type": 6160,
+   "sprite": 42792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    202,
+    250
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500237,
+   "nombre": "Candle Dancing Girl",
+   "npc_type": 6160,
+   "sprite": 42792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    229,
+    229
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500238,
+   "nombre": "Candle Dancing Girl",
+   "npc_type": 6160,
+   "sprite": 42792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    226,
+    215
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500239,
+   "nombre": "Candle Dancing Girl",
+   "npc_type": 6160,
+   "sprite": 42792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    223,
+    220
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500240,
+   "nombre": "Candle Dancing Girl",
+   "npc_type": 6160,
+   "sprite": 42792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    283,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500241,
+   "nombre": "Candle Dancing Girl",
+   "npc_type": 6160,
+   "sprite": 42792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    341,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500242,
+   "nombre": "Candle Dancing Girl",
+   "npc_type": 6160,
+   "sprite": 42792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    220
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500243,
+   "nombre": "Candle Dancing Girl",
+   "npc_type": 6160,
+   "sprite": 42792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    225
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500244,
+   "nombre": "Candle Dancing Girl",
+   "npc_type": 6160,
+   "sprite": 42792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    207,
+    250
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500245,
+   "nombre": "Candle Dancing Girl",
+   "npc_type": 6160,
+   "sprite": 42792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    229,
+    234
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500246,
+   "nombre": "Candle Dancing Girl",
+   "npc_type": 6160,
+   "sprite": 42792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    200
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500247,
+   "nombre": "Candle Dancing Girl",
+   "npc_type": 6160,
+   "sprite": 42792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    209
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500248,
+   "nombre": "Candle Dancing Girl",
+   "npc_type": 6160,
+   "sprite": 42792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    283,
+    171
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500249,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    346,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500250,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    240
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500251,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    210
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500252,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    187,
+    250
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500253,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    229,
+    239
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500254,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    346,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500255,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    245
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500256,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    210
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500257,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    192,
+    252
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500258,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    229,
+    244
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500259,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    346,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500260,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    250
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500261,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    188,
+    210
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500262,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    212,
+    254
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500263,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    229,
+    249
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500264,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    346,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500265,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    250
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500266,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    193,
+    210
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500267,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    217,
+    254
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500268,
+   "nombre": "Palace Priest",
+   "npc_type": 6165,
+   "sprite": 42872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    222,
+    254
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 131
+  },
+  {
+   "entity_id": 64500269,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    346,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500270,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    171,
+    230
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500271,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    198,
+    210
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500272,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    184,
+    255
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500273,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    227,
+    254
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500274,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    205
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500275,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    228,
+    220
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500276,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    288,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500277,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    321,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500278,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    171,
+    235
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500279,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    205
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500280,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    197,
+    255
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500281,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    232,
+    254
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500282,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    200
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500283,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    201,
+    204
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500284,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    288,
+    171
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500285,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    321,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500286,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    210
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500287,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    215
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500288,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    202,
+    255
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500289,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    233,
+    224
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500290,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    200
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500291,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    204
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500292,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    293,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500293,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    321,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500294,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    220
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500295,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    225
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500296,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    207,
+    255
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500297,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    234,
+    229
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500298,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    226,
+    200
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500299,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    231,
+    202
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500300,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    293,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500301,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    321,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500302,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    240
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500303,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    245
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500304,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    189,
+    257
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500305,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    234,
+    234
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500306,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    231,
+    207
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500307,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    231,
+    212
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500308,
+   "nombre": "Red Eyebasher",
+   "npc_type": 6163,
+   "sprite": 42865,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    293,
+    171
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 129
+  },
+  {
+   "entity_id": 64500309,
+   "nombre": "Bloody Hoof Jed",
+   "npc_type": 6263,
+   "sprite": 42886,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 130
+  },
+  {
+   "entity_id": 64500310,
+   "nombre": "Bloody Hoof Ray",
+   "npc_type": 6264,
+   "sprite": 42887,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    203,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 130
+  },
+  {
+   "entity_id": 64500311,
+   "nombre": "Lightning  Totem",
+   "npc_type": 6279,
+   "sprite": 42891,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    209,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 64500312,
+   "nombre": "Lightning  Totem",
+   "npc_type": 6279,
+   "sprite": 42891,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    175,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 64500313,
+   "nombre": "Lightning  Totem",
+   "npc_type": 6279,
+   "sprite": 42891,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    154,
+    154
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 64500314,
+   "nombre": "Lightning  Totem",
+   "npc_type": 6279,
+   "sprite": 42891,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    170
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 64500315,
+   "nombre": "Grey Statue Ghost",
+   "npc_type": 6157,
+   "sprite": 42789,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    138,
+    109
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500316,
+   "nombre": "Grey Statue Ghost",
+   "npc_type": 6157,
+   "sprite": 42789,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    116
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500317,
+   "nombre": "Grey Statue Ghost",
+   "npc_type": 6157,
+   "sprite": 42789,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500318,
+   "nombre": "Grey Statue Ghost",
+   "npc_type": 6157,
+   "sprite": 42789,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    79,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500319,
+   "nombre": "Grey Statue Ghost",
+   "npc_type": 6157,
+   "sprite": 42789,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    61,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500320,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    138,
+    114
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500321,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    111
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500322,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    35,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500323,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    74,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500324,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    56,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500325,
+   "nombre": "Green Statue Ghost",
+   "npc_type": 6156,
+   "sprite": 42788,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    138,
+    119
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500326,
+   "nombre": "Green Statue Ghost",
+   "npc_type": 6156,
+   "sprite": 42788,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    116
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500327,
+   "nombre": "Green Statue Ghost",
+   "npc_type": 6156,
+   "sprite": 42788,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    35,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500328,
+   "nombre": "Green Statue Ghost",
+   "npc_type": 6156,
+   "sprite": 42788,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    74,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500329,
+   "nombre": "Green Statue Ghost",
+   "npc_type": 6156,
+   "sprite": 42788,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    56,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500330,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    109
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500331,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    121
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500332,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    35,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500333,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    74,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500334,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    56,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500335,
+   "nombre": "Green Statue Ghost",
+   "npc_type": 6156,
+   "sprite": 42788,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    119
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500336,
+   "nombre": "Green Statue Ghost",
+   "npc_type": 6156,
+   "sprite": 42788,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    111
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500337,
+   "nombre": "Green Statue Ghost",
+   "npc_type": 6156,
+   "sprite": 42788,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500338,
+   "nombre": "Green Statue Ghost",
+   "npc_type": 6156,
+   "sprite": 42788,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    79,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500339,
+   "nombre": "Green Statue Ghost",
+   "npc_type": 6156,
+   "sprite": 42788,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    61,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500340,
+   "nombre": "Green Statue Ghost",
+   "npc_type": 6156,
+   "sprite": 42788,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    148,
+    109
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500341,
+   "nombre": "Green Statue Ghost",
+   "npc_type": 6156,
+   "sprite": 42788,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    121
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500342,
+   "nombre": "Green Statue Ghost",
+   "npc_type": 6156,
+   "sprite": 42788,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500343,
+   "nombre": "Green Statue Ghost",
+   "npc_type": 6156,
+   "sprite": 42788,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    79,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500344,
+   "nombre": "Green Statue Ghost",
+   "npc_type": 6156,
+   "sprite": 42788,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    61,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500345,
+   "nombre": "Green Statue Ghost",
+   "npc_type": 6156,
+   "sprite": 42788,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    148,
+    114
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500346,
+   "nombre": "Green Statue Ghost",
+   "npc_type": 6156,
+   "sprite": 42788,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    111
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500347,
+   "nombre": "Green Statue Ghost",
+   "npc_type": 6156,
+   "sprite": 42788,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    45,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500348,
+   "nombre": "Green Statue Ghost",
+   "npc_type": 6156,
+   "sprite": 42788,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    84,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500349,
+   "nombre": "Green Statue Ghost",
+   "npc_type": 6156,
+   "sprite": 42788,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    66,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500350,
+   "nombre": "Green Statue Ghost",
+   "npc_type": 6156,
+   "sprite": 42788,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    148,
+    119
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500351,
+   "nombre": "Green Statue Ghost",
+   "npc_type": 6156,
+   "sprite": 42788,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    116
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500352,
+   "nombre": "Green Statue Ghost",
+   "npc_type": 6156,
+   "sprite": 42788,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    45,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500353,
+   "nombre": "Green Statue Ghost",
+   "npc_type": 6156,
+   "sprite": 42788,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    84,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500354,
+   "nombre": "Green Statue Ghost",
+   "npc_type": 6156,
+   "sprite": 42788,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    66,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500355,
+   "nombre": "Grey Statue Ghost",
+   "npc_type": 6157,
+   "sprite": 42789,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    104
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500356,
+   "nombre": "Grey Statue Ghost",
+   "npc_type": 6157,
+   "sprite": 42789,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    121
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500357,
+   "nombre": "Grey Statue Ghost",
+   "npc_type": 6157,
+   "sprite": 42789,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    45,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500358,
+   "nombre": "Grey Statue Ghost",
+   "npc_type": 6157,
+   "sprite": 42789,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    84,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500359,
+   "nombre": "Grey Statue Ghost",
+   "npc_type": 6157,
+   "sprite": 42789,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    66,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500360,
+   "nombre": "Grey Statue Ghost",
+   "npc_type": 6157,
+   "sprite": 42789,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    109
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500361,
+   "nombre": "Grey Statue Ghost",
+   "npc_type": 6157,
+   "sprite": 42789,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    106
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500362,
+   "nombre": "Grey Statue Ghost",
+   "npc_type": 6157,
+   "sprite": 42789,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500363,
+   "nombre": "Grey Statue Ghost",
+   "npc_type": 6157,
+   "sprite": 42789,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    69,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500364,
+   "nombre": "Grey Statue Ghost",
+   "npc_type": 6157,
+   "sprite": 42789,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500365,
+   "nombre": "Grey Statue Ghost",
+   "npc_type": 6157,
+   "sprite": 42789,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    114
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500366,
+   "nombre": "Grey Statue Ghost",
+   "npc_type": 6157,
+   "sprite": 42789,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    111
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500367,
+   "nombre": "Grey Statue Ghost",
+   "npc_type": 6157,
+   "sprite": 42789,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500368,
+   "nombre": "Grey Statue Ghost",
+   "npc_type": 6157,
+   "sprite": 42789,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    69,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500369,
+   "nombre": "Grey Statue Ghost",
+   "npc_type": 6157,
+   "sprite": 42789,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500370,
+   "nombre": "Grey Statue Ghost",
+   "npc_type": 6157,
+   "sprite": 42789,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    119
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500371,
+   "nombre": "Grey Statue Ghost",
+   "npc_type": 6157,
+   "sprite": 42789,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    116
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500372,
+   "nombre": "Grey Statue Ghost",
+   "npc_type": 6157,
+   "sprite": 42789,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500373,
+   "nombre": "Grey Statue Ghost",
+   "npc_type": 6157,
+   "sprite": 42789,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    69,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500374,
+   "nombre": "Grey Statue Ghost",
+   "npc_type": 6157,
+   "sprite": 42789,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500375,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500376,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    121
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500377,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500378,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    69,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500379,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500380,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    138,
+    104
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500381,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    126
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500382,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500383,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    69,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500384,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500385,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    138,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500386,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    106
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500387,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    35,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500388,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    74,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500389,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    56,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500390,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    104
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500391,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    126
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500392,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    35,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500393,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    74,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500394,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    56,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500395,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500396,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    106
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500397,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500398,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    79,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500399,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    61,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500400,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    148,
+    104
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500401,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    126
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500402,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500403,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    79,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500404,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    61,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500405,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    148,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500406,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    106
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500407,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    45,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500408,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    84,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500409,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    66,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500410,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    104
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500411,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    126
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500412,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    45,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500413,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    84,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500414,
+   "nombre": "Hot Dancing Girl",
+   "npc_type": 6159,
+   "sprite": 42791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    66,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 123
+  },
+  {
+   "entity_id": 64500415,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    109
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500416,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    106
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500417,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    50,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500418,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    89,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500419,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    71,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500420,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    114
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500421,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    111
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500422,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    25,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500423,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    89,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500424,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    71,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500425,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    119
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500426,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    116
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500427,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    25,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500428,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    89,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500429,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    71,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500430,
+   "nombre": "Bloody Eye",
+   "npc_type": 6154,
+   "sprite": 42775,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500431,
+   "nombre": "Bloody Eye",
+   "npc_type": 6154,
+   "sprite": 42775,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    121
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500432,
+   "nombre": "Bloody Eye",
+   "npc_type": 6154,
+   "sprite": 42775,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    25,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500433,
+   "nombre": "Bloody Eye",
+   "npc_type": 6154,
+   "sprite": 42775,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    89,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500434,
+   "nombre": "Bloody Eye",
+   "npc_type": 6154,
+   "sprite": 42775,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    71,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500435,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500436,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    126
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500437,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    25,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500438,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    89,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500439,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    71,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500440,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    104
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500441,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    101
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500442,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    25,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500443,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500444,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    46,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500445,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    109
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500446,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    106
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500447,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    25,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500448,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500449,
+   "nombre": "Jungle Dancing Girl",
+   "npc_type": 6158,
+   "sprite": 42790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 121
+  },
+  {
+   "entity_id": 64500450,
+   "nombre": "Bloody Eye",
+   "npc_type": 6154,
+   "sprite": 42775,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    114
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500451,
+   "nombre": "Bloody Eye",
+   "npc_type": 6154,
+   "sprite": 42775,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    111
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500452,
+   "nombre": "Bloody Eye",
+   "npc_type": 6154,
+   "sprite": 42775,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    25,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500453,
+   "nombre": "Bloody Eye",
+   "npc_type": 6154,
+   "sprite": 42775,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500454,
+   "nombre": "Bloody Eye",
+   "npc_type": 6154,
+   "sprite": 42775,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500455,
+   "nombre": "Bloody Eye",
+   "npc_type": 6154,
+   "sprite": 42775,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    119
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500456,
+   "nombre": "Bloody Eye",
+   "npc_type": 6154,
+   "sprite": 42775,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    116
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500457,
+   "nombre": "Bloody Eye",
+   "npc_type": 6154,
+   "sprite": 42775,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500458,
+   "nombre": "Bloody Eye",
+   "npc_type": 6154,
+   "sprite": 42775,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500459,
+   "nombre": "Bloody Eye",
+   "npc_type": 6154,
+   "sprite": 42775,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    56,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500460,
+   "nombre": "Bloody Eye",
+   "npc_type": 6154,
+   "sprite": 42775,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500461,
+   "nombre": "Bloody Eye",
+   "npc_type": 6154,
+   "sprite": 42775,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    121
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500462,
+   "nombre": "Bloody Eye",
+   "npc_type": 6154,
+   "sprite": 42775,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500463,
+   "nombre": "Bloody Eye",
+   "npc_type": 6154,
+   "sprite": 42775,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500464,
+   "nombre": "Bloody Eye",
+   "npc_type": 6154,
+   "sprite": 42775,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500465,
+   "nombre": "Bloody Eye",
+   "npc_type": 6154,
+   "sprite": 42775,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500466,
+   "nombre": "Bloody Eye",
+   "npc_type": 6154,
+   "sprite": 42775,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    126
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500467,
+   "nombre": "Bloody Eye",
+   "npc_type": 6154,
+   "sprite": 42775,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    35,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500468,
+   "nombre": "Bloody Eye",
+   "npc_type": 6154,
+   "sprite": 42775,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500469,
+   "nombre": "Bloody Eye",
+   "npc_type": 6154,
+   "sprite": 42775,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 125
+  },
+  {
+   "entity_id": 64500470,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500471,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    131
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500472,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    35,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500473,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    69,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  },
+  {
+   "entity_id": 64500474,
+   "nombre": "Botti Guardian",
+   "npc_type": 6161,
+   "sprite": 42842,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    70,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 127
+  }
+ ],
+ "recursos": [
+  {
+   "entity_id": 74500000,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10565,
+    2096
+   ],
+   "tile": [
+    330,
+    65
+   ],
+   "crudo": "a0c770040000000045290000300800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500001,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10584,
+    2096
+   ],
+   "tile": [
+    330,
+    65
+   ],
+   "crudo": "a1c770040000000058290000300800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500002,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10600,
+    2128
+   ],
+   "tile": [
+    331,
+    66
+   ],
+   "crudo": "a2c770040000000068290000500800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500003,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10615,
+    2160
+   ],
+   "tile": [
+    331,
+    67
+   ],
+   "crudo": "a3c770040000000077290000700800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500004,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10634,
+    2160
+   ],
+   "tile": [
+    332,
+    67
+   ],
+   "crudo": "a4c77004000000008a290000700800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500005,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10657,
+    2192
+   ],
+   "tile": [
+    333,
+    68
+   ],
+   "crudo": "a5c7700400000000a1290000900800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500006,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10678,
+    2224
+   ],
+   "tile": [
+    333,
+    69
+   ],
+   "crudo": "a6c7700400000000b6290000b00800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500007,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10700,
+    2224
+   ],
+   "tile": [
+    334,
+    69
+   ],
+   "crudo": "a7c7700400000000cc290000b00800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500008,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10746,
+    2224
+   ],
+   "tile": [
+    335,
+    69
+   ],
+   "crudo": "a8c7700400000000fa290000b00800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500009,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10723,
+    2224
+   ],
+   "tile": [
+    335,
+    69
+   ],
+   "crudo": "a9c7700400000000e3290000b00800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500010,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10769,
+    2224
+   ],
+   "tile": [
+    336,
+    69
+   ],
+   "crudo": "aac7700400000000112a0000b00800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500011,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10794,
+    2192
+   ],
+   "tile": [
+    337,
+    68
+   ],
+   "crudo": "abc77004000000002a2a0000900800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500012,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10817,
+    2192
+   ],
+   "tile": [
+    338,
+    68
+   ],
+   "crudo": "acc7700400000000412a0000900800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500013,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10842,
+    2192
+   ],
+   "tile": [
+    338,
+    68
+   ],
+   "crudo": "adc77004000000005a2a0000900800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500014,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10865,
+    2192
+   ],
+   "tile": [
+    339,
+    68
+   ],
+   "crudo": "aec7700400000000712a0000900800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500015,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10890,
+    2160
+   ],
+   "tile": [
+    340,
+    67
+   ],
+   "crudo": "afc77004000000008a2a0000700800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500016,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10911,
+    2160
+   ],
+   "tile": [
+    340,
+    67
+   ],
+   "crudo": "b0c77004000000009f2a0000700800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500017,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10931,
+    2128
+   ],
+   "tile": [
+    341,
+    66
+   ],
+   "crudo": "b1c7700400000000b32a0000500800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500018,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10952,
+    2096
+   ],
+   "tile": [
+    342,
+    65
+   ],
+   "crudo": "b2c7700400000000c82a0000300800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500019,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10956,
+    2096
+   ],
+   "tile": [
+    342,
+    65
+   ],
+   "crudo": "b3c7700400000000cc2a0000300800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500020,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10958,
+    2064
+   ],
+   "tile": [
+    342,
+    64
+   ],
+   "crudo": "b4c7700400000000ce2a0000100800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500021,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10965,
+    2032
+   ],
+   "tile": [
+    342,
+    63
+   ],
+   "crudo": "b5c7700400000000d52a0000f00700000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500022,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10965,
+    2000
+   ],
+   "tile": [
+    342,
+    62
+   ],
+   "crudo": "b6c7700400000000d52a0000d00700000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500023,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10961,
+    2000
+   ],
+   "tile": [
+    342,
+    62
+   ],
+   "crudo": "b7c7700400000000d12a0000d00700000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500024,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10961,
+    1968
+   ],
+   "tile": [
+    342,
+    61
+   ],
+   "crudo": "b8c7700400000000d12a0000b00700000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500025,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10960,
+    1936
+   ],
+   "tile": [
+    342,
+    60
+   ],
+   "crudo": "b9c7700400000000d02a0000900700000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500026,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10960,
+    1936
+   ],
+   "tile": [
+    342,
+    60
+   ],
+   "crudo": "bac7700400000000d02a0000900700000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500027,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10956,
+    1904
+   ],
+   "tile": [
+    342,
+    59
+   ],
+   "crudo": "bbc7700400000000cc2a0000700700000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500028,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10956,
+    1872
+   ],
+   "tile": [
+    342,
+    58
+   ],
+   "crudo": "bcc7700400000000cc2a0000500700000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500029,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10940,
+    1872
+   ],
+   "tile": [
+    341,
+    58
+   ],
+   "crudo": "bdc7700400000000bc2a0000500700000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500030,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10944,
+    1840
+   ],
+   "tile": [
+    342,
+    57
+   ],
+   "crudo": "bec7700400000000c02a0000300700000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500031,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10947,
+    1840
+   ],
+   "tile": [
+    342,
+    57
+   ],
+   "crudo": "bfc7700400000000c32a0000300700000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500032,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4664,
+    5136
+   ],
+   "tile": [
+    145,
+    160
+   ],
+   "crudo": "c0c770040000000038120000101400000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500033,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5089,
+    4432
+   ],
+   "tile": [
+    159,
+    138
+   ],
+   "crudo": "c1c7700400000000e1130000501100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500034,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5111,
+    4432
+   ],
+   "tile": [
+    159,
+    138
+   ],
+   "crudo": "c2c7700400000000f7130000501100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500035,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5130,
+    4400
+   ],
+   "tile": [
+    160,
+    137
+   ],
+   "crudo": "c3c77004000000000a140000301100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500036,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5149,
+    4368
+   ],
+   "tile": [
+    160,
+    136
+   ],
+   "crudo": "c4c77004000000001d140000101100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500037,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5170,
+    4368
+   ],
+   "tile": [
+    161,
+    136
+   ],
+   "crudo": "c5c770040000000032140000101100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500038,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5190,
+    4336
+   ],
+   "tile": [
+    162,
+    135
+   ],
+   "crudo": "c6c770040000000046140000f01000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500039,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5210,
+    4336
+   ],
+   "tile": [
+    162,
+    135
+   ],
+   "crudo": "c7c77004000000005a140000f01000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500040,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5232,
+    4304
+   ],
+   "tile": [
+    163,
+    134
+   ],
+   "crudo": "c8c770040000000070140000d01000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500041,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5248,
+    4272
+   ],
+   "tile": [
+    164,
+    133
+   ],
+   "crudo": "c9c770040000000080140000b01000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500042,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5267,
+    4272
+   ],
+   "tile": [
+    164,
+    133
+   ],
+   "crudo": "cac770040000000093140000b01000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500043,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5286,
+    4240
+   ],
+   "tile": [
+    165,
+    132
+   ],
+   "crudo": "cbc7700400000000a6140000901000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500044,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5303,
+    4208
+   ],
+   "tile": [
+    165,
+    131
+   ],
+   "crudo": "ccc7700400000000b7140000701000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500045,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5325,
+    4208
+   ],
+   "tile": [
+    166,
+    131
+   ],
+   "crudo": "cdc7700400000000cd140000701000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500046,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5318,
+    4176
+   ],
+   "tile": [
+    166,
+    130
+   ],
+   "crudo": "cec7700400000000c6140000501000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500047,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5315,
+    4144
+   ],
+   "tile": [
+    166,
+    129
+   ],
+   "crudo": "cfc7700400000000c3140000301000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500048,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5303,
+    4144
+   ],
+   "tile": [
+    165,
+    129
+   ],
+   "crudo": "d0c7700400000000b7140000301000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500049,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5298,
+    4112
+   ],
+   "tile": [
+    165,
+    128
+   ],
+   "crudo": "d1c7700400000000b2140000101000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500050,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5292,
+    4080
+   ],
+   "tile": [
+    165,
+    127
+   ],
+   "crudo": "d2c7700400000000ac140000f00f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500051,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5287,
+    4080
+   ],
+   "tile": [
+    165,
+    127
+   ],
+   "crudo": "d3c7700400000000a7140000f00f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500052,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5285,
+    4048
+   ],
+   "tile": [
+    165,
+    126
+   ],
+   "crudo": "d4c7700400000000a5140000d00f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500053,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5278,
+    4048
+   ],
+   "tile": [
+    164,
+    126
+   ],
+   "crudo": "d5c77004000000009e140000d00f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500054,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5275,
+    4016
+   ],
+   "tile": [
+    164,
+    125
+   ],
+   "crudo": "d6c77004000000009b140000b00f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500055,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4711,
+    5136
+   ],
+   "tile": [
+    147,
+    160
+   ],
+   "crudo": "d7c770040000000067120000101400000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500056,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4345,
+    5008
+   ],
+   "tile": [
+    135,
+    156
+   ],
+   "crudo": "d8c7700400000000f9100000901300000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500057,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4335,
+    4912
+   ],
+   "tile": [
+    135,
+    153
+   ],
+   "crudo": "d9c7700400000000ef100000301300000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500058,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4381,
+    4880
+   ],
+   "tile": [
+    136,
+    152
+   ],
+   "crudo": "dac77004000000001d110000101300000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500059,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4425,
+    5040
+   ],
+   "tile": [
+    138,
+    157
+   ],
+   "crudo": "dbc770040000000049110000b01300000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500060,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4523,
+    5072
+   ],
+   "tile": [
+    141,
+    158
+   ],
+   "crudo": "dcc7700400000000ab110000d01300000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500061,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4609,
+    5104
+   ],
+   "tile": [
+    144,
+    159
+   ],
+   "crudo": "ddc770040000000001120000f01300000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500062,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4445,
+    4848
+   ],
+   "tile": [
+    138,
+    151
+   ],
+   "crudo": "dec77004000000005d110000f01200000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500063,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4509,
+    4816
+   ],
+   "tile": [
+    140,
+    150
+   ],
+   "crudo": "dfc77004000000009d110000d01200000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500064,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4592,
+    4784
+   ],
+   "tile": [
+    143,
+    149
+   ],
+   "crudo": "e0c7700400000000f0110000b01200000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500065,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4689,
+    4752
+   ],
+   "tile": [
+    146,
+    148
+   ],
+   "crudo": "e1c770040000000051120000901200000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500066,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4763,
+    4720
+   ],
+   "tile": [
+    148,
+    147
+   ],
+   "crudo": "e2c77004000000009b120000701200000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500067,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4765,
+    5168
+   ],
+   "tile": [
+    148,
+    161
+   ],
+   "crudo": "e3c77004000000009d120000301400000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500068,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4815,
+    5200
+   ],
+   "tile": [
+    150,
+    162
+   ],
+   "crudo": "e4c7700400000000cf120000501400000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500069,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4858,
+    5232
+   ],
+   "tile": [
+    151,
+    163
+   ],
+   "crudo": "e5c7700400000000fa120000701400000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500070,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4959,
+    5264
+   ],
+   "tile": [
+    154,
+    164
+   ],
+   "crudo": "e6c77004000000005f130000901400000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500071,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5090,
+    5296
+   ],
+   "tile": [
+    159,
+    165
+   ],
+   "crudo": "e7c7700400000000e2130000b01400000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500072,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5022,
+    5264
+   ],
+   "tile": [
+    156,
+    164
+   ],
+   "crudo": "e8c77004000000009e130000901400000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500073,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4905,
+    5232
+   ],
+   "tile": [
+    153,
+    163
+   ],
+   "crudo": "e9c770040000000029130000701400000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500074,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4831,
+    4688
+   ],
+   "tile": [
+    150,
+    146
+   ],
+   "crudo": "eac7700400000000df120000501200000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500075,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4894,
+    4656
+   ],
+   "tile": [
+    152,
+    145
+   ],
+   "crudo": "ebc77004000000001e130000301200000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500076,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4956,
+    4624
+   ],
+   "tile": [
+    154,
+    144
+   ],
+   "crudo": "ecc77004000000005c130000101200000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500077,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5007,
+    4528
+   ],
+   "tile": [
+    156,
+    141
+   ],
+   "crudo": "edc77004000000008f130000b01100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500078,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5006,
+    4592
+   ],
+   "tile": [
+    156,
+    143
+   ],
+   "crudo": "eec77004000000008e130000f01100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500079,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5136,
+    5328
+   ],
+   "tile": [
+    160,
+    166
+   ],
+   "crudo": "efc770040000000010140000d01400000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500080,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5178,
+    5392
+   ],
+   "tile": [
+    161,
+    168
+   ],
+   "crudo": "f0c77004000000003a140000101500000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500081,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5263,
+    5424
+   ],
+   "tile": [
+    164,
+    169
+   ],
+   "crudo": "f1c77004000000008f140000301500000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500082,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5311,
+    5456
+   ],
+   "tile": [
+    165,
+    170
+   ],
+   "crudo": "f2c7700400000000bf140000501500000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500083,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5369,
+    5456
+   ],
+   "tile": [
+    167,
+    170
+   ],
+   "crudo": "f3c7700400000000f9140000501500000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500084,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5433,
+    5520
+   ],
+   "tile": [
+    169,
+    172
+   ],
+   "crudo": "f4c770040000000039150000901500000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500085,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5534,
+    5552
+   ],
+   "tile": [
+    172,
+    173
+   ],
+   "crudo": "f5c77004000000009e150000b01500000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500086,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5595,
+    5552
+   ],
+   "tile": [
+    174,
+    173
+   ],
+   "crudo": "f6c7700400000000db150000b01500000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500087,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5484,
+    5520
+   ],
+   "tile": [
+    171,
+    172
+   ],
+   "crudo": "f7c77004000000006c150000901500000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500088,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5230,
+    5392
+   ],
+   "tile": [
+    163,
+    168
+   ],
+   "crudo": "f8c77004000000006e140000101500000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500089,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5719,
+    5552
+   ],
+   "tile": [
+    178,
+    173
+   ],
+   "crudo": "f9c770040000000057160000b01500000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500090,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5664,
+    5520
+   ],
+   "tile": [
+    177,
+    172
+   ],
+   "crudo": "fac770040000000020160000901500000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500091,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5765,
+    5552
+   ],
+   "tile": [
+    180,
+    173
+   ],
+   "crudo": "fbc770040000000085160000b01500000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500092,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5878,
+    5520
+   ],
+   "tile": [
+    183,
+    172
+   ],
+   "crudo": "fcc7700400000000f6160000901500000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500093,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5824,
+    5520
+   ],
+   "tile": [
+    182,
+    172
+   ],
+   "crudo": "fdc7700400000000c0160000901500000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500094,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5949,
+    5456
+   ],
+   "tile": [
+    185,
+    170
+   ],
+   "crudo": "fec77004000000003d170000501500000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500095,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6006,
+    5456
+   ],
+   "tile": [
+    187,
+    170
+   ],
+   "crudo": "ffc770040000000076170000501500000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500096,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6136,
+    5392
+   ],
+   "tile": [
+    191,
+    168
+   ],
+   "crudo": "00c8700400000000f8170000101500000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500097,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6080,
+    5392
+   ],
+   "tile": [
+    190,
+    168
+   ],
+   "crudo": "01c8700400000000c0170000101500000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500098,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6193,
+    5328
+   ],
+   "tile": [
+    193,
+    166
+   ],
+   "crudo": "02c870040000000031180000d01400000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500099,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6239,
+    5296
+   ],
+   "tile": [
+    194,
+    165
+   ],
+   "crudo": "03c87004000000005f180000b01400000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500100,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6362,
+    5264
+   ],
+   "tile": [
+    198,
+    164
+   ],
+   "crudo": "04c8700400000000da180000901400000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500101,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6306,
+    5264
+   ],
+   "tile": [
+    197,
+    164
+   ],
+   "crudo": "05c8700400000000a2180000901400000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500102,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6430,
+    5232
+   ],
+   "tile": [
+    200,
+    163
+   ],
+   "crudo": "06c87004000000001e190000701400000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500103,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6524,
+    5200
+   ],
+   "tile": [
+    203,
+    162
+   ],
+   "crudo": "07c87004000000007c190000501400000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500104,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6575,
+    5168
+   ],
+   "tile": [
+    205,
+    161
+   ],
+   "crudo": "08c8700400000000af190000301400000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500105,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6609,
+    5136
+   ],
+   "tile": [
+    206,
+    160
+   ],
+   "crudo": "09c8700400000000d1190000101400000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500106,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6693,
+    5104
+   ],
+   "tile": [
+    209,
+    159
+   ],
+   "crudo": "0ac8700400000000251a0000f01300000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500107,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6642,
+    5104
+   ],
+   "tile": [
+    207,
+    159
+   ],
+   "crudo": "0bc8700400000000f2190000f01300000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500108,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6478,
+    5200
+   ],
+   "tile": [
+    202,
+    162
+   ],
+   "crudo": "0cc87004000000004e190000501400000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500109,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6753,
+    5072
+   ],
+   "tile": [
+    211,
+    158
+   ],
+   "crudo": "0dc8700400000000611a0000d01300000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500110,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6801,
+    5040
+   ],
+   "tile": [
+    212,
+    157
+   ],
+   "crudo": "0ec8700400000000911a0000b01300000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500111,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6846,
+    5008
+   ],
+   "tile": [
+    213,
+    156
+   ],
+   "crudo": "0fc8700400000000be1a0000901300000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500112,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6914,
+    4976
+   ],
+   "tile": [
+    216,
+    155
+   ],
+   "crudo": "10c8700400000000021b0000701300000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500113,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6977,
+    4944
+   ],
+   "tile": [
+    218,
+    154
+   ],
+   "crudo": "11c8700400000000411b0000501300000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500114,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7041,
+    4912
+   ],
+   "tile": [
+    220,
+    153
+   ],
+   "crudo": "12c8700400000000811b0000301300000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500115,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7103,
+    4880
+   ],
+   "tile": [
+    221,
+    152
+   ],
+   "crudo": "13c8700400000000bf1b0000101300000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500116,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7247,
+    4816
+   ],
+   "tile": [
+    226,
+    150
+   ],
+   "crudo": "14c87004000000004f1c0000d01200000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500117,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7179,
+    4848
+   ],
+   "tile": [
+    224,
+    151
+   ],
+   "crudo": "15c87004000000000b1c0000f01200000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500118,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7247,
+    4752
+   ],
+   "tile": [
+    226,
+    148
+   ],
+   "crudo": "16c87004000000004f1c0000901200000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500119,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7312,
+    4656
+   ],
+   "tile": [
+    228,
+    145
+   ],
+   "crudo": "17c8700400000000901c0000301200000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500120,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7313,
+    4592
+   ],
+   "tile": [
+    228,
+    143
+   ],
+   "crudo": "18c8700400000000911c0000f01100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500121,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7310,
+    4560
+   ],
+   "tile": [
+    228,
+    142
+   ],
+   "crudo": "19c87004000000008e1c0000d01100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500122,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7255,
+    4496
+   ],
+   "tile": [
+    226,
+    140
+   ],
+   "crudo": "1ac8700400000000571c0000901100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500123,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7199,
+    4496
+   ],
+   "tile": [
+    224,
+    140
+   ],
+   "crudo": "1bc87004000000001f1c0000901100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500124,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7132,
+    4464
+   ],
+   "tile": [
+    222,
+    139
+   ],
+   "crudo": "1cc8700400000000dc1b0000701100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500125,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4568,
+    5104
+   ],
+   "tile": [
+    142,
+    159
+   ],
+   "crudo": "1dc8700400000000d8110000f01300000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500126,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4471,
+    5072
+   ],
+   "tile": [
+    139,
+    158
+   ],
+   "crudo": "1ec870040000000077110000d01300000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500127,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4334,
+    4976
+   ],
+   "tile": [
+    135,
+    155
+   ],
+   "crudo": "1fc8700400000000ee100000701300000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500128,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5061,
+    4528
+   ],
+   "tile": [
+    158,
+    141
+   ],
+   "crudo": "20c8700400000000c5130000b01100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500129,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4910,
+    4304
+   ],
+   "tile": [
+    153,
+    134
+   ],
+   "crudo": "21c87004000000002e130000d01000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500130,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6618,
+    4272
+   ],
+   "tile": [
+    206,
+    133
+   ],
+   "crudo": "22c8700400000000da190000b01000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500131,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6551,
+    4272
+   ],
+   "tile": [
+    204,
+    133
+   ],
+   "crudo": "23c870040000000097190000b01000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500132,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6493,
+    4272
+   ],
+   "tile": [
+    202,
+    133
+   ],
+   "crudo": "24c87004000000005d190000b01000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500133,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6430,
+    4240
+   ],
+   "tile": [
+    200,
+    132
+   ],
+   "crudo": "25c87004000000001e190000901000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500134,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6367,
+    4208
+   ],
+   "tile": [
+    198,
+    131
+   ],
+   "crudo": "26c8700400000000df180000701000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500135,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6303,
+    4176
+   ],
+   "tile": [
+    196,
+    130
+   ],
+   "crudo": "27c87004000000009f180000501000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500136,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6238,
+    4144
+   ],
+   "tile": [
+    194,
+    129
+   ],
+   "crudo": "28c87004000000005e180000301000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500137,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6176,
+    4112
+   ],
+   "tile": [
+    193,
+    128
+   ],
+   "crudo": "29c870040000000020180000101000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500138,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6112,
+    4080
+   ],
+   "tile": [
+    191,
+    127
+   ],
+   "crudo": "2ac8700400000000e0170000f00f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500139,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6048,
+    4048
+   ],
+   "tile": [
+    189,
+    126
+   ],
+   "crudo": "2bc8700400000000a0170000d00f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500140,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5984,
+    4016
+   ],
+   "tile": [
+    187,
+    125
+   ],
+   "crudo": "2cc870040000000060170000b00f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500141,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5920,
+    3984
+   ],
+   "tile": [
+    185,
+    124
+   ],
+   "crudo": "2dc870040000000020170000900f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500142,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5854,
+    3952
+   ],
+   "tile": [
+    182,
+    123
+   ],
+   "crudo": "2ec8700400000000de160000700f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500143,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5791,
+    3920
+   ],
+   "tile": [
+    180,
+    122
+   ],
+   "crudo": "2fc87004000000009f160000500f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500144,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5727,
+    3888
+   ],
+   "tile": [
+    178,
+    121
+   ],
+   "crudo": "30c87004000000005f160000300f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500145,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5663,
+    3856
+   ],
+   "tile": [
+    176,
+    120
+   ],
+   "crudo": "31c87004000000001f160000100f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500146,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5597,
+    3856
+   ],
+   "tile": [
+    174,
+    120
+   ],
+   "crudo": "32c8700400000000dd150000100f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500147,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5528,
+    3888
+   ],
+   "tile": [
+    172,
+    121
+   ],
+   "crudo": "33c870040000000098150000300f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500148,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5468,
+    3920
+   ],
+   "tile": [
+    170,
+    122
+   ],
+   "crudo": "34c87004000000005c150000500f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500149,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5408,
+    3952
+   ],
+   "tile": [
+    169,
+    123
+   ],
+   "crudo": "35c870040000000020150000700f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500150,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5309,
+    3984
+   ],
+   "tile": [
+    165,
+    124
+   ],
+   "crudo": "36c8700400000000bd140000900f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500151,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4911,
+    4272
+   ],
+   "tile": [
+    153,
+    133
+   ],
+   "crudo": "37c87004000000002f130000b01000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500152,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4912,
+    4208
+   ],
+   "tile": [
+    153,
+    131
+   ],
+   "crudo": "38c870040000000030130000701000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500153,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4944,
+    4176
+   ],
+   "tile": [
+    154,
+    130
+   ],
+   "crudo": "39c870040000000050130000501000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500154,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5210,
+    4048
+   ],
+   "tile": [
+    162,
+    126
+   ],
+   "crudo": "3ac87004000000005a140000d00f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500155,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5151,
+    4048
+   ],
+   "tile": [
+    160,
+    126
+   ],
+   "crudo": "3bc87004000000001f140000d00f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500156,
+   "sprite": 60093,
+   "capa": 0,
+   "px": [
+    7109,
+    1008
+   ],
+   "tile": [
+    222,
+    31
+   ],
+   "crudo": "3cc8700400000000c51b0000f00300000000000027000000000000001a000000dc06bdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60093"
+  },
+  {
+   "entity_id": 74500157,
+   "sprite": 60093,
+   "capa": 0,
+   "px": [
+    6233,
+    1104
+   ],
+   "tile": [
+    194,
+    34
+   ],
+   "crudo": "3dc870040000000059180000500400000000000027000000000000001a000000dc06bdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60093"
+  },
+  {
+   "entity_id": 74500158,
+   "sprite": 60093,
+   "capa": 0,
+   "px": [
+    7254,
+    1360
+   ],
+   "tile": [
+    226,
+    42
+   ],
+   "crudo": "3ec8700400000000561c0000500500000000000027000000000000001a000000dc06bdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60093"
+  },
+  {
+   "entity_id": 74500159,
+   "sprite": 60093,
+   "capa": 0,
+   "px": [
+    6801,
+    1360
+   ],
+   "tile": [
+    212,
+    42
+   ],
+   "crudo": "3fc8700400000000911a0000500500000000000027000000000000001a000000dc06bdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60093"
+  },
+  {
+   "entity_id": 74500160,
+   "sprite": 60093,
+   "capa": 0,
+   "px": [
+    7453,
+    1104
+   ],
+   "tile": [
+    232,
+    34
+   ],
+   "crudo": "40c87004000000001d1d0000500400000000000027000000000000001a000000dc06bdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60093"
+  },
+  {
+   "entity_id": 74500161,
+   "sprite": 60093,
+   "capa": 0,
+   "px": [
+    7720,
+    1008
+   ],
+   "tile": [
+    241,
+    31
+   ],
+   "crudo": "41c8700400000000281e0000f00300000000000027000000000000001a000000dc06bdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60093"
+  },
+  {
+   "entity_id": 74500162,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7107,
+    1008
+   ],
+   "tile": [
+    222,
+    31
+   ],
+   "crudo": "42c8700400000000c31b0000f00300000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500163,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6231,
+    1136
+   ],
+   "tile": [
+    194,
+    35
+   ],
+   "crudo": "43c870040000000057180000700400000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500164,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6798,
+    1392
+   ],
+   "tile": [
+    212,
+    43
+   ],
+   "crudo": "44c87004000000008e1a0000700500000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500165,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7252,
+    1360
+   ],
+   "tile": [
+    226,
+    42
+   ],
+   "crudo": "45c8700400000000541c0000500500000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500166,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7452,
+    1104
+   ],
+   "tile": [
+    232,
+    34
+   ],
+   "crudo": "46c87004000000001c1d0000500400000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500167,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7719,
+    1008
+   ],
+   "tile": [
+    241,
+    31
+   ],
+   "crudo": "47c8700400000000271e0000f00300000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500168,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7305,
+    848
+   ],
+   "tile": [
+    228,
+    26
+   ],
+   "crudo": "48c8700400000000891c0000500300000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500169,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7448,
+    1392
+   ],
+   "tile": [
+    232,
+    43
+   ],
+   "crudo": "49c8700400000000181d0000700500000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500170,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4887,
+    4016
+   ],
+   "tile": [
+    152,
+    125
+   ],
+   "crudo": "4ac870040000000017130000b00f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500171,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4976,
+    4016
+   ],
+   "tile": [
+    155,
+    125
+   ],
+   "crudo": "4bc870040000000070130000b00f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500172,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4945,
+    4016
+   ],
+   "tile": [
+    154,
+    125
+   ],
+   "crudo": "4cc870040000000051130000b00f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500173,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4915,
+    4016
+   ],
+   "tile": [
+    153,
+    125
+   ],
+   "crudo": "4dc870040000000033130000b00f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500174,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4856,
+    4016
+   ],
+   "tile": [
+    151,
+    125
+   ],
+   "crudo": "4ec8700400000000f8120000b00f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500175,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4977,
+    3984
+   ],
+   "tile": [
+    155,
+    124
+   ],
+   "crudo": "4fc870040000000071130000900f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500176,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4945,
+    3984
+   ],
+   "tile": [
+    154,
+    124
+   ],
+   "crudo": "50c870040000000051130000900f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500177,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4991,
+    4144
+   ],
+   "tile": [
+    155,
+    129
+   ],
+   "crudo": "51c87004000000007f130000301000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500178,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5020,
+    4144
+   ],
+   "tile": [
+    156,
+    129
+   ],
+   "crudo": "52c87004000000009c130000301000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500179,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5046,
+    4144
+   ],
+   "tile": [
+    157,
+    129
+   ],
+   "crudo": "53c8700400000000b6130000301000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500180,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5077,
+    4144
+   ],
+   "tile": [
+    158,
+    129
+   ],
+   "crudo": "54c8700400000000d5130000301000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500181,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5101,
+    4112
+   ],
+   "tile": [
+    159,
+    128
+   ],
+   "crudo": "55c8700400000000ed130000101000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500182,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5100,
+    4112
+   ],
+   "tile": [
+    159,
+    128
+   ],
+   "crudo": "56c8700400000000ec130000101000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500183,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5102,
+    4080
+   ],
+   "tile": [
+    159,
+    127
+   ],
+   "crudo": "57c8700400000000ee130000f00f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500184,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4968,
+    4144
+   ],
+   "tile": [
+    155,
+    129
+   ],
+   "crudo": "58c870040000000068130000301000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 74500185,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5101,
+    4048
+   ],
+   "tile": [
+    159,
+    126
+   ],
+   "crudo": "59c8700400000000ed130000d00f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  }
+ ]
+}

@@ -1,0 +1,6143 @@
+{
+ "_nota": "jade_tassel_city (stage 238). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map238.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "stage": 238,
+ "spawns": [
+  {
+   "entity_id": 73800000,
+   "nombre": "Hot-blooded Kappa",
+   "npc_type": 12478,
+   "sprite": 43696,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    179,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 73800001,
+   "nombre": "Hot-blooded Kappa",
+   "npc_type": 12478,
+   "sprite": 43696,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    174,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 73800002,
+   "nombre": "Hot-blooded Kappa",
+   "npc_type": 12478,
+   "sprite": 43696,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    174,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 73800003,
+   "nombre": "Hot-blooded Kappa",
+   "npc_type": 12478,
+   "sprite": 43696,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    174,
+    62
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 73800004,
+   "nombre": "Hot-blooded Kappa",
+   "npc_type": 12478,
+   "sprite": 43696,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    179,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 73800005,
+   "nombre": "Hot-blooded Kappa",
+   "npc_type": 12478,
+   "sprite": 43696,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    179,
+    62
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 73800006,
+   "nombre": "Hot-blooded Kappa",
+   "npc_type": 12478,
+   "sprite": 43696,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    184,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 73800007,
+   "nombre": "Hot-blooded Kappa",
+   "npc_type": 12478,
+   "sprite": 43696,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    184,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 73800008,
+   "nombre": "Hot-blooded Kappa",
+   "npc_type": 12478,
+   "sprite": 43696,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    184,
+    62
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 73800009,
+   "nombre": "Hot-blooded Kappa",
+   "npc_type": 12478,
+   "sprite": 43696,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    169,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 73800010,
+   "nombre": "Hot-blooded Kappa",
+   "npc_type": 12478,
+   "sprite": 43696,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    169,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 73800011,
+   "nombre": "Hot-blooded Kappa",
+   "npc_type": 12478,
+   "sprite": 43696,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    169,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 73800012,
+   "nombre": "Hot-blooded Kappa",
+   "npc_type": 12478,
+   "sprite": 43696,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    169,
+    62
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 73800013,
+   "nombre": "Hot-blooded Kappa",
+   "npc_type": 12478,
+   "sprite": 43696,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    169,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 73800014,
+   "nombre": "Hot-blooded Kappa",
+   "npc_type": 12478,
+   "sprite": 43696,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    174,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 73800015,
+   "nombre": "Hot-blooded Kappa",
+   "npc_type": 12478,
+   "sprite": 43696,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    174,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 73800016,
+   "nombre": "Hot-blooded Kappa",
+   "npc_type": 12478,
+   "sprite": 43696,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    179,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 73800017,
+   "nombre": "Hot-blooded Kappa",
+   "npc_type": 12478,
+   "sprite": 43696,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    179,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 73800018,
+   "nombre": "Hot-blooded Kappa",
+   "npc_type": 12478,
+   "sprite": 43696,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    184,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 73800019,
+   "nombre": "Hot-blooded Kappa",
+   "npc_type": 12478,
+   "sprite": 43696,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    184,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 73800020,
+   "nombre": "Hot-blooded Kappa",
+   "npc_type": 12478,
+   "sprite": 43696,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    189,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 73800021,
+   "nombre": "Hot-blooded Kappa",
+   "npc_type": 12478,
+   "sprite": 43696,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    189,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 73800022,
+   "nombre": "Hot-blooded Kappa",
+   "npc_type": 12478,
+   "sprite": 43696,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    189,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 73800023,
+   "nombre": "Hot-blooded Kappa",
+   "npc_type": 12478,
+   "sprite": 43696,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    189,
+    62
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 73800024,
+   "nombre": "Hot-blooded Kappa",
+   "npc_type": 12478,
+   "sprite": 43696,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    189,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 73800025,
+   "nombre": "Hot-blooded Kappa",
+   "npc_type": 12478,
+   "sprite": 43696,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    164,
+    42
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 73800026,
+   "nombre": "Hot-blooded Kappa",
+   "npc_type": 12478,
+   "sprite": 43696,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    164,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 73800027,
+   "nombre": "Hot-blooded Kappa",
+   "npc_type": 12478,
+   "sprite": 43696,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    164,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 73800028,
+   "nombre": "Hot-blooded Kappa",
+   "npc_type": 12478,
+   "sprite": 43696,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    164,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 73800029,
+   "nombre": "Hot-blooded Kappa",
+   "npc_type": 12478,
+   "sprite": 43696,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    164,
+    62
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 208
+  },
+  {
+   "entity_id": 73800030,
+   "nombre": "Takanohana",
+   "npc_type": 12484,
+   "sprite": 43718,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    284,
+    106
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 213
+  },
+  {
+   "entity_id": 73800031,
+   "nombre": "Nekoemon",
+   "npc_type": 12483,
+   "sprite": 43717,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    278,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 73800032,
+   "nombre": "Nekoemon",
+   "npc_type": 12483,
+   "sprite": 43717,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    273,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 73800033,
+   "nombre": "Nekoemon",
+   "npc_type": 12483,
+   "sprite": 43717,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    273,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 73800034,
+   "nombre": "Nekoemon",
+   "npc_type": 12483,
+   "sprite": 43717,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    273,
+    113
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 73800035,
+   "nombre": "Nekoemon",
+   "npc_type": 12483,
+   "sprite": 43717,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    278,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 212
+  },
+  {
+   "entity_id": 73800036,
+   "nombre": "Megantler Deer",
+   "npc_type": 12474,
+   "sprite": 43681,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    31
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 73800037,
+   "nombre": "Megantler Deer",
+   "npc_type": 12474,
+   "sprite": 43681,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    26
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 73800038,
+   "nombre": "Megantler Deer",
+   "npc_type": 12474,
+   "sprite": 43681,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    31
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 73800039,
+   "nombre": "Megantler Deer",
+   "npc_type": 12474,
+   "sprite": 43681,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    36
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 73800040,
+   "nombre": "Megantler Deer",
+   "npc_type": 12474,
+   "sprite": 43681,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    26
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 73800041,
+   "nombre": "Megantler Deer",
+   "npc_type": 12474,
+   "sprite": 43681,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    36
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 73800042,
+   "nombre": "Megantler Deer",
+   "npc_type": 12474,
+   "sprite": 43681,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    26
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 73800043,
+   "nombre": "Megantler Deer",
+   "npc_type": 12474,
+   "sprite": 43681,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    31
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 73800044,
+   "nombre": "Megantler Deer",
+   "npc_type": 12474,
+   "sprite": 43681,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    36
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 73800045,
+   "nombre": "Megantler Deer",
+   "npc_type": 12474,
+   "sprite": 43681,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    21
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 73800046,
+   "nombre": "Megantler Deer",
+   "npc_type": 12474,
+   "sprite": 43681,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    26
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 73800047,
+   "nombre": "Megantler Deer",
+   "npc_type": 12474,
+   "sprite": 43681,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    31
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 73800048,
+   "nombre": "Megantler Deer",
+   "npc_type": 12474,
+   "sprite": 43681,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    36
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 73800049,
+   "nombre": "Megantler Deer",
+   "npc_type": 12474,
+   "sprite": 43681,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    41
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 73800050,
+   "nombre": "Megantler Deer",
+   "npc_type": 12474,
+   "sprite": 43681,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    21
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 73800051,
+   "nombre": "Megantler Deer",
+   "npc_type": 12474,
+   "sprite": 43681,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    41
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 73800052,
+   "nombre": "Megantler Deer",
+   "npc_type": 12474,
+   "sprite": 43681,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    21
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 73800053,
+   "nombre": "Megantler Deer",
+   "npc_type": 12474,
+   "sprite": 43681,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    41
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 73800054,
+   "nombre": "Megantler Deer",
+   "npc_type": 12474,
+   "sprite": 43681,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    21
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 73800055,
+   "nombre": "Megantler Deer",
+   "npc_type": 12474,
+   "sprite": 43681,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    41
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 73800056,
+   "nombre": "Megantler Deer",
+   "npc_type": 12474,
+   "sprite": 43681,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    276,
+    21
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 73800057,
+   "nombre": "Megantler Deer",
+   "npc_type": 12474,
+   "sprite": 43681,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    276,
+    26
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 73800058,
+   "nombre": "Megantler Deer",
+   "npc_type": 12474,
+   "sprite": 43681,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    276,
+    31
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 73800059,
+   "nombre": "Megantler Deer",
+   "npc_type": 12474,
+   "sprite": 43681,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    276,
+    36
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 73800060,
+   "nombre": "Megantler Deer",
+   "npc_type": 12474,
+   "sprite": 43681,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    276,
+    41
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 73800061,
+   "nombre": "Megantler Deer",
+   "npc_type": 12474,
+   "sprite": 43681,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    16
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 73800062,
+   "nombre": "Megantler Deer",
+   "npc_type": 12474,
+   "sprite": 43681,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    21
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 73800063,
+   "nombre": "Megantler Deer",
+   "npc_type": 12474,
+   "sprite": 43681,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    26
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 73800064,
+   "nombre": "Megantler Deer",
+   "npc_type": 12474,
+   "sprite": 43681,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    31
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 73800065,
+   "nombre": "Megantler Deer",
+   "npc_type": 12474,
+   "sprite": 43681,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    36
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 205
+  },
+  {
+   "entity_id": 73800066,
+   "nombre": "Lamp Brolly",
+   "npc_type": 12475,
+   "sprite": 43699,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    281,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 206
+  },
+  {
+   "entity_id": 73800067,
+   "nombre": "Lamp Brolly",
+   "npc_type": 12475,
+   "sprite": 43699,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    27
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 206
+  },
+  {
+   "entity_id": 73800068,
+   "nombre": "Lamp Brolly",
+   "npc_type": 12475,
+   "sprite": 43699,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    281,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 206
+  },
+  {
+   "entity_id": 73800069,
+   "nombre": "Lamp Brolly",
+   "npc_type": 12475,
+   "sprite": 43699,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 206
+  },
+  {
+   "entity_id": 73800070,
+   "nombre": "Lamp Brolly",
+   "npc_type": 12475,
+   "sprite": 43699,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    281,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 206
+  },
+  {
+   "entity_id": 73800071,
+   "nombre": "Lamp Brolly",
+   "npc_type": 12475,
+   "sprite": 43699,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 206
+  },
+  {
+   "entity_id": 73800072,
+   "nombre": "Lamp Brolly",
+   "npc_type": 12475,
+   "sprite": 43699,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    281,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 206
+  },
+  {
+   "entity_id": 73800073,
+   "nombre": "Lamp Brolly",
+   "npc_type": 12475,
+   "sprite": 43699,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    41
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 206
+  },
+  {
+   "entity_id": 73800074,
+   "nombre": "Lamp Brolly",
+   "npc_type": 12475,
+   "sprite": 43699,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    281,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 206
+  },
+  {
+   "entity_id": 73800075,
+   "nombre": "Lamp Brolly",
+   "npc_type": 12475,
+   "sprite": 43699,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    42
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 206
+  },
+  {
+   "entity_id": 73800076,
+   "nombre": "Lamp Brolly",
+   "npc_type": 12475,
+   "sprite": 43699,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    257,
+    16
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 206
+  },
+  {
+   "entity_id": 73800077,
+   "nombre": "Lamp Brolly",
+   "npc_type": 12475,
+   "sprite": 43699,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    241,
+    22
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 206
+  },
+  {
+   "entity_id": 73800078,
+   "nombre": "Lamp Brolly",
+   "npc_type": 12475,
+   "sprite": 43699,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    262,
+    16
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 206
+  },
+  {
+   "entity_id": 73800079,
+   "nombre": "Lamp Brolly",
+   "npc_type": 12475,
+   "sprite": 43699,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    241,
+    27
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 206
+  },
+  {
+   "entity_id": 73800080,
+   "nombre": "Lamp Brolly",
+   "npc_type": 12475,
+   "sprite": 43699,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    267,
+    16
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 206
+  },
+  {
+   "entity_id": 73800081,
+   "nombre": "Lamp Brolly",
+   "npc_type": 12475,
+   "sprite": 43699,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    241,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 206
+  },
+  {
+   "entity_id": 73800082,
+   "nombre": "Lamp Brolly",
+   "npc_type": 12475,
+   "sprite": 43699,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    272,
+    16
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 206
+  },
+  {
+   "entity_id": 73800083,
+   "nombre": "Lamp Brolly",
+   "npc_type": 12475,
+   "sprite": 43699,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    241,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 206
+  },
+  {
+   "entity_id": 73800084,
+   "nombre": "Lamp Brolly",
+   "npc_type": 12475,
+   "sprite": 43699,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    281,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 206
+  },
+  {
+   "entity_id": 73800085,
+   "nombre": "Lamp Brolly",
+   "npc_type": 12475,
+   "sprite": 43699,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    22
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 206
+  },
+  {
+   "entity_id": 73800086,
+   "nombre": "Lamp Brolly",
+   "npc_type": 12475,
+   "sprite": 43699,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    277,
+    13
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 206
+  },
+  {
+   "entity_id": 73800087,
+   "nombre": "Lamp Brolly",
+   "npc_type": 12475,
+   "sprite": 43699,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    248,
+    46
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 206
+  },
+  {
+   "entity_id": 73800088,
+   "nombre": "Lamp Brolly",
+   "npc_type": 12475,
+   "sprite": 43699,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    282,
+    13
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 206
+  },
+  {
+   "entity_id": 73800089,
+   "nombre": "Lamp Brolly",
+   "npc_type": 12475,
+   "sprite": 43699,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    253,
+    46
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 206
+  },
+  {
+   "entity_id": 73800090,
+   "nombre": "Lamp Brolly",
+   "npc_type": 12475,
+   "sprite": 43699,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    286,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 206
+  },
+  {
+   "entity_id": 73800091,
+   "nombre": "Lamp Brolly",
+   "npc_type": 12475,
+   "sprite": 43699,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    46
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 206
+  },
+  {
+   "entity_id": 73800092,
+   "nombre": "Lamp Brolly",
+   "npc_type": 12475,
+   "sprite": 43699,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    286,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 206
+  },
+  {
+   "entity_id": 73800093,
+   "nombre": "Lamp Brolly",
+   "npc_type": 12475,
+   "sprite": 43699,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    263,
+    46
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 206
+  },
+  {
+   "entity_id": 73800094,
+   "nombre": "Lamp Brolly",
+   "npc_type": 12475,
+   "sprite": 43699,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    286,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 206
+  },
+  {
+   "entity_id": 73800095,
+   "nombre": "Lamp Brolly",
+   "npc_type": 12475,
+   "sprite": 43699,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    238,
+    42
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 206
+  },
+  {
+   "entity_id": 73800096,
+   "nombre": "Tea Tako Sushi",
+   "npc_type": 12477,
+   "sprite": 43710,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    226,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800097,
+   "nombre": "Tea Tako Sushi",
+   "npc_type": 12477,
+   "sprite": 43710,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800098,
+   "nombre": "Tea Tako Sushi",
+   "npc_type": 12477,
+   "sprite": 43710,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800099,
+   "nombre": "Tea Tako Sushi",
+   "npc_type": 12477,
+   "sprite": 43710,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800100,
+   "nombre": "Tea Tako Sushi",
+   "npc_type": 12477,
+   "sprite": 43710,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    226,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800101,
+   "nombre": "Tea Tako Sushi",
+   "npc_type": 12477,
+   "sprite": 43710,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    226,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800102,
+   "nombre": "Tea Tako Sushi",
+   "npc_type": 12477,
+   "sprite": 43710,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    231,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800103,
+   "nombre": "Tea Tako Sushi",
+   "npc_type": 12477,
+   "sprite": 43710,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    231,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800104,
+   "nombre": "Tea Tako Sushi",
+   "npc_type": 12477,
+   "sprite": 43710,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    231,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800105,
+   "nombre": "Tea Tako Sushi",
+   "npc_type": 12477,
+   "sprite": 43710,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800106,
+   "nombre": "Tea Tako Sushi",
+   "npc_type": 12477,
+   "sprite": 43710,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800107,
+   "nombre": "Tea Tako Sushi",
+   "npc_type": 12477,
+   "sprite": 43710,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800108,
+   "nombre": "Tea Tako Sushi",
+   "npc_type": 12477,
+   "sprite": 43710,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800109,
+   "nombre": "Tea Tako Sushi",
+   "npc_type": 12477,
+   "sprite": 43710,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800110,
+   "nombre": "Tea Tako Sushi",
+   "npc_type": 12477,
+   "sprite": 43710,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800111,
+   "nombre": "Tea Tako Sushi",
+   "npc_type": 12477,
+   "sprite": 43710,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800112,
+   "nombre": "Tea Tako Sushi",
+   "npc_type": 12477,
+   "sprite": 43710,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    226,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800113,
+   "nombre": "Tea Tako Sushi",
+   "npc_type": 12477,
+   "sprite": 43710,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    226,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800114,
+   "nombre": "Tea Tako Sushi",
+   "npc_type": 12477,
+   "sprite": 43710,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    231,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800115,
+   "nombre": "Tea Tako Sushi",
+   "npc_type": 12477,
+   "sprite": 43710,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    231,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800116,
+   "nombre": "Tea Tako Sushi",
+   "npc_type": 12477,
+   "sprite": 43710,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    236,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800117,
+   "nombre": "Tea Tako Sushi",
+   "npc_type": 12477,
+   "sprite": 43710,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    236,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800118,
+   "nombre": "Tea Tako Sushi",
+   "npc_type": 12477,
+   "sprite": 43710,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    236,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800119,
+   "nombre": "Tea Tako Sushi",
+   "npc_type": 12477,
+   "sprite": 43710,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    236,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800120,
+   "nombre": "Tea Tako Sushi",
+   "npc_type": 12477,
+   "sprite": 43710,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    236,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800121,
+   "nombre": "Tea Tako Sushi",
+   "npc_type": 12477,
+   "sprite": 43710,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    90
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800122,
+   "nombre": "Tea Tako Sushi",
+   "npc_type": 12477,
+   "sprite": 43710,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800123,
+   "nombre": "Tea Tako Sushi",
+   "npc_type": 12477,
+   "sprite": 43710,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800124,
+   "nombre": "Tea Tako Sushi",
+   "npc_type": 12477,
+   "sprite": 43710,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800125,
+   "nombre": "Tea Tako Sushi",
+   "npc_type": 12477,
+   "sprite": 43710,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800126,
+   "nombre": "Minty Riceball",
+   "npc_type": 12476,
+   "sprite": 43703,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    241,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800127,
+   "nombre": "Minty Riceball",
+   "npc_type": 12476,
+   "sprite": 43703,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    241,
+    97
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800128,
+   "nombre": "Minty Riceball",
+   "npc_type": 12476,
+   "sprite": 43703,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    241,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800129,
+   "nombre": "Minty Riceball",
+   "npc_type": 12476,
+   "sprite": 43703,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    241,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800130,
+   "nombre": "Minty Riceball",
+   "npc_type": 12476,
+   "sprite": 43703,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    241,
+    112
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800131,
+   "nombre": "Minty Riceball",
+   "npc_type": 12476,
+   "sprite": 43703,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    217,
+    90
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800132,
+   "nombre": "Minty Riceball",
+   "npc_type": 12476,
+   "sprite": 43703,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    222,
+    90
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800133,
+   "nombre": "Minty Riceball",
+   "npc_type": 12476,
+   "sprite": 43703,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    227,
+    90
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800134,
+   "nombre": "Minty Riceball",
+   "npc_type": 12476,
+   "sprite": 43703,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    232,
+    90
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800135,
+   "nombre": "Minty Riceball",
+   "npc_type": 12476,
+   "sprite": 43703,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    241,
+    117
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800136,
+   "nombre": "Minty Riceball",
+   "npc_type": 12476,
+   "sprite": 43703,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    237,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800137,
+   "nombre": "Minty Riceball",
+   "npc_type": 12476,
+   "sprite": 43703,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    242,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800138,
+   "nombre": "Minty Riceball",
+   "npc_type": 12476,
+   "sprite": 43703,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800139,
+   "nombre": "Minty Riceball",
+   "npc_type": 12476,
+   "sprite": 43703,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    97
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800140,
+   "nombre": "Minty Riceball",
+   "npc_type": 12476,
+   "sprite": 43703,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800141,
+   "nombre": "Minty Riceball",
+   "npc_type": 12476,
+   "sprite": 43703,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800142,
+   "nombre": "Minty Riceball",
+   "npc_type": 12476,
+   "sprite": 43703,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    112
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800143,
+   "nombre": "Minty Riceball",
+   "npc_type": 12476,
+   "sprite": 43703,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    117
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800144,
+   "nombre": "Minty Riceball",
+   "npc_type": 12476,
+   "sprite": 43703,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    213,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800145,
+   "nombre": "Minty Riceball",
+   "npc_type": 12476,
+   "sprite": 43703,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    218,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800146,
+   "nombre": "Minty Riceball",
+   "npc_type": 12476,
+   "sprite": 43703,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    223,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800147,
+   "nombre": "Minty Riceball",
+   "npc_type": 12476,
+   "sprite": 43703,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    228,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800148,
+   "nombre": "Minty Riceball",
+   "npc_type": 12476,
+   "sprite": 43703,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    233,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800149,
+   "nombre": "Minty Riceball",
+   "npc_type": 12476,
+   "sprite": 43703,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    247,
+    86
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800150,
+   "nombre": "Minty Riceball",
+   "npc_type": 12476,
+   "sprite": 43703,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    212,
+    85
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800151,
+   "nombre": "Minty Riceball",
+   "npc_type": 12476,
+   "sprite": 43703,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    217,
+    85
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800152,
+   "nombre": "Minty Riceball",
+   "npc_type": 12476,
+   "sprite": 43703,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    222,
+    85
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800153,
+   "nombre": "Minty Riceball",
+   "npc_type": 12476,
+   "sprite": 43703,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    227,
+    85
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800154,
+   "nombre": "Minty Riceball",
+   "npc_type": 12476,
+   "sprite": 43703,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    232,
+    85
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800155,
+   "nombre": "Minty Riceball",
+   "npc_type": 12476,
+   "sprite": 43703,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 207
+  },
+  {
+   "entity_id": 73800156,
+   "nombre": "Hot Spring Monkey",
+   "npc_type": 12479,
+   "sprite": 43706,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    164,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800157,
+   "nombre": "Hot Spring Monkey",
+   "npc_type": 12479,
+   "sprite": 43706,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    169,
+    42
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800158,
+   "nombre": "Hot Spring Monkey",
+   "npc_type": 12479,
+   "sprite": 43706,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    174,
+    42
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800159,
+   "nombre": "Hot Spring Monkey",
+   "npc_type": 12479,
+   "sprite": 43706,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    179,
+    42
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800160,
+   "nombre": "Hot Spring Monkey",
+   "npc_type": 12479,
+   "sprite": 43706,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    184,
+    42
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800161,
+   "nombre": "Hot Spring Monkey",
+   "npc_type": 12479,
+   "sprite": 43706,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    189,
+    42
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800162,
+   "nombre": "Hot Spring Monkey",
+   "npc_type": 12479,
+   "sprite": 43706,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    72
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800163,
+   "nombre": "Hot Spring Monkey",
+   "npc_type": 12479,
+   "sprite": 43706,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    166,
+    72
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800164,
+   "nombre": "Hot Spring Monkey",
+   "npc_type": 12479,
+   "sprite": 43706,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    171,
+    72
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800165,
+   "nombre": "Hot Spring Monkey",
+   "npc_type": 12479,
+   "sprite": 43706,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    72
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800166,
+   "nombre": "Hot Spring Monkey",
+   "npc_type": 12479,
+   "sprite": 43706,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    181,
+    72
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800167,
+   "nombre": "Hot Spring Monkey",
+   "npc_type": 12479,
+   "sprite": 43706,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    186,
+    72
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800168,
+   "nombre": "Hot Spring Monkey",
+   "npc_type": 12479,
+   "sprite": 43706,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    191,
+    72
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800169,
+   "nombre": "Hot Spring Monkey",
+   "npc_type": 12479,
+   "sprite": 43706,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    194,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800170,
+   "nombre": "Hot Spring Monkey",
+   "npc_type": 12479,
+   "sprite": 43706,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    194,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800171,
+   "nombre": "Hot Spring Monkey",
+   "npc_type": 12479,
+   "sprite": 43706,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    194,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800172,
+   "nombre": "Hot Spring Monkey",
+   "npc_type": 12479,
+   "sprite": 43706,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    194,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800173,
+   "nombre": "Hot Spring Monkey",
+   "npc_type": 12479,
+   "sprite": 43706,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    194,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800174,
+   "nombre": "Hot Spring Monkey",
+   "npc_type": 12479,
+   "sprite": 43706,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    194,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800175,
+   "nombre": "Hot Spring Monkey",
+   "npc_type": 12479,
+   "sprite": 43706,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    159,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800176,
+   "nombre": "Hot Spring Monkey",
+   "npc_type": 12479,
+   "sprite": 43706,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    159,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800177,
+   "nombre": "Hot Spring Monkey",
+   "npc_type": 12479,
+   "sprite": 43706,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    159,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800178,
+   "nombre": "Hot Spring Monkey",
+   "npc_type": 12479,
+   "sprite": 43706,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    159,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800179,
+   "nombre": "Hot Spring Monkey",
+   "npc_type": 12479,
+   "sprite": 43706,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    159,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800180,
+   "nombre": "Hot Spring Monkey",
+   "npc_type": 12479,
+   "sprite": 43706,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    159,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800181,
+   "nombre": "Hot Spring Monkey",
+   "npc_type": 12479,
+   "sprite": 43706,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    164,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800182,
+   "nombre": "Hot Spring Monkey",
+   "npc_type": 12479,
+   "sprite": 43706,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    169,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800183,
+   "nombre": "Hot Spring Monkey",
+   "npc_type": 12479,
+   "sprite": 43706,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    174,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800184,
+   "nombre": "Hot Spring Monkey",
+   "npc_type": 12479,
+   "sprite": 43706,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    179,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800185,
+   "nombre": "Hot Spring Monkey",
+   "npc_type": 12479,
+   "sprite": 43706,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    184,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800186,
+   "nombre": "Bigfist Monkey",
+   "npc_type": 12480,
+   "sprite": 43707,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    189,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 73800187,
+   "nombre": "Bigfist Monkey",
+   "npc_type": 12480,
+   "sprite": 43707,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    156,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 73800188,
+   "nombre": "Bigfist Monkey",
+   "npc_type": 12480,
+   "sprite": 43707,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    156,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 73800189,
+   "nombre": "Bigfist Monkey",
+   "npc_type": 12480,
+   "sprite": 43707,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    154,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 73800190,
+   "nombre": "Bigfist Monkey",
+   "npc_type": 12480,
+   "sprite": 43707,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    154,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 73800191,
+   "nombre": "Bigfist Monkey",
+   "npc_type": 12480,
+   "sprite": 43707,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    154,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 73800192,
+   "nombre": "Bigfist Monkey",
+   "npc_type": 12480,
+   "sprite": 43707,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    154,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 73800193,
+   "nombre": "Bigfist Monkey",
+   "npc_type": 12480,
+   "sprite": 43707,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    154,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 73800194,
+   "nombre": "Bigfist Monkey",
+   "npc_type": 12480,
+   "sprite": 43707,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    154,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 73800195,
+   "nombre": "Bigfist Monkey",
+   "npc_type": 12480,
+   "sprite": 43707,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    194,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 73800196,
+   "nombre": "Bigfist Monkey",
+   "npc_type": 12480,
+   "sprite": 43707,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    196,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 73800197,
+   "nombre": "Bigfist Monkey",
+   "npc_type": 12480,
+   "sprite": 43707,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    196,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 73800198,
+   "nombre": "Bigfist Monkey",
+   "npc_type": 12480,
+   "sprite": 43707,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    159,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 73800199,
+   "nombre": "Bigfist Monkey",
+   "npc_type": 12480,
+   "sprite": 43707,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    77
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 73800200,
+   "nombre": "Bigfist Monkey",
+   "npc_type": 12480,
+   "sprite": 43707,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    166,
+    77
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 73800201,
+   "nombre": "Bigfist Monkey",
+   "npc_type": 12480,
+   "sprite": 43707,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    171,
+    77
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 73800202,
+   "nombre": "Bigfist Monkey",
+   "npc_type": 12480,
+   "sprite": 43707,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    77
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 73800203,
+   "nombre": "Bigfist Monkey",
+   "npc_type": 12480,
+   "sprite": 43707,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    181,
+    77
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 73800204,
+   "nombre": "Bigfist Monkey",
+   "npc_type": 12480,
+   "sprite": 43707,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    186,
+    77
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 73800205,
+   "nombre": "Bigfist Monkey",
+   "npc_type": 12480,
+   "sprite": 43707,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    191,
+    77
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 73800206,
+   "nombre": "Bigfist Monkey",
+   "npc_type": 12480,
+   "sprite": 43707,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    152,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 73800207,
+   "nombre": "Bigfist Monkey",
+   "npc_type": 12480,
+   "sprite": 43707,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    164,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 73800208,
+   "nombre": "Bigfist Monkey",
+   "npc_type": 12480,
+   "sprite": 43707,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    169,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 73800209,
+   "nombre": "Bigfist Monkey",
+   "npc_type": 12480,
+   "sprite": 43707,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    174,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 73800210,
+   "nombre": "Bigfist Monkey",
+   "npc_type": 12480,
+   "sprite": 43707,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    179,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 73800211,
+   "nombre": "Bigfist Monkey",
+   "npc_type": 12480,
+   "sprite": 43707,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    184,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 73800212,
+   "nombre": "Bigfist Monkey",
+   "npc_type": 12480,
+   "sprite": 43707,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    189,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 73800213,
+   "nombre": "Bigfist Monkey",
+   "npc_type": 12480,
+   "sprite": 43707,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    151,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 73800214,
+   "nombre": "Bigfist Monkey",
+   "npc_type": 12480,
+   "sprite": 43707,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    151,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 73800215,
+   "nombre": "Bigfist Monkey",
+   "npc_type": 12480,
+   "sprite": 43707,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    196,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 73800216,
+   "nombre": "Soulcatcher Fox",
+   "npc_type": 12482,
+   "sprite": 43713,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    58,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800217,
+   "nombre": "Soulcatcher Fox",
+   "npc_type": 12482,
+   "sprite": 43713,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800218,
+   "nombre": "Soulcatcher Fox",
+   "npc_type": 12482,
+   "sprite": 43713,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800219,
+   "nombre": "Soulcatcher Fox",
+   "npc_type": 12482,
+   "sprite": 43713,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800220,
+   "nombre": "Soulcatcher Fox",
+   "npc_type": 12482,
+   "sprite": 43713,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    58,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800221,
+   "nombre": "Soulcatcher Fox",
+   "npc_type": 12482,
+   "sprite": 43713,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    58,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800222,
+   "nombre": "Soulcatcher Fox",
+   "npc_type": 12482,
+   "sprite": 43713,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800223,
+   "nombre": "Soulcatcher Fox",
+   "npc_type": 12482,
+   "sprite": 43713,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800224,
+   "nombre": "Soulcatcher Fox",
+   "npc_type": 12482,
+   "sprite": 43713,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800225,
+   "nombre": "Soulcatcher Fox",
+   "npc_type": 12482,
+   "sprite": 43713,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800226,
+   "nombre": "Soulcatcher Fox",
+   "npc_type": 12482,
+   "sprite": 43713,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800227,
+   "nombre": "Soulcatcher Fox",
+   "npc_type": 12482,
+   "sprite": 43713,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800228,
+   "nombre": "Soulcatcher Fox",
+   "npc_type": 12482,
+   "sprite": 43713,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800229,
+   "nombre": "Soulcatcher Fox",
+   "npc_type": 12482,
+   "sprite": 43713,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800230,
+   "nombre": "Soulcatcher Fox",
+   "npc_type": 12482,
+   "sprite": 43713,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800231,
+   "nombre": "Soulcatcher Fox",
+   "npc_type": 12482,
+   "sprite": 43713,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800232,
+   "nombre": "Soulcatcher Fox",
+   "npc_type": 12482,
+   "sprite": 43713,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    58,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800233,
+   "nombre": "Soulcatcher Fox",
+   "npc_type": 12482,
+   "sprite": 43713,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    58,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800234,
+   "nombre": "Soulcatcher Fox",
+   "npc_type": 12482,
+   "sprite": 43713,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800235,
+   "nombre": "Soulcatcher Fox",
+   "npc_type": 12482,
+   "sprite": 43713,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800236,
+   "nombre": "Soulcatcher Fox",
+   "npc_type": 12482,
+   "sprite": 43713,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    68,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800237,
+   "nombre": "Soulcatcher Fox",
+   "npc_type": 12482,
+   "sprite": 43713,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    68,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800238,
+   "nombre": "Soulcatcher Fox",
+   "npc_type": 12482,
+   "sprite": 43713,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    68,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800239,
+   "nombre": "Soulcatcher Fox",
+   "npc_type": 12482,
+   "sprite": 43713,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    68,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800240,
+   "nombre": "Soulcatcher Fox",
+   "npc_type": 12482,
+   "sprite": 43713,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    68,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800241,
+   "nombre": "Soulcatcher Fox",
+   "npc_type": 12482,
+   "sprite": 43713,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800242,
+   "nombre": "Soulcatcher Fox",
+   "npc_type": 12482,
+   "sprite": 43713,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800243,
+   "nombre": "Soulcatcher Fox",
+   "npc_type": 12482,
+   "sprite": 43713,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800244,
+   "nombre": "Soulcatcher Fox",
+   "npc_type": 12482,
+   "sprite": 43713,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800245,
+   "nombre": "Soulcatcher Fox",
+   "npc_type": 12482,
+   "sprite": 43713,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800246,
+   "nombre": "Magatama Wolf Spirit",
+   "npc_type": 12481,
+   "sprite": 43688,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    77
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800247,
+   "nombre": "Magatama Wolf Spirit",
+   "npc_type": 12481,
+   "sprite": 43688,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    82
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800248,
+   "nombre": "Magatama Wolf Spirit",
+   "npc_type": 12481,
+   "sprite": 43688,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800249,
+   "nombre": "Magatama Wolf Spirit",
+   "npc_type": 12481,
+   "sprite": 43688,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800250,
+   "nombre": "Magatama Wolf Spirit",
+   "npc_type": 12481,
+   "sprite": 43688,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    97
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800251,
+   "nombre": "Magatama Wolf Spirit",
+   "npc_type": 12481,
+   "sprite": 43688,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    52,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800252,
+   "nombre": "Magatama Wolf Spirit",
+   "npc_type": 12481,
+   "sprite": 43688,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    57,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800253,
+   "nombre": "Magatama Wolf Spirit",
+   "npc_type": 12481,
+   "sprite": 43688,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    62,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800254,
+   "nombre": "Magatama Wolf Spirit",
+   "npc_type": 12481,
+   "sprite": 43688,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800255,
+   "nombre": "Magatama Wolf Spirit",
+   "npc_type": 12481,
+   "sprite": 43688,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    72
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800256,
+   "nombre": "Magatama Wolf Spirit",
+   "npc_type": 12481,
+   "sprite": 43688,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    72
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800257,
+   "nombre": "Magatama Wolf Spirit",
+   "npc_type": 12481,
+   "sprite": 43688,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    77
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800258,
+   "nombre": "Magatama Wolf Spirit",
+   "npc_type": 12481,
+   "sprite": 43688,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    82
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800259,
+   "nombre": "Magatama Wolf Spirit",
+   "npc_type": 12481,
+   "sprite": 43688,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800260,
+   "nombre": "Magatama Wolf Spirit",
+   "npc_type": 12481,
+   "sprite": 43688,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800261,
+   "nombre": "Magatama Wolf Spirit",
+   "npc_type": 12481,
+   "sprite": 43688,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    97
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800262,
+   "nombre": "Magatama Wolf Spirit",
+   "npc_type": 12481,
+   "sprite": 43688,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800263,
+   "nombre": "Magatama Wolf Spirit",
+   "npc_type": 12481,
+   "sprite": 43688,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800264,
+   "nombre": "Magatama Wolf Spirit",
+   "npc_type": 12481,
+   "sprite": 43688,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    47,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800265,
+   "nombre": "Magatama Wolf Spirit",
+   "npc_type": 12481,
+   "sprite": 43688,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    52,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800266,
+   "nombre": "Magatama Wolf Spirit",
+   "npc_type": 12481,
+   "sprite": 43688,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    57,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800267,
+   "nombre": "Magatama Wolf Spirit",
+   "npc_type": 12481,
+   "sprite": 43688,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    62,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800268,
+   "nombre": "Magatama Wolf Spirit",
+   "npc_type": 12481,
+   "sprite": 43688,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800269,
+   "nombre": "Magatama Wolf Spirit",
+   "npc_type": 12481,
+   "sprite": 43688,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    46,
+    104
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800270,
+   "nombre": "Magatama Wolf Spirit",
+   "npc_type": 12481,
+   "sprite": 43688,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    104
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800271,
+   "nombre": "Magatama Wolf Spirit",
+   "npc_type": 12481,
+   "sprite": 43688,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    56,
+    104
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800272,
+   "nombre": "Magatama Wolf Spirit",
+   "npc_type": 12481,
+   "sprite": 43688,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    61,
+    104
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800273,
+   "nombre": "Magatama Wolf Spirit",
+   "npc_type": 12481,
+   "sprite": 43688,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    66,
+    104
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800274,
+   "nombre": "Magatama Wolf Spirit",
+   "npc_type": 12481,
+   "sprite": 43688,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800275,
+   "nombre": "Magatama Wolf Spirit",
+   "npc_type": 12481,
+   "sprite": 43688,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 211
+  },
+  {
+   "entity_id": 73800276,
+   "nombre": "King Oni",
+   "npc_type": 12488,
+   "sprite": 43675,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    158
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220
+  },
+  {
+   "entity_id": 73800277,
+   "nombre": "Fox Spirit Tamamo",
+   "npc_type": 12489,
+   "sprite": 43674,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    85,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220
+  },
+  {
+   "entity_id": 73800278,
+   "nombre": "King Ashuro",
+   "npc_type": 12490,
+   "sprite": 43676,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    71,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220
+  },
+  {
+   "entity_id": 73800279,
+   "nombre": "Bound Samurai",
+   "npc_type": 12486,
+   "sprite": 43692,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    122
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800280,
+   "nombre": "Bound Samurai",
+   "npc_type": 12486,
+   "sprite": 43692,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    117
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800281,
+   "nombre": "Bound Samurai",
+   "npc_type": 12486,
+   "sprite": 43692,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    122
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800282,
+   "nombre": "Bound Samurai",
+   "npc_type": 12486,
+   "sprite": 43692,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    127
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800283,
+   "nombre": "Bound Samurai",
+   "npc_type": 12486,
+   "sprite": 43692,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    117
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800284,
+   "nombre": "Bound Samurai",
+   "npc_type": 12486,
+   "sprite": 43692,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    127
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800285,
+   "nombre": "Bound Samurai",
+   "npc_type": 12486,
+   "sprite": 43692,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    117
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800286,
+   "nombre": "Bound Samurai",
+   "npc_type": 12486,
+   "sprite": 43692,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    122
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800287,
+   "nombre": "Bound Samurai",
+   "npc_type": 12486,
+   "sprite": 43692,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    127
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800288,
+   "nombre": "Bound Samurai",
+   "npc_type": 12486,
+   "sprite": 43692,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    148,
+    112
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800289,
+   "nombre": "Bound Samurai",
+   "npc_type": 12486,
+   "sprite": 43692,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    148,
+    117
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800290,
+   "nombre": "Bound Samurai",
+   "npc_type": 12486,
+   "sprite": 43692,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    148,
+    122
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800291,
+   "nombre": "Bound Samurai",
+   "npc_type": 12486,
+   "sprite": 43692,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    148,
+    127
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800292,
+   "nombre": "Bound Samurai",
+   "npc_type": 12486,
+   "sprite": 43692,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    148,
+    132
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800293,
+   "nombre": "Bound Samurai",
+   "npc_type": 12486,
+   "sprite": 43692,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    112
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800294,
+   "nombre": "Bound Samurai",
+   "npc_type": 12486,
+   "sprite": 43692,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    132
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800295,
+   "nombre": "Bound Samurai",
+   "npc_type": 12486,
+   "sprite": 43692,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    112
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800296,
+   "nombre": "Bound Samurai",
+   "npc_type": 12486,
+   "sprite": 43692,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    132
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800297,
+   "nombre": "Bound Samurai",
+   "npc_type": 12486,
+   "sprite": 43692,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    112
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800298,
+   "nombre": "Bound Samurai",
+   "npc_type": 12486,
+   "sprite": 43692,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    132
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800299,
+   "nombre": "Bound Samurai",
+   "npc_type": 12486,
+   "sprite": 43692,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    112
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800300,
+   "nombre": "Bound Samurai",
+   "npc_type": 12486,
+   "sprite": 43692,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    117
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800301,
+   "nombre": "Bound Samurai",
+   "npc_type": 12486,
+   "sprite": 43692,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    122
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800302,
+   "nombre": "Bound Samurai",
+   "npc_type": 12486,
+   "sprite": 43692,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    127
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800303,
+   "nombre": "Bound Samurai",
+   "npc_type": 12486,
+   "sprite": 43692,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    132
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800304,
+   "nombre": "Bound Samurai",
+   "npc_type": 12486,
+   "sprite": 43692,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800305,
+   "nombre": "Bound Samurai",
+   "npc_type": 12486,
+   "sprite": 43692,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    112
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800306,
+   "nombre": "Bound Samurai",
+   "npc_type": 12486,
+   "sprite": 43692,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    117
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800307,
+   "nombre": "Bound Samurai",
+   "npc_type": 12486,
+   "sprite": 43692,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    122
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800308,
+   "nombre": "Bound Samurai",
+   "npc_type": 12486,
+   "sprite": 43692,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    127
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800309,
+   "nombre": "Cursed Princess",
+   "npc_type": 12485,
+   "sprite": 43685,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 214
+  },
+  {
+   "entity_id": 73800310,
+   "nombre": "Cursed Princess",
+   "npc_type": 12485,
+   "sprite": 43685,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    113
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 214
+  },
+  {
+   "entity_id": 73800311,
+   "nombre": "Cursed Princess",
+   "npc_type": 12485,
+   "sprite": 43685,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 214
+  },
+  {
+   "entity_id": 73800312,
+   "nombre": "Cursed Princess",
+   "npc_type": 12485,
+   "sprite": 43685,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    166,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 214
+  },
+  {
+   "entity_id": 73800313,
+   "nombre": "Cursed Princess",
+   "npc_type": 12485,
+   "sprite": 43685,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 214
+  },
+  {
+   "entity_id": 73800314,
+   "nombre": "Cursed Princess",
+   "npc_type": 12485,
+   "sprite": 43685,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 214
+  },
+  {
+   "entity_id": 73800315,
+   "nombre": "Cursed Princess",
+   "npc_type": 12485,
+   "sprite": 43685,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 214
+  },
+  {
+   "entity_id": 73800316,
+   "nombre": "Cursed Princess",
+   "npc_type": 12485,
+   "sprite": 43685,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 214
+  },
+  {
+   "entity_id": 73800317,
+   "nombre": "Cursed Princess",
+   "npc_type": 12485,
+   "sprite": 43685,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    150,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 214
+  },
+  {
+   "entity_id": 73800318,
+   "nombre": "Cursed Princess",
+   "npc_type": 12485,
+   "sprite": 43685,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 214
+  },
+  {
+   "entity_id": 73800319,
+   "nombre": "Cursed Princess",
+   "npc_type": 12485,
+   "sprite": 43685,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    155,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 214
+  },
+  {
+   "entity_id": 73800320,
+   "nombre": "Cursed Princess",
+   "npc_type": 12485,
+   "sprite": 43685,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 214
+  },
+  {
+   "entity_id": 73800321,
+   "nombre": "Cursed Princess",
+   "npc_type": 12485,
+   "sprite": 43685,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    160,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 214
+  },
+  {
+   "entity_id": 73800322,
+   "nombre": "Cursed Princess",
+   "npc_type": 12485,
+   "sprite": 43685,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    171,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 214
+  },
+  {
+   "entity_id": 73800323,
+   "nombre": "Cursed Princess",
+   "npc_type": 12485,
+   "sprite": 43685,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 214
+  },
+  {
+   "entity_id": 73800324,
+   "nombre": "Cursed Princess",
+   "npc_type": 12485,
+   "sprite": 43685,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 214
+  },
+  {
+   "entity_id": 73800325,
+   "nombre": "Cursed Princess",
+   "npc_type": 12485,
+   "sprite": 43685,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 214
+  },
+  {
+   "entity_id": 73800326,
+   "nombre": "Cursed Princess",
+   "npc_type": 12485,
+   "sprite": 43685,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    166,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 214
+  },
+  {
+   "entity_id": 73800327,
+   "nombre": "Cursed Princess",
+   "npc_type": 12485,
+   "sprite": 43685,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 214
+  },
+  {
+   "entity_id": 73800328,
+   "nombre": "Cursed Princess",
+   "npc_type": 12485,
+   "sprite": 43685,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 214
+  },
+  {
+   "entity_id": 73800329,
+   "nombre": "Cursed Princess",
+   "npc_type": 12485,
+   "sprite": 43685,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 214
+  },
+  {
+   "entity_id": 73800330,
+   "nombre": "Cursed Princess",
+   "npc_type": 12485,
+   "sprite": 43685,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    181,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 214
+  },
+  {
+   "entity_id": 73800331,
+   "nombre": "Cursed Princess",
+   "npc_type": 12485,
+   "sprite": 43685,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    145,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 214
+  },
+  {
+   "entity_id": 73800332,
+   "nombre": "Cursed Princess",
+   "npc_type": 12485,
+   "sprite": 43685,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 214
+  },
+  {
+   "entity_id": 73800333,
+   "nombre": "Cursed Princess",
+   "npc_type": 12485,
+   "sprite": 43685,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    150,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 214
+  },
+  {
+   "entity_id": 73800334,
+   "nombre": "Cursed Princess",
+   "npc_type": 12485,
+   "sprite": 43685,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 214
+  },
+  {
+   "entity_id": 73800335,
+   "nombre": "Cursed Princess",
+   "npc_type": 12485,
+   "sprite": 43685,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    155,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 214
+  },
+  {
+   "entity_id": 73800336,
+   "nombre": "Cursed Princess",
+   "npc_type": 12485,
+   "sprite": 43685,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 214
+  },
+  {
+   "entity_id": 73800337,
+   "nombre": "Cursed Princess",
+   "npc_type": 12485,
+   "sprite": 43685,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    144,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 214
+  },
+  {
+   "entity_id": 73800338,
+   "nombre": "Cursed Princess",
+   "npc_type": 12485,
+   "sprite": 43685,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 214
+  },
+  {
+   "entity_id": 73800339,
+   "nombre": "Ittan Momen",
+   "npc_type": 12487,
+   "sprite": 43673,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800340,
+   "nombre": "Ittan Momen",
+   "npc_type": 12487,
+   "sprite": 43673,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    147
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800341,
+   "nombre": "Ittan Momen",
+   "npc_type": 12487,
+   "sprite": 43673,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    157
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800342,
+   "nombre": "Ittan Momen",
+   "npc_type": 12487,
+   "sprite": 43673,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    147
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800343,
+   "nombre": "Ittan Momen",
+   "npc_type": 12487,
+   "sprite": 43673,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    157
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 73800344,
+   "nombre": "Water Elf",
+   "npc_type": 3,
+   "sprite": 42057,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    11,
+    9
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 4
+  },
+  {
+   "entity_id": 73800345,
+   "nombre": "Earth Elf",
+   "npc_type": 4,
+   "sprite": 42058,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    16,
+    7
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 7
+  },
+  {
+   "entity_id": 73800346,
+   "nombre": "Earth Elf",
+   "npc_type": 4,
+   "sprite": 42058,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    21,
+    6
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 7
+  },
+  {
+   "entity_id": 73800347,
+   "nombre": "Earth Elf",
+   "npc_type": 4,
+   "sprite": 42058,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    21,
+    11
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 7
+  },
+  {
+   "entity_id": 73800348,
+   "nombre": "Elite - Lamp Brolly",
+   "npc_type": 12647,
+   "sprite": 43790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    286,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800349,
+   "nombre": "Elite - Lamp Brolly",
+   "npc_type": 12647,
+   "sprite": 43790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    238,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800350,
+   "nombre": "Elite - Lamp Brolly",
+   "npc_type": 12647,
+   "sprite": 43790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    286,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800351,
+   "nombre": "Elite - Lamp Brolly",
+   "npc_type": 12647,
+   "sprite": 43790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800352,
+   "nombre": "Elite - Lamp Brolly",
+   "npc_type": 12647,
+   "sprite": 43790,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    286,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800353,
+   "nombre": "Elite - Hot Spring Monkey",
+   "npc_type": 12649,
+   "sprite": 43792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    149,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800354,
+   "nombre": "Elite - Hot Spring Monkey",
+   "npc_type": 12649,
+   "sprite": 43792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    149,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800355,
+   "nombre": "Elite - Hot Spring Monkey",
+   "npc_type": 12649,
+   "sprite": 43792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    149,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800356,
+   "nombre": "Elite - Hot Spring Monkey",
+   "npc_type": 12649,
+   "sprite": 43792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    149,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800357,
+   "nombre": "Elite - Hot Spring Monkey",
+   "npc_type": 12649,
+   "sprite": 43792,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    149,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800358,
+   "nombre": "Elite - Cursed Princess",
+   "npc_type": 12651,
+   "sprite": 43794,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    149,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 73800359,
+   "nombre": "Elite - Cursed Princess",
+   "npc_type": 12651,
+   "sprite": 43794,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 73800360,
+   "nombre": "Elite - Cursed Princess",
+   "npc_type": 12651,
+   "sprite": 43794,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    154,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 73800361,
+   "nombre": "Elite - Cursed Princess",
+   "npc_type": 12651,
+   "sprite": 43794,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    171,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 73800362,
+   "nombre": "Elite - Cursed Princess",
+   "npc_type": 12651,
+   "sprite": 43794,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    159,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 73800363,
+   "nombre": "Elite - Magatama Wolf Spirit",
+   "npc_type": 12650,
+   "sprite": 43793,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    38,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 73800364,
+   "nombre": "Elite - Magatama Wolf Spirit",
+   "npc_type": 12650,
+   "sprite": 43793,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    38,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 73800365,
+   "nombre": "Elite - Magatama Wolf Spirit",
+   "npc_type": 12650,
+   "sprite": 43793,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    34,
+    97
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 73800366,
+   "nombre": "Elite - Magatama Wolf Spirit",
+   "npc_type": 12650,
+   "sprite": 43793,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    33,
+    82
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 73800367,
+   "nombre": "Elite - Magatama Wolf Spirit",
+   "npc_type": 12650,
+   "sprite": 43793,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    33,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219
+  },
+  {
+   "entity_id": 73800368,
+   "nombre": "Elite - Tea Tako Sushi",
+   "npc_type": 12648,
+   "sprite": 43791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    208,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800369,
+   "nombre": "Elite - Tea Tako Sushi",
+   "npc_type": 12648,
+   "sprite": 43791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800370,
+   "nombre": "Elite - Tea Tako Sushi",
+   "npc_type": 12648,
+   "sprite": 43791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800371,
+   "nombre": "Elite - Tea Tako Sushi",
+   "npc_type": 12648,
+   "sprite": 43791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  },
+  {
+   "entity_id": 73800372,
+   "nombre": "Elite - Tea Tako Sushi",
+   "npc_type": 12648,
+   "sprite": 43791,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 209
+  }
+ ],
+ "recursos": [
+  {
+   "entity_id": 83800000,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    8726,
+    3024
+   ],
+   "tile": [
+    272,
+    94
+   ],
+   "crudo": "c0affe040000000016220000d00b00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 83800001,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    4228,
+    4592
+   ],
+   "tile": [
+    132,
+    143
+   ],
+   "crudo": "c1affe040000000084100000f01100000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 83800002,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    8861,
+    2640
+   ],
+   "tile": [
+    276,
+    82
+   ],
+   "crudo": "c2affe04020000009d220000500a00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 83800003,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    4714,
+    4272
+   ],
+   "tile": [
+    147,
+    133
+   ],
+   "crudo": "c3affe04000000006a120000b01000000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 83800004,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    8210,
+    3216
+   ],
+   "tile": [
+    256,
+    100
+   ],
+   "crudo": "c4affe040000000012200000900c00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 83800005,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    7993,
+    3088
+   ],
+   "tile": [
+    249,
+    96
+   ],
+   "crudo": "c5affe0400000000391f0000100c00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 83800006,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    1617,
+    1808
+   ],
+   "tile": [
+    50,
+    56
+   ],
+   "crudo": "c6affe040000000051060000100700000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 83800007,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    7500,
+    4752
+   ],
+   "tile": [
+    234,
+    148
+   ],
+   "crudo": "c7affe04000000004c1d0000901200000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 83800008,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    8338,
+    4304
+   ],
+   "tile": [
+    260,
+    134
+   ],
+   "crudo": "c8affe040000000092200000d01000000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 83800009,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    8530,
+    3120
+   ],
+   "tile": [
+    266,
+    97
+   ],
+   "crudo": "c9affe040000000052210000300c00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 83800010,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    8118,
+    3152
+   ],
+   "tile": [
+    253,
+    98
+   ],
+   "crudo": "caaffe0400000000b61f0000500c00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 83800011,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    8203,
+    4368
+   ],
+   "tile": [
+    256,
+    136
+   ],
+   "crudo": "cbaffe04000000000b200000101100000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 83800012,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    7698,
+    4624
+   ],
+   "tile": [
+    240,
+    144
+   ],
+   "crudo": "ccaffe0400000000121e0000101200000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 83800013,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    5691,
+    3760
+   ],
+   "tile": [
+    177,
+    117
+   ],
+   "crudo": "cdaffe04000000003b160000b00e00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 83800014,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    1654,
+    1616
+   ],
+   "tile": [
+    51,
+    50
+   ],
+   "crudo": "ceaffe040000000076060000500600000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 83800015,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1085,
+    1360
+   ],
+   "tile": [
+    33,
+    42
+   ],
+   "crudo": "cfaffe04000000003d040000500500000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 83800016,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    775,
+    1776
+   ],
+   "tile": [
+    24,
+    55
+   ],
+   "crudo": "d0affe040000000007030000f00600000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 83800017,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    2028,
+    944
+   ],
+   "tile": [
+    63,
+    29
+   ],
+   "crudo": "d1affe0400000000ec070000b00300000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 83800018,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    3082,
+    2384
+   ],
+   "tile": [
+    96,
+    74
+   ],
+   "crudo": "d2affe04000000000a0c0000500900000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 83800019,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    2287,
+    2256
+   ],
+   "tile": [
+    71,
+    70
+   ],
+   "crudo": "d3affe0402000000ef080000d00800000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 83800020,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    2958,
+    4336
+   ],
+   "tile": [
+    92,
+    135
+   ],
+   "crudo": "d4affe04020000008e0b0000f01000000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 83800021,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    3394,
+    4560
+   ],
+   "tile": [
+    106,
+    142
+   ],
+   "crudo": "d5affe0402000000420d0000d01100000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 83800022,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    3289,
+    4656
+   ],
+   "tile": [
+    102,
+    145
+   ],
+   "crudo": "d6affe0402000000d90c0000301200000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 83800023,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    7767,
+    4752
+   ],
+   "tile": [
+    242,
+    148
+   ],
+   "crudo": "d7affe0400000000571e0000901200000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 83800024,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    8384,
+    4432
+   ],
+   "tile": [
+    262,
+    138
+   ],
+   "crudo": "d8affe0400000000c0200000501100000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 83800025,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    2556,
+    4336
+   ],
+   "tile": [
+    79,
+    135
+   ],
+   "crudo": "d9affe0402000000fc090000f01000000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 83800026,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    2543,
+    2384
+   ],
+   "tile": [
+    79,
+    74
+   ],
+   "crudo": "daaffe0402000000ef090000500900000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 83800027,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    3237,
+    2320
+   ],
+   "tile": [
+    101,
+    72
+   ],
+   "crudo": "dbaffe0400000000a50c0000100900000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 83800028,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    1877,
+    1680
+   ],
+   "tile": [
+    58,
+    52
+   ],
+   "crudo": "dcaffe040000000055070000900600000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 83800029,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    2029,
+    1616
+   ],
+   "tile": [
+    63,
+    50
+   ],
+   "crudo": "ddaffe0400000000ed070000500600000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 83800030,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5619,
+    1072
+   ],
+   "tile": [
+    175,
+    33
+   ],
+   "crudo": "deaffe0400000000f3150000300400000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 83800031,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    3545,
+    4784
+   ],
+   "tile": [
+    110,
+    149
+   ],
+   "crudo": "dfaffe0402000000d90d0000b01200000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 83800032,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    3593,
+    4688
+   ],
+   "tile": [
+    112,
+    146
+   ],
+   "crudo": "e0affe0402000000090e0000501200000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 83800033,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    2761,
+    4432
+   ],
+   "tile": [
+    86,
+    138
+   ],
+   "crudo": "e1affe0402000000c90a0000501100000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 83800034,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    2608,
+    4176
+   ],
+   "tile": [
+    81,
+    130
+   ],
+   "crudo": "e2affe0402000000300a0000501000000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 83800035,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    2764,
+    4240
+   ],
+   "tile": [
+    86,
+    132
+   ],
+   "crudo": "e3affe0402000000cc0a0000901000000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  }
+ ]
+}

@@ -1,0 +1,5903 @@
+{
+ "_nota": "horrible_lost_region (stage 101). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map101.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "stage": 101,
+ "spawns": [
+  {
+   "entity_id": 60100000,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    142
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100001,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100002,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    142
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100003,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    70,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100004,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100005,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100006,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    83,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100007,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100008,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100009,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    70,
+    116
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100010,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    111
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100011,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    116
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100012,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100013,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100014,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100015,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    113
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100016,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100017,
+   "nombre": "Lost Angel Fish",
+   "npc_type": 3509,
+   "sprite": 42440,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    39,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 60100018,
+   "nombre": "Lost Angel Fish",
+   "npc_type": 3509,
+   "sprite": 42440,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    39,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 60100019,
+   "nombre": "Lost Angel Fish",
+   "npc_type": 3509,
+   "sprite": 42440,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 60100020,
+   "nombre": "Lost Angel Fish",
+   "npc_type": 3509,
+   "sprite": 42440,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    62,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 60100021,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100022,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100023,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100024,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100025,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100026,
+   "nombre": "Lost Angel Fish",
+   "npc_type": 3509,
+   "sprite": 42440,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 60100027,
+   "nombre": "Lost Angel Fish",
+   "npc_type": 3509,
+   "sprite": 42440,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 60100028,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    86,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100029,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    81,
+    82
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100030,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    81,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100031,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    81,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100032,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    86,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100033,
+   "nombre": "Lost Angel Fish",
+   "npc_type": 3509,
+   "sprite": 42440,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    68,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 60100034,
+   "nombre": "Lost Angel Fish",
+   "npc_type": 3509,
+   "sprite": 42440,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 60100035,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    75,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100036,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    70,
+    81
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100037,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100038,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    75,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100039,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100040,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100041,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100042,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100043,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100044,
+   "nombre": "Scale Elite",
+   "npc_type": 3516,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 60100045,
+   "nombre": "Lost Angel Fish",
+   "npc_type": 3509,
+   "sprite": 42440,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    72
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 60100046,
+   "nombre": "Lost Angel Fish",
+   "npc_type": 3509,
+   "sprite": 42440,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 60100047,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    57,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100048,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    52,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100049,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    52,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100050,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    52,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100051,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    57,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100052,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    57,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100053,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    62,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100054,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    62,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100055,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    62,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100056,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    47,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100057,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    83,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100058,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100059,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100060,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100061,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    83,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100062,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    83,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100063,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    88,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100064,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    88,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100065,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    88,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100066,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    42
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100067,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    42
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100068,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    83,
+    42
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100069,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    88,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100070,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100071,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100072,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100073,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100074,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    83,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100075,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    69,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100076,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    88,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100077,
+   "nombre": "Scale Colonel",
+   "npc_type": 3518,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    68,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100078,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    57,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100079,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    52,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100080,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    52,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100081,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    52,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100082,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    57,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100083,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    57,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100084,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    62,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100085,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    62,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100086,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    62,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100087,
+   "nombre": "Scale Captain",
+   "npc_type": 3517,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    47,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100088,
+   "nombre": "Scale Colonel",
+   "npc_type": 3518,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    75,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100089,
+   "nombre": "Scale Colonel",
+   "npc_type": 3518,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    46,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100090,
+   "nombre": "Scale Colonel",
+   "npc_type": 3520,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    136,
+    90
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100091,
+   "nombre": "Merman Guaridan",
+   "npc_type": 3513,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    154,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 60100092,
+   "nombre": "Merman Guaridan",
+   "npc_type": 3513,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    149,
+    97
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 60100093,
+   "nombre": "Merman Guaridan",
+   "npc_type": 3513,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    149,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 60100094,
+   "nombre": "Merman Guaridan",
+   "npc_type": 3513,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    149,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 60100095,
+   "nombre": "Forgetful Angel Fish",
+   "npc_type": 3510,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    159,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100096,
+   "nombre": "Forgetful Angel Fish",
+   "npc_type": 3510,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    154,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100097,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    140,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100098,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    135,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100099,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    135,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100100,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    140,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100101,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    141,
+    90
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100102,
+   "nombre": "Scale Colonel",
+   "npc_type": 3520,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    179,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100103,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    184,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100104,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    179,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100105,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    184,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100106,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    184,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100107,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    189,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100108,
+   "nombre": "Scale Colonel",
+   "npc_type": 3520,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    209,
+    85
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100109,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100110,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    209,
+    90
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100111,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100112,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100113,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100114,
+   "nombre": "Scale Colonel",
+   "npc_type": 3520,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100115,
+   "nombre": "Scale Colonel",
+   "npc_type": 3520,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    201,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100116,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100117,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    62
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100118,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100119,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100120,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100121,
+   "nombre": "Merman Guaridan",
+   "npc_type": 3513,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 60100122,
+   "nombre": "Merman Guaridan",
+   "npc_type": 3513,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 60100123,
+   "nombre": "Merman Guaridan",
+   "npc_type": 3513,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    194,
+    104
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 60100124,
+   "nombre": "Merman Guaridan",
+   "npc_type": 3513,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 60100125,
+   "nombre": "Forgetful Angel Fish",
+   "npc_type": 3510,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    96
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100126,
+   "nombre": "Forgetful Angel Fish",
+   "npc_type": 3510,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    91
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100127,
+   "nombre": "Merman Guaridan",
+   "npc_type": 3513,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    224,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 60100128,
+   "nombre": "Merman Guaridan",
+   "npc_type": 3513,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 60100129,
+   "nombre": "Merman Guaridan",
+   "npc_type": 3513,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 60100130,
+   "nombre": "Merman Guaridan",
+   "npc_type": 3513,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    224,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 60100131,
+   "nombre": "Hicalu Machine",
+   "npc_type": 3521,
+   "sprite": 42450,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    36
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100132,
+   "nombre": "Forgetful Angel Fish",
+   "npc_type": 3510,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    229,
+    75
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100133,
+   "nombre": "Forgetful Angel Fish",
+   "npc_type": 3510,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    229,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100134,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    234,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100135,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    234,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100136,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    180,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100137,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    175,
+    51
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100138,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    175,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100139,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    175,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100140,
+   "nombre": "Forgetful Angel Fish",
+   "npc_type": 3510,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    185,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100141,
+   "nombre": "Forgetful Angel Fish",
+   "npc_type": 3510,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    180,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100142,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    150,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100143,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    145,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100144,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    145,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100145,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    145,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100146,
+   "nombre": "Forgetful Angel Fish",
+   "npc_type": 3510,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    155,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100147,
+   "nombre": "Forgetful Angel Fish",
+   "npc_type": 3510,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    150,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100148,
+   "nombre": "Scale Colonel",
+   "npc_type": 3520,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    162,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100149,
+   "nombre": "Scale Colonel",
+   "npc_type": 3520,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    157,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100150,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    165,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100151,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    167,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100152,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    170,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100153,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    160,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100154,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    160,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100155,
+   "nombre": "Scale Colonel",
+   "npc_type": 3520,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    144,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100156,
+   "nombre": "Scale Colonel",
+   "npc_type": 3520,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    139,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100157,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    150,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100158,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    145,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100159,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    149,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100160,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    154,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100161,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    155,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100162,
+   "nombre": "Scale Colonel",
+   "npc_type": 3520,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    186,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100163,
+   "nombre": "Scale Colonel",
+   "npc_type": 3520,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    181,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100164,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100165,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    185,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100166,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    185,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100167,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100168,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    191,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100169,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    162,
+    21
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100170,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    157,
+    16
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100171,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    160,
+    26
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100172,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    162,
+    16
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100173,
+   "nombre": "Forgetful Angel Fish",
+   "npc_type": 3510,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    167,
+    16
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100174,
+   "nombre": "Forgetful Angel Fish",
+   "npc_type": 3510,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    162,
+    11
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100175,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    204,
+    22
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100176,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    199,
+    17
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100177,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    199,
+    22
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100178,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    199,
+    27
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100179,
+   "nombre": "Forgetful Angel Fish",
+   "npc_type": 3510,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    209,
+    19
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100180,
+   "nombre": "Forgetful Angel Fish",
+   "npc_type": 3510,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    204,
+    14
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100181,
+   "nombre": "Scale Colonel",
+   "npc_type": 3520,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    224,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100182,
+   "nombre": "Scale Colonel",
+   "npc_type": 3520,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100183,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    227,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100184,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    229,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100185,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    232,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100186,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    222,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100187,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    222,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100188,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    263,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100189,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100190,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100191,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100192,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    263,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100193,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    263,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100194,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    268,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100195,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    268,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100196,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    268,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100197,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    253,
+    19
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100198,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100199,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100200,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100201,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100202,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100203,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100204,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    276,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100205,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    276,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100206,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    276,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100207,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100208,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    287,
+    31
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100209,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    282,
+    26
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100210,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    282,
+    31
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100211,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    282,
+    36
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100212,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    287,
+    26
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100213,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    287,
+    36
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100214,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    292,
+    26
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100215,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    292,
+    31
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100216,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    292,
+    36
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100217,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    277,
+    21
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100218,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    288,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100219,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    283,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100220,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    283,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100221,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    283,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100222,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    288,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100223,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    288,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100224,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    293,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100225,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    293,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100226,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    293,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100227,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    278,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100228,
+   "nombre": "Scale Colonel",
+   "npc_type": 3520,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    303,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100229,
+   "nombre": "Scale Colonel",
+   "npc_type": 3520,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    298,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100230,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    308,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100231,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    303,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100232,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    308,
+    82
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100233,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    308,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100234,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    313,
+    82
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100235,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    313,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100236,
+   "nombre": "Scale Colonel",
+   "npc_type": 3520,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    263,
+    97
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100237,
+   "nombre": "Scale Colonel",
+   "npc_type": 3520,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100238,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    267,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100239,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    262,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100240,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    262,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100241,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    267,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100242,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    268,
+    97
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100243,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    272,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100244,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    283,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100245,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    278,
+    90
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100246,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    278,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100247,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    278,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100248,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    288,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100249,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    283,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100250,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    247,
+    116
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100251,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    242,
+    111
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100252,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    242,
+    116
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100253,
+   "nombre": "Merman Hunting Team",
+   "npc_type": 3515,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    242,
+    121
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100254,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    250,
+    111
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100255,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    252,
+    116
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100256,
+   "nombre": "Scale Colonel",
+   "npc_type": 3520,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    232,
+    119
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100257,
+   "nombre": "Scale Colonel",
+   "npc_type": 3520,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    227,
+    114
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 60100258,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    237,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100259,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    232,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100260,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    237,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100261,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    237,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100262,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    242,
+    126
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100263,
+   "nombre": "Scale Captain",
+   "npc_type": 3519,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    231,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 60100264,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    213,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100265,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    208,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100266,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    208,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100267,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    208,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100268,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    213,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100269,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    213,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100270,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    218,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100271,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    218,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100272,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    218,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100273,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    203,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100274,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    230,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100275,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    235,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100276,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    226,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100277,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    225,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100278,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    225,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100279,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    230,
+    139
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100280,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    235,
+    139
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100281,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    240,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100282,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    240,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100283,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100284,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    212,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100285,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    212,
+    143
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100286,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    217,
+    143
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100287,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    222,
+    143
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100288,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    226,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100289,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    227,
+    144
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100290,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    232,
+    144
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100291,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    207,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100292,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    207,
+    143
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100293,
+   "nombre": "Upset Angel Fish",
+   "npc_type": 3511,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    207,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 92
+  },
+  {
+   "entity_id": 60100294,
+   "nombre": "Merman Guaridan",
+   "npc_type": 3514,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    158
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 95
+  },
+  {
+   "entity_id": 60100295,
+   "nombre": "Merman Guaridan",
+   "npc_type": 3514,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    171,
+    153
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 95
+  },
+  {
+   "entity_id": 60100296,
+   "nombre": "Merman Guaridan",
+   "npc_type": 3514,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    162,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 95
+  },
+  {
+   "entity_id": 60100297,
+   "nombre": "Merman Guaridan",
+   "npc_type": 3514,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    157,
+    143
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 95
+  },
+  {
+   "entity_id": 60100298,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    170,
+    158
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100299,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    166,
+    153
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100300,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100301,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    165,
+    158
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100302,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    157,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100303,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    162,
+    143
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100304,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    152,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100305,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    152,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100306,
+   "nombre": "Merman Guaridan",
+   "npc_type": 3514,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    145,
+    153
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 95
+  },
+  {
+   "entity_id": 60100307,
+   "nombre": "Merman Guaridan",
+   "npc_type": 3514,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    140,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 95
+  },
+  {
+   "entity_id": 60100308,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    140,
+    153
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100309,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    136,
+    158
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100310,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    141,
+    158
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100311,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    145,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100312,
+   "nombre": "Merman Guaridan",
+   "npc_type": 3514,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    164
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 95
+  },
+  {
+   "entity_id": 60100313,
+   "nombre": "Merman Guaridan",
+   "npc_type": 3514,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    156,
+    159
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 95
+  },
+  {
+   "entity_id": 60100314,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    156,
+    164
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100315,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    151,
+    157
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100316,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    151,
+    162
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100317,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    151,
+    167
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100318,
+   "nombre": "Merman Guaridan",
+   "npc_type": 3514,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 95
+  },
+  {
+   "entity_id": 60100319,
+   "nombre": "Merman Guaridan",
+   "npc_type": 3514,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    123,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 95
+  },
+  {
+   "entity_id": 60100320,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    123,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100321,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    118,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100322,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    118,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100323,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    118,
+    170
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100324,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    123,
+    170
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100325,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100326,
+   "nombre": "Merman Guaridan",
+   "npc_type": 3514,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    145,
+    171
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 95
+  },
+  {
+   "entity_id": 60100327,
+   "nombre": "Merman Guaridan",
+   "npc_type": 3514,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    140,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 95
+  },
+  {
+   "entity_id": 60100328,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    140,
+    171
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100329,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    145,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100330,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    135,
+    164
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100331,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    135,
+    169
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100332,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    135,
+    174
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100333,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    140,
+    176
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100334,
+   "nombre": "Merman Guaridan",
+   "npc_type": 3514,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    125,
+    180
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 95
+  },
+  {
+   "entity_id": 60100335,
+   "nombre": "Merman Guaridan",
+   "npc_type": 3514,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    120,
+    175
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 95
+  },
+  {
+   "entity_id": 60100336,
+   "nombre": "Merman Guaridan",
+   "npc_type": 3514,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    120,
+    180
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 95
+  },
+  {
+   "entity_id": 60100337,
+   "nombre": "Merman Guaridan",
+   "npc_type": 3514,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    120,
+    185
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 95
+  },
+  {
+   "entity_id": 60100338,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    125,
+    175
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100339,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    115,
+    175
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100340,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    115,
+    180
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100341,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    115,
+    185
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100342,
+   "nombre": "Merman Guaridan",
+   "npc_type": 3514,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    109,
+    174
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 95
+  },
+  {
+   "entity_id": 60100343,
+   "nombre": "Merman Guaridan",
+   "npc_type": 3514,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    104,
+    169
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 95
+  },
+  {
+   "entity_id": 60100344,
+   "nombre": "Merman Guaridan",
+   "npc_type": 3514,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    104,
+    174
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 95
+  },
+  {
+   "entity_id": 60100345,
+   "nombre": "Merman Guaridan",
+   "npc_type": 3514,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    104,
+    179
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 95
+  },
+  {
+   "entity_id": 60100346,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    109,
+    169
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100347,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    99,
+    167
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100348,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    99,
+    172
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100349,
+   "nombre": "Merman Protector",
+   "npc_type": 3512,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    99,
+    177
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 60100350,
+   "nombre": "Hicalu Machine",
+   "npc_type": 3522,
+   "sprite": 42447,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    110,
+    179
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 95
+  },
+  {
+   "entity_id": 60100351,
+   "nombre": "Hicalu 1",
+   "npc_type": 3523,
+   "sprite": 42411,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    292,
+    172
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  }
+ ],
+ "recursos": [
+  {
+   "entity_id": 70100000,
+   "sprite": 60009,
+   "capa": 0,
+   "px": [
+    987,
+    1840
+   ],
+   "tile": [
+    30,
+    57
+   ],
+   "crudo": "20a42d0400000000db030000300700000000000027000000000000001a000000dc0669ea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60009"
+  },
+  {
+   "entity_id": 70100001,
+   "sprite": 60008,
+   "capa": 0,
+   "px": [
+    1034,
+    1808
+   ],
+   "tile": [
+    32,
+    56
+   ],
+   "crudo": "21a42d04000000000a040000100700000000000027000000000000001a000000dc0668ea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60008"
+  },
+  {
+   "entity_id": 70100002,
+   "sprite": 60007,
+   "capa": 0,
+   "px": [
+    978,
+    1808
+   ],
+   "tile": [
+    30,
+    56
+   ],
+   "crudo": "22a42d0400000000d2030000100700000000000027000000000000001a000000dc0667ea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60007"
+  },
+  {
+   "entity_id": 70100003,
+   "sprite": 60340,
+   "capa": 0,
+   "px": [
+    952,
+    1840
+   ],
+   "tile": [
+    29,
+    57
+   ],
+   "crudo": "23a42d0400000000b8030000300700000000000027000000000000001a000000dc06b4eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60340"
+  },
+  {
+   "entity_id": 70100004,
+   "sprite": 60340,
+   "capa": 2,
+   "px": [
+    1027,
+    1808
+   ],
+   "tile": [
+    32,
+    56
+   ],
+   "crudo": "24a42d040200000003040000100700000000000027000000000000001a000000dc06b4eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60340"
+  },
+  {
+   "entity_id": 70100005,
+   "sprite": 60339,
+   "capa": 0,
+   "px": [
+    1127,
+    1776
+   ],
+   "tile": [
+    35,
+    55
+   ],
+   "crudo": "25a42d040000000067040000f00600000000000027000000000000001a000000dc06b3eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60339"
+  },
+  {
+   "entity_id": 70100006,
+   "sprite": 60337,
+   "capa": 0,
+   "px": [
+    614,
+    1840
+   ],
+   "tile": [
+    19,
+    57
+   ],
+   "crudo": "26a42d040000000066020000300700000000000027000000000000001a000000dc06b1eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60337"
+  },
+  {
+   "entity_id": 70100007,
+   "sprite": 60336,
+   "capa": 0,
+   "px": [
+    379,
+    1680
+   ],
+   "tile": [
+    11,
+    52
+   ],
+   "crudo": "27a42d04000000007b010000900600000000000027000000000000001a000000dc06b0eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60336"
+  },
+  {
+   "entity_id": 70100008,
+   "sprite": 60338,
+   "capa": 0,
+   "px": [
+    624,
+    1552
+   ],
+   "tile": [
+    19,
+    48
+   ],
+   "crudo": "28a42d040000000070020000100600000000000027000000000000001a000000dc06b2eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60338"
+  },
+  {
+   "entity_id": 70100009,
+   "sprite": 60340,
+   "capa": 0,
+   "px": [
+    2877,
+    5296
+   ],
+   "tile": [
+    89,
+    165
+   ],
+   "crudo": "29a42d04000000003d0b0000b01400000000000027000000000000001a000000dc06b4eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60340"
+  },
+  {
+   "entity_id": 70100010,
+   "sprite": 60340,
+   "capa": 0,
+   "px": [
+    2755,
+    5232
+   ],
+   "tile": [
+    86,
+    163
+   ],
+   "crudo": "2aa42d0400000000c30a0000701400000000000027000000000000001a000000dc06b4eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60340"
+  },
+  {
+   "entity_id": 70100011,
+   "sprite": 60340,
+   "capa": 2,
+   "px": [
+    2829,
+    5232
+   ],
+   "tile": [
+    88,
+    163
+   ],
+   "crudo": "2ba42d04020000000d0b0000701400000000000027000000000000001a000000dc06b4eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60340"
+  },
+  {
+   "entity_id": 70100012,
+   "sprite": 60008,
+   "capa": 0,
+   "px": [
+    2845,
+    5264
+   ],
+   "tile": [
+    88,
+    164
+   ],
+   "crudo": "2ca42d04000000001d0b0000901400000000000027000000000000001a000000dc0668ea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60008"
+  },
+  {
+   "entity_id": 70100013,
+   "sprite": 60009,
+   "capa": 0,
+   "px": [
+    2917,
+    5328
+   ],
+   "tile": [
+    91,
+    166
+   ],
+   "crudo": "2da42d0400000000650b0000d01400000000000027000000000000001a000000dc0669ea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60009"
+  },
+  {
+   "entity_id": 70100014,
+   "sprite": 60007,
+   "capa": 0,
+   "px": [
+    2781,
+    5200
+   ],
+   "tile": [
+    86,
+    162
+   ],
+   "crudo": "2ea42d0400000000dd0a0000501400000000000027000000000000001a000000dc0667ea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60007"
+  },
+  {
+   "entity_id": 70100015,
+   "sprite": 60007,
+   "capa": 2,
+   "px": [
+    2783,
+    5264
+   ],
+   "tile": [
+    86,
+    164
+   ],
+   "crudo": "2fa42d0402000000df0a0000901400000000000027000000000000001a000000dc0667ea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60007"
+  },
+  {
+   "entity_id": 70100016,
+   "sprite": 60338,
+   "capa": 0,
+   "px": [
+    2922,
+    5488
+   ],
+   "tile": [
+    91,
+    171
+   ],
+   "crudo": "30a42d04000000006a0b0000701500000000000027000000000000001a000000dc06b2eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60338"
+  },
+  {
+   "entity_id": 70100017,
+   "sprite": 60337,
+   "capa": 0,
+   "px": [
+    4121,
+    5968
+   ],
+   "tile": [
+    128,
+    186
+   ],
+   "crudo": "31a42d040000000019100000501700000000000027000000000000001a000000dc06b1eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60337"
+  },
+  {
+   "entity_id": 70100018,
+   "sprite": 60336,
+   "capa": 2,
+   "px": [
+    3609,
+    6032
+   ],
+   "tile": [
+    112,
+    188
+   ],
+   "crudo": "32a42d0402000000190e0000901700000000000027000000000000001a000000dc06b0eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60336"
+  },
+  {
+   "entity_id": 70100019,
+   "sprite": 60339,
+   "capa": 0,
+   "px": [
+    3203,
+    5744
+   ],
+   "tile": [
+    100,
+    179
+   ],
+   "crudo": "33a42d0400000000830c0000701600000000000027000000000000001a000000dc06b3eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60339"
+  },
+  {
+   "entity_id": 70100020,
+   "sprite": 60337,
+   "capa": 0,
+   "px": [
+    8275,
+    6064
+   ],
+   "tile": [
+    258,
+    189
+   ],
+   "crudo": "34a42d040000000053200000b01700000000000027000000000000001a000000dc06b1eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60337"
+  },
+  {
+   "entity_id": 70100021,
+   "sprite": 60337,
+   "capa": 0,
+   "px": [
+    7682,
+    5840
+   ],
+   "tile": [
+    240,
+    182
+   ],
+   "crudo": "35a42d0400000000021e0000d01600000000000027000000000000001a000000dc06b1eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60337"
+  },
+  {
+   "entity_id": 70100022,
+   "sprite": 60340,
+   "capa": 0,
+   "px": [
+    9396,
+    6064
+   ],
+   "tile": [
+    293,
+    189
+   ],
+   "crudo": "36a42d0400000000b4240000b01700000000000027000000000000001a000000dc06b4eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60340"
+  },
+  {
+   "entity_id": 70100023,
+   "sprite": 60340,
+   "capa": 2,
+   "px": [
+    9533,
+    6064
+   ],
+   "tile": [
+    297,
+    189
+   ],
+   "crudo": "37a42d04020000003d250000b01700000000000027000000000000001a000000dc06b4eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60340"
+  },
+  {
+   "entity_id": 70100024,
+   "sprite": 60340,
+   "capa": 0,
+   "px": [
+    9593,
+    5968
+   ],
+   "tile": [
+    299,
+    186
+   ],
+   "crudo": "38a42d040000000079250000501700000000000027000000000000001a000000dc06b4eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60340"
+  },
+  {
+   "entity_id": 70100025,
+   "sprite": 60340,
+   "capa": 0,
+   "px": [
+    9704,
+    6032
+   ],
+   "tile": [
+    303,
+    188
+   ],
+   "crudo": "39a42d0400000000e8250000901700000000000027000000000000001a000000dc06b4eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60340"
+  },
+  {
+   "entity_id": 70100026,
+   "sprite": 60340,
+   "capa": 2,
+   "px": [
+    9653,
+    5904
+   ],
+   "tile": [
+    301,
+    184
+   ],
+   "crudo": "3aa42d0402000000b5250000101700000000000027000000000000001a000000dc06b4eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60340"
+  },
+  {
+   "entity_id": 70100027,
+   "sprite": 60009,
+   "capa": 0,
+   "px": [
+    9449,
+    6032
+   ],
+   "tile": [
+    295,
+    188
+   ],
+   "crudo": "3ba42d0400000000e9240000901700000000000027000000000000001a000000dc0669ea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60009"
+  },
+  {
+   "entity_id": 70100028,
+   "sprite": 60009,
+   "capa": 0,
+   "px": [
+    9598,
+    6032
+   ],
+   "tile": [
+    299,
+    188
+   ],
+   "crudo": "3ca42d04000000007e250000901700000000000027000000000000001a000000dc0669ea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60009"
+  },
+  {
+   "entity_id": 70100029,
+   "sprite": 60008,
+   "capa": 0,
+   "px": [
+    9640,
+    6000
+   ],
+   "tile": [
+    301,
+    187
+   ],
+   "crudo": "3da42d0400000000a8250000701700000000000027000000000000001a000000dc0668ea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60008"
+  },
+  {
+   "entity_id": 70100030,
+   "sprite": 60008,
+   "capa": 2,
+   "px": [
+    9461,
+    6000
+   ],
+   "tile": [
+    295,
+    187
+   ],
+   "crudo": "3ea42d0402000000f5240000701700000000000027000000000000001a000000dc0668ea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60008"
+  },
+  {
+   "entity_id": 70100031,
+   "sprite": 60007,
+   "capa": 0,
+   "px": [
+    9592,
+    5936
+   ],
+   "tile": [
+    299,
+    185
+   ],
+   "crudo": "3fa42d040000000078250000301700000000000027000000000000001a000000dc0667ea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60007"
+  },
+  {
+   "entity_id": 70100032,
+   "sprite": 60008,
+   "capa": 0,
+   "px": [
+    9540,
+    6000
+   ],
+   "tile": [
+    298,
+    187
+   ],
+   "crudo": "40a42d040000000044250000701700000000000027000000000000001a000000dc0668ea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60008"
+  },
+  {
+   "entity_id": 70100033,
+   "sprite": 60008,
+   "capa": 0,
+   "px": [
+    9655,
+    5936
+   ],
+   "tile": [
+    301,
+    185
+   ],
+   "crudo": "41a42d0400000000b7250000301700000000000027000000000000001a000000dc0668ea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60008"
+  },
+  {
+   "entity_id": 70100034,
+   "sprite": 60009,
+   "capa": 2,
+   "px": [
+    9653,
+    6032
+   ],
+   "tile": [
+    301,
+    188
+   ],
+   "crudo": "42a42d0402000000b5250000901700000000000027000000000000001a000000dc0669ea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60009"
+  },
+  {
+   "entity_id": 70100035,
+   "sprite": 60339,
+   "capa": 0,
+   "px": [
+    9935,
+    5264
+   ],
+   "tile": [
+    310,
+    164
+   ],
+   "crudo": "43a42d0400000000cf260000901400000000000027000000000000001a000000dc06b3eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60339"
+  },
+  {
+   "entity_id": 70100036,
+   "sprite": 60339,
+   "capa": 2,
+   "px": [
+    10057,
+    5104
+   ],
+   "tile": [
+    314,
+    159
+   ],
+   "crudo": "44a42d040200000049270000f01300000000000027000000000000001a000000dc06b3eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60339"
+  },
+  {
+   "entity_id": 70100037,
+   "sprite": 60336,
+   "capa": 0,
+   "px": [
+    10111,
+    4656
+   ],
+   "tile": [
+    315,
+    145
+   ],
+   "crudo": "45a42d04000000007f270000301200000000000027000000000000001a000000dc06b0eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60336"
+  },
+  {
+   "entity_id": 70100038,
+   "sprite": 60336,
+   "capa": 2,
+   "px": [
+    10345,
+    4816
+   ],
+   "tile": [
+    323,
+    150
+   ],
+   "crudo": "46a42d040200000069280000d01200000000000027000000000000001a000000dc06b0eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60336"
+  },
+  {
+   "entity_id": 70100039,
+   "sprite": 60338,
+   "capa": 2,
+   "px": [
+    7486,
+    5744
+   ],
+   "tile": [
+    233,
+    179
+   ],
+   "crudo": "47a42d04020000003e1d0000701600000000000027000000000000001a000000dc06b2eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60338"
+  },
+  {
+   "entity_id": 70100040,
+   "sprite": 60338,
+   "capa": 0,
+   "px": [
+    7700,
+    5584
+   ],
+   "tile": [
+    240,
+    174
+   ],
+   "crudo": "48a42d0400000000141e0000d01500000000000027000000000000001a000000dc06b2eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60338"
+  }
+ ]
+}

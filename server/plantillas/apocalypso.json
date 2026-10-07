@@ -1,0 +1,5408 @@
+{
+ "_nota": "apocalypso (stage 313). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map313.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "stage": 313,
+ "spawns": [
+  {
+   "entity_id": 81300000,
+   "nombre": "Chef Hoppler",
+   "npc_type": 19098,
+   "sprite": 110310,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    267,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 325
+  },
+  {
+   "entity_id": 81300001,
+   "nombre": "Chef Hoppler",
+   "npc_type": 19098,
+   "sprite": 110310,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    263,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 325
+  },
+  {
+   "entity_id": 81300002,
+   "nombre": "Chef Hoppler",
+   "npc_type": 19098,
+   "sprite": 110310,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    275,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 325
+  },
+  {
+   "entity_id": 81300003,
+   "nombre": "Chef Hoppler",
+   "npc_type": 19098,
+   "sprite": 110310,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    262,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 325
+  },
+  {
+   "entity_id": 81300004,
+   "nombre": "Chef Hoppler",
+   "npc_type": 19098,
+   "sprite": 110310,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    268,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 325
+  },
+  {
+   "entity_id": 81300005,
+   "nombre": "Chef Hoppler",
+   "npc_type": 19098,
+   "sprite": 110310,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    270,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 325
+  },
+  {
+   "entity_id": 81300006,
+   "nombre": "Chef Hoppler",
+   "npc_type": 19098,
+   "sprite": 110310,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    262,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 325
+  },
+  {
+   "entity_id": 81300007,
+   "nombre": "Chef Hoppler",
+   "npc_type": 19098,
+   "sprite": 110310,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    13
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 325
+  },
+  {
+   "entity_id": 81300008,
+   "nombre": "Chef Hoppler",
+   "npc_type": 19098,
+   "sprite": 110310,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    273,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 325
+  },
+  {
+   "entity_id": 81300009,
+   "nombre": "Chef Hoppler",
+   "npc_type": 19098,
+   "sprite": 110310,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    275,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 325
+  },
+  {
+   "entity_id": 81300010,
+   "nombre": "Chef Hoppler",
+   "npc_type": 19098,
+   "sprite": 110310,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 325
+  },
+  {
+   "entity_id": 81300011,
+   "nombre": "Chef Hoppler",
+   "npc_type": 19098,
+   "sprite": 110310,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    278,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 325
+  },
+  {
+   "entity_id": 81300012,
+   "nombre": "Chef Hoppler",
+   "npc_type": 19098,
+   "sprite": 110310,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    257,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 325
+  },
+  {
+   "entity_id": 81300013,
+   "nombre": "Chef Hoppler",
+   "npc_type": 19098,
+   "sprite": 110310,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    263,
+    13
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 325
+  },
+  {
+   "entity_id": 81300014,
+   "nombre": "Chef Hoppler",
+   "npc_type": 19098,
+   "sprite": 110310,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    280,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 325
+  },
+  {
+   "entity_id": 81300015,
+   "nombre": "E-Chef Hoppler",
+   "npc_type": 19108,
+   "sprite": 110310,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    257,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 335
+  },
+  {
+   "entity_id": 81300016,
+   "nombre": "Horusclaw Palm",
+   "npc_type": 19099,
+   "sprite": 110468,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    257,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 325
+  },
+  {
+   "entity_id": 81300017,
+   "nombre": "Horusclaw Palm",
+   "npc_type": 19099,
+   "sprite": 110468,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    268,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 325
+  },
+  {
+   "entity_id": 81300018,
+   "nombre": "Horusclaw Palm",
+   "npc_type": 19099,
+   "sprite": 110468,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    280,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 325
+  },
+  {
+   "entity_id": 81300019,
+   "nombre": "Horusclaw Palm",
+   "npc_type": 19099,
+   "sprite": 110468,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    262,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 325
+  },
+  {
+   "entity_id": 81300020,
+   "nombre": "Horusclaw Palm",
+   "npc_type": 19099,
+   "sprite": 110468,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    273,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 325
+  },
+  {
+   "entity_id": 81300021,
+   "nombre": "Horusclaw Palm",
+   "npc_type": 19099,
+   "sprite": 110468,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    283,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 325
+  },
+  {
+   "entity_id": 81300022,
+   "nombre": "Horusclaw Palm",
+   "npc_type": 19099,
+   "sprite": 110468,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    267,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 325
+  },
+  {
+   "entity_id": 81300023,
+   "nombre": "Horusclaw Palm",
+   "npc_type": 19099,
+   "sprite": 110468,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    253,
+    8
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 325
+  },
+  {
+   "entity_id": 81300024,
+   "nombre": "Horusclaw Palm",
+   "npc_type": 19099,
+   "sprite": 110468,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    272,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 325
+  },
+  {
+   "entity_id": 81300025,
+   "nombre": "Horusclaw Palm",
+   "npc_type": 19099,
+   "sprite": 110468,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    277,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 325
+  },
+  {
+   "entity_id": 81300026,
+   "nombre": "Horusclaw Palm",
+   "npc_type": 19099,
+   "sprite": 110468,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    253,
+    13
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 325
+  },
+  {
+   "entity_id": 81300027,
+   "nombre": "Horusclaw Palm",
+   "npc_type": 19099,
+   "sprite": 110468,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    278,
+    13
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 325
+  },
+  {
+   "entity_id": 81300028,
+   "nombre": "Horusclaw Palm",
+   "npc_type": 19099,
+   "sprite": 110468,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    253,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 325
+  },
+  {
+   "entity_id": 81300029,
+   "nombre": "Horusclaw Palm",
+   "npc_type": 19099,
+   "sprite": 110468,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    8
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 325
+  },
+  {
+   "entity_id": 81300030,
+   "nombre": "Horusclaw Palm",
+   "npc_type": 19099,
+   "sprite": 110468,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    282,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 325
+  },
+  {
+   "entity_id": 81300031,
+   "nombre": "Tafetta Bun",
+   "npc_type": 19100,
+   "sprite": 110434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    230,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300032,
+   "nombre": "Tafetta Bun",
+   "npc_type": 19100,
+   "sprite": 110434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    229,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300033,
+   "nombre": "Tafetta Bun",
+   "npc_type": 19100,
+   "sprite": 110434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    235,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300034,
+   "nombre": "Tafetta Bun",
+   "npc_type": 19100,
+   "sprite": 110434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    225,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300035,
+   "nombre": "Tafetta Bun",
+   "npc_type": 19100,
+   "sprite": 110434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    234,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300036,
+   "nombre": "Tafetta Bun",
+   "npc_type": 19100,
+   "sprite": 110434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    230,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300037,
+   "nombre": "Tafetta Bun",
+   "npc_type": 19100,
+   "sprite": 110434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    225,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300038,
+   "nombre": "Tafetta Bun",
+   "npc_type": 19100,
+   "sprite": 110434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    224,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300039,
+   "nombre": "Tafetta Bun",
+   "npc_type": 19100,
+   "sprite": 110434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    235,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300040,
+   "nombre": "Tafetta Bun",
+   "npc_type": 19100,
+   "sprite": 110434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    224,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300041,
+   "nombre": "Tafetta Bun",
+   "npc_type": 19100,
+   "sprite": 110434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    229,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300042,
+   "nombre": "Tafetta Bun",
+   "npc_type": 19100,
+   "sprite": 110434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    239,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300043,
+   "nombre": "Tafetta Bun",
+   "npc_type": 19100,
+   "sprite": 110434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300044,
+   "nombre": "Tafetta Bun",
+   "npc_type": 19100,
+   "sprite": 110434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    234,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300045,
+   "nombre": "Tafetta Bun",
+   "npc_type": 19100,
+   "sprite": 110434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    240,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300046,
+   "nombre": "Tafetta Bun",
+   "npc_type": 19100,
+   "sprite": 110434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300047,
+   "nombre": "Tafetta Bun",
+   "npc_type": 19100,
+   "sprite": 110434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    239,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300048,
+   "nombre": "Tafetta Bun",
+   "npc_type": 19100,
+   "sprite": 110434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    240,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300049,
+   "nombre": "Tafetta Bun",
+   "npc_type": 19100,
+   "sprite": 110434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300050,
+   "nombre": "Tafetta Bun",
+   "npc_type": 19100,
+   "sprite": 110434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300051,
+   "nombre": "Tafetta Bun",
+   "npc_type": 19100,
+   "sprite": 110434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    244,
+    36
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300052,
+   "nombre": "Tafetta Bun",
+   "npc_type": 19100,
+   "sprite": 110434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    225,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300053,
+   "nombre": "Tafetta Bun",
+   "npc_type": 19100,
+   "sprite": 110434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300054,
+   "nombre": "Tafetta Bun",
+   "npc_type": 19100,
+   "sprite": 110434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    230,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300055,
+   "nombre": "Tafetta Bun",
+   "npc_type": 19100,
+   "sprite": 110434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    235,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300056,
+   "nombre": "E-Tafetta Bun",
+   "npc_type": 19109,
+   "sprite": 110434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    240,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 335
+  },
+  {
+   "entity_id": 81300057,
+   "nombre": "E-Tafetta Bun",
+   "npc_type": 19109,
+   "sprite": 110434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 335
+  },
+  {
+   "entity_id": 81300058,
+   "nombre": "Masked Feline",
+   "npc_type": 19101,
+   "sprite": 110313,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    244,
+    31
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300059,
+   "nombre": "Masked Feline",
+   "npc_type": 19101,
+   "sprite": 110313,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    224,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300060,
+   "nombre": "Masked Feline",
+   "npc_type": 19101,
+   "sprite": 110313,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    245,
+    41
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300061,
+   "nombre": "Masked Feline",
+   "npc_type": 19101,
+   "sprite": 110313,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    215,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300062,
+   "nombre": "Masked Feline",
+   "npc_type": 19101,
+   "sprite": 110313,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    229,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300063,
+   "nombre": "Masked Feline",
+   "npc_type": 19101,
+   "sprite": 110313,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    245,
+    46
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300064,
+   "nombre": "Masked Feline",
+   "npc_type": 19101,
+   "sprite": 110313,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    215,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300065,
+   "nombre": "Masked Feline",
+   "npc_type": 19101,
+   "sprite": 110313,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    234,
+    27
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300066,
+   "nombre": "Masked Feline",
+   "npc_type": 19101,
+   "sprite": 110313,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    245,
+    51
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300067,
+   "nombre": "Masked Feline",
+   "npc_type": 19101,
+   "sprite": 110313,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    215,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300068,
+   "nombre": "Masked Feline",
+   "npc_type": 19101,
+   "sprite": 110313,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    239,
+    27
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300069,
+   "nombre": "Masked Feline",
+   "npc_type": 19101,
+   "sprite": 110313,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    245,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300070,
+   "nombre": "Masked Feline",
+   "npc_type": 19101,
+   "sprite": 110313,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    215,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300071,
+   "nombre": "Masked Feline",
+   "npc_type": 19101,
+   "sprite": 110313,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    244,
+    26
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300072,
+   "nombre": "Masked Feline",
+   "npc_type": 19101,
+   "sprite": 110313,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    31
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300073,
+   "nombre": "Masked Feline",
+   "npc_type": 19101,
+   "sprite": 110313,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300074,
+   "nombre": "Masked Feline",
+   "npc_type": 19101,
+   "sprite": 110313,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300075,
+   "nombre": "Masked Feline",
+   "npc_type": 19101,
+   "sprite": 110313,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    36
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300076,
+   "nombre": "Masked Feline",
+   "npc_type": 19101,
+   "sprite": 110313,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    225,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300077,
+   "nombre": "Masked Feline",
+   "npc_type": 19101,
+   "sprite": 110313,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300078,
+   "nombre": "Masked Feline",
+   "npc_type": 19101,
+   "sprite": 110313,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    230,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300079,
+   "nombre": "Masked Feline",
+   "npc_type": 19101,
+   "sprite": 110313,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    235,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300080,
+   "nombre": "Masked Feline",
+   "npc_type": 19101,
+   "sprite": 110313,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300081,
+   "nombre": "Masked Feline",
+   "npc_type": 19101,
+   "sprite": 110313,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    240,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300082,
+   "nombre": "Masked Feline",
+   "npc_type": 19101,
+   "sprite": 110313,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 327
+  },
+  {
+   "entity_id": 81300083,
+   "nombre": "Snowy Rabbit",
+   "npc_type": 19102,
+   "sprite": 110454,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300084,
+   "nombre": "Snowy Rabbit",
+   "npc_type": 19102,
+   "sprite": 110454,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    175,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300085,
+   "nombre": "Snowy Rabbit",
+   "npc_type": 19102,
+   "sprite": 110454,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300086,
+   "nombre": "Snowy Rabbit",
+   "npc_type": 19102,
+   "sprite": 110454,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    170,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300087,
+   "nombre": "Snowy Rabbit",
+   "npc_type": 19102,
+   "sprite": 110454,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300088,
+   "nombre": "Snowy Rabbit",
+   "npc_type": 19102,
+   "sprite": 110454,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300089,
+   "nombre": "Snowy Rabbit",
+   "npc_type": 19102,
+   "sprite": 110454,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300090,
+   "nombre": "Snowy Rabbit",
+   "npc_type": 19102,
+   "sprite": 110454,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    175,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300091,
+   "nombre": "Snowy Rabbit",
+   "npc_type": 19102,
+   "sprite": 110454,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300092,
+   "nombre": "Snowy Rabbit",
+   "npc_type": 19102,
+   "sprite": 110454,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300093,
+   "nombre": "Snowy Rabbit",
+   "npc_type": 19102,
+   "sprite": 110454,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300094,
+   "nombre": "Snowy Rabbit",
+   "npc_type": 19102,
+   "sprite": 110454,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    180,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300095,
+   "nombre": "Snowy Rabbit",
+   "npc_type": 19102,
+   "sprite": 110454,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300096,
+   "nombre": "Snowy Rabbit",
+   "npc_type": 19102,
+   "sprite": 110454,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    180,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300097,
+   "nombre": "Snowy Rabbit",
+   "npc_type": 19102,
+   "sprite": 110454,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300098,
+   "nombre": "Snowy Rabbit",
+   "npc_type": 19102,
+   "sprite": 110454,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300099,
+   "nombre": "Snowy Rabbit",
+   "npc_type": 19102,
+   "sprite": 110454,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300100,
+   "nombre": "Snowy Rabbit",
+   "npc_type": 19102,
+   "sprite": 110454,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    165,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300101,
+   "nombre": "Snowy Rabbit",
+   "npc_type": 19102,
+   "sprite": 110454,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300102,
+   "nombre": "Snowy Rabbit",
+   "npc_type": 19102,
+   "sprite": 110454,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    170,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300103,
+   "nombre": "Snowy Rabbit",
+   "npc_type": 19102,
+   "sprite": 110454,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300104,
+   "nombre": "Snowy Rabbit",
+   "npc_type": 19102,
+   "sprite": 110454,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    175,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300105,
+   "nombre": "Snowy Rabbit",
+   "npc_type": 19102,
+   "sprite": 110454,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300106,
+   "nombre": "Snowy Rabbit",
+   "npc_type": 19102,
+   "sprite": 110454,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300107,
+   "nombre": "Snowy Rabbit",
+   "npc_type": 19102,
+   "sprite": 110454,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300108,
+   "nombre": "E-Snowy Rabbit",
+   "npc_type": 19110,
+   "sprite": 110454,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 335
+  },
+  {
+   "entity_id": 81300109,
+   "nombre": "E-Snowy Rabbit",
+   "npc_type": 19110,
+   "sprite": 110454,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    180,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 335
+  },
+  {
+   "entity_id": 81300110,
+   "nombre": "E-Snowy Rabbit",
+   "npc_type": 19110,
+   "sprite": 110454,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 335
+  },
+  {
+   "entity_id": 81300111,
+   "nombre": "E-Snowy Rabbit",
+   "npc_type": 19110,
+   "sprite": 110454,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 335
+  },
+  {
+   "entity_id": 81300112,
+   "nombre": "E-Snowy Rabbit",
+   "npc_type": 19110,
+   "sprite": 110454,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 335
+  },
+  {
+   "entity_id": 81300113,
+   "nombre": "Death Jester",
+   "npc_type": 19103,
+   "sprite": 110463,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300114,
+   "nombre": "Death Jester",
+   "npc_type": 19103,
+   "sprite": 110463,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    185,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300115,
+   "nombre": "Death Jester",
+   "npc_type": 19103,
+   "sprite": 110463,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300116,
+   "nombre": "Death Jester",
+   "npc_type": 19103,
+   "sprite": 110463,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    185,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300117,
+   "nombre": "Death Jester",
+   "npc_type": 19103,
+   "sprite": 110463,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300118,
+   "nombre": "Death Jester",
+   "npc_type": 19103,
+   "sprite": 110463,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    185,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300119,
+   "nombre": "Death Jester",
+   "npc_type": 19103,
+   "sprite": 110463,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300120,
+   "nombre": "Death Jester",
+   "npc_type": 19103,
+   "sprite": 110463,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    188,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300121,
+   "nombre": "Death Jester",
+   "npc_type": 19103,
+   "sprite": 110463,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300122,
+   "nombre": "Death Jester",
+   "npc_type": 19103,
+   "sprite": 110463,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    188,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300123,
+   "nombre": "Death Jester",
+   "npc_type": 19103,
+   "sprite": 110463,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300124,
+   "nombre": "Death Jester",
+   "npc_type": 19103,
+   "sprite": 110463,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300125,
+   "nombre": "Death Jester",
+   "npc_type": 19103,
+   "sprite": 110463,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300126,
+   "nombre": "Death Jester",
+   "npc_type": 19103,
+   "sprite": 110463,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300127,
+   "nombre": "Death Jester",
+   "npc_type": 19103,
+   "sprite": 110463,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300128,
+   "nombre": "Death Jester",
+   "npc_type": 19103,
+   "sprite": 110463,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    185,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300129,
+   "nombre": "Death Jester",
+   "npc_type": 19103,
+   "sprite": 110463,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300130,
+   "nombre": "Death Jester",
+   "npc_type": 19103,
+   "sprite": 110463,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    188,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300131,
+   "nombre": "Death Jester",
+   "npc_type": 19103,
+   "sprite": 110463,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300132,
+   "nombre": "Death Jester",
+   "npc_type": 19103,
+   "sprite": 110463,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 329
+  },
+  {
+   "entity_id": 81300133,
+   "nombre": "Time Guard",
+   "npc_type": 19104,
+   "sprite": 110439,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    34,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300134,
+   "nombre": "Time Guard",
+   "npc_type": 19104,
+   "sprite": 110439,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300135,
+   "nombre": "Time Guard",
+   "npc_type": 19104,
+   "sprite": 110439,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    29,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300136,
+   "nombre": "Time Guard",
+   "npc_type": 19104,
+   "sprite": 110439,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300137,
+   "nombre": "Time Guard",
+   "npc_type": 19104,
+   "sprite": 110439,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    29,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300138,
+   "nombre": "Time Guard",
+   "npc_type": 19104,
+   "sprite": 110439,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    113
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300139,
+   "nombre": "Time Guard",
+   "npc_type": 19104,
+   "sprite": 110439,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    29,
+    113
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300140,
+   "nombre": "Time Guard",
+   "npc_type": 19104,
+   "sprite": 110439,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300141,
+   "nombre": "Time Guard",
+   "npc_type": 19104,
+   "sprite": 110439,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    113
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300142,
+   "nombre": "Time Guard",
+   "npc_type": 19104,
+   "sprite": 110439,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    46,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300143,
+   "nombre": "Time Guard",
+   "npc_type": 19104,
+   "sprite": 110439,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    24,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300144,
+   "nombre": "Time Guard",
+   "npc_type": 19104,
+   "sprite": 110439,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    46,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300145,
+   "nombre": "Time Guard",
+   "npc_type": 19104,
+   "sprite": 110439,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    24,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300146,
+   "nombre": "Time Guard",
+   "npc_type": 19104,
+   "sprite": 110439,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    46,
+    113
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300147,
+   "nombre": "Time Guard",
+   "npc_type": 19104,
+   "sprite": 110439,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    24,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300148,
+   "nombre": "Time Guard",
+   "npc_type": 19104,
+   "sprite": 110439,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300149,
+   "nombre": "Time Guard",
+   "npc_type": 19104,
+   "sprite": 110439,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    24,
+    113
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300150,
+   "nombre": "Time Guard",
+   "npc_type": 19104,
+   "sprite": 110439,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300151,
+   "nombre": "Time Guard",
+   "npc_type": 19104,
+   "sprite": 110439,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    24,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300152,
+   "nombre": "Time Guard",
+   "npc_type": 19104,
+   "sprite": 110439,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300153,
+   "nombre": "Time Guard",
+   "npc_type": 19104,
+   "sprite": 110439,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300154,
+   "nombre": "Time Guard",
+   "npc_type": 19104,
+   "sprite": 110439,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300155,
+   "nombre": "Time Guard",
+   "npc_type": 19104,
+   "sprite": 110439,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300156,
+   "nombre": "Time Guard",
+   "npc_type": 19104,
+   "sprite": 110439,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    46,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300157,
+   "nombre": "Time Guard",
+   "npc_type": 19104,
+   "sprite": 110439,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    46,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300158,
+   "nombre": "E-Time Guard",
+   "npc_type": 19111,
+   "sprite": 110439,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    23,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 335
+  },
+  {
+   "entity_id": 81300159,
+   "nombre": "E-Time Guard",
+   "npc_type": 19111,
+   "sprite": 110439,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    28,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 335
+  },
+  {
+   "entity_id": 81300160,
+   "nombre": "E-Time Guard",
+   "npc_type": 19111,
+   "sprite": 110439,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    33,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 335
+  },
+  {
+   "entity_id": 81300161,
+   "nombre": "E-Time Guard",
+   "npc_type": 19111,
+   "sprite": 110439,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    38,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 335
+  },
+  {
+   "entity_id": 81300162,
+   "nombre": "E-Time Guard",
+   "npc_type": 19111,
+   "sprite": 110439,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 335
+  },
+  {
+   "entity_id": 81300163,
+   "nombre": "Accursed Dino",
+   "npc_type": 19105,
+   "sprite": 110473,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    19,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300164,
+   "nombre": "Accursed Dino",
+   "npc_type": 19105,
+   "sprite": 110473,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300165,
+   "nombre": "Accursed Dino",
+   "npc_type": 19105,
+   "sprite": 110473,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    19,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300166,
+   "nombre": "Accursed Dino",
+   "npc_type": 19105,
+   "sprite": 110473,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300167,
+   "nombre": "Accursed Dino",
+   "npc_type": 19105,
+   "sprite": 110473,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    19,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300168,
+   "nombre": "Accursed Dino",
+   "npc_type": 19105,
+   "sprite": 110473,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300169,
+   "nombre": "Accursed Dino",
+   "npc_type": 19105,
+   "sprite": 110473,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    19,
+    113
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300170,
+   "nombre": "Accursed Dino",
+   "npc_type": 19105,
+   "sprite": 110473,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    113
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300171,
+   "nombre": "Accursed Dino",
+   "npc_type": 19105,
+   "sprite": 110473,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    19,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300172,
+   "nombre": "Accursed Dino",
+   "npc_type": 19105,
+   "sprite": 110473,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300173,
+   "nombre": "Accursed Dino",
+   "npc_type": 19105,
+   "sprite": 110473,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    19,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300174,
+   "nombre": "Accursed Dino",
+   "npc_type": 19105,
+   "sprite": 110473,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    26,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300175,
+   "nombre": "Accursed Dino",
+   "npc_type": 19105,
+   "sprite": 110473,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300176,
+   "nombre": "Accursed Dino",
+   "npc_type": 19105,
+   "sprite": 110473,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300177,
+   "nombre": "Accursed Dino",
+   "npc_type": 19105,
+   "sprite": 110473,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300178,
+   "nombre": "Accursed Dino",
+   "npc_type": 19105,
+   "sprite": 110473,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    46,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300179,
+   "nombre": "Accursed Dino",
+   "npc_type": 19105,
+   "sprite": 110473,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300180,
+   "nombre": "Accursed Dino",
+   "npc_type": 19105,
+   "sprite": 110473,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300181,
+   "nombre": "Accursed Dino",
+   "npc_type": 19105,
+   "sprite": 110473,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    18,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300182,
+   "nombre": "Accursed Dino",
+   "npc_type": 19105,
+   "sprite": 110473,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 332
+  },
+  {
+   "entity_id": 81300183,
+   "nombre": "Nefari Knight",
+   "npc_type": 19107,
+   "sprite": 110413,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    154,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300184,
+   "nombre": "Nefari Knight",
+   "npc_type": 19107,
+   "sprite": 110413,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    148,
+    157
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300185,
+   "nombre": "Nefari Knight",
+   "npc_type": 19107,
+   "sprite": 110413,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    149,
+    147
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300186,
+   "nombre": "Nefari Knight",
+   "npc_type": 19107,
+   "sprite": 110413,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300187,
+   "nombre": "Nefari Knight",
+   "npc_type": 19107,
+   "sprite": 110413,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    149,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300188,
+   "nombre": "Nefari Knight",
+   "npc_type": 19107,
+   "sprite": 110413,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    157
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300189,
+   "nombre": "Nefari Knight",
+   "npc_type": 19107,
+   "sprite": 110413,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    157
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300190,
+   "nombre": "Nefari Knight",
+   "npc_type": 19107,
+   "sprite": 110413,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    162
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300191,
+   "nombre": "Nefari Knight",
+   "npc_type": 19107,
+   "sprite": 110413,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    154,
+    147
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300192,
+   "nombre": "Nefari Knight",
+   "npc_type": 19107,
+   "sprite": 110413,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    148,
+    162
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300193,
+   "nombre": "Nefari Knight",
+   "npc_type": 19107,
+   "sprite": 110413,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    157
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300194,
+   "nombre": "Nefari Knight",
+   "npc_type": 19107,
+   "sprite": 110413,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    162
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300195,
+   "nombre": "Nefari Knight",
+   "npc_type": 19107,
+   "sprite": 110413,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    159,
+    147
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300196,
+   "nombre": "Nefari Knight",
+   "npc_type": 19107,
+   "sprite": 110413,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    138,
+    147
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300197,
+   "nombre": "Nefari Knight",
+   "npc_type": 19107,
+   "sprite": 110413,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    159,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300198,
+   "nombre": "Nefari Knight",
+   "npc_type": 19107,
+   "sprite": 110413,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    138,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300199,
+   "nombre": "Nefari Knight",
+   "npc_type": 19107,
+   "sprite": 110413,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    157
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300200,
+   "nombre": "Nefari Knight",
+   "npc_type": 19107,
+   "sprite": 110413,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    138,
+    157
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300201,
+   "nombre": "Nefari Knight",
+   "npc_type": 19107,
+   "sprite": 110413,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    144,
+    142
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300202,
+   "nombre": "Nefari Knight",
+   "npc_type": 19107,
+   "sprite": 110413,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    138,
+    162
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300203,
+   "nombre": "Old Timer",
+   "npc_type": 19106,
+   "sprite": 110458,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    144,
+    147
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300204,
+   "nombre": "Old Timer",
+   "npc_type": 19106,
+   "sprite": 110458,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    138,
+    167
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300205,
+   "nombre": "Old Timer",
+   "npc_type": 19106,
+   "sprite": 110458,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    149,
+    142
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300206,
+   "nombre": "Old Timer",
+   "npc_type": 19106,
+   "sprite": 110458,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    167
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300207,
+   "nombre": "Old Timer",
+   "npc_type": 19106,
+   "sprite": 110458,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    154,
+    142
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300208,
+   "nombre": "Old Timer",
+   "npc_type": 19106,
+   "sprite": 110458,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    148,
+    167
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300209,
+   "nombre": "Old Timer",
+   "npc_type": 19106,
+   "sprite": 110458,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    162
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300210,
+   "nombre": "Old Timer",
+   "npc_type": 19106,
+   "sprite": 110458,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    167
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300211,
+   "nombre": "Old Timer",
+   "npc_type": 19106,
+   "sprite": 110458,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    159,
+    142
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300212,
+   "nombre": "Old Timer",
+   "npc_type": 19106,
+   "sprite": 110458,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    167
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300213,
+   "nombre": "Old Timer",
+   "npc_type": 19106,
+   "sprite": 110458,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    162
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300214,
+   "nombre": "Old Timer",
+   "npc_type": 19106,
+   "sprite": 110458,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    142
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300215,
+   "nombre": "Old Timer",
+   "npc_type": 19106,
+   "sprite": 110458,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    164,
+    142
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300216,
+   "nombre": "Old Timer",
+   "npc_type": 19106,
+   "sprite": 110458,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    147
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300217,
+   "nombre": "Old Timer",
+   "npc_type": 19106,
+   "sprite": 110458,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    164,
+    147
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300218,
+   "nombre": "Old Timer",
+   "npc_type": 19106,
+   "sprite": 110458,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300219,
+   "nombre": "Old Timer",
+   "npc_type": 19106,
+   "sprite": 110458,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    164,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300220,
+   "nombre": "Old Timer",
+   "npc_type": 19106,
+   "sprite": 110458,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    157
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300221,
+   "nombre": "Old Timer",
+   "npc_type": 19106,
+   "sprite": 110458,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    157
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300222,
+   "nombre": "Old Timer",
+   "npc_type": 19106,
+   "sprite": 110458,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    162
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300223,
+   "nombre": "Old Timer",
+   "npc_type": 19106,
+   "sprite": 110458,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    162
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300224,
+   "nombre": "Old Timer",
+   "npc_type": 19106,
+   "sprite": 110458,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    167
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300225,
+   "nombre": "Old Timer",
+   "npc_type": 19106,
+   "sprite": 110458,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    139,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300226,
+   "nombre": "Old Timer",
+   "npc_type": 19106,
+   "sprite": 110458,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    172
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300227,
+   "nombre": "Old Timer",
+   "npc_type": 19106,
+   "sprite": 110458,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    139,
+    142
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 334
+  },
+  {
+   "entity_id": 81300228,
+   "nombre": "E-Old Timer",
+   "npc_type": 19112,
+   "sprite": 110458,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    144,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 335
+  },
+  {
+   "entity_id": 81300229,
+   "nombre": "E-Old Timer",
+   "npc_type": 19112,
+   "sprite": 110458,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    149,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 335
+  },
+  {
+   "entity_id": 81300230,
+   "nombre": "E-Old Timer",
+   "npc_type": 19112,
+   "sprite": 110458,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    154,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 335
+  },
+  {
+   "entity_id": 81300231,
+   "nombre": "E-Old Timer",
+   "npc_type": 19112,
+   "sprite": 110458,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    159,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 335
+  },
+  {
+   "entity_id": 81300232,
+   "nombre": "E-Old Timer",
+   "npc_type": 19112,
+   "sprite": 110458,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    134,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 335
+  },
+  {
+   "entity_id": 81300233,
+   "nombre": "Oathbound Oscar",
+   "npc_type": 19115,
+   "sprite": 110476,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    244,
+    106
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 339
+  },
+  {
+   "entity_id": 81300234,
+   "nombre": "Angry Rabito",
+   "npc_type": 19113,
+   "sprite": 110444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    126,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 336
+  },
+  {
+   "entity_id": 81300235,
+   "nombre": "Meister Soloma",
+   "npc_type": 19114,
+   "sprite": 110449,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    62,
+    154
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 338
+  },
+  {
+   "entity_id": 81300236,
+   "nombre": "King Lagus",
+   "npc_type": 19116,
+   "sprite": 110320,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    203,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 340
+  },
+  {
+   "entity_id": 81300237,
+   "nombre": "Axialus Shade",
+   "npc_type": 19231,
+   "sprite": 110514,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    262,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 340
+  },
+  {
+   "entity_id": 81300238,
+   "nombre": "Axialus Shade",
+   "npc_type": 19232,
+   "sprite": 110515,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    28,
+    157
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 340
+  },
+  {
+   "entity_id": 81300239,
+   "nombre": "Fallen Axialus",
+   "npc_type": 19117,
+   "sprite": 110321,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    24,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 340
+  },
+  {
+   "entity_id": 81300240,
+   "nombre": "Lady Angelika",
+   "npc_type": 19118,
+   "sprite": 110322,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    142,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 340
+  },
+  {
+   "entity_id": 81300241,
+   "nombre": "Hare Ghost",
+   "npc_type": 19228,
+   "sprite": 110511,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300242,
+   "nombre": "Hare Ghost",
+   "npc_type": 19228,
+   "sprite": 110511,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300243,
+   "nombre": "Hare Ghost",
+   "npc_type": 19228,
+   "sprite": 110511,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300244,
+   "nombre": "Hare Ghost",
+   "npc_type": 19228,
+   "sprite": 110511,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    81
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300245,
+   "nombre": "Hare Ghost",
+   "npc_type": 19228,
+   "sprite": 110511,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300246,
+   "nombre": "Hare Ghost",
+   "npc_type": 19228,
+   "sprite": 110511,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    81
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300247,
+   "nombre": "Hare Ghost",
+   "npc_type": 19228,
+   "sprite": 110511,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300248,
+   "nombre": "Hare Ghost",
+   "npc_type": 19228,
+   "sprite": 110511,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300249,
+   "nombre": "Hare Ghost",
+   "npc_type": 19228,
+   "sprite": 110511,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    81
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300250,
+   "nombre": "Hare Ghost",
+   "npc_type": 19228,
+   "sprite": 110511,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300251,
+   "nombre": "War Hare Ghost",
+   "npc_type": 19229,
+   "sprite": 110512,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    226,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300252,
+   "nombre": "War Hare Ghost",
+   "npc_type": 19229,
+   "sprite": 110512,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    226,
+    72
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300253,
+   "nombre": "War Hare Ghost",
+   "npc_type": 19229,
+   "sprite": 110512,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    226,
+    77
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300254,
+   "nombre": "War Hare Ghost",
+   "npc_type": 19229,
+   "sprite": 110512,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300255,
+   "nombre": "War Hare Ghost",
+   "npc_type": 19229,
+   "sprite": 110512,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300256,
+   "nombre": "War Hare Ghost",
+   "npc_type": 19229,
+   "sprite": 110512,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300257,
+   "nombre": "War Hare Ghost",
+   "npc_type": 19229,
+   "sprite": 110512,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    226,
+    82
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300258,
+   "nombre": "War Hare Ghost",
+   "npc_type": 19229,
+   "sprite": 110512,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    207,
+    86
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300259,
+   "nombre": "War Hare Ghost",
+   "npc_type": 19229,
+   "sprite": 110512,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    212,
+    86
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300260,
+   "nombre": "War Hare Ghost",
+   "npc_type": 19229,
+   "sprite": 110512,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    217,
+    86
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300261,
+   "nombre": "Iron Hare Ghost",
+   "npc_type": 19230,
+   "sprite": 110513,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    231,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300262,
+   "nombre": "Iron Hare Ghost",
+   "npc_type": 19230,
+   "sprite": 110513,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    231,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300263,
+   "nombre": "Iron Hare Ghost",
+   "npc_type": 19230,
+   "sprite": 110513,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    231,
+    75
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300264,
+   "nombre": "Iron Hare Ghost",
+   "npc_type": 19230,
+   "sprite": 110513,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    231,
+    80
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300265,
+   "nombre": "Iron Hare Ghost",
+   "npc_type": 19230,
+   "sprite": 110513,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    236,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300266,
+   "nombre": "Iron Hare Ghost",
+   "npc_type": 19230,
+   "sprite": 110513,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    236,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300267,
+   "nombre": "Iron Hare Ghost",
+   "npc_type": 19230,
+   "sprite": 110513,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    236,
+    75
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300268,
+   "nombre": "Iron Hare Ghost",
+   "npc_type": 19230,
+   "sprite": 110513,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    236,
+    80
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300269,
+   "nombre": "Iron Hare Ghost",
+   "npc_type": 19230,
+   "sprite": 110513,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    231,
+    85
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300270,
+   "nombre": "Iron Hare Ghost",
+   "npc_type": 19230,
+   "sprite": 110513,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    236,
+    85
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300271,
+   "nombre": "Toxic Mist",
+   "npc_type": 19233,
+   "sprite": 110516,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    119,
+    111
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300272,
+   "nombre": "Toxic Mist",
+   "npc_type": 19233,
+   "sprite": 110516,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    114,
+    106
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300273,
+   "nombre": "Toxic Mist",
+   "npc_type": 19233,
+   "sprite": 110516,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    114,
+    111
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300274,
+   "nombre": "Toxic Mist",
+   "npc_type": 19233,
+   "sprite": 110516,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    114,
+    116
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300275,
+   "nombre": "Toxic Mist",
+   "npc_type": 19233,
+   "sprite": 110516,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    119,
+    106
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300276,
+   "nombre": "Toxic Mist",
+   "npc_type": 19233,
+   "sprite": 110516,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    119,
+    116
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300277,
+   "nombre": "Toxic Mist",
+   "npc_type": 19233,
+   "sprite": 110516,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    124,
+    106
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300278,
+   "nombre": "Toxic Mist",
+   "npc_type": 19233,
+   "sprite": 110516,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    124,
+    111
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300279,
+   "nombre": "Toxic Mist",
+   "npc_type": 19233,
+   "sprite": 110516,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    124,
+    116
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300280,
+   "nombre": "Toxic Mist",
+   "npc_type": 19233,
+   "sprite": 110516,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    109,
+    101
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300281,
+   "nombre": "Healing Statue",
+   "npc_type": 19265,
+   "sprite": 110519,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    119,
+    121
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300282,
+   "nombre": "Strength Statue",
+   "npc_type": 19266,
+   "sprite": 110520,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    129,
+    112
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300283,
+   "nombre": "Tenacity Statue",
+   "npc_type": 19267,
+   "sprite": 110521,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    134,
+    109
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 330
+  },
+  {
+   "entity_id": 81300284,
+   "nombre": "Fallen Axialus",
+   "npc_type": 19117,
+   "sprite": 110321,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 340
+  },
+  {
+   "entity_id": 81300285,
+   "nombre": "Fallen Axialus",
+   "npc_type": 19117,
+   "sprite": 110321,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    158
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 340
+  },
+  {
+   "entity_id": 81300286,
+   "nombre": "Axialus Shade",
+   "npc_type": 19232,
+   "sprite": 110515,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    37,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 340
+  },
+  {
+   "entity_id": 81300287,
+   "nombre": "Axialus Shade",
+   "npc_type": 19231,
+   "sprite": 110514,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 340
+  },
+  {
+   "entity_id": 81300288,
+   "nombre": "Axialus Shade",
+   "npc_type": 19231,
+   "sprite": 110514,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 340
+  },
+  {
+   "entity_id": 81300289,
+   "nombre": "Axialus Shade",
+   "npc_type": 19232,
+   "sprite": 110515,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    267,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 340
+  },
+  {
+   "entity_id": 81300290,
+   "nombre": "Wind Elf",
+   "npc_type": 1,
+   "sprite": 42055,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    114,
+    3
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 4
+  },
+  {
+   "entity_id": 81300291,
+   "nombre": "Wind Elf",
+   "npc_type": 1,
+   "sprite": 42055,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    109,
+    2
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 4
+  },
+  {
+   "entity_id": 81300292,
+   "nombre": "Fire Elf",
+   "npc_type": 2,
+   "sprite": 42056,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    108,
+    7
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 7
+  },
+  {
+   "entity_id": 81300293,
+   "nombre": "Water Elf",
+   "npc_type": 3,
+   "sprite": 42057,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    113,
+    8
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 4
+  }
+ ],
+ "recursos": [
+  {
+   "entity_id": 91300000,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    8111,
+    4848
+   ],
+   "tile": [
+    253,
+    151
+   ],
+   "crudo": "a020710500000000af1f0000f01200000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300001,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    891,
+    5296
+   ],
+   "tile": [
+    27,
+    165
+   ],
+   "crudo": "a1207105000000007b030000b01400000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300002,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    529,
+    1424
+   ],
+   "tile": [
+    16,
+    44
+   ],
+   "crudo": "a22071050000000011020000900500000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300003,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    8574,
+    3280
+   ],
+   "tile": [
+    267,
+    102
+   ],
+   "crudo": "a3207105000000007e210000d00c00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300004,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1668,
+    4912
+   ],
+   "tile": [
+    52,
+    153
+   ],
+   "crudo": "a42071050000000084060000301300000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300005,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4502,
+    1232
+   ],
+   "tile": [
+    140,
+    38
+   ],
+   "crudo": "a52071050000000096110000d00400000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300006,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    7940,
+    1040
+   ],
+   "tile": [
+    248,
+    32
+   ],
+   "crudo": "a620710502000000041f0000100400000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 91300007,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    8098,
+    1136
+   ],
+   "tile": [
+    253,
+    35
+   ],
+   "crudo": "a720710502000000a21f0000700400000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 91300008,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    7222,
+    1616
+   ],
+   "tile": [
+    225,
+    50
+   ],
+   "crudo": "a820710502000000361c0000500600000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 91300009,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    7570,
+    1776
+   ],
+   "tile": [
+    236,
+    55
+   ],
+   "crudo": "a920710502000000921d0000f00600000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 91300010,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    7795,
+    1904
+   ],
+   "tile": [
+    243,
+    59
+   ],
+   "crudo": "aa20710502000000731e0000700700000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 91300011,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    1558,
+    1936
+   ],
+   "tile": [
+    48,
+    60
+   ],
+   "crudo": "ab2071050000000016060000900700000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 91300012,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    1771,
+    1808
+   ],
+   "tile": [
+    55,
+    56
+   ],
+   "crudo": "ac20710500000000eb060000100700000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 91300013,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    1982,
+    1712
+   ],
+   "tile": [
+    61,
+    53
+   ],
+   "crudo": "ad20710500000000be070000b00600000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 91300014,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    2142,
+    4336
+   ],
+   "tile": [
+    66,
+    135
+   ],
+   "crudo": "ae207105020000005e080000f01000000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 91300015,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    2509,
+    4496
+   ],
+   "tile": [
+    78,
+    140
+   ],
+   "crudo": "af20710502000000cd090000901100000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 91300016,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    2354,
+    4432
+   ],
+   "tile": [
+    73,
+    138
+   ],
+   "crudo": "b02071050200000032090000501100000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 91300017,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    7141,
+    4688
+   ],
+   "tile": [
+    223,
+    146
+   ],
+   "crudo": "b120710500000000e51b0000501200000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 91300018,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    7366,
+    4560
+   ],
+   "tile": [
+    230,
+    142
+   ],
+   "crudo": "b220710500000000c61c0000d01100000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 91300019,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    7765,
+    4368
+   ],
+   "tile": [
+    242,
+    136
+   ],
+   "crudo": "b320710500000000551e0000101100000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 91300020,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    7510,
+    4496
+   ],
+   "tile": [
+    234,
+    140
+   ],
+   "crudo": "b420710500000000561d0000901100000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 91300021,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5465,
+    2512
+   ],
+   "tile": [
+    170,
+    78
+   ],
+   "crudo": "b52071050000000059150000d00900000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300022,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4525,
+    1808
+   ],
+   "tile": [
+    141,
+    56
+   ],
+   "crudo": "b620710500000000ad110000100700000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300023,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    3829,
+    1680
+   ],
+   "tile": [
+    119,
+    52
+   ],
+   "crudo": "b720710500000000f50e0000900600000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300024,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    3528,
+    2032
+   ],
+   "tile": [
+    110,
+    63
+   ],
+   "crudo": "b820710500000000c80d0000f00700000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300025,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    2903,
+    2288
+   ],
+   "tile": [
+    90,
+    71
+   ],
+   "crudo": "b920710500000000570b0000f00800000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300026,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    2114,
+    2288
+   ],
+   "tile": [
+    66,
+    71
+   ],
+   "crudo": "ba2071050000000042080000f00800000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300027,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1787,
+    2768
+   ],
+   "tile": [
+    55,
+    86
+   ],
+   "crudo": "bb20710500000000fb060000d00a00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300028,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1277,
+    3056
+   ],
+   "tile": [
+    39,
+    95
+   ],
+   "crudo": "bc20710500000000fd040000f00b00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300029,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    988,
+    3408
+   ],
+   "tile": [
+    30,
+    106
+   ],
+   "crudo": "bd20710500000000dc030000500d00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300030,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1594,
+    3600
+   ],
+   "tile": [
+    49,
+    112
+   ],
+   "crudo": "be207105000000003a060000100e00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300031,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    2143,
+    3888
+   ],
+   "tile": [
+    66,
+    121
+   ],
+   "crudo": "bf207105000000005f080000300f00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300032,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    2841,
+    4368
+   ],
+   "tile": [
+    88,
+    136
+   ],
+   "crudo": "c020710500000000190b0000101100000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300033,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    3369,
+    4592
+   ],
+   "tile": [
+    105,
+    143
+   ],
+   "crudo": "c120710500000000290d0000f01100000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300034,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    3974,
+    4720
+   ],
+   "tile": [
+    124,
+    147
+   ],
+   "crudo": "c220710500000000860f0000701200000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300035,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4375,
+    5040
+   ],
+   "tile": [
+    136,
+    157
+   ],
+   "crudo": "c32071050000000017110000b01300000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300036,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5111,
+    4752
+   ],
+   "tile": [
+    159,
+    148
+   ],
+   "crudo": "c420710500000000f7130000901200000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300037,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5801,
+    4528
+   ],
+   "tile": [
+    181,
+    141
+   ],
+   "crudo": "c520710500000000a9160000b01100000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300038,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    6479,
+    4272
+   ],
+   "tile": [
+    202,
+    133
+   ],
+   "crudo": "c6207105000000004f190000b01000000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300039,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    6762,
+    3856
+   ],
+   "tile": [
+    211,
+    120
+   ],
+   "crudo": "c7207105000000006a1a0000100f00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300040,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    6951,
+    4592
+   ],
+   "tile": [
+    217,
+    143
+   ],
+   "crudo": "c820710500000000271b0000f01100000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300041,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    7304,
+    3760
+   ],
+   "tile": [
+    228,
+    117
+   ],
+   "crudo": "c920710500000000881c0000b00e00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300042,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    7370,
+    3376
+   ],
+   "tile": [
+    230,
+    105
+   ],
+   "crudo": "ca20710500000000ca1c0000300d00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300043,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    6639,
+    3088
+   ],
+   "tile": [
+    207,
+    96
+   ],
+   "crudo": "cb20710500000000ef190000100c00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300044,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    2054,
+    1488
+   ],
+   "tile": [
+    64,
+    46
+   ],
+   "crudo": "cc2071050000000006080000d00500000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300045,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1569,
+    976
+   ],
+   "tile": [
+    49,
+    30
+   ],
+   "crudo": "cd2071050000000021060000d00300000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300046,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    2120,
+    1136
+   ],
+   "tile": [
+    66,
+    35
+   ],
+   "crudo": "ce2071050000000048080000700400000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300047,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    2653,
+    1040
+   ],
+   "tile": [
+    82,
+    32
+   ],
+   "crudo": "cf207105000000005d0a0000100400000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300048,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1169,
+    1712
+   ],
+   "tile": [
+    36,
+    53
+   ],
+   "crudo": "d02071050000000091040000b00600000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300049,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    681,
+    1648
+   ],
+   "tile": [
+    21,
+    51
+   ],
+   "crudo": "d120710500000000a9020000700600000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300050,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    564,
+    2064
+   ],
+   "tile": [
+    17,
+    64
+   ],
+   "crudo": "d22071050000000034020000100800000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300051,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    958,
+    1168
+   ],
+   "tile": [
+    29,
+    36
+   ],
+   "crudo": "d320710500000000be030000900400000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300052,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    2285,
+    5168
+   ],
+   "tile": [
+    71,
+    161
+   ],
+   "crudo": "d420710500000000ed080000301400000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300053,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    2680,
+    5328
+   ],
+   "tile": [
+    83,
+    166
+   ],
+   "crudo": "d520710500000000780a0000d01400000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300054,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1693,
+    5296
+   ],
+   "tile": [
+    52,
+    165
+   ],
+   "crudo": "d6207105000000009d060000b01400000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300055,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    2082,
+    4784
+   ],
+   "tile": [
+    65,
+    149
+   ],
+   "crudo": "d72071050000000022080000b01200000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300056,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1231,
+    4720
+   ],
+   "tile": [
+    38,
+    147
+   ],
+   "crudo": "d820710500000000cf040000701200000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300057,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    804,
+    4528
+   ],
+   "tile": [
+    25,
+    141
+   ],
+   "crudo": "d92071050000000024030000b01100000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300058,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    747,
+    4880
+   ],
+   "tile": [
+    23,
+    152
+   ],
+   "crudo": "da20710500000000eb020000101300000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300059,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1112,
+    5328
+   ],
+   "tile": [
+    34,
+    166
+   ],
+   "crudo": "db2071050000000058040000d01400000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300060,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    7404,
+    4976
+   ],
+   "tile": [
+    231,
+    155
+   ],
+   "crudo": "dc20710500000000ec1c0000701300000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300061,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    7822,
+    5008
+   ],
+   "tile": [
+    244,
+    156
+   ],
+   "crudo": "dd207105000000008e1e0000901300000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300062,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    8362,
+    5104
+   ],
+   "tile": [
+    261,
+    159
+   ],
+   "crudo": "de20710500000000aa200000f01300000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300063,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    8650,
+    4880
+   ],
+   "tile": [
+    270,
+    152
+   ],
+   "crudo": "df20710500000000ca210000101300000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300064,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    8444,
+    4560
+   ],
+   "tile": [
+    263,
+    142
+   ],
+   "crudo": "e020710500000000fc200000d01100000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 91300065,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    8018,
+    4560
+   ],
+   "tile": [
+    250,
+    142
+   ],
+   "crudo": "e120710500000000521f0000d01100000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  }
+ ]
+}

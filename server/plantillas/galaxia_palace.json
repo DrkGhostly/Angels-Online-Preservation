@@ -1,0 +1,2830 @@
+{
+ "_nota": "galaxia_palace (stage 360). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map360.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "stage": 360,
+ "spawns": [
+  {
+   "entity_id": 86000000,
+   "nombre": "Hephaestus",
+   "npc_type": 22512,
+   "sprite": 110950,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    149
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86000001,
+   "nombre": "Zeus",
+   "npc_type": 22513,
+   "sprite": 110951,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    225,
+    122
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86000002,
+   "nombre": "Ominous Oriel",
+   "npc_type": 22514,
+   "sprite": 110952,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    265,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86000003,
+   "nombre": "Phantom Axialus",
+   "npc_type": 22629,
+   "sprite": 110514,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    252,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 400
+  },
+  {
+   "entity_id": 86000004,
+   "nombre": "Wind Elf",
+   "npc_type": 1,
+   "sprite": 42055,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    290,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 4
+  },
+  {
+   "entity_id": 86000005,
+   "nombre": "Goldcrown",
+   "npc_type": 22500,
+   "sprite": 110989,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    94,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 380
+  },
+  {
+   "entity_id": 86000006,
+   "nombre": "Goldcrown",
+   "npc_type": 22500,
+   "sprite": 110989,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    99,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 380
+  },
+  {
+   "entity_id": 86000007,
+   "nombre": "Goldcrown",
+   "npc_type": 22500,
+   "sprite": 110989,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    89,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 380
+  },
+  {
+   "entity_id": 86000008,
+   "nombre": "Goldcrown",
+   "npc_type": 22500,
+   "sprite": 110989,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    94,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 380
+  },
+  {
+   "entity_id": 86000009,
+   "nombre": "Goldcrown",
+   "npc_type": 22500,
+   "sprite": 110989,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    89,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 380
+  },
+  {
+   "entity_id": 86000010,
+   "nombre": "Goldcrown",
+   "npc_type": 22500,
+   "sprite": 110989,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    99,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 380
+  },
+  {
+   "entity_id": 86000011,
+   "nombre": "Goldcrown",
+   "npc_type": 22500,
+   "sprite": 110989,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    89,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 380
+  },
+  {
+   "entity_id": 86000012,
+   "nombre": "Goldcrown",
+   "npc_type": 22500,
+   "sprite": 110989,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    94,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 380
+  },
+  {
+   "entity_id": 86000013,
+   "nombre": "Goldcrown",
+   "npc_type": 22500,
+   "sprite": 110989,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    99,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 380
+  },
+  {
+   "entity_id": 86000014,
+   "nombre": "Goldcrown",
+   "npc_type": 22500,
+   "sprite": 110989,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    99,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 380
+  },
+  {
+   "entity_id": 86000015,
+   "nombre": "Goldcrown",
+   "npc_type": 22500,
+   "sprite": 110989,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    84,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 380
+  },
+  {
+   "entity_id": 86000016,
+   "nombre": "Goldcrown",
+   "npc_type": 22500,
+   "sprite": 110989,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    104,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 380
+  },
+  {
+   "entity_id": 86000017,
+   "nombre": "Goldcrown",
+   "npc_type": 22500,
+   "sprite": 110989,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    84,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 380
+  },
+  {
+   "entity_id": 86000018,
+   "nombre": "Goldcrown",
+   "npc_type": 22500,
+   "sprite": 110989,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    104,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 380
+  },
+  {
+   "entity_id": 86000019,
+   "nombre": "Goldcrown",
+   "npc_type": 22500,
+   "sprite": 110989,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    84,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 380
+  },
+  {
+   "entity_id": 86000020,
+   "nombre": "Fiery Fae",
+   "npc_type": 22501,
+   "sprite": 110985,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    84,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 380
+  },
+  {
+   "entity_id": 86000021,
+   "nombre": "Fiery Fae",
+   "npc_type": 22501,
+   "sprite": 110985,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    104,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 380
+  },
+  {
+   "entity_id": 86000022,
+   "nombre": "Fiery Fae",
+   "npc_type": 22501,
+   "sprite": 110985,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    84,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 380
+  },
+  {
+   "entity_id": 86000023,
+   "nombre": "Fiery Fae",
+   "npc_type": 22501,
+   "sprite": 110985,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    89,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 380
+  },
+  {
+   "entity_id": 86000024,
+   "nombre": "Fiery Fae",
+   "npc_type": 22501,
+   "sprite": 110985,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    89,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 380
+  },
+  {
+   "entity_id": 86000025,
+   "nombre": "Fiery Fae",
+   "npc_type": 22501,
+   "sprite": 110985,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    94,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 380
+  },
+  {
+   "entity_id": 86000026,
+   "nombre": "Fiery Fae",
+   "npc_type": 22501,
+   "sprite": 110985,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    94,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 380
+  },
+  {
+   "entity_id": 86000027,
+   "nombre": "Fiery Fae",
+   "npc_type": 22501,
+   "sprite": 110985,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    104,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 380
+  },
+  {
+   "entity_id": 86000028,
+   "nombre": "Fiery Fae",
+   "npc_type": 22501,
+   "sprite": 110985,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    99,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 380
+  },
+  {
+   "entity_id": 86000029,
+   "nombre": "Fiery Fae",
+   "npc_type": 22501,
+   "sprite": 110985,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    99,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 380
+  },
+  {
+   "entity_id": 86000030,
+   "nombre": "Fiery Fae",
+   "npc_type": 22501,
+   "sprite": 110985,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    104,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 380
+  },
+  {
+   "entity_id": 86000031,
+   "nombre": "Fiery Fae",
+   "npc_type": 22501,
+   "sprite": 110985,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    104,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 380
+  },
+  {
+   "entity_id": 86000032,
+   "nombre": "Fiery Fae",
+   "npc_type": 22501,
+   "sprite": 110985,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    79,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 380
+  },
+  {
+   "entity_id": 86000033,
+   "nombre": "Fiery Fae",
+   "npc_type": 22501,
+   "sprite": 110985,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    109,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 380
+  },
+  {
+   "entity_id": 86000034,
+   "nombre": "Fiery Fae",
+   "npc_type": 22501,
+   "sprite": 110985,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    79,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 380
+  },
+  {
+   "entity_id": 86000035,
+   "nombre": "E-Fiery Fae",
+   "npc_type": 22506,
+   "sprite": 110985,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 391
+  },
+  {
+   "entity_id": 86000036,
+   "nombre": "E-Fiery Fae",
+   "npc_type": 22506,
+   "sprite": 110985,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 391
+  },
+  {
+   "entity_id": 86000037,
+   "nombre": "E-Fiery Fae",
+   "npc_type": 22506,
+   "sprite": 110985,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 391
+  },
+  {
+   "entity_id": 86000038,
+   "nombre": "E-Fiery Fae",
+   "npc_type": 22506,
+   "sprite": 110985,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    58,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 391
+  },
+  {
+   "entity_id": 86000039,
+   "nombre": "E-Fiery Fae",
+   "npc_type": 22506,
+   "sprite": 110985,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 391
+  },
+  {
+   "entity_id": 86000040,
+   "nombre": "Graffiti Fowl",
+   "npc_type": 22502,
+   "sprite": 110943,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000041,
+   "nombre": "Graffiti Fowl",
+   "npc_type": 22502,
+   "sprite": 110943,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000042,
+   "nombre": "Graffiti Fowl",
+   "npc_type": 22502,
+   "sprite": 110943,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    38,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000043,
+   "nombre": "Graffiti Fowl",
+   "npc_type": 22502,
+   "sprite": 110943,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000044,
+   "nombre": "Graffiti Fowl",
+   "npc_type": 22502,
+   "sprite": 110943,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000045,
+   "nombre": "Graffiti Fowl",
+   "npc_type": 22502,
+   "sprite": 110943,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000046,
+   "nombre": "Graffiti Fowl",
+   "npc_type": 22502,
+   "sprite": 110943,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    38,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000047,
+   "nombre": "Graffiti Fowl",
+   "npc_type": 22502,
+   "sprite": 110943,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    58,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000048,
+   "nombre": "Graffiti Fowl",
+   "npc_type": 22502,
+   "sprite": 110943,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000049,
+   "nombre": "Graffiti Fowl",
+   "npc_type": 22502,
+   "sprite": 110943,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000050,
+   "nombre": "Graffiti Fowl",
+   "npc_type": 22502,
+   "sprite": 110943,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    38,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000051,
+   "nombre": "Graffiti Fowl",
+   "npc_type": 22502,
+   "sprite": 110943,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    58,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000052,
+   "nombre": "Graffiti Fowl",
+   "npc_type": 22502,
+   "sprite": 110943,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    58,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000053,
+   "nombre": "Graffiti Fowl",
+   "npc_type": 22502,
+   "sprite": 110943,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000054,
+   "nombre": "Graffiti Fowl",
+   "npc_type": 22502,
+   "sprite": 110943,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000055,
+   "nombre": "Graffiti Fowl",
+   "npc_type": 22502,
+   "sprite": 110943,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000056,
+   "nombre": "Graffiti Fowl",
+   "npc_type": 22502,
+   "sprite": 110943,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000057,
+   "nombre": "Graffiti Fowl",
+   "npc_type": 22502,
+   "sprite": 110943,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000058,
+   "nombre": "Graffiti Fowl",
+   "npc_type": 22502,
+   "sprite": 110943,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    33,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000059,
+   "nombre": "Graffiti Fowl",
+   "npc_type": 22502,
+   "sprite": 110943,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000060,
+   "nombre": "Graffiti Fowl",
+   "npc_type": 22502,
+   "sprite": 110943,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000061,
+   "nombre": "Graffiti Fowl",
+   "npc_type": 22502,
+   "sprite": 110943,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    38,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000062,
+   "nombre": "Graffiti Fowl",
+   "npc_type": 22502,
+   "sprite": 110943,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    33,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000063,
+   "nombre": "Graffiti Fowl",
+   "npc_type": 22502,
+   "sprite": 110943,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000064,
+   "nombre": "Graffiti Fowl",
+   "npc_type": 22502,
+   "sprite": 110943,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000065,
+   "nombre": "Stardust Golem",
+   "npc_type": 22503,
+   "sprite": 110949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000066,
+   "nombre": "Stardust Golem",
+   "npc_type": 22503,
+   "sprite": 110949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    38,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000067,
+   "nombre": "Stardust Golem",
+   "npc_type": 22503,
+   "sprite": 110949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    33,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000068,
+   "nombre": "Stardust Golem",
+   "npc_type": 22503,
+   "sprite": 110949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000069,
+   "nombre": "Stardust Golem",
+   "npc_type": 22503,
+   "sprite": 110949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    58,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000070,
+   "nombre": "Stardust Golem",
+   "npc_type": 22503,
+   "sprite": 110949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000071,
+   "nombre": "Stardust Golem",
+   "npc_type": 22503,
+   "sprite": 110949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    33,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000072,
+   "nombre": "Stardust Golem",
+   "npc_type": 22503,
+   "sprite": 110949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    58,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000073,
+   "nombre": "Stardust Golem",
+   "npc_type": 22503,
+   "sprite": 110949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000074,
+   "nombre": "Stardust Golem",
+   "npc_type": 22503,
+   "sprite": 110949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000075,
+   "nombre": "Stardust Golem",
+   "npc_type": 22503,
+   "sprite": 110949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    33,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000076,
+   "nombre": "Stardust Golem",
+   "npc_type": 22503,
+   "sprite": 110949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000077,
+   "nombre": "Stardust Golem",
+   "npc_type": 22503,
+   "sprite": 110949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    38,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000078,
+   "nombre": "Stardust Golem",
+   "npc_type": 22503,
+   "sprite": 110949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000079,
+   "nombre": "Stardust Golem",
+   "npc_type": 22503,
+   "sprite": 110949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    38,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000080,
+   "nombre": "Stardust Golem",
+   "npc_type": 22503,
+   "sprite": 110949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    68,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000081,
+   "nombre": "Stardust Golem",
+   "npc_type": 22503,
+   "sprite": 110949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    38,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000082,
+   "nombre": "Stardust Golem",
+   "npc_type": 22503,
+   "sprite": 110949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    58,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000083,
+   "nombre": "Stardust Golem",
+   "npc_type": 22503,
+   "sprite": 110949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    28,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000084,
+   "nombre": "Stardust Golem",
+   "npc_type": 22503,
+   "sprite": 110949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    68,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000085,
+   "nombre": "Stardust Golem",
+   "npc_type": 22503,
+   "sprite": 110949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000086,
+   "nombre": "Stardust Golem",
+   "npc_type": 22503,
+   "sprite": 110949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    58,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000087,
+   "nombre": "Stardust Golem",
+   "npc_type": 22503,
+   "sprite": 110949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    28,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000088,
+   "nombre": "Stardust Golem",
+   "npc_type": 22503,
+   "sprite": 110949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    68,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000089,
+   "nombre": "Stardust Golem",
+   "npc_type": 22503,
+   "sprite": 110949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 86000090,
+   "nombre": "Maiden Eriel",
+   "npc_type": 22509,
+   "sprite": 110986,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    68,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86000091,
+   "nombre": "Palace Guard",
+   "npc_type": 22504,
+   "sprite": 110946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    151,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000092,
+   "nombre": "Palace Guard",
+   "npc_type": 22504,
+   "sprite": 110946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    150,
+    82
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000093,
+   "nombre": "Palace Guard",
+   "npc_type": 22504,
+   "sprite": 110946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    155,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000094,
+   "nombre": "Palace Guard",
+   "npc_type": 22504,
+   "sprite": 110946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    151,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000095,
+   "nombre": "Palace Guard",
+   "npc_type": 22504,
+   "sprite": 110946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    146,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000096,
+   "nombre": "Palace Guard",
+   "npc_type": 22504,
+   "sprite": 110946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    156,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000097,
+   "nombre": "Palace Guard",
+   "npc_type": 22504,
+   "sprite": 110946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    146,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000098,
+   "nombre": "Palace Guard",
+   "npc_type": 22504,
+   "sprite": 110946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    156,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000099,
+   "nombre": "Palace Guard",
+   "npc_type": 22504,
+   "sprite": 110946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    146,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000100,
+   "nombre": "Palace Guard",
+   "npc_type": 22504,
+   "sprite": 110946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    156,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000101,
+   "nombre": "Palace Guard",
+   "npc_type": 22504,
+   "sprite": 110946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    160,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000102,
+   "nombre": "Palace Guard",
+   "npc_type": 22504,
+   "sprite": 110946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    72
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000103,
+   "nombre": "Palace Guard",
+   "npc_type": 22504,
+   "sprite": 110946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    151,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000104,
+   "nombre": "Palace Guard",
+   "npc_type": 22504,
+   "sprite": 110946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    145,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000105,
+   "nombre": "Palace Guard",
+   "npc_type": 22504,
+   "sprite": 110946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000106,
+   "nombre": "Palace Guard",
+   "npc_type": 22504,
+   "sprite": 110946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    146,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000107,
+   "nombre": "Palace Guard",
+   "npc_type": 22504,
+   "sprite": 110946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    156,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000108,
+   "nombre": "Palace Guard",
+   "npc_type": 22504,
+   "sprite": 110946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000109,
+   "nombre": "Palace Guard",
+   "npc_type": 22504,
+   "sprite": 110946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    141,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000110,
+   "nombre": "Palace Guard",
+   "npc_type": 22504,
+   "sprite": 110946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    151,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000111,
+   "nombre": "Palace Guard",
+   "npc_type": 22504,
+   "sprite": 110946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    141,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000112,
+   "nombre": "Palace Guard",
+   "npc_type": 22504,
+   "sprite": 110946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000113,
+   "nombre": "Palace Guard",
+   "npc_type": 22504,
+   "sprite": 110946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    141,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000114,
+   "nombre": "Palace Guard",
+   "npc_type": 22504,
+   "sprite": 110946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    156,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000115,
+   "nombre": "Palace Guard",
+   "npc_type": 22504,
+   "sprite": 110946,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    141,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000116,
+   "nombre": "Palace Escort",
+   "npc_type": 22505,
+   "sprite": 110997,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    141,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000117,
+   "nombre": "Palace Escort",
+   "npc_type": 22505,
+   "sprite": 110997,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    140,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000118,
+   "nombre": "Palace Escort",
+   "npc_type": 22505,
+   "sprite": 110997,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    165,
+    77
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000119,
+   "nombre": "Palace Escort",
+   "npc_type": 22505,
+   "sprite": 110997,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000120,
+   "nombre": "Palace Escort",
+   "npc_type": 22505,
+   "sprite": 110997,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    146,
+    97
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000121,
+   "nombre": "Palace Escort",
+   "npc_type": 22505,
+   "sprite": 110997,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    151,
+    97
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000122,
+   "nombre": "Palace Escort",
+   "npc_type": 22505,
+   "sprite": 110997,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    166,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000123,
+   "nombre": "Palace Escort",
+   "npc_type": 22505,
+   "sprite": 110997,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    166,
+    82
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000124,
+   "nombre": "Palace Escort",
+   "npc_type": 22505,
+   "sprite": 110997,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    139,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000125,
+   "nombre": "Palace Escort",
+   "npc_type": 22505,
+   "sprite": 110997,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    166,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000126,
+   "nombre": "Palace Escort",
+   "npc_type": 22505,
+   "sprite": 110997,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    166,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000127,
+   "nombre": "Palace Escort",
+   "npc_type": 22505,
+   "sprite": 110997,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    141,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000128,
+   "nombre": "Palace Escort",
+   "npc_type": 22505,
+   "sprite": 110997,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    156,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000129,
+   "nombre": "Palace Escort",
+   "npc_type": 22505,
+   "sprite": 110997,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    166,
+    97
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000130,
+   "nombre": "Palace Escort",
+   "npc_type": 22505,
+   "sprite": 110997,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    136,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000131,
+   "nombre": "Palace Escort",
+   "npc_type": 22505,
+   "sprite": 110997,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    146,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000132,
+   "nombre": "Palace Escort",
+   "npc_type": 22505,
+   "sprite": 110997,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000133,
+   "nombre": "Palace Escort",
+   "npc_type": 22505,
+   "sprite": 110997,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    136,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000134,
+   "nombre": "Palace Escort",
+   "npc_type": 22505,
+   "sprite": 110997,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    136,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000135,
+   "nombre": "Palace Escort",
+   "npc_type": 22505,
+   "sprite": 110997,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    151,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000136,
+   "nombre": "Palace Escort",
+   "npc_type": 22505,
+   "sprite": 110997,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    136,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000137,
+   "nombre": "Palace Escort",
+   "npc_type": 22505,
+   "sprite": 110997,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    136,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000138,
+   "nombre": "Palace Escort",
+   "npc_type": 22505,
+   "sprite": 110997,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    136,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000139,
+   "nombre": "Palace Escort",
+   "npc_type": 22505,
+   "sprite": 110997,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    156,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000140,
+   "nombre": "Palace Escort",
+   "npc_type": 22505,
+   "sprite": 110997,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    144,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 86000141,
+   "nombre": "E-Graffiti Fowl",
+   "npc_type": 22507,
+   "sprite": 110943,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    149,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 392
+  },
+  {
+   "entity_id": 86000142,
+   "nombre": "E-Graffiti Fowl",
+   "npc_type": 22507,
+   "sprite": 110943,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    135,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 392
+  },
+  {
+   "entity_id": 86000143,
+   "nombre": "E-Graffiti Fowl",
+   "npc_type": 22507,
+   "sprite": 110943,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    170,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 392
+  },
+  {
+   "entity_id": 86000144,
+   "nombre": "Warbird Spear",
+   "npc_type": 22510,
+   "sprite": 110992,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    166,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86000145,
+   "nombre": "E-Stardust Golem",
+   "npc_type": 22508,
+   "sprite": 110949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    172,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 393
+  },
+  {
+   "entity_id": 86000146,
+   "nombre": "E-Stardust Golem",
+   "npc_type": 22508,
+   "sprite": 110949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    181,
+    101
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 393
+  },
+  {
+   "entity_id": 86000147,
+   "nombre": "E-Stardust Golem",
+   "npc_type": 22508,
+   "sprite": 110949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    167,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 393
+  },
+  {
+   "entity_id": 86000148,
+   "nombre": "E-Stardust Golem",
+   "npc_type": 22508,
+   "sprite": 110949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    96
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 393
+  },
+  {
+   "entity_id": 86000149,
+   "nombre": "E-Stardust Golem",
+   "npc_type": 22508,
+   "sprite": 110949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    171,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 393
+  },
+  {
+   "entity_id": 86000150,
+   "nombre": "Magtite Stark",
+   "npc_type": 22511,
+   "sprite": 111000,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    172,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 395
+  },
+  {
+   "entity_id": 86000151,
+   "nombre": "Wind Elf",
+   "npc_type": 1,
+   "sprite": 42055,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    131,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 4,
+   "apagado": true
+  },
+  {
+   "entity_id": 86000152,
+   "nombre": "Fire Elf",
+   "npc_type": 2,
+   "sprite": 42056,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    164,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 7,
+   "apagado": true
+  }
+ ],
+ "recursos": [
+  {
+   "entity_id": 96000000,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    3758,
+    2160
+   ],
+   "tile": [
+    117,
+    67
+   ],
+   "crudo": "00d8b80500000000ae0e0000700800000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 96000001,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    3917,
+    2064
+   ],
+   "tile": [
+    122,
+    64
+   ],
+   "crudo": "01d8b805000000004d0f0000100800000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 96000002,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    2062,
+    4400
+   ],
+   "tile": [
+    64,
+    137
+   ],
+   "crudo": "02d8b805020000000e080000301100000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 96000003,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    5521,
+    2736
+   ],
+   "tile": [
+    172,
+    85
+   ],
+   "crudo": "03d8b8050000000091150000b00a00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 96000004,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    5256,
+    2864
+   ],
+   "tile": [
+    164,
+    89
+   ],
+   "crudo": "04d8b8050000000088140000300b00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 96000005,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    4997,
+    2992
+   ],
+   "tile": [
+    156,
+    93
+   ],
+   "crudo": "05d8b8050000000085130000b00b00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 96000006,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    4805,
+    3088
+   ],
+   "tile": [
+    150,
+    96
+   ],
+   "crudo": "06d8b80500000000c5120000100c00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 96000007,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    5891,
+    3408
+   ],
+   "tile": [
+    184,
+    106
+   ],
+   "crudo": "07d8b8050000000003170000500d00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 96000008,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    6213,
+    3600
+   ],
+   "tile": [
+    194,
+    112
+   ],
+   "crudo": "08d8b8050000000045180000100e00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 96000009,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5502,
+    3376
+   ],
+   "tile": [
+    171,
+    105
+   ],
+   "crudo": "09d8b805000000007e150000300d00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 96000010,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5637,
+    3184
+   ],
+   "tile": [
+    176,
+    99
+   ],
+   "crudo": "0ad8b8050000000005160000700c00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 96000011,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5251,
+    3248
+   ],
+   "tile": [
+    164,
+    101
+   ],
+   "crudo": "0bd8b8050000000083140000b00c00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 96000012,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5886,
+    3056
+   ],
+   "tile": [
+    183,
+    95
+   ],
+   "crudo": "0cd8b80500000000fe160000f00b00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 96000013,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5620,
+    3312
+   ],
+   "tile": [
+    175,
+    103
+   ],
+   "crudo": "0dd8b80500000000f4150000f00c00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 96000014,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5890,
+    3184
+   ],
+   "tile": [
+    184,
+    99
+   ],
+   "crudo": "0ed8b8050000000002170000700c00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 96000015,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5376,
+    3312
+   ],
+   "tile": [
+    168,
+    103
+   ],
+   "crudo": "0fd8b8050000000000150000f00c00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 96000016,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5243,
+    3376
+   ],
+   "tile": [
+    163,
+    105
+   ],
+   "crudo": "10d8b805000000007b140000300d00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 96000017,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    6015,
+    3120
+   ],
+   "tile": [
+    187,
+    97
+   ],
+   "crudo": "11d8b805000000007f170000300c00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 96000018,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5379,
+    3184
+   ],
+   "tile": [
+    168,
+    99
+   ],
+   "crudo": "12d8b8050000000003150000700c00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 96000019,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4832,
+    720
+   ],
+   "tile": [
+    151,
+    22
+   ],
+   "crudo": "13d8b80500000000e0120000d00200000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 96000020,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    3659,
+    1136
+   ],
+   "tile": [
+    114,
+    35
+   ],
+   "crudo": "14d8b805000000004b0e0000700400000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 96000021,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    2843,
+    2128
+   ],
+   "tile": [
+    88,
+    66
+   ],
+   "crudo": "15d8b805000000001b0b0000500800000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 96000022,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    2587,
+    3376
+   ],
+   "tile": [
+    80,
+    105
+   ],
+   "crudo": "16d8b805000000001b0a0000300d00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 96000023,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    8101,
+    1072
+   ],
+   "tile": [
+    253,
+    33
+   ],
+   "crudo": "17d8b80500000000a51f0000300400000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 96000024,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    6001,
+    1264
+   ],
+   "tile": [
+    187,
+    39
+   ],
+   "crudo": "18d8b8050000000071170000f00400000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 96000025,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4907,
+    1904
+   ],
+   "tile": [
+    153,
+    59
+   ],
+   "crudo": "19d8b805000000002b130000700700000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 96000026,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4666,
+    2672
+   ],
+   "tile": [
+    145,
+    83
+   ],
+   "crudo": "1ad8b805000000003a120000700a00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 96000027,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4402,
+    2768
+   ],
+   "tile": [
+    137,
+    86
+   ],
+   "crudo": "1bd8b8050000000032110000d00a00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 96000028,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5215,
+    2128
+   ],
+   "tile": [
+    162,
+    66
+   ],
+   "crudo": "1cd8b805000000005f140000500800000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 96000029,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    8271,
+    4784
+   ],
+   "tile": [
+    258,
+    149
+   ],
+   "crudo": "1dd8b805000000004f200000b01200000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 96000030,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    2224,
+    3536
+   ],
+   "tile": [
+    69,
+    110
+   ],
+   "crudo": "1ed8b80500000000b0080000d00d00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 96000031,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    3902,
+    784
+   ],
+   "tile": [
+    121,
+    24
+   ],
+   "crudo": "1fd8b805000000003e0f0000100300000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 96000032,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    3197,
+    1968
+   ],
+   "tile": [
+    99,
+    61
+   ],
+   "crudo": "20d8b805000000007d0c0000b00700000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 96000033,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    2373,
+    2064
+   ],
+   "tile": [
+    74,
+    64
+   ],
+   "crudo": "21d8b8050000000045090000100800000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 96000034,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    2684,
+    3728
+   ],
+   "tile": [
+    83,
+    116
+   ],
+   "crudo": "22d8b805000000007c0a0000900e00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  }
+ ]
+}

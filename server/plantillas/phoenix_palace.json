@@ -1,0 +1,5393 @@
+{
+ "_nota": "phoenix_palace (stage 199). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map199.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "stage": 199,
+ "spawns": [
+  {
+   "entity_id": 69900000,
+   "nombre": "Infernal Tornado Tiger",
+   "npc_type": 9651,
+   "sprite": 43325,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    22,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 185
+  },
+  {
+   "entity_id": 69900001,
+   "nombre": "Acrimon The Destroyer",
+   "npc_type": 9572,
+   "sprite": 43326,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    245,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 185
+  },
+  {
+   "entity_id": 69900002,
+   "nombre": "Cloud Thunderer",
+   "npc_type": 9835,
+   "sprite": 43317,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    16,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900003,
+   "nombre": "Cloud Thunderer",
+   "npc_type": 9835,
+   "sprite": 43317,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    11,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900004,
+   "nombre": "Cloud Thunderer",
+   "npc_type": 9835,
+   "sprite": 43317,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    11,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900005,
+   "nombre": "Cloud Thunderer",
+   "npc_type": 9835,
+   "sprite": 43317,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    11,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900006,
+   "nombre": "Cloud Thunderer",
+   "npc_type": 9835,
+   "sprite": 43317,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    16,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900007,
+   "nombre": "Cloud Thunderer",
+   "npc_type": 9835,
+   "sprite": 43317,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    16,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900008,
+   "nombre": "Cloud Thunderer",
+   "npc_type": 9835,
+   "sprite": 43317,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    21,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900009,
+   "nombre": "Cloud Thunderer",
+   "npc_type": 9835,
+   "sprite": 43317,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    21,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900010,
+   "nombre": "Cloud Thunderer",
+   "npc_type": 9835,
+   "sprite": 43317,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    21,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900011,
+   "nombre": "Cloud Thunderer",
+   "npc_type": 9835,
+   "sprite": 43317,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    6,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900012,
+   "nombre": "Cloud Thunderer",
+   "npc_type": 9835,
+   "sprite": 43317,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    6,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900013,
+   "nombre": "Cloud Thunderer",
+   "npc_type": 9835,
+   "sprite": 43317,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    6,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900014,
+   "nombre": "Cloud Thunderer",
+   "npc_type": 9835,
+   "sprite": 43317,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    6,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900015,
+   "nombre": "Cloud Thunderer",
+   "npc_type": 9835,
+   "sprite": 43317,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    6,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900016,
+   "nombre": "Cloud Thunderer",
+   "npc_type": 9835,
+   "sprite": 43317,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    11,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900017,
+   "nombre": "Cloud Thunderer",
+   "npc_type": 9835,
+   "sprite": 43317,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    11,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900018,
+   "nombre": "Cloud Thunderer",
+   "npc_type": 9835,
+   "sprite": 43317,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    16,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900019,
+   "nombre": "Cloud Thunderer",
+   "npc_type": 9835,
+   "sprite": 43317,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    16,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900020,
+   "nombre": "Cloud Thunderer",
+   "npc_type": 9835,
+   "sprite": 43317,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    21,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900021,
+   "nombre": "Cloud Thunderer",
+   "npc_type": 9835,
+   "sprite": 43317,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    21,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900022,
+   "nombre": "Cloud Thunderer",
+   "npc_type": 9835,
+   "sprite": 43317,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    26,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900023,
+   "nombre": "Cloud Thunderer",
+   "npc_type": 9835,
+   "sprite": 43317,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    26,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900024,
+   "nombre": "Cloud Thunderer",
+   "npc_type": 9835,
+   "sprite": 43317,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    26,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900025,
+   "nombre": "Cloud Thunderer",
+   "npc_type": 9835,
+   "sprite": 43317,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    26,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900026,
+   "nombre": "Cloud Thunderer",
+   "npc_type": 9835,
+   "sprite": 43317,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    26,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900027,
+   "nombre": "Wired Zombie Baby",
+   "npc_type": 9826,
+   "sprite": 43323,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    1,
+    7
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900028,
+   "nombre": "Wired Zombie Baby",
+   "npc_type": 9826,
+   "sprite": 43323,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    1,
+    12
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900029,
+   "nombre": "Wired Zombie Baby",
+   "npc_type": 9826,
+   "sprite": 43323,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    1,
+    17
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900030,
+   "nombre": "Wired Zombie Baby",
+   "npc_type": 9826,
+   "sprite": 43323,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    1,
+    22
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900031,
+   "nombre": "Wired Zombie Baby",
+   "npc_type": 9826,
+   "sprite": 43323,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    1,
+    27
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900032,
+   "nombre": "Wired Zombie Baby",
+   "npc_type": 9826,
+   "sprite": 43323,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    6,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900033,
+   "nombre": "Wired Zombie Baby",
+   "npc_type": 9826,
+   "sprite": 43323,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    11,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900034,
+   "nombre": "Wired Zombie Baby",
+   "npc_type": 9826,
+   "sprite": 43323,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    16,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900035,
+   "nombre": "Wired Zombie Baby",
+   "npc_type": 9826,
+   "sprite": 43323,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    21,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900036,
+   "nombre": "Wired Zombie Baby",
+   "npc_type": 9826,
+   "sprite": 43323,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    0,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900037,
+   "nombre": "Wired Zombie Baby",
+   "npc_type": 9826,
+   "sprite": 43323,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    26,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900038,
+   "nombre": "Wired Zombie Baby",
+   "npc_type": 9826,
+   "sprite": 43323,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    0,
+    2
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900039,
+   "nombre": "Wired Zombie Baby",
+   "npc_type": 9826,
+   "sprite": 43323,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    5,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900040,
+   "nombre": "Wired Zombie Baby",
+   "npc_type": 9826,
+   "sprite": 43323,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    10,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900041,
+   "nombre": "Wired Zombie Baby",
+   "npc_type": 9826,
+   "sprite": 43323,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    15,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900042,
+   "nombre": "Wired Zombie Baby",
+   "npc_type": 9826,
+   "sprite": 43323,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    20,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900043,
+   "nombre": "Wired Zombie Baby",
+   "npc_type": 9826,
+   "sprite": 43323,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    25,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900044,
+   "nombre": "Wired Zombie Baby",
+   "npc_type": 9826,
+   "sprite": 43323,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    5,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900045,
+   "nombre": "Wired Zombie Baby",
+   "npc_type": 9826,
+   "sprite": 43323,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    10,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900046,
+   "nombre": "Wired Zombie Baby",
+   "npc_type": 9826,
+   "sprite": 43323,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    15,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900047,
+   "nombre": "Wired Zombie Baby",
+   "npc_type": 9826,
+   "sprite": 43323,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    20,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900048,
+   "nombre": "Wired Zombie Baby",
+   "npc_type": 9826,
+   "sprite": 43323,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    25,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900049,
+   "nombre": "Wired Zombie Baby",
+   "npc_type": 9826,
+   "sprite": 43323,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900050,
+   "nombre": "Wired Zombie Baby",
+   "npc_type": 9826,
+   "sprite": 43323,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900051,
+   "nombre": "Wired Zombie Baby",
+   "npc_type": 9826,
+   "sprite": 43323,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    0,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900052,
+   "nombre": "Giant Swordsman",
+   "npc_type": 9828,
+   "sprite": 43320,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900053,
+   "nombre": "Giant Swordsman",
+   "npc_type": 9828,
+   "sprite": 43320,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900054,
+   "nombre": "Giant Swordsman",
+   "npc_type": 9828,
+   "sprite": 43320,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900055,
+   "nombre": "Giant Swordsman",
+   "npc_type": 9828,
+   "sprite": 43320,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900056,
+   "nombre": "Giant Swordsman",
+   "npc_type": 9828,
+   "sprite": 43320,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900057,
+   "nombre": "Giant Swordsman",
+   "npc_type": 9828,
+   "sprite": 43320,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    35,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900058,
+   "nombre": "Giant Swordsman",
+   "npc_type": 9828,
+   "sprite": 43320,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900059,
+   "nombre": "Giant Swordsman",
+   "npc_type": 9828,
+   "sprite": 43320,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900060,
+   "nombre": "Giant Swordsman",
+   "npc_type": 9828,
+   "sprite": 43320,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900061,
+   "nombre": "Giant Swordsman",
+   "npc_type": 9828,
+   "sprite": 43320,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900062,
+   "nombre": "Giant Swordsman",
+   "npc_type": 9828,
+   "sprite": 43320,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900063,
+   "nombre": "Giant Swordsman",
+   "npc_type": 9828,
+   "sprite": 43320,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900064,
+   "nombre": "Giant Swordsman",
+   "npc_type": 9828,
+   "sprite": 43320,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900065,
+   "nombre": "Giant Swordsman",
+   "npc_type": 9828,
+   "sprite": 43320,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900066,
+   "nombre": "Giant Swordsman",
+   "npc_type": 9828,
+   "sprite": 43320,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    35,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900067,
+   "nombre": "Giant Swordsman",
+   "npc_type": 9828,
+   "sprite": 43320,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900068,
+   "nombre": "Giant Swordsman",
+   "npc_type": 9828,
+   "sprite": 43320,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900069,
+   "nombre": "Giant Swordsman",
+   "npc_type": 9828,
+   "sprite": 43320,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900070,
+   "nombre": "Giant Swordsman",
+   "npc_type": 9828,
+   "sprite": 43320,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900071,
+   "nombre": "Giant Swordsman",
+   "npc_type": 9828,
+   "sprite": 43320,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900072,
+   "nombre": "Giant Swordsman",
+   "npc_type": 9828,
+   "sprite": 43320,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900073,
+   "nombre": "Giant Swordsman",
+   "npc_type": 9828,
+   "sprite": 43320,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900074,
+   "nombre": "Giant Swordsman",
+   "npc_type": 9828,
+   "sprite": 43320,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    45,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900075,
+   "nombre": "Giant Swordsman",
+   "npc_type": 9828,
+   "sprite": 43320,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    45,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900076,
+   "nombre": "Giant Swordsman",
+   "npc_type": 9828,
+   "sprite": 43320,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    5,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900077,
+   "nombre": "Ghost Maid",
+   "npc_type": 9832,
+   "sprite": 43296,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    46,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900078,
+   "nombre": "Ghost Maid",
+   "npc_type": 9832,
+   "sprite": 43296,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    46,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900079,
+   "nombre": "Ghost Maid",
+   "npc_type": 9832,
+   "sprite": 43296,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    46,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900080,
+   "nombre": "Ghost Maid",
+   "npc_type": 9832,
+   "sprite": 43296,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    46,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900081,
+   "nombre": "Ghost Maid",
+   "npc_type": 9832,
+   "sprite": 43296,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    46,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900082,
+   "nombre": "Ghost Maid",
+   "npc_type": 9832,
+   "sprite": 43296,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    46,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900083,
+   "nombre": "Ghost Maid",
+   "npc_type": 9832,
+   "sprite": 43296,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    50,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900084,
+   "nombre": "Ghost Maid",
+   "npc_type": 9832,
+   "sprite": 43296,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    50,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900085,
+   "nombre": "Ghost Maid",
+   "npc_type": 9832,
+   "sprite": 43296,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900086,
+   "nombre": "Ghost Maid",
+   "npc_type": 9832,
+   "sprite": 43296,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900087,
+   "nombre": "Ghost Maid",
+   "npc_type": 9832,
+   "sprite": 43296,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900088,
+   "nombre": "Ghost Maid",
+   "npc_type": 9832,
+   "sprite": 43296,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900089,
+   "nombre": "Ghost Maid",
+   "npc_type": 9832,
+   "sprite": 43296,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900090,
+   "nombre": "Ghost Maid",
+   "npc_type": 9832,
+   "sprite": 43296,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900091,
+   "nombre": "Ghost Maid",
+   "npc_type": 9832,
+   "sprite": 43296,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    10,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900092,
+   "nombre": "Ghost Maid",
+   "npc_type": 9832,
+   "sprite": 43296,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    15,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900093,
+   "nombre": "Ghost Maid",
+   "npc_type": 9832,
+   "sprite": 43296,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    20,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900094,
+   "nombre": "Ghost Maid",
+   "npc_type": 9832,
+   "sprite": 43296,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    25,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900095,
+   "nombre": "Ghost Maid",
+   "npc_type": 9832,
+   "sprite": 43296,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900096,
+   "nombre": "Ghost Maid",
+   "npc_type": 9832,
+   "sprite": 43296,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    35,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900097,
+   "nombre": "Ghost Maid",
+   "npc_type": 9832,
+   "sprite": 43296,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900098,
+   "nombre": "Ghost Maid",
+   "npc_type": 9832,
+   "sprite": 43296,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    45,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900099,
+   "nombre": "Ghost Maid",
+   "npc_type": 9832,
+   "sprite": 43296,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    50,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900100,
+   "nombre": "Ghost Maid",
+   "npc_type": 9832,
+   "sprite": 43296,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    0,
+    42
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900101,
+   "nombre": "Ghost Maid",
+   "npc_type": 9832,
+   "sprite": 43296,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 172
+  },
+  {
+   "entity_id": 69900102,
+   "nombre": "Grand BBQ Bread",
+   "npc_type": 9830,
+   "sprite": 43306,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    5,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900103,
+   "nombre": "Grand BBQ Bread",
+   "npc_type": 9830,
+   "sprite": 43306,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    10,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900104,
+   "nombre": "Grand BBQ Bread",
+   "npc_type": 9830,
+   "sprite": 43306,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    15,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900105,
+   "nombre": "Grand BBQ Bread",
+   "npc_type": 9830,
+   "sprite": 43306,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    20,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900106,
+   "nombre": "Grand BBQ Bread",
+   "npc_type": 9830,
+   "sprite": 43306,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    25,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900107,
+   "nombre": "Grand BBQ Bread",
+   "npc_type": 9830,
+   "sprite": 43306,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900108,
+   "nombre": "Grand BBQ Bread",
+   "npc_type": 9830,
+   "sprite": 43306,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    35,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900109,
+   "nombre": "Grand BBQ Bread",
+   "npc_type": 9830,
+   "sprite": 43306,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900110,
+   "nombre": "Grand BBQ Bread",
+   "npc_type": 9830,
+   "sprite": 43306,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    0,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900111,
+   "nombre": "Grand BBQ Bread",
+   "npc_type": 9830,
+   "sprite": 43306,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    45,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900112,
+   "nombre": "Grand BBQ Bread",
+   "npc_type": 9830,
+   "sprite": 43306,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    5,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900113,
+   "nombre": "Grand BBQ Bread",
+   "npc_type": 9830,
+   "sprite": 43306,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    10,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900114,
+   "nombre": "Grand BBQ Bread",
+   "npc_type": 9830,
+   "sprite": 43306,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    15,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900115,
+   "nombre": "Grand BBQ Bread",
+   "npc_type": 9830,
+   "sprite": 43306,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    20,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900116,
+   "nombre": "Grand BBQ Bread",
+   "npc_type": 9830,
+   "sprite": 43306,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    25,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900117,
+   "nombre": "Grand BBQ Bread",
+   "npc_type": 9830,
+   "sprite": 43306,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900118,
+   "nombre": "Grand BBQ Bread",
+   "npc_type": 9830,
+   "sprite": 43306,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    35,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900119,
+   "nombre": "Grand BBQ Bread",
+   "npc_type": 9830,
+   "sprite": 43306,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900120,
+   "nombre": "Grand BBQ Bread",
+   "npc_type": 9830,
+   "sprite": 43306,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    45,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900121,
+   "nombre": "Grand BBQ Bread",
+   "npc_type": 9830,
+   "sprite": 43306,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    0,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900122,
+   "nombre": "Infernal Lantern",
+   "npc_type": 9834,
+   "sprite": 43300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    50,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900123,
+   "nombre": "Infernal Lantern",
+   "npc_type": 9834,
+   "sprite": 43300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900124,
+   "nombre": "Infernal Lantern",
+   "npc_type": 9834,
+   "sprite": 43300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900125,
+   "nombre": "Infernal Lantern",
+   "npc_type": 9834,
+   "sprite": 43300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900126,
+   "nombre": "Infernal Lantern",
+   "npc_type": 9834,
+   "sprite": 43300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    56,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900127,
+   "nombre": "Infernal Lantern",
+   "npc_type": 9834,
+   "sprite": 43300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    56,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900128,
+   "nombre": "Infernal Lantern",
+   "npc_type": 9834,
+   "sprite": 43300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    56,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900129,
+   "nombre": "Infernal Lantern",
+   "npc_type": 9834,
+   "sprite": 43300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    56,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900130,
+   "nombre": "Infernal Lantern",
+   "npc_type": 9834,
+   "sprite": 43300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    56,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900131,
+   "nombre": "Infernal Lantern",
+   "npc_type": 9834,
+   "sprite": 43300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    56,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900132,
+   "nombre": "Infernal Lantern",
+   "npc_type": 9834,
+   "sprite": 43300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    50,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900133,
+   "nombre": "Infernal Lantern",
+   "npc_type": 9834,
+   "sprite": 43300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900134,
+   "nombre": "Infernal Lantern",
+   "npc_type": 9834,
+   "sprite": 43300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900135,
+   "nombre": "Infernal Lantern",
+   "npc_type": 9834,
+   "sprite": 43300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900136,
+   "nombre": "Infernal Lantern",
+   "npc_type": 9834,
+   "sprite": 43300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900137,
+   "nombre": "Infernal Lantern",
+   "npc_type": 9834,
+   "sprite": 43300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900138,
+   "nombre": "Infernal Lantern",
+   "npc_type": 9834,
+   "sprite": 43300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900139,
+   "nombre": "Infernal Lantern",
+   "npc_type": 9834,
+   "sprite": 43300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    61,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900140,
+   "nombre": "Infernal Lantern",
+   "npc_type": 9834,
+   "sprite": 43300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    61,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900141,
+   "nombre": "Infernal Lantern",
+   "npc_type": 9834,
+   "sprite": 43300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    61,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 174
+  },
+  {
+   "entity_id": 69900142,
+   "nombre": "Purply Zombie King",
+   "npc_type": 9827,
+   "sprite": 43324,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900143,
+   "nombre": "Purply Zombie King",
+   "npc_type": 9827,
+   "sprite": 43324,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900144,
+   "nombre": "Purply Zombie King",
+   "npc_type": 9827,
+   "sprite": 43324,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900145,
+   "nombre": "Purply Zombie King",
+   "npc_type": 9827,
+   "sprite": 43324,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900146,
+   "nombre": "Purply Zombie King",
+   "npc_type": 9827,
+   "sprite": 43324,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900147,
+   "nombre": "Purply Zombie King",
+   "npc_type": 9827,
+   "sprite": 43324,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900148,
+   "nombre": "Purply Zombie King",
+   "npc_type": 9827,
+   "sprite": 43324,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900149,
+   "nombre": "Purply Zombie King",
+   "npc_type": 9827,
+   "sprite": 43324,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900150,
+   "nombre": "Purply Zombie King",
+   "npc_type": 9827,
+   "sprite": 43324,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900151,
+   "nombre": "Purply Zombie King",
+   "npc_type": 9827,
+   "sprite": 43324,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    62,
+    136
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900152,
+   "nombre": "Purply Zombie King",
+   "npc_type": 9827,
+   "sprite": 43324,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    62,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900153,
+   "nombre": "Purply Zombie King",
+   "npc_type": 9827,
+   "sprite": 43324,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    62,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900154,
+   "nombre": "Purply Zombie King",
+   "npc_type": 9827,
+   "sprite": 43324,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    62,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900155,
+   "nombre": "Purply Zombie King",
+   "npc_type": 9827,
+   "sprite": 43324,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    62,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900156,
+   "nombre": "Purply Zombie King",
+   "npc_type": 9827,
+   "sprite": 43324,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    136
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900157,
+   "nombre": "Purply Zombie King",
+   "npc_type": 9827,
+   "sprite": 43324,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900158,
+   "nombre": "Purply Zombie King",
+   "npc_type": 9827,
+   "sprite": 43324,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    136
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900159,
+   "nombre": "Purply Zombie King",
+   "npc_type": 9827,
+   "sprite": 43324,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900160,
+   "nombre": "Purply Zombie King",
+   "npc_type": 9827,
+   "sprite": 43324,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    136
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900161,
+   "nombre": "Purply Zombie King",
+   "npc_type": 9827,
+   "sprite": 43324,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900162,
+   "nombre": "Purply Zombie King",
+   "npc_type": 9827,
+   "sprite": 43324,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    136
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900163,
+   "nombre": "Purply Zombie King",
+   "npc_type": 9827,
+   "sprite": 43324,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900164,
+   "nombre": "Purply Zombie King",
+   "npc_type": 9827,
+   "sprite": 43324,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900165,
+   "nombre": "Purply Zombie King",
+   "npc_type": 9827,
+   "sprite": 43324,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900166,
+   "nombre": "Purply Zombie King",
+   "npc_type": 9827,
+   "sprite": 43324,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900167,
+   "nombre": "Fallen Lion King",
+   "npc_type": 9831,
+   "sprite": 43315,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    57,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900168,
+   "nombre": "Fallen Lion King",
+   "npc_type": 9831,
+   "sprite": 43315,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    57,
+    139
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900169,
+   "nombre": "Fallen Lion King",
+   "npc_type": 9831,
+   "sprite": 43315,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    57,
+    144
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900170,
+   "nombre": "Fallen Lion King",
+   "npc_type": 9831,
+   "sprite": 43315,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    57,
+    149
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900171,
+   "nombre": "Fallen Lion King",
+   "npc_type": 9831,
+   "sprite": 43315,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    57,
+    154
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900172,
+   "nombre": "Fallen Lion King",
+   "npc_type": 9831,
+   "sprite": 43315,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    159
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900173,
+   "nombre": "Fallen Lion King",
+   "npc_type": 9831,
+   "sprite": 43315,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    62,
+    131
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900174,
+   "nombre": "Fallen Lion King",
+   "npc_type": 9831,
+   "sprite": 43315,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    131
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900175,
+   "nombre": "Fallen Lion King",
+   "npc_type": 9831,
+   "sprite": 43315,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    131
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900176,
+   "nombre": "Fallen Lion King",
+   "npc_type": 9831,
+   "sprite": 43315,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    131
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900177,
+   "nombre": "Fallen Lion King",
+   "npc_type": 9831,
+   "sprite": 43315,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    131
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900178,
+   "nombre": "Fallen Lion King",
+   "npc_type": 9831,
+   "sprite": 43315,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    52,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900179,
+   "nombre": "Fallen Lion King",
+   "npc_type": 9831,
+   "sprite": 43315,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    52,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900180,
+   "nombre": "Fallen Lion King",
+   "npc_type": 9831,
+   "sprite": 43315,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    52,
+    139
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900181,
+   "nombre": "Fallen Lion King",
+   "npc_type": 9831,
+   "sprite": 43315,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    52,
+    144
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900182,
+   "nombre": "Fallen Lion King",
+   "npc_type": 9831,
+   "sprite": 43315,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    52,
+    149
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900183,
+   "nombre": "Fallen Lion King",
+   "npc_type": 9831,
+   "sprite": 43315,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    52,
+    154
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900184,
+   "nombre": "Fallen Lion King",
+   "npc_type": 9831,
+   "sprite": 43315,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    57,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900185,
+   "nombre": "Fallen Lion King",
+   "npc_type": 9831,
+   "sprite": 43315,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900186,
+   "nombre": "Fallen Lion King",
+   "npc_type": 9831,
+   "sprite": 43315,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900187,
+   "nombre": "Fallen Lion King",
+   "npc_type": 9831,
+   "sprite": 43315,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    69,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900188,
+   "nombre": "Fallen Lion King",
+   "npc_type": 9831,
+   "sprite": 43315,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    74,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900189,
+   "nombre": "Fallen Lion King",
+   "npc_type": 9831,
+   "sprite": 43315,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    79,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900190,
+   "nombre": "Fallen Lion King",
+   "npc_type": 9831,
+   "sprite": 43315,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    84,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900191,
+   "nombre": "Fallen Lion King",
+   "npc_type": 9831,
+   "sprite": 43315,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    159
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900192,
+   "nombre": "Flutter Ghost Maid",
+   "npc_type": 9833,
+   "sprite": 43297,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900193,
+   "nombre": "Flutter Ghost Maid",
+   "npc_type": 9833,
+   "sprite": 43297,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900194,
+   "nombre": "Flutter Ghost Maid",
+   "npc_type": 9833,
+   "sprite": 43297,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    143
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900195,
+   "nombre": "Flutter Ghost Maid",
+   "npc_type": 9833,
+   "sprite": 43297,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900196,
+   "nombre": "Flutter Ghost Maid",
+   "npc_type": 9833,
+   "sprite": 43297,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    153
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900197,
+   "nombre": "Flutter Ghost Maid",
+   "npc_type": 9833,
+   "sprite": 43297,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    89,
+    158
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900198,
+   "nombre": "Flutter Ghost Maid",
+   "npc_type": 9833,
+   "sprite": 43297,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900199,
+   "nombre": "Flutter Ghost Maid",
+   "npc_type": 9833,
+   "sprite": 43297,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900200,
+   "nombre": "Flutter Ghost Maid",
+   "npc_type": 9833,
+   "sprite": 43297,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900201,
+   "nombre": "Flutter Ghost Maid",
+   "npc_type": 9833,
+   "sprite": 43297,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900202,
+   "nombre": "Flutter Ghost Maid",
+   "npc_type": 9833,
+   "sprite": 43297,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    143
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900203,
+   "nombre": "Flutter Ghost Maid",
+   "npc_type": 9833,
+   "sprite": 43297,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900204,
+   "nombre": "Flutter Ghost Maid",
+   "npc_type": 9833,
+   "sprite": 43297,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    153
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900205,
+   "nombre": "Flutter Ghost Maid",
+   "npc_type": 9833,
+   "sprite": 43297,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    89,
+    163
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900206,
+   "nombre": "Flutter Ghost Maid",
+   "npc_type": 9833,
+   "sprite": 43297,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    62,
+    126
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900207,
+   "nombre": "Flutter Ghost Maid",
+   "npc_type": 9833,
+   "sprite": 43297,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    126
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900208,
+   "nombre": "Flutter Ghost Maid",
+   "npc_type": 9833,
+   "sprite": 43297,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    126
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900209,
+   "nombre": "Flutter Ghost Maid",
+   "npc_type": 9833,
+   "sprite": 43297,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    126
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900210,
+   "nombre": "Flutter Ghost Maid",
+   "npc_type": 9833,
+   "sprite": 43297,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    126
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900211,
+   "nombre": "Flutter Ghost Maid",
+   "npc_type": 9833,
+   "sprite": 43297,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    94,
+    158
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900212,
+   "nombre": "Flutter Ghost Maid",
+   "npc_type": 9833,
+   "sprite": 43297,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    94,
+    163
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900213,
+   "nombre": "Flutter Ghost Maid",
+   "npc_type": 9833,
+   "sprite": 43297,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900214,
+   "nombre": "Flutter Ghost Maid",
+   "npc_type": 9833,
+   "sprite": 43297,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    164
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900215,
+   "nombre": "Flutter Ghost Maid",
+   "npc_type": 9833,
+   "sprite": 43297,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900216,
+   "nombre": "Flutter Ghost Maid",
+   "npc_type": 9833,
+   "sprite": 43297,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 178
+  },
+  {
+   "entity_id": 69900217,
+   "nombre": "Rage Thunderer",
+   "npc_type": 9836,
+   "sprite": 43318,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    196,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900218,
+   "nombre": "Rage Thunderer",
+   "npc_type": 9836,
+   "sprite": 43318,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    191,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900219,
+   "nombre": "Rage Thunderer",
+   "npc_type": 9836,
+   "sprite": 43318,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    191,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900220,
+   "nombre": "Rage Thunderer",
+   "npc_type": 9836,
+   "sprite": 43318,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    191,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900221,
+   "nombre": "Rage Thunderer",
+   "npc_type": 9836,
+   "sprite": 43318,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    196,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900222,
+   "nombre": "Rage Thunderer",
+   "npc_type": 9836,
+   "sprite": 43318,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    196,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900223,
+   "nombre": "Rage Thunderer",
+   "npc_type": 9836,
+   "sprite": 43318,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    201,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900224,
+   "nombre": "Rage Thunderer",
+   "npc_type": 9836,
+   "sprite": 43318,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    201,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900225,
+   "nombre": "Rage Thunderer",
+   "npc_type": 9836,
+   "sprite": 43318,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    201,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900226,
+   "nombre": "Rage Thunderer",
+   "npc_type": 9836,
+   "sprite": 43318,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    186,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900227,
+   "nombre": "Rage Thunderer",
+   "npc_type": 9836,
+   "sprite": 43318,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    186,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900228,
+   "nombre": "Rage Thunderer",
+   "npc_type": 9836,
+   "sprite": 43318,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    186,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900229,
+   "nombre": "Rage Thunderer",
+   "npc_type": 9836,
+   "sprite": 43318,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    186,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900230,
+   "nombre": "Rage Thunderer",
+   "npc_type": 9836,
+   "sprite": 43318,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    186,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900231,
+   "nombre": "Rage Thunderer",
+   "npc_type": 9836,
+   "sprite": 43318,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    191,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900232,
+   "nombre": "Rage Thunderer",
+   "npc_type": 9836,
+   "sprite": 43318,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    191,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900233,
+   "nombre": "Rage Thunderer",
+   "npc_type": 9836,
+   "sprite": 43318,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    196,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900234,
+   "nombre": "Rage Thunderer",
+   "npc_type": 9836,
+   "sprite": 43318,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    196,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900235,
+   "nombre": "Rage Thunderer",
+   "npc_type": 9836,
+   "sprite": 43318,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    201,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900236,
+   "nombre": "Rage Thunderer",
+   "npc_type": 9836,
+   "sprite": 43318,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    201,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900237,
+   "nombre": "Rage Thunderer",
+   "npc_type": 9836,
+   "sprite": 43318,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900238,
+   "nombre": "Rage Thunderer",
+   "npc_type": 9836,
+   "sprite": 43318,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900239,
+   "nombre": "Rage Thunderer",
+   "npc_type": 9836,
+   "sprite": 43318,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900240,
+   "nombre": "Rage Thunderer",
+   "npc_type": 9836,
+   "sprite": 43318,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900241,
+   "nombre": "Rage Thunderer",
+   "npc_type": 9836,
+   "sprite": 43318,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900242,
+   "nombre": "Cloudfire Ox",
+   "npc_type": 9838,
+   "sprite": 43309,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    184,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900243,
+   "nombre": "Cloudfire Ox",
+   "npc_type": 9838,
+   "sprite": 43309,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    189,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900244,
+   "nombre": "Cloudfire Ox",
+   "npc_type": 9838,
+   "sprite": 43309,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    194,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900245,
+   "nombre": "Cloudfire Ox",
+   "npc_type": 9838,
+   "sprite": 43309,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    199,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900246,
+   "nombre": "Cloudfire Ox",
+   "npc_type": 9838,
+   "sprite": 43309,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    204,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900247,
+   "nombre": "Cloudfire Ox",
+   "npc_type": 9838,
+   "sprite": 43309,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    181,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900248,
+   "nombre": "Cloudfire Ox",
+   "npc_type": 9838,
+   "sprite": 43309,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    181,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900249,
+   "nombre": "Cloudfire Ox",
+   "npc_type": 9838,
+   "sprite": 43309,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    181,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900250,
+   "nombre": "Cloudfire Ox",
+   "npc_type": 9838,
+   "sprite": 43309,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    181,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900251,
+   "nombre": "Cloudfire Ox",
+   "npc_type": 9838,
+   "sprite": 43309,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    181,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900252,
+   "nombre": "Cloudfire Ox",
+   "npc_type": 9838,
+   "sprite": 43309,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    209,
+    46
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900253,
+   "nombre": "Cloudfire Ox",
+   "npc_type": 9838,
+   "sprite": 43309,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    179,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900254,
+   "nombre": "Cloudfire Ox",
+   "npc_type": 9838,
+   "sprite": 43309,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    179,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900255,
+   "nombre": "Cloudfire Ox",
+   "npc_type": 9838,
+   "sprite": 43309,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    184,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900256,
+   "nombre": "Cloudfire Ox",
+   "npc_type": 9838,
+   "sprite": 43309,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    189,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900257,
+   "nombre": "Cloudfire Ox",
+   "npc_type": 9838,
+   "sprite": 43309,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    194,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900258,
+   "nombre": "Cloudfire Ox",
+   "npc_type": 9838,
+   "sprite": 43309,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    199,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900259,
+   "nombre": "Cloudfire Ox",
+   "npc_type": 9838,
+   "sprite": 43309,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    204,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900260,
+   "nombre": "Cloudfire Ox",
+   "npc_type": 9838,
+   "sprite": 43309,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    51
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900261,
+   "nombre": "Cloudfire Ox",
+   "npc_type": 9838,
+   "sprite": 43309,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900262,
+   "nombre": "Cloudfire Ox",
+   "npc_type": 9838,
+   "sprite": 43309,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900263,
+   "nombre": "Cloudfire Ox",
+   "npc_type": 9838,
+   "sprite": 43309,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900264,
+   "nombre": "Cloudfire Ox",
+   "npc_type": 9838,
+   "sprite": 43309,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900265,
+   "nombre": "Cloudfire Ox",
+   "npc_type": 9838,
+   "sprite": 43309,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900266,
+   "nombre": "Cloudfire Ox",
+   "npc_type": 9838,
+   "sprite": 43309,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 176
+  },
+  {
+   "entity_id": 69900267,
+   "nombre": "Divine Monkey",
+   "npc_type": 9837,
+   "sprite": 43312,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    51
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900268,
+   "nombre": "Divine Monkey",
+   "npc_type": 9837,
+   "sprite": 43312,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900269,
+   "nombre": "Divine Monkey",
+   "npc_type": 9837,
+   "sprite": 43312,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900270,
+   "nombre": "Divine Monkey",
+   "npc_type": 9837,
+   "sprite": 43312,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900271,
+   "nombre": "Divine Monkey",
+   "npc_type": 9837,
+   "sprite": 43312,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900272,
+   "nombre": "Divine Monkey",
+   "npc_type": 9837,
+   "sprite": 43312,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900273,
+   "nombre": "Divine Monkey",
+   "npc_type": 9837,
+   "sprite": 43312,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    188,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900274,
+   "nombre": "Divine Monkey",
+   "npc_type": 9837,
+   "sprite": 43312,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    193,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900275,
+   "nombre": "Divine Monkey",
+   "npc_type": 9837,
+   "sprite": 43312,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    198,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900276,
+   "nombre": "Divine Monkey",
+   "npc_type": 9837,
+   "sprite": 43312,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    203,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900277,
+   "nombre": "Divine Monkey",
+   "npc_type": 9837,
+   "sprite": 43312,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    208,
+    81
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900278,
+   "nombre": "Divine Monkey",
+   "npc_type": 9837,
+   "sprite": 43312,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    213,
+    81
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900279,
+   "nombre": "Divine Monkey",
+   "npc_type": 9837,
+   "sprite": 43312,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    218,
+    81
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900280,
+   "nombre": "Divine Monkey",
+   "npc_type": 9837,
+   "sprite": 43312,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    46
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900281,
+   "nombre": "Divine Monkey",
+   "npc_type": 9837,
+   "sprite": 43312,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    46
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900282,
+   "nombre": "Divine Monkey",
+   "npc_type": 9837,
+   "sprite": 43312,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    51
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900283,
+   "nombre": "Divine Monkey",
+   "npc_type": 9837,
+   "sprite": 43312,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900284,
+   "nombre": "Divine Monkey",
+   "npc_type": 9837,
+   "sprite": 43312,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900285,
+   "nombre": "Divine Monkey",
+   "npc_type": 9837,
+   "sprite": 43312,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900286,
+   "nombre": "Divine Monkey",
+   "npc_type": 9837,
+   "sprite": 43312,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900287,
+   "nombre": "Divine Monkey",
+   "npc_type": 9837,
+   "sprite": 43312,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900288,
+   "nombre": "Divine Monkey",
+   "npc_type": 9837,
+   "sprite": 43312,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900289,
+   "nombre": "Divine Monkey",
+   "npc_type": 9837,
+   "sprite": 43312,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900290,
+   "nombre": "Divine Monkey",
+   "npc_type": 9837,
+   "sprite": 43312,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    188,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900291,
+   "nombre": "Divine Monkey",
+   "npc_type": 9837,
+   "sprite": 43312,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    193,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900292,
+   "nombre": "Giant Bladewielder",
+   "npc_type": 9829,
+   "sprite": 43321,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    166,
+    127
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900293,
+   "nombre": "Giant Bladewielder",
+   "npc_type": 9829,
+   "sprite": 43321,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    171,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900294,
+   "nombre": "Giant Bladewielder",
+   "npc_type": 9829,
+   "sprite": 43321,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    122
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900295,
+   "nombre": "Giant Bladewielder",
+   "npc_type": 9829,
+   "sprite": 43321,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    166,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900296,
+   "nombre": "Giant Bladewielder",
+   "npc_type": 9829,
+   "sprite": 43321,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    127
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900297,
+   "nombre": "Giant Bladewielder",
+   "npc_type": 9829,
+   "sprite": 43321,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    171,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900298,
+   "nombre": "Giant Bladewielder",
+   "npc_type": 9829,
+   "sprite": 43321,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    132
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900299,
+   "nombre": "Giant Bladewielder",
+   "npc_type": 9829,
+   "sprite": 43321,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    166,
+    132
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900300,
+   "nombre": "Giant Bladewielder",
+   "npc_type": 9829,
+   "sprite": 43321,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    171,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900301,
+   "nombre": "Giant Bladewielder",
+   "npc_type": 9829,
+   "sprite": 43321,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    171,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900302,
+   "nombre": "Giant Bladewielder",
+   "npc_type": 9829,
+   "sprite": 43321,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900303,
+   "nombre": "Giant Bladewielder",
+   "npc_type": 9829,
+   "sprite": 43321,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    156,
+    117
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900304,
+   "nombre": "Giant Bladewielder",
+   "npc_type": 9829,
+   "sprite": 43321,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900305,
+   "nombre": "Giant Bladewielder",
+   "npc_type": 9829,
+   "sprite": 43321,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    156,
+    122
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 180
+  },
+  {
+   "entity_id": 69900306,
+   "nombre": "Empress Nephile",
+   "npc_type": 9573,
+   "sprite": 43327,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    207,
+    149
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 185
+  },
+  {
+   "entity_id": 69900307,
+   "nombre": "Silent Urn",
+   "npc_type": 9653,
+   "sprite": 43328,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    45,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900308,
+   "nombre": "Silent Urn",
+   "npc_type": 9653,
+   "sprite": 43328,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    11
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900309,
+   "nombre": "Silent Urn",
+   "npc_type": 9653,
+   "sprite": 43328,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    88,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900310,
+   "nombre": "Silent Urn",
+   "npc_type": 9653,
+   "sprite": 43328,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    124,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900311,
+   "nombre": "Silent Urn",
+   "npc_type": 9653,
+   "sprite": 43328,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    139,
+    126
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900312,
+   "nombre": "Silent Urn",
+   "npc_type": 9653,
+   "sprite": 43328,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 170
+  },
+  {
+   "entity_id": 69900313,
+   "nombre": "Busy Jackstraw",
+   "npc_type": 708,
+   "sprite": 42004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    265,
+    4
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 69900314,
+   "nombre": "Busy Jackstraw",
+   "npc_type": 708,
+   "sprite": 42004,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    270,
+    3
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  }
+ ],
+ "recursos": [
+  {
+   "entity_id": 79900000,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    288,
+    752
+   ],
+   "tile": [
+    9,
+    23
+   ],
+   "crudo": "602dc3040000000020010000f00200000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 79900001,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    215,
+    816
+   ],
+   "tile": [
+    6,
+    25
+   ],
+   "crudo": "612dc30400000000d7000000300300000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 79900002,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    336,
+    816
+   ],
+   "tile": [
+    10,
+    25
+   ],
+   "crudo": "622dc3040000000050010000300300000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 79900003,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    199,
+    880
+   ],
+   "tile": [
+    6,
+    27
+   ],
+   "crudo": "632dc30400000000c7000000700300000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 79900004,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    334,
+    848
+   ],
+   "tile": [
+    10,
+    26
+   ],
+   "crudo": "642dc304000000004e010000500300000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 79900005,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    195,
+    912
+   ],
+   "tile": [
+    6,
+    28
+   ],
+   "crudo": "652dc30400000000c3000000900300000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 79900006,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    331,
+    912
+   ],
+   "tile": [
+    10,
+    28
+   ],
+   "crudo": "662dc304000000004b010000900300000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 79900007,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1007,
+    304
+   ],
+   "tile": [
+    31,
+    9
+   ],
+   "crudo": "672dc30400000000ef030000300100000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 79900008,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    888,
+    272
+   ],
+   "tile": [
+    27,
+    8
+   ],
+   "crudo": "682dc3040000000078030000100100000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 79900009,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    958,
+    240
+   ],
+   "tile": [
+    29,
+    7
+   ],
+   "crudo": "692dc30400000000be030000f00000000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 79900010,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1075,
+    240
+   ],
+   "tile": [
+    33,
+    7
+   ],
+   "crudo": "6a2dc3040000000033040000f00000000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 79900011,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1109,
+    304
+   ],
+   "tile": [
+    34,
+    9
+   ],
+   "crudo": "6b2dc3040000000055040000300100000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 79900012,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1218,
+    304
+   ],
+   "tile": [
+    38,
+    9
+   ],
+   "crudo": "6c2dc30400000000c2040000300100000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 79900013,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1212,
+    240
+   ],
+   "tile": [
+    37,
+    7
+   ],
+   "crudo": "6d2dc30400000000bc040000f00000000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 79900014,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1198,
+    112
+   ],
+   "tile": [
+    37,
+    3
+   ],
+   "crudo": "6e2dc30400000000ae040000700000000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 79900015,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1205,
+    176
+   ],
+   "tile": [
+    37,
+    5
+   ],
+   "crudo": "6f2dc30400000000b5040000b00000000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 79900016,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    3205,
+    3888
+   ],
+   "tile": [
+    100,
+    121
+   ],
+   "crudo": "702dc30402000000850c0000300f00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 79900017,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    3461,
+    4016
+   ],
+   "tile": [
+    108,
+    125
+   ],
+   "crudo": "712dc30402000000850d0000b00f00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 79900018,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    3515,
+    4048
+   ],
+   "tile": [
+    109,
+    126
+   ],
+   "crudo": "722dc30402000000bb0d0000d00f00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 79900019,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    5461,
+    2608
+   ],
+   "tile": [
+    170,
+    81
+   ],
+   "crudo": "732dc3040200000055150000300a00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 79900020,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    5180,
+    3984
+   ],
+   "tile": [
+    161,
+    124
+   ],
+   "crudo": "742dc304000000003c140000900f00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 79900021,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    5306,
+    3920
+   ],
+   "tile": [
+    165,
+    122
+   ],
+   "crudo": "752dc30400000000ba140000500f00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 79900022,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    5210,
+    4048
+   ],
+   "tile": [
+    162,
+    126
+   ],
+   "crudo": "762dc304000000005a140000d00f00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 79900023,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    5440,
+    3952
+   ],
+   "tile": [
+    170,
+    123
+   ],
+   "crudo": "772dc3040000000040150000700f00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 79900024,
+   "sprite": 60094,
+   "capa": 0,
+   "px": [
+    3200,
+    5168
+   ],
+   "tile": [
+    100,
+    161
+   ],
+   "crudo": "782dc30400000000800c0000301400000000000027000000000000001a000000dc06beea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60094"
+  },
+  {
+   "entity_id": 79900025,
+   "sprite": 60094,
+   "capa": 0,
+   "px": [
+    1344,
+    3312
+   ],
+   "tile": [
+    42,
+    103
+   ],
+   "crudo": "792dc3040000000040050000f00c00000000000027000000000000001a000000dc06beea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60094"
+  },
+  {
+   "entity_id": 79900026,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    3229,
+    4144
+   ],
+   "tile": [
+    100,
+    129
+   ],
+   "crudo": "7a2dc304000000009d0c0000301000000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 79900027,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1082,
+    432
+   ],
+   "tile": [
+    33,
+    13
+   ],
+   "crudo": "7b2dc304000000003a040000b00100000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 79900028,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    3145,
+    4080
+   ],
+   "tile": [
+    98,
+    127
+   ],
+   "crudo": "7c2dc30400000000490c0000f00f00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 79900029,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    3059,
+    4048
+   ],
+   "tile": [
+    95,
+    126
+   ],
+   "crudo": "7d2dc30400000000f30b0000d00f00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 79900030,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5940,
+    2384
+   ],
+   "tile": [
+    185,
+    74
+   ],
+   "crudo": "7e2dc3040000000034170000500900000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 79900031,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5853,
+    2320
+   ],
+   "tile": [
+    182,
+    72
+   ],
+   "crudo": "7f2dc30400000000dd160000100900000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 79900032,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5777,
+    2288
+   ],
+   "tile": [
+    180,
+    71
+   ],
+   "crudo": "802dc3040000000091160000f00800000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 79900033,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5276,
+    4144
+   ],
+   "tile": [
+    164,
+    129
+   ],
+   "crudo": "812dc304000000009c140000301000000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 79900034,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5362,
+    4112
+   ],
+   "tile": [
+    167,
+    128
+   ],
+   "crudo": "822dc30400000000f2140000101000000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 79900035,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5448,
+    4080
+   ],
+   "tile": [
+    170,
+    127
+   ],
+   "crudo": "832dc3040000000048150000f00f00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 79900036,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5541,
+    4048
+   ],
+   "tile": [
+    173,
+    126
+   ],
+   "crudo": "842dc30400000000a5150000d00f00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 79900037,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5654,
+    3984
+   ],
+   "tile": [
+    176,
+    124
+   ],
+   "crudo": "852dc3040000000016160000900f00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 79900038,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    3357,
+    4144
+   ],
+   "tile": [
+    104,
+    129
+   ],
+   "crudo": "862dc304020000001d0d0000301000000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 79900039,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    3121,
+    4016
+   ],
+   "tile": [
+    97,
+    125
+   ],
+   "crudo": "872dc30402000000310c0000b00f00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 79900040,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    5840,
+    2384
+   ],
+   "tile": [
+    182,
+    74
+   ],
+   "crudo": "882dc30402000000d0160000500900000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 79900041,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    5433,
+    2480
+   ],
+   "tile": [
+    169,
+    77
+   ],
+   "crudo": "892dc3040200000039150000b00900000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 79900042,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    5301,
+    4112
+   ],
+   "tile": [
+    165,
+    128
+   ],
+   "crudo": "8a2dc30400000000b5140000101000000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 79900043,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    5541,
+    3984
+   ],
+   "tile": [
+    173,
+    124
+   ],
+   "crudo": "8b2dc30400000000a5150000900f00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  }
+ ]
+}

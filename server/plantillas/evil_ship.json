@@ -1,0 +1,1898 @@
+{
+ "_nota": "evil_ship (stage 97). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map097.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "stage": 97,
+ "spawns": [
+  {
+   "entity_id": 59700000,
+   "nombre": "Sallen",
+   "npc_type": 1231,
+   "sprite": 42410,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    37,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700001,
+   "nombre": "Scale Soldier",
+   "npc_type": 1207,
+   "sprite": 42381,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    297,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 94
+  },
+  {
+   "entity_id": 59700002,
+   "nombre": "Scale Soldier",
+   "npc_type": 1207,
+   "sprite": 42381,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    288,
+    26
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 94
+  },
+  {
+   "entity_id": 59700003,
+   "nombre": "Scale Soldier",
+   "npc_type": 1207,
+   "sprite": 42381,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    294,
+    31
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 94
+  },
+  {
+   "entity_id": 59700004,
+   "nombre": "Linberd Elder",
+   "npc_type": 1210,
+   "sprite": 42432,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    292,
+    36
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 96
+  },
+  {
+   "entity_id": 59700005,
+   "nombre": "Scale Soldier",
+   "npc_type": 1207,
+   "sprite": 42381,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    292,
+    41
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 94
+  },
+  {
+   "entity_id": 59700006,
+   "nombre": "Scale Soldier",
+   "npc_type": 1207,
+   "sprite": 42381,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    283,
+    21
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 94
+  },
+  {
+   "entity_id": 59700007,
+   "nombre": "Scale Soldier",
+   "npc_type": 1207,
+   "sprite": 42381,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    289,
+    31
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 94
+  },
+  {
+   "entity_id": 59700008,
+   "nombre": "Linberd Elder",
+   "npc_type": 1210,
+   "sprite": 42432,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    297,
+    42
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 96
+  },
+  {
+   "entity_id": 59700009,
+   "nombre": "Scale Soldier",
+   "npc_type": 1207,
+   "sprite": 42381,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    299,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 94
+  },
+  {
+   "entity_id": 59700010,
+   "nombre": "Scale Soldier",
+   "npc_type": 1207,
+   "sprite": 42381,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    283,
+    26
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 94
+  },
+  {
+   "entity_id": 59700011,
+   "nombre": "Scale Soldier",
+   "npc_type": 1207,
+   "sprite": 42381,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    293,
+    26
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 94
+  },
+  {
+   "entity_id": 59700012,
+   "nombre": "Linberd Elder",
+   "npc_type": 1210,
+   "sprite": 42432,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    302,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 96
+  },
+  {
+   "entity_id": 59700013,
+   "nombre": "Scale Soldier",
+   "npc_type": 1207,
+   "sprite": 42381,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    302,
+    42
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 94
+  },
+  {
+   "entity_id": 59700014,
+   "nombre": "Scale Soldier",
+   "npc_type": 1207,
+   "sprite": 42381,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    283,
+    31
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 94
+  },
+  {
+   "entity_id": 59700015,
+   "nombre": "Scale Soldier",
+   "npc_type": 1207,
+   "sprite": 42381,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    298,
+    26
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 94
+  },
+  {
+   "entity_id": 59700016,
+   "nombre": "Linberd Elder",
+   "npc_type": 1210,
+   "sprite": 42432,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    304,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 96
+  },
+  {
+   "entity_id": 59700017,
+   "nombre": "Linberd Knight",
+   "npc_type": 1212,
+   "sprite": 42433,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 98
+  },
+  {
+   "entity_id": 59700018,
+   "nombre": "Linberd Knight",
+   "npc_type": 1212,
+   "sprite": 42433,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    159,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 98
+  },
+  {
+   "entity_id": 59700019,
+   "nombre": "Linberd Knight",
+   "npc_type": 1212,
+   "sprite": 42433,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    157,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 98
+  },
+  {
+   "entity_id": 59700020,
+   "nombre": "Linberd Knight",
+   "npc_type": 1212,
+   "sprite": 42433,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    159,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 98
+  },
+  {
+   "entity_id": 59700021,
+   "nombre": "Linberd Knight",
+   "npc_type": 1212,
+   "sprite": 42433,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    134,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 98
+  },
+  {
+   "entity_id": 59700022,
+   "nombre": "Linberd Knight",
+   "npc_type": 1212,
+   "sprite": 42433,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 98
+  },
+  {
+   "entity_id": 59700023,
+   "nombre": "Linberd Knight",
+   "npc_type": 1212,
+   "sprite": 42433,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    154,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 98
+  },
+  {
+   "entity_id": 59700024,
+   "nombre": "Linberd Knight",
+   "npc_type": 1212,
+   "sprite": 42433,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    152,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 98
+  },
+  {
+   "entity_id": 59700025,
+   "nombre": "Linberd Knight",
+   "npc_type": 1212,
+   "sprite": 42433,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    154,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 98
+  },
+  {
+   "entity_id": 59700026,
+   "nombre": "Linberd Knight",
+   "npc_type": 1212,
+   "sprite": 42433,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    129,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 98
+  },
+  {
+   "entity_id": 59700027,
+   "nombre": "Linberd Knight",
+   "npc_type": 1212,
+   "sprite": 42433,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 98
+  },
+  {
+   "entity_id": 59700028,
+   "nombre": "Linberd Knight",
+   "npc_type": 1212,
+   "sprite": 42433,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    154,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 98
+  },
+  {
+   "entity_id": 59700029,
+   "nombre": "Linberd Knight",
+   "npc_type": 1212,
+   "sprite": 42433,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    152,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 98
+  },
+  {
+   "entity_id": 59700030,
+   "nombre": "Linberd Knight",
+   "npc_type": 1212,
+   "sprite": 42433,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    159,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 98
+  },
+  {
+   "entity_id": 59700031,
+   "nombre": "Linberd Knight",
+   "npc_type": 1212,
+   "sprite": 42433,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    129,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 98
+  },
+  {
+   "entity_id": 59700032,
+   "nombre": "Linberd Elder",
+   "npc_type": 1210,
+   "sprite": 42432,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 96
+  },
+  {
+   "entity_id": 59700033,
+   "nombre": "Linberd Elder",
+   "npc_type": 1210,
+   "sprite": 42432,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 96
+  },
+  {
+   "entity_id": 59700034,
+   "nombre": "Linberd Elder",
+   "npc_type": 1210,
+   "sprite": 42432,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 96
+  },
+  {
+   "entity_id": 59700035,
+   "nombre": "Linberd Elder",
+   "npc_type": 1210,
+   "sprite": 42432,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    142,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 96
+  },
+  {
+   "entity_id": 59700036,
+   "nombre": "Linberd Elder",
+   "npc_type": 1210,
+   "sprite": 42432,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    142,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 96
+  },
+  {
+   "entity_id": 59700037,
+   "nombre": "Fire Shark",
+   "npc_type": 1213,
+   "sprite": 42434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    280,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700038,
+   "nombre": "Fire Shark",
+   "npc_type": 1213,
+   "sprite": 42434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    277,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700039,
+   "nombre": "Fire Shark",
+   "npc_type": 1213,
+   "sprite": 42434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    117
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700040,
+   "nombre": "Fire Shark",
+   "npc_type": 1213,
+   "sprite": 42434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    275,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700041,
+   "nombre": "Fire Shark",
+   "npc_type": 1213,
+   "sprite": 42434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    272,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700042,
+   "nombre": "Fire Shark",
+   "npc_type": 1213,
+   "sprite": 42434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    112
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700043,
+   "nombre": "Fire Shark",
+   "npc_type": 1213,
+   "sprite": 42434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    275,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700044,
+   "nombre": "Fire Shark",
+   "npc_type": 1213,
+   "sprite": 42434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    272,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700045,
+   "nombre": "Fire Shark",
+   "npc_type": 1213,
+   "sprite": 42434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    117
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700046,
+   "nombre": "Fire Shark",
+   "npc_type": 1213,
+   "sprite": 42434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    275,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700047,
+   "nombre": "Fire Shark",
+   "npc_type": 1213,
+   "sprite": 42434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    280,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700048,
+   "nombre": "Fire Shark",
+   "npc_type": 1213,
+   "sprite": 42434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    272,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700049,
+   "nombre": "Fire Shark",
+   "npc_type": 1213,
+   "sprite": 42434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    122
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700050,
+   "nombre": "Fire Shark",
+   "npc_type": 1213,
+   "sprite": 42434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    280,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700051,
+   "nombre": "Fire Shark",
+   "npc_type": 1213,
+   "sprite": 42434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    277,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700052,
+   "nombre": "Mamen",
+   "npc_type": 1229,
+   "sprite": 42414,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    197,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700053,
+   "nombre": "Queer Sheep",
+   "npc_type": 1388,
+   "sprite": 42031,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    260,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 59700054,
+   "nombre": "Strange Sheep",
+   "npc_type": 1387,
+   "sprite": 42031,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    253,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 59700055,
+   "nombre": "Odd Sheep",
+   "npc_type": 1386,
+   "sprite": 42031,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    245,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 59700056,
+   "nombre": "Fire Shark",
+   "npc_type": 1213,
+   "sprite": 42434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    285,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700057,
+   "nombre": "Fire Shark",
+   "npc_type": 1213,
+   "sprite": 42434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    277,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700058,
+   "nombre": "Fire Shark",
+   "npc_type": 1213,
+   "sprite": 42434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    112
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700059,
+   "nombre": "Fire Shark",
+   "npc_type": 1213,
+   "sprite": 42434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    285,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700060,
+   "nombre": "Fire Shark",
+   "npc_type": 1213,
+   "sprite": 42434,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    282,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700061,
+   "nombre": "Asharl",
+   "npc_type": 1389,
+   "sprite": 42412,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700062,
+   "nombre": "Asharl",
+   "npc_type": 1230,
+   "sprite": 42412,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700063,
+   "nombre": "Blade Octopus",
+   "npc_type": 1214,
+   "sprite": 42435,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700064,
+   "nombre": "Blade Octopus",
+   "npc_type": 1214,
+   "sprite": 42435,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    86,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700065,
+   "nombre": "Blade Octopus",
+   "npc_type": 1214,
+   "sprite": 42435,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    75,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700066,
+   "nombre": "Blade Octopus",
+   "npc_type": 1214,
+   "sprite": 42435,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    94,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700067,
+   "nombre": "Blade Octopus",
+   "npc_type": 1214,
+   "sprite": 42435,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    68,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700068,
+   "nombre": "Blade Octopus",
+   "npc_type": 1214,
+   "sprite": 42435,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700069,
+   "nombre": "Blade Octopus",
+   "npc_type": 1214,
+   "sprite": 42435,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    88,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700070,
+   "nombre": "Blade Octopus",
+   "npc_type": 1214,
+   "sprite": 42435,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    84,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700071,
+   "nombre": "Blade Octopus",
+   "npc_type": 1214,
+   "sprite": 42435,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    75
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700072,
+   "nombre": "Blade Octopus",
+   "npc_type": 1214,
+   "sprite": 42435,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700073,
+   "nombre": "Blade Octopus",
+   "npc_type": 1214,
+   "sprite": 42435,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700074,
+   "nombre": "Blade Octopus",
+   "npc_type": 1214,
+   "sprite": 42435,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    81,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700075,
+   "nombre": "Blade Octopus",
+   "npc_type": 1214,
+   "sprite": 42435,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    70,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700076,
+   "nombre": "Blade Octopus",
+   "npc_type": 1214,
+   "sprite": 42435,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    89,
+    72
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700077,
+   "nombre": "Blade Octopus",
+   "npc_type": 1214,
+   "sprite": 42435,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700078,
+   "nombre": "Death Captain",
+   "npc_type": 1216,
+   "sprite": 42437,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700079,
+   "nombre": "Death Captain",
+   "npc_type": 1216,
+   "sprite": 42437,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700080,
+   "nombre": "Death Captain",
+   "npc_type": 1216,
+   "sprite": 42437,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700081,
+   "nombre": "Death Captain",
+   "npc_type": 1216,
+   "sprite": 42437,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700082,
+   "nombre": "Captain Hoc",
+   "npc_type": 1385,
+   "sprite": 42400,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    15,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700083,
+   "nombre": "Lantern Fish",
+   "npc_type": 1215,
+   "sprite": 42436,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    10,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700084,
+   "nombre": "Lantern Fish",
+   "npc_type": 1215,
+   "sprite": 42436,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    32,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700085,
+   "nombre": "Lantern Fish",
+   "npc_type": 1215,
+   "sprite": 42436,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    10,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700086,
+   "nombre": "Lantern Fish",
+   "npc_type": 1215,
+   "sprite": 42436,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    27,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700087,
+   "nombre": "Lantern Fish",
+   "npc_type": 1215,
+   "sprite": 42436,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    10,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700088,
+   "nombre": "Lantern Fish",
+   "npc_type": 1215,
+   "sprite": 42436,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    27,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700089,
+   "nombre": "Lantern Fish",
+   "npc_type": 1215,
+   "sprite": 42436,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    15,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700090,
+   "nombre": "Lantern Fish",
+   "npc_type": 1215,
+   "sprite": 42436,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    27,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700091,
+   "nombre": "Lantern Fish",
+   "npc_type": 1215,
+   "sprite": 42436,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    15,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700092,
+   "nombre": "Lantern Fish",
+   "npc_type": 1215,
+   "sprite": 42436,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    32,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 59700093,
+   "nombre": "Hell Altar",
+   "npc_type": 1399,
+   "sprite": 42256,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    204,
+    96
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 59700094,
+   "nombre": "Hell Altar",
+   "npc_type": 1399,
+   "sprite": 42256,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    199,
+    91
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 59700095,
+   "nombre": "Hell Altar",
+   "npc_type": 1399,
+   "sprite": 42256,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    199,
+    96
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 59700096,
+   "nombre": "Hell Altar",
+   "npc_type": 1399,
+   "sprite": 42256,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    202,
+    101
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 59700097,
+   "nombre": "Hell Altar",
+   "npc_type": 1399,
+   "sprite": 42256,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    204,
+    91
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 59700098,
+   "nombre": "Hell Altar",
+   "npc_type": 1399,
+   "sprite": 42256,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    207,
+    101
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 59700099,
+   "nombre": "Hell Altar",
+   "npc_type": 1399,
+   "sprite": 42256,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    209,
+    91
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 59700100,
+   "nombre": "Hell Altar",
+   "npc_type": 1399,
+   "sprite": 42256,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    209,
+    96
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 59700101,
+   "nombre": "Hell Altar",
+   "npc_type": 1399,
+   "sprite": 42256,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    212,
+    101
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 59700102,
+   "nombre": "Hell Altar",
+   "npc_type": 1399,
+   "sprite": 42256,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    194,
+    86
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 59700103,
+   "nombre": "Zero Altar",
+   "npc_type": 1400,
+   "sprite": 42259,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    90
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 59700104,
+   "nombre": "Zero Altar",
+   "npc_type": 1400,
+   "sprite": 42259,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 59700105,
+   "nombre": "Zero Altar",
+   "npc_type": 1400,
+   "sprite": 42259,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    217,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 59700106,
+   "nombre": "Zero Altar",
+   "npc_type": 1400,
+   "sprite": 42259,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    217,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 59700107,
+   "nombre": "Zero Altar",
+   "npc_type": 1400,
+   "sprite": 42259,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    199,
+    86
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 59700108,
+   "nombre": "Zero Altar",
+   "npc_type": 1400,
+   "sprite": 42259,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    202,
+    106
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 59700109,
+   "nombre": "Zero Altar",
+   "npc_type": 1400,
+   "sprite": 42259,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    204,
+    86
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 59700110,
+   "nombre": "Zero Altar",
+   "npc_type": 1400,
+   "sprite": 42259,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    207,
+    106
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 59700111,
+   "nombre": "Zero Altar",
+   "npc_type": 1400,
+   "sprite": 42259,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    209,
+    86
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 59700112,
+   "nombre": "Zero Altar",
+   "npc_type": 1400,
+   "sprite": 42259,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    212,
+    106
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 59700113,
+   "nombre": "Ray Altar",
+   "npc_type": 1401,
+   "sprite": 42262,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    85
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 59700114,
+   "nombre": "Ray Altar",
+   "npc_type": 1401,
+   "sprite": 42262,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    196,
+    81
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 59700115,
+   "nombre": "Ray Altar",
+   "npc_type": 1401,
+   "sprite": 42262,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    201,
+    81
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 59700116,
+   "nombre": "Ray Altar",
+   "npc_type": 1401,
+   "sprite": 42262,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    81
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 59700117,
+   "nombre": "Ray Altar",
+   "npc_type": 1401,
+   "sprite": 42262,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    80
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 59700118,
+   "nombre": "Ray Altar",
+   "npc_type": 1401,
+   "sprite": 42262,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    80
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 59700119,
+   "nombre": "Ray Altar",
+   "npc_type": 1401,
+   "sprite": 42262,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    85
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 59700120,
+   "nombre": "Ray Altar",
+   "npc_type": 1401,
+   "sprite": 42262,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    90
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 59700121,
+   "nombre": "Ray Altar",
+   "npc_type": 1401,
+   "sprite": 42262,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  },
+  {
+   "entity_id": 59700122,
+   "nombre": "Ray Altar",
+   "npc_type": 1401,
+   "sprite": 42262,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    194,
+    91
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 90
+  }
+ ],
+ "recursos": [
+  {
+   "entity_id": 69700000,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    8718,
+    5040
+   ],
+   "tile": [
+    272,
+    157
+   ],
+   "crudo": "a0892704000000000e220000b01300000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 69700001,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    8813,
+    4944
+   ],
+   "tile": [
+    275,
+    154
+   ],
+   "crudo": "a1892704000000006d220000501300000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 69700002,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    8936,
+    4848
+   ],
+   "tile": [
+    279,
+    151
+   ],
+   "crudo": "a289270400000000e8220000f01200000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  }
+ ]
+}

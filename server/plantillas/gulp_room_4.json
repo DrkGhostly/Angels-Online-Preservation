@@ -1,0 +1,8132 @@
+{
+ "_nota": "gulp_room_4 (stage 79). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map079.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "stage": 79,
+ "spawns": [
+  {
+   "entity_id": 57900000,
+   "nombre": "Rock Demon",
+   "npc_type": 820,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    97
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900001,
+   "nombre": "Terra Miner",
+   "npc_type": 830,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    91,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900002,
+   "nombre": "Rock Demon",
+   "npc_type": 820,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    91,
+    97
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900003,
+   "nombre": "Rock Slarm",
+   "npc_type": 834,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    91,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900004,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    142,
+    234
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900005,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    229
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900006,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    234
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900007,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    239
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900008,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    142,
+    229
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900009,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    142,
+    239
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900010,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    147,
+    229
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900011,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    147,
+    234
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900012,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    147,
+    239
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900013,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    224
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900014,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    229
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900015,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    234
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900016,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    239
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900017,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    244
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900018,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    224
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900019,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    244
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900020,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    142,
+    224
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900021,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    142,
+    244
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900022,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    147,
+    224
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900023,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    147,
+    244
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900024,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 816,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57900025,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 816,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57900026,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 816,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    138,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57900027,
+   "nombre": "Elite SoulEater",
+   "npc_type": 815,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57900028,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 816,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57900029,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 816,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    138,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57900030,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 816,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57900031,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 816,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    213,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57900032,
+   "nombre": "Elite SoulEater",
+   "npc_type": 815,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    97
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57900033,
+   "nombre": "Terra Miner",
+   "npc_type": 830,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900034,
+   "nombre": "Terra Miner",
+   "npc_type": 830,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    138,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900035,
+   "nombre": "Terra Miner",
+   "npc_type": 830,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900036,
+   "nombre": "Terra Miner",
+   "npc_type": 830,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    208,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900037,
+   "nombre": "Hell Miner",
+   "npc_type": 829,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    86,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900038,
+   "nombre": "Hell Miner",
+   "npc_type": 829,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    138,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900039,
+   "nombre": "Terra Miner",
+   "npc_type": 830,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    86,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900040,
+   "nombre": "Terra Miner",
+   "npc_type": 830,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900041,
+   "nombre": "Terra Miner",
+   "npc_type": 830,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900042,
+   "nombre": "Terra Miner",
+   "npc_type": 830,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    208,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900043,
+   "nombre": "Hell Miner",
+   "npc_type": 829,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    86,
+    97
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900044,
+   "nombre": "Hell Miner",
+   "npc_type": 829,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900045,
+   "nombre": "Terra Miner",
+   "npc_type": 830,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    86,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900046,
+   "nombre": "Terra Miner",
+   "npc_type": 830,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    148,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900047,
+   "nombre": "Terra Miner",
+   "npc_type": 830,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    138,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900048,
+   "nombre": "Hell Miner",
+   "npc_type": 829,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    86,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900049,
+   "nombre": "Rock Demon",
+   "npc_type": 820,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    91,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900050,
+   "nombre": "Rock Demon",
+   "npc_type": 820,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    148,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900051,
+   "nombre": "Elite Rock Demon",
+   "npc_type": 819,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    91,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900052,
+   "nombre": "Rock Demon",
+   "npc_type": 820,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900053,
+   "nombre": "Rock Demon",
+   "npc_type": 820,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    148,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900054,
+   "nombre": "Rock Demon",
+   "npc_type": 820,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    138,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900055,
+   "nombre": "Rock Demon",
+   "npc_type": 820,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    208,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900056,
+   "nombre": "Elite Rock Demon",
+   "npc_type": 819,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900057,
+   "nombre": "Elite Rock Demon",
+   "npc_type": 819,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900058,
+   "nombre": "Terra Miner",
+   "npc_type": 830,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900059,
+   "nombre": "Terra Miner",
+   "npc_type": 830,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900060,
+   "nombre": "Terra Miner",
+   "npc_type": 830,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900061,
+   "nombre": "Hell Miner",
+   "npc_type": 829,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900062,
+   "nombre": "Rock Demon",
+   "npc_type": 820,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900063,
+   "nombre": "Rock Demon",
+   "npc_type": 820,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900064,
+   "nombre": "Rock Demon",
+   "npc_type": 820,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900065,
+   "nombre": "Elite Rock Demon",
+   "npc_type": 819,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900066,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 816,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    97
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57900067,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 816,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57900068,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 816,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57900069,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 816,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57900070,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 816,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57900071,
+   "nombre": "Rock Slarm",
+   "npc_type": 834,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900072,
+   "nombre": "Rock Slarm",
+   "npc_type": 834,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    138,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900073,
+   "nombre": "Rock Slarm",
+   "npc_type": 834,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900074,
+   "nombre": "Elite Rock Slarm",
+   "npc_type": 833,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    81,
+    82
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900075,
+   "nombre": "Rock Slarm",
+   "npc_type": 834,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    81,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900076,
+   "nombre": "Rock Slarm",
+   "npc_type": 834,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    138,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900077,
+   "nombre": "Rock Slarm",
+   "npc_type": 834,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900078,
+   "nombre": "Elite Rock Slarm",
+   "npc_type": 833,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    81,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900079,
+   "nombre": "Elite Rock Slarm",
+   "npc_type": 833,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900080,
+   "nombre": "Elite Rock Slarm",
+   "npc_type": 833,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    81,
+    97
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900081,
+   "nombre": "Elite Rock Slarm",
+   "npc_type": 833,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900082,
+   "nombre": "Elite Rock Slarm",
+   "npc_type": 833,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900083,
+   "nombre": "Elite Rock Slarm",
+   "npc_type": 833,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    81,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900084,
+   "nombre": "Elite Rock Slarm",
+   "npc_type": 833,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    148,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900085,
+   "nombre": "Terra Miner",
+   "npc_type": 830,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    81,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900086,
+   "nombre": "Terra Miner",
+   "npc_type": 830,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    148,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900087,
+   "nombre": "Terra Miner",
+   "npc_type": 830,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900088,
+   "nombre": "Terra Miner",
+   "npc_type": 830,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    213,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900089,
+   "nombre": "Hell Miner",
+   "npc_type": 829,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    81,
+    112
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900090,
+   "nombre": "Hell Miner",
+   "npc_type": 829,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900091,
+   "nombre": "Rock Demon",
+   "npc_type": 820,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    86,
+    82
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900092,
+   "nombre": "Rock Demon",
+   "npc_type": 820,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900093,
+   "nombre": "Rock Demon",
+   "npc_type": 820,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900094,
+   "nombre": "Rock Demon",
+   "npc_type": 820,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    213,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900095,
+   "nombre": "Terra Miner",
+   "npc_type": 830,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    86,
+    112
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900096,
+   "nombre": "Terra Miner",
+   "npc_type": 830,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900097,
+   "nombre": "Hell Miner",
+   "npc_type": 829,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    91,
+    82
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900098,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 816,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    91,
+    112
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57900099,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 816,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57900100,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 816,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57900101,
+   "nombre": "Elite SoulEater",
+   "npc_type": 815,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    82
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57900102,
+   "nombre": "Crystal 1",
+   "npc_type": 857,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    264,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900103,
+   "nombre": "Crystal 1",
+   "npc_type": 857,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900104,
+   "nombre": "Crystal 1",
+   "npc_type": 857,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900105,
+   "nombre": "Crystal 1",
+   "npc_type": 857,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900106,
+   "nombre": "Crystal 1",
+   "npc_type": 857,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    264,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900107,
+   "nombre": "Crystal 1",
+   "npc_type": 857,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    264,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900108,
+   "nombre": "Crystal 1",
+   "npc_type": 857,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    269,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900109,
+   "nombre": "Crystal 1",
+   "npc_type": 857,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    269,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900110,
+   "nombre": "Crystal 1",
+   "npc_type": 857,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    269,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900111,
+   "nombre": "Crystal 1",
+   "npc_type": 857,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    254,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900112,
+   "nombre": "Crystal 1",
+   "npc_type": 857,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    254,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900113,
+   "nombre": "Crystal 1",
+   "npc_type": 857,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    254,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900114,
+   "nombre": "Crystal 1",
+   "npc_type": 857,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    254,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900115,
+   "nombre": "Crystal 1",
+   "npc_type": 857,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    254,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900116,
+   "nombre": "Crystal 1",
+   "npc_type": 857,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900117,
+   "nombre": "Crystal 1",
+   "npc_type": 857,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900118,
+   "nombre": "Crystal 1",
+   "npc_type": 857,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    264,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900119,
+   "nombre": "Crystal 1",
+   "npc_type": 857,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    264,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900120,
+   "nombre": "Crystal 1",
+   "npc_type": 857,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    269,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900121,
+   "nombre": "Crystal 1",
+   "npc_type": 857,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    269,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900122,
+   "nombre": "Crystal 1",
+   "npc_type": 857,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    274,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900123,
+   "nombre": "Crystal 1",
+   "npc_type": 857,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    274,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900124,
+   "nombre": "Crystal 1",
+   "npc_type": 857,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    274,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900125,
+   "nombre": "Crystal 1",
+   "npc_type": 857,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    274,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900126,
+   "nombre": "Crystal 1",
+   "npc_type": 857,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    274,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900127,
+   "nombre": "Crystal 1",
+   "npc_type": 857,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900128,
+   "nombre": "Crystal 1",
+   "npc_type": 857,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900129,
+   "nombre": "Crystal 1",
+   "npc_type": 857,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900130,
+   "nombre": "Crystal 1",
+   "npc_type": 857,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900131,
+   "nombre": "Crystal 1",
+   "npc_type": 857,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900132,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    152,
+    228
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900133,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    152,
+    233
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900134,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    152,
+    238
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900135,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    152,
+    243
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900136,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    152,
+    223
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900137,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    157,
+    223
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900138,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    157,
+    228
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900139,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    157,
+    233
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900140,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    157,
+    238
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900141,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    157,
+    243
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900142,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    152,
+    248
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900143,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    157,
+    248
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900144,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    131,
+    219
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900145,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    131,
+    249
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900146,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    136,
+    219
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900147,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    136,
+    249
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900148,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    141,
+    219
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900149,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    141,
+    249
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900150,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    146,
+    219
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900151,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    146,
+    249
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900152,
+   "nombre": "Rock Slarm",
+   "npc_type": 834,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    112
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900153,
+   "nombre": "Rock Slarm",
+   "npc_type": 834,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900154,
+   "nombre": "Rock Slarm",
+   "npc_type": 834,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900155,
+   "nombre": "Crystal 2",
+   "npc_type": 859,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    254,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900156,
+   "nombre": "Crystal 2",
+   "npc_type": 859,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900157,
+   "nombre": "Crystal 2",
+   "npc_type": 859,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    264,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900158,
+   "nombre": "Crystal 2",
+   "npc_type": 859,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    269,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900159,
+   "nombre": "Crystal 2",
+   "npc_type": 859,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    274,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900160,
+   "nombre": "Crystal 2",
+   "npc_type": 859,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900161,
+   "nombre": "Crystal 2",
+   "npc_type": 859,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    279,
+    122
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900162,
+   "nombre": "Crystal 2",
+   "npc_type": 859,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    279,
+    127
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900163,
+   "nombre": "Crystal 2",
+   "npc_type": 859,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    279,
+    132
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900164,
+   "nombre": "Crystal 2",
+   "npc_type": 859,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    279,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900165,
+   "nombre": "Crystal 2",
+   "npc_type": 859,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    279,
+    142
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900166,
+   "nombre": "Crystal 2",
+   "npc_type": 859,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    279,
+    147
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900167,
+   "nombre": "Crystal 2",
+   "npc_type": 859,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    279,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900168,
+   "nombre": "Crystal 2",
+   "npc_type": 859,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    247,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900169,
+   "nombre": "Crystal 2",
+   "npc_type": 859,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    252,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900170,
+   "nombre": "Crystal 2",
+   "npc_type": 859,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    257,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900171,
+   "nombre": "Crystal 2",
+   "npc_type": 859,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    262,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900172,
+   "nombre": "Crystal 2",
+   "npc_type": 859,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    267,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900173,
+   "nombre": "Crystal 2",
+   "npc_type": 859,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    272,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900174,
+   "nombre": "Crystal 2",
+   "npc_type": 859,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900175,
+   "nombre": "Crystal 2",
+   "npc_type": 859,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900176,
+   "nombre": "Crystal 2",
+   "npc_type": 859,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900177,
+   "nombre": "Crystal 2",
+   "npc_type": 859,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900178,
+   "nombre": "Crystal 2",
+   "npc_type": 859,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900179,
+   "nombre": "Crystal 2",
+   "npc_type": 859,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900180,
+   "nombre": "Crystal 2",
+   "npc_type": 859,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    244,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900181,
+   "nombre": "Crystal 2",
+   "npc_type": 859,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    244,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900182,
+   "nombre": "Crystal 2",
+   "npc_type": 859,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    244,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900183,
+   "nombre": "Crystal 2",
+   "npc_type": 859,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    244,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900184,
+   "nombre": "Crystal 2",
+   "npc_type": 859,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    244,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 75
+  },
+  {
+   "entity_id": 57900185,
+   "nombre": "Big Crystal 7",
+   "npc_type": 869,
+   "sprite": 42364,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    277,
+    117
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 57900186,
+   "nombre": "Big Crystal 7",
+   "npc_type": 869,
+   "sprite": 42364,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    282,
+    117
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 57900187,
+   "nombre": "Big Crystal 7",
+   "npc_type": 869,
+   "sprite": 42364,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    244,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 57900188,
+   "nombre": "Big Crystal 7",
+   "npc_type": 869,
+   "sprite": 42364,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    244,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 57900189,
+   "nombre": "Big Crystal 7",
+   "npc_type": 869,
+   "sprite": 42364,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 57900190,
+   "nombre": "Big Crystal 7",
+   "npc_type": 869,
+   "sprite": 42364,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    254,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 57900191,
+   "nombre": "Big Crystal 7",
+   "npc_type": 869,
+   "sprite": 42364,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 57900192,
+   "nombre": "Big Crystal 7",
+   "npc_type": 869,
+   "sprite": 42364,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    264,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 57900193,
+   "nombre": "Big Crystal 7",
+   "npc_type": 869,
+   "sprite": 42364,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    269,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 57900194,
+   "nombre": "Big Crystal 7",
+   "npc_type": 869,
+   "sprite": 42364,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    284,
+    122
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 57900195,
+   "nombre": "Big Crystal 7",
+   "npc_type": 869,
+   "sprite": 42364,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    284,
+    127
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 57900196,
+   "nombre": "Big Crystal 7",
+   "npc_type": 869,
+   "sprite": 42364,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    284,
+    132
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 57900197,
+   "nombre": "Big Crystal 7",
+   "npc_type": 869,
+   "sprite": 42364,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    284,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 57900198,
+   "nombre": "Big Crystal 7",
+   "npc_type": 869,
+   "sprite": 42364,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    284,
+    142
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 57900199,
+   "nombre": "Big Crystal 7",
+   "npc_type": 869,
+   "sprite": 42364,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    284,
+    147
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 57900200,
+   "nombre": "Big Crystal 7",
+   "npc_type": 869,
+   "sprite": 42364,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    284,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 57900201,
+   "nombre": "Big Crystal 7",
+   "npc_type": 869,
+   "sprite": 42364,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    242,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 57900202,
+   "nombre": "Big Crystal 7",
+   "npc_type": 869,
+   "sprite": 42364,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    276,
+    157
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 57900203,
+   "nombre": "Big Crystal 7",
+   "npc_type": 869,
+   "sprite": 42364,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    281,
+    157
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 57900204,
+   "nombre": "Big Crystal 7",
+   "npc_type": 869,
+   "sprite": 42364,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    286,
+    157
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 57900205,
+   "nombre": "Big Crystal 7",
+   "npc_type": 869,
+   "sprite": 42364,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    241,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 57900206,
+   "nombre": "Big Crystal 7",
+   "npc_type": 869,
+   "sprite": 42364,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    274,
+    112
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 57900207,
+   "nombre": "Big Crystal 7",
+   "npc_type": 869,
+   "sprite": 42364,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    279,
+    112
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 57900208,
+   "nombre": "Big Crystal 7",
+   "npc_type": 869,
+   "sprite": 42364,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    284,
+    112
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 57900209,
+   "nombre": "Big Crystal 7",
+   "npc_type": 869,
+   "sprite": 42364,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    287,
+    117
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 57900210,
+   "nombre": "Big Crystal 7",
+   "npc_type": 869,
+   "sprite": 42364,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    239,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 57900211,
+   "nombre": "Big Crystal 7",
+   "npc_type": 869,
+   "sprite": 42364,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    239,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 57900212,
+   "nombre": "Big Crystal 7",
+   "npc_type": 869,
+   "sprite": 42364,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    239,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 57900213,
+   "nombre": "Big Crystal 7",
+   "npc_type": 869,
+   "sprite": 42364,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    239,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 57900214,
+   "nombre": "Big Crystal 7",
+   "npc_type": 869,
+   "sprite": 42364,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    239,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 57900215,
+   "nombre": "Big Crystal 1",
+   "npc_type": 858,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    244,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900216,
+   "nombre": "Big Crystal 1",
+   "npc_type": 858,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900217,
+   "nombre": "Big Crystal 1",
+   "npc_type": 858,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    254,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900218,
+   "nombre": "Big Crystal 1",
+   "npc_type": 858,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900219,
+   "nombre": "Big Crystal 1",
+   "npc_type": 858,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    264,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900220,
+   "nombre": "Big Crystal 1",
+   "npc_type": 858,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    269,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900221,
+   "nombre": "Big Crystal 1",
+   "npc_type": 858,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    239,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900222,
+   "nombre": "Big Crystal 1",
+   "npc_type": 858,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    239,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900223,
+   "nombre": "Big Crystal 1",
+   "npc_type": 858,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    239,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900224,
+   "nombre": "Big Crystal 1",
+   "npc_type": 858,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    289,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900225,
+   "nombre": "Big Crystal 1",
+   "npc_type": 858,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    289,
+    122
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900226,
+   "nombre": "Big Crystal 1",
+   "npc_type": 858,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    289,
+    127
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900227,
+   "nombre": "Big Crystal 1",
+   "npc_type": 858,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    289,
+    132
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900228,
+   "nombre": "Big Crystal 1",
+   "npc_type": 858,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    289,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900229,
+   "nombre": "Big Crystal 1",
+   "npc_type": 858,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    289,
+    142
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900230,
+   "nombre": "Big Crystal 1",
+   "npc_type": 858,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    289,
+    147
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900231,
+   "nombre": "Big Crystal 1",
+   "npc_type": 858,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    289,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900232,
+   "nombre": "Big Crystal 1",
+   "npc_type": 858,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    274,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900233,
+   "nombre": "Big Crystal 1",
+   "npc_type": 858,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    279,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900234,
+   "nombre": "Big Crystal 1",
+   "npc_type": 858,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    284,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900235,
+   "nombre": "Big Crystal 1",
+   "npc_type": 858,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    237,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900236,
+   "nombre": "Big Crystal 1",
+   "npc_type": 858,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    237,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900237,
+   "nombre": "Big Crystal 1",
+   "npc_type": 858,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    242,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900238,
+   "nombre": "Big Crystal 1",
+   "npc_type": 858,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    247,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900239,
+   "nombre": "Big Crystal 1",
+   "npc_type": 858,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    252,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900240,
+   "nombre": "Big Crystal 1",
+   "npc_type": 858,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    257,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900241,
+   "nombre": "Big Crystal 1",
+   "npc_type": 858,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    262,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900242,
+   "nombre": "Big Crystal 1",
+   "npc_type": 858,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    267,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900243,
+   "nombre": "Big Crystal 1",
+   "npc_type": 858,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    291,
+    157
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900244,
+   "nombre": "Big Crystal 1",
+   "npc_type": 858,
+   "sprite": 42353,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    236,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900245,
+   "nombre": "Big Crystal 2",
+   "npc_type": 860,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    241,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900246,
+   "nombre": "Big Crystal 2",
+   "npc_type": 860,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900247,
+   "nombre": "Big Crystal 2",
+   "npc_type": 860,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900248,
+   "nombre": "Big Crystal 2",
+   "npc_type": 860,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900249,
+   "nombre": "Big Crystal 2",
+   "npc_type": 860,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900250,
+   "nombre": "Big Crystal 2",
+   "npc_type": 860,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900251,
+   "nombre": "Big Crystal 2",
+   "npc_type": 860,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    236,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900252,
+   "nombre": "Big Crystal 2",
+   "npc_type": 860,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    289,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900253,
+   "nombre": "Big Crystal 2",
+   "npc_type": 860,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    292,
+    113
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900254,
+   "nombre": "Big Crystal 2",
+   "npc_type": 860,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900255,
+   "nombre": "Big Crystal 2",
+   "npc_type": 860,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    276,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900256,
+   "nombre": "Big Crystal 2",
+   "npc_type": 860,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    281,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900257,
+   "nombre": "Big Crystal 2",
+   "npc_type": 860,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    234,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900258,
+   "nombre": "Big Crystal 2",
+   "npc_type": 860,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    234,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900259,
+   "nombre": "Big Crystal 2",
+   "npc_type": 860,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    234,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900260,
+   "nombre": "Big Crystal 2",
+   "npc_type": 860,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    234,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900261,
+   "nombre": "Big Crystal 2",
+   "npc_type": 860,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    234,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900262,
+   "nombre": "Big Crystal 2",
+   "npc_type": 860,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    234,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900263,
+   "nombre": "Big Crystal 2",
+   "npc_type": 860,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    234,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900264,
+   "nombre": "Big Crystal 2",
+   "npc_type": 860,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    234,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900265,
+   "nombre": "Big Crystal 2",
+   "npc_type": 860,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    294,
+    101
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900266,
+   "nombre": "Big Crystal 2",
+   "npc_type": 860,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    294,
+    106
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900267,
+   "nombre": "Big Crystal 2",
+   "npc_type": 860,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    294,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900268,
+   "nombre": "Big Crystal 2",
+   "npc_type": 860,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    294,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900269,
+   "nombre": "Big Crystal 2",
+   "npc_type": 860,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    294,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900270,
+   "nombre": "Big Crystal 2",
+   "npc_type": 860,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    294,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900271,
+   "nombre": "Big Crystal 2",
+   "npc_type": 860,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    294,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900272,
+   "nombre": "Big Crystal 2",
+   "npc_type": 860,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    294,
+    143
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900273,
+   "nombre": "Big Crystal 2",
+   "npc_type": 860,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    294,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900274,
+   "nombre": "Big Crystal 2",
+   "npc_type": 860,
+   "sprite": 42355,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    233,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900275,
+   "nombre": "Evil Eye",
+   "npc_type": 800,
+   "sprite": 42284,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    272,
+    162
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 57900276,
+   "nombre": "Demon Kidace",
+   "npc_type": 896,
+   "sprite": 42333,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    364,
+    245
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 86
+  },
+  {
+   "entity_id": 57900277,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 916,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    252
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900278,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 916,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    241,
+    247
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900279,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 916,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    248,
+    236
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900280,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 916,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    231
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900281,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 916,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    225,
+    246
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900282,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 916,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    241
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900283,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 916,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    246
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900284,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 916,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    201,
+    248
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900285,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 916,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    188
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900286,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 916,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    184,
+    241
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900287,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 916,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    179,
+    236
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900288,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 916,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    39,
+    253
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900289,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 916,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    61,
+    255
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900290,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 916,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    56,
+    250
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900291,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 916,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    88,
+    241
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900292,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 916,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    83,
+    236
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900293,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 916,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    83,
+    241
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900294,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 916,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    109,
+    224
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900295,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 916,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    104,
+    219
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900296,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 916,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    104,
+    224
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900297,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 916,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    196,
+    243
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900298,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 916,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    179
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900299,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 916,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    174
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900300,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    225,
+    193
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900301,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    188
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900302,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    193
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900303,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    183
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900304,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    178
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900305,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    182,
+    191
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900306,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    177,
+    186
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900307,
+   "nombre": "Elite Gold Fly",
+   "npc_type": 844,
+   "sprite": 42276,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    177,
+    191
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57900308,
+   "nombre": "Elite Gold Fly",
+   "npc_type": 844,
+   "sprite": 42276,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    187,
+    191
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57900309,
+   "nombre": "Elite Gold Fly",
+   "npc_type": 844,
+   "sprite": 42276,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    197
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57900310,
+   "nombre": "Gold Fly",
+   "npc_type": 845,
+   "sprite": 42276,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    183
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57900311,
+   "nombre": "Gold Fly",
+   "npc_type": 845,
+   "sprite": 42276,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    178
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57900312,
+   "nombre": "Gold Fly",
+   "npc_type": 845,
+   "sprite": 42276,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    201,
+    183
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57900313,
+   "nombre": "Gold Fly",
+   "npc_type": 845,
+   "sprite": 42276,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    225,
+    188
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57900314,
+   "nombre": "Gold Fly",
+   "npc_type": 845,
+   "sprite": 42276,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    230,
+    188
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57900315,
+   "nombre": "Gold Fly",
+   "npc_type": 845,
+   "sprite": 42276,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    179
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57900316,
+   "nombre": "Gold Fly",
+   "npc_type": 845,
+   "sprite": 42276,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    184
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57900317,
+   "nombre": "Elite Gold Fly",
+   "npc_type": 844,
+   "sprite": 42276,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    183
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57900318,
+   "nombre": "Elite Gold Fly",
+   "npc_type": 844,
+   "sprite": 42276,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    254,
+    188
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57900319,
+   "nombre": "Gold Fly",
+   "npc_type": 845,
+   "sprite": 42276,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    241,
+    252
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57900320,
+   "nombre": "Gold Fly",
+   "npc_type": 845,
+   "sprite": 42276,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    247
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57900321,
+   "nombre": "Gold Fly",
+   "npc_type": 845,
+   "sprite": 42276,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    236
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57900322,
+   "nombre": "Gold Fly",
+   "npc_type": 845,
+   "sprite": 42276,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    253,
+    236
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57900323,
+   "nombre": "Elite Gold Fly",
+   "npc_type": 844,
+   "sprite": 42276,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    81,
+    246
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57900324,
+   "nombre": "Elite Gold Fly",
+   "npc_type": 844,
+   "sprite": 42276,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    86,
+    246
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57900325,
+   "nombre": "Elite Gold Fly",
+   "npc_type": 844,
+   "sprite": 42276,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    239
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57900326,
+   "nombre": "Elite Gold Fly",
+   "npc_type": 844,
+   "sprite": 42276,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    56,
+    255
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57900327,
+   "nombre": "Elite Gold Fly",
+   "npc_type": 844,
+   "sprite": 42276,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    253
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57900328,
+   "nombre": "Elite Gold Fly",
+   "npc_type": 844,
+   "sprite": 42276,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    34,
+    252
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57900329,
+   "nombre": "Elite Gold Fly",
+   "npc_type": 844,
+   "sprite": 42276,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    33,
+    257
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57900330,
+   "nombre": "Gold Fly",
+   "npc_type": 845,
+   "sprite": 42276,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    218,
+    251
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57900331,
+   "nombre": "Gold Fly",
+   "npc_type": 845,
+   "sprite": 42276,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    256
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57900332,
+   "nombre": "Elite Gold Fly",
+   "npc_type": 844,
+   "sprite": 42276,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    196,
+    248
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57900333,
+   "nombre": "Elite Gold Fly",
+   "npc_type": 844,
+   "sprite": 42276,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    199,
+    253
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 72
+  },
+  {
+   "entity_id": 57900334,
+   "nombre": "GluttonBeelzebub",
+   "npc_type": 853,
+   "sprite": 42290,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    377,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 88
+  },
+  {
+   "entity_id": 57900335,
+   "nombre": "Demon Bazac",
+   "npc_type": 4313,
+   "sprite": 42291,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    341,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  },
+  {
+   "entity_id": 57900336,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    189,
+    240
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900337,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    189,
+    246
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900338,
+   "nombre": "Poo Poo Demon",
+   "npc_type": 917,
+   "sprite": 42349,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    184,
+    236
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57900339,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    151,
+    218
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900340,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    214
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900341,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    214
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900342,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    138,
+    214
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900343,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    214
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900344,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    156,
+    214
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900345,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    127,
+    224
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900346,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    127,
+    229
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900347,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    127,
+    234
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900348,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    127,
+    239
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900349,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    148,
+    213
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900350,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    126,
+    219
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900351,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    126,
+    244
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900352,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    123,
+    209
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900353,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    123,
+    214
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900354,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    209
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900355,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    209
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900356,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    138,
+    209
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900357,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    209
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900358,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    209
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900359,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    124,
+    249
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900360,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    212
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900361,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    217
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900362,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    122,
+    224
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900363,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    122,
+    229
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900364,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    122,
+    234
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900365,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    122,
+    239
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900366,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    162,
+    222
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900367,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    162,
+    227
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900368,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    162,
+    232
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900369,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    162,
+    237
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900370,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    162,
+    242
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900371,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    162,
+    247
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900372,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    121,
+    219
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900373,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    121,
+    244
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900374,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    162,
+    252
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900375,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    151,
+    253
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900376,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    156,
+    253
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900377,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    119,
+    249
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900378,
+   "nombre": "Evil Fly",
+   "npc_type": 922,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    119,
+    254
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900379,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    166,
+    212
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900380,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    166,
+    217
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900381,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    167,
+    222
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900382,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    167,
+    227
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900383,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    167,
+    232
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900384,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    167,
+    237
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900385,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    167,
+    242
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900386,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    167,
+    247
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900387,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    167,
+    252
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900388,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    124,
+    254
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900389,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    129,
+    254
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900390,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    134,
+    254
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900391,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    139,
+    254
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900392,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    144,
+    254
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900393,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    148,
+    208
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900394,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    207
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900395,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    207
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900396,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    207
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900397,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    171,
+    212
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900398,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    171,
+    217
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900399,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    122,
+    204
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900400,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    127,
+    204
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900401,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    204
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900402,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    204
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900403,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    142,
+    204
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900404,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    204
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900405,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    172,
+    222
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900406,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    172,
+    227
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900407,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    172,
+    232
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900408,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    172,
+    237
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900409,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    172,
+    242
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900410,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    172,
+    247
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900411,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    172,
+    252
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900412,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    147,
+    203
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900413,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    203
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900414,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    202
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900415,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    202
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900416,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    202
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900417,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    257
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900418,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    166,
+    257
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900419,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    120,
+    199
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900420,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    125,
+    199
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900421,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    130,
+    199
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900422,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    135,
+    199
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900423,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    140,
+    199
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900424,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    152,
+    199
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900425,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    145,
+    198
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900426,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    118,
+    209
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900427,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    118,
+    214
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900428,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    157,
+    197
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900429,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    162,
+    197
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900430,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    167,
+    197
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900431,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    208
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900432,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    213
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900433,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    117,
+    204
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900434,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    117,
+    224
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900435,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    117,
+    229
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900436,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    117,
+    234
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900437,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    117,
+    239
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900438,
+   "nombre": "Hungry Fly",
+   "npc_type": 923,
+   "sprite": 42275,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    177,
+    218
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 53
+  },
+  {
+   "entity_id": 57900439,
+   "nombre": "Brute Demon",
+   "npc_type": 811,
+   "sprite": 42297,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    359,
+    249
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 79
+  },
+  {
+   "entity_id": 57900440,
+   "nombre": "Brute Demon",
+   "npc_type": 811,
+   "sprite": 42297,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    354,
+    244
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 79
+  },
+  {
+   "entity_id": 57900441,
+   "nombre": "Brute Demon",
+   "npc_type": 811,
+   "sprite": 42297,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    354,
+    249
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 79
+  },
+  {
+   "entity_id": 57900442,
+   "nombre": "Fetor Slarm",
+   "npc_type": 836,
+   "sprite": 42307,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    359,
+    244
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 79
+  },
+  {
+   "entity_id": 57900443,
+   "nombre": "Fetor Slarm",
+   "npc_type": 836,
+   "sprite": 42307,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    364,
+    250
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 79
+  },
+  {
+   "entity_id": 57900444,
+   "nombre": "Fetor Slarm",
+   "npc_type": 836,
+   "sprite": 42307,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    364,
+    240
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 79
+  },
+  {
+   "entity_id": 57900445,
+   "nombre": "Fetor Slarm",
+   "npc_type": 836,
+   "sprite": 42307,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    352,
+    239
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 79
+  },
+  {
+   "entity_id": 57900446,
+   "nombre": "Fetor Slarm",
+   "npc_type": 836,
+   "sprite": 42307,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    357,
+    239
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 79
+  },
+  {
+   "entity_id": 57900447,
+   "nombre": "Fetor Slarm",
+   "npc_type": 836,
+   "sprite": 42307,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    351,
+    254
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 79
+  },
+  {
+   "entity_id": 57900448,
+   "nombre": "Fetor Slarm",
+   "npc_type": 836,
+   "sprite": 42307,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    356,
+    254
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 79
+  },
+  {
+   "entity_id": 57900449,
+   "nombre": "Fetor Slarm",
+   "npc_type": 836,
+   "sprite": 42307,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    361,
+    255
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 79
+  },
+  {
+   "entity_id": 57900450,
+   "nombre": "Fetor Slarm",
+   "npc_type": 836,
+   "sprite": 42307,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    366,
+    255
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 79
+  },
+  {
+   "entity_id": 57900451,
+   "nombre": "Fetor Slarm",
+   "npc_type": 836,
+   "sprite": 42307,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    349,
+    244
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 79
+  },
+  {
+   "entity_id": 57900452,
+   "nombre": "Heat Elf",
+   "npc_type": 910,
+   "sprite": 42344,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    362,
+    235
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900453,
+   "nombre": "Heat Elf",
+   "npc_type": 910,
+   "sprite": 42344,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    367,
+    235
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900454,
+   "nombre": "Heat Elf",
+   "npc_type": 910,
+   "sprite": 42344,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    349,
+    234
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900455,
+   "nombre": "Heat Elf",
+   "npc_type": 910,
+   "sprite": 42344,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    349,
+    249
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900456,
+   "nombre": "Heat Elf",
+   "npc_type": 910,
+   "sprite": 42344,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    354,
+    234
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900457,
+   "nombre": "Energy Pillar",
+   "npc_type": 2094,
+   "sprite": 40173,
+   "klass": 200,
+   "monstruo": false,
+   "tile": [
+    364,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0
+  },
+  {
+   "entity_id": 57900458,
+   "nombre": "Energy Pillar",
+   "npc_type": 2094,
+   "sprite": 40173,
+   "klass": 200,
+   "monstruo": false,
+   "tile": [
+    368,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0
+  },
+  {
+   "entity_id": 57900459,
+   "nombre": "Energy Pillar",
+   "npc_type": 2094,
+   "sprite": 40173,
+   "klass": 200,
+   "monstruo": false,
+   "tile": [
+    381,
+    144
+   ],
+   "direccion": 2,
+   "visible": 0
+  },
+  {
+   "entity_id": 57900460,
+   "nombre": "Energy Pillar",
+   "npc_type": 2094,
+   "sprite": 40173,
+   "klass": 200,
+   "monstruo": false,
+   "tile": [
+    372,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0
+  },
+  {
+   "entity_id": 57900461,
+   "nombre": "Energy Pillar",
+   "npc_type": 2094,
+   "sprite": 40173,
+   "klass": 200,
+   "monstruo": false,
+   "tile": [
+    387,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0
+  },
+  {
+   "entity_id": 57900462,
+   "nombre": "Energy Pillar",
+   "npc_type": 2094,
+   "sprite": 40173,
+   "klass": 200,
+   "monstruo": false,
+   "tile": [
+    389,
+    147
+   ],
+   "direccion": 2,
+   "visible": 0
+  },
+  {
+   "entity_id": 57900463,
+   "nombre": "Hell Wolf",
+   "npc_type": 907,
+   "sprite": 42341,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    393,
+    154
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 57900464,
+   "nombre": "Hell Wolf",
+   "npc_type": 907,
+   "sprite": 42341,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    392,
+    159
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 57900465,
+   "nombre": "Hell Wolf",
+   "npc_type": 907,
+   "sprite": 42341,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    394,
+    149
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 57900466,
+   "nombre": "Hell Wolf",
+   "npc_type": 907,
+   "sprite": 42341,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    397,
+    159
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 57900467,
+   "nombre": "Hell Wolf",
+   "npc_type": 907,
+   "sprite": 42341,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    398,
+    154
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 57900468,
+   "nombre": "Hell Wolf",
+   "npc_type": 907,
+   "sprite": 42341,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    387,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 57900469,
+   "nombre": "Hell Wolf",
+   "npc_type": 907,
+   "sprite": 42341,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    399,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 57900470,
+   "nombre": "Hell Wolf",
+   "npc_type": 907,
+   "sprite": 42341,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    384,
+    149
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 57900471,
+   "nombre": "Hell Wolf",
+   "npc_type": 907,
+   "sprite": 42341,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    402,
+    159
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 57900472,
+   "nombre": "Hell Wolf",
+   "npc_type": 907,
+   "sprite": 42341,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    392,
+    164
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 57900473,
+   "nombre": "Hell Wolf",
+   "npc_type": 907,
+   "sprite": 42341,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    394,
+    144
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 57900474,
+   "nombre": "Hell Wolf",
+   "npc_type": 907,
+   "sprite": 42341,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    397,
+    164
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 57900475,
+   "nombre": "Hell Wolf",
+   "npc_type": 907,
+   "sprite": 42341,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    402,
+    164
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 57900476,
+   "nombre": "Hell Wolf",
+   "npc_type": 907,
+   "sprite": 42341,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    403,
+    153
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 57900477,
+   "nombre": "Hell Wolf",
+   "npc_type": 907,
+   "sprite": 42341,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    382,
+    154
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 57900478,
+   "nombre": "Hell Wolf",
+   "npc_type": 907,
+   "sprite": 42341,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    382,
+    159
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 57900479,
+   "nombre": "Hell Wolf",
+   "npc_type": 907,
+   "sprite": 42341,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    382,
+    164
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 57900480,
+   "nombre": "Hell Wolf",
+   "npc_type": 907,
+   "sprite": 42341,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    387,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 57900481,
+   "nombre": "Hell Wolf",
+   "npc_type": 907,
+   "sprite": 42341,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    399,
+    143
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 57900482,
+   "nombre": "Hell Wolf",
+   "npc_type": 907,
+   "sprite": 42341,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    404,
+    143
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 57900483,
+   "nombre": "Hell Wolf",
+   "npc_type": 907,
+   "sprite": 42341,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    404,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 57900484,
+   "nombre": "Hell Wolf",
+   "npc_type": 907,
+   "sprite": 42341,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    386,
+    142
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 57900485,
+   "nombre": "Hell Wolf",
+   "npc_type": 907,
+   "sprite": 42341,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    407,
+    158
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 57900486,
+   "nombre": "Hell Wolf",
+   "npc_type": 907,
+   "sprite": 42341,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    407,
+    163
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 57900487,
+   "nombre": "Hell Wolf",
+   "npc_type": 907,
+   "sprite": 42341,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    407,
+    168
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 57900488,
+   "nombre": "Hell Wolf",
+   "npc_type": 907,
+   "sprite": 42341,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    378,
+    139
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 57900489,
+   "nombre": "Hell Wolf",
+   "npc_type": 907,
+   "sprite": 42341,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    378,
+    169
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 57900490,
+   "nombre": "Hell Wolf",
+   "npc_type": 907,
+   "sprite": 42341,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    391,
+    139
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 57900491,
+   "nombre": "Hell Wolf",
+   "npc_type": 907,
+   "sprite": 42341,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    392,
+    169
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 57900492,
+   "nombre": "Hell Wolf",
+   "npc_type": 907,
+   "sprite": 42341,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    397,
+    169
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 57900493,
+   "nombre": "Rock Demon",
+   "npc_type": 820,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    408,
+    153
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900494,
+   "nombre": "Rock Demon",
+   "npc_type": 820,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    409,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900495,
+   "nombre": "Rock Demon",
+   "npc_type": 820,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    409,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900496,
+   "nombre": "Rock Demon",
+   "npc_type": 820,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    402,
+    169
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900497,
+   "nombre": "Rock Demon",
+   "npc_type": 820,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    383,
+    170
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900498,
+   "nombre": "Rock Demon",
+   "npc_type": 820,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    396,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900499,
+   "nombre": "Rock Demon",
+   "npc_type": 820,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    401,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900500,
+   "nombre": "Rock Demon",
+   "npc_type": 820,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    412,
+    158
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900501,
+   "nombre": "Rock Demon",
+   "npc_type": 820,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    412,
+    163
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900502,
+   "nombre": "Rock Demon",
+   "npc_type": 820,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    412,
+    168
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900503,
+   "nombre": "Rock Demon",
+   "npc_type": 820,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    383,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900504,
+   "nombre": "Rock Demon",
+   "npc_type": 820,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    413,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900505,
+   "nombre": "Rock Demon",
+   "npc_type": 820,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    406,
+    136
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900506,
+   "nombre": "Rock Demon",
+   "npc_type": 820,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    411,
+    136
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900507,
+   "nombre": "Rock Demon",
+   "npc_type": 820,
+   "sprite": 42302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    414,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900508,
+   "nombre": "Soul-eating Worm",
+   "npc_type": 816,
+   "sprite": 42300,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    66,
+    51
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 78
+  },
+  {
+   "entity_id": 57900509,
+   "nombre": "Evil Terra Miner",
+   "npc_type": 1069,
+   "sprite": 42372,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    82
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900510,
+   "nombre": "Evil Terra Miner",
+   "npc_type": 1069,
+   "sprite": 42372,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    112
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900511,
+   "nombre": "Evil Terra Miner",
+   "npc_type": 1069,
+   "sprite": 42372,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    82
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900512,
+   "nombre": "Evil Terra Miner",
+   "npc_type": 1069,
+   "sprite": 42372,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    112
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900513,
+   "nombre": "Evil Terra Miner",
+   "npc_type": 1069,
+   "sprite": 42372,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    111,
+    82
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900514,
+   "nombre": "Evil Terra Miner",
+   "npc_type": 1069,
+   "sprite": 42372,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    111,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900515,
+   "nombre": "Evil Terra Miner",
+   "npc_type": 1069,
+   "sprite": 42372,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    111,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900516,
+   "nombre": "Evil Terra Miner",
+   "npc_type": 1069,
+   "sprite": 42372,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    111,
+    97
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900517,
+   "nombre": "Evil Soul Worm",
+   "npc_type": 1070,
+   "sprite": 42373,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    111,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900518,
+   "nombre": "Evil Soul Worm",
+   "npc_type": 1070,
+   "sprite": 42373,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    111,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900519,
+   "nombre": "Evil Soul Worm",
+   "npc_type": 1070,
+   "sprite": 42373,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    111,
+    112
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900520,
+   "nombre": "Evil Soul Worm",
+   "npc_type": 1070,
+   "sprite": 42373,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    76,
+    77
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900521,
+   "nombre": "Evil Soul Worm",
+   "npc_type": 1070,
+   "sprite": 42373,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    76,
+    82
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900522,
+   "nombre": "Evil Soul Worm",
+   "npc_type": 1070,
+   "sprite": 42373,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    76,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  },
+  {
+   "entity_id": 57900523,
+   "nombre": "Evil Soul Worm",
+   "npc_type": 1070,
+   "sprite": 42373,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    76,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 80
+  }
+ ],
+ "recursos": [
+  {
+   "entity_id": 67900000,
+   "sprite": 60098,
+   "capa": 0,
+   "px": [
+    490,
+    4624
+   ],
+   "tile": [
+    15,
+    144
+   ],
+   "crudo": "60120c0400000000ea010000101200000000000027000000000000001a000000dc06c2ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60098"
+  },
+  {
+   "entity_id": 67900001,
+   "sprite": 60098,
+   "capa": 0,
+   "px": [
+    9877,
+    3536
+   ],
+   "tile": [
+    308,
+    110
+   ],
+   "crudo": "61120c040000000095260000d00d00000000000027000000000000001a000000dc06c2ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60098"
+  },
+  {
+   "entity_id": 67900002,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1982,
+    656
+   ],
+   "tile": [
+    61,
+    20
+   ],
+   "crudo": "62120c0400000000be070000900200000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67900003,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2055,
+    624
+   ],
+   "tile": [
+    64,
+    19
+   ],
+   "crudo": "63120c040000000007080000700200000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67900004,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2089,
+    560
+   ],
+   "tile": [
+    65,
+    17
+   ],
+   "crudo": "64120c040000000029080000300200000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67900005,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4375,
+    5840
+   ],
+   "tile": [
+    136,
+    182
+   ],
+   "crudo": "65120c040000000017110000d01600000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67900006,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4519,
+    5936
+   ],
+   "tile": [
+    141,
+    185
+   ],
+   "crudo": "66120c0400000000a7110000301700000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67900007,
+   "sprite": 60049,
+   "capa": 0,
+   "px": [
+    8361,
+    8560
+   ],
+   "tile": [
+    261,
+    267
+   ],
+   "crudo": "67120c0400000000a9200000702100000000000027000000000000001a000000dc0691ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60049"
+  },
+  {
+   "entity_id": 67900008,
+   "sprite": 60049,
+   "capa": 2,
+   "px": [
+    1156,
+    7152
+   ],
+   "tile": [
+    36,
+    223
+   ],
+   "crudo": "68120c040200000084040000f01b00000000000027000000000000001a000000dc0691ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60049"
+  },
+  {
+   "entity_id": 67900009,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4441,
+    5904
+   ],
+   "tile": [
+    138,
+    184
+   ],
+   "crudo": "69120c040000000059110000101700000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67900010,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4586,
+    5904
+   ],
+   "tile": [
+    143,
+    184
+   ],
+   "crudo": "6a120c0400000000ea110000101700000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67900011,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1966,
+    592
+   ],
+   "tile": [
+    61,
+    18
+   ],
+   "crudo": "6b120c0400000000ae070000500200000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67900012,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2021,
+    560
+   ],
+   "tile": [
+    63,
+    17
+   ],
+   "crudo": "6c120c0400000000e5070000300200000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67900013,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    4644,
+    5840
+   ],
+   "tile": [
+    145,
+    182
+   ],
+   "crudo": "6d120c040000000024120000d01600000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 67900014,
+   "sprite": 60047,
+   "capa": 0,
+   "px": [
+    8730,
+    6512
+   ],
+   "tile": [
+    272,
+    203
+   ],
+   "crudo": "6e120c04000000001a220000701900000000000027000000000000001a000000dc068fea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60047"
+  },
+  {
+   "entity_id": 67900015,
+   "sprite": 60047,
+   "capa": 0,
+   "px": [
+    4180,
+    8432
+   ],
+   "tile": [
+    130,
+    263
+   ],
+   "crudo": "6f120c040000000054100000f02000000000000027000000000000001a000000dc068fea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60047"
+  },
+  {
+   "entity_id": 67900016,
+   "sprite": 60041,
+   "capa": 2,
+   "px": [
+    713,
+    8240
+   ],
+   "tile": [
+    22,
+    257
+   ],
+   "crudo": "70120c0402000000c9020000302000000000000027000000000000001a000000dc0689ea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60041"
+  },
+  {
+   "entity_id": 67900017,
+   "sprite": 60050,
+   "capa": 2,
+   "px": [
+    10593,
+    4208
+   ],
+   "tile": [
+    331,
+    131
+   ],
+   "crudo": "71120c040200000061290000701000000000000027000000000000001a000000dc0692ea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60050"
+  }
+ ]
+}

@@ -1,0 +1,4343 @@
+{
+ "_nota": "limitless_tower (stage 110). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map110.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "stage": 110,
+ "spawns": [
+  {
+   "entity_id": 61000000,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000001,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    138,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000002,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000003,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    175,
+    62
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000004,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    148,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000005,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000006,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000007,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    170,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000008,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    148,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000009,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000010,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    148,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000011,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000012,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000013,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    170,
+    62
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000014,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000015,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    138,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000016,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000017,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    170,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000018,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000019,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    138,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000020,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000021,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000022,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000023,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    175,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000024,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000025,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000026,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000027,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    175,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000028,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000029,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000030,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000031,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000032,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000033,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    180,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000034,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000035,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000036,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    153,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000037,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    180,
+    62
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000038,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    148,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000039,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000040,
+   "nombre": "Hell Rock Giant",
+   "npc_type": 3655,
+   "sprite": 42471,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000041,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000042,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000043,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000044,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000045,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000046,
+   "nombre": "Hell Rock Giant",
+   "npc_type": 3655,
+   "sprite": 42471,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    212,
+    139
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000047,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    213,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000048,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    208,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000049,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    208,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000050,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    213,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000051,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    217,
+    139
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000052,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    199,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000053,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    193,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000054,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    188,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000055,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    188,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000056,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    188,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000057,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    193,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000058,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    121
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000059,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    171,
+    116
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000060,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    171,
+    121
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000061,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    171,
+    126
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000062,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    116
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000063,
+   "nombre": "Hell Rock Giant",
+   "npc_type": 3655,
+   "sprite": 42471,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    166,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000064,
+   "nombre": "Hell Rock Giant",
+   "npc_type": 3655,
+   "sprite": 42471,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    147,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000065,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    142,
+    136
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000066,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    131
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000067,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    136
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000068,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000069,
+   "nombre": "Fantastic Ancient Armor",
+   "npc_type": 3649,
+   "sprite": 42470,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    142,
+    131
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000070,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    286,
+    199
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000071,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    260,
+    196
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000072,
+   "nombre": "Hell Rock Giant",
+   "npc_type": 3655,
+   "sprite": 42471,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    209
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000073,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    254,
+    214
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000074,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    214
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000075,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    253,
+    205
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000076,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    263,
+    205
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000077,
+   "nombre": "Hell Rock Giant",
+   "npc_type": 3655,
+   "sprite": 42471,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    265,
+    196
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000078,
+   "nombre": "Hell Rock Giant",
+   "npc_type": 3655,
+   "sprite": 42471,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    291,
+    202
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000079,
+   "nombre": "Hell Rock Giant",
+   "npc_type": 3655,
+   "sprite": 42471,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    201
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000080,
+   "nombre": "Hell Rock Giant",
+   "npc_type": 3655,
+   "sprite": 42471,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    286,
+    204
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000081,
+   "nombre": "Hell Rock Giant",
+   "npc_type": 3655,
+   "sprite": 42471,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    268,
+    201
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000082,
+   "nombre": "Hell Rock Giant",
+   "npc_type": 3655,
+   "sprite": 42471,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    291,
+    197
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000083,
+   "nombre": "Hell Rock Giant",
+   "npc_type": 3655,
+   "sprite": 42471,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    191
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000084,
+   "nombre": "Hell Rock Giant",
+   "npc_type": 3655,
+   "sprite": 42471,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    291,
+    207
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000085,
+   "nombre": "Hell Rock Giant",
+   "npc_type": 3655,
+   "sprite": 42471,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    144,
+    211
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000086,
+   "nombre": "Hell Rock Giant",
+   "npc_type": 3655,
+   "sprite": 42471,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    139,
+    206
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000087,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    135,
+    211
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000088,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    134,
+    202
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000089,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    144,
+    202
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000090,
+   "nombre": "Hell Rock Giant",
+   "npc_type": 3655,
+   "sprite": 42471,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    147,
+    197
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000091,
+   "nombre": "Hell Rock Giant",
+   "npc_type": 3655,
+   "sprite": 42471,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    142,
+    192
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000092,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    152,
+    198
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000093,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    149,
+    203
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000094,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    154,
+    203
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000095,
+   "nombre": "Hell Rock Giant",
+   "npc_type": 3655,
+   "sprite": 42471,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    164,
+    193
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000096,
+   "nombre": "Hell Rock Giant",
+   "npc_type": 3655,
+   "sprite": 42471,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    159,
+    188
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000097,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    170,
+    193
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000098,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    165,
+    188
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000099,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    165,
+    198
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000100,
+   "nombre": "Complete Statue Ghost",
+   "npc_type": 3657,
+   "sprite": 42497,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    62,
+    195
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 113
+  },
+  {
+   "entity_id": 61000101,
+   "nombre": "Complete Statue Ghost",
+   "npc_type": 3657,
+   "sprite": 42497,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    57,
+    190
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 113
+  },
+  {
+   "entity_id": 61000102,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    200
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000103,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    200
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000104,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    57,
+    195
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000105,
+   "nombre": "Complete Statue Ghost",
+   "npc_type": 3657,
+   "sprite": 42497,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    52,
+    207
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 113
+  },
+  {
+   "entity_id": 61000106,
+   "nombre": "Complete Statue Ghost",
+   "npc_type": 3657,
+   "sprite": 42497,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    47,
+    202
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 113
+  },
+  {
+   "entity_id": 61000107,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    212
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000108,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    212
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000109,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    47,
+    207
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000110,
+   "nombre": "Complete Statue Ghost",
+   "npc_type": 3657,
+   "sprite": 42497,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    198
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 113
+  },
+  {
+   "entity_id": 61000111,
+   "nombre": "Complete Statue Ghost",
+   "npc_type": 3657,
+   "sprite": 42497,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    193
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 113
+  },
+  {
+   "entity_id": 61000112,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    33,
+    203
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000113,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    38,
+    203
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000114,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    198
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000115,
+   "nombre": "Door keeper Karl",
+   "npc_type": 3888,
+   "sprite": 42567,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    311,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61000116,
+   "nombre": "Devil Statue Ghost",
+   "npc_type": 3658,
+   "sprite": 42498,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    288,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000117,
+   "nombre": "Devil Statue Ghost",
+   "npc_type": 3658,
+   "sprite": 42498,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    283,
+    27
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000118,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    283,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000119,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    282,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000120,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    287,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000121,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    288,
+    27
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000122,
+   "nombre": "Devil Statue Ghost",
+   "npc_type": 3658,
+   "sprite": 42498,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    278,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000123,
+   "nombre": "Devil Statue Ghost",
+   "npc_type": 3658,
+   "sprite": 42498,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    275,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000124,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    273,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000125,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    278,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000126,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    283,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000127,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    270,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000128,
+   "nombre": "Devil Statue Ghost",
+   "npc_type": 3658,
+   "sprite": 42498,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    263,
+    27
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000129,
+   "nombre": "Devil Statue Ghost",
+   "npc_type": 3658,
+   "sprite": 42498,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    22
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000130,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    263,
+    22
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000131,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    27
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000132,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    268,
+    19
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000133,
+   "nombre": "Cracked Statue Ghost",
+   "npc_type": 3656,
+   "sprite": 42492,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    268,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000134,
+   "nombre": "Devil Statue Ghost",
+   "npc_type": 3658,
+   "sprite": 42498,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    248,
+    272
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000135,
+   "nombre": "Devil Statue Ghost",
+   "npc_type": 3658,
+   "sprite": 42498,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    267
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000136,
+   "nombre": "Devil Statue Ghost",
+   "npc_type": 3658,
+   "sprite": 42498,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    272
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000137,
+   "nombre": "Purple Flame Demon",
+   "npc_type": 3890,
+   "sprite": 42569,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    277
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000138,
+   "nombre": "Purple Flame Demon",
+   "npc_type": 3890,
+   "sprite": 42569,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    248,
+    267
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000139,
+   "nombre": "Devil Statue Ghost",
+   "npc_type": 3658,
+   "sprite": 42498,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    263,
+    262
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000140,
+   "nombre": "Devil Statue Ghost",
+   "npc_type": 3658,
+   "sprite": 42498,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    257
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000141,
+   "nombre": "Devil Statue Ghost",
+   "npc_type": 3658,
+   "sprite": 42498,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    262
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000142,
+   "nombre": "Purple Flame Demon",
+   "npc_type": 3890,
+   "sprite": 42569,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    267
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000143,
+   "nombre": "Purple Flame Demon",
+   "npc_type": 3890,
+   "sprite": 42569,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    264,
+    267
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000144,
+   "nombre": "Devil Statue Ghost",
+   "npc_type": 3658,
+   "sprite": 42498,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    285,
+    262
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000145,
+   "nombre": "Devil Statue Ghost",
+   "npc_type": 3658,
+   "sprite": 42498,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    280,
+    257
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000146,
+   "nombre": "Devil Statue Ghost",
+   "npc_type": 3658,
+   "sprite": 42498,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    280,
+    262
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000147,
+   "nombre": "Purple Flame Demon",
+   "npc_type": 3890,
+   "sprite": 42569,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    281,
+    267
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000148,
+   "nombre": "Purple Flame Demon",
+   "npc_type": 3890,
+   "sprite": 42569,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    286,
+    267
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000149,
+   "nombre": "Devil Statue Ghost",
+   "npc_type": 3658,
+   "sprite": 42498,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    182,
+    263
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000150,
+   "nombre": "Devil Statue Ghost",
+   "npc_type": 3658,
+   "sprite": 42498,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    177,
+    258
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000151,
+   "nombre": "Purple Flame Demon",
+   "npc_type": 3890,
+   "sprite": 42569,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    268
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000152,
+   "nombre": "Purple Flame Demon",
+   "npc_type": 3890,
+   "sprite": 42569,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    268
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000153,
+   "nombre": "Purple Flame Demon",
+   "npc_type": 3890,
+   "sprite": 42569,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    177,
+    263
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000154,
+   "nombre": "Purple Flame Demon",
+   "npc_type": 3890,
+   "sprite": 42569,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    187,
+    259
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000155,
+   "nombre": "Devil Statue Ghost",
+   "npc_type": 3658,
+   "sprite": 42498,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    159,
+    264
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000156,
+   "nombre": "Devil Statue Ghost",
+   "npc_type": 3658,
+   "sprite": 42498,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    154,
+    259
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000157,
+   "nombre": "Purple Flame Demon",
+   "npc_type": 3890,
+   "sprite": 42569,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    156,
+    269
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000158,
+   "nombre": "Purple Flame Demon",
+   "npc_type": 3890,
+   "sprite": 42569,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    269
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000159,
+   "nombre": "Purple Flame Demon",
+   "npc_type": 3890,
+   "sprite": 42569,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    164,
+    261
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000160,
+   "nombre": "Purple Flame Demon",
+   "npc_type": 3890,
+   "sprite": 42569,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    154,
+    264
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000161,
+   "nombre": "Devil Statue Ghost",
+   "npc_type": 3658,
+   "sprite": 42498,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    138,
+    264
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000162,
+   "nombre": "Devil Statue Ghost",
+   "npc_type": 3658,
+   "sprite": 42498,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    259
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000163,
+   "nombre": "Devil Statue Ghost",
+   "npc_type": 3658,
+   "sprite": 42498,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    264
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000164,
+   "nombre": "Purple Flame Demon",
+   "npc_type": 3890,
+   "sprite": 42569,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    134,
+    269
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000165,
+   "nombre": "Purple Flame Demon",
+   "npc_type": 3890,
+   "sprite": 42569,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    139,
+    269
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000166,
+   "nombre": "Purple Flame Demon",
+   "npc_type": 3890,
+   "sprite": 42569,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    143,
+    260
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000167,
+   "nombre": "Purple Flame Demon",
+   "npc_type": 3890,
+   "sprite": 42569,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    138,
+    259
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000168,
+   "nombre": "Sleeper's Guinea Pig",
+   "npc_type": 3661,
+   "sprite": 42553,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    273
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61000169,
+   "nombre": "Sleeper's Guinea Pig",
+   "npc_type": 3661,
+   "sprite": 42553,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    268
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61000170,
+   "nombre": "Blood Boa Emmy",
+   "npc_type": 3889,
+   "sprite": 42568,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    71,
+    265
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61000171,
+   "nombre": "Battle Statue",
+   "npc_type": 3659,
+   "sprite": 42499,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    12
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000172,
+   "nombre": "Battle Statue",
+   "npc_type": 3659,
+   "sprite": 42499,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    7
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000173,
+   "nombre": "Battle Statue",
+   "npc_type": 3659,
+   "sprite": 42499,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    12
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000174,
+   "nombre": "Battle Statue",
+   "npc_type": 3659,
+   "sprite": 42499,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    17
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000175,
+   "nombre": "Devil Battle Statue",
+   "npc_type": 3660,
+   "sprite": 42500,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    7
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 116
+  },
+  {
+   "entity_id": 61000176,
+   "nombre": "Devil Battle Statue",
+   "npc_type": 3660,
+   "sprite": 42500,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    17
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 116
+  },
+  {
+   "entity_id": 61000177,
+   "nombre": "Battle Statue",
+   "npc_type": 3659,
+   "sprite": 42499,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    45,
+    13
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000178,
+   "nombre": "Battle Statue",
+   "npc_type": 3659,
+   "sprite": 42499,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    8
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000179,
+   "nombre": "Battle Statue",
+   "npc_type": 3659,
+   "sprite": 42499,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    13
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000180,
+   "nombre": "Battle Statue",
+   "npc_type": 3659,
+   "sprite": 42499,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000181,
+   "nombre": "Devil Battle Statue",
+   "npc_type": 3660,
+   "sprite": 42500,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    45,
+    8
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 116
+  },
+  {
+   "entity_id": 61000182,
+   "nombre": "Devil Battle Statue",
+   "npc_type": 3660,
+   "sprite": 42500,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    35,
+    6
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 116
+  },
+  {
+   "entity_id": 61000183,
+   "nombre": "Battle Statue",
+   "npc_type": 3659,
+   "sprite": 42499,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000184,
+   "nombre": "Battle Statue",
+   "npc_type": 3659,
+   "sprite": 42499,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000185,
+   "nombre": "Battle Statue",
+   "npc_type": 3659,
+   "sprite": 42499,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000186,
+   "nombre": "Battle Statue",
+   "npc_type": 3659,
+   "sprite": 42499,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000187,
+   "nombre": "Devil Battle Statue",
+   "npc_type": 3660,
+   "sprite": 42500,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    19
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 116
+  },
+  {
+   "entity_id": 61000188,
+   "nombre": "Devil Battle Statue",
+   "npc_type": 3660,
+   "sprite": 42500,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 116
+  },
+  {
+   "entity_id": 61000189,
+   "nombre": "Battle Statue",
+   "npc_type": 3659,
+   "sprite": 42499,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    23,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000190,
+   "nombre": "Battle Statue",
+   "npc_type": 3659,
+   "sprite": 42499,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    18,
+    19
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000191,
+   "nombre": "Battle Statue",
+   "npc_type": 3659,
+   "sprite": 42499,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    18,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000192,
+   "nombre": "Battle Statue",
+   "npc_type": 3659,
+   "sprite": 42499,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    18,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000193,
+   "nombre": "Devil Battle Statue",
+   "npc_type": 3660,
+   "sprite": 42500,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    23,
+    19
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 116
+  },
+  {
+   "entity_id": 61000194,
+   "nombre": "Devil Battle Statue",
+   "npc_type": 3660,
+   "sprite": 42500,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    23,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 116
+  },
+  {
+   "entity_id": 61000195,
+   "nombre": "Battle Statue",
+   "npc_type": 3659,
+   "sprite": 42499,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    19,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000196,
+   "nombre": "Battle Statue",
+   "npc_type": 3659,
+   "sprite": 42499,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    14,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000197,
+   "nombre": "Battle Statue",
+   "npc_type": 3659,
+   "sprite": 42499,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    14,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000198,
+   "nombre": "Battle Statue",
+   "npc_type": 3659,
+   "sprite": 42499,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    14,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000199,
+   "nombre": "Devil Battle Statue",
+   "npc_type": 3660,
+   "sprite": 42500,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    19,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 116
+  },
+  {
+   "entity_id": 61000200,
+   "nombre": "Devil Battle Statue",
+   "npc_type": 3660,
+   "sprite": 42500,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    19,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 116
+  },
+  {
+   "entity_id": 61000201,
+   "nombre": "Sleeper's Guinea Pig",
+   "npc_type": 3661,
+   "sprite": 42553,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    13
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61000202,
+   "nombre": "Sleeper's Guinea Pig",
+   "npc_type": 3661,
+   "sprite": 42553,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61000203,
+   "nombre": "Sleeper's Guinea Pig",
+   "npc_type": 3661,
+   "sprite": 42553,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    50,
+    8
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61000204,
+   "nombre": "Sleeper's Guinea Pig",
+   "npc_type": 3661,
+   "sprite": 42553,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61000205,
+   "nombre": "Puppet Demon",
+   "npc_type": 3673,
+   "sprite": 42554,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    278,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61000206,
+   "nombre": "Sleeper Sandman",
+   "npc_type": 3663,
+   "sprite": 42556,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    121
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61000207,
+   "nombre": "Sealed Holiness Crystal",
+   "npc_type": 3650,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000208,
+   "nombre": "Sealed Holiness Crystal",
+   "npc_type": 3650,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    180,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000209,
+   "nombre": "Sealed Holiness Crystal",
+   "npc_type": 3650,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    69
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000210,
+   "nombre": "Sealed Holiness Crystal",
+   "npc_type": 3650,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000211,
+   "nombre": "Sealed Holiness Crystal",
+   "npc_type": 3650,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    169,
+    72
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000212,
+   "nombre": "Sealed Holiness Crystal",
+   "npc_type": 3650,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000213,
+   "nombre": "Sealed Holiness Crystal",
+   "npc_type": 3650,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    145,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000214,
+   "nombre": "Sealed Holiness Crystal",
+   "npc_type": 3650,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    174,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000215,
+   "nombre": "Sealed Holiness Crystal",
+   "npc_type": 3650,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000216,
+   "nombre": "Sealed Holiness Crystal",
+   "npc_type": 3650,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    203,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000217,
+   "nombre": "Sealed Holiness Crystal",
+   "npc_type": 3650,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    224,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000218,
+   "nombre": "Sealed Holiness Crystal",
+   "npc_type": 3650,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000219,
+   "nombre": "Sealed Holiness Crystal",
+   "npc_type": 3650,
+   "sprite": 42352,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    142,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000220,
+   "nombre": "Sealed Rule Crystal",
+   "npc_type": 3651,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    264,
+    210
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000221,
+   "nombre": "Sealed Rule Crystal",
+   "npc_type": 3651,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    276,
+    204
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000222,
+   "nombre": "Sealed Rule Crystal",
+   "npc_type": 3651,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    247,
+    196
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000223,
+   "nombre": "Sealed Rule Crystal",
+   "npc_type": 3651,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    264,
+    191
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000224,
+   "nombre": "Sealed Rule Crystal",
+   "npc_type": 3651,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    204
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000225,
+   "nombre": "Sealed Rule Crystal",
+   "npc_type": 3651,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    149,
+    211
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000226,
+   "nombre": "Sealed Rule Crystal",
+   "npc_type": 3651,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    150,
+    192
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000227,
+   "nombre": "Sealed Rule Crystal",
+   "npc_type": 3651,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    196
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000228,
+   "nombre": "Sealed Rule Crystal",
+   "npc_type": 3651,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    160,
+    198
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000229,
+   "nombre": "Sealed Rule Crystal",
+   "npc_type": 3651,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    212
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000230,
+   "nombre": "Sealed Rule Crystal",
+   "npc_type": 3651,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    213
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000231,
+   "nombre": "Sealed Rule Crystal",
+   "npc_type": 3651,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    62,
+    190
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000232,
+   "nombre": "Sealed Rule Crystal",
+   "npc_type": 3651,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    38,
+    193
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000233,
+   "nombre": "Sealed Rule Crystal",
+   "npc_type": 3651,
+   "sprite": 42354,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    20,
+    204
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 110
+  },
+  {
+   "entity_id": 61000234,
+   "nombre": "Sealed Justice Crystal",
+   "npc_type": 3652,
+   "sprite": 42356,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000235,
+   "nombre": "Sealed Justice Crystal",
+   "npc_type": 3652,
+   "sprite": 42356,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    273,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000236,
+   "nombre": "Sealed Justice Crystal",
+   "npc_type": 3652,
+   "sprite": 42356,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    277,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000237,
+   "nombre": "Sealed Justice Crystal",
+   "npc_type": 3652,
+   "sprite": 42356,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    301,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000238,
+   "nombre": "Sealed Justice Crystal",
+   "npc_type": 3652,
+   "sprite": 42356,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    288,
+    22
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000239,
+   "nombre": "Sealed Justice Crystal",
+   "npc_type": 3652,
+   "sprite": 42356,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    314,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 112
+  },
+  {
+   "entity_id": 61000240,
+   "nombre": "Sealed Pity Crystal",
+   "npc_type": 3653,
+   "sprite": 42358,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    274,
+    266
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000241,
+   "nombre": "Sealed Pity Crystal",
+   "npc_type": 3653,
+   "sprite": 42358,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    272,
+    255
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000242,
+   "nombre": "Sealed Pity Crystal",
+   "npc_type": 3653,
+   "sprite": 42358,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    291,
+    263
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000243,
+   "nombre": "Sealed Pity Crystal",
+   "npc_type": 3653,
+   "sprite": 42358,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    253,
+    253
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000244,
+   "nombre": "Sealed Pity Crystal",
+   "npc_type": 3653,
+   "sprite": 42358,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    260,
+    276
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000245,
+   "nombre": "Sealed Pity Crystal",
+   "npc_type": 3653,
+   "sprite": 42358,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    148,
+    270
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000246,
+   "nombre": "Sealed Pity Crystal",
+   "npc_type": 3653,
+   "sprite": 42358,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    149,
+    254
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000247,
+   "nombre": "Sealed Pity Crystal",
+   "npc_type": 3653,
+   "sprite": 42358,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    170,
+    257
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000248,
+   "nombre": "Sealed Pity Crystal",
+   "npc_type": 3653,
+   "sprite": 42358,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    188,
+    266
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000249,
+   "nombre": "Sealed Pity Crystal",
+   "npc_type": 3653,
+   "sprite": 42358,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    268
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000250,
+   "nombre": "Sealed Pity Crystal",
+   "npc_type": 3653,
+   "sprite": 42358,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    127,
+    269
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000251,
+   "nombre": "Sealed Pity Crystal",
+   "npc_type": 3653,
+   "sprite": 42358,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    38,
+    267
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000252,
+   "nombre": "Sealed Pity Crystal",
+   "npc_type": 3653,
+   "sprite": 42358,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    83,
+    268
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000253,
+   "nombre": "Sealed Pity Crystal",
+   "npc_type": 3653,
+   "sprite": 42358,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    259
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000254,
+   "nombre": "Sealed Pity Crystal",
+   "npc_type": 3653,
+   "sprite": 42358,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    47,
+    259
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000255,
+   "nombre": "Sealed Pity Crystal",
+   "npc_type": 3653,
+   "sprite": 42358,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    280
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 114
+  },
+  {
+   "entity_id": 61000256,
+   "nombre": "Sealed Goodness Crystal",
+   "npc_type": 3654,
+   "sprite": 42362,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    58,
+    22
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000257,
+   "nombre": "Sealed Goodness Crystal",
+   "npc_type": 3654,
+   "sprite": 42362,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000258,
+   "nombre": "Sealed Goodness Crystal",
+   "npc_type": 3654,
+   "sprite": 42362,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    28,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000259,
+   "nombre": "Sealed Goodness Crystal",
+   "npc_type": 3654,
+   "sprite": 42362,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    7,
+    51
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000260,
+   "nombre": "Door Statue",
+   "npc_type": 3911,
+   "sprite": 42500,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    266
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000261,
+   "nombre": "Sealed Goodness Crystal",
+   "npc_type": 3654,
+   "sprite": 42362,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    13,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000262,
+   "nombre": "Sealed Goodness Crystal",
+   "npc_type": 3654,
+   "sprite": 42362,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    3
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 115
+  },
+  {
+   "entity_id": 61000263,
+   "nombre": "Frenzy Statue",
+   "npc_type": 3910,
+   "sprite": 42499,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    52,
+    202
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000264,
+   "nombre": "Frenzy Statue",
+   "npc_type": 3910,
+   "sprite": 42499,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    61,
+    205
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000265,
+   "nombre": "Frenzy Statue",
+   "npc_type": 3910,
+   "sprite": 42499,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    52,
+    196
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 105
+  },
+  {
+   "entity_id": 61000266,
+   "nombre": "Sand Claw",
+   "npc_type": 4009,
+   "sprite": 42500,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61000267,
+   "nombre": "Sand Claw",
+   "npc_type": 4009,
+   "sprite": 42500,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    121
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61000268,
+   "nombre": "Sand Claw",
+   "npc_type": 4009,
+   "sprite": 42500,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    57,
+    109
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61000269,
+   "nombre": "Sand Claw",
+   "npc_type": 4009,
+   "sprite": 42500,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    70,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 61000270,
+   "nombre": "Belia",
+   "npc_type": 4010,
+   "sprite": 42557,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    293,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  }
+ ],
+ "recursos": [
+  {
+   "entity_id": 71000000,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5544,
+    2512
+   ],
+   "tile": [
+    173,
+    78
+   ],
+   "crudo": "c05f3b0400000000a8150000d00900000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71000001,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    6382,
+    4912
+   ],
+   "tile": [
+    199,
+    153
+   ],
+   "crudo": "c15f3b0400000000ee180000301300000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71000002,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5933,
+    4752
+   ],
+   "tile": [
+    185,
+    148
+   ],
+   "crudo": "c25f3b04000000002d170000901200000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71000003,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    8391,
+    6896
+   ],
+   "tile": [
+    262,
+    215
+   ],
+   "crudo": "c35f3b0400000000c7200000f01a00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71000004,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    10112,
+    1808
+   ],
+   "tile": [
+    316,
+    56
+   ],
+   "crudo": "c45f3b040000000080270000100700000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71000005,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    993,
+    8528
+   ],
+   "tile": [
+    31,
+    266
+   ],
+   "crudo": "c55f3b0400000000e1030000502100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71000006,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1427,
+    6672
+   ],
+   "tile": [
+    44,
+    208
+   ],
+   "crudo": "c65f3b040000000093050000101a00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71000007,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2031,
+    6672
+   ],
+   "tile": [
+    63,
+    208
+   ],
+   "crudo": "c75f3b0400000000ef070000101a00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71000008,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1727,
+    6224
+   ],
+   "tile": [
+    53,
+    194
+   ],
+   "crudo": "c85f3b0400000000bf060000501800000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71000009,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1809,
+    4368
+   ],
+   "tile": [
+    56,
+    136
+   ],
+   "crudo": "c95f3b040000000011070000101100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71000010,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1344,
+    4336
+   ],
+   "tile": [
+    42,
+    135
+   ],
+   "crudo": "ca5f3b040000000040050000f01000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71000011,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2030,
+    4368
+   ],
+   "tile": [
+    63,
+    136
+   ],
+   "crudo": "cb5f3b0400000000ee070000101100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71000012,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1075,
+    3824
+   ],
+   "tile": [
+    33,
+    119
+   ],
+   "crudo": "cc5f3b040000000033040000f00e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71000013,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1678,
+    3472
+   ],
+   "tile": [
+    52,
+    108
+   ],
+   "crudo": "cd5f3b04000000008e060000900d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71000014,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2317,
+    3536
+   ],
+   "tile": [
+    72,
+    110
+   ],
+   "crudo": "ce5f3b04000000000d090000d00d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71000015,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1967,
+    3440
+   ],
+   "tile": [
+    61,
+    107
+   ],
+   "crudo": "cf5f3b0400000000af070000700d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71000016,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    724,
+    3984
+   ],
+   "tile": [
+    22,
+    124
+   ],
+   "crudo": "d05f3b0400000000d4020000900f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  },
+  {
+   "entity_id": 71000017,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    2384,
+    3888
+   ],
+   "tile": [
+    74,
+    121
+   ],
+   "crudo": "d15f3b040000000050090000300f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157"
+  }
+ ]
+}

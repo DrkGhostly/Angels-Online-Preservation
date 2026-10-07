@@ -678,8 +678,86 @@ PLANTILLAS_POR_STAGE = {
     # que se entra por el tornado de (250,171) de Lava Cave. Pobladas
     # desde una captura del cliente GLOBAL, cuyo 0x0008 mide 46 bytes
     # en vez de 62/63/64 -- ver tools/poblar_instancia_global.py.
+    #
+    # Los PORTALES de las dos salas NO salen de esa captura: salen de
+    # map073.mpc y map074.mpc, que traen el grafo entero. De la captura
+    # salieron mal -- la llegada anotada era el doble de la de verdad y
+    # 73 <-> 74 se quedo sin enlazar. Ver tools/mapa_del_cliente.py y
+    # tools/test_magic_kichen_path.py.
+    #
+    # La TERCERA sala (stage 75) no esta aqui y no se puede llegar: el
+    # paso 74 -> 75 es el evento 5 de map074.mpc y ningun objeto del
+    # mapa lo dispara, la puerta se crea en marcha. Sus tres tornados
+    # estan anotados en portales.json para no volver a sacarlos.
     73  : 'magic_kichen_path.json',
     74  : 'magic_kichen_path_2.json',
+    # GULP ROOM, los cuatro cuartos de la instancia de Underground Square.
+    # Se entra por el tornado de (252,24) del 71, que llevaba meses anotado
+    # con destino en null porque "no se cruzo". No habia que cruzarlo.
+    #
+    # ESTOS CUATRO NO SALEN DE NINGUNA CAPTURA. Ninguna sesion del proyecto
+    # entro nunca al 76-79 -- se comprobo: de 1230 sesiones de mundo, cero
+    # paquetes 0x0008 en esos mapas. Los monstruos son los generadores que
+    # trae el propio .mpc del cliente. Ver tools/poblar_del_cliente.py, que
+    # ademas contrasta el metodo con las 234 plantillas que SI salieron de
+    # capturas: en 164 de ellas el total que declara el cliente es
+    # EXACTAMENTE el que vio la captura.
+    #
+    # El 77 trae un solo monstruo a proposito: es el laberinto de tornados,
+    # con 52 portales internos y nada mas.
+    76  : 'gulp_room.json',
+    77  : 'gulp_room_2.json',
+    78  : 'gulp_room_3.json',
+    79  : 'gulp_room_4.json',
+    # LAS DOS INSTANCIAS DE BLUE OCEAN, en Atlantis. Se entra por el mismo
+    # tornado, el de (294,14) del stage 90, que no viaja: abre el dialogo 3
+    # del mapa y la opcion elegida decide si vas a la normal o a la Elite.
+    # Mismo mapa de 325x199 las dos, con bichos distintos: Mermaid y Linberd
+    # en la normal, Scale Captain y Merman en la Horrible.
+    98  : 'lost_region.json',
+    101 : 'horrible_lost_region.json',
+    # LAS 26 INSTANCIAS QUE QUEDABAN, abiertas de una vez. Sus entradas
+    # llevaban meses en portales.json con el destino en null y notas que
+    # decian "NO SE CRUZO" o "identificada por descarte": 24 de ellas traian
+    # el CHANGE_MAP escrito en el objeto del mapa del cliente desde el primer
+    # dia, y las otras dos van por un menu de dialogo.
+    #
+    # Ninguna salio de una captura -- a una instancia no se entra a voluntad
+    # para grabarla -- sino de los generadores del .mpc. Ver
+    # tools/propagar_portales.py y tools/poblar_del_cliente.py, y el contraste
+    # del metodo contra las 234 plantillas que si son capturas.
+    97  : 'evil_ship.json',                 # Evil Ship, desde 96 Coral Vale. 123 bichos
+    110 : 'limitless_tower.json',           # Limitless Tower, desde 107 Half-beast Hamlet. 271 bichos
+    111 : 'cloud_top_land.json',            # Cloud-top Land, desde 109 Giant Wooden Stairs. 184 bichos
+    127 : 'leviathans_bedroom.json',        # Leviathan's Bedroom, desde 126 Nightmare Palace. 584 bichos
+    158 : 'poker_castle.json',              # Poker Castle, desde 157 Chocolate Forest. 415 bichos
+    168 : 'dinosaur_arena.json',            # Dinosaur Arena, desde 167 Shilly Desert. 354 bichos
+    176 : 'unknown_chambers.json',          # Unknown Chambers, desde 175 Ancient Tombs. 439 bichos
+    199 : 'phoenix_palace.json',            # Phoenix Palace, desde 198 Butterfly Garden. 315 bichos
+    216 : 'blizarro_castle.json',           # Blizarro Castle, desde 215 Silver Wing Cable Car Station. 373 bichos
+    229 : 'mundo_warship.json',             # Mundo Warship, desde 228 Forbidden Sector. 520 bichos
+    238 : 'jade_tassel_city.json',          # Jade Tassel City, desde 237 Ninja Land. 373 bichos
+    252 : 'queen_bee_hideout.json',         # Queen Bee Hideout, desde 251 Buzzing Stopover. 512 bichos
+    281 : 'floral_palace.json',             # Floral Palace, desde 280 Drip-drop Passage. 543 bichos
+    292 : 'flamefang_sanctum.json',         # Flamefang Sanctum, desde 291 Fragrant Courtyard. 350 bichos
+    302 : 'enchanted_sanctum.json',         # Enchanted Sanctum, desde 301 Reminiscence Cloister. 260 bichos
+    313 : 'apocalypso.json',                # Apocalypso, desde 312 Chrono Ruins. 294 bichos
+    325 : 'radiant_castle.json',            # Radiant Castle, desde 324 Royal Ruins. 211 bichos
+    340 : 'leviathans_domain.json',         # Leviathan's Domain, desde 339 Peril Chasm. 340 bichos
+    351 : 'nightmare_city.json',            # Nightmare City, desde 350 Forbidden Dusk. 277 bichos
+    360 : 'galaxia_palace.json',            # Galaxia Palace, desde 359 Horizon Archives. 153 bichos
+    369 : 'hadal_lair.json',                # Hadal Lair, desde 368 Deep Prison. 166 bichos
+    387 : 'wintry_realm.json',              # Wintry Realm, desde 386 Frozen Region. 141 bichos
+    395 : 'warring_realm.json',             # Warring Realm, desde 394 Champions' Arena. 166 bichos
+    403 : 'dragons_lair.json',              # Dragon's Lair, desde 402 Seaside Grotto. 134 bichos
+    411 : 'core_zone.json',                 # Core Zone, desde 410 Steely Circuit. 203 bichos
+    422 : 'secret_peak.json',
+    # Estas dos no estaban ni anotadas en portales.json: su tornado falta
+    # entero en el json, no es que estuviera en null. Salieron barriendo el
+    # cliente en busca de tornados que el json no tuviera.
+    145 : 'botti_palace.json',             # Botti Palace, desde 148 Season Garden
+    263 : 'mahal_altar.json',              # Mahal Altar, desde 261 Siam Square
+    264 : 'hell_mahal_altar.json',         # Hell Mahal Altar, desde 262 Hell Siam Square               # Secret Peak, desde 420 Bling Plaza. 235 bichos
     2   : 'riprap_coast.json',
     3   : 'aurora_city.json',
     4   : 'dawn_harbor.json',

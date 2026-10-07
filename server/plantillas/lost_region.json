@@ -1,0 +1,4177 @@
+{
+ "_nota": "lost_region (stage 98). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map098.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "stage": 98,
+ "spawns": [
+  {
+   "entity_id": 59800000,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    149
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800001,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    144
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800002,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    149
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800003,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    36,
+    154
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800004,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    144
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800005,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    154
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800006,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800007,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    132
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800008,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800009,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    142
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800010,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    132
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800011,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    142
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800012,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800013,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800014,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800015,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800016,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800017,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800018,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    52,
+    106
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800019,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    47,
+    101
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800020,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    47,
+    106
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800021,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    47,
+    111
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800022,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    52,
+    101
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800023,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    52,
+    111
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800024,
+   "nombre": "Angel Fishguard",
+   "npc_type": 1250,
+   "sprite": 42440,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    62,
+    101
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 59800025,
+   "nombre": "Angel Fishguard",
+   "npc_type": 1250,
+   "sprite": 42440,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    57,
+    96
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 59800026,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    79,
+    81
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800027,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    74,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800028,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    74,
+    81
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800029,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    74,
+    86
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800030,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    79,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800031,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    79,
+    86
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800032,
+   "nombre": "Angel Fishguard",
+   "npc_type": 1250,
+   "sprite": 42440,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    85,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 59800033,
+   "nombre": "Angel Fishguard",
+   "npc_type": 1250,
+   "sprite": 42440,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    84,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 59800034,
+   "nombre": "Angel Fishguard",
+   "npc_type": 1250,
+   "sprite": 42440,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    110,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 59800035,
+   "nombre": "Angel Fishguard",
+   "npc_type": 1250,
+   "sprite": 42440,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    105,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 82
+  },
+  {
+   "entity_id": 59800036,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    98,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800037,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    93,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800038,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    93,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800039,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    93,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800040,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    98,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800041,
+   "nombre": "Linberd Sender",
+   "npc_type": 1249,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    98,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800042,
+   "nombre": "Merman Guard",
+   "npc_type": 1403,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 84
+  },
+  {
+   "entity_id": 59800043,
+   "nombre": "Merman Guard",
+   "npc_type": 1403,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 84
+  },
+  {
+   "entity_id": 59800044,
+   "nombre": "Merman Guard",
+   "npc_type": 1403,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 84
+  },
+  {
+   "entity_id": 59800045,
+   "nombre": "Merman Guard",
+   "npc_type": 1403,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 84
+  },
+  {
+   "entity_id": 59800046,
+   "nombre": "Merman Guard",
+   "npc_type": 1403,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 84
+  },
+  {
+   "entity_id": 59800047,
+   "nombre": "Merman Guard",
+   "npc_type": 1403,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    74,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 84
+  },
+  {
+   "entity_id": 59800048,
+   "nombre": "Merman Guard",
+   "npc_type": 1403,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    69,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 84
+  },
+  {
+   "entity_id": 59800049,
+   "nombre": "Merman Guard",
+   "npc_type": 1403,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    69,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 84
+  },
+  {
+   "entity_id": 59800050,
+   "nombre": "Merman Guard",
+   "npc_type": 1403,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    69,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 84
+  },
+  {
+   "entity_id": 59800051,
+   "nombre": "Merman Guard",
+   "npc_type": 1403,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    74,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 84
+  },
+  {
+   "entity_id": 59800052,
+   "nombre": "Merman Guard",
+   "npc_type": 1403,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 84
+  },
+  {
+   "entity_id": 59800053,
+   "nombre": "Merman Guard",
+   "npc_type": 1403,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    38,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 84
+  },
+  {
+   "entity_id": 59800054,
+   "nombre": "Merman Guard",
+   "npc_type": 1403,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    38,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 84
+  },
+  {
+   "entity_id": 59800055,
+   "nombre": "Merman Guard",
+   "npc_type": 1403,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    38,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 84
+  },
+  {
+   "entity_id": 59800056,
+   "nombre": "Merman Guard",
+   "npc_type": 1403,
+   "sprite": 42441,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 84
+  },
+  {
+   "entity_id": 59800057,
+   "nombre": "Mermaid",
+   "npc_type": 1404,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800058,
+   "nombre": "Mermaid",
+   "npc_type": 1404,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800059,
+   "nombre": "Mermaid",
+   "npc_type": 1404,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800060,
+   "nombre": "Mermaid",
+   "npc_type": 1404,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800061,
+   "nombre": "Mermaid",
+   "npc_type": 1404,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800062,
+   "nombre": "Mermaid",
+   "npc_type": 1404,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    70,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800063,
+   "nombre": "Mermaid",
+   "npc_type": 1404,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    74,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800064,
+   "nombre": "Mermaid",
+   "npc_type": 1404,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800065,
+   "nombre": "Mermaid",
+   "npc_type": 1404,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800066,
+   "nombre": "Mermaid",
+   "npc_type": 1404,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800067,
+   "nombre": "Hicalu Machine",
+   "npc_type": 1391,
+   "sprite": 42450,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    20,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 85
+  },
+  {
+   "entity_id": 59800068,
+   "nombre": "Fishguard Leader",
+   "npc_type": 1253,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    144,
+    97
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800069,
+   "nombre": "Fishguard Leader",
+   "npc_type": 1253,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    139,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800070,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    134,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800071,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800072,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    138,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800073,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    129,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800074,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    129,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800075,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    134,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800076,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    169,
+    104
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800077,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    164,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800078,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    164,
+    104
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800079,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    164,
+    109
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800080,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    169,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800081,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    169,
+    109
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800082,
+   "nombre": "Fishguard Leader",
+   "npc_type": 1253,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    159,
+    106
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800083,
+   "nombre": "Fishguard Leader",
+   "npc_type": 1253,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    111
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800084,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800085,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800086,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800087,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    104
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800088,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800089,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    104
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800090,
+   "nombre": "Fishguard Leader",
+   "npc_type": 1253,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800091,
+   "nombre": "Fishguard Leader",
+   "npc_type": 1253,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800092,
+   "nombre": "Fishguard Leader",
+   "npc_type": 1253,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    228,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800093,
+   "nombre": "Fishguard Leader",
+   "npc_type": 1253,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    223,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800094,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800095,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    215,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800096,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    215,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800097,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    215,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800098,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800099,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800100,
+   "nombre": "Fishguard Leader",
+   "npc_type": 1253,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    202,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800101,
+   "nombre": "Fishguard Leader",
+   "npc_type": 1253,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    197,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800102,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    209,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800103,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    204,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800104,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    204,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800105,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    209,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800106,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    209,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800107,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800108,
+   "nombre": "Fishguard Leader",
+   "npc_type": 1253,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    164,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800109,
+   "nombre": "Fishguard Leader",
+   "npc_type": 1253,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    159,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800110,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800111,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    171,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800112,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    171,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800113,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    171,
+    62
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800114,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800115,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    62
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800116,
+   "nombre": "Fishguard Leader",
+   "npc_type": 1253,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    145,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800117,
+   "nombre": "Fishguard Leader",
+   "npc_type": 1253,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    140,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800118,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    150,
+    36
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800119,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    145,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800120,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    145,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800121,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    150,
+    31
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800122,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    150,
+    41
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800123,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    155,
+    31
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800124,
+   "nombre": "Fishguard Leader",
+   "npc_type": 1253,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    182,
+    7
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800125,
+   "nombre": "Fishguard Leader",
+   "npc_type": 1253,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    177,
+    2
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800126,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    187,
+    16
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800127,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    182,
+    12
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800128,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    182,
+    17
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800129,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    187,
+    11
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800130,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    187,
+    21
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800131,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    192,
+    11
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800132,
+   "nombre": "Fishguard Leader",
+   "npc_type": 1253,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    212,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800133,
+   "nombre": "Fishguard Leader",
+   "npc_type": 1253,
+   "sprite": 42443,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    207,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800134,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    218,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800135,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    213,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800136,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    213,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800137,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    217,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800138,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    218,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800139,
+   "nombre": "Mermaid",
+   "npc_type": 1252,
+   "sprite": 42442,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    222,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 87
+  },
+  {
+   "entity_id": 59800140,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    254,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800141,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    27
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800142,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800143,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800144,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    254,
+    27
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800145,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    254,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800146,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    27
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800147,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800148,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800149,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    244,
+    22
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800150,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    284,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800151,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    279,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800152,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    279,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800153,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    279,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800154,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    284,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800155,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    284,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800156,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    289,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800157,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    289,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800158,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    289,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800159,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    274,
+    19
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800160,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    270,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800161,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    265,
+    42
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800162,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    265,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800163,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    265,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800164,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    270,
+    42
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800165,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    270,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800166,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    275,
+    42
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800167,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    275,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800168,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    275,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800169,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    260,
+    42
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800170,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    297,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800171,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    292,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800172,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    292,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800173,
+   "nombre": "Slip Angel Fish",
+   "npc_type": 1255,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    303,
+    73
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800174,
+   "nombre": "Slip Angel Fish",
+   "npc_type": 1255,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    298,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800175,
+   "nombre": "Slip Angel Fish",
+   "npc_type": 1255,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    302,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800176,
+   "nombre": "Slip Angel Fish",
+   "npc_type": 1255,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    294,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800177,
+   "nombre": "Slip Angel Fish",
+   "npc_type": 1255,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    289,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800178,
+   "nombre": "Slip Angel Fish",
+   "npc_type": 1255,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    289,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800179,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    300,
+    90
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800180,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    295,
+    85
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800181,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    299,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800182,
+   "nombre": "Slip Angel Fish",
+   "npc_type": 1255,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800183,
+   "nombre": "Slip Angel Fish",
+   "npc_type": 1255,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800184,
+   "nombre": "Slip Angel Fish",
+   "npc_type": 1255,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800185,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    277,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800186,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    272,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800187,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    272,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800188,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    245,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800189,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    240,
+    113
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800190,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    240,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800191,
+   "nombre": "Slip Angel Fish",
+   "npc_type": 1255,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    235,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800192,
+   "nombre": "Slip Angel Fish",
+   "npc_type": 1255,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    235,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800193,
+   "nombre": "Slip Angel Fish",
+   "npc_type": 1255,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    240,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800194,
+   "nombre": "Slip Angel Fish",
+   "npc_type": 1255,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    217,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800195,
+   "nombre": "Slip Angel Fish",
+   "npc_type": 1255,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    212,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800196,
+   "nombre": "Slip Angel Fish",
+   "npc_type": 1255,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    212,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800197,
+   "nombre": "Slip Angel Fish",
+   "npc_type": 1255,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    212,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800198,
+   "nombre": "Slip Angel Fish",
+   "npc_type": 1255,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    217,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800199,
+   "nombre": "Slip Angel Fish",
+   "npc_type": 1255,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    217,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800200,
+   "nombre": "Slip Angel Fish",
+   "npc_type": 1255,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    222,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800201,
+   "nombre": "Slip Angel Fish",
+   "npc_type": 1255,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    222,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800202,
+   "nombre": "Slip Angel Fish",
+   "npc_type": 1255,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    222,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800203,
+   "nombre": "Slip Angel Fish",
+   "npc_type": 1255,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    207,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800204,
+   "nombre": "Slip Angel Fish",
+   "npc_type": 1255,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    244,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800205,
+   "nombre": "Slip Angel Fish",
+   "npc_type": 1255,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    239,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800206,
+   "nombre": "Slip Angel Fish",
+   "npc_type": 1255,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    239,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800207,
+   "nombre": "Slip Angel Fish",
+   "npc_type": 1255,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    239,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800208,
+   "nombre": "Slip Angel Fish",
+   "npc_type": 1255,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    244,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800209,
+   "nombre": "Slip Angel Fish",
+   "npc_type": 1255,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    244,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800210,
+   "nombre": "Slip Angel Fish",
+   "npc_type": 1255,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800211,
+   "nombre": "Slip Angel Fish",
+   "npc_type": 1255,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800212,
+   "nombre": "Slip Angel Fish",
+   "npc_type": 1255,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800213,
+   "nombre": "Slip Angel Fish",
+   "npc_type": 1255,
+   "sprite": 42445,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    234,
+    136
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800214,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    234,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800215,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    234,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800216,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    232,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800217,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    229,
+    136
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800218,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    229,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800219,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    229,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800220,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    239,
+    136
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800221,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    244,
+    136
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800222,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    227,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800223,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    227,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800224,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    207,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800225,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    202,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800226,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    202,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800227,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    202,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800228,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    207,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800229,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    207,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800230,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    197,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800231,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    197,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800232,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    197,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800233,
+   "nombre": "Mermaid Hunter",
+   "npc_type": 1254,
+   "sprite": 42444,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    197,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 93
+  },
+  {
+   "entity_id": 59800234,
+   "nombre": "Linberd Captain",
+   "npc_type": 1405,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    156,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 94
+  },
+  {
+   "entity_id": 59800235,
+   "nombre": "Linberd Captain",
+   "npc_type": 1405,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    151,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 94
+  },
+  {
+   "entity_id": 59800236,
+   "nombre": "Linberd Captain",
+   "npc_type": 1405,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    151,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 94
+  },
+  {
+   "entity_id": 59800237,
+   "nombre": "Linberd Captain",
+   "npc_type": 1405,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    151,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 94
+  },
+  {
+   "entity_id": 59800238,
+   "nombre": "Linberd Sender",
+   "npc_type": 1402,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    166,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800239,
+   "nombre": "Linberd Sender",
+   "npc_type": 1402,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800240,
+   "nombre": "Linberd Sender",
+   "npc_type": 1402,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800241,
+   "nombre": "Linberd Sender",
+   "npc_type": 1402,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800242,
+   "nombre": "Linberd Sender",
+   "npc_type": 1402,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    166,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800243,
+   "nombre": "Linberd Sender",
+   "npc_type": 1402,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    145,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800244,
+   "nombre": "Linberd Sender",
+   "npc_type": 1402,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    140,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800245,
+   "nombre": "Linberd Sender",
+   "npc_type": 1402,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    140,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800246,
+   "nombre": "Linberd Sender",
+   "npc_type": 1402,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    140,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800247,
+   "nombre": "Linberd Sender",
+   "npc_type": 1402,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    145,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800248,
+   "nombre": "Linberd Sender",
+   "npc_type": 1402,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    159
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800249,
+   "nombre": "Linberd Sender",
+   "npc_type": 1402,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    123,
+    154
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800250,
+   "nombre": "Linberd Sender",
+   "npc_type": 1402,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    123,
+    159
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800251,
+   "nombre": "Linberd Sender",
+   "npc_type": 1402,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    123,
+    164
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800252,
+   "nombre": "Linberd Sender",
+   "npc_type": 1402,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    154
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800253,
+   "nombre": "Linberd Sender",
+   "npc_type": 1402,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    146,
+    170
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800254,
+   "nombre": "Linberd Sender",
+   "npc_type": 1402,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    141,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800255,
+   "nombre": "Linberd Sender",
+   "npc_type": 1402,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    141,
+    170
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800256,
+   "nombre": "Linberd Sender",
+   "npc_type": 1402,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    141,
+    175
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800257,
+   "nombre": "Linberd Sender",
+   "npc_type": 1402,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    146,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800258,
+   "nombre": "Linberd Captain",
+   "npc_type": 1405,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    135,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 94
+  },
+  {
+   "entity_id": 59800259,
+   "nombre": "Linberd Captain",
+   "npc_type": 1405,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    130,
+    164
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 94
+  },
+  {
+   "entity_id": 59800260,
+   "nombre": "Linberd Captain",
+   "npc_type": 1405,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    130,
+    169
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 94
+  },
+  {
+   "entity_id": 59800261,
+   "nombre": "Linberd Captain",
+   "npc_type": 1405,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    135,
+    161
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 94
+  },
+  {
+   "entity_id": 59800262,
+   "nombre": "Linberd Captain",
+   "npc_type": 1405,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    119,
+    174
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 94
+  },
+  {
+   "entity_id": 59800263,
+   "nombre": "Linberd Captain",
+   "npc_type": 1405,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    114,
+    169
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 94
+  },
+  {
+   "entity_id": 59800264,
+   "nombre": "Linberd Captain",
+   "npc_type": 1405,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    114,
+    174
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 94
+  },
+  {
+   "entity_id": 59800265,
+   "nombre": "Linberd Captain",
+   "npc_type": 1405,
+   "sprite": 42446,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    114,
+    179
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 94
+  },
+  {
+   "entity_id": 59800266,
+   "nombre": "Linberd Sender",
+   "npc_type": 1402,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    126,
+    181
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800267,
+   "nombre": "Linberd Sender",
+   "npc_type": 1402,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    121,
+    179
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800268,
+   "nombre": "Linberd Sender",
+   "npc_type": 1402,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    121,
+    184
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800269,
+   "nombre": "Linberd Sender",
+   "npc_type": 1402,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    126,
+    176
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800270,
+   "nombre": "Linberd Sender",
+   "npc_type": 1402,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    126,
+    186
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800271,
+   "nombre": "Linberd Sender",
+   "npc_type": 1402,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    105,
+    172
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800272,
+   "nombre": "Linberd Sender",
+   "npc_type": 1402,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    100,
+    167
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800273,
+   "nombre": "Linberd Sender",
+   "npc_type": 1402,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    100,
+    172
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800274,
+   "nombre": "Linberd Sender",
+   "npc_type": 1402,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    100,
+    177
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800275,
+   "nombre": "Linberd Sender",
+   "npc_type": 1402,
+   "sprite": 42431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    105,
+    167
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 77
+  },
+  {
+   "entity_id": 59800276,
+   "nombre": "Hicalu Machine",
+   "npc_type": 1257,
+   "sprite": 42447,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    109,
+    177
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 95
+  },
+  {
+   "entity_id": 59800277,
+   "nombre": "Hicalu 1",
+   "npc_type": 1228,
+   "sprite": 42411,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    292,
+    172
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 100
+  }
+ ],
+ "recursos": []
+}

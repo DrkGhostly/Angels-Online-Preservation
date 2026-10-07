@@ -1,0 +1,3713 @@
+{
+ "_nota": "core_zone (stage 411). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map411.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "stage": 411,
+ "spawns": [
+  {
+   "entity_id": 91100000,
+   "nombre": "Inhibitor Speiss",
+   "npc_type": 23651,
+   "sprite": 111425,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    66,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 458
+  },
+  {
+   "entity_id": 91100001,
+   "nombre": "Inhibitor Speiss",
+   "npc_type": 23651,
+   "sprite": 111425,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    61,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 458
+  },
+  {
+   "entity_id": 91100002,
+   "nombre": "Fiery Chaser",
+   "npc_type": 23625,
+   "sprite": 111416,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    255,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 446
+  },
+  {
+   "entity_id": 91100003,
+   "nombre": "Fiery Chaser",
+   "npc_type": 23625,
+   "sprite": 111416,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 446
+  },
+  {
+   "entity_id": 91100004,
+   "nombre": "Fiery Chaser",
+   "npc_type": 23625,
+   "sprite": 111416,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 446
+  },
+  {
+   "entity_id": 91100005,
+   "nombre": "Fiery Chaser",
+   "npc_type": 23625,
+   "sprite": 111416,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    250,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 446
+  },
+  {
+   "entity_id": 91100006,
+   "nombre": "Fiery Chaser",
+   "npc_type": 23625,
+   "sprite": 111416,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 446
+  },
+  {
+   "entity_id": 91100007,
+   "nombre": "Fiery Chaser",
+   "npc_type": 23625,
+   "sprite": 111416,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 446
+  },
+  {
+   "entity_id": 91100008,
+   "nombre": "Fiery Chaser",
+   "npc_type": 23625,
+   "sprite": 111416,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    250,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 446
+  },
+  {
+   "entity_id": 91100009,
+   "nombre": "Fiery Chaser",
+   "npc_type": 23625,
+   "sprite": 111416,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 446
+  },
+  {
+   "entity_id": 91100010,
+   "nombre": "Fiery Chaser",
+   "npc_type": 23625,
+   "sprite": 111416,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 446
+  },
+  {
+   "entity_id": 91100011,
+   "nombre": "Fiery Chaser",
+   "npc_type": 23625,
+   "sprite": 111416,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    250,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 446
+  },
+  {
+   "entity_id": 91100012,
+   "nombre": "Fiery Chaser",
+   "npc_type": 23625,
+   "sprite": 111416,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 446
+  },
+  {
+   "entity_id": 91100013,
+   "nombre": "Fiery Chaser",
+   "npc_type": 23625,
+   "sprite": 111416,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 446
+  },
+  {
+   "entity_id": 91100014,
+   "nombre": "Fiery Chaser",
+   "npc_type": 23625,
+   "sprite": 111416,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    255,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 446
+  },
+  {
+   "entity_id": 91100015,
+   "nombre": "Fiery Chaser",
+   "npc_type": 23625,
+   "sprite": 111416,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 446
+  },
+  {
+   "entity_id": 91100016,
+   "nombre": "Fiery Chaser",
+   "npc_type": 23625,
+   "sprite": 111416,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 446
+  },
+  {
+   "entity_id": 91100017,
+   "nombre": "Biohunter",
+   "npc_type": 23626,
+   "sprite": 111421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 447
+  },
+  {
+   "entity_id": 91100018,
+   "nombre": "Biohunter",
+   "npc_type": 23626,
+   "sprite": 111421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    191,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 447
+  },
+  {
+   "entity_id": 91100019,
+   "nombre": "Biohunter",
+   "npc_type": 23626,
+   "sprite": 111421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 447
+  },
+  {
+   "entity_id": 91100020,
+   "nombre": "Biohunter",
+   "npc_type": 23626,
+   "sprite": 111421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    186,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 447
+  },
+  {
+   "entity_id": 91100021,
+   "nombre": "Biohunter",
+   "npc_type": 23626,
+   "sprite": 111421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    196,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 447
+  },
+  {
+   "entity_id": 91100022,
+   "nombre": "Biohunter",
+   "npc_type": 23626,
+   "sprite": 111421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    186,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 447
+  },
+  {
+   "entity_id": 91100023,
+   "nombre": "Biohunter",
+   "npc_type": 23626,
+   "sprite": 111421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 447
+  },
+  {
+   "entity_id": 91100024,
+   "nombre": "Biohunter",
+   "npc_type": 23626,
+   "sprite": 111421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    186,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 447
+  },
+  {
+   "entity_id": 91100025,
+   "nombre": "Biohunter",
+   "npc_type": 23626,
+   "sprite": 111421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    201,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 447
+  },
+  {
+   "entity_id": 91100026,
+   "nombre": "Biohunter",
+   "npc_type": 23626,
+   "sprite": 111421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    191,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 447
+  },
+  {
+   "entity_id": 91100027,
+   "nombre": "Biohunter",
+   "npc_type": 23626,
+   "sprite": 111421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 447
+  },
+  {
+   "entity_id": 91100028,
+   "nombre": "Biohunter",
+   "npc_type": 23626,
+   "sprite": 111421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    196,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 447
+  },
+  {
+   "entity_id": 91100029,
+   "nombre": "Biohunter",
+   "npc_type": 23626,
+   "sprite": 111421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 447
+  },
+  {
+   "entity_id": 91100030,
+   "nombre": "Biohunter",
+   "npc_type": 23626,
+   "sprite": 111421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    181,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 447
+  },
+  {
+   "entity_id": 91100031,
+   "nombre": "Biohunter",
+   "npc_type": 23626,
+   "sprite": 111421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 447
+  },
+  {
+   "entity_id": 91100032,
+   "nombre": "Biohunter",
+   "npc_type": 23626,
+   "sprite": 111421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    181,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 447
+  },
+  {
+   "entity_id": 91100033,
+   "nombre": "Biohunter",
+   "npc_type": 23626,
+   "sprite": 111421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    191,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 447
+  },
+  {
+   "entity_id": 91100034,
+   "nombre": "Biohunter",
+   "npc_type": 23626,
+   "sprite": 111421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    181,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 447
+  },
+  {
+   "entity_id": 91100035,
+   "nombre": "Biohunter",
+   "npc_type": 23626,
+   "sprite": 111421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    196,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 447
+  },
+  {
+   "entity_id": 91100036,
+   "nombre": "Biohunter",
+   "npc_type": 23626,
+   "sprite": 111421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    181,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 447
+  },
+  {
+   "entity_id": 91100037,
+   "nombre": "Biohunter",
+   "npc_type": 23626,
+   "sprite": 111421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    201,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 447
+  },
+  {
+   "entity_id": 91100038,
+   "nombre": "Biohunter",
+   "npc_type": 23626,
+   "sprite": 111421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    181,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 447
+  },
+  {
+   "entity_id": 91100039,
+   "nombre": "Biohunter",
+   "npc_type": 23626,
+   "sprite": 111421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    201,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 447
+  },
+  {
+   "entity_id": 91100040,
+   "nombre": "Biohunter",
+   "npc_type": 23626,
+   "sprite": 111421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    186,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 447
+  },
+  {
+   "entity_id": 91100041,
+   "nombre": "Biohunter",
+   "npc_type": 23626,
+   "sprite": 111421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 447
+  },
+  {
+   "entity_id": 91100042,
+   "nombre": "Screw Guardian",
+   "npc_type": 23627,
+   "sprite": 111424,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    105,
+    51
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 448
+  },
+  {
+   "entity_id": 91100043,
+   "nombre": "Screw Guardian",
+   "npc_type": 23627,
+   "sprite": 111424,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    100,
+    46
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 448
+  },
+  {
+   "entity_id": 91100044,
+   "nombre": "Screw Guardian",
+   "npc_type": 23627,
+   "sprite": 111424,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    100,
+    51
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 448
+  },
+  {
+   "entity_id": 91100045,
+   "nombre": "Screw Guardian",
+   "npc_type": 23627,
+   "sprite": 111424,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    100,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 448
+  },
+  {
+   "entity_id": 91100046,
+   "nombre": "Screw Guardian",
+   "npc_type": 23627,
+   "sprite": 111424,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    105,
+    46
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 448
+  },
+  {
+   "entity_id": 91100047,
+   "nombre": "Screw Guardian",
+   "npc_type": 23627,
+   "sprite": 111424,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    105,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 448
+  },
+  {
+   "entity_id": 91100048,
+   "nombre": "Screw Guardian",
+   "npc_type": 23627,
+   "sprite": 111424,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    110,
+    46
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 448
+  },
+  {
+   "entity_id": 91100049,
+   "nombre": "Screw Guardian",
+   "npc_type": 23627,
+   "sprite": 111424,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    110,
+    51
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 448
+  },
+  {
+   "entity_id": 91100050,
+   "nombre": "Screw Guardian",
+   "npc_type": 23627,
+   "sprite": 111424,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    110,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 448
+  },
+  {
+   "entity_id": 91100051,
+   "nombre": "Screw Guardian",
+   "npc_type": 23627,
+   "sprite": 111424,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    95,
+    41
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 448
+  },
+  {
+   "entity_id": 91100052,
+   "nombre": "Screw Guardian",
+   "npc_type": 23627,
+   "sprite": 111424,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    95,
+    46
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 448
+  },
+  {
+   "entity_id": 91100053,
+   "nombre": "Screw Guardian",
+   "npc_type": 23627,
+   "sprite": 111424,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    95,
+    51
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 448
+  },
+  {
+   "entity_id": 91100054,
+   "nombre": "Screw Guardian",
+   "npc_type": 23627,
+   "sprite": 111424,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    95,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 448
+  },
+  {
+   "entity_id": 91100055,
+   "nombre": "Screw Guardian",
+   "npc_type": 23627,
+   "sprite": 111424,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    95,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 448
+  },
+  {
+   "entity_id": 91100056,
+   "nombre": "Screw Guardian",
+   "npc_type": 23627,
+   "sprite": 111424,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    100,
+    41
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 448
+  },
+  {
+   "entity_id": 91100057,
+   "nombre": "Screw Guardian",
+   "npc_type": 23627,
+   "sprite": 111424,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    100,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 448
+  },
+  {
+   "entity_id": 91100058,
+   "nombre": "Screw Guardian",
+   "npc_type": 23627,
+   "sprite": 111424,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    105,
+    41
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 448
+  },
+  {
+   "entity_id": 91100059,
+   "nombre": "Screw Guardian",
+   "npc_type": 23627,
+   "sprite": 111424,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    105,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 448
+  },
+  {
+   "entity_id": 91100060,
+   "nombre": "Screw Guardian",
+   "npc_type": 23627,
+   "sprite": 111424,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    110,
+    41
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 448
+  },
+  {
+   "entity_id": 91100061,
+   "nombre": "Screw Guardian",
+   "npc_type": 23627,
+   "sprite": 111424,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    110,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 448
+  },
+  {
+   "entity_id": 91100062,
+   "nombre": "Screw Guardian",
+   "npc_type": 23627,
+   "sprite": 111424,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    115,
+    41
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 448
+  },
+  {
+   "entity_id": 91100063,
+   "nombre": "Screw Guardian",
+   "npc_type": 23627,
+   "sprite": 111424,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    115,
+    46
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 448
+  },
+  {
+   "entity_id": 91100064,
+   "nombre": "Screw Guardian",
+   "npc_type": 23627,
+   "sprite": 111424,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    115,
+    51
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 448
+  },
+  {
+   "entity_id": 91100065,
+   "nombre": "Screw Guardian",
+   "npc_type": 23627,
+   "sprite": 111424,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    115,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 448
+  },
+  {
+   "entity_id": 91100066,
+   "nombre": "Screw Guardian",
+   "npc_type": 23627,
+   "sprite": 111424,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    115,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 448
+  },
+  {
+   "entity_id": 91100067,
+   "nombre": "Assault Mech",
+   "npc_type": 23628,
+   "sprite": 111427,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    113
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100068,
+   "nombre": "Assault Mech",
+   "npc_type": 23628,
+   "sprite": 111427,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    50,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100069,
+   "nombre": "Assault Mech",
+   "npc_type": 23628,
+   "sprite": 111427,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    35,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100070,
+   "nombre": "Assault Mech",
+   "npc_type": 23628,
+   "sprite": 111427,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    45,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100071,
+   "nombre": "Assault Mech",
+   "npc_type": 23628,
+   "sprite": 111427,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    35,
+    113
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100072,
+   "nombre": "Assault Mech",
+   "npc_type": 23628,
+   "sprite": 111427,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    45,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100073,
+   "nombre": "Assault Mech",
+   "npc_type": 23628,
+   "sprite": 111427,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    35,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100074,
+   "nombre": "Assault Mech",
+   "npc_type": 23628,
+   "sprite": 111427,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    45,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100075,
+   "nombre": "Assault Mech",
+   "npc_type": 23628,
+   "sprite": 111427,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100076,
+   "nombre": "Assault Mech",
+   "npc_type": 23628,
+   "sprite": 111427,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    50,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100077,
+   "nombre": "Assault Mech",
+   "npc_type": 23628,
+   "sprite": 111427,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100078,
+   "nombre": "Assault Mech",
+   "npc_type": 23628,
+   "sprite": 111427,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    50,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100079,
+   "nombre": "Assault Mech",
+   "npc_type": 23628,
+   "sprite": 111427,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    45,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100080,
+   "nombre": "Assault Mech",
+   "npc_type": 23628,
+   "sprite": 111427,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100081,
+   "nombre": "Assault Mech",
+   "npc_type": 23628,
+   "sprite": 111427,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100082,
+   "nombre": "Assault Mech",
+   "npc_type": 23628,
+   "sprite": 111427,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100083,
+   "nombre": "Assault Mech",
+   "npc_type": 23628,
+   "sprite": 111427,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100084,
+   "nombre": "Assault Mech",
+   "npc_type": 23628,
+   "sprite": 111427,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100085,
+   "nombre": "Assault Mech",
+   "npc_type": 23628,
+   "sprite": 111427,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    113
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100086,
+   "nombre": "Assault Mech",
+   "npc_type": 23628,
+   "sprite": 111427,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100087,
+   "nombre": "Assault Mech",
+   "npc_type": 23628,
+   "sprite": 111427,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100088,
+   "nombre": "Assault Mech",
+   "npc_type": 23628,
+   "sprite": 111427,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    45,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100089,
+   "nombre": "Assault Mech",
+   "npc_type": 23628,
+   "sprite": 111427,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100090,
+   "nombre": "Assault Mech",
+   "npc_type": 23628,
+   "sprite": 111427,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    50,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100091,
+   "nombre": "Assault Mech",
+   "npc_type": 23628,
+   "sprite": 111427,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    35,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100092,
+   "nombre": "Lightblade Guard",
+   "npc_type": 23629,
+   "sprite": 111438,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    35,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 452
+  },
+  {
+   "entity_id": 91100093,
+   "nombre": "Lightblade Guard",
+   "npc_type": 23629,
+   "sprite": 111438,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    50,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 452
+  },
+  {
+   "entity_id": 91100094,
+   "nombre": "Lightblade Guard",
+   "npc_type": 23629,
+   "sprite": 111438,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 452
+  },
+  {
+   "entity_id": 91100095,
+   "nombre": "Lightblade Guard",
+   "npc_type": 23629,
+   "sprite": 111438,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 452
+  },
+  {
+   "entity_id": 91100096,
+   "nombre": "Lightblade Guard",
+   "npc_type": 23629,
+   "sprite": 111438,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    45,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 452
+  },
+  {
+   "entity_id": 91100097,
+   "nombre": "Lightblade Guard",
+   "npc_type": 23629,
+   "sprite": 111438,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 452
+  },
+  {
+   "entity_id": 91100098,
+   "nombre": "Lightblade Guard",
+   "npc_type": 23629,
+   "sprite": 111438,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    50,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 452
+  },
+  {
+   "entity_id": 91100099,
+   "nombre": "Lightblade Guard",
+   "npc_type": 23629,
+   "sprite": 111438,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 452
+  },
+  {
+   "entity_id": 91100100,
+   "nombre": "Lightblade Guard",
+   "npc_type": 23629,
+   "sprite": 111438,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    25,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 452
+  },
+  {
+   "entity_id": 91100101,
+   "nombre": "Lightblade Guard",
+   "npc_type": 23629,
+   "sprite": 111438,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 452
+  },
+  {
+   "entity_id": 91100102,
+   "nombre": "Lightblade Guard",
+   "npc_type": 23629,
+   "sprite": 111438,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    25,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 452
+  },
+  {
+   "entity_id": 91100103,
+   "nombre": "Lightblade Guard",
+   "npc_type": 23629,
+   "sprite": 111438,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 452
+  },
+  {
+   "entity_id": 91100104,
+   "nombre": "Lightblade Guard",
+   "npc_type": 23629,
+   "sprite": 111438,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    25,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 452
+  },
+  {
+   "entity_id": 91100105,
+   "nombre": "Lightblade Guard",
+   "npc_type": 23629,
+   "sprite": 111438,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 452
+  },
+  {
+   "entity_id": 91100106,
+   "nombre": "Lightblade Guard",
+   "npc_type": 23629,
+   "sprite": 111438,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    25,
+    113
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 452
+  },
+  {
+   "entity_id": 91100107,
+   "nombre": "Lightblade Guard",
+   "npc_type": 23629,
+   "sprite": 111438,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 452
+  },
+  {
+   "entity_id": 91100108,
+   "nombre": "Lightblade Guard",
+   "npc_type": 23629,
+   "sprite": 111438,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    25,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 452
+  },
+  {
+   "entity_id": 91100109,
+   "nombre": "Lightblade Guard",
+   "npc_type": 23629,
+   "sprite": 111438,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    37,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 452
+  },
+  {
+   "entity_id": 91100110,
+   "nombre": "Lightblade Guard",
+   "npc_type": 23629,
+   "sprite": 111438,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    25,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 452
+  },
+  {
+   "entity_id": 91100111,
+   "nombre": "Lightblade Guard",
+   "npc_type": 23629,
+   "sprite": 111438,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    42,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 452
+  },
+  {
+   "entity_id": 91100112,
+   "nombre": "Lightblade Guard",
+   "npc_type": 23629,
+   "sprite": 111438,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    25,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 452
+  },
+  {
+   "entity_id": 91100113,
+   "nombre": "Lightblade Guard",
+   "npc_type": 23629,
+   "sprite": 111438,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    47,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 452
+  },
+  {
+   "entity_id": 91100114,
+   "nombre": "Lightblade Guard",
+   "npc_type": 23629,
+   "sprite": 111438,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 452
+  },
+  {
+   "entity_id": 91100115,
+   "nombre": "Lightblade Guard",
+   "npc_type": 23629,
+   "sprite": 111438,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    52,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 452
+  },
+  {
+   "entity_id": 91100116,
+   "nombre": "Lightblade Guard",
+   "npc_type": 23629,
+   "sprite": 111438,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    30,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 452
+  },
+  {
+   "entity_id": 91100117,
+   "nombre": "E-Armor Scorpion",
+   "npc_type": 23630,
+   "sprite": 111419,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    104
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 454
+  },
+  {
+   "entity_id": 91100118,
+   "nombre": "E-Armor Scorpion",
+   "npc_type": 23630,
+   "sprite": 111419,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    91
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 454
+  },
+  {
+   "entity_id": 91100119,
+   "nombre": "E-Armor Scorpion",
+   "npc_type": 23630,
+   "sprite": 111419,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 454
+  },
+  {
+   "entity_id": 91100120,
+   "nombre": "E-Fiery Chaser",
+   "npc_type": 23631,
+   "sprite": 111416,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    255,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 455
+  },
+  {
+   "entity_id": 91100121,
+   "nombre": "E-Fiery Chaser",
+   "npc_type": 23631,
+   "sprite": 111416,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 455
+  },
+  {
+   "entity_id": 91100122,
+   "nombre": "E-Fiery Chaser",
+   "npc_type": 23631,
+   "sprite": 111416,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 455
+  },
+  {
+   "entity_id": 91100123,
+   "nombre": "E-Biohunter",
+   "npc_type": 23632,
+   "sprite": 111421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 456
+  },
+  {
+   "entity_id": 91100124,
+   "nombre": "E-Biohunter",
+   "npc_type": 23632,
+   "sprite": 111421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    186,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 456
+  },
+  {
+   "entity_id": 91100125,
+   "nombre": "E-Biohunter",
+   "npc_type": 23632,
+   "sprite": 111421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 456
+  },
+  {
+   "entity_id": 91100126,
+   "nombre": "E-Biohunter",
+   "npc_type": 23632,
+   "sprite": 111421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    191,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 456
+  },
+  {
+   "entity_id": 91100127,
+   "nombre": "E-Biohunter",
+   "npc_type": 23632,
+   "sprite": 111421,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    206,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 456
+  },
+  {
+   "entity_id": 91100128,
+   "nombre": "Biomutant Varian",
+   "npc_type": 23633,
+   "sprite": 111413,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    260,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 458
+  },
+  {
+   "entity_id": 91100129,
+   "nombre": "Inhibitor Speiss",
+   "npc_type": 23634,
+   "sprite": 111425,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    57,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 458
+  },
+  {
+   "entity_id": 91100130,
+   "nombre": "Steelriser Stel",
+   "npc_type": 23635,
+   "sprite": 111428,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    57,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 458
+  },
+  {
+   "entity_id": 91100131,
+   "nombre": "Sky Guard Pliss",
+   "npc_type": 23636,
+   "sprite": 111429,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 460
+  },
+  {
+   "entity_id": 91100132,
+   "nombre": "Raptor Treynor",
+   "npc_type": 23637,
+   "sprite": 111430,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    25,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 460
+  },
+  {
+   "entity_id": 91100133,
+   "nombre": "Mech Angel Alpha",
+   "npc_type": 23638,
+   "sprite": 111431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    114,
+    119
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 460
+  },
+  {
+   "entity_id": 91100134,
+   "nombre": "Armor Scorpion",
+   "npc_type": 23624,
+   "sprite": 111419,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    104
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 445
+  },
+  {
+   "entity_id": 91100135,
+   "nombre": "Armor Scorpion",
+   "npc_type": 23624,
+   "sprite": 111419,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    86
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 445
+  },
+  {
+   "entity_id": 91100136,
+   "nombre": "Armor Scorpion",
+   "npc_type": 23624,
+   "sprite": 111419,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    216,
+    109
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 445
+  },
+  {
+   "entity_id": 91100137,
+   "nombre": "Armor Scorpion",
+   "npc_type": 23624,
+   "sprite": 111419,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    91
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 445
+  },
+  {
+   "entity_id": 91100138,
+   "nombre": "Armor Scorpion",
+   "npc_type": 23624,
+   "sprite": 111419,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 445
+  },
+  {
+   "entity_id": 91100139,
+   "nombre": "Armor Scorpion",
+   "npc_type": 23624,
+   "sprite": 111419,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    96
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 445
+  },
+  {
+   "entity_id": 91100140,
+   "nombre": "Armor Scorpion",
+   "npc_type": 23624,
+   "sprite": 111419,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    109
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 445
+  },
+  {
+   "entity_id": 91100141,
+   "nombre": "Armor Scorpion",
+   "npc_type": 23624,
+   "sprite": 111419,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    86
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 445
+  },
+  {
+   "entity_id": 91100142,
+   "nombre": "Armor Scorpion",
+   "npc_type": 23624,
+   "sprite": 111419,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    226,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 445
+  },
+  {
+   "entity_id": 91100143,
+   "nombre": "Armor Scorpion",
+   "npc_type": 23624,
+   "sprite": 111419,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    96
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 445
+  },
+  {
+   "entity_id": 91100144,
+   "nombre": "Armor Scorpion",
+   "npc_type": 23624,
+   "sprite": 111419,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    226,
+    104
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 445
+  },
+  {
+   "entity_id": 91100145,
+   "nombre": "Armor Scorpion",
+   "npc_type": 23624,
+   "sprite": 111419,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    276,
+    86
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 445
+  },
+  {
+   "entity_id": 91100146,
+   "nombre": "Armor Scorpion",
+   "npc_type": 23624,
+   "sprite": 111419,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    226,
+    109
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 445
+  },
+  {
+   "entity_id": 91100147,
+   "nombre": "Armor Scorpion",
+   "npc_type": 23624,
+   "sprite": 111419,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    276,
+    91
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 445
+  },
+  {
+   "entity_id": 91100148,
+   "nombre": "Armor Scorpion",
+   "npc_type": 23624,
+   "sprite": 111419,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    211,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 445
+  },
+  {
+   "entity_id": 91100149,
+   "nombre": "Form Corruption",
+   "npc_type": 23640,
+   "sprite": 111476,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    121,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 91100150,
+   "nombre": "Form Corruption",
+   "npc_type": 23640,
+   "sprite": 111476,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    116,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 91100151,
+   "nombre": "Form Corruption",
+   "npc_type": 23640,
+   "sprite": 111476,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    116,
+    129
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 91100152,
+   "nombre": "Form Corruption",
+   "npc_type": 23640,
+   "sprite": 111476,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    121,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 91100153,
+   "nombre": "Form Corruption",
+   "npc_type": 23640,
+   "sprite": 111476,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    121,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 91100154,
+   "nombre": "Form Corruption",
+   "npc_type": 23640,
+   "sprite": 111476,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    126,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 91100155,
+   "nombre": "Form Corruption",
+   "npc_type": 23640,
+   "sprite": 111476,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    126,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 91100156,
+   "nombre": "Form Corruption",
+   "npc_type": 23640,
+   "sprite": 111476,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    126,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 91100157,
+   "nombre": "Form Corruption",
+   "npc_type": 23640,
+   "sprite": 111476,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    115,
+    134
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 91100158,
+   "nombre": "Form Corruption",
+   "npc_type": 23640,
+   "sprite": 111476,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    111,
+    124
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 1
+  },
+  {
+   "entity_id": 91100159,
+   "nombre": "Mech Angel Alpha",
+   "npc_type": 23639,
+   "sprite": 111431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    131,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 456
+  },
+  {
+   "entity_id": 91100160,
+   "nombre": "Mech Angel Alpha",
+   "npc_type": 23639,
+   "sprite": 111431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    131,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 456
+  },
+  {
+   "entity_id": 91100161,
+   "nombre": "Mech Angel Alpha",
+   "npc_type": 23639,
+   "sprite": 111431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    131,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 456
+  },
+  {
+   "entity_id": 91100162,
+   "nombre": "Mech Angel Alpha",
+   "npc_type": 23639,
+   "sprite": 111431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    131,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 456
+  },
+  {
+   "entity_id": 91100163,
+   "nombre": "Mech Angel Alpha",
+   "npc_type": 23639,
+   "sprite": 111431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    119,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 456
+  },
+  {
+   "entity_id": 91100164,
+   "nombre": "Mech Angel Alpha",
+   "npc_type": 23639,
+   "sprite": 111431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    124,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 456
+  },
+  {
+   "entity_id": 91100165,
+   "nombre": "Mech Angel Alpha",
+   "npc_type": 23639,
+   "sprite": 111431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    120,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 456
+  },
+  {
+   "entity_id": 91100166,
+   "nombre": "Mech Angel Alpha",
+   "npc_type": 23639,
+   "sprite": 111431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    125,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 456
+  },
+  {
+   "entity_id": 91100167,
+   "nombre": "Mech Angel Alpha",
+   "npc_type": 23639,
+   "sprite": 111431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    112,
+    139
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 456
+  },
+  {
+   "entity_id": 91100168,
+   "nombre": "Mech Angel Alpha",
+   "npc_type": 23639,
+   "sprite": 111431,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    129,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 456
+  },
+  {
+   "entity_id": 91100169,
+   "nombre": "Prefab Escort",
+   "npc_type": 23648,
+   "sprite": 111483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    71,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 445
+  },
+  {
+   "entity_id": 91100170,
+   "nombre": "Prefab Escort",
+   "npc_type": 23648,
+   "sprite": 111483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    66,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 445
+  },
+  {
+   "entity_id": 91100171,
+   "nombre": "Prefab Escort",
+   "npc_type": 23648,
+   "sprite": 111483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    66,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 445
+  },
+  {
+   "entity_id": 91100172,
+   "nombre": "Prefab Escort",
+   "npc_type": 23648,
+   "sprite": 111483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    71,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 445
+  },
+  {
+   "entity_id": 91100173,
+   "nombre": "Prefab Escort",
+   "npc_type": 23648,
+   "sprite": 111483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    71,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 445
+  },
+  {
+   "entity_id": 91100174,
+   "nombre": "Prefab Escort",
+   "npc_type": 23648,
+   "sprite": 111483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    76,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 445
+  },
+  {
+   "entity_id": 91100175,
+   "nombre": "Prefab Escort",
+   "npc_type": 23648,
+   "sprite": 111483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    76,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 445
+  },
+  {
+   "entity_id": 91100176,
+   "nombre": "Prefab Escort",
+   "npc_type": 23648,
+   "sprite": 111483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    76,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 445
+  },
+  {
+   "entity_id": 91100177,
+   "nombre": "Prefab Escort",
+   "npc_type": 23648,
+   "sprite": 111483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    61,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 445
+  },
+  {
+   "entity_id": 91100178,
+   "nombre": "Prefab Escort",
+   "npc_type": 23648,
+   "sprite": 111483,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    61,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 445
+  },
+  {
+   "entity_id": 91100179,
+   "nombre": "Raptor Treynor X",
+   "npc_type": 23650,
+   "sprite": 111486,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    32,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 460
+  },
+  {
+   "entity_id": 91100180,
+   "nombre": "Wind Elf",
+   "npc_type": 1,
+   "sprite": 42055,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    4,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 4
+  },
+  {
+   "entity_id": 91100181,
+   "nombre": "Fire Elf",
+   "npc_type": 2,
+   "sprite": 42056,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    9,
+    2
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 7
+  },
+  {
+   "entity_id": 91100182,
+   "nombre": "Prefab Mech",
+   "npc_type": 23649,
+   "sprite": 111484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100183,
+   "nombre": "Prefab Mech",
+   "npc_type": 23649,
+   "sprite": 111484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100184,
+   "nombre": "Prefab Mech",
+   "npc_type": 23649,
+   "sprite": 111484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100185,
+   "nombre": "Prefab Mech",
+   "npc_type": 23649,
+   "sprite": 111484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100186,
+   "nombre": "Prefab Mech",
+   "npc_type": 23649,
+   "sprite": 111484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100187,
+   "nombre": "Prefab Mech",
+   "npc_type": 23649,
+   "sprite": 111484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100188,
+   "nombre": "Prefab Mech",
+   "npc_type": 23649,
+   "sprite": 111484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    123
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100189,
+   "nombre": "Prefab Mech",
+   "npc_type": 23649,
+   "sprite": 111484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    128
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100190,
+   "nombre": "Prefab Mech",
+   "npc_type": 23649,
+   "sprite": 111484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100191,
+   "nombre": "Prefab Mech",
+   "npc_type": 23649,
+   "sprite": 111484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    118
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100192,
+   "nombre": "Prefab Mech",
+   "npc_type": 23649,
+   "sprite": 111484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100193,
+   "nombre": "Prefab Mech",
+   "npc_type": 23649,
+   "sprite": 111484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100194,
+   "nombre": "Prefab Mech",
+   "npc_type": 23649,
+   "sprite": 111484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100195,
+   "nombre": "Prefab Mech",
+   "npc_type": 23649,
+   "sprite": 111484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100196,
+   "nombre": "Prefab Mech",
+   "npc_type": 23649,
+   "sprite": 111484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100197,
+   "nombre": "Prefab Mech",
+   "npc_type": 23649,
+   "sprite": 111484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    160,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100198,
+   "nombre": "Prefab Mech",
+   "npc_type": 23649,
+   "sprite": 111484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100199,
+   "nombre": "Prefab Mech",
+   "npc_type": 23649,
+   "sprite": 111484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100200,
+   "nombre": "Prefab Mech",
+   "npc_type": 23649,
+   "sprite": 111484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100201,
+   "nombre": "Prefab Mech",
+   "npc_type": 23649,
+   "sprite": 111484,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 451
+  },
+  {
+   "entity_id": 91100202,
+   "nombre": "Raptor Treynor X",
+   "npc_type": 23650,
+   "sprite": 111486,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    95,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 460
+  }
+ ],
+ "recursos": [
+  {
+   "entity_id": 101100000,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    1983,
+    2032
+   ],
+   "tile": [
+    61,
+    63
+   ],
+   "crudo": "e0a9060602000000bf070000f00700000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 101100001,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1383,
+    4912
+   ],
+   "tile": [
+    43,
+    153
+   ],
+   "crudo": "e1a906060000000067050000301300000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100002,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    6977,
+    2672
+   ],
+   "tile": [
+    218,
+    83
+   ],
+   "crudo": "e2a9060600000000411b0000700a00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100003,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    7187,
+    2832
+   ],
+   "tile": [
+    224,
+    88
+   ],
+   "crudo": "e3a9060600000000131c0000100b00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100004,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    6110,
+    4208
+   ],
+   "tile": [
+    190,
+    131
+   ],
+   "crudo": "e4a9060600000000de170000701000000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100005,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5891,
+    4016
+   ],
+   "tile": [
+    184,
+    125
+   ],
+   "crudo": "e5a906060000000003170000b00f00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100006,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    6335,
+    1712
+   ],
+   "tile": [
+    197,
+    53
+   ],
+   "crudo": "e6a9060602000000bf180000b00600000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 101100007,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    2015,
+    5040
+   ],
+   "tile": [
+    62,
+    157
+   ],
+   "crudo": "e7a9060600000000df070000b01300000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100008,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    2132,
+    4912
+   ],
+   "tile": [
+    66,
+    153
+   ],
+   "crudo": "e8a906060000000054080000301300000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100009,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1826,
+    4976
+   ],
+   "tile": [
+    57,
+    155
+   ],
+   "crudo": "e9a906060000000022070000701300000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100010,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1614,
+    4880
+   ],
+   "tile": [
+    50,
+    152
+   ],
+   "crudo": "eaa90606000000004e060000101300000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100011,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1452,
+    4816
+   ],
+   "tile": [
+    45,
+    150
+   ],
+   "crudo": "eba9060600000000ac050000d01200000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100012,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1251,
+    4720
+   ],
+   "tile": [
+    39,
+    147
+   ],
+   "crudo": "eca9060600000000e3040000701200000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100013,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1545,
+    4688
+   ],
+   "tile": [
+    48,
+    146
+   ],
+   "crudo": "eda906060000000009060000501200000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100014,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1731,
+    4784
+   ],
+   "tile": [
+    54,
+    149
+   ],
+   "crudo": "eea9060600000000c3060000b01200000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100015,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1742,
+    4592
+   ],
+   "tile": [
+    54,
+    143
+   ],
+   "crudo": "efa9060600000000ce060000f01100000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100016,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1964,
+    4720
+   ],
+   "tile": [
+    61,
+    147
+   ],
+   "crudo": "f0a9060600000000ac070000701200000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100017,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1951,
+    4592
+   ],
+   "tile": [
+    60,
+    143
+   ],
+   "crudo": "f1a90606000000009f070000f01100000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100018,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1942,
+    4880
+   ],
+   "tile": [
+    60,
+    152
+   ],
+   "crudo": "f2a906060000000096070000101300000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100019,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    2203,
+    4624
+   ],
+   "tile": [
+    68,
+    144
+   ],
+   "crudo": "f3a90606000000009b080000101200000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100020,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    2456,
+    4784
+   ],
+   "tile": [
+    76,
+    149
+   ],
+   "crudo": "f4a906060000000098090000b01200000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100021,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    2407,
+    4656
+   ],
+   "tile": [
+    75,
+    145
+   ],
+   "crudo": "f5a906060000000067090000301200000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100022,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    2229,
+    4784
+   ],
+   "tile": [
+    69,
+    149
+   ],
+   "crudo": "f6a9060600000000b5080000b01200000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100023,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    6072,
+    1584
+   ],
+   "tile": [
+    189,
+    49
+   ],
+   "crudo": "f7a9060602000000b8170000300600000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 101100024,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    5808,
+    1456
+   ],
+   "tile": [
+    181,
+    45
+   ],
+   "crudo": "f8a9060602000000b0160000b00500000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 101100025,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    5544,
+    1328
+   ],
+   "tile": [
+    173,
+    41
+   ],
+   "crudo": "f9a9060602000000a8150000300500000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 101100026,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    3509,
+    1264
+   ],
+   "tile": [
+    109,
+    39
+   ],
+   "crudo": "faa9060602000000b50d0000f00400000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 101100027,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    1719,
+    1904
+   ],
+   "tile": [
+    53,
+    59
+   ],
+   "crudo": "fba9060602000000b7060000700700000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 101100028,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    1452,
+    1776
+   ],
+   "tile": [
+    45,
+    55
+   ],
+   "crudo": "fca9060602000000ac050000f00600000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 101100029,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    2816,
+    4240
+   ],
+   "tile": [
+    88,
+    132
+   ],
+   "crudo": "fda9060602000000000b0000901000000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 101100030,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    3375,
+    3856
+   ],
+   "tile": [
+    105,
+    120
+   ],
+   "crudo": "fea90606000000002f0d0000100f00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100031,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    3195,
+    3760
+   ],
+   "tile": [
+    99,
+    117
+   ],
+   "crudo": "ffa90606000000007b0c0000b00e00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100032,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    3359,
+    3664
+   ],
+   "tile": [
+    104,
+    114
+   ],
+   "crudo": "00aa0606000000001f0d0000500e00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100033,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    3553,
+    3792
+   ],
+   "tile": [
+    111,
+    118
+   ],
+   "crudo": "01aa060600000000e10d0000d00e00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100034,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    3540,
+    3568
+   ],
+   "tile": [
+    110,
+    111
+   ],
+   "crudo": "02aa060600000000d40d0000f00d00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100035,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    3723,
+    3664
+   ],
+   "tile": [
+    116,
+    114
+   ],
+   "crudo": "03aa0606000000008b0e0000500e00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100036,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    3996,
+    3792
+   ],
+   "tile": [
+    124,
+    118
+   ],
+   "crudo": "04aa0606000000009c0f0000d00e00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100037,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    3863,
+    3888
+   ],
+   "tile": [
+    120,
+    121
+   ],
+   "crudo": "05aa060600000000170f0000300f00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100038,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    3692,
+    4016
+   ],
+   "tile": [
+    115,
+    125
+   ],
+   "crudo": "06aa0606000000006c0e0000b00f00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100039,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4232,
+    3888
+   ],
+   "tile": [
+    132,
+    121
+   ],
+   "crudo": "07aa06060000000088100000300f00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100040,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4047,
+    3984
+   ],
+   "tile": [
+    126,
+    124
+   ],
+   "crudo": "08aa060600000000cf0f0000900f00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100041,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    3892,
+    4080
+   ],
+   "tile": [
+    121,
+    127
+   ],
+   "crudo": "09aa060600000000340f0000f00f00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100042,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    7094,
+    2864
+   ],
+   "tile": [
+    221,
+    89
+   ],
+   "crudo": "0aaa060600000000b61b0000300b00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 101100043,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    6006,
+    4240
+   ],
+   "tile": [
+    187,
+    132
+   ],
+   "crudo": "0baa06060000000076170000901000000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  }
+ ]
+}

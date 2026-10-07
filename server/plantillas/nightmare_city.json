@@ -1,0 +1,4478 @@
+{
+ "_nota": "nightmare_city (stage 351). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map351.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "stage": 351,
+ "spawns": [
+  {
+   "entity_id": 85100000,
+   "nombre": "Yellow Shroom",
+   "npc_type": 21732,
+   "sprite": 110889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 375
+  },
+  {
+   "entity_id": 85100001,
+   "nombre": "Yellow Shroom",
+   "npc_type": 21732,
+   "sprite": 110889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 375
+  },
+  {
+   "entity_id": 85100002,
+   "nombre": "Yellow Shroom",
+   "npc_type": 21732,
+   "sprite": 110889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 375
+  },
+  {
+   "entity_id": 85100003,
+   "nombre": "Yellow Shroom",
+   "npc_type": 21732,
+   "sprite": 110889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 375
+  },
+  {
+   "entity_id": 85100004,
+   "nombre": "Yellow Shroom",
+   "npc_type": 21732,
+   "sprite": 110889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 375
+  },
+  {
+   "entity_id": 85100005,
+   "nombre": "Yellow Shroom",
+   "npc_type": 21732,
+   "sprite": 110889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 375
+  },
+  {
+   "entity_id": 85100006,
+   "nombre": "Yellow Shroom",
+   "npc_type": 21732,
+   "sprite": 110889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 375
+  },
+  {
+   "entity_id": 85100007,
+   "nombre": "Yellow Shroom",
+   "npc_type": 21732,
+   "sprite": 110889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 375
+  },
+  {
+   "entity_id": 85100008,
+   "nombre": "Yellow Shroom",
+   "npc_type": 21732,
+   "sprite": 110889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 375
+  },
+  {
+   "entity_id": 85100009,
+   "nombre": "Yellow Shroom",
+   "npc_type": 21732,
+   "sprite": 110889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 375
+  },
+  {
+   "entity_id": 85100010,
+   "nombre": "Yellow Shroom",
+   "npc_type": 21732,
+   "sprite": 110889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 375
+  },
+  {
+   "entity_id": 85100011,
+   "nombre": "Yellow Shroom",
+   "npc_type": 21732,
+   "sprite": 110889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 375
+  },
+  {
+   "entity_id": 85100012,
+   "nombre": "Yellow Shroom",
+   "npc_type": 21732,
+   "sprite": 110889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 375
+  },
+  {
+   "entity_id": 85100013,
+   "nombre": "Yellow Shroom",
+   "npc_type": 21732,
+   "sprite": 110889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 375
+  },
+  {
+   "entity_id": 85100014,
+   "nombre": "Yellow Shroom",
+   "npc_type": 21732,
+   "sprite": 110889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 375
+  },
+  {
+   "entity_id": 85100015,
+   "nombre": "Yellow Shroom",
+   "npc_type": 21732,
+   "sprite": 110889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 375
+  },
+  {
+   "entity_id": 85100016,
+   "nombre": "Yellow Shroom",
+   "npc_type": 21732,
+   "sprite": 110889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 375
+  },
+  {
+   "entity_id": 85100017,
+   "nombre": "Yellow Shroom",
+   "npc_type": 21732,
+   "sprite": 110889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 375
+  },
+  {
+   "entity_id": 85100018,
+   "nombre": "Yellow Shroom",
+   "npc_type": 21732,
+   "sprite": 110889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 375
+  },
+  {
+   "entity_id": 85100019,
+   "nombre": "Yellow Shroom",
+   "npc_type": 21732,
+   "sprite": 110889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 375
+  },
+  {
+   "entity_id": 85100020,
+   "nombre": "Yellow Shroom",
+   "npc_type": 21732,
+   "sprite": 110889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 375
+  },
+  {
+   "entity_id": 85100021,
+   "nombre": "Yellow Shroom",
+   "npc_type": 21732,
+   "sprite": 110889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 375
+  },
+  {
+   "entity_id": 85100022,
+   "nombre": "Yellow Shroom",
+   "npc_type": 21732,
+   "sprite": 110889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 375
+  },
+  {
+   "entity_id": 85100023,
+   "nombre": "Yellow Shroom",
+   "npc_type": 21732,
+   "sprite": 110889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 375
+  },
+  {
+   "entity_id": 85100024,
+   "nombre": "Yellow Shroom",
+   "npc_type": 21732,
+   "sprite": 110889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 375
+  },
+  {
+   "entity_id": 85100025,
+   "nombre": "Yellow Shroom",
+   "npc_type": 21732,
+   "sprite": 110889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 375
+  },
+  {
+   "entity_id": 85100026,
+   "nombre": "Yellow Shroom",
+   "npc_type": 21732,
+   "sprite": 110889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 375
+  },
+  {
+   "entity_id": 85100027,
+   "nombre": "Yellow Shroom",
+   "npc_type": 21732,
+   "sprite": 110889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 375
+  },
+  {
+   "entity_id": 85100028,
+   "nombre": "Yellow Shroom",
+   "npc_type": 21732,
+   "sprite": 110889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 375
+  },
+  {
+   "entity_id": 85100029,
+   "nombre": "Yellow Shroom",
+   "npc_type": 21732,
+   "sprite": 110889,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 375
+  },
+  {
+   "entity_id": 85100030,
+   "nombre": "Black Wolfy",
+   "npc_type": 21733,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100031,
+   "nombre": "Black Wolfy",
+   "npc_type": 21733,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100032,
+   "nombre": "Black Wolfy",
+   "npc_type": 21733,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100033,
+   "nombre": "Black Wolfy",
+   "npc_type": 21733,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100034,
+   "nombre": "Black Wolfy",
+   "npc_type": 21733,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100035,
+   "nombre": "Black Wolfy",
+   "npc_type": 21733,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100036,
+   "nombre": "Black Wolfy",
+   "npc_type": 21733,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100037,
+   "nombre": "Black Wolfy",
+   "npc_type": 21733,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100038,
+   "nombre": "Black Wolfy",
+   "npc_type": 21733,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100039,
+   "nombre": "Black Wolfy",
+   "npc_type": 21733,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100040,
+   "nombre": "Black Wolfy",
+   "npc_type": 21733,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100041,
+   "nombre": "Black Wolfy",
+   "npc_type": 21733,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100042,
+   "nombre": "Black Wolfy",
+   "npc_type": 21733,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100043,
+   "nombre": "Black Wolfy",
+   "npc_type": 21733,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100044,
+   "nombre": "Black Wolfy",
+   "npc_type": 21733,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100045,
+   "nombre": "Black Wolfy",
+   "npc_type": 21733,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100046,
+   "nombre": "Black Wolfy",
+   "npc_type": 21733,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100047,
+   "nombre": "Black Wolfy",
+   "npc_type": 21733,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100048,
+   "nombre": "Black Wolfy",
+   "npc_type": 21733,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100049,
+   "nombre": "Black Wolfy",
+   "npc_type": 21733,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100050,
+   "nombre": "Indigo Milly",
+   "npc_type": 21734,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100051,
+   "nombre": "Indigo Milly",
+   "npc_type": 21734,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100052,
+   "nombre": "Indigo Milly",
+   "npc_type": 21734,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100053,
+   "nombre": "Indigo Milly",
+   "npc_type": 21734,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100054,
+   "nombre": "Indigo Milly",
+   "npc_type": 21734,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    215,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100055,
+   "nombre": "Indigo Milly",
+   "npc_type": 21734,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    215,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100056,
+   "nombre": "Indigo Milly",
+   "npc_type": 21734,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    215,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100057,
+   "nombre": "Indigo Milly",
+   "npc_type": 21734,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    215,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100058,
+   "nombre": "Indigo Milly",
+   "npc_type": 21734,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100059,
+   "nombre": "Indigo Milly",
+   "npc_type": 21734,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100060,
+   "nombre": "Indigo Milly",
+   "npc_type": 21734,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100061,
+   "nombre": "Indigo Milly",
+   "npc_type": 21734,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100062,
+   "nombre": "Indigo Milly",
+   "npc_type": 21734,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    215,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100063,
+   "nombre": "Indigo Milly",
+   "npc_type": 21734,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100064,
+   "nombre": "Indigo Milly",
+   "npc_type": 21734,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    215,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100065,
+   "nombre": "Indigo Milly",
+   "npc_type": 21734,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100066,
+   "nombre": "Indigo Milly",
+   "npc_type": 21734,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100067,
+   "nombre": "Indigo Milly",
+   "npc_type": 21734,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100068,
+   "nombre": "Indigo Milly",
+   "npc_type": 21734,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100069,
+   "nombre": "Indigo Milly",
+   "npc_type": 21734,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    220,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100070,
+   "nombre": "E-Grumpy Bear",
+   "npc_type": 21738,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    140,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100071,
+   "nombre": "E-Grumpy Bear",
+   "npc_type": 21738,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    145,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100072,
+   "nombre": "E-Grumpy Bear",
+   "npc_type": 21738,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    135,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100073,
+   "nombre": "E-Grumpy Bear",
+   "npc_type": 21738,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    140,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100074,
+   "nombre": "E-Grumpy Bear",
+   "npc_type": 21738,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    135,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100075,
+   "nombre": "Grumpy Bear",
+   "npc_type": 21735,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    135,
+    42
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 381
+  },
+  {
+   "entity_id": 85100076,
+   "nombre": "Grumpy Bear",
+   "npc_type": 21735,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    145,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 381
+  },
+  {
+   "entity_id": 85100077,
+   "nombre": "Grumpy Bear",
+   "npc_type": 21735,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    140,
+    42
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 381
+  },
+  {
+   "entity_id": 85100078,
+   "nombre": "Grumpy Bear",
+   "npc_type": 21735,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    145,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 381
+  },
+  {
+   "entity_id": 85100079,
+   "nombre": "Grumpy Bear",
+   "npc_type": 21735,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    145,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 381
+  },
+  {
+   "entity_id": 85100080,
+   "nombre": "Grumpy Bear",
+   "npc_type": 21735,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    150,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 381
+  },
+  {
+   "entity_id": 85100081,
+   "nombre": "Grumpy Bear",
+   "npc_type": 21735,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    130,
+    27
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 381
+  },
+  {
+   "entity_id": 85100082,
+   "nombre": "Grumpy Bear",
+   "npc_type": 21735,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    150,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 381
+  },
+  {
+   "entity_id": 85100083,
+   "nombre": "Grumpy Bear",
+   "npc_type": 21735,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    130,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 381
+  },
+  {
+   "entity_id": 85100084,
+   "nombre": "Grumpy Bear",
+   "npc_type": 21735,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    150,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 381
+  },
+  {
+   "entity_id": 85100085,
+   "nombre": "Grumpy Bear",
+   "npc_type": 21735,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    130,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 381
+  },
+  {
+   "entity_id": 85100086,
+   "nombre": "Grumpy Bear",
+   "npc_type": 21735,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    135,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 381
+  },
+  {
+   "entity_id": 85100087,
+   "nombre": "Grumpy Bear",
+   "npc_type": 21735,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    130,
+    42
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 381
+  },
+  {
+   "entity_id": 85100088,
+   "nombre": "Grumpy Bear",
+   "npc_type": 21735,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    140,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 381
+  },
+  {
+   "entity_id": 85100089,
+   "nombre": "Grumpy Bear",
+   "npc_type": 21735,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    130,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 381
+  },
+  {
+   "entity_id": 85100090,
+   "nombre": "Grumpy Bear",
+   "npc_type": 21735,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    145,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 381
+  },
+  {
+   "entity_id": 85100091,
+   "nombre": "Grumpy Bear",
+   "npc_type": 21735,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    135,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 381
+  },
+  {
+   "entity_id": 85100092,
+   "nombre": "Grumpy Bear",
+   "npc_type": 21735,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    150,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 381
+  },
+  {
+   "entity_id": 85100093,
+   "nombre": "Grumpy Bear",
+   "npc_type": 21735,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    140,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 381
+  },
+  {
+   "entity_id": 85100094,
+   "nombre": "Grumpy Bear",
+   "npc_type": 21735,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    150,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 381
+  },
+  {
+   "entity_id": 85100095,
+   "nombre": "Grumpy Bear",
+   "npc_type": 21735,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    145,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 381
+  },
+  {
+   "entity_id": 85100096,
+   "nombre": "Grumpy Bear",
+   "npc_type": 21735,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    155,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 381
+  },
+  {
+   "entity_id": 85100097,
+   "nombre": "Grumpy Bear",
+   "npc_type": 21735,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    150,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 381
+  },
+  {
+   "entity_id": 85100098,
+   "nombre": "Grumpy Bear",
+   "npc_type": 21735,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    155,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 381
+  },
+  {
+   "entity_id": 85100099,
+   "nombre": "Grumpy Bear",
+   "npc_type": 21735,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    125,
+    22
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 381
+  },
+  {
+   "entity_id": 85100100,
+   "nombre": "Grumpy Bear",
+   "npc_type": 21735,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    155,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 381
+  },
+  {
+   "entity_id": 85100101,
+   "nombre": "Grumpy Bear",
+   "npc_type": 21735,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    125,
+    27
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 381
+  },
+  {
+   "entity_id": 85100102,
+   "nombre": "Grumpy Bear",
+   "npc_type": 21735,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    155,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 381
+  },
+  {
+   "entity_id": 85100103,
+   "nombre": "Grumpy Bear",
+   "npc_type": 21735,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    125,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 381
+  },
+  {
+   "entity_id": 85100104,
+   "nombre": "Grumpy Bear",
+   "npc_type": 21735,
+   "sprite": 110901,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    155,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 381
+  },
+  {
+   "entity_id": 85100105,
+   "nombre": "Grouchy Gary",
+   "npc_type": 21741,
+   "sprite": 110902,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    157,
+    72
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 386
+  },
+  {
+   "entity_id": 85100106,
+   "nombre": "Bearashooter",
+   "npc_type": 21742,
+   "sprite": 110905,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    152,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 388
+  },
+  {
+   "entity_id": 85100107,
+   "nombre": "Marksbear",
+   "npc_type": 21736,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 383
+  },
+  {
+   "entity_id": 85100108,
+   "nombre": "Marksbear",
+   "npc_type": 21736,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    97
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 383
+  },
+  {
+   "entity_id": 85100109,
+   "nombre": "Marksbear",
+   "npc_type": 21736,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    238,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 383
+  },
+  {
+   "entity_id": 85100110,
+   "nombre": "Marksbear",
+   "npc_type": 21736,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    244,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 383
+  },
+  {
+   "entity_id": 85100111,
+   "nombre": "Marksbear",
+   "npc_type": 21736,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    238,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 383
+  },
+  {
+   "entity_id": 85100112,
+   "nombre": "Marksbear",
+   "npc_type": 21736,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    248,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 383
+  },
+  {
+   "entity_id": 85100113,
+   "nombre": "Marksbear",
+   "npc_type": 21736,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    238,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 383
+  },
+  {
+   "entity_id": 85100114,
+   "nombre": "Marksbear",
+   "npc_type": 21736,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 383
+  },
+  {
+   "entity_id": 85100115,
+   "nombre": "Marksbear",
+   "npc_type": 21736,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 383
+  },
+  {
+   "entity_id": 85100116,
+   "nombre": "Marksbear",
+   "npc_type": 21736,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    253,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 383
+  },
+  {
+   "entity_id": 85100117,
+   "nombre": "Marksbear",
+   "npc_type": 21736,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    248,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 383
+  },
+  {
+   "entity_id": 85100118,
+   "nombre": "Marksbear",
+   "npc_type": 21736,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    254,
+    97
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 383
+  },
+  {
+   "entity_id": 85100119,
+   "nombre": "Marksbear",
+   "npc_type": 21736,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    233,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 383
+  },
+  {
+   "entity_id": 85100120,
+   "nombre": "Marksbear",
+   "npc_type": 21736,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    254,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 383
+  },
+  {
+   "entity_id": 85100121,
+   "nombre": "Marksbear",
+   "npc_type": 21736,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    233,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 383
+  },
+  {
+   "entity_id": 85100122,
+   "nombre": "Marksbear",
+   "npc_type": 21736,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 383
+  },
+  {
+   "entity_id": 85100123,
+   "nombre": "Marksbear",
+   "npc_type": 21736,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    233,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 383
+  },
+  {
+   "entity_id": 85100124,
+   "nombre": "Marksbear",
+   "npc_type": 21736,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 383
+  },
+  {
+   "entity_id": 85100125,
+   "nombre": "Marksbear",
+   "npc_type": 21736,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    233,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 383
+  },
+  {
+   "entity_id": 85100126,
+   "nombre": "Marksbear",
+   "npc_type": 21736,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    248,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 383
+  },
+  {
+   "entity_id": 85100127,
+   "nombre": "Marksbear",
+   "npc_type": 21736,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    233,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 383
+  },
+  {
+   "entity_id": 85100128,
+   "nombre": "Marksbear",
+   "npc_type": 21736,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    253,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 383
+  },
+  {
+   "entity_id": 85100129,
+   "nombre": "Marksbear",
+   "npc_type": 21736,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    238,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 383
+  },
+  {
+   "entity_id": 85100130,
+   "nombre": "Marksbear",
+   "npc_type": 21736,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    253,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 383
+  },
+  {
+   "entity_id": 85100131,
+   "nombre": "Marksbear",
+   "npc_type": 21736,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    238,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 383
+  },
+  {
+   "entity_id": 85100132,
+   "nombre": "Marksbear",
+   "npc_type": 21736,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 383
+  },
+  {
+   "entity_id": 85100133,
+   "nombre": "Marksbear",
+   "npc_type": 21736,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 383
+  },
+  {
+   "entity_id": 85100134,
+   "nombre": "Marksbear",
+   "npc_type": 21736,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 383
+  },
+  {
+   "entity_id": 85100135,
+   "nombre": "Marksbear",
+   "npc_type": 21736,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    248,
+    82
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 383
+  },
+  {
+   "entity_id": 85100136,
+   "nombre": "Marksbear",
+   "npc_type": 21736,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 383
+  },
+  {
+   "entity_id": 85100137,
+   "nombre": "E-Marksbear",
+   "npc_type": 21739,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    253,
+    82
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100138,
+   "nombre": "E-Marksbear",
+   "npc_type": 21739,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    238,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100139,
+   "nombre": "E-Marksbear",
+   "npc_type": 21739,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    228,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100140,
+   "nombre": "E-Marksbear",
+   "npc_type": 21739,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100141,
+   "nombre": "E-Marksbear",
+   "npc_type": 21739,
+   "sprite": 110863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    228,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100142,
+   "nombre": "E-Beary Tanky",
+   "npc_type": 21740,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    152,
+    72
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100143,
+   "nombre": "E-Beary Tanky",
+   "npc_type": 21740,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100144,
+   "nombre": "E-Beary Tanky",
+   "npc_type": 21740,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100145,
+   "nombre": "E-Beary Tanky",
+   "npc_type": 21740,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    130,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100146,
+   "nombre": "E-Beary Tanky",
+   "npc_type": 21740,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    157,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100147,
+   "nombre": "Beary Tanky",
+   "npc_type": 21737,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    152,
+    77
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100148,
+   "nombre": "Beary Tanky",
+   "npc_type": 21737,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100149,
+   "nombre": "Beary Tanky",
+   "npc_type": 21737,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100150,
+   "nombre": "Beary Tanky",
+   "npc_type": 21737,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    125,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100151,
+   "nombre": "Beary Tanky",
+   "npc_type": 21737,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    152,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100152,
+   "nombre": "Beary Tanky",
+   "npc_type": 21737,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    157,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100153,
+   "nombre": "Beary Tanky",
+   "npc_type": 21737,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100154,
+   "nombre": "Beary Tanky",
+   "npc_type": 21737,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    128,
+    104
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100155,
+   "nombre": "Beary Tanky",
+   "npc_type": 21737,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    125,
+    94
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100156,
+   "nombre": "Beary Tanky",
+   "npc_type": 21737,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    152,
+    92
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100157,
+   "nombre": "Beary Tanky",
+   "npc_type": 21737,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    157,
+    77
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100158,
+   "nombre": "Beary Tanky",
+   "npc_type": 21737,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100159,
+   "nombre": "Beary Tanky",
+   "npc_type": 21737,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100160,
+   "nombre": "Beary Tanky",
+   "npc_type": 21737,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    130,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100161,
+   "nombre": "Beary Tanky",
+   "npc_type": 21737,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    152,
+    97
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100162,
+   "nombre": "Beary Tanky",
+   "npc_type": 21737,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    162,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100163,
+   "nombre": "Beary Tanky",
+   "npc_type": 21737,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100164,
+   "nombre": "Beary Tanky",
+   "npc_type": 21737,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    135,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100165,
+   "nombre": "Beary Tanky",
+   "npc_type": 21737,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    135,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100166,
+   "nombre": "Beary Tanky",
+   "npc_type": 21737,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    157,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100167,
+   "nombre": "Beary Tanky",
+   "npc_type": 21737,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    162,
+    72
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100168,
+   "nombre": "Beary Tanky",
+   "npc_type": 21737,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100169,
+   "nombre": "Beary Tanky",
+   "npc_type": 21737,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    138,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100170,
+   "nombre": "Beary Tanky",
+   "npc_type": 21737,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    123,
+    99
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100171,
+   "nombre": "Beary Tanky",
+   "npc_type": 21737,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    157,
+    97
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100172,
+   "nombre": "Beary Tanky",
+   "npc_type": 21737,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    162,
+    77
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100173,
+   "nombre": "Beary Tanky",
+   "npc_type": 21737,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    188,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100174,
+   "nombre": "Beary Tanky",
+   "npc_type": 21737,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    138,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100175,
+   "nombre": "Beary Tanky",
+   "npc_type": 21737,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    120,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100176,
+   "nombre": "Beary Tanky",
+   "npc_type": 21737,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    162,
+    87
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100177,
+   "nombre": "Tanky Bearistine",
+   "npc_type": 21743,
+   "sprite": 110910,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    147,
+    62
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 389
+  },
+  {
+   "entity_id": 85100178,
+   "nombre": "Mirage Marionett",
+   "npc_type": 21744,
+   "sprite": 110867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    51
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 85100179,
+   "nombre": "Dreamy Mariano",
+   "npc_type": 21745,
+   "sprite": 110868,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    229,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 85100180,
+   "nombre": "Bearjesty",
+   "npc_type": 21746,
+   "sprite": 110869,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 85100181,
+   "nombre": "Wind Elf",
+   "npc_type": 1,
+   "sprite": 42055,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    4,
+    4
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 4
+  },
+  {
+   "entity_id": 85100182,
+   "nombre": "Fire Elf",
+   "npc_type": 2,
+   "sprite": 42056,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    9,
+    1
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 7
+  },
+  {
+   "entity_id": 85100183,
+   "nombre": "Black Wolfy",
+   "npc_type": 21790,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    185,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100184,
+   "nombre": "Black Wolfy",
+   "npc_type": 21790,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    184,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100185,
+   "nombre": "Black Wolfy",
+   "npc_type": 21790,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    180,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100186,
+   "nombre": "Black Wolfy",
+   "npc_type": 21790,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    182,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100187,
+   "nombre": "Black Wolfy",
+   "npc_type": 21790,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    179,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100188,
+   "nombre": "Indigo Milly",
+   "npc_type": 21791,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    177,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100189,
+   "nombre": "Indigo Milly",
+   "npc_type": 21791,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    184,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100190,
+   "nombre": "Indigo Milly",
+   "npc_type": 21791,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    175,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100191,
+   "nombre": "Indigo Milly",
+   "npc_type": 21791,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    42
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100192,
+   "nombre": "Indigo Milly",
+   "npc_type": 21791,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    175,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100193,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    120,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100194,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    117,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100195,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    115,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100196,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    115,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100197,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    112,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100198,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    112,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100199,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    117,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100200,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    122,
+    104
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100201,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    125,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100202,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    130,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100203,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    110,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100204,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    110,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100205,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    110,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100206,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    115,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100207,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    107,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100208,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    107,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100209,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    107,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100210,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    112,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100211,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    117,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100212,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    135,
+    80
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100213,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    120,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100214,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    122,
+    109
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100215,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    125,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100216,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    127,
+    109
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100217,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    130,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100218,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    105,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100219,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    105,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100220,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    105,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100221,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    105,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100222,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    110,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100223,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    115,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100224,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100225,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100226,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    102,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100227,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    102,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100228,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    102,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100229,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    102,
+    113
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100230,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    107,
+    113
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100231,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    112,
+    113
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100232,
+   "nombre": "Beary Tanky",
+   "npc_type": 21792,
+   "sprite": 110909,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    117,
+    113
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 385
+  },
+  {
+   "entity_id": 85100233,
+   "nombre": "Mirage Marionett",
+   "npc_type": 21793,
+   "sprite": 110867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 85100234,
+   "nombre": "Marionett",
+   "npc_type": 21795,
+   "sprite": 110867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 85100235,
+   "nombre": "Dreamy Mariano",
+   "npc_type": 21794,
+   "sprite": 110868,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 85100236,
+   "nombre": "Mariano",
+   "npc_type": 21796,
+   "sprite": 110868,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    149
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 390
+  },
+  {
+   "entity_id": 85100237,
+   "nombre": "Black Wolfy",
+   "npc_type": 21790,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    174,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100238,
+   "nombre": "Black Wolfy",
+   "npc_type": 21790,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100239,
+   "nombre": "Black Wolfy",
+   "npc_type": 21790,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    189,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100240,
+   "nombre": "Black Wolfy",
+   "npc_type": 21790,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    172,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100241,
+   "nombre": "Black Wolfy",
+   "npc_type": 21790,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100242,
+   "nombre": "Black Wolfy",
+   "npc_type": 21790,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    170,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100243,
+   "nombre": "Black Wolfy",
+   "npc_type": 21790,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100244,
+   "nombre": "Black Wolfy",
+   "npc_type": 21790,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    194,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100245,
+   "nombre": "Black Wolfy",
+   "npc_type": 21790,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    169,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100246,
+   "nombre": "Black Wolfy",
+   "npc_type": 21790,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    169,
+    62
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100247,
+   "nombre": "Black Wolfy",
+   "npc_type": 21790,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100248,
+   "nombre": "Black Wolfy",
+   "npc_type": 21790,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100249,
+   "nombre": "Black Wolfy",
+   "npc_type": 21790,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100250,
+   "nombre": "Black Wolfy",
+   "npc_type": 21790,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    180,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100251,
+   "nombre": "Black Wolfy",
+   "npc_type": 21790,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    185,
+    63
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100252,
+   "nombre": "Black Wolfy",
+   "npc_type": 21790,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    188,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100253,
+   "nombre": "Black Wolfy",
+   "npc_type": 21790,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    167,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100254,
+   "nombre": "Black Wolfy",
+   "npc_type": 21790,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100255,
+   "nombre": "Black Wolfy",
+   "npc_type": 21790,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    165,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100256,
+   "nombre": "Black Wolfy",
+   "npc_type": 21790,
+   "sprite": 110893,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 377
+  },
+  {
+   "entity_id": 85100257,
+   "nombre": "Indigo Milly",
+   "npc_type": 21791,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    199,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100258,
+   "nombre": "Indigo Milly",
+   "npc_type": 21791,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    199,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100259,
+   "nombre": "Indigo Milly",
+   "npc_type": 21791,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    193,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100260,
+   "nombre": "Indigo Milly",
+   "npc_type": 21791,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100261,
+   "nombre": "Indigo Milly",
+   "npc_type": 21791,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100262,
+   "nombre": "Indigo Milly",
+   "npc_type": 21791,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    188,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100263,
+   "nombre": "Indigo Milly",
+   "npc_type": 21791,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    198,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100264,
+   "nombre": "Indigo Milly",
+   "npc_type": 21791,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    203,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100265,
+   "nombre": "Indigo Milly",
+   "npc_type": 21791,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    204,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100266,
+   "nombre": "Indigo Milly",
+   "npc_type": 21791,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    204,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100267,
+   "nombre": "Indigo Milly",
+   "npc_type": 21791,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    167,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100268,
+   "nombre": "Indigo Milly",
+   "npc_type": 21791,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    172,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100269,
+   "nombre": "Indigo Milly",
+   "npc_type": 21791,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    177,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100270,
+   "nombre": "Indigo Milly",
+   "npc_type": 21791,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    182,
+    68
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100271,
+   "nombre": "Indigo Milly",
+   "npc_type": 21791,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100272,
+   "nombre": "Indigo Milly",
+   "npc_type": 21791,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    27
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100273,
+   "nombre": "Indigo Milly",
+   "npc_type": 21791,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    193,
+    27
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100274,
+   "nombre": "Indigo Milly",
+   "npc_type": 21791,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    164,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100275,
+   "nombre": "Indigo Milly",
+   "npc_type": 21791,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    164,
+    62
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  },
+  {
+   "entity_id": 85100276,
+   "nombre": "Indigo Milly",
+   "npc_type": 21791,
+   "sprite": 110897,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    187,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 379
+  }
+ ],
+ "recursos": [
+  {
+   "entity_id": 95100000,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5989,
+    2320
+   ],
+   "tile": [
+    187,
+    72
+   ],
+   "crudo": "601cab050000000065170000100900000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 95100001,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    6221,
+    2000
+   ],
+   "tile": [
+    194,
+    62
+   ],
+   "crudo": "611cab05000000004d180000d00700000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 95100002,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    8141,
+    2256
+   ],
+   "tile": [
+    254,
+    70
+   ],
+   "crudo": "621cab0500000000cd1f0000d00800000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 95100003,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    8187,
+    2384
+   ],
+   "tile": [
+    255,
+    74
+   ],
+   "crudo": "631cab0500000000fb1f0000500900000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 95100004,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    5520,
+    1264
+   ],
+   "tile": [
+    172,
+    39
+   ],
+   "crudo": "641cab050000000090150000f00400000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 95100005,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    5643,
+    1200
+   ],
+   "tile": [
+    176,
+    37
+   ],
+   "crudo": "651cab05000000000b160000b00400000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 95100006,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    2343,
+    4112
+   ],
+   "tile": [
+    73,
+    128
+   ],
+   "crudo": "661cab050200000027090000101000000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 95100007,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    2589,
+    4208
+   ],
+   "tile": [
+    80,
+    131
+   ],
+   "crudo": "671cab05020000001d0a0000701000000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 95100008,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    3386,
+    1328
+   ],
+   "tile": [
+    105,
+    41
+   ],
+   "crudo": "681cab05020000003a0d0000300500000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 95100009,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    3143,
+    1200
+   ],
+   "tile": [
+    98,
+    37
+   ],
+   "crudo": "691cab0502000000470c0000b00400000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 95100010,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    7650,
+    3920
+   ],
+   "tile": [
+    239,
+    122
+   ],
+   "crudo": "6a1cab0502000000e21d0000500f00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 95100011,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    7386,
+    3792
+   ],
+   "tile": [
+    230,
+    118
+   ],
+   "crudo": "6b1cab0502000000da1c0000d00e00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 95100012,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    6798,
+    656
+   ],
+   "tile": [
+    212,
+    20
+   ],
+   "crudo": "6c1cab05020000008e1a0000900200000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 95100013,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    7064,
+    784
+   ],
+   "tile": [
+    220,
+    24
+   ],
+   "crudo": "6d1cab0502000000981b0000100300000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 95100014,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    7184,
+    816
+   ],
+   "tile": [
+    224,
+    25
+   ],
+   "crudo": "6e1cab0502000000101c0000300300000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 95100015,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    8777,
+    1744
+   ],
+   "tile": [
+    274,
+    54
+   ],
+   "crudo": "6f1cab050200000049220000d00600000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 95100016,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    8517,
+    1616
+   ],
+   "tile": [
+    266,
+    50
+   ],
+   "crudo": "701cab050200000045210000500600000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 95100017,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    8301,
+    2320
+   ],
+   "tile": [
+    259,
+    72
+   ],
+   "crudo": "711cab05000000006d200000100900000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 95100018,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    8226,
+    2224
+   ],
+   "tile": [
+    257,
+    69
+   ],
+   "crudo": "721cab050000000022200000b00800000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 95100019,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    5433,
+    1168
+   ],
+   "tile": [
+    169,
+    36
+   ],
+   "crudo": "731cab050000000039150000900400000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 95100020,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    5585,
+    1104
+   ],
+   "tile": [
+    174,
+    34
+   ],
+   "crudo": "741cab0500000000d1150000500400000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  }
+ ]
+}

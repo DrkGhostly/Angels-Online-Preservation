@@ -1,0 +1,6643 @@
+{
+ "_nota": "queen_bee_hideout (stage 252). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map252.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "stage": 252,
+ "spawns": [
+  {
+   "entity_id": 75200000,
+   "nombre": "Little Bamborior",
+   "npc_type": 13163,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    33,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 75200001,
+   "nombre": "Little Bamborior",
+   "npc_type": 13163,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    38,
+    26
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 75200002,
+   "nombre": "Little Bamborior",
+   "npc_type": 13163,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 75200003,
+   "nombre": "Little Bamborior",
+   "npc_type": 13163,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    21
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 75200004,
+   "nombre": "Little Bamborior",
+   "npc_type": 13163,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 75200005,
+   "nombre": "Little Bamborior",
+   "npc_type": 13163,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    28,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 75200006,
+   "nombre": "Little Bamborior",
+   "npc_type": 13163,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    33,
+    21
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 75200007,
+   "nombre": "Little Bamborior",
+   "npc_type": 13163,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    38,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 75200008,
+   "nombre": "Little Bamborior",
+   "npc_type": 13163,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 75200009,
+   "nombre": "Little Bamborior",
+   "npc_type": 13163,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 75200010,
+   "nombre": "Little Bamborior",
+   "npc_type": 13163,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    28,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 75200011,
+   "nombre": "Little Bamborior",
+   "npc_type": 13163,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    38,
+    31
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 75200012,
+   "nombre": "Little Bamborior",
+   "npc_type": 13163,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 75200013,
+   "nombre": "Little Bamborior",
+   "npc_type": 13163,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    26
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 75200014,
+   "nombre": "Little Bamborior",
+   "npc_type": 13163,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    16
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 75200015,
+   "nombre": "Little Bamborior",
+   "npc_type": 13163,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    28,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 75200016,
+   "nombre": "Little Bamborior",
+   "npc_type": 13163,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 75200017,
+   "nombre": "Little Bamborior",
+   "npc_type": 13163,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    31
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 75200018,
+   "nombre": "Little Bamborior",
+   "npc_type": 13163,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 75200019,
+   "nombre": "Little Bamborior",
+   "npc_type": 13163,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    13
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 75200020,
+   "nombre": "Little Bamborior",
+   "npc_type": 13163,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    33,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 75200021,
+   "nombre": "Little Bamborior",
+   "npc_type": 13163,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    28,
+    16
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 75200022,
+   "nombre": "Little Bamborior",
+   "npc_type": 13163,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    33,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 75200023,
+   "nombre": "Little Bamborior",
+   "npc_type": 13163,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    38,
+    13
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 75200024,
+   "nombre": "Little Bamborior",
+   "npc_type": 13163,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    58,
+    13
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 75200025,
+   "nombre": "Little Bamborior",
+   "npc_type": 13163,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    38,
+    36
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 75200026,
+   "nombre": "Little Bamborior",
+   "npc_type": 13163,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    36
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 75200027,
+   "nombre": "Little Bamborior",
+   "npc_type": 13163,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    13
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 75200028,
+   "nombre": "Little Bamborior",
+   "npc_type": 13163,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    11
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 75200029,
+   "nombre": "Little Bamborior",
+   "npc_type": 13163,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    58,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 215
+  },
+  {
+   "entity_id": 75200030,
+   "nombre": "Truffle Droplet",
+   "npc_type": 13164,
+   "sprite": 43851,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    23,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 216
+  },
+  {
+   "entity_id": 75200031,
+   "nombre": "Truffle Droplet",
+   "npc_type": 13164,
+   "sprite": 43851,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 216
+  },
+  {
+   "entity_id": 75200032,
+   "nombre": "Truffle Droplet",
+   "npc_type": 13164,
+   "sprite": 43851,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 216
+  },
+  {
+   "entity_id": 75200033,
+   "nombre": "Truffle Droplet",
+   "npc_type": 13164,
+   "sprite": 43851,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    58,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 216
+  },
+  {
+   "entity_id": 75200034,
+   "nombre": "Truffle Droplet",
+   "npc_type": 13164,
+   "sprite": 43851,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    58,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 216
+  },
+  {
+   "entity_id": 75200035,
+   "nombre": "Truffle Droplet",
+   "npc_type": 13164,
+   "sprite": 43851,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    23,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 216
+  },
+  {
+   "entity_id": 75200036,
+   "nombre": "Truffle Droplet",
+   "npc_type": 13164,
+   "sprite": 43851,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    24,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 216
+  },
+  {
+   "entity_id": 75200037,
+   "nombre": "Truffle Droplet",
+   "npc_type": 13164,
+   "sprite": 43851,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    28,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 216
+  },
+  {
+   "entity_id": 75200038,
+   "nombre": "Truffle Droplet",
+   "npc_type": 13164,
+   "sprite": 43851,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    58,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 216
+  },
+  {
+   "entity_id": 75200039,
+   "nombre": "Truffle Droplet",
+   "npc_type": 13164,
+   "sprite": 43851,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    39,
+    8
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 216
+  },
+  {
+   "entity_id": 75200040,
+   "nombre": "Truffle Droplet",
+   "npc_type": 13164,
+   "sprite": 43851,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    23,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 216
+  },
+  {
+   "entity_id": 75200041,
+   "nombre": "Truffle Droplet",
+   "npc_type": 13164,
+   "sprite": 43851,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    29,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 216
+  },
+  {
+   "entity_id": 75200042,
+   "nombre": "Truffle Droplet",
+   "npc_type": 13164,
+   "sprite": 43851,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    33,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 216
+  },
+  {
+   "entity_id": 75200043,
+   "nombre": "Truffle Droplet",
+   "npc_type": 13164,
+   "sprite": 43851,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    8
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 216
+  },
+  {
+   "entity_id": 75200044,
+   "nombre": "Truffle Droplet",
+   "npc_type": 13164,
+   "sprite": 43851,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    58,
+    8
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 216
+  },
+  {
+   "entity_id": 75200045,
+   "nombre": "Truffle Droplet",
+   "npc_type": 13164,
+   "sprite": 43851,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    23,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 216
+  },
+  {
+   "entity_id": 75200046,
+   "nombre": "Truffle Droplet",
+   "npc_type": 13164,
+   "sprite": 43851,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    23,
+    11
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 216
+  },
+  {
+   "entity_id": 75200047,
+   "nombre": "Truffle Droplet",
+   "npc_type": 13164,
+   "sprite": 43851,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 216
+  },
+  {
+   "entity_id": 75200048,
+   "nombre": "Truffle Droplet",
+   "npc_type": 13164,
+   "sprite": 43851,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    6
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 216
+  },
+  {
+   "entity_id": 75200049,
+   "nombre": "Truffle Droplet",
+   "npc_type": 13164,
+   "sprite": 43851,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    8
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 216
+  },
+  {
+   "entity_id": 75200050,
+   "nombre": "Truffle Droplet",
+   "npc_type": 13164,
+   "sprite": 43851,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    34,
+    41
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 216
+  },
+  {
+   "entity_id": 75200051,
+   "nombre": "Truffle Droplet",
+   "npc_type": 13164,
+   "sprite": 43851,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    41
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 216
+  },
+  {
+   "entity_id": 75200052,
+   "nombre": "Truffle Droplet",
+   "npc_type": 13164,
+   "sprite": 43851,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    58,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 216
+  },
+  {
+   "entity_id": 75200053,
+   "nombre": "Truffle Droplet",
+   "npc_type": 13164,
+   "sprite": 43851,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    13
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 216
+  },
+  {
+   "entity_id": 75200054,
+   "nombre": "Truffle Droplet",
+   "npc_type": 13164,
+   "sprite": 43851,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 216
+  },
+  {
+   "entity_id": 75200055,
+   "nombre": "Truffle Droplet",
+   "npc_type": 13164,
+   "sprite": 43851,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    39,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 216
+  },
+  {
+   "entity_id": 75200056,
+   "nombre": "Truffle Droplet",
+   "npc_type": 13164,
+   "sprite": 43851,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 216
+  },
+  {
+   "entity_id": 75200057,
+   "nombre": "Truffle Droplet",
+   "npc_type": 13164,
+   "sprite": 43851,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    23,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 216
+  },
+  {
+   "entity_id": 75200058,
+   "nombre": "Truffle Droplet",
+   "npc_type": 13164,
+   "sprite": 43851,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 216
+  },
+  {
+   "entity_id": 75200059,
+   "nombre": "Truffle Droplet",
+   "npc_type": 13164,
+   "sprite": 43851,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 216
+  },
+  {
+   "entity_id": 75200060,
+   "nombre": "Port Onion",
+   "npc_type": 13165,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    19,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200061,
+   "nombre": "Port Onion",
+   "npc_type": 13165,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    19,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200062,
+   "nombre": "Port Onion",
+   "npc_type": 13165,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    28,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200063,
+   "nombre": "Port Onion",
+   "npc_type": 13165,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200064,
+   "nombre": "Port Onion",
+   "npc_type": 13165,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    34,
+    3
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200065,
+   "nombre": "Port Onion",
+   "npc_type": 13165,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    18,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200066,
+   "nombre": "Port Onion",
+   "npc_type": 13165,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    24,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200067,
+   "nombre": "Port Onion",
+   "npc_type": 13165,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    58,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200068,
+   "nombre": "Port Onion",
+   "npc_type": 13165,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200069,
+   "nombre": "Port Onion",
+   "npc_type": 13165,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    39,
+    3
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200070,
+   "nombre": "Port Onion",
+   "npc_type": 13165,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    18,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200071,
+   "nombre": "Port Onion",
+   "npc_type": 13165,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    29,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200072,
+   "nombre": "Port Onion",
+   "npc_type": 13165,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    3
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200073,
+   "nombre": "Port Onion",
+   "npc_type": 13165,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    3
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200074,
+   "nombre": "Port Onion",
+   "npc_type": 13165,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    3
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200075,
+   "nombre": "Port Onion",
+   "npc_type": 13165,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    18,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200076,
+   "nombre": "Port Onion",
+   "npc_type": 13165,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    18,
+    6
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200077,
+   "nombre": "Port Onion",
+   "npc_type": 13165,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200078,
+   "nombre": "Port Onion",
+   "npc_type": 13165,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    3
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200079,
+   "nombre": "Port Onion",
+   "npc_type": 13165,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    68,
+    8
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200080,
+   "nombre": "Port Onion",
+   "npc_type": 13165,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    18,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200081,
+   "nombre": "Port Onion",
+   "npc_type": 13165,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    18,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200082,
+   "nombre": "Port Onion",
+   "npc_type": 13165,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    34,
+    46
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200083,
+   "nombre": "Port Onion",
+   "npc_type": 13165,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    1
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200084,
+   "nombre": "Port Onion",
+   "npc_type": 13165,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    68,
+    13
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200085,
+   "nombre": "Port Onion",
+   "npc_type": 13165,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    46
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200086,
+   "nombre": "Port Onion",
+   "npc_type": 13165,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    39,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200087,
+   "nombre": "Port Onion",
+   "npc_type": 13165,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    18,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200088,
+   "nombre": "Port Onion",
+   "npc_type": 13165,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    68,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200089,
+   "nombre": "Port Onion",
+   "npc_type": 13165,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    68,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200090,
+   "nombre": "Diva Banasis",
+   "npc_type": 13166,
+   "sprite": 43857,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200091,
+   "nombre": "Diva Banasis",
+   "npc_type": 13166,
+   "sprite": 43857,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200092,
+   "nombre": "Diva Banasis",
+   "npc_type": 13166,
+   "sprite": 43857,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    23,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200093,
+   "nombre": "Diva Banasis",
+   "npc_type": 13166,
+   "sprite": 43857,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    68,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200094,
+   "nombre": "Diva Banasis",
+   "npc_type": 13166,
+   "sprite": 43857,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    68,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200095,
+   "nombre": "Diva Banasis",
+   "npc_type": 13166,
+   "sprite": 43857,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    14,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200096,
+   "nombre": "Diva Banasis",
+   "npc_type": 13166,
+   "sprite": 43857,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200097,
+   "nombre": "Diva Banasis",
+   "npc_type": 13166,
+   "sprite": 43857,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    28,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200098,
+   "nombre": "Diva Banasis",
+   "npc_type": 13166,
+   "sprite": 43857,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    68,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200099,
+   "nombre": "Diva Banasis",
+   "npc_type": 13166,
+   "sprite": 43857,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    69,
+    2
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200100,
+   "nombre": "Diva Banasis",
+   "npc_type": 13166,
+   "sprite": 43857,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    14,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200101,
+   "nombre": "Diva Banasis",
+   "npc_type": 13166,
+   "sprite": 43857,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    14,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200102,
+   "nombre": "Diva Banasis",
+   "npc_type": 13166,
+   "sprite": 43857,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200103,
+   "nombre": "Diva Banasis",
+   "npc_type": 13166,
+   "sprite": 43857,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    68,
+    43
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200104,
+   "nombre": "Diva Banasis",
+   "npc_type": 13166,
+   "sprite": 43857,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    7
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200105,
+   "nombre": "Diva Banasis",
+   "npc_type": 13166,
+   "sprite": 43857,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    13,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200106,
+   "nombre": "Diva Banasis",
+   "npc_type": 13166,
+   "sprite": 43857,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    19,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200107,
+   "nombre": "Diva Banasis",
+   "npc_type": 13166,
+   "sprite": 43857,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    24,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200108,
+   "nombre": "Diva Banasis",
+   "npc_type": 13166,
+   "sprite": 43857,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    69,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200109,
+   "nombre": "Diva Banasis",
+   "npc_type": 13166,
+   "sprite": 43857,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    12
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200110,
+   "nombre": "Diva Banasis",
+   "npc_type": 13166,
+   "sprite": 43857,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    13,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200111,
+   "nombre": "Diva Banasis",
+   "npc_type": 13166,
+   "sprite": 43857,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    29,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200112,
+   "nombre": "Diva Banasis",
+   "npc_type": 13166,
+   "sprite": 43857,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    34,
+    51
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200113,
+   "nombre": "Diva Banasis",
+   "npc_type": 13166,
+   "sprite": 43857,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    17
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200114,
+   "nombre": "Diva Banasis",
+   "npc_type": 13166,
+   "sprite": 43857,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    22
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200115,
+   "nombre": "Diva Banasis",
+   "npc_type": 13166,
+   "sprite": 43857,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    13,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200116,
+   "nombre": "Diva Banasis",
+   "npc_type": 13166,
+   "sprite": 43857,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    13,
+    1
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200117,
+   "nombre": "Diva Banasis",
+   "npc_type": 13166,
+   "sprite": 43857,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    44,
+    51
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200118,
+   "nombre": "Diva Banasis",
+   "npc_type": 13166,
+   "sprite": 43857,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    27
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200119,
+   "nombre": "Diva Banasis",
+   "npc_type": 13166,
+   "sprite": 43857,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    32
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 217
+  },
+  {
+   "entity_id": 75200120,
+   "nombre": "Honey Elf",
+   "npc_type": 13167,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    13,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 218
+  },
+  {
+   "entity_id": 75200121,
+   "nombre": "Honey Elf",
+   "npc_type": 13167,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    13,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 218
+  },
+  {
+   "entity_id": 75200122,
+   "nombre": "Honey Elf",
+   "npc_type": 13167,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    13,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 218
+  },
+  {
+   "entity_id": 75200123,
+   "nombre": "Honey Elf",
+   "npc_type": 13167,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    37
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 218
+  },
+  {
+   "entity_id": 75200124,
+   "nombre": "Honey Elf",
+   "npc_type": 13167,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    42
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 218
+  },
+  {
+   "entity_id": 75200125,
+   "nombre": "Honey Elf",
+   "npc_type": 13167,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    39,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 218
+  },
+  {
+   "entity_id": 75200126,
+   "nombre": "Honey Elf",
+   "npc_type": 13167,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 218
+  },
+  {
+   "entity_id": 75200127,
+   "nombre": "Honey Elf",
+   "npc_type": 13167,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 218
+  },
+  {
+   "entity_id": 75200128,
+   "nombre": "Honey Elf",
+   "npc_type": 13167,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    74,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 218
+  },
+  {
+   "entity_id": 75200129,
+   "nombre": "Honey Elf",
+   "npc_type": 13167,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    74,
+    47
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 218
+  },
+  {
+   "entity_id": 75200130,
+   "nombre": "Honey Elf",
+   "npc_type": 13167,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    9,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 218
+  },
+  {
+   "entity_id": 75200131,
+   "nombre": "Honey Elf",
+   "npc_type": 13167,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 218
+  },
+  {
+   "entity_id": 75200132,
+   "nombre": "Honey Elf",
+   "npc_type": 13167,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 218
+  },
+  {
+   "entity_id": 75200133,
+   "nombre": "Honey Elf",
+   "npc_type": 13167,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    74,
+    52
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 218
+  },
+  {
+   "entity_id": 75200134,
+   "nombre": "Honey Elf",
+   "npc_type": 13167,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 218
+  },
+  {
+   "entity_id": 75200135,
+   "nombre": "Honey Elf",
+   "npc_type": 13167,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    9,
+    45
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 218
+  },
+  {
+   "entity_id": 75200136,
+   "nombre": "Honey Elf",
+   "npc_type": 13167,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    9,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 218
+  },
+  {
+   "entity_id": 75200137,
+   "nombre": "Honey Elf",
+   "npc_type": 13167,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    69,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 218
+  },
+  {
+   "entity_id": 75200138,
+   "nombre": "Honey Elf",
+   "npc_type": 13167,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 218
+  },
+  {
+   "entity_id": 75200139,
+   "nombre": "Honey Elf",
+   "npc_type": 13167,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 218
+  },
+  {
+   "entity_id": 75200140,
+   "nombre": "Honey Elf",
+   "npc_type": 13167,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    8,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 218
+  },
+  {
+   "entity_id": 75200141,
+   "nombre": "Honey Elf",
+   "npc_type": 13167,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    9,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 218
+  },
+  {
+   "entity_id": 75200142,
+   "nombre": "Honey Elf",
+   "npc_type": 13167,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    14,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 218
+  },
+  {
+   "entity_id": 75200143,
+   "nombre": "Honey Elf",
+   "npc_type": 13167,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 218
+  },
+  {
+   "entity_id": 75200144,
+   "nombre": "Honey Elf",
+   "npc_type": 13167,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 218
+  },
+  {
+   "entity_id": 75200145,
+   "nombre": "Honey Elf",
+   "npc_type": 13167,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    8,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 218
+  },
+  {
+   "entity_id": 75200146,
+   "nombre": "Honey Elf",
+   "npc_type": 13167,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    19,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 218
+  },
+  {
+   "entity_id": 75200147,
+   "nombre": "Honey Elf",
+   "npc_type": 13167,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    24,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 218
+  },
+  {
+   "entity_id": 75200148,
+   "nombre": "Honey Elf",
+   "npc_type": 13167,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 218
+  },
+  {
+   "entity_id": 75200149,
+   "nombre": "Honey Elf",
+   "npc_type": 13167,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 218
+  },
+  {
+   "entity_id": 75200150,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    91,
+    170
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200151,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    86,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200152,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    86,
+    170
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200153,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    86,
+    175
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200154,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    91,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200155,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    91,
+    175
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200156,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200157,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    170
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200158,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    175
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200159,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    81,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200160,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    81,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200161,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    81,
+    170
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200162,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    81,
+    175
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200163,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    86,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200164,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    91,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200165,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200166,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200167,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200168,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    170
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200169,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    175
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200170,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    76,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200171,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    76,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200172,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    76,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200173,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    76,
+    170
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200174,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    76,
+    175
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200175,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    81,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200176,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    86,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200177,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    91,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200178,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200179,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200180,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200181,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200182,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200183,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    170
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200184,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    175
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200185,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    71,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200186,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    71,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200187,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    71,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200188,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    71,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200189,
+   "nombre": "Sweet Ant",
+   "npc_type": 13168,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    71,
+    170
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 219,
+   "declarados": 60
+  },
+  {
+   "entity_id": 75200190,
+   "nombre": "Speedy Carrot",
+   "npc_type": 13169,
+   "sprite": 43867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    107,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220
+  },
+  {
+   "entity_id": 75200191,
+   "nombre": "Speedy Carrot",
+   "npc_type": 13169,
+   "sprite": 43867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    102,
+    13
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220
+  },
+  {
+   "entity_id": 75200192,
+   "nombre": "Speedy Carrot",
+   "npc_type": 13169,
+   "sprite": 43867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    102,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220
+  },
+  {
+   "entity_id": 75200193,
+   "nombre": "Speedy Carrot",
+   "npc_type": 13169,
+   "sprite": 43867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    102,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220
+  },
+  {
+   "entity_id": 75200194,
+   "nombre": "Speedy Carrot",
+   "npc_type": 13169,
+   "sprite": 43867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    107,
+    13
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220
+  },
+  {
+   "entity_id": 75200195,
+   "nombre": "Speedy Carrot",
+   "npc_type": 13169,
+   "sprite": 43867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    107,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220
+  },
+  {
+   "entity_id": 75200196,
+   "nombre": "Speedy Carrot",
+   "npc_type": 13169,
+   "sprite": 43867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    112,
+    13
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220
+  },
+  {
+   "entity_id": 75200197,
+   "nombre": "Speedy Carrot",
+   "npc_type": 13169,
+   "sprite": 43867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    112,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220
+  },
+  {
+   "entity_id": 75200198,
+   "nombre": "Speedy Carrot",
+   "npc_type": 13169,
+   "sprite": 43867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    112,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220
+  },
+  {
+   "entity_id": 75200199,
+   "nombre": "Speedy Carrot",
+   "npc_type": 13169,
+   "sprite": 43867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    97,
+    8
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220
+  },
+  {
+   "entity_id": 75200200,
+   "nombre": "Speedy Carrot",
+   "npc_type": 13169,
+   "sprite": 43867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    97,
+    13
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220
+  },
+  {
+   "entity_id": 75200201,
+   "nombre": "Speedy Carrot",
+   "npc_type": 13169,
+   "sprite": 43867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    97,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220
+  },
+  {
+   "entity_id": 75200202,
+   "nombre": "Speedy Carrot",
+   "npc_type": 13169,
+   "sprite": 43867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    97,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220
+  },
+  {
+   "entity_id": 75200203,
+   "nombre": "Speedy Carrot",
+   "npc_type": 13169,
+   "sprite": 43867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    97,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220
+  },
+  {
+   "entity_id": 75200204,
+   "nombre": "Speedy Carrot",
+   "npc_type": 13169,
+   "sprite": 43867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    102,
+    8
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220
+  },
+  {
+   "entity_id": 75200205,
+   "nombre": "Speedy Carrot",
+   "npc_type": 13169,
+   "sprite": 43867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    102,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220
+  },
+  {
+   "entity_id": 75200206,
+   "nombre": "Speedy Carrot",
+   "npc_type": 13169,
+   "sprite": 43867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    107,
+    8
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220
+  },
+  {
+   "entity_id": 75200207,
+   "nombre": "Speedy Carrot",
+   "npc_type": 13169,
+   "sprite": 43867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    107,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220
+  },
+  {
+   "entity_id": 75200208,
+   "nombre": "Speedy Carrot",
+   "npc_type": 13169,
+   "sprite": 43867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    112,
+    8
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220
+  },
+  {
+   "entity_id": 75200209,
+   "nombre": "Speedy Carrot",
+   "npc_type": 13169,
+   "sprite": 43867,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    112,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 220
+  },
+  {
+   "entity_id": 75200210,
+   "nombre": "Power Dragonfruit",
+   "npc_type": 13170,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    3
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200211,
+   "nombre": "Power Dragonfruit",
+   "npc_type": 13170,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    3
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200212,
+   "nombre": "Power Dragonfruit",
+   "npc_type": 13170,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    3
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200213,
+   "nombre": "Power Dragonfruit",
+   "npc_type": 13170,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    111,
+    3
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200214,
+   "nombre": "Power Dragonfruit",
+   "npc_type": 13170,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    116,
+    3
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200215,
+   "nombre": "Power Dragonfruit",
+   "npc_type": 13170,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    117,
+    8
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200216,
+   "nombre": "Power Dragonfruit",
+   "npc_type": 13170,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    117,
+    13
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200217,
+   "nombre": "Power Dragonfruit",
+   "npc_type": 13170,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    117,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200218,
+   "nombre": "Power Dragonfruit",
+   "npc_type": 13170,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    117,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200219,
+   "nombre": "Power Dragonfruit",
+   "npc_type": 13170,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    8
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200220,
+   "nombre": "Power Dragonfruit",
+   "npc_type": 13170,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    13
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200221,
+   "nombre": "Power Dragonfruit",
+   "npc_type": 13170,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200222,
+   "nombre": "Power Dragonfruit",
+   "npc_type": 13170,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200223,
+   "nombre": "Power Dragonfruit",
+   "npc_type": 13170,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    91,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200224,
+   "nombre": "Power Dragonfruit",
+   "npc_type": 13170,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    91,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200225,
+   "nombre": "Power Dragonfruit",
+   "npc_type": 13170,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    117,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200226,
+   "nombre": "Power Dragonfruit",
+   "npc_type": 13170,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    121,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200227,
+   "nombre": "Power Dragonfruit",
+   "npc_type": 13170,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    122,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200228,
+   "nombre": "Power Dragonfruit",
+   "npc_type": 13170,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    122,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200229,
+   "nombre": "Power Dragonfruit",
+   "npc_type": 13170,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    122,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200230,
+   "nombre": "Hardy Durian Cat",
+   "npc_type": 13171,
+   "sprite": 43875,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    122,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200231,
+   "nombre": "Hardy Durian Cat",
+   "npc_type": 13171,
+   "sprite": 43875,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    122,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200232,
+   "nombre": "Hardy Durian Cat",
+   "npc_type": 13171,
+   "sprite": 43875,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    126,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200233,
+   "nombre": "Hardy Durian Cat",
+   "npc_type": 13171,
+   "sprite": 43875,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    127,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200234,
+   "nombre": "Hardy Durian Cat",
+   "npc_type": 13171,
+   "sprite": 43875,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    127,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200235,
+   "nombre": "Hardy Durian Cat",
+   "npc_type": 13171,
+   "sprite": 43875,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    127,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200236,
+   "nombre": "Hardy Durian Cat",
+   "npc_type": 13171,
+   "sprite": 43875,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    127,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200237,
+   "nombre": "Hardy Durian Cat",
+   "npc_type": 13171,
+   "sprite": 43875,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    127,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200238,
+   "nombre": "Hardy Durian Cat",
+   "npc_type": 13171,
+   "sprite": 43875,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    122,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200239,
+   "nombre": "Hardy Durian Cat",
+   "npc_type": 13171,
+   "sprite": 43875,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    127,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200240,
+   "nombre": "Hardy Durian Cat",
+   "npc_type": 13171,
+   "sprite": 43875,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    131,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200241,
+   "nombre": "Hardy Durian Cat",
+   "npc_type": 13171,
+   "sprite": 43875,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200242,
+   "nombre": "Hardy Durian Cat",
+   "npc_type": 13171,
+   "sprite": 43875,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200243,
+   "nombre": "Hardy Durian Cat",
+   "npc_type": 13171,
+   "sprite": 43875,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200244,
+   "nombre": "Hardy Durian Cat",
+   "npc_type": 13171,
+   "sprite": 43875,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200245,
+   "nombre": "Hardy Durian Cat",
+   "npc_type": 13171,
+   "sprite": 43875,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200246,
+   "nombre": "Hardy Durian Cat",
+   "npc_type": 13171,
+   "sprite": 43875,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200247,
+   "nombre": "Hardy Durian Cat",
+   "npc_type": 13171,
+   "sprite": 43875,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200248,
+   "nombre": "Hardy Durian Cat",
+   "npc_type": 13171,
+   "sprite": 43875,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    97,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200249,
+   "nombre": "Hardy Durian Cat",
+   "npc_type": 13171,
+   "sprite": 43875,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    102,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 221
+  },
+  {
+   "entity_id": 75200250,
+   "nombre": "Golden Sunflowerian",
+   "npc_type": 13172,
+   "sprite": 43878,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    107,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 222
+  },
+  {
+   "entity_id": 75200251,
+   "nombre": "Golden Sunflowerian",
+   "npc_type": 13172,
+   "sprite": 43878,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    112,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 222
+  },
+  {
+   "entity_id": 75200252,
+   "nombre": "Golden Sunflowerian",
+   "npc_type": 13172,
+   "sprite": 43878,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    117,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 222
+  },
+  {
+   "entity_id": 75200253,
+   "nombre": "Golden Sunflowerian",
+   "npc_type": 13172,
+   "sprite": 43878,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    122,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 222
+  },
+  {
+   "entity_id": 75200254,
+   "nombre": "Golden Sunflowerian",
+   "npc_type": 13172,
+   "sprite": 43878,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    127,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 222
+  },
+  {
+   "entity_id": 75200255,
+   "nombre": "Golden Sunflowerian",
+   "npc_type": 13172,
+   "sprite": 43878,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 222
+  },
+  {
+   "entity_id": 75200256,
+   "nombre": "Golden Sunflowerian",
+   "npc_type": 13172,
+   "sprite": 43878,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    136,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 222
+  },
+  {
+   "entity_id": 75200257,
+   "nombre": "Golden Sunflowerian",
+   "npc_type": 13172,
+   "sprite": 43878,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 222
+  },
+  {
+   "entity_id": 75200258,
+   "nombre": "Golden Sunflowerian",
+   "npc_type": 13172,
+   "sprite": 43878,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 222
+  },
+  {
+   "entity_id": 75200259,
+   "nombre": "Golden Sunflowerian",
+   "npc_type": 13172,
+   "sprite": 43878,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 222
+  },
+  {
+   "entity_id": 75200260,
+   "nombre": "Golden Sunflowerian",
+   "npc_type": 13172,
+   "sprite": 43878,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 222
+  },
+  {
+   "entity_id": 75200261,
+   "nombre": "Golden Sunflowerian",
+   "npc_type": 13172,
+   "sprite": 43878,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 222
+  },
+  {
+   "entity_id": 75200262,
+   "nombre": "Golden Sunflowerian",
+   "npc_type": 13172,
+   "sprite": 43878,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 222
+  },
+  {
+   "entity_id": 75200263,
+   "nombre": "Golden Sunflowerian",
+   "npc_type": 13172,
+   "sprite": 43878,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 222
+  },
+  {
+   "entity_id": 75200264,
+   "nombre": "Golden Sunflowerian",
+   "npc_type": 13172,
+   "sprite": 43878,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    97,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 222
+  },
+  {
+   "entity_id": 75200265,
+   "nombre": "Golden Sunflowerian",
+   "npc_type": 13172,
+   "sprite": 43878,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    102,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 222
+  },
+  {
+   "entity_id": 75200266,
+   "nombre": "Golden Sunflowerian",
+   "npc_type": 13172,
+   "sprite": 43878,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    107,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 222
+  },
+  {
+   "entity_id": 75200267,
+   "nombre": "Golden Sunflowerian",
+   "npc_type": 13172,
+   "sprite": 43878,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    112,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 222
+  },
+  {
+   "entity_id": 75200268,
+   "nombre": "Golden Sunflowerian",
+   "npc_type": 13172,
+   "sprite": 43878,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    117,
+    38
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 222
+  },
+  {
+   "entity_id": 75200269,
+   "nombre": "Golden Sunflowerian",
+   "npc_type": 13172,
+   "sprite": 43878,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    122,
+    40
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 222
+  },
+  {
+   "entity_id": 75200270,
+   "nombre": "Blaboo Warrior",
+   "npc_type": 13173,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    223,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200271,
+   "nombre": "Blaboo Warrior",
+   "npc_type": 13173,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    218,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200272,
+   "nombre": "Blaboo Warrior",
+   "npc_type": 13173,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    218,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200273,
+   "nombre": "Blaboo Warrior",
+   "npc_type": 13173,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    218,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200274,
+   "nombre": "Blaboo Warrior",
+   "npc_type": 13173,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    223,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200275,
+   "nombre": "Blaboo Warrior",
+   "npc_type": 13173,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    223,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200276,
+   "nombre": "Blaboo Warrior",
+   "npc_type": 13173,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    228,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200277,
+   "nombre": "Blaboo Warrior",
+   "npc_type": 13173,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    228,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200278,
+   "nombre": "Blaboo Warrior",
+   "npc_type": 13173,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    228,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200279,
+   "nombre": "Blaboo Warrior",
+   "npc_type": 13173,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    213,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200280,
+   "nombre": "Blaboo Warrior",
+   "npc_type": 13173,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    213,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200281,
+   "nombre": "Blaboo Warrior",
+   "npc_type": 13173,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    213,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200282,
+   "nombre": "Blaboo Warrior",
+   "npc_type": 13173,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    213,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200283,
+   "nombre": "Blaboo Warrior",
+   "npc_type": 13173,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    213,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200284,
+   "nombre": "Blaboo Warrior",
+   "npc_type": 13173,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    218,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200285,
+   "nombre": "Blaboo Warrior",
+   "npc_type": 13173,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    218,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200286,
+   "nombre": "Blaboo Warrior",
+   "npc_type": 13173,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    223,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200287,
+   "nombre": "Blaboo Warrior",
+   "npc_type": 13173,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    223,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200288,
+   "nombre": "Blaboo Warrior",
+   "npc_type": 13173,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    228,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200289,
+   "nombre": "Blaboo Warrior",
+   "npc_type": 13173,
+   "sprite": 43848,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    228,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200290,
+   "nombre": "Teary Onion",
+   "npc_type": 13174,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    233,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200291,
+   "nombre": "Teary Onion",
+   "npc_type": 13174,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    233,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200292,
+   "nombre": "Teary Onion",
+   "npc_type": 13174,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    233,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200293,
+   "nombre": "Teary Onion",
+   "npc_type": 13174,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    218,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200294,
+   "nombre": "Teary Onion",
+   "npc_type": 13174,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    223,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200295,
+   "nombre": "Teary Onion",
+   "npc_type": 13174,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    228,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200296,
+   "nombre": "Teary Onion",
+   "npc_type": 13174,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    233,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200297,
+   "nombre": "Teary Onion",
+   "npc_type": 13174,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    233,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200298,
+   "nombre": "Teary Onion",
+   "npc_type": 13174,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    238,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200299,
+   "nombre": "Teary Onion",
+   "npc_type": 13174,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    238,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200300,
+   "nombre": "Teary Onion",
+   "npc_type": 13174,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    238,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200301,
+   "nombre": "Teary Onion",
+   "npc_type": 13174,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    238,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200302,
+   "nombre": "Teary Onion",
+   "npc_type": 13174,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    238,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200303,
+   "nombre": "Teary Onion",
+   "npc_type": 13174,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    213,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200304,
+   "nombre": "Teary Onion",
+   "npc_type": 13174,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    213,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200305,
+   "nombre": "Teary Onion",
+   "npc_type": 13174,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    218,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200306,
+   "nombre": "Teary Onion",
+   "npc_type": 13174,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    223,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200307,
+   "nombre": "Teary Onion",
+   "npc_type": 13174,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    228,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200308,
+   "nombre": "Teary Onion",
+   "npc_type": 13174,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    233,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200309,
+   "nombre": "Teary Onion",
+   "npc_type": 13174,
+   "sprite": 43854,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    233,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200310,
+   "nombre": "Pretty Miruru",
+   "npc_type": 13175,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200311,
+   "nombre": "Pretty Miruru",
+   "npc_type": 13175,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200312,
+   "nombre": "Pretty Miruru",
+   "npc_type": 13175,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200313,
+   "nombre": "Pretty Miruru",
+   "npc_type": 13175,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200314,
+   "nombre": "Pretty Miruru",
+   "npc_type": 13175,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    248,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200315,
+   "nombre": "Pretty Miruru",
+   "npc_type": 13175,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    248,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200316,
+   "nombre": "Pretty Miruru",
+   "npc_type": 13175,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    248,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200317,
+   "nombre": "Pretty Miruru",
+   "npc_type": 13175,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    248,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200318,
+   "nombre": "Pretty Miruru",
+   "npc_type": 13175,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    238,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200319,
+   "nombre": "Pretty Miruru",
+   "npc_type": 13175,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200320,
+   "nombre": "Pretty Miruru",
+   "npc_type": 13175,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    248,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200321,
+   "nombre": "Pretty Miruru",
+   "npc_type": 13175,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200322,
+   "nombre": "Pretty Miruru",
+   "npc_type": 13175,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    248,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200323,
+   "nombre": "Pretty Miruru",
+   "npc_type": 13175,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    253,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200324,
+   "nombre": "Pretty Miruru",
+   "npc_type": 13175,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    253,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200325,
+   "nombre": "Pretty Miruru",
+   "npc_type": 13175,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    253,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200326,
+   "nombre": "Pretty Miruru",
+   "npc_type": 13175,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    253,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200327,
+   "nombre": "Pretty Miruru",
+   "npc_type": 13175,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    253,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200328,
+   "nombre": "Pretty Miruru",
+   "npc_type": 13175,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    253,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200329,
+   "nombre": "Pretty Miruru",
+   "npc_type": 13175,
+   "sprite": 43860,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    223,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200330,
+   "nombre": "Queen Guard Ant",
+   "npc_type": 13176,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    238,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200331,
+   "nombre": "Queen Guard Ant",
+   "npc_type": 13176,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200332,
+   "nombre": "Queen Guard Ant",
+   "npc_type": 13176,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    248,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200333,
+   "nombre": "Queen Guard Ant",
+   "npc_type": 13176,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    253,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200334,
+   "nombre": "Queen Guard Ant",
+   "npc_type": 13176,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    226,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200335,
+   "nombre": "Queen Guard Ant",
+   "npc_type": 13176,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    231,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200336,
+   "nombre": "Queen Guard Ant",
+   "npc_type": 13176,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    236,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200337,
+   "nombre": "Queen Guard Ant",
+   "npc_type": 13176,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    241,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200338,
+   "nombre": "Queen Guard Ant",
+   "npc_type": 13176,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200339,
+   "nombre": "Queen Guard Ant",
+   "npc_type": 13176,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200340,
+   "nombre": "Queen Guard Ant",
+   "npc_type": 13176,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200341,
+   "nombre": "Queen Guard Ant",
+   "npc_type": 13176,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200342,
+   "nombre": "Queen Guard Ant",
+   "npc_type": 13176,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200343,
+   "nombre": "Queen Guard Ant",
+   "npc_type": 13176,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200344,
+   "nombre": "Queen Guard Ant",
+   "npc_type": 13176,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200345,
+   "nombre": "Queen Guard Ant",
+   "npc_type": 13176,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200346,
+   "nombre": "Queen Guard Ant",
+   "npc_type": 13176,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200347,
+   "nombre": "Queen Guard Ant",
+   "npc_type": 13176,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    258,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200348,
+   "nombre": "Queen Guard Ant",
+   "npc_type": 13176,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    122
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200349,
+   "nombre": "Queen Guard Ant",
+   "npc_type": 13176,
+   "sprite": 43863,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    221,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200350,
+   "nombre": "Queen Porcugard",
+   "npc_type": 13177,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    263,
+    127
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200351,
+   "nombre": "Queen Porcugard",
+   "npc_type": 13177,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    263,
+    132
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200352,
+   "nombre": "Queen Porcugard",
+   "npc_type": 13177,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    263,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200353,
+   "nombre": "Queen Porcugard",
+   "npc_type": 13177,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    263,
+    142
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200354,
+   "nombre": "Queen Porcugard",
+   "npc_type": 13177,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    263,
+    147
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200355,
+   "nombre": "Queen Porcugard",
+   "npc_type": 13177,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    263,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200356,
+   "nombre": "Queen Porcugard",
+   "npc_type": 13177,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    263,
+    157
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200357,
+   "nombre": "Queen Porcugard",
+   "npc_type": 13177,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    228,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200358,
+   "nombre": "Queen Porcugard",
+   "npc_type": 13177,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    233,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200359,
+   "nombre": "Queen Porcugard",
+   "npc_type": 13177,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    238,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200360,
+   "nombre": "Queen Porcugard",
+   "npc_type": 13177,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    243,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200361,
+   "nombre": "Queen Porcugard",
+   "npc_type": 13177,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    248,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200362,
+   "nombre": "Queen Porcugard",
+   "npc_type": 13177,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    253,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200363,
+   "nombre": "Queen Porcugard",
+   "npc_type": 13177,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200364,
+   "nombre": "Queen Porcugard",
+   "npc_type": 13177,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    268,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200365,
+   "nombre": "Queen Porcugard",
+   "npc_type": 13177,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    268,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200366,
+   "nombre": "Queen Porcugard",
+   "npc_type": 13177,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    268,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200367,
+   "nombre": "Queen Porcugard",
+   "npc_type": 13177,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    268,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200368,
+   "nombre": "Queen Porcugard",
+   "npc_type": 13177,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    268,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200369,
+   "nombre": "Queen Porcugard",
+   "npc_type": 13177,
+   "sprite": 43871,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    268,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200370,
+   "nombre": "Queen Bee Femirse",
+   "npc_type": 13182,
+   "sprite": 43826,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    175,
+    108
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 230
+  },
+  {
+   "entity_id": 75200371,
+   "nombre": "Wayrane",
+   "npc_type": 13181,
+   "sprite": 43825,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    254,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 230
+  },
+  {
+   "entity_id": 75200372,
+   "nombre": "Bug King Wartoz",
+   "npc_type": 13183,
+   "sprite": 43827,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    46,
+    144
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 230
+  },
+  {
+   "entity_id": 75200373,
+   "nombre": "Enhanced Bomb Keg",
+   "npc_type": 13362,
+   "sprite": 40176,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    50,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 75200374,
+   "nombre": "Enhanced Bomb Keg",
+   "npc_type": 13362,
+   "sprite": 40176,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    45,
+    149
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 75200375,
+   "nombre": "Enhanced Bomb Keg",
+   "npc_type": 13362,
+   "sprite": 40176,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    45,
+    154
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 75200376,
+   "nombre": "Enhanced Bomb Keg",
+   "npc_type": 13362,
+   "sprite": 40176,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    50,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 75200377,
+   "nombre": "Enhanced Bomb Keg",
+   "npc_type": 13362,
+   "sprite": 40176,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 75200378,
+   "nombre": "Enhanced Bomb Keg",
+   "npc_type": 13362,
+   "sprite": 40176,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 75200379,
+   "nombre": "Enhanced Bomb Keg",
+   "npc_type": 13362,
+   "sprite": 40176,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 75200380,
+   "nombre": "Enhanced Bomb Keg",
+   "npc_type": 13362,
+   "sprite": 40176,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    56,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 75200381,
+   "nombre": "Enhanced Bomb Keg",
+   "npc_type": 13362,
+   "sprite": 40176,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    42,
+    159
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 75200382,
+   "nombre": "Enhanced Bomb Keg",
+   "npc_type": 13362,
+   "sprite": 40176,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    41,
+    142
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 75200383,
+   "nombre": "Enhanced Bomb Keg",
+   "npc_type": 13362,
+   "sprite": 40176,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    147
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 75200384,
+   "nombre": "Enhanced Bomb Keg",
+   "npc_type": 13362,
+   "sprite": 40176,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 200
+  },
+  {
+   "entity_id": 75200385,
+   "nombre": "Exploding Honey",
+   "npc_type": 13363,
+   "sprite": 43807,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    35,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 75200386,
+   "nombre": "Exploding Honey",
+   "npc_type": 13363,
+   "sprite": 43807,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    142
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 75200387,
+   "nombre": "Exploding Honey",
+   "npc_type": 13363,
+   "sprite": 43807,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 75200388,
+   "nombre": "Exploding Honey",
+   "npc_type": 13363,
+   "sprite": 43807,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    188,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210
+  },
+  {
+   "entity_id": 75200389,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    175,
+    117
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200390,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    170,
+    112
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200391,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    170,
+    117
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200392,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    170,
+    122
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200393,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    175,
+    122
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200394,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    180,
+    112
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200395,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    180,
+    117
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200396,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    180,
+    122
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200397,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    165,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200398,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    165,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200399,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    165,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200400,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200401,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    170,
+    127
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200402,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    175,
+    127
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200403,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    180,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200404,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    180,
+    127
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200405,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    185,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200406,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    185,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200407,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    185,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200408,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    163,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200409,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    185,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200410,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    162,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200411,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    185,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200412,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    103
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200413,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    160,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200414,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    160,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200415,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    160,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200416,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    167,
+    132
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200417,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200418,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    172,
+    132
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200419,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    177,
+    132
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200420,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200421,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    102
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200422,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200423,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    120
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200424,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    125
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200425,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    130
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200426,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200427,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200428,
+   "nombre": "Queen's Sentinel",
+   "npc_type": 13364,
+   "sprite": 43884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    158,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 210,
+   "declarados": 100
+  },
+  {
+   "entity_id": 75200429,
+   "nombre": "General Antler",
+   "npc_type": 13178,
+   "sprite": 43864,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    95,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 223
+  },
+  {
+   "entity_id": 75200430,
+   "nombre": "Guard Robert",
+   "npc_type": 13179,
+   "sprite": 43868,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    201,
+    166
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 224
+  },
+  {
+   "entity_id": 75200431,
+   "nombre": "Guard Wockey",
+   "npc_type": 13180,
+   "sprite": 43872,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    273,
+    122
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 225
+  }
+ ],
+ "recursos": [
+  {
+   "entity_id": 85200000,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    2465,
+    1680
+   ],
+   "tile": [
+    77,
+    52
+   ],
+   "crudo": "800c140500000000a1090000900600000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 85200001,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    2730,
+    1552
+   ],
+   "tile": [
+    85,
+    48
+   ],
+   "crudo": "810c140500000000aa0a0000100600000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 85200002,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    2484,
+    560
+   ],
+   "tile": [
+    77,
+    17
+   ],
+   "crudo": "820c140502000000b4090000300200000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 85200003,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    2747,
+    688
+   ],
+   "tile": [
+    85,
+    21
+   ],
+   "crudo": "830c140502000000bb0a0000b00200000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 85200004,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    2424,
+    528
+   ],
+   "tile": [
+    75,
+    16
+   ],
+   "crudo": "840c14050200000078090000100200000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  }
+ ]
+}

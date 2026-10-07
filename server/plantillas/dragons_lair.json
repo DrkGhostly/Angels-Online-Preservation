@@ -1,0 +1,2378 @@
+{
+ "_nota": "dragons_lair (stage 403). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map403.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "stage": 403,
+ "spawns": [
+  {
+   "entity_id": 90300000,
+   "nombre": "Watatsumi",
+   "npc_type": 23522,
+   "sprite": 111386,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    267,
+    167
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 450
+  },
+  {
+   "entity_id": 90300001,
+   "nombre": "Fog",
+   "npc_type": 23523,
+   "sprite": 111400,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    284,
+    164
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 90300002,
+   "nombre": "Fog",
+   "npc_type": 23523,
+   "sprite": 111400,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    279,
+    159
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 90300003,
+   "nombre": "Fog",
+   "npc_type": 23523,
+   "sprite": 111400,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    279,
+    164
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 90300004,
+   "nombre": "Fog",
+   "npc_type": 23523,
+   "sprite": 111400,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    279,
+    169
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 90300005,
+   "nombre": "Fog",
+   "npc_type": 23523,
+   "sprite": 111400,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    284,
+    159
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 90300006,
+   "nombre": "Fog",
+   "npc_type": 23523,
+   "sprite": 111400,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    284,
+    169
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 90300007,
+   "nombre": "Fog",
+   "npc_type": 23523,
+   "sprite": 111400,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    289,
+    159
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 90300008,
+   "nombre": "Fog",
+   "npc_type": 23523,
+   "sprite": 111400,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    289,
+    164
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 90300009,
+   "nombre": "Fog",
+   "npc_type": 23523,
+   "sprite": 111400,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    289,
+    169
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 90300010,
+   "nombre": "Fog",
+   "npc_type": 23523,
+   "sprite": 111400,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    274,
+    154
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 90300011,
+   "nombre": "Fog",
+   "npc_type": 23523,
+   "sprite": 111400,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    274,
+    159
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 90300012,
+   "nombre": "Fog",
+   "npc_type": 23523,
+   "sprite": 111400,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    274,
+    164
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 90300013,
+   "nombre": "Fog",
+   "npc_type": 23523,
+   "sprite": 111400,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    274,
+    169
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 90300014,
+   "nombre": "Strong Makuuchi",
+   "npc_type": 23508,
+   "sprite": 111340,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    75,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 435
+  },
+  {
+   "entity_id": 90300015,
+   "nombre": "Strong Makuuchi",
+   "npc_type": 23508,
+   "sprite": 111340,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    70,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 435
+  },
+  {
+   "entity_id": 90300016,
+   "nombre": "Strong Makuuchi",
+   "npc_type": 23508,
+   "sprite": 111340,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    80,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 435
+  },
+  {
+   "entity_id": 90300017,
+   "nombre": "Strong Makuuchi",
+   "npc_type": 23508,
+   "sprite": 111340,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    70,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 435
+  },
+  {
+   "entity_id": 90300018,
+   "nombre": "Strong Makuuchi",
+   "npc_type": 23508,
+   "sprite": 111340,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    75,
+    19
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 435
+  },
+  {
+   "entity_id": 90300019,
+   "nombre": "Strong Makuuchi",
+   "npc_type": 23508,
+   "sprite": 111340,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    80,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 435
+  },
+  {
+   "entity_id": 90300020,
+   "nombre": "Strong Makuuchi",
+   "npc_type": 23508,
+   "sprite": 111340,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    70,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 435
+  },
+  {
+   "entity_id": 90300021,
+   "nombre": "Strong Makuuchi",
+   "npc_type": 23508,
+   "sprite": 111340,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 435
+  },
+  {
+   "entity_id": 90300022,
+   "nombre": "Strong Makuuchi",
+   "npc_type": 23508,
+   "sprite": 111340,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    80,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 435
+  },
+  {
+   "entity_id": 90300023,
+   "nombre": "Strong Makuuchi",
+   "npc_type": 23508,
+   "sprite": 111340,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    75,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 435
+  },
+  {
+   "entity_id": 90300024,
+   "nombre": "General Rizaburo",
+   "npc_type": 23521,
+   "sprite": 111385,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    228,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 450
+  },
+  {
+   "entity_id": 90300025,
+   "nombre": "Blossom Hail",
+   "npc_type": 23520,
+   "sprite": 111384,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 450
+  },
+  {
+   "entity_id": 90300026,
+   "nombre": "Bald Ronin",
+   "npc_type": 23509,
+   "sprite": 111369,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    80,
+    33
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 436
+  },
+  {
+   "entity_id": 90300027,
+   "nombre": "Bald Ronin",
+   "npc_type": 23509,
+   "sprite": 111369,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 436
+  },
+  {
+   "entity_id": 90300028,
+   "nombre": "Bald Ronin",
+   "npc_type": 23509,
+   "sprite": 111369,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    85,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 436
+  },
+  {
+   "entity_id": 90300029,
+   "nombre": "Bald Ronin",
+   "npc_type": 23509,
+   "sprite": 111369,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 436
+  },
+  {
+   "entity_id": 90300030,
+   "nombre": "Bald Ronin",
+   "npc_type": 23509,
+   "sprite": 111369,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    70,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 436
+  },
+  {
+   "entity_id": 90300031,
+   "nombre": "Bald Ronin",
+   "npc_type": 23509,
+   "sprite": 111369,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    85,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 436
+  },
+  {
+   "entity_id": 90300032,
+   "nombre": "Bald Ronin",
+   "npc_type": 23509,
+   "sprite": 111369,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 436
+  },
+  {
+   "entity_id": 90300033,
+   "nombre": "Bald Ronin",
+   "npc_type": 23509,
+   "sprite": 111369,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    75,
+    14
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 436
+  },
+  {
+   "entity_id": 90300034,
+   "nombre": "Bald Ronin",
+   "npc_type": 23509,
+   "sprite": 111369,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    85,
+    28
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 436
+  },
+  {
+   "entity_id": 90300035,
+   "nombre": "Bald Ronin",
+   "npc_type": 23509,
+   "sprite": 111369,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 436
+  },
+  {
+   "entity_id": 90300036,
+   "nombre": "Chef Hops",
+   "npc_type": 23510,
+   "sprite": 111351,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 437
+  },
+  {
+   "entity_id": 90300037,
+   "nombre": "Chef Hops",
+   "npc_type": 23510,
+   "sprite": 111351,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 437
+  },
+  {
+   "entity_id": 90300038,
+   "nombre": "Chef Hops",
+   "npc_type": 23510,
+   "sprite": 111351,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 437
+  },
+  {
+   "entity_id": 90300039,
+   "nombre": "Chef Hops",
+   "npc_type": 23510,
+   "sprite": 111351,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 437
+  },
+  {
+   "entity_id": 90300040,
+   "nombre": "Chef Hops",
+   "npc_type": 23510,
+   "sprite": 111351,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 437
+  },
+  {
+   "entity_id": 90300041,
+   "nombre": "Chef Hops",
+   "npc_type": 23510,
+   "sprite": 111351,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 437
+  },
+  {
+   "entity_id": 90300042,
+   "nombre": "Chef Hops",
+   "npc_type": 23510,
+   "sprite": 111351,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 437
+  },
+  {
+   "entity_id": 90300043,
+   "nombre": "Chef Hops",
+   "npc_type": 23510,
+   "sprite": 111351,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 437
+  },
+  {
+   "entity_id": 90300044,
+   "nombre": "Chef Hops",
+   "npc_type": 23510,
+   "sprite": 111351,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 437
+  },
+  {
+   "entity_id": 90300045,
+   "nombre": "Chef Hops",
+   "npc_type": 23510,
+   "sprite": 111351,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 437
+  },
+  {
+   "entity_id": 90300046,
+   "nombre": "Chef Hops",
+   "npc_type": 23510,
+   "sprite": 111351,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 437
+  },
+  {
+   "entity_id": 90300047,
+   "nombre": "Chef Hops",
+   "npc_type": 23510,
+   "sprite": 111351,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 437
+  },
+  {
+   "entity_id": 90300048,
+   "nombre": "Chef Hops",
+   "npc_type": 23510,
+   "sprite": 111351,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    110
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 437
+  },
+  {
+   "entity_id": 90300049,
+   "nombre": "Chef Hops",
+   "npc_type": 23510,
+   "sprite": 111351,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 437
+  },
+  {
+   "entity_id": 90300050,
+   "nombre": "Chef Hops",
+   "npc_type": 23510,
+   "sprite": 111351,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 437
+  },
+  {
+   "entity_id": 90300051,
+   "nombre": "Chef Hops",
+   "npc_type": 23510,
+   "sprite": 111351,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 437
+  },
+  {
+   "entity_id": 90300052,
+   "nombre": "Chef Hops",
+   "npc_type": 23510,
+   "sprite": 111351,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 437
+  },
+  {
+   "entity_id": 90300053,
+   "nombre": "Chef Hops",
+   "npc_type": 23510,
+   "sprite": 111351,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 437
+  },
+  {
+   "entity_id": 90300054,
+   "nombre": "Chef Hops",
+   "npc_type": 23510,
+   "sprite": 111351,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 437
+  },
+  {
+   "entity_id": 90300055,
+   "nombre": "Chef Hops",
+   "npc_type": 23510,
+   "sprite": 111351,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    183,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 437
+  },
+  {
+   "entity_id": 90300056,
+   "nombre": "Knifty Kit",
+   "npc_type": 23511,
+   "sprite": 111371,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 438
+  },
+  {
+   "entity_id": 90300057,
+   "nombre": "Knifty Kit",
+   "npc_type": 23511,
+   "sprite": 111371,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    80
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 438
+  },
+  {
+   "entity_id": 90300058,
+   "nombre": "Knifty Kit",
+   "npc_type": 23511,
+   "sprite": 111371,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 438
+  },
+  {
+   "entity_id": 90300059,
+   "nombre": "Knifty Kit",
+   "npc_type": 23511,
+   "sprite": 111371,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 438
+  },
+  {
+   "entity_id": 90300060,
+   "nombre": "Knifty Kit",
+   "npc_type": 23511,
+   "sprite": 111371,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 438
+  },
+  {
+   "entity_id": 90300061,
+   "nombre": "Knifty Kit",
+   "npc_type": 23511,
+   "sprite": 111371,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    185,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 438
+  },
+  {
+   "entity_id": 90300062,
+   "nombre": "Knifty Kit",
+   "npc_type": 23511,
+   "sprite": 111371,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 438
+  },
+  {
+   "entity_id": 90300063,
+   "nombre": "Knifty Kit",
+   "npc_type": 23511,
+   "sprite": 111371,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    85
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 438
+  },
+  {
+   "entity_id": 90300064,
+   "nombre": "Knifty Kit",
+   "npc_type": 23511,
+   "sprite": 111371,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    185,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 438
+  },
+  {
+   "entity_id": 90300065,
+   "nombre": "Knifty Kit",
+   "npc_type": 23511,
+   "sprite": 111371,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    261,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 438
+  },
+  {
+   "entity_id": 90300066,
+   "nombre": "Knifty Kit",
+   "npc_type": 23511,
+   "sprite": 111371,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    266,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 438
+  },
+  {
+   "entity_id": 90300067,
+   "nombre": "Knifty Kit",
+   "npc_type": 23511,
+   "sprite": 111371,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    185,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 438
+  },
+  {
+   "entity_id": 90300068,
+   "nombre": "Knifty Kit",
+   "npc_type": 23511,
+   "sprite": 111371,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    90
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 438
+  },
+  {
+   "entity_id": 90300069,
+   "nombre": "Knifty Kit",
+   "npc_type": 23511,
+   "sprite": 111371,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    271,
+    75
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 438
+  },
+  {
+   "entity_id": 90300070,
+   "nombre": "Knifty Kit",
+   "npc_type": 23511,
+   "sprite": 111371,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 438
+  },
+  {
+   "entity_id": 90300071,
+   "nombre": "Knifty Kit",
+   "npc_type": 23511,
+   "sprite": 111371,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    74
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 438
+  },
+  {
+   "entity_id": 90300072,
+   "nombre": "Knifty Kit",
+   "npc_type": 23511,
+   "sprite": 111371,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    276,
+    75
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 438
+  },
+  {
+   "entity_id": 90300073,
+   "nombre": "Knifty Kit",
+   "npc_type": 23511,
+   "sprite": 111371,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 438
+  },
+  {
+   "entity_id": 90300074,
+   "nombre": "Knifty Kit",
+   "npc_type": 23511,
+   "sprite": 111371,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 438
+  },
+  {
+   "entity_id": 90300075,
+   "nombre": "Knifty Kit",
+   "npc_type": 23511,
+   "sprite": 111371,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    276,
+    80
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 438
+  },
+  {
+   "entity_id": 90300076,
+   "nombre": "Pastel Snip",
+   "npc_type": 23512,
+   "sprite": 111372,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    95,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 441
+  },
+  {
+   "entity_id": 90300077,
+   "nombre": "Pastel Snip",
+   "npc_type": 23512,
+   "sprite": 111372,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    90,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 441
+  },
+  {
+   "entity_id": 90300078,
+   "nombre": "Pastel Snip",
+   "npc_type": 23512,
+   "sprite": 111372,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    90,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 441
+  },
+  {
+   "entity_id": 90300079,
+   "nombre": "Pastel Snip",
+   "npc_type": 23512,
+   "sprite": 111372,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    90,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 441
+  },
+  {
+   "entity_id": 90300080,
+   "nombre": "Pastel Snip",
+   "npc_type": 23512,
+   "sprite": 111372,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    95,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 441
+  },
+  {
+   "entity_id": 90300081,
+   "nombre": "Pastel Snip",
+   "npc_type": 23512,
+   "sprite": 111372,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    95,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 441
+  },
+  {
+   "entity_id": 90300082,
+   "nombre": "Pastel Snip",
+   "npc_type": 23512,
+   "sprite": 111372,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    100,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 441
+  },
+  {
+   "entity_id": 90300083,
+   "nombre": "Pastel Snip",
+   "npc_type": 23512,
+   "sprite": 111372,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    100,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 441
+  },
+  {
+   "entity_id": 90300084,
+   "nombre": "Pastel Snip",
+   "npc_type": 23512,
+   "sprite": 111372,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    100,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 441
+  },
+  {
+   "entity_id": 90300085,
+   "nombre": "Pastel Snip",
+   "npc_type": 23512,
+   "sprite": 111372,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    85,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 441
+  },
+  {
+   "entity_id": 90300086,
+   "nombre": "Pastel Snip",
+   "npc_type": 23512,
+   "sprite": 111372,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    85,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 441
+  },
+  {
+   "entity_id": 90300087,
+   "nombre": "Pastel Snip",
+   "npc_type": 23512,
+   "sprite": 111372,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    85,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 441
+  },
+  {
+   "entity_id": 90300088,
+   "nombre": "Pastel Snip",
+   "npc_type": 23512,
+   "sprite": 111372,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    85,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 441
+  },
+  {
+   "entity_id": 90300089,
+   "nombre": "Pastel Snip",
+   "npc_type": 23512,
+   "sprite": 111372,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    85,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 441
+  },
+  {
+   "entity_id": 90300090,
+   "nombre": "Pastel Snip",
+   "npc_type": 23512,
+   "sprite": 111372,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    90,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 441
+  },
+  {
+   "entity_id": 90300091,
+   "nombre": "Pastel Snip",
+   "npc_type": 23512,
+   "sprite": 111372,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    90,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 441
+  },
+  {
+   "entity_id": 90300092,
+   "nombre": "Pastel Snip",
+   "npc_type": 23512,
+   "sprite": 111372,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    95,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 441
+  },
+  {
+   "entity_id": 90300093,
+   "nombre": "Pastel Snip",
+   "npc_type": 23512,
+   "sprite": 111372,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    95,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 441
+  },
+  {
+   "entity_id": 90300094,
+   "nombre": "Pastel Snip",
+   "npc_type": 23512,
+   "sprite": 111372,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    100,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 441
+  },
+  {
+   "entity_id": 90300095,
+   "nombre": "Pastel Snip",
+   "npc_type": 23512,
+   "sprite": 111372,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    100,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 441
+  },
+  {
+   "entity_id": 90300096,
+   "nombre": "Kitsumengami",
+   "npc_type": 23513,
+   "sprite": 111374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    255,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 442
+  },
+  {
+   "entity_id": 90300097,
+   "nombre": "Kitsumengami",
+   "npc_type": 23513,
+   "sprite": 111374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    250,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 442
+  },
+  {
+   "entity_id": 90300098,
+   "nombre": "Kitsumengami",
+   "npc_type": 23513,
+   "sprite": 111374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    237,
+    126
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 442
+  },
+  {
+   "entity_id": 90300099,
+   "nombre": "Kitsumengami",
+   "npc_type": 23513,
+   "sprite": 111374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    250,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 442
+  },
+  {
+   "entity_id": 90300100,
+   "nombre": "Kitsumengami",
+   "npc_type": 23513,
+   "sprite": 111374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    247,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 442
+  },
+  {
+   "entity_id": 90300101,
+   "nombre": "Kitsumengami",
+   "npc_type": 23513,
+   "sprite": 111374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    232,
+    121
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 442
+  },
+  {
+   "entity_id": 90300102,
+   "nombre": "Kitsumengami",
+   "npc_type": 23513,
+   "sprite": 111374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    255,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 442
+  },
+  {
+   "entity_id": 90300103,
+   "nombre": "Kitsumengami",
+   "npc_type": 23513,
+   "sprite": 111374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    252,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 442
+  },
+  {
+   "entity_id": 90300104,
+   "nombre": "Kitsumengami",
+   "npc_type": 23513,
+   "sprite": 111374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    232,
+    126
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 442
+  },
+  {
+   "entity_id": 90300105,
+   "nombre": "Kitsumengami",
+   "npc_type": 23513,
+   "sprite": 111374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    257,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 442
+  },
+  {
+   "entity_id": 90300106,
+   "nombre": "Kitsumengami",
+   "npc_type": 23513,
+   "sprite": 111374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    245,
+    141
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 442
+  },
+  {
+   "entity_id": 90300107,
+   "nombre": "Kitsumengami",
+   "npc_type": 23513,
+   "sprite": 111374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    232,
+    131
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 442
+  },
+  {
+   "entity_id": 90300108,
+   "nombre": "Kitsumengami",
+   "npc_type": 23513,
+   "sprite": 111374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    260,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 442
+  },
+  {
+   "entity_id": 90300109,
+   "nombre": "Kitsumengami",
+   "npc_type": 23513,
+   "sprite": 111374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    245,
+    146
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 442
+  },
+  {
+   "entity_id": 90300110,
+   "nombre": "Kitsumengami",
+   "npc_type": 23513,
+   "sprite": 111374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    237,
+    121
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 442
+  },
+  {
+   "entity_id": 90300111,
+   "nombre": "Kitsumengami",
+   "npc_type": 23513,
+   "sprite": 111374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    260,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 442
+  },
+  {
+   "entity_id": 90300112,
+   "nombre": "Kitsumengami",
+   "npc_type": 23513,
+   "sprite": 111374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    257,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 442
+  },
+  {
+   "entity_id": 90300113,
+   "nombre": "Kitsumengami",
+   "npc_type": 23513,
+   "sprite": 111374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    237,
+    131
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 442
+  },
+  {
+   "entity_id": 90300114,
+   "nombre": "Kitsumengami",
+   "npc_type": 23513,
+   "sprite": 111374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    262,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 442
+  },
+  {
+   "entity_id": 90300115,
+   "nombre": "Kitsumengami",
+   "npc_type": 23513,
+   "sprite": 111374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    242,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 442
+  },
+  {
+   "entity_id": 90300116,
+   "nombre": "E-Strong Makuuchi",
+   "npc_type": 23514,
+   "sprite": 111340,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    70,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 444
+  },
+  {
+   "entity_id": 90300117,
+   "nombre": "E-Strong Makuuchi",
+   "npc_type": 23514,
+   "sprite": 111340,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    80,
+    13
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 444
+  },
+  {
+   "entity_id": 90300118,
+   "nombre": "E-Strong Makuuchi",
+   "npc_type": 23514,
+   "sprite": 111340,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    85,
+    13
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 444
+  },
+  {
+   "entity_id": 90300119,
+   "nombre": "E-Strong Makuuchi",
+   "npc_type": 23514,
+   "sprite": 111340,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    75,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 444
+  },
+  {
+   "entity_id": 90300120,
+   "nombre": "E-Strong Makuuchi",
+   "npc_type": 23514,
+   "sprite": 111340,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    60,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 444
+  },
+  {
+   "entity_id": 90300121,
+   "nombre": "E-Knifty Kit",
+   "npc_type": 23515,
+   "sprite": 111371,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 445
+  },
+  {
+   "entity_id": 90300122,
+   "nombre": "E-Knifty Kit",
+   "npc_type": 23515,
+   "sprite": 111371,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    276,
+    85
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 445
+  },
+  {
+   "entity_id": 90300123,
+   "nombre": "E-Knifty Kit",
+   "npc_type": 23515,
+   "sprite": 111371,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    48
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 445
+  },
+  {
+   "entity_id": 90300124,
+   "nombre": "E-Kitsumengami",
+   "npc_type": 23516,
+   "sprite": 111374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    245,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 446
+  },
+  {
+   "entity_id": 90300125,
+   "nombre": "E-Kitsumengami",
+   "npc_type": 23516,
+   "sprite": 111374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    242,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 446
+  },
+  {
+   "entity_id": 90300126,
+   "nombre": "E-Kitsumengami",
+   "npc_type": 23516,
+   "sprite": 111374,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    242,
+    121
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 446
+  },
+  {
+   "entity_id": 90300127,
+   "nombre": "Tachi Kanbei",
+   "npc_type": 23517,
+   "sprite": 111370,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    115
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 448
+  },
+  {
+   "entity_id": 90300128,
+   "nombre": "General Tengu",
+   "npc_type": 23518,
+   "sprite": 111377,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    256,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 448
+  },
+  {
+   "entity_id": 90300129,
+   "nombre": "Miss Petip",
+   "npc_type": 23519,
+   "sprite": 111373,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    250,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 448
+  },
+  {
+   "entity_id": 90300130,
+   "nombre": "Wind Elf",
+   "npc_type": 1,
+   "sprite": 42055,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    2,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 4
+  },
+  {
+   "entity_id": 90300131,
+   "nombre": "Wind Elf",
+   "npc_type": 1,
+   "sprite": 42055,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    7,
+    81
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 4
+  },
+  {
+   "entity_id": 90300132,
+   "nombre": "Wind Elf",
+   "npc_type": 1,
+   "sprite": 42055,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    7,
+    86
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 4
+  },
+  {
+   "entity_id": 90300133,
+   "nombre": "Wind Elf",
+   "npc_type": 1,
+   "sprite": 42055,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    12,
+    81
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 4
+  }
+ ],
+ "recursos": [
+  {
+   "entity_id": 100300000,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    6955,
+    4368
+   ],
+   "tile": [
+    217,
+    136
+   ],
+   "crudo": "e074fa05020000002b1b0000101100000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 100300001,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    8474,
+    4848
+   ],
+   "tile": [
+    264,
+    151
+   ],
+   "crudo": "e174fa05000000001a210000f01200000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 100300002,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    8740,
+    4720
+   ],
+   "tile": [
+    273,
+    147
+   ],
+   "crudo": "e274fa050000000024220000701200000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 100300003,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    4112,
+    1904
+   ],
+   "tile": [
+    128,
+    59
+   ],
+   "crudo": "e374fa050000000010100000700700000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 100300004,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    4376,
+    1776
+   ],
+   "tile": [
+    136,
+    55
+   ],
+   "crudo": "e474fa050000000018110000f00600000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 100300005,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    7973,
+    624
+   ],
+   "tile": [
+    249,
+    19
+   ],
+   "crudo": "e574fa0500000000251f0000700200000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 100300006,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    4403,
+    2960
+   ],
+   "tile": [
+    137,
+    92
+   ],
+   "crudo": "e674fa050200000033110000900b00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 100300007,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    1963,
+    496
+   ],
+   "tile": [
+    61,
+    15
+   ],
+   "crudo": "e774fa0500000000ab070000f00100000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 100300008,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    8147,
+    4432
+   ],
+   "tile": [
+    254,
+    138
+   ],
+   "crudo": "e874fa0500000000d31f0000501100000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 100300009,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    852,
+    944
+   ],
+   "tile": [
+    26,
+    29
+   ],
+   "crudo": "e974fa050000000054030000b00300000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 100300010,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4024,
+    2416
+   ],
+   "tile": [
+    125,
+    75
+   ],
+   "crudo": "ea74fa0500000000b80f0000700900000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 100300011,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1351,
+    336
+   ],
+   "tile": [
+    42,
+    10
+   ],
+   "crudo": "eb74fa050000000047050000500100000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 100300012,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4099,
+    4272
+   ],
+   "tile": [
+    128,
+    133
+   ],
+   "crudo": "ec74fa050000000003100000b01000000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 100300013,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1368,
+    4272
+   ],
+   "tile": [
+    42,
+    133
+   ],
+   "crudo": "ed74fa050000000058050000b01000000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 100300014,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    2965,
+    4816
+   ],
+   "tile": [
+    92,
+    150
+   ],
+   "crudo": "ee74fa0500000000950b0000d01200000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 100300015,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    6416,
+    3216
+   ],
+   "tile": [
+    200,
+    100
+   ],
+   "crudo": "ef74fa050000000010190000900c00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 100300016,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4965,
+    1456
+   ],
+   "tile": [
+    155,
+    45
+   ],
+   "crudo": "f074fa050000000065130000b00500000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 100300017,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    3714,
+    4848
+   ],
+   "tile": [
+    116,
+    151
+   ],
+   "crudo": "f174fa0500000000820e0000f01200000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 100300018,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    9208,
+    4496
+   ],
+   "tile": [
+    287,
+    140
+   ],
+   "crudo": "f274fa0500000000f8230000901100000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 100300019,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    8053,
+    5008
+   ],
+   "tile": [
+    251,
+    156
+   ],
+   "crudo": "f374fa0500000000751f0000901300000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 100300020,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    7579,
+    4240
+   ],
+   "tile": [
+    236,
+    132
+   ],
+   "crudo": "f474fa05000000009b1d0000901000000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 100300021,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1922,
+    1232
+   ],
+   "tile": [
+    60,
+    38
+   ],
+   "crudo": "f574fa050000000082070000d00400000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 100300022,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4014,
+    3216
+   ],
+   "tile": [
+    125,
+    100
+   ],
+   "crudo": "f674fa0500000000ae0f0000900c00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 100300023,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    7590,
+    4496
+   ],
+   "tile": [
+    237,
+    140
+   ],
+   "crudo": "f774fa0500000000a61d0000901100000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  }
+ ]
+}

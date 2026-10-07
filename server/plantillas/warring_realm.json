@@ -1,0 +1,2753 @@
+{
+ "_nota": "warring_realm (stage 395). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map395.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "stage": 395,
+ "spawns": [
+  {
+   "entity_id": 89500000,
+   "nombre": "Hades",
+   "npc_type": 23438,
+   "sprite": 111243,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    165,
+    90
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 440
+  },
+  {
+   "entity_id": 89500001,
+   "nombre": "Cerberus",
+   "npc_type": 23437,
+   "sprite": 111252,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    68,
+    65
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 440
+  },
+  {
+   "entity_id": 89500002,
+   "nombre": "Harthus",
+   "npc_type": 23424,
+   "sprite": 111251,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    244,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 89500003,
+   "nombre": "Harthus",
+   "npc_type": 23424,
+   "sprite": 111251,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    244,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 89500004,
+   "nombre": "Harthus",
+   "npc_type": 23424,
+   "sprite": 111251,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    239,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 89500005,
+   "nombre": "Harthus",
+   "npc_type": 23424,
+   "sprite": 111251,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    239,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 89500006,
+   "nombre": "Harthus",
+   "npc_type": 23424,
+   "sprite": 111251,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    239,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 89500007,
+   "nombre": "Harthus",
+   "npc_type": 23424,
+   "sprite": 111251,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    244,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 89500008,
+   "nombre": "Harthus",
+   "npc_type": 23424,
+   "sprite": 111251,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    239,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 89500009,
+   "nombre": "Harthus",
+   "npc_type": 23424,
+   "sprite": 111251,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 89500010,
+   "nombre": "Harthus",
+   "npc_type": 23424,
+   "sprite": 111251,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    244,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 89500011,
+   "nombre": "Harthus",
+   "npc_type": 23424,
+   "sprite": 111251,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 89500012,
+   "nombre": "Harthus",
+   "npc_type": 23424,
+   "sprite": 111251,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 89500013,
+   "nombre": "Harthus",
+   "npc_type": 23424,
+   "sprite": 111251,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    234,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 89500014,
+   "nombre": "Harthus",
+   "npc_type": 23424,
+   "sprite": 111251,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 89500015,
+   "nombre": "Harthus",
+   "npc_type": 23424,
+   "sprite": 111251,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    234,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 89500016,
+   "nombre": "Harthus",
+   "npc_type": 23424,
+   "sprite": 111251,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    234,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 89500017,
+   "nombre": "Ares",
+   "npc_type": 23436,
+   "sprite": 110931,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    285,
+    162
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 440
+  },
+  {
+   "entity_id": 89500018,
+   "nombre": "Sharp Magpie",
+   "npc_type": 23425,
+   "sprite": 111284,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    234,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 422
+  },
+  {
+   "entity_id": 89500019,
+   "nombre": "Sharp Magpie",
+   "npc_type": 23425,
+   "sprite": 111284,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    234,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 422
+  },
+  {
+   "entity_id": 89500020,
+   "nombre": "Sharp Magpie",
+   "npc_type": 23425,
+   "sprite": 111284,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    234,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 422
+  },
+  {
+   "entity_id": 89500021,
+   "nombre": "Sharp Magpie",
+   "npc_type": 23425,
+   "sprite": 111284,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    239,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 422
+  },
+  {
+   "entity_id": 89500022,
+   "nombre": "Sharp Magpie",
+   "npc_type": 23425,
+   "sprite": 111284,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    239,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 422
+  },
+  {
+   "entity_id": 89500023,
+   "nombre": "Sharp Magpie",
+   "npc_type": 23425,
+   "sprite": 111284,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    244,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 422
+  },
+  {
+   "entity_id": 89500024,
+   "nombre": "Sharp Magpie",
+   "npc_type": 23425,
+   "sprite": 111284,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    244,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 422
+  },
+  {
+   "entity_id": 89500025,
+   "nombre": "Sharp Magpie",
+   "npc_type": 23425,
+   "sprite": 111284,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 422
+  },
+  {
+   "entity_id": 89500026,
+   "nombre": "Sharp Magpie",
+   "npc_type": 23425,
+   "sprite": 111284,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    249,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 422
+  },
+  {
+   "entity_id": 89500027,
+   "nombre": "Sharp Magpie",
+   "npc_type": 23425,
+   "sprite": 111284,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    254,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 422
+  },
+  {
+   "entity_id": 89500028,
+   "nombre": "Sharp Magpie",
+   "npc_type": 23425,
+   "sprite": 111284,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    254,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 422
+  },
+  {
+   "entity_id": 89500029,
+   "nombre": "Sharp Magpie",
+   "npc_type": 23425,
+   "sprite": 111284,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    254,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 422
+  },
+  {
+   "entity_id": 89500030,
+   "nombre": "Sharp Magpie",
+   "npc_type": 23425,
+   "sprite": 111284,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    254,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 422
+  },
+  {
+   "entity_id": 89500031,
+   "nombre": "Sharp Magpie",
+   "npc_type": 23425,
+   "sprite": 111284,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    254,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 422
+  },
+  {
+   "entity_id": 89500032,
+   "nombre": "Sharp Magpie",
+   "npc_type": 23425,
+   "sprite": 111284,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    254,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 422
+  },
+  {
+   "entity_id": 89500033,
+   "nombre": "E-Sharp Magpie",
+   "npc_type": 23431,
+   "sprite": 111284,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    229,
+    19
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 435
+  },
+  {
+   "entity_id": 89500034,
+   "nombre": "E-Sharp Magpie",
+   "npc_type": 23431,
+   "sprite": 111284,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    228,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 435
+  },
+  {
+   "entity_id": 89500035,
+   "nombre": "E-Sharp Magpie",
+   "npc_type": 23431,
+   "sprite": 111284,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    224,
+    14
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 435
+  },
+  {
+   "entity_id": 89500036,
+   "nombre": "E-Harthus",
+   "npc_type": 23430,
+   "sprite": 111251,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    228,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 434
+  },
+  {
+   "entity_id": 89500037,
+   "nombre": "E-Harthus",
+   "npc_type": 23430,
+   "sprite": 111251,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    224,
+    19
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 434
+  },
+  {
+   "entity_id": 89500038,
+   "nombre": "E-Harthus",
+   "npc_type": 23430,
+   "sprite": 111251,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    223,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 434
+  },
+  {
+   "entity_id": 89500039,
+   "nombre": "E-Harthus",
+   "npc_type": 23430,
+   "sprite": 111251,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    223,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 434
+  },
+  {
+   "entity_id": 89500040,
+   "nombre": "E-Harthus",
+   "npc_type": 23430,
+   "sprite": 111251,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    223,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 434
+  },
+  {
+   "entity_id": 89500041,
+   "nombre": "Shrine Knight",
+   "npc_type": 23426,
+   "sprite": 111291,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    232,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 425
+  },
+  {
+   "entity_id": 89500042,
+   "nombre": "Shrine Knight",
+   "npc_type": 23426,
+   "sprite": 111291,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    237,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 425
+  },
+  {
+   "entity_id": 89500043,
+   "nombre": "Shrine Knight",
+   "npc_type": 23426,
+   "sprite": 111291,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    242,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 425
+  },
+  {
+   "entity_id": 89500044,
+   "nombre": "Shrine Knight",
+   "npc_type": 23426,
+   "sprite": 111291,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    247,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 425
+  },
+  {
+   "entity_id": 89500045,
+   "nombre": "Shrine Knight",
+   "npc_type": 23426,
+   "sprite": 111291,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    252,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 425
+  },
+  {
+   "entity_id": 89500046,
+   "nombre": "Shrine Knight",
+   "npc_type": 23426,
+   "sprite": 111291,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    257,
+    4
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 425
+  },
+  {
+   "entity_id": 89500047,
+   "nombre": "Shrine Knight",
+   "npc_type": 23426,
+   "sprite": 111291,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    229,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 425
+  },
+  {
+   "entity_id": 89500048,
+   "nombre": "Shrine Knight",
+   "npc_type": 23426,
+   "sprite": 111291,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    9
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 425
+  },
+  {
+   "entity_id": 89500049,
+   "nombre": "Shrine Knight",
+   "npc_type": 23426,
+   "sprite": 111291,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    14
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 425
+  },
+  {
+   "entity_id": 89500050,
+   "nombre": "Shrine Knight",
+   "npc_type": 23426,
+   "sprite": 111291,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    19
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 425
+  },
+  {
+   "entity_id": 89500051,
+   "nombre": "Shrine Knight",
+   "npc_type": 23426,
+   "sprite": 111291,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 425
+  },
+  {
+   "entity_id": 89500052,
+   "nombre": "Shrine Knight",
+   "npc_type": 23426,
+   "sprite": 111291,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 425
+  },
+  {
+   "entity_id": 89500053,
+   "nombre": "Shrine Knight",
+   "npc_type": 23426,
+   "sprite": 111291,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    227,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 425
+  },
+  {
+   "entity_id": 89500054,
+   "nombre": "Shrine Knight",
+   "npc_type": 23426,
+   "sprite": 111291,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    227,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 425
+  },
+  {
+   "entity_id": 89500055,
+   "nombre": "Shrine Knight",
+   "npc_type": 23426,
+   "sprite": 111291,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    228,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 425
+  },
+  {
+   "entity_id": 89500056,
+   "nombre": "Shrine Knight",
+   "npc_type": 23426,
+   "sprite": 111291,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    232,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 425
+  },
+  {
+   "entity_id": 89500057,
+   "nombre": "Shrine Knight",
+   "npc_type": 23426,
+   "sprite": 111291,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    237,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 425
+  },
+  {
+   "entity_id": 89500058,
+   "nombre": "Shrine Knight",
+   "npc_type": 23426,
+   "sprite": 111291,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    242,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 425
+  },
+  {
+   "entity_id": 89500059,
+   "nombre": "Shrine Knight",
+   "npc_type": 23426,
+   "sprite": 111291,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    247,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 425
+  },
+  {
+   "entity_id": 89500060,
+   "nombre": "Shrine Knight",
+   "npc_type": 23426,
+   "sprite": 111291,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    252,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 425
+  },
+  {
+   "entity_id": 89500061,
+   "nombre": "Shrine Knight",
+   "npc_type": 23426,
+   "sprite": 111291,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    259,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 425
+  },
+  {
+   "entity_id": 89500062,
+   "nombre": "Shrine Knight",
+   "npc_type": 23426,
+   "sprite": 111291,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    262,
+    0
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 425
+  },
+  {
+   "entity_id": 89500063,
+   "nombre": "Shrine Knight",
+   "npc_type": 23426,
+   "sprite": 111291,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    264,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 425
+  },
+  {
+   "entity_id": 89500064,
+   "nombre": "Shrine Knight",
+   "npc_type": 23426,
+   "sprite": 111291,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    264,
+    10
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 425
+  },
+  {
+   "entity_id": 89500065,
+   "nombre": "Shrine Knight",
+   "npc_type": 23426,
+   "sprite": 111291,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    264,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 425
+  },
+  {
+   "entity_id": 89500066,
+   "nombre": "Captain Folius",
+   "npc_type": 23433,
+   "sprite": 111292,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    218,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 438
+  },
+  {
+   "entity_id": 89500067,
+   "nombre": "Infernal Guard",
+   "npc_type": 23427,
+   "sprite": 111301,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    69,
+    163
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 427
+  },
+  {
+   "entity_id": 89500068,
+   "nombre": "Infernal Guard",
+   "npc_type": 23427,
+   "sprite": 111301,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    158
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 427
+  },
+  {
+   "entity_id": 89500069,
+   "nombre": "Infernal Guard",
+   "npc_type": 23427,
+   "sprite": 111301,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    163
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 427
+  },
+  {
+   "entity_id": 89500070,
+   "nombre": "Infernal Guard",
+   "npc_type": 23427,
+   "sprite": 111301,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    157
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 427
+  },
+  {
+   "entity_id": 89500071,
+   "nombre": "Infernal Guard",
+   "npc_type": 23427,
+   "sprite": 111301,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    168
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 427
+  },
+  {
+   "entity_id": 89500072,
+   "nombre": "Infernal Guard",
+   "npc_type": 23427,
+   "sprite": 111301,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    74,
+    162
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 427
+  },
+  {
+   "entity_id": 89500073,
+   "nombre": "Infernal Guard",
+   "npc_type": 23427,
+   "sprite": 111301,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    69,
+    168
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 427
+  },
+  {
+   "entity_id": 89500074,
+   "nombre": "Infernal Guard",
+   "npc_type": 23427,
+   "sprite": 111301,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    62,
+    153
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 427
+  },
+  {
+   "entity_id": 89500075,
+   "nombre": "Infernal Guard",
+   "npc_type": 23427,
+   "sprite": 111301,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    74,
+    167
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 427
+  },
+  {
+   "entity_id": 89500076,
+   "nombre": "Infernal Guard",
+   "npc_type": 23427,
+   "sprite": 111301,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    62,
+    158
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 427
+  },
+  {
+   "entity_id": 89500077,
+   "nombre": "Infernal Guard",
+   "npc_type": 23427,
+   "sprite": 111301,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 427
+  },
+  {
+   "entity_id": 89500078,
+   "nombre": "Infernal Guard",
+   "npc_type": 23427,
+   "sprite": 111301,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    153
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 427
+  },
+  {
+   "entity_id": 89500079,
+   "nombre": "Infernal Guard",
+   "npc_type": 23427,
+   "sprite": 111301,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    74,
+    172
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 427
+  },
+  {
+   "entity_id": 89500080,
+   "nombre": "Infernal Guard",
+   "npc_type": 23427,
+   "sprite": 111301,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 427
+  },
+  {
+   "entity_id": 89500081,
+   "nombre": "Infernal Guard",
+   "npc_type": 23427,
+   "sprite": 111301,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    163
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 427
+  },
+  {
+   "entity_id": 89500082,
+   "nombre": "Infernal Guard",
+   "npc_type": 23427,
+   "sprite": 111301,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    168
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 427
+  },
+  {
+   "entity_id": 89500083,
+   "nombre": "Infernal Guard",
+   "npc_type": 23427,
+   "sprite": 111301,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    173
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 427
+  },
+  {
+   "entity_id": 89500084,
+   "nombre": "Infernal Guard",
+   "npc_type": 23427,
+   "sprite": 111301,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 427
+  },
+  {
+   "entity_id": 89500085,
+   "nombre": "Infernal Guard",
+   "npc_type": 23427,
+   "sprite": 111301,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    173
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 427
+  },
+  {
+   "entity_id": 89500086,
+   "nombre": "Infernal Guard",
+   "npc_type": 23427,
+   "sprite": 111301,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    79,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 427
+  },
+  {
+   "entity_id": 89500087,
+   "nombre": "Infernal Guard",
+   "npc_type": 23427,
+   "sprite": 111301,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    69,
+    173
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 427
+  },
+  {
+   "entity_id": 89500088,
+   "nombre": "Infernal Guard",
+   "npc_type": 23427,
+   "sprite": 111301,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    79,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 427
+  },
+  {
+   "entity_id": 89500089,
+   "nombre": "Infernal Guard",
+   "npc_type": 23427,
+   "sprite": 111301,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    79,
+    170
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 427
+  },
+  {
+   "entity_id": 89500090,
+   "nombre": "Infernal Guard",
+   "npc_type": 23427,
+   "sprite": 111301,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    57,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 427
+  },
+  {
+   "entity_id": 89500091,
+   "nombre": "Infernal Guard",
+   "npc_type": 23427,
+   "sprite": 111301,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    57,
+    153
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 427
+  },
+  {
+   "entity_id": 89500092,
+   "nombre": "Sword of Hell",
+   "npc_type": 23434,
+   "sprite": 111302,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    48,
+    164
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 438
+  },
+  {
+   "entity_id": 89500093,
+   "nombre": "Floating Guard",
+   "npc_type": 23428,
+   "sprite": 111303,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    57,
+    158
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 430
+  },
+  {
+   "entity_id": 89500094,
+   "nombre": "Floating Guard",
+   "npc_type": 23428,
+   "sprite": 111303,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    62,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 430
+  },
+  {
+   "entity_id": 89500095,
+   "nombre": "Floating Guard",
+   "npc_type": 23428,
+   "sprite": 111303,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    79,
+    175
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 430
+  },
+  {
+   "entity_id": 89500096,
+   "nombre": "Floating Guard",
+   "npc_type": 23428,
+   "sprite": 111303,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 430
+  },
+  {
+   "entity_id": 89500097,
+   "nombre": "Floating Guard",
+   "npc_type": 23428,
+   "sprite": 111303,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 430
+  },
+  {
+   "entity_id": 89500098,
+   "nombre": "Floating Guard",
+   "npc_type": 23428,
+   "sprite": 111303,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    147
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 430
+  },
+  {
+   "entity_id": 89500099,
+   "nombre": "Floating Guard",
+   "npc_type": 23428,
+   "sprite": 111303,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    155
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 430
+  },
+  {
+   "entity_id": 89500100,
+   "nombre": "Floating Guard",
+   "npc_type": 23428,
+   "sprite": 111303,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    163
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 430
+  },
+  {
+   "entity_id": 89500101,
+   "nombre": "Floating Guard",
+   "npc_type": 23428,
+   "sprite": 111303,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    74,
+    177
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 430
+  },
+  {
+   "entity_id": 89500102,
+   "nombre": "Floating Guard",
+   "npc_type": 23428,
+   "sprite": 111303,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    168
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 430
+  },
+  {
+   "entity_id": 89500103,
+   "nombre": "Floating Guard",
+   "npc_type": 23428,
+   "sprite": 111303,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    173
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 430
+  },
+  {
+   "entity_id": 89500104,
+   "nombre": "Floating Guard",
+   "npc_type": 23428,
+   "sprite": 111303,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 430
+  },
+  {
+   "entity_id": 89500105,
+   "nombre": "Floating Guard",
+   "npc_type": 23428,
+   "sprite": 111303,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    54,
+    178
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 430
+  },
+  {
+   "entity_id": 89500106,
+   "nombre": "Floating Guard",
+   "npc_type": 23428,
+   "sprite": 111303,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 430
+  },
+  {
+   "entity_id": 89500107,
+   "nombre": "Floating Guard",
+   "npc_type": 23428,
+   "sprite": 111303,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    178
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 430
+  },
+  {
+   "entity_id": 89500108,
+   "nombre": "Floating Guard",
+   "npc_type": 23428,
+   "sprite": 111303,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    84,
+    160
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 430
+  },
+  {
+   "entity_id": 89500109,
+   "nombre": "Floating Guard",
+   "npc_type": 23428,
+   "sprite": 111303,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    64,
+    178
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 430
+  },
+  {
+   "entity_id": 89500110,
+   "nombre": "Floating Guard",
+   "npc_type": 23428,
+   "sprite": 111303,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    84,
+    165
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 430
+  },
+  {
+   "entity_id": 89500111,
+   "nombre": "Floating Guard",
+   "npc_type": 23428,
+   "sprite": 111303,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    69,
+    178
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 430
+  },
+  {
+   "entity_id": 89500112,
+   "nombre": "Floating Guard",
+   "npc_type": 23428,
+   "sprite": 111303,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    84,
+    170
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 430
+  },
+  {
+   "entity_id": 89500113,
+   "nombre": "Floating Guard",
+   "npc_type": 23428,
+   "sprite": 111303,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    84,
+    175
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 430
+  },
+  {
+   "entity_id": 89500114,
+   "nombre": "Floating Guard",
+   "npc_type": 23428,
+   "sprite": 111303,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    52,
+    143
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 430
+  },
+  {
+   "entity_id": 89500115,
+   "nombre": "Floating Guard",
+   "npc_type": 23428,
+   "sprite": 111303,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    52,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 430
+  },
+  {
+   "entity_id": 89500116,
+   "nombre": "Floating Guard",
+   "npc_type": 23428,
+   "sprite": 111303,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    52,
+    153
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 430
+  },
+  {
+   "entity_id": 89500117,
+   "nombre": "Floating Guard",
+   "npc_type": 23428,
+   "sprite": 111303,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    52,
+    158
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 430
+  },
+  {
+   "entity_id": 89500118,
+   "nombre": "E-Floating Guard",
+   "npc_type": 23432,
+   "sprite": 111303,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    47,
+    147
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 436
+  },
+  {
+   "entity_id": 89500119,
+   "nombre": "E-Floating Guard",
+   "npc_type": 23432,
+   "sprite": 111303,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    47,
+    152
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 436
+  },
+  {
+   "entity_id": 89500120,
+   "nombre": "E-Floating Guard",
+   "npc_type": 23432,
+   "sprite": 111303,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    47,
+    157
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 436
+  },
+  {
+   "entity_id": 89500121,
+   "nombre": "E-Floating Guard",
+   "npc_type": 23432,
+   "sprite": 111303,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    162
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 436
+  },
+  {
+   "entity_id": 89500122,
+   "nombre": "E-Floating Guard",
+   "npc_type": 23432,
+   "sprite": 111303,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    43,
+    167
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 436
+  },
+  {
+   "entity_id": 89500123,
+   "nombre": "Dark Lancer",
+   "npc_type": 23429,
+   "sprite": 111304,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    57,
+    143
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 432
+  },
+  {
+   "entity_id": 89500124,
+   "nombre": "Dark Lancer",
+   "npc_type": 23429,
+   "sprite": 111304,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    62,
+    143
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 432
+  },
+  {
+   "entity_id": 89500125,
+   "nombre": "Dark Lancer",
+   "npc_type": 23429,
+   "sprite": 111304,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    143
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 432
+  },
+  {
+   "entity_id": 89500126,
+   "nombre": "Dark Lancer",
+   "npc_type": 23429,
+   "sprite": 111304,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    72,
+    142
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 432
+  },
+  {
+   "entity_id": 89500127,
+   "nombre": "Dark Lancer",
+   "npc_type": 23429,
+   "sprite": 111304,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    77,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 432
+  },
+  {
+   "entity_id": 89500128,
+   "nombre": "Dark Lancer",
+   "npc_type": 23429,
+   "sprite": 111304,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 432
+  },
+  {
+   "entity_id": 89500129,
+   "nombre": "Dark Lancer",
+   "npc_type": 23429,
+   "sprite": 111304,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    51,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 432
+  },
+  {
+   "entity_id": 89500130,
+   "nombre": "Dark Lancer",
+   "npc_type": 23429,
+   "sprite": 111304,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    56,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 432
+  },
+  {
+   "entity_id": 89500131,
+   "nombre": "Dark Lancer",
+   "npc_type": 23429,
+   "sprite": 111304,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    61,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 432
+  },
+  {
+   "entity_id": 89500132,
+   "nombre": "Dark Lancer",
+   "npc_type": 23429,
+   "sprite": 111304,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    66,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 432
+  },
+  {
+   "entity_id": 89500133,
+   "nombre": "Dark Lancer",
+   "npc_type": 23429,
+   "sprite": 111304,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    138
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 432
+  },
+  {
+   "entity_id": 89500134,
+   "nombre": "Dark Lancer",
+   "npc_type": 23429,
+   "sprite": 111304,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    143
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 432
+  },
+  {
+   "entity_id": 89500135,
+   "nombre": "Dark Lancer",
+   "npc_type": 23429,
+   "sprite": 111304,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    148
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 432
+  },
+  {
+   "entity_id": 89500136,
+   "nombre": "Dark Lancer",
+   "npc_type": 23429,
+   "sprite": 111304,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    153
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 432
+  },
+  {
+   "entity_id": 89500137,
+   "nombre": "Dark Lancer",
+   "npc_type": 23429,
+   "sprite": 111304,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    71,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 432
+  },
+  {
+   "entity_id": 89500138,
+   "nombre": "Dark Lancer",
+   "npc_type": 23429,
+   "sprite": 111304,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    169
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 432
+  },
+  {
+   "entity_id": 89500139,
+   "nombre": "Dark Lancer",
+   "npc_type": 23429,
+   "sprite": 111304,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    49,
+    174
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 432
+  },
+  {
+   "entity_id": 89500140,
+   "nombre": "Dark Lancer",
+   "npc_type": 23429,
+   "sprite": 111304,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    89,
+    158
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 432
+  },
+  {
+   "entity_id": 89500141,
+   "nombre": "Dark Lancer",
+   "npc_type": 23429,
+   "sprite": 111304,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    89,
+    163
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 432
+  },
+  {
+   "entity_id": 89500142,
+   "nombre": "Dark Lancer",
+   "npc_type": 23429,
+   "sprite": 111304,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    89,
+    168
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 432
+  },
+  {
+   "entity_id": 89500143,
+   "nombre": "Dark Lancer",
+   "npc_type": 23429,
+   "sprite": 111304,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    89,
+    173
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 432
+  },
+  {
+   "entity_id": 89500144,
+   "nombre": "Dark Lancer",
+   "npc_type": 23429,
+   "sprite": 111304,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    76,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 432
+  },
+  {
+   "entity_id": 89500145,
+   "nombre": "Dark Lancer",
+   "npc_type": 23429,
+   "sprite": 111304,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    81,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 432
+  },
+  {
+   "entity_id": 89500146,
+   "nombre": "Dark Lancer",
+   "npc_type": 23429,
+   "sprite": 111304,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    89,
+    178
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 432
+  },
+  {
+   "entity_id": 89500147,
+   "nombre": "Dark Lancer",
+   "npc_type": 23429,
+   "sprite": 111304,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    46,
+    133
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 432
+  },
+  {
+   "entity_id": 89500148,
+   "nombre": "Horseman Navi",
+   "npc_type": 23435,
+   "sprite": 111305,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    42,
+    154
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 438
+  },
+  {
+   "entity_id": 89500149,
+   "nombre": "Sacrificial Lamp",
+   "npc_type": 23360,
+   "sprite": 111258,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    148,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 89500150,
+   "nombre": "Sacrificial Lamp",
+   "npc_type": 23360,
+   "sprite": 111258,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    124,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 89500151,
+   "nombre": "Sacrificial Lamp",
+   "npc_type": 23360,
+   "sprite": 111258,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    154,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 89500152,
+   "nombre": "Sacrificial Lamp",
+   "npc_type": 23360,
+   "sprite": 111258,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    180,
+    86
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 89500153,
+   "nombre": "Sacrificial Lamp",
+   "npc_type": 23360,
+   "sprite": 111258,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    150,
+    86
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 89500154,
+   "nombre": "Black Coffins",
+   "npc_type": 23361,
+   "sprite": 111259,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    126,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 89500155,
+   "nombre": "Undead Knight",
+   "npc_type": 23362,
+   "sprite": 111260,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    124,
+    62
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 89500156,
+   "nombre": "Undead Knight",
+   "npc_type": 23362,
+   "sprite": 111260,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    129,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 89500157,
+   "nombre": "Undead Knight",
+   "npc_type": 23362,
+   "sprite": 111260,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    121,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 89500158,
+   "nombre": "Undead Knight",
+   "npc_type": 23362,
+   "sprite": 111260,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    131,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 89500159,
+   "nombre": "Undead Knight",
+   "npc_type": 23362,
+   "sprite": 111260,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    119,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 89500160,
+   "nombre": "Undead Knight",
+   "npc_type": 23362,
+   "sprite": 111260,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    119,
+    62
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 89500161,
+   "nombre": "Undead Knight",
+   "npc_type": 23362,
+   "sprite": 111260,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    124,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 89500162,
+   "nombre": "Undead Knight",
+   "npc_type": 23362,
+   "sprite": 111260,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    131,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 89500163,
+   "nombre": "Undead Knight",
+   "npc_type": 23362,
+   "sprite": 111260,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    118,
+    72
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 89500164,
+   "nombre": "Undead Knight",
+   "npc_type": 23362,
+   "sprite": 111260,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    123,
+    72
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  },
+  {
+   "entity_id": 89500165,
+   "nombre": "Spiritual Prison",
+   "npc_type": 23363,
+   "sprite": 111261,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    134,
+    61
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 420
+  }
+ ],
+ "recursos": [
+  {
+   "entity_id": 99500000,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    7964,
+    4400
+   ],
+   "tile": [
+    248,
+    137
+   ],
+   "crudo": "e03fee05000000001c1f0000301100000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 99500001,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    8228,
+    4272
+   ],
+   "tile": [
+    257,
+    133
+   ],
+   "crudo": "e13fee050000000024200000b01000000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 99500002,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    8408,
+    4176
+   ],
+   "tile": [
+    262,
+    130
+   ],
+   "crudo": "e23fee0500000000d8200000501000000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 99500003,
+   "sprite": 60461,
+   "capa": 2,
+   "px": [
+    1786,
+    2544
+   ],
+   "tile": [
+    55,
+    79
+   ],
+   "crudo": "e33fee0502000000fa060000f00900000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 99500004,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    1685,
+    1712
+   ],
+   "tile": [
+    52,
+    53
+   ],
+   "crudo": "e43fee050000000095060000b00600000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 99500005,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    4252,
+    2224
+   ],
+   "tile": [
+    132,
+    69
+   ],
+   "crudo": "e53fee05000000009c100000b00800000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 99500006,
+   "sprite": 60461,
+   "capa": 0,
+   "px": [
+    4475,
+    2096
+   ],
+   "tile": [
+    139,
+    65
+   ],
+   "crudo": "e63fee05000000007b110000300800000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461"
+  },
+  {
+   "entity_id": 99500007,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    464,
+    4688
+   ],
+   "tile": [
+    14,
+    146
+   ],
+   "crudo": "e73fee0500000000d0010000501200000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 99500008,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1518,
+    5520
+   ],
+   "tile": [
+    47,
+    172
+   ],
+   "crudo": "e83fee0500000000ee050000901500000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 99500009,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    2599,
+    3120
+   ],
+   "tile": [
+    81,
+    97
+   ],
+   "crudo": "e93fee0500000000270a0000300c00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 99500010,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1148,
+    2896
+   ],
+   "tile": [
+    35,
+    90
+   ],
+   "crudo": "ea3fee05000000007c040000500b00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 99500011,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1010,
+    3728
+   ],
+   "tile": [
+    31,
+    116
+   ],
+   "crudo": "eb3fee0500000000f2030000900e00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 99500012,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    2914,
+    4816
+   ],
+   "tile": [
+    91,
+    150
+   ],
+   "crudo": "ec3fee0500000000620b0000d01200000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 99500013,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    2830,
+    4208
+   ],
+   "tile": [
+    88,
+    131
+   ],
+   "crudo": "ed3fee05000000000e0b0000701000000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 99500014,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    560,
+    3024
+   ],
+   "tile": [
+    17,
+    94
+   ],
+   "crudo": "ee3fee050000000030020000d00b00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 99500015,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    3576,
+    3664
+   ],
+   "tile": [
+    111,
+    114
+   ],
+   "crudo": "ef3fee0500000000f80d0000500e00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  },
+  {
+   "entity_id": 99500016,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    1228,
+    4240
+   ],
+   "tile": [
+    38,
+    132
+   ],
+   "crudo": "f03fee0500000000cc040000901000000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305"
+  }
+ ]
+}
