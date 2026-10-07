@@ -61,7 +61,13 @@ def main():
             if not str(lv or '').isdigit():
                 continue
             lv_i = int(lv)
-            if lv_i < 1 or lv_i > 300:
+            # Hasta 500, no hasta 300. El monstruo de nivel mas alto del
+            # juego es el M-Sneaky Evil Lizard, de 485, y hay items de sobra
+            # para cada tramo: 423 de nivel 390, 269 de 400, 101 de 470. Con
+            # el tope en 300 TODOS los bichos de 300 para arriba caian en el
+            # mismo cubo, asi que un Hardworking Pig de nivel 390 soltaba el
+            # mismo equipo de nivel 300 que uno de 300 pelado.
+            if lv_i < 1 or lv_i > 500:
                 continue
             nom_s = str(nom or '')
             if cat not in cats_validas:

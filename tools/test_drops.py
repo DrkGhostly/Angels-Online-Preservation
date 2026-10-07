@@ -85,6 +85,57 @@ def test_la_tasa_de_drop_manda_en_cuanto_cae():
     assert bajo < 60, 'con tasa 0.01 cayo %d de 300' % bajo
 
 
+def test_el_botin_pega_con_el_nivel_del_bicho():
+    """Un bicho de nivel 390 no puede soltar equipo de nivel 300.
+
+    Los cubos de nivel se cortaban en 300 en los dos sitios -- al generar
+    drops_monstruos.json y al elegir cubo en botin_items -- asi que TODA la
+    ultima region (Clink Harbor va de 390 a 403) caia en el cubo de 300.
+    Esos bichos no tienen tabla propia: su drop_id (27336 a 27343) no esta
+    ni en drop.xml ni en drop_table, asi que acaban siempre en el fallback.
+    """
+    import sqlite3
+    import sys, pathlib as _pl
+    RZ = _pl.Path(__file__).resolve().parent.parent
+    sys.path.insert(0, str(RZ / 'server'))
+    import combate
+    con = sqlite3.connect(RZ / 'corpus' / 'content.db')
+
+    def nivel_item(iid):
+        for t in ('item', 'item2', 'item3', 'item4', 'item5', 'item6',
+                  'item7', 'item8', 'item9'):
+            try:
+                r = con.execute('select 物品等級 from %s where id=?' % t,
+                                (str(iid),)).fetchone()
+            except Exception:
+                continue
+            if r and str(r[0] or '').isdigit():
+                return int(r[0])
+        return None
+
+    for npc_type, nombre, nivel in ((23765, 'Hardworking Pig', 390),
+                                    (23771, 'E-Hardworking Pig', 401),
+                                    (23770, 'Icy Automaton', 399)):
+        combate._DROPS_CACHE.clear()
+        combate.botin_items(npc_type, nombre, nivel)
+        cands = combate._DROPS_CACHE.get(npc_type) or []
+        assert cands, nombre
+        niveles = [nivel_item(i) for i, _ in cands]
+        niveles = [n for n in niveles if n]
+        assert niveles, nombre
+        # ni un escalon entero por debajo del bicho
+        assert min(niveles) >= nivel - 20, (nombre, nivel, min(niveles))
+
+
+def test_los_cubos_llegan_hasta_el_ultimo_bicho():
+    """El monstruo mas alto del juego es de nivel 485."""
+    import sys, pathlib as _pl
+    sys.path.insert(0, str(_pl.Path(__file__).resolve().parent.parent / 'server'))
+    import combate
+    cubos = sorted(int(k) for k in combate._cargar_drops_plantilla()['por_nivel'])
+    assert max(cubos) >= 470, cubos[-5:]
+
+
 if __name__ == '__main__':
     fallos = 0
     for nombre, fn in sorted(globals().items()):

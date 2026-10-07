@@ -839,7 +839,10 @@ def botin_items(npc_type: int, nombre: str = '', nivel: int = 0) -> list:
 
         # 3. Fallback por bucket de nivel para regiones nuevas (Forest, Desert, Candy, Floating, etc.)
         if not lista_raw and not candidatos and drops_por_nv:
-            nv_b = max(0, min(300, ((int(mon_nv or 30) // 10) * 10)))
+            # El tope es 500, no 300: el bicho mas alto del juego es de 485.
+            # Con el 300 todo lo de la ultima region (Clink Harbor va de 390
+            # a 403) caia en el cubo de 300 y soltaba equipo de ese nivel.
+            nv_b = max(0, min(500, ((int(mon_nv or 30) // 10) * 10)))
             for b_try in (nv_b, nv_b - 10, nv_b + 10, 60, 50):
                 if str(b_try) in drops_por_nv and drops_por_nv[str(b_try)]:
                     lista_raw = drops_por_nv[str(b_try)]
