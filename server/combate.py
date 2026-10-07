@@ -1019,11 +1019,22 @@ def datos_magia(magic_id: int) -> dict:
             res['invoca_npc'] = _num(d.get('動態參數1'), 0)
             dur_inv = _num(d.get('動態參數2'), 0)
             res['dur_invoca'] = dur_inv if dur_inv > 0 else 3600
+            # 'titan' ESTABA EN ESTA LISTA y no invocaba nada: se comia los
+            # Titan Rage I-V, el Titan Tenacity y los Titan Rumble I-V, que
+            # son auto-buffs de 10 minutos y 5 minutos. Marcados como
+            # invocacion no llegaban a es_buff, asi que ni duraban ni
+            # ponian su icono en la barra. De los 153 hechizos que llevan
+            # 召喚型=是 ni uno se llama "titan": la palabra solo hacia dano.
+            #
+            # Y como red de seguridad, el 魔法狀態: un hechizo que declara
+            # estado magico (魔法還擊 = devolver el golpe, por ejemplo) es un
+            # buff, no una invocacion. Ninguna de las 153 invocaciones de
+            # verdad trae ese campo, asi que no se pierde ninguna.
             is_real_summon = (
                 d.get('召喚型') == '是' or
                 any(nom_l.startswith(k) for k in ('summon ', 'lvl 60 summon', 'lvl 90 summon', 'lvl 120 summon')) or
-                any(k in nom_l for k in ('ghostly swordsman', 'shadow clone', 'avatar', 'titan', 'putridox', 'minotaur', 'leech', 'azrael', 'muncher'))
-            ) and d.get('魔法狀態') != '靈魂護盾' and not ('soul shield' in nom_l) and not res.get('es_brand') and not (13595 <= magic_id <= 13599)
+                any(k in nom_l for k in ('ghostly swordsman', 'shadow clone', 'avatar', 'putridox', 'minotaur', 'leech', 'azrael', 'muncher'))
+            ) and not d.get('魔法狀態') and not ('soul shield' in nom_l) and not res.get('es_brand') and not (13595 <= magic_id <= 13599)
             res['es_invocacion'] = bool(res['invoca_npc'] > 0 and is_real_summon)
 
             # Robos de HP y MP (Forbidden Curse / Formula 39)
