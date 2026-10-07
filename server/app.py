@@ -3199,9 +3199,9 @@ class Servidor:
                 _hech = _cl.hechizos_iniciales(_ids)
                 _todos_hech = [n for n, _ in _hech]
                 if getattr(p, 'hechizos_aprendidos', None):
-                    _todos_hech = list(set(_todos_hech) | set(p.hechizos_aprendidos))
+                    _todos_hech = sorted(set(_todos_hech) | set(p.hechizos_aprendidos))
                 if _todos_hech:
-                    ses.enviar(_cl.otorgar_hechizos(
+                    ses.enviar(*_cl.otorgar_hechizos(
                         p.entity_id, _todos_hech))
             # Y que el cliente dibuje al personaje con lo que lleva puesto.
             ses.enviar(*_apariencia(ses))
@@ -4096,9 +4096,9 @@ class Servidor:
                     _hech = _cl.hechizos_iniciales(_ids)
                     _todos_hech = [n for n, _ in _hech]
                     if getattr(p, 'hechizos_aprendidos', None):
-                        _todos_hech = list(set(_todos_hech) | set(p.hechizos_aprendidos))
+                        _todos_hech = sorted(set(_todos_hech) | set(p.hechizos_aprendidos))
                     if _todos_hech:
-                        ses.enviar(_cl.otorgar_hechizos(p.entity_id, _todos_hech))
+                        ses.enviar(*_cl.otorgar_hechizos(p.entity_id, _todos_hech))
                 bars, max_pts = _max_sp_info(p)
                 # El SP viene del personaje guardado. Empieza a cero solo la
                 # primera vez: se gana peleando y se conserva al salir.
@@ -5998,9 +5998,9 @@ class Servidor:
                 _hech = _cl2.hechizos_iniciales(_ids)
                 _todos_hech = [n for n, _ in _hech]
                 if getattr(p, 'hechizos_aprendidos', None):
-                    _todos_hech = list(set(_todos_hech) | set(p.hechizos_aprendidos))
+                    _todos_hech = sorted(set(_todos_hech) | set(p.hechizos_aprendidos))
                 if _todos_hech:
-                    ses.enviar(_cl2.otorgar_hechizos(p.entity_id, _todos_hech))
+                    ses.enviar(*_cl2.otorgar_hechizos(p.entity_id, _todos_hech))
             for _inv_attr, _off_x in (('invocacion', 1), ('invocacion2', -1)):
                 inv = getattr(ses, _inv_attr, None)
                 if inv:
@@ -6560,7 +6560,7 @@ class Servidor:
             # El 0x000D de arriba solo escribe "Learn X" en el chat. Los
             # iconos no salen hasta que llega este 0x001D.
             if hechizos and ses.personaje:
-                salida.append(clases.otorgar_hechizos(
+                salida.extend(clases.otorgar_hechizos(
                     ses.personaje.entity_id, [n for n, _ in hechizos]))
 
             # Entregar lo que da la clase y anotar el class_id. Ambas cosas
@@ -7799,9 +7799,9 @@ class Servidor:
                 _hech = _cl.hechizos_iniciales(_ids)
                 _todos_hech = [n for n, _ in _hech]
                 if getattr(p, 'hechizos_aprendidos', None):
-                    _todos_hech = list(set(_todos_hech) | set(p.hechizos_aprendidos))
+                    _todos_hech = sorted(set(_todos_hech) | set(p.hechizos_aprendidos))
                 if _todos_hech:
-                    salida.append(_cl.otorgar_hechizos(yo, _todos_hech))
+                    salida.extend(_cl.otorgar_hechizos(yo, _todos_hech))
                 for h in p.habilidades:
                     salida.append(struct.pack('<HIBBII', 0x001D, yo, 1, 53, h[0], 0))
                 salida.extend(_refrescar(ses, [ranura]))

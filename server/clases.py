@@ -207,12 +207,19 @@ def otorgar_hechizos(entity_id: int, numeros) -> bytes:
         [LE32 entidad][U8 cantidad] y luego, por hechizo,
         [U8 kind=9][LE32 numero de magic.xml][LE32 nivel]
 
-    Como la cantidad es un U8, en un mensaje no caben mas de 255. Cuando
-    hay mas se devuelven VARIOS, porque antes se recortaba el contador a
-    255 y detras se mandaban todos igual: el cliente leia los 255 primeros
-    y los demas se perdian. A un personaje con 278 hechizos se le caian 23,
-    y entre ellos los ultimos que hubiera aprendido -- Gnash III y V
-    estaban en las posiciones 273 y 276.
+    Como la cantidad es un U8, en un mensaje no caben mas de 255, asi que
+    con mas hechizos hacen falta VARIOS mensajes. Y TIENEN QUE IR SUELTOS:
+    esto devuelve una LISTA, no un churro de bytes.
+
+    Antes se devolvian pegados, y ahi se perdian igual. Cada cosa que se le
+    pasa a ses.enviar() lleva delante su propio LE16 de largo
+    (proto/framing.pack_submessages), asi que los dos mensajes pegados
+    viajaban como UNO SOLO: el cliente (sub_5F0EF0, 0x5F0EF0) lee la
+    cantidad del byte +6, procesa esos 255 y TIRA lo que quede detras
+    dentro del mismo sub-mensaje. Los 29 ultimos no llegaban nunca.
+
+    Como ademas la lista venia de un set(), cuales eran esos 29 cambiaba de
+    sesion en sesion: por eso Gnash se perdia, volvia y se volvia a perder.
     """
     import skills
     fuera = []
@@ -230,7 +237,7 @@ def otorgar_hechizos(entity_id: int, numeros) -> bytes:
                 mlv = skills.nivel_de_magia(mid)
             cuerpo += struct.pack('<BII', KIND_HECHIZO, mid, mlv)
         fuera.append(struct.pack('<H', 0x001D) + cuerpo)
-    return b''.join(fuera)
+    return fuera
 
 
 def parsear_eleccion(cuerpo: bytes):
