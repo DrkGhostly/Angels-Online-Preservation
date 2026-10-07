@@ -98,6 +98,36 @@ def _portales():
 # se pago caro una vez: cada copia que se olvidaba dejaba un mapa entero sin
 # IA. Aqui esta una sola vez.
 MAPAS_APARTE = {41: 'lyceum.json', 57: 'fighting_palace.json'}
+# Hasta donde piensa un monstruo. Mas alla de esto el jugador no lo ve -- su
+# radio de vision son 38 casillas, medido -- asi que gastarle IA no sirve de
+# nada. Ver el bucle de IA, que corre diez veces por segundo.
+RADIO_IA = 48
+
+_INSTANCIAS = None
+
+
+def es_instancia(stage) -> bool:
+    """Si ese mapa es una INSTANCIA de las que el cliente llama dinamicas.
+
+    stage.xml las marca con 動態空間=是 y 平行空間=15: quince copias del mapa,
+    repartidas por equipo. Dentro de una instancia los bichos NO REAPARECEN:
+    se limpia y se queda limpia hasta que sales y vuelves a entrar, que es
+    cuando el servidor te da una copia nueva. Lo describio el usuario
+    jugando, y encaja con lo que declara el cliente.
+
+    Aqui las copias por equipo no estan: cada sesion arma sus propios
+    monstruos con _monstruos_de() al cambiar de mapa, asi que un jugador ya
+    tiene su mapa para el solo y al salir y volver se le rehace entero. Lo
+    que faltaba era no resucitarlos mientras esta dentro.
+    """
+    global _INSTANCIAS
+    if _INSTANCIAS is None:
+        import json
+        f = pathlib.Path(__file__).parent / 'plantillas' / 'instancias.json'
+        d = json.loads(f.read_text(encoding='utf-8')) if f.exists() else {}
+        _INSTANCIAS = {int(k) for k, v in (d.get('mapas') or {}).items()
+                       if v.get('dinamica')}
+    return int(stage or 0) in _INSTANCIAS
 # DONDE APARECE EL JUGADOR al entrar a cada Training Area por el dialogo del
 # Terra Keeper. La casilla es (136,72) en las cuatro, leida del minimapa en el
 # cliente oficial. Estaba en (202,109), que es la casilla de VUELTA -- donde
@@ -1699,6 +1729,10 @@ def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
         ses.enviar(*_muerte)
 
     def _respawn():
+        # En una instancia lo que matas se queda muerto.
+        if es_instancia(getattr(ses.personaje, 'stage', 0) if ses.personaje
+                        else 0):
+            return
         if not getattr(m, 'vivo', False):
             m.revivir()
             import login as _lg
@@ -2189,6 +2223,12 @@ def _sincronizar_cambio_mapa(ses, stage_id: int, x: int = None, y: int = None):
 def _viajar_por_portal(ses, addr, por, motivo=''):
     """Manda al jugador por un tornado que no pregunta."""
     dst, lleg = por['destino'], por['llegada']
+    # Red de seguridad: sin destino o sin casilla no se viaja. Quien llama
+    # tiene que haberlo filtrado antes, pero el manejador del CLIC no lo
+    # hacia y la sesion se caia al desempaquetar un None.
+    if dst is None or not lleg:
+        log.debug(f"[{addr}] portal {por.get('tile')} sin destino: no se viaja")
+        return
     # MISMO MAPA: no se recarga nada, solo se recoloca al personaje.
     if dst == getattr(ses.personaje, 'stage', None):
         _viajar_dentro_del_mapa(ses, addr, por, motivo)
@@ -2723,11 +2763,14 @@ class Servidor:
                         )
                         ses.enviar(msg)
 
-                # 2. Respawn de monstruos caidos
+                # 2. Respawn de monstruos caidos. En las instancias no:
+                # se limpian y se quedan limpias hasta salir y volver.
                 monstruos = getattr(ses, 'monstruos', {})
                 import login as _lg
+                _en_instancia = es_instancia(
+                    getattr(getattr(ses, 'personaje', None), 'stage', 0))
                 for mid, m in list(monstruos.items()):
-                    if m.toca_reaparecer():
+                    if not _en_instancia and m.toca_reaparecer():
                         m.revivir()
                         ses.enviar(_lg._npc_spawn(m.entity_id, m.npc_type, m.nombre, m.spawn_tile, klass=1))
                         log.info(f"monstruo {m.nombre} (eid={m.entity_id}) reaparecio en {m.spawn_tile}")
@@ -3369,9 +3412,32 @@ class Servidor:
                                                               dst_x=dst_x, dst_y=dst_y,
                                                               speed=spd))
 
+                        # LOS QUE ESTAN LEJOS NO SE PIENSAN. Este bucle corre
+                        # cada TICK_IA, o sea diez veces por segundo, y antes
+                        # recorria TODOS los monstruos del mapa. Mientras los
+                        # mapas tenian 200 o 300 bichos se aguantaba; las
+                        # instancias traen 584 en Leviathan's Bedroom y 524 en
+                        # Gulp Room 4, y eso son casi seis mil vueltas por
+                        # segundo por jugador. Se noto en cuanto se entro a
+                        # Dinosaur Arena: el juego iba a tirones.
+                        #
+                        # El jugador no ve mas alla de 38 casillas -- esta
+                        # medido, es el radio que usa tools/cobertura_mapa.py
+                        # para barrer un mapa -- asi que lo que pase a 48 no
+                        # lo puede notar. Se saltan SOLO los que ademas no
+                        # estan peleando ni encantados: un bicho que te
+                        # persigue te sigue persiguiendo aunque te alejes.
+                        _px = getattr(ses.personaje, 'tile_x', 0) if ses.personaje else 0
+                        _py = getattr(ses.personaje, 'tile_y', 0) if ses.personaje else 0
                         for m in list((ses.monstruos or {}).values()):
 
                             if not getattr(m, 'vivo', True):
+                                continue
+
+                            if (not getattr(m, 'en_combate_con', None)
+                                    and not getattr(m, 'encantado', False)
+                                    and max(abs(m.tile_x - _px),
+                                            abs(m.tile_y - _py)) > RADIO_IA):
                                 continue
 
                             # Monstruo encantado (Charmed / Shining Charm de Earth): aliado del jugador
@@ -8050,6 +8116,21 @@ class Servidor:
                                     break
                             if portal_match:
                                 break
+                    # TORNADO SIN DESTINO: no se viaja. Es el mismo filtro que
+                    # hace _portal_en al PISARLOS, y aqui faltaba. Hay 39
+                    # tornados anotados con destino en null -- entradas de
+                    # instancia sin abrir y puertas cuyo evento solo saca un
+                    # dialogo -- y clicar cualquiera de ellos reventaba la
+                    # sesion con "Value after * must be an iterable, not
+                    # NoneType", porque _viajar_por_portal desempaqueta la
+                    # casilla de llegada. Los que PREGUNTAN tambien tienen el
+                    # destino en null, y a proposito: el suyo lo decide la
+                    # opcion que elija el jugador.
+                    if (portal_match and portal_match.get('destino') is None
+                            and not portal_match.get('preguntar')):
+                        log.debug(f"[{addr}] clic en el tornado {ent}: anotado "
+                                  f"sin destino, no lleva a ningun sitio")
+                        return
                     if portal_match:
                         if portal_match.get('preguntar'):
                             import dialogos as _dlg
