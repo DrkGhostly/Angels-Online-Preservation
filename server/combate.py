@@ -775,6 +775,36 @@ def _cargar_drops_plantilla() -> dict:
     return _DROPS_PLANTILLA
 
 
+_JEFES = None
+
+
+def es_jefe(npc_type: int) -> bool:
+    """Si ese monstruo es un jefe, segun la columna 王 de content.db.
+
+    El juego marca asi a 1.513 monstruos, de los Speedy Automaton de nivel
+    470 para abajo. No se deduce del nombre ni del nivel: lo dice el dato.
+    """
+    global _JEFES
+    if _JEFES is None:
+        _JEFES = set()
+        db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
+        if db.exists():
+            try:
+                con = sqlite3.connect(db)
+                for (mid,) in con.execute(
+                        "select id from monster where 王 = '是'"):
+                    try:
+                        _JEFES.add(int(mid))
+                    except (TypeError, ValueError):
+                        continue
+                con.close()
+            except Exception as e:
+                logging.getLogger('combate').warning(
+                    'no se pudo leer que monstruos son jefes (%s: %s); '
+                    'ninguno soltara botin garantizado', type(e).__name__, e)
+    return int(npc_type or 0) in _JEFES
+
+
 def botin_items(npc_type: int, nombre: str = '', nivel: int = 0) -> list:
     """Items que suelta el monstruo de drops_monstruos.json o content.db con multiplicador de drops."""
     global _DROPS_CACHE, _MON_INFO_CACHE
@@ -856,9 +886,18 @@ def botin_items(npc_type: int, nombre: str = '', nivel: int = 0) -> list:
         _DROPS_CACHE[npc_type] = candidatos
 
     import configuracion
-    prob = min(0.95, 0.90 * configuracion.multiplicador_drop())
     drops = []
-    if candidatos and random.random() < prob:
+    if not candidatos:
+        return drops
+    # LOS JEFES SUELTAN SIEMPRE. No es una tirada con mejor suerte: es que
+    # un jefe no se va nunca con las manos vacias, siempre cae algo de su
+    # lista. El juego los marca con la columna 王 ("rey") de la tabla
+    # monster, y hay 1.513.
+    if es_jefe(npc_type):
+        drops.append(random.choice(candidatos))
+        return drops
+    prob = min(0.95, 0.90 * configuracion.multiplicador_drop())
+    if random.random() < prob:
         drops.append(random.choice(candidatos))
     return drops
 

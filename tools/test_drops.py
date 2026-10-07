@@ -71,14 +71,20 @@ def test_los_de_nivel_alto_tienen_de_donde_soltar():
 
 
 def test_la_tasa_de_drop_manda_en_cuanto_cae():
-    """Con la tasa alta cae casi siempre; con la baja, casi nunca."""
+    """Con la tasa alta cae casi siempre; con la baja, casi nunca.
+
+    OJO con el bicho que se elija: tiene que NO ser jefe. Antes esto usaba
+    el Emerald Croc, que lleva 王=是 en content.db, asi que desde que los
+    jefes sueltan siempre daba 300 de 300 con cualquier tasa.
+    """
     import configuracion as cf
+    assert not cb.es_jefe(23765), 'el bicho de la prueba no puede ser jefe'
     original = cf.TASA_DROP_BASE
     try:
         cf.TASA_DROP_BASE = 10.5
-        alto = sum(1 for _ in range(300) if cb.botin_items(20770, 'Emerald Croc', 322))
+        alto = sum(1 for _ in range(300) if cb.botin_items(23765, 'Hardworking Pig', 390))
         cf.TASA_DROP_BASE = 0.01
-        bajo = sum(1 for _ in range(300) if cb.botin_items(20770, 'Emerald Croc', 322))
+        bajo = sum(1 for _ in range(300) if cb.botin_items(23765, 'Hardworking Pig', 390))
     finally:
         cf.TASA_DROP_BASE = original
     assert alto > 240, 'con tasa 10.5 solo cayo %d de 300' % alto
@@ -134,6 +140,35 @@ def test_los_cubos_llegan_hasta_el_ultimo_bicho():
     import combate
     cubos = sorted(int(k) for k in combate._cargar_drops_plantilla()['por_nivel'])
     assert max(cubos) >= 470, cubos[-5:]
+
+
+def test_los_jefes_sueltan_siempre():
+    """Un jefe no se va nunca con las manos vacias.
+
+    Los marca la columna 王 ("rey") de la tabla monster de content.db: son
+    1.513. Antes pasaban por la misma tirada que cualquier bicho, que con
+    TASA_DROP_BASE = 0.01 es menos del 1%, asi que matar un jefe no daba
+    nada casi nunca.
+    """
+    import sys, pathlib as _pl
+    sys.path.insert(0, str(_pl.Path(__file__).resolve().parent.parent / 'server'))
+    import combate
+    # Speedy Automaton (nivel 470) y Court Eagle Cassidy, los dos con 王
+    for npc_type, nombre, nivel in ((23837, 'Speedy Automaton', 470),
+                                    (23838, 'Court Eagle Cassidy', 470)):
+        assert combate.es_jefe(npc_type), nombre
+        combate._DROPS_CACHE.clear()
+        for _ in range(200):
+            assert combate.botin_items(npc_type, nombre, nivel), nombre
+
+
+def test_los_bichos_normales_no_son_jefes():
+    import sys, pathlib as _pl
+    sys.path.insert(0, str(_pl.Path(__file__).resolve().parent.parent / 'server'))
+    import combate
+    for npc_type in (23765, 23766, 23767):   # los cerdos de Clink Harbor
+        assert not combate.es_jefe(npc_type), npc_type
+    assert len(combate._JEFES) > 1000, len(combate._JEFES)
 
 
 if __name__ == '__main__':
