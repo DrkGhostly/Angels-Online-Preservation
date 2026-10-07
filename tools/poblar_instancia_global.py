@@ -19,6 +19,14 @@ los offsets contra una restriccion conjunta -- que monster.id valga lo que
 hay en +28 Y QUE ADEMAS monster.sprite_id valga lo que hay en +17. Eso dio
 493 de 493 sin un solo fallo, y es algo que no se acierta por casualidad.
 
+LAS COORDENADAS SI ESTAN EN CASILLAS, comprobado despues contra el mapa del
+cliente: los 375 spawns del stage 73 caen todos dentro de las 345x210
+casillas de map073.mpc, y su distancia mediana a la zona de generador mas
+cercana es de 9 casillas a escala 1:1 frente a 12,5 a media escala. Ojo, que
+eso vale para el 0x0008 y NO para el 0x0004 de movimiento del mismo cliente:
+de ahi se saco la llegada de esta instancia y salio el doble de lo que dice
+map073.mpc. Ver tools/mapa_del_cliente.py.
+
 El nombre y el nivel salen de content.db por npc_type, que es mas fiable
 que la cadena del paquete.
 

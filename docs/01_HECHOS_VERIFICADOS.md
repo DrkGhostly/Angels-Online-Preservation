@@ -2465,3 +2465,245 @@ byte idéntico en 60 sesiones**, así que no es.
 Para cerrarlo haría falta mirar en Celestia si una ciudad llega a oscurecerse
 o a cambiar de música; si no lo hace nunca, es que ese servidor no lo tiene y
 habrá que sacar el ciclo de otra versión.
+
+---
+
+## Los mapas del cliente traen el grafo de portales entero  [PROBADO]
+
+Hasta ahora cada portal se ha sacado **cruzandolo** con el cliente oficial
+delante: una sesion de juego por tornado, una o dos medidas, y una nota
+diciendo de donde sale cada casilla. Son 546 llegadas anotadas asi en
+`portales.json`. No hacia falta ninguna: estan todas dentro de
+`data1/map/mapNNN.mpc`.
+
+El `.mpc` no esta cifrado ni comprimido. Cabecera:
+
+```
++0   'MAP\0'
++4   LE32 ancho, LE32 alto        (en casillas)
++12  LE32 version 0x00010005
++16  LE32 32, LE32 32             (tamano de casilla)
++24  LE32 off_objetos, LE32 N_OBJETOS     <- CUENTA, no bytes
++32  LE32 off_xml_eventos, LE32 bytes
++52  LE32 off_firma, LE32 12      ('#EDCLBK\0' + LE32)
++60  LE32 off_xml_dialogos, LE32 bytes
++76  LE32 off_tags, LE32 N_TAGS           <- CUENTA, no bytes
++96  capa de casillas: ancho*alto registros de 6 bytes
+```
+
+Que los dos campos marcados son cuenta y no longitud se delata solo: en
+`map073.mpc` vale 3168 y `3168 * 74` cae **exactamente** sobre el offset del
+xml siguiente. Y la tabla de TAGs cierra en el **ultimo byte** del archivo en
+los 399 mapas que trae el cliente.
+
+Objeto, 74 bytes:
+
+```
++0   LE32 id de objeto    (60001 = el tornado de los portales)
++4   LE32 pixel x    +8  LE32 pixel y
++20  u8   0xc0 constante
++24  LE32 NUMERO DE EVENTO, o 0 si el objeto no dispara nada
+```
+
+TAG, longitud variable: `[LE32 numero][LE32 cuantos][cuantos * (LE32 px, LE32 py)]`.
+Un TAG es un punto de llegada con dos o tres casillas alternativas; los que
+pasan de 50 llevan muchas mas y son zonas de generador de monstruos.
+
+**La y va del reves.** El `.mpc` la cuenta desde abajo y el servidor desde
+arriba:
+
+```
+casilla_servidor = (px // 32, alto - 1 - py // 32)
+```
+
+Evidencia: `lava_cave.json` tiene **70 objetos de mapa capturados del
+servidor de Celestia** con su pixel exacto. Sin voltear casan **2 de 70**;
+volteando casan **los 70**.
+
+En `off_xml_eventos` hay `[LE32 longitud][xml utf-8]` con los eventos del
+mapa: disparadores (`觸發="3"` clicar, `"9"` pisar), condiciones y acciones,
+con los codigos de `setting/eventdef.xml`. Dos acciones estan **comprobadas
+contra medidas nuestras**:
+
+- **accion 3 = CHANGE_MAP(mapa, tag)** -- portal a otro escenario;
+- **accion 53 = GOTO_TAG(tag)** -- portal interno, mismo mapa.
+
+**La prueba:** `tools/mapa_del_cliente.py --validar` cruza el grafo que sale
+de los `.mpc` contra las 546 llegadas medidas una por una en `portales.json`.
+Reproduce **las 546**, con el 100% de los portales internos incluidos. Antes
+de arreglar Magic Kichen Path reproducia 533 de 534, y la unica que fallaba
+era precisamente la entrada a esa instancia, que no se habia medido cruzando
+sino leyendo un paquete de una captura del cliente Global.
+
+El servidor real coge **una de las tres casillas del TAG al azar**: de las
+546 que cuadran, 183 cayeron en la primera, 190 en la segunda y 173 en la
+tercera.
+
+Las demas acciones se dejan con su numero crudo a proposito: `eventdef.xml`
+las ordena de un modo que **no** coincide con el numero que usa el mapa -- el
+3 sale CHANGE_MAP cuando en eventdef va en la posicion 2 -- asi que ponerles
+nombre por posicion seria inventarse la tabla.
+
+---
+
+## Los generadores de monstruos tambien estan en el cliente  [PROBADO]
+
+Esto echa abajo la idea de que poblar un mapa cuesta una sesion de juego. El
+generador de monstruos es **un objeto mas** del array del `.mpc`:
+
+```
++21 u8  TAG de la zona donde aparecen, o 0 = en su propia casilla
++34 u16 id de monster.xml
++38 u16 tiempo de reaparicion (7200, 180 o 65535)
++42 u16 CUANTOS aparecen
+```
+
+**El conjunto de prueba es el stage 73**, Magic Kichen Path, porque es el
+unico mapa de instancia que tiene una captura con monstruos etiquetados (375).
+Contra el:
+
+- los **283** valores del `+34` resuelven **los 283** en `monster.xml`, sin un
+  solo numero que no sea un monstruo;
+- la suma de los `+42` da **384** donde la captura vio **375**;
+- el generador **mas cercano** a cada monstruo capturado es **de su misma
+  clase el 93%** de las veces; barajando las clases de los generadores esa
+  cifra cae al **14%**;
+- los **80** TAG que referencia el `+21` existen **los 80** en la tabla de
+  TAGs del mapa;
+- la dispersion real -- distancia Chebyshev de cada monstruo al generador de
+  su clase -- tiene **mediana 3**, p75 5 y p90 6.
+
+**Y no es un solo mapa.** Contra las 234 plantillas que el proyecto poblo con
+capturas de Celestia (llevan el entity_id del servidor, asi que la
+comparacion no es circular):
+
+- razon mediana entre lo declarado y lo capturado: **1,00**;
+- **197 de 234** mapas caen entre 0,9 y 1,1;
+- en **164 de 234** el total sale **exactamente igual**;
+- el **81%** de las clases que vio cada captura las declara tambien el cliente.
+
+Las excepciones tienen explicacion: los mapas de buceo (84-96) declaran la
+mitad porque la captura cuenta de mas al reaparecer los bichos con otro
+entity_id; los de Cybertronica (398-421) declaran el doble porque esas
+capturas son de una sola sesion y lo dicen en su nota; y Sandy Heights (405)
+declara 5140 contra 155, con 1036 generadores de cantidad 5, que es un caso a
+mirar aparte.
+
+### La segunda fuente: jumpmap.xml
+
+`setting/eng/jumpmap.xml` trae 355 filas de la ventana de salto, con el mapa
+y la casilla de llegada de cada una, y `jumpmapclass.xml` les pone categoria:
+la **19 es "Instance"**, con 32 filas. De esas 32, **16 caen EXACTAMENTE sobre
+un TAG** del `.mpc` y las otras a entre 1 y 9 casillas. O sea que dos partes
+distintas del cliente, sin relacion entre ellas, dicen lo mismo.
+
+Donde eso pasa se usa la casilla que confirma jumpmap. Es lo que fijo la
+vuelta de Gulp Room a Underground Square en (244,20): el TAG 2 de
+`map071.mpc` ofrece (243,25), (244,20) y (254,19), y la fila 73 de jumpmap
+senala la segunda.
+
+### Lo que esto abrio
+
+Gulp Room, la instancia de Underground Square, con sus cuatro cuartos (76,
+77, 78 y 79) y 861 monstruos. **Ninguna captura del proyecto entro ahi
+jamas**: de 1230 sesiones de mundo grabadas hay cero paquetes `0x0008` en
+esos mapas. Y el censo que sale del cliente cuadra monstruo por monstruo con
+la ficha de Gulp Room de la wiki del juego, que es una tercera fuente y de
+fuera del cliente.
+
+### Resultado: 28 instancias abiertas
+
+No queda ninguna entrada de instancia sin abrir. La unica que sigue con el
+destino en null es la **puerta de la Devil Kitchen** de Magic Kichen Path, en
+(29,203), y es correcto: su evento no viaja, solo saca el dialogo 10109, y
+cuadra con la mision de buscarle la llave.
+
+Los 28 cuartos abiertos, con los monstruos que declara el cliente:
+
+| instancia | stage | desde | bichos |
+|---|---|---|---|
+| Magic Kichen Path | 73, 74 | Lava Cave | 375 + 118 |
+| Gulp Room | 76-79 | Underground Square | 861 |
+| Evil Ship | 97 | Coral Vale | 123 |
+| Lost Region / Horrible | 98, 101 | Blue Ocean (un portal, dos opciones) | 278 + 352 |
+| Limitless Tower | 110 | Half-beast Hamlet | 271 |
+| Cloud-top Land | 111 | Giant Wooden Stairs | 184 |
+| Leviathan's Bedroom | 127 | Nightmare Palace | 584 |
+| Poker Castle | 158 | Chocolate Forest | 415 |
+| Dinosaur Arena | 168 | Shilly Desert | 354 |
+| Unknown Chambers | 176 | Ancient Tombs | 439 |
+| Phoenix Palace | 199 | Butterfly Garden | 315 |
+| Blizarro Castle | 216 | Silver Wing Cable Car Station | 373 |
+| Mundo Warship | 229 | Forbidden Sector | 520 |
+| Jade Tassel City | 238 | Ninja Land | 373 |
+| Queen Bee Hideout | 252 | Buzzing Stopover | 512 |
+| Floral Palace | 281 | Drip-drop Passage | 543 |
+| Flamefang Sanctum | 292 | Fragrant Courtyard | 350 |
+| Enchanted Sanctum | 302 | Reminiscence Cloister | 260 |
+| Apocalypso | 313 | Chrono Ruins | 294 |
+| Radiant Castle | 325 | Royal Ruins | 211 |
+| Leviathan's Domain | 340 | Peril Chasm | 340 |
+| Nightmare City | 351 | Forbidden Dusk | 277 |
+| Galaxia Palace | 360 | Horizon Archives | 153 |
+| Hadal Lair | 369 | Deep Prison | 166 |
+| Wintry Realm | 387 | Frozen Region | 141 |
+| Warring Realm | 395 | Champions' Arena | 166 |
+| Dragon's Lair | 403 | Seaside Grotto | 134 |
+| Core Zone | 411 | Steely Circuit | 203 |
+| Secret Peak | 422 | Bling Plaza | 235 |
+
+`portales.json` paso de 667 a 936 tornados, y `mapa_del_cliente.py --validar`
+reproduce **866 llegadas con cero fallos**.
+
+### El radio no se puede elegir mirando solo un portal
+
+Escoger la casilla de llegada mas despejada del TAG no basta. Quedaron tres
+rebotes -- uno en Blizarro Castle y dos en Dragon's Lair -- porque **el rebote
+no lo causa el radio del tornado por el que viajas, sino el del OTRO tornado
+sobre cuya zona aterrizas**, y ese esta en otra entrada del json, a veces de
+otro mapa, porque a un mapa se llega desde varios.
+
+Asi que hay una pasada final que recoge todas las casillas de llegada que
+caen en cada mapa, vengan de donde vengan, y encoge el radio de cada tornado
+hasta que no alcance ninguna. Los radios MEDIDOS no se tocan: uno medido ya
+se eligio en su dia para no rebotar.
+
+Los cuatro rebotes que quedan en el json son anteriores a esto, ninguno esta
+en un mapa de instancia, y uno -- el del nudo de Teddy Amusement -- esta
+documentado como esperado en su propia nota.
+
+### Las entradas de instancia con MENU
+
+No todas las entradas de instancia viajan al pisarlas. La de Blue Ocean
+(stage 90, tornado de (294,14)) tiene una sola accion: abrir el **dialogo 3
+del propio mapa**. Y es ese dialogo el que decide:
+
+```
+dialogo 3   msg 65385  "Noises of fighting come from the front.
+                        You have gotten very close to the Lost Region."
+  opcion 65386  "I want to enter the Lost Region"
+    -> 1000052 -> si EVENT_COND 22 (PARA_ENTER) de 98
+                  -> 1000054 -> CHANGE_MAP(98, 1)
+                  si no -> 1000055 -> aviso 1889
+  opcion 65387  "I want to enter the Horrible Lost Region"
+    -> 1000053 -> ... -> CHANGE_MAP(101, 1)
+```
+
+Los `下一句` por encima de 1000000 **son ids de dialogo del mismo xml**, no
+de evento: en map090 el xml declara nodos hasta el 1000057. La cadena se
+sigue por la rama que se cumple -- la que no lleva `反向="1"` -- hasta dar
+con la accion 3. `EVENT_COND 22` es PARA_ENTER, el hueco libre en la copia de
+la instancia; eso no se modela y aqui siempre se deja entrar.
+
+Esta forma la resuelve `mapa_del_cliente.Mapa.menu_de()` y encaja en el
+`preguntar` + `destinos` que `portales.json` ya tenia para los menus de Shuwa
+Market y Bayan Village.
+
+De las 26 entradas de instancia que quedaban en null, **24 traen el
+CHANGE_MAP directo** en el objeto -- stage 107 -> 110, 109 -> 111, 126 -> 127,
+157 -> 158, 167 -> 168, 175 -> 176, 198 -> 199, 215 -> 216, 228 -> 229,
+237 -> 238, 251 -> 252, 280 -> 281, 291 -> 292, 301 -> 302, 312 -> 313,
+324 -> 325, 339 -> 340, 350 -> 351, 359 -> 360, 386 -> 387, 394 -> 395,
+402 -> 403, 410 -> 411 y 420 -> 422 -- y dos van por dialogo. O sea que
+estaban resueltas en el cliente desde el principio y lo unico que faltaba era
+leerlo.
