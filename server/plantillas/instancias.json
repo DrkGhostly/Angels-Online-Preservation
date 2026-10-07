@@ -1,150 +1,789 @@
 {
- "_nota": "Instancias (Lost Region). Capturado en Celestia el 23/09/2026 desde Blue Ocean (stage 90). NO se pudo entrar: el servidor respondio que no. Aun asi el dialogo, los dos modos y los mensajes de rechazo quedaron medidos.",
- "entrada": {
-  "mapa": "Blue Ocean",
-  "stage": 90,
-  "dialogo": 65385,
-  "retrato": 0,
-  "opciones": [
-   65386,
-   65387
-  ],
-  "acciones": [
-   "0x0f4274",
-   "0x0f4275"
-  ],
-  "textos": {
-   "65385": "Noises of fighting come from the front. You have gotten very close to the Lost Region.",
-   "65386": "I want to enter the Lost Region",
-   "65387": "I want to enter the Horrible Lost Region",
-   "65388": "Not enough Mile points"
-  },
-  "_que_significa": "Son los DOS MODOS de la instancia: la normal y la Horrible, que es la version dura. El 65388 no llego a salir, pero estando en la misma tanda de mensajes dice que la entrada CUESTA Mile points: hay un requisito de moneda ademas del de equipo."
- },
- "rechazos": {
-  "1889": "You are not in a team or the instance server is full.",
-  "837": "You are not in a team in the map. You will return to the renascence place after %s seconds.",
-  "_donde": "string.xml del cliente, no msg.xml: el texto NO viaja por la red, solo su id.",
-  "_medido": "El 1889 es el que contesto Celestia al elegir la primera opcion, con el jugador EN EQUIPO de dos. O sea que en ESE servidor la instancia no esta levantada, no que faltara el equipo. El 837 no se llego a ver, pero cuenta lo que pasa DENTRO: si te quedas sin equipo en el mapa, la instancia te devuelve al punto de resurreccion pasados unos segundos; esa es la regla de salida forzosa."
- },
- "pendiente": [
-  "LAS POSICIONES Y LAS CANTIDADES. Es lo unico que no hay forma de sacar sin entrar: el cliente no asocia monstruos a mapas (monster.xml solo tiene estadisticas) y la wiki describe las zonas pero NO da coordenadas. Quien aparece donde lo decide el servidor y llega en el 0x0008.",
-  "Cuantos Mile points cuesta entrar y de donde salen.",
-  "El camino de salida al terminar la instancia.",
-  "Los objetos de mapa y los tornados de dentro.",
-  "El dialogo de dos modos NO es como se entra a las instancias en general. Lo dice el usuario, que las conoce del juego vivo: la mayoria no pregunta nada, se entra y ya. El menu de \"normal\" y \"hell\" es de unas pocas, quiza solo la de Atlantis, y puede que otra en Shuwa. Asi que no se debe tomar este dialogo como plantilla para las demas. SIN MEDIR.",
-  "Season Garden (stage 148) tiene una instancia, avisada por el usuario. Su entrada seria el tornado 113571 en (288,174), el unico suelto del mapa, pero no esta cruzado: no hay captura ni de la entrada ni de un dialogo. En la sesion de Season Garden no viajo ningun 0x0020 ni 0x0011."
- ],
+ "_nota": "mapas con copias paralelas. Ver tools/instancias_de_stage.py.",
  "mapas": {
+  "42": {
+   "nombre": "East Playground",
+   "copias": 5,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "43": {
+   "nombre": "West Playground",
+   "copias": 5,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "44": {
+   "nombre": "Training Palace",
+   "copias": 3,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "50": {
+   "nombre": "Territory Area I",
+   "copias": 8,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "59": {
+   "nombre": "Asmode Den",
+   "copias": 5,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "63": {
+   "nombre": "Aurora Dragon Area",
+   "copias": 3,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "64": {
+   "nombre": "Beasts Dragon Area",
+   "copias": 3,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "65": {
+   "nombre": "Steel Dragon Area",
+   "copias": 3,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "66": {
+   "nombre": "Shadow Dragon Area",
+   "copias": 3,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "73": {
+   "nombre": "Magic Kichen Path",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "74": {
+   "nombre": "Magic Kichen Path",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "75": {
+   "nombre": "Magic Kichen Path",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "76": {
+   "nombre": "Gulp Room",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "77": {
+   "nombre": "Gulp Room",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "78": {
+   "nombre": "Gulp Room",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "79": {
+   "nombre": "Gulp Room",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "81": {
+   "nombre": "Forbidden Snow Area",
+   "copias": 15,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "97": {
+   "nombre": "Evil Ship",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
   "98": {
    "nombre": "Lost Region",
-   "fichero": "map\\map098.mpc"
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "100": {
+   "nombre": "Territory Area II",
+   "copias": 8,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
   },
   "101": {
    "nombre": "Horrible Lost Region",
-   "fichero": "map\\map101.mpc"
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "110": {
+   "nombre": "Limitless Tower",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "111": {
+   "nombre": "Cloud-top Land",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "115": {
+   "nombre": "Halloween Area I",
+   "copias": 20,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "116": {
+   "nombre": "粽夏王窟",
+   "copias": 4,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "117": {
+   "nombre": "Territory Area III",
+   "copias": 4,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "127": {
+   "nombre": "Leviathan's Bedroom",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "142": {
+   "nombre": "East Playground",
+   "copias": 5,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "143": {
+   "nombre": "West Playground",
+   "copias": 5,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "144": {
+   "nombre": "Training Palace",
+   "copias": 3,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "145": {
+   "nombre": "Botti Palace",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "149": {
+   "nombre": "Halloween Area II",
+   "copias": 20,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "150": {
+   "nombre": "Watermelon Area",
+   "copias": 20,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "158": {
+   "nombre": "Poker Castle",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "168": {
+   "nombre": "Dinosaur Arena",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "176": {
+   "nombre": "Unknown Chambers",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "199": {
+   "nombre": "Phoenix Palace",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "216": {
+   "nombre": "Blizarro Castle",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "217": {
+   "nombre": "Olympus Tower",
+   "copias": 1000,
+   "dinamica": true,
+   "asignacion": "individual",
+   "tope_personas": 1,
+   "sin_cambio_de_canal": false
+  },
+  "229": {
+   "nombre": "Mundo Warship",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "230": {
+   "nombre": "Halloween Area III",
+   "copias": 20,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "238": {
+   "nombre": "Jade Tassel City",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "242": {
+   "nombre": "East Playground",
+   "copias": 5,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "243": {
+   "nombre": "West Playground",
+   "copias": 5,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "244": {
+   "nombre": "Training Palace",
+   "copias": 3,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "252": {
+   "nombre": "Queen Bee Hideout",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "253": {
+   "nombre": "低階獸人祕穴",
+   "copias": 20,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "254": {
+   "nombre": "中階獸人祕穴",
+   "copias": 20,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "255": {
+   "nombre": "高階獸人祕穴",
+   "copias": 20,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "256": {
+   "nombre": "煉獄迎夏祕境",
+   "copias": 20,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "263": {
+   "nombre": "Mahal Altar",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "264": {
+   "nombre": "Hell Mahal Altar",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "265": {
+   "nombre": "GVG1",
+   "copias": 9,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 1000,
+   "sin_cambio_de_canal": false
+  },
+  "266": {
+   "nombre": "GVG2",
+   "copias": 9,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 1000,
+   "sin_cambio_de_canal": false
+  },
+  "267": {
+   "nombre": "GVG3",
+   "copias": 9,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 1000,
+   "sin_cambio_de_canal": false
+  },
+  "268": {
+   "nombre": "GVG4",
+   "copias": 9,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 1000,
+   "sin_cambio_de_canal": false
+  },
+  "269": {
+   "nombre": "GVG5",
+   "copias": 9,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 1000,
+   "sin_cambio_de_canal": false
+  },
+  "270": {
+   "nombre": "GVG6",
+   "copias": 9,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 1000,
+   "sin_cambio_de_canal": false
+  },
+  "271": {
+   "nombre": "GVG7",
+   "copias": 9,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 1000,
+   "sin_cambio_de_canal": false
+  },
+  "272": {
+   "nombre": "GVG8",
+   "copias": 9,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 1000,
+   "sin_cambio_de_canal": false
+  },
+  "281": {
+   "nombre": "Floral Palace",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "283": {
+   "nombre": "特殊活動海灘",
+   "copias": 15,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "284": {
+   "nombre": "Halloween Area IV",
+   "copias": 20,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "292": {
+   "nombre": "Flamefang Sanctum",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "302": {
+   "nombre": "Enchanted Sanctum",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "304": {
+   "nombre": "Halloween Area V",
+   "copias": 20,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "305": {
+   "nombre": "神秘空間",
+   "copias": 20,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "313": {
+   "nombre": "Apocalypso",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "315": {
+   "nombre": "奧林帕斯測試塔2",
+   "copias": 1000,
+   "dinamica": true,
+   "asignacion": "individual",
+   "tope_personas": 1,
+   "sin_cambio_de_canal": false
+  },
+  "317": {
+   "nombre": "X'mas Village",
+   "copias": 5,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 1000,
+   "sin_cambio_de_canal": false
+  },
+  "325": {
+   "nombre": "Radiant Castle",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "329": {
+   "nombre": "Halloween Area VI",
+   "copias": 20,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "332": {
+   "nombre": "Olympus Tower",
+   "copias": 1000,
+   "dinamica": true,
+   "asignacion": "individual",
+   "tope_personas": 1,
+   "sin_cambio_de_canal": false
+  },
+  "340": {
+   "nombre": "Leviathan's Domain",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "342": {
+   "nombre": "神秘異次元",
+   "copias": 15,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "343": {
+   "nombre": "日版初階活動地圖",
+   "copias": 20,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "351": {
+   "nombre": "Nightmare City",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "360": {
+   "nombre": "Galaxia Palace",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "362": {
+   "nombre": "Ancient Cave",
+   "copias": 16,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "369": {
+   "nombre": "Hadal Lair",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": true
+  },
+  "377": {
+   "nombre": "Territory Area IV",
+   "copias": 2,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": false
+  },
+  "380": {
+   "nombre": "深淵-淵海獸巢",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": true
+  },
+  "387": {
+   "nombre": "Wintry Realm",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": true
+  },
+  "388": {
+   "nombre": "日版大師付費祕境",
+   "copias": 20,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": true
+  },
+  "395": {
+   "nombre": "Warring Realm",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": true
+  },
+  "403": {
+   "nombre": "Dragon's Lair",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": true
+  },
+  "404": {
+   "nombre": "日版大師『2』付費祕境",
+   "copias": 20,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": true
+  },
+  "411": {
+   "nombre": "Core Zone",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": true
+  },
+  "412": {
+   "nombre": "Halloween Area VII",
+   "copias": 20,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": true
+  },
+  "413": {
+   "nombre": "C-Dinosaur Arena",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": true
+  },
+  "414": {
+   "nombre": "C-End Time",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": true
+  },
+  "415": {
+   "nombre": "日版大師『3』付費祕境",
+   "copias": 20,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": true
+  },
+  "422": {
+   "nombre": "Secret Peak",
+   "copias": 15,
+   "dinamica": true,
+   "asignacion": "grupo",
+   "tope_personas": 0,
+   "sin_cambio_de_canal": true
+  },
+  "500": {
+   "nombre": "house",
+   "copias": 4000,
+   "dinamica": true,
+   "asignacion": "",
+   "tope_personas": 20,
+   "sin_cambio_de_canal": false
+  },
+  "501": {
+   "nombre": "Farm",
+   "copias": 2000,
+   "dinamica": true,
+   "asignacion": "",
+   "tope_personas": 100,
+   "sin_cambio_de_canal": false
+  },
+  "801": {
+   "nombre": "測試公會戰場1",
+   "copias": 5,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 1000,
+   "sin_cambio_de_canal": false
+  },
+  "802": {
+   "nombre": "測試公會戰場2",
+   "copias": 5,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 1000,
+   "sin_cambio_de_canal": false
+  },
+  "803": {
+   "nombre": "測試公會戰場3",
+   "copias": 5,
+   "dinamica": false,
+   "asignacion": "",
+   "tope_personas": 1000,
+   "sin_cambio_de_canal": false
   }
- },
- "banderas_de_stage": {
-  "no_mostrar_minimapa": true,
-  "no_marcable": true,
-  "espacio_paralelo": 15,
-  "espacio_dinamico": true,
-  "tipo_de_asignacion": "por equipo (隊伍)",
-  "_que_explica": "Que la instancia no salga en el minimapa es COSA DEL CLIENTE: lo dice stage.xml, no hay que reproducir nada. Blue Ocean, el mapa de al lado, no lleva ninguna de las tres banderas. El 15 del espacio paralelo parece ser cuantas copias simultaneas admite, lo que encaja con el rechazo \"or the instance server is full\". El \"por equipo\" confirma la regla de entrada desde los datos, no solo desde el mensaje de error."
- },
- "bestiario": {
-  "_fuente": "Wiki local (bestiary_by-area.html), CRUZADA con monster.xml del cliente: nivel, HP y exp coinciden en las ocho, y sus npc_type salen consecutivos del 1249 al 1256, que es el bloque de Lost Region. Eso da confianza en la lista.",
-  "lost_region_normales": [
-   {
-    "nombre": "Linberd Sender",
-    "npc_type": 1249,
-    "nivel": 77,
-    "hp": 6090
-   },
-   {
-    "nombre": "Angel Fishguard",
-    "npc_type": 1250,
-    "nivel": 82,
-    "hp": 6538
-   },
-   {
-    "nombre": "Merman Guard",
-    "npc_type": 1251,
-    "nivel": 84,
-    "hp": 6720
-   },
-   {
-    "nombre": "Mermaid",
-    "npc_type": 1252,
-    "nivel": 87,
-    "hp": 6996
-   },
-   {
-    "nombre": "Fishguard Leader",
-    "npc_type": 1253,
-    "nivel": 87,
-    "hp": 6996
-   },
-   {
-    "nombre": "Mermaid Hunter",
-    "npc_type": 1254,
-    "nivel": 93,
-    "hp": 7556
-   },
-   {
-    "nombre": "Slip Angel Fish",
-    "npc_type": 1255,
-    "nivel": 93,
-    "hp": 7556
-   },
-   {
-    "nombre": "Linberd Captain",
-    "npc_type": 1256,
-    "nivel": 94,
-    "hp": 7650
-   }
-  ],
-  "lost_region_jefes": [
-   {
-    "nombre": "Hicalu Machine",
-    "npc_type": 1391,
-    "nivel": 85,
-    "hp": 33311
-   },
-   {
-    "nombre": "Hicalu Machine",
-    "npc_type": 1257,
-    "nivel": 95,
-    "hp": 60232
-   },
-   {
-    "nombre": "Hicalu 1",
-    "npc_type": 1228,
-    "nivel": 100,
-    "hp": 91944
-   }
-  ],
-  "horrible_lost_region_jefes": [
-   {
-    "nombre": "Hicalu Machine",
-    "npc_type": 3521,
-    "nivel": 85,
-    "hp": 149900
-   },
-   {
-    "nombre": "Hicalu Machine",
-    "npc_type": 3522,
-    "nivel": 95,
-    "hp": 170888
-   },
-   {
-    "nombre": "Hicalu 1",
-    "npc_type": 3523,
-    "nivel": 100,
-    "hp": 185022
-   }
-  ],
-  "_ojo": "Hay TRES \"Hicalu Machine\" con el mismo nombre y npc_type distinto, y la version Horrible usa otros tres ids (3521-3523) con cinco veces mas HP. Buscar por nombre daria el equivocado: hay que ir por npc_type."
  }
 }

@@ -1,0 +1,1208 @@
+{
+ "_nota": "opcodes C->S que arma el cliente. Ver tools/opcodes_del_cliente.py.",
+ "opcodes": {
+  "0x0002": {
+   "bytes_de_cuerpo": [
+    33
+   ],
+   "funciones": [
+    "0x614300"
+   ],
+   "nativas": []
+  },
+  "0x0003": {
+   "bytes_de_cuerpo": [
+    0,
+    57
+   ],
+   "funciones": [
+    "0x4C0C50",
+    "0x6143F0"
+   ],
+   "nativas": []
+  },
+  "0x0004": {
+   "bytes_de_cuerpo": [
+    34
+   ],
+   "funciones": [
+    "0x4C4990"
+   ],
+   "nativas": []
+  },
+  "0x0005": {
+   "bytes_de_cuerpo": [
+    1,
+    6
+   ],
+   "funciones": [
+    "0x4C4AC0",
+    "0x561250"
+   ],
+   "nativas": []
+  },
+  "0x0006": {
+   "bytes_de_cuerpo": [
+    16,
+    35
+   ],
+   "funciones": [
+    "0x4C4A20",
+    "0x5612E0"
+   ],
+   "nativas": []
+  },
+  "0x0007": {
+   "bytes_de_cuerpo": [
+    1,
+    66
+   ],
+   "funciones": [
+    "0x4C16D0",
+    "0x614560"
+   ],
+   "nativas": []
+  },
+  "0x0009": {
+   "bytes_de_cuerpo": [
+    0,
+    66
+   ],
+   "funciones": [
+    "0x4C1B10",
+    "0x6146F0"
+   ],
+   "nativas": []
+  },
+  "0x000A": {
+   "bytes_de_cuerpo": [
+    33
+   ],
+   "funciones": [
+    "0x4C1E30"
+   ],
+   "nativas": []
+  },
+  "0x000B": {
+   "bytes_de_cuerpo": [
+    1,
+    71
+   ],
+   "funciones": [
+    "0x4C4C60",
+    "0x4C8BC0",
+    "0x533D80",
+    "0x553F40",
+    "0x554A80",
+    "0x555710",
+    "0x556370",
+    "0x556B70",
+    "0x614760"
+   ],
+   "nativas": [
+    "talkaction"
+   ]
+  },
+  "0x000C": {
+   "bytes_de_cuerpo": [
+    1,
+    530
+   ],
+   "funciones": [
+    "0x51B1B0",
+    "0x614AB0"
+   ],
+   "nativas": []
+  },
+  "0x000D": {
+   "bytes_de_cuerpo": [
+    9,
+    18
+   ],
+   "funciones": [
+    "0x4C4B40",
+    "0x614D10"
+   ],
+   "nativas": []
+  },
+  "0x000E": {
+   "bytes_de_cuerpo": [
+    18
+   ],
+   "funciones": [
+    "0x4C4BD0"
+   ],
+   "nativas": []
+  },
+  "0x000F": {
+   "bytes_de_cuerpo": [
+    8
+   ],
+   "funciones": [
+    "0x614FC0"
+   ],
+   "nativas": []
+  },
+  "0x0011": {
+   "bytes_de_cuerpo": [
+    0,
+    4
+   ],
+   "funciones": [
+    "0x51BC40",
+    "0x5C1220"
+   ],
+   "nativas": [
+    "autorelogingame",
+    "changesubset",
+    "logout"
+   ]
+  },
+  "0x0012": {
+   "bytes_de_cuerpo": [
+    4
+   ],
+   "funciones": [
+    "0x614EB0"
+   ],
+   "nativas": [
+    "changeitemslot"
+   ]
+  },
+  "0x0013": {
+   "bytes_de_cuerpo": [
+    6
+   ],
+   "funciones": [
+    "0x614F40"
+   ],
+   "nativas": [
+    "destroyitemslot"
+   ]
+  },
+  "0x0016": {
+   "bytes_de_cuerpo": [
+    5
+   ],
+   "funciones": [
+    "0x614DA0"
+   ],
+   "nativas": [
+    "antiplaytime",
+    "automallrequestmalldata",
+    "closebank",
+    "deletequest",
+    "dropemot",
+    "dropxquickemot",
+    "equipcrown",
+    "netcommand",
+    "opencollectionbook",
+    "quickemot",
+    "repairclose",
+    "sendcollect",
+    "switchsubset"
+   ]
+  },
+  "0x0017": {
+   "bytes_de_cuerpo": [
+    18
+   ],
+   "funciones": [
+    "0x615220"
+   ],
+   "nativas": [
+    "groupinvite"
+   ]
+  },
+  "0x0018": {
+   "bytes_de_cuerpo": [
+    5
+   ],
+   "funciones": [
+    "0x6152B0"
+   ],
+   "nativas": [
+    "groupdeny",
+    "groupdisband",
+    "groupjoin",
+    "groupkick",
+    "groupleave",
+    "grouppromote"
+   ]
+  },
+  "0x0019": {
+   "bytes_de_cuerpo": [
+    21
+   ],
+   "funciones": [
+    "0x615680",
+    "0x615BD0"
+   ],
+   "nativas": [
+    "friendinvite",
+    "friendinvitebyname"
+   ]
+  },
+  "0x001A": {
+   "bytes_de_cuerpo": [
+    8
+   ],
+   "funciones": [
+    "0x570000"
+   ],
+   "nativas": []
+  },
+  "0x001B": {
+   "bytes_de_cuerpo": [
+    4
+   ],
+   "funciones": [
+    "0x616070"
+   ],
+   "nativas": [
+    "friendaccept"
+   ]
+  },
+  "0x001C": {
+   "bytes_de_cuerpo": [
+    0
+   ],
+   "funciones": [
+    "0x570890",
+    "0x616140"
+   ],
+   "nativas": [
+    "friendcancel"
+   ]
+  },
+  "0x001D": {
+   "bytes_de_cuerpo": [
+    8
+   ],
+   "funciones": [
+    "0x618430"
+   ],
+   "nativas": []
+  },
+  "0x001E": {
+   "bytes_de_cuerpo": [
+    4
+   ],
+   "funciones": [
+    "0x6161E0"
+   ],
+   "nativas": [
+    "friendremoveok"
+   ]
+  },
+  "0x001F": {
+   "bytes_de_cuerpo": [
+    34
+   ],
+   "funciones": [
+    "0x616BD0"
+   ],
+   "nativas": [
+    "fgroupnameok"
+   ]
+  },
+  "0x0020": {
+   "bytes_de_cuerpo": [
+    21
+   ],
+   "funciones": [
+    "0x616E40"
+   ],
+   "nativas": [
+    "fgroupchangeok"
+   ]
+  },
+  "0x0021": {
+   "bytes_de_cuerpo": [
+    17
+   ],
+   "funciones": [
+    "0x6167C0"
+   ],
+   "nativas": [
+    "fgroupremoveok"
+   ]
+  },
+  "0x0023": {
+   "bytes_de_cuerpo": [
+    0
+   ],
+   "funciones": [
+    "0x61A250"
+   ],
+   "nativas": [
+    "salecloseok"
+   ]
+  },
+  "0x0024": {
+   "bytes_de_cuerpo": [
+    4
+   ],
+   "funciones": [
+    "0x61A2D0"
+   ],
+   "nativas": [
+    "saletradewnd"
+   ]
+  },
+  "0x002B": {
+   "bytes_de_cuerpo": [
+    4
+   ],
+   "funciones": [
+    "0x61D460"
+   ],
+   "nativas": [
+    "tradeinviteex"
+   ]
+  },
+  "0x002C": {
+   "bytes_de_cuerpo": [
+    4
+   ],
+   "funciones": [
+    "0x61D550"
+   ],
+   "nativas": [
+    "tradeinviteok"
+   ]
+  },
+  "0x002D": {
+   "bytes_de_cuerpo": [
+    8
+   ],
+   "funciones": [
+    "0x614670"
+   ],
+   "nativas": []
+  },
+  "0x002E": {
+   "bytes_de_cuerpo": [
+    5
+   ],
+   "funciones": [
+    "0x61B000"
+   ],
+   "nativas": [
+    "usecardaddtocardbook",
+    "useexppaper",
+    "useextrasaleslot",
+    "useitem",
+    "useitem2itemconfirm",
+    "useitem2target"
+   ]
+  },
+  "0x002F": {
+   "bytes_de_cuerpo": [
+    9
+   ],
+   "funciones": [
+    "0x614E20"
+   ],
+   "nativas": [
+    "buycltnslot",
+    "destroyitemslot",
+    "dropbankitem",
+    "netcommand2",
+    "sendrentbank",
+    "usebankitem"
+   ]
+  },
+  "0x0030": {
+   "bytes_de_cuerpo": [
+    0
+   ],
+   "funciones": [
+    "0x61D660"
+   ],
+   "nativas": [
+    "tradeclose"
+   ]
+  },
+  "0x0031": {
+   "bytes_de_cuerpo": [
+    0
+   ],
+   "funciones": [
+    "0x61DAF0"
+   ],
+   "nativas": [
+    "tradesetok"
+   ]
+  },
+  "0x0032": {
+   "bytes_de_cuerpo": [
+    12
+   ],
+   "funciones": [
+    "0x61D860"
+   ],
+   "nativas": [
+    "tradedrop"
+   ]
+  },
+  "0x0033": {
+   "bytes_de_cuerpo": [
+    4
+   ],
+   "funciones": [
+    "0x61DC40"
+   ],
+   "nativas": [
+    "trademoneyok"
+   ]
+  },
+  "0x0034": {
+   "bytes_de_cuerpo": [
+    0
+   ],
+   "funciones": [
+    "0x61DCD0"
+   ],
+   "nativas": [
+    "tradetrade"
+   ]
+  },
+  "0x0035": {
+   "bytes_de_cuerpo": [
+    4
+   ],
+   "funciones": [
+    "0x605420",
+    "0x61DDB0"
+   ],
+   "nativas": [
+    "tradereject"
+   ]
+  },
+  "0x0036": {
+   "bytes_de_cuerpo": [
+    4
+   ],
+   "funciones": [
+    "0x560500",
+    "0x61DF80"
+   ],
+   "nativas": [
+    "makestart"
+   ]
+  },
+  "0x0037": {
+   "bytes_de_cuerpo": [
+    0
+   ],
+   "funciones": [
+    "0x61E0C0"
+   ],
+   "nativas": [
+    "makestop"
+   ]
+  },
+  "0x0038": {
+   "bytes_de_cuerpo": [
+    8
+   ],
+   "funciones": [
+    "0x61E170"
+   ],
+   "nativas": [
+    "dropbankitem",
+    "setsplitmoneynum"
+   ]
+  },
+  "0x0039": {
+   "bytes_de_cuerpo": [
+    8
+   ],
+   "funciones": [
+    "0x61E200"
+   ],
+   "nativas": [
+    "setsplitmoneynum"
+   ]
+  },
+  "0x003A": {
+   "bytes_de_cuerpo": [
+    9
+   ],
+   "funciones": [
+    "0x61E290"
+   ],
+   "nativas": []
+  },
+  "0x003B": {
+   "bytes_de_cuerpo": [
+    8
+   ],
+   "funciones": [
+    "0x61E330"
+   ],
+   "nativas": [
+    "repairone"
+   ]
+  },
+  "0x003C": {
+   "bytes_de_cuerpo": [
+    0
+   ],
+   "funciones": [
+    "0x556B70",
+    "0x61E430"
+   ],
+   "nativas": [
+    "repairall"
+   ]
+  },
+  "0x003D": {
+   "bytes_de_cuerpo": [
+    13
+   ],
+   "funciones": [
+    "0x61E530"
+   ],
+   "nativas": []
+  },
+  "0x003E": {
+   "bytes_de_cuerpo": [
+    1
+   ],
+   "funciones": [
+    "0x61E6B0"
+   ],
+   "nativas": [
+    "petcommand"
+   ]
+  },
+  "0x003F": {
+   "bytes_de_cuerpo": [
+    71
+   ],
+   "funciones": [
+    "0x61F1B0"
+   ],
+   "nativas": [
+    "defaultguildlogo"
+   ]
+  },
+  "0x0040": {
+   "bytes_de_cuerpo": [
+    17
+   ],
+   "funciones": [
+    "0x61E730"
+   ],
+   "nativas": []
+  },
+  "0x0041": {
+   "bytes_de_cuerpo": [
+    21
+   ],
+   "funciones": [
+    "0x61E7B0"
+   ],
+   "nativas": [
+    "createguild"
+   ]
+  },
+  "0x0042": {
+   "bytes_de_cuerpo": [
+    17
+   ],
+   "funciones": [
+    "0x61E840"
+   ],
+   "nativas": [
+    "guildinvite"
+   ]
+  },
+  "0x0043": {
+   "bytes_de_cuerpo": [
+    21
+   ],
+   "funciones": [
+    "0x609400"
+   ],
+   "nativas": []
+  },
+  "0x0044": {
+   "bytes_de_cuerpo": [
+    11
+   ],
+   "funciones": [
+    "0x5BF090"
+   ],
+   "nativas": [
+    "dropquickkey"
+   ]
+  },
+  "0x0045": {
+   "bytes_de_cuerpo": [
+    17
+   ],
+   "funciones": [
+    "0x61F320"
+   ],
+   "nativas": [
+    "answercaptcha"
+   ]
+  },
+  "0x0046": {
+   "bytes_de_cuerpo": [
+    169
+   ],
+   "funciones": [
+    "0x5C0AF0"
+   ],
+   "nativas": [
+    "sendsafeverifychange"
+   ]
+  },
+  "0x0047": {
+   "bytes_de_cuerpo": [
+    272
+   ],
+   "funciones": [
+    "0x5C0AF0"
+   ],
+   "nativas": [
+    "sendsafeverifychange"
+   ]
+  },
+  "0x0048": {
+   "bytes_de_cuerpo": [
+    136
+   ],
+   "funciones": [
+    "0x5C0A30"
+   ],
+   "nativas": [
+    "sendsafeverifydelete"
+   ]
+  },
+  "0x0049": {
+   "bytes_de_cuerpo": [
+    136
+   ],
+   "funciones": [
+    "0x5C0DE0"
+   ],
+   "nativas": [
+    "sendsafeverify"
+   ]
+  },
+  "0x004C": {
+   "bytes_de_cuerpo": [
+    5
+   ],
+   "funciones": [
+    "0x6228A0"
+   ],
+   "nativas": [
+    "marryaskcancel",
+    "marryaskok"
+   ]
+  },
+  "0x004D": {
+   "bytes_de_cuerpo": [
+    18
+   ],
+   "funciones": [
+    "0x622930"
+   ],
+   "nativas": []
+  },
+  "0x004E": {
+   "bytes_de_cuerpo": [
+    0
+   ],
+   "funciones": [
+    "0x622AF0"
+   ],
+   "nativas": []
+  },
+  "0x004F": {
+   "bytes_de_cuerpo": [
+    4
+   ],
+   "funciones": [
+    "0x622B60"
+   ],
+   "nativas": []
+  },
+  "0x0101": {
+   "bytes_de_cuerpo": [
+    21
+   ],
+   "funciones": [
+    "0x5A7200"
+   ],
+   "nativas": []
+  },
+  "0x0102": {
+   "bytes_de_cuerpo": [
+    25
+   ],
+   "funciones": [
+    "0x5A7290"
+   ],
+   "nativas": []
+  },
+  "0x0103": {
+   "bytes_de_cuerpo": [
+    25
+   ],
+   "funciones": [
+    "0x5A7310"
+   ],
+   "nativas": []
+  },
+  "0x0106": {
+   "bytes_de_cuerpo": [
+    38
+   ],
+   "funciones": [
+    "0x5A7390"
+   ],
+   "nativas": []
+  },
+  "0x0107": {
+   "bytes_de_cuerpo": [
+    38
+   ],
+   "funciones": [
+    "0x5A7420"
+   ],
+   "nativas": []
+  },
+  "0x0123": {
+   "bytes_de_cuerpo": [
+    46
+   ],
+   "funciones": [
+    "0x6184E0",
+    "0x619200"
+   ],
+   "nativas": [
+    "chatroomadd",
+    "friendmessage"
+   ]
+  },
+  "0x0125": {
+   "bytes_de_cuerpo": [
+    5
+   ],
+   "funciones": [
+    "0x618DC0"
+   ],
+   "nativas": [
+    "chatroomrefresh"
+   ]
+  },
+  "0x0127": {
+   "bytes_de_cuerpo": [
+    8
+   ],
+   "funciones": [
+    "0x618AB0",
+    "0x619330"
+   ],
+   "nativas": [
+    "chatroomjoin",
+    "messageinviteok"
+   ]
+  },
+  "0x0128": {
+   "bytes_de_cuerpo": [
+    8
+   ],
+   "funciones": [
+    "0x618CB0",
+    "0x619650",
+    "0x619900"
+   ],
+   "nativas": [
+    "chatroomkick",
+    "chatroomleave",
+    "messageclose"
+   ]
+  },
+  "0x012A": {
+   "bytes_de_cuerpo": [
+    4
+   ],
+   "funciones": [
+    "0x60A0E0"
+   ],
+   "nativas": [
+    "deletetreasuremap"
+   ]
+  },
+  "0x012B": {
+   "bytes_de_cuerpo": [
+    5
+   ],
+   "funciones": [
+    "0x558ED0",
+    "0x620C20"
+   ],
+   "nativas": [
+    "mallbuy"
+   ]
+  },
+  "0x012C": {
+   "bytes_de_cuerpo": [
+    13,
+    21
+   ],
+   "funciones": [
+    "0x619790",
+    "0x621610"
+   ],
+   "nativas": [
+    "chatroommaster",
+    "mallgive"
+   ]
+  },
+  "0x012D": {
+   "bytes_de_cuerpo": [
+    0
+   ],
+   "funciones": [
+    "0x61F4D0"
+   ],
+   "nativas": []
+  },
+  "0x012E": {
+   "bytes_de_cuerpo": [
+    4
+   ],
+   "funciones": [
+    "0x622810"
+   ],
+   "nativas": [
+    "pickuptower"
+   ]
+  },
+  "0x0130": {
+   "bytes_de_cuerpo": [
+    2
+   ],
+   "funciones": [
+    "0x6229C0"
+   ],
+   "nativas": [
+    "sentmsgtorewardcardset"
+   ]
+  },
+  "0x0131": {
+   "bytes_de_cuerpo": [
+    21
+   ],
+   "funciones": [
+    "0x622A50"
+   ],
+   "nativas": [
+    "viewotherplayercardbook"
+   ]
+  },
+  "0x0132": {
+   "bytes_de_cuerpo": [
+    8
+   ],
+   "funciones": [
+    "0x61B000"
+   ],
+   "nativas": [
+    "usecardaddtocardbook",
+    "useexppaper",
+    "useextrasaleslot",
+    "useitem",
+    "useitem2itemconfirm",
+    "useitem2target"
+   ]
+  },
+  "0x0134": {
+   "bytes_de_cuerpo": [
+    8
+   ],
+   "funciones": [
+    "0x622C20"
+   ],
+   "nativas": [
+    "wordbuyconfirm"
+   ]
+  },
+  "0x0136": {
+   "bytes_de_cuerpo": [
+    4
+   ],
+   "funciones": [
+    "0x622D90"
+   ],
+   "nativas": [
+    "furnishhouse"
+   ]
+  },
+  "0x0137": {
+   "bytes_de_cuerpo": [
+    37
+   ],
+   "funciones": [
+    "0x622EC0"
+   ],
+   "nativas": [
+    "registryhouse"
+   ]
+  },
+  "0x0138": {
+   "bytes_de_cuerpo": [
+    0
+   ],
+   "funciones": [
+    "0x6230F0"
+   ],
+   "nativas": [
+    "leavefurnish",
+    "leavehouse"
+   ]
+  },
+  "0x0139": {
+   "bytes_de_cuerpo": [
+    0
+   ],
+   "funciones": [
+    "0x623170"
+   ],
+   "nativas": [
+    "closehouse"
+   ]
+  },
+  "0x013A": {
+   "bytes_de_cuerpo": [
+    37
+   ],
+   "funciones": [
+    "0x66D1E0"
+   ],
+   "nativas": [
+    "tryentryhouse"
+   ]
+  },
+  "0x013C": {
+   "bytes_de_cuerpo": [
+    4
+   ],
+   "funciones": [
+    "0x6235D0"
+   ],
+   "nativas": []
+  },
+  "0x013D": {
+   "bytes_de_cuerpo": [
+    20
+   ],
+   "funciones": [
+    "0x623650"
+   ],
+   "nativas": []
+  },
+  "0x013E": {
+   "bytes_de_cuerpo": [
+    4
+   ],
+   "funciones": [
+    "0x623710"
+   ],
+   "nativas": []
+  },
+  "0x013F": {
+   "bytes_de_cuerpo": [
+    129
+   ],
+   "funciones": [
+    "0x6237A0"
+   ],
+   "nativas": [
+    "trycastvote"
+   ]
+  },
+  "0x0140": {
+   "bytes_de_cuerpo": [
+    2
+   ],
+   "funciones": [
+    "0x624020"
+   ],
+   "nativas": [
+    "votenotechangepage"
+   ]
+  },
+  "0x0141": {
+   "bytes_de_cuerpo": [
+    38
+   ],
+   "funciones": [
+    "0x6243C0",
+    "0x66D320"
+   ],
+   "nativas": [
+    "listtrypwenterhouse",
+    "trygotosenderhouse"
+   ]
+  },
+  "0x0142": {
+   "bytes_de_cuerpo": [
+    7
+   ],
+   "funciones": [
+    "0x624500"
+   ],
+   "nativas": [
+    "gotobillboardhouse"
+   ]
+  },
+  "0x0143": {
+   "bytes_de_cuerpo": [
+    0
+   ],
+   "funciones": [
+    "0x5EE7D0"
+   ],
+   "nativas": []
+  },
+  "0x0147": {
+   "bytes_de_cuerpo": [
+    9
+   ],
+   "funciones": [
+    "0x61DEC0"
+   ],
+   "nativas": [
+    "fuseok"
+   ]
+  },
+  "0x0148": {
+   "bytes_de_cuerpo": [
+    8
+   ],
+   "funciones": [
+    "0x624690"
+   ],
+   "nativas": [
+    "exchangeconfirm"
+   ]
+  },
+  "0x014A": {
+   "bytes_de_cuerpo": [
+    4
+   ],
+   "funciones": [
+    "0x6734F0"
+   ],
+   "nativas": [
+    "gotodailyeventmap"
+   ]
+  },
+  "0x014B": {
+   "bytes_de_cuerpo": [
+    0
+   ],
+   "funciones": [
+    "0x5B6B60"
+   ],
+   "nativas": []
+  },
+  "0x0151": {
+   "bytes_de_cuerpo": [
+    4
+   ],
+   "funciones": [
+    "0x673290"
+   ],
+   "nativas": [
+    "gotojumpmap"
+   ]
+  },
+  "0x0153": {
+   "bytes_de_cuerpo": [
+    47
+   ],
+   "funciones": [
+    "0x5D60F0"
+   ],
+   "nativas": [
+    "QTAns1",
+    "QTAns2",
+    "QTAns3"
+   ]
+  },
+  "0x015A": {
+   "bytes_de_cuerpo": [
+    7
+   ],
+   "funciones": [
+    "0x614C80"
+   ],
+   "nativas": [
+    "gvginfusematerial"
+   ]
+  },
+  "0x015C": {
+   "bytes_de_cuerpo": [
+    13
+   ],
+   "funciones": [
+    "0x5F8D90"
+   ],
+   "nativas": [
+    "sendChangeSlotSetting"
+   ]
+  },
+  "0x015E": {
+   "bytes_de_cuerpo": [
+    1
+   ],
+   "funciones": [
+    "0x649610",
+    "0x6496B0"
+   ],
+   "nativas": [
+    "updatepetequipsuit"
+   ]
+  },
+  "0x0164": {
+   "bytes_de_cuerpo": [
+    5
+   ],
+   "funciones": [
+    "0x6254C0"
+   ],
+   "nativas": []
+  },
+  "0x0165": {
+   "bytes_de_cuerpo": [
+    4
+   ],
+   "funciones": [
+    "0x625550"
+   ],
+   "nativas": []
+  },
+  "0x0166": {
+   "bytes_de_cuerpo": [
+    4
+   ],
+   "funciones": [
+    "0x61B110"
+   ],
+   "nativas": [
+    "useitem2itemconfirm"
+   ]
+  }
+ }
+}
