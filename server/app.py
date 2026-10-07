@@ -240,7 +240,14 @@ def _portal_en(stage, tx, ty):
         # y eso no vale para todos: el tornado de Mushroom hacia Jade Vale
         # dispara desde dos casillas antes -- medido, el jugador se quedo en
         # (6,238) y el tornado esta en (5,240).
-        r = max(2, por.get('radio', cfg.get('radio', 2)))
+        # El radio que DECLARA el portal manda, aunque sea 1. Antes habia un
+        # max(2, ...) que lo pisaba, y con eso se rompia el unico portal que
+        # pide radio 1: el de Majestic Mansion a Floral Alley, en (19,171).
+        # La llegada desde Floral Alley es (21,169), a dos casillas, asi que
+        # subido a 2 el jugador aparecia DENTRO del tornado de vuelta. Con el
+        # 1 que pide queda fuera. El minimo se sigue aplicando a los que no
+        # declaran ninguno.
+        r = por['radio'] if por.get('radio') else max(2, cfg.get('radio', 2))
         if abs(por['tile'][0] - tx) <= r and abs(por['tile'][1] - ty) <= r:
             return por
     return None
@@ -2215,7 +2222,9 @@ def _armar_portal_al_llegar(ses, addr, destino_tile, casillas):
     por = _portal_en(ses.personaje.stage, *destino_tile)
     if por is None:
         return
-    if getattr(ses, 'portal_pisado', None) == tuple(por['tile']) and (time.time() - getattr(ses, 'mapa_cambiado_en', 0) < 3.0):
+    # Igual que arriba: mientras siga marcado como pisado no se vuelve a
+    # armar, sin ventana de tiempo. La marca se borra sola al salir del radio.
+    if getattr(ses, 'portal_pisado', None) == tuple(por['tile']):
         return
     vel = max(1, _velocidad_de(ses))
     espera = min(5.0, max(0.2, casillas * 25.0 / vel))
@@ -8790,8 +8799,13 @@ class Servidor:
                     if dist_to_dst <= 3:
                         _por = _portal_en(ses.personaje.stage, dst_tx, dst_ty)
 
-                if time.time() - getattr(ses, 'mapa_cambiado_en', 0) > 2.0:
-                    ses.portal_pisado = None
+                # LA MARCA DURA MIENTRAS SE SIGA ENCIMA. Antes se borraba a
+                # los 2 segundos de cambiar de mapa, y ahi estaba el rebote: si
+                # la casilla de llegada cae dentro del radio del tornado de
+                # vuelta, pasados esos 2 segundos la marca se iba, el siguiente
+                # paso volvia a encontrarlo y sacaba al jugador del mapa sin
+                # dejarlo andar. No hace falta caducarla: cuando el jugador
+                # sale del radio, _ahora vale None y se borra sola.
                 _antes = getattr(ses, 'portal_pisado', None)
                 _ahora = tuple(_por['tile']) if _por else None
                 ses.portal_pisado = _ahora
