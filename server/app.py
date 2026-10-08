@@ -2969,6 +2969,11 @@ class Servidor:
         finally:
             if ses in self.mundos:
                 self.mundos.remove(ses)
+            try:
+                import presencia as _pres
+                _pres.salir(ses)
+            except Exception:
+                log.exception('presencia: fallo al salir')
             if getattr(ses, 'patrulla_task', None):
                 ses.patrulla_task.cancel()
             if getattr(ses, 'regen_task', None):
@@ -4165,6 +4170,14 @@ class Servidor:
                 import login as _lg, clases as _cl, inventario as inv, combate as _cb
                 ses.monstruos = _monstruos_de(p.stage)
                 ses.enviar(*_lg.poblar(p.stage))
+                # PRESENCIA: aqui, y no al mandar el 0x000C, porque hasta
+                # este momento el cliente no tiene el mapa cargado y los
+                # spawns que lleguen antes se pierden.
+                try:
+                    import presencia as _pres
+                    _pres.entrar(ses, p.stage)
+                except Exception:
+                    log.exception('presencia: fallo al entrar al mapa')
                 if getattr(p, 'habilidades', None):
                     ses.enviar(_cl.arbol(p.habilidades, banco=getattr(p, 'banco_habilidades', None)))
                     _ids = [h[0] for h in p.habilidades]
@@ -8801,6 +8814,16 @@ class Servidor:
                                   cur_x=d['cur_x'], cur_y=d['cur_y'],
                                   dst_x=dst['x'], dst_y=dst['y'],
                                   speed=_velocidad_de(ses)))
+            # Y EL MISMO PASO A LOS DEMAS DEL MAPA, con la entidad publica
+            # del jugador en vez de la suya: los entity_id se repiten entre
+            # sesiones y reenviarlo tal cual haria que un jugador moviera al
+            # otro en la pantalla de un tercero.
+            try:
+                import presencia as _pres
+                _pres.mover(ses, d['cur_x'], d['cur_y'], dst['x'], dst['y'],
+                            _velocidad_de(ses))
+            except Exception:
+                log.exception('presencia: fallo al reenviar el paso')
             # Anotar donde queda. Las coordenadas del cliente van en pixeles y
             # el tile mide 32: 2640 -> 82 y 2672 -> 83, que es justo el punto
             # de aparicion de Guide Palace. Se guarda al desconectar, no en
