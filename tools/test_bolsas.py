@@ -231,8 +231,9 @@ def test_se_manda_el_icono_del_buff():
     "s2c 0x001D kind 4, duracion 600494 ms"."""
     fuente = (RAIZ / 'server' / 'app.py').read_text(encoding='utf-8')
     i = fuente.index('Caso 4.9')
-    trozo = fuente[i:i + 4500]
+    trozo = fuente[i:i + 6500]
     assert "0x001D, _yo, 1, 4" in trozo, 'no se manda el icono del buff'
+    assert "1, 3," in trozo, "falta el 0x001D de kind 3"
     assert "_mid_buff, _dur" in trozo, 'el icono va sin duracion'
     assert "1, 4, bid, 0" in trozo, 'el icono no se apaga al expirar'
 

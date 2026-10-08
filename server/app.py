@@ -7830,10 +7830,38 @@ class Servidor:
                     # el jugador solo veia la animacion y nada mas, sin
                     # forma de saber cuanto le quedaba. Esta documentado en
                     # combate.py: "s2c 0x001D kind 4, duracion 600494 ms".
+                    # LA SECUENCIA ENTERA, en el orden de la captura que
+                    # documenta combate.py: el efecto visual, luego el
+                    # 0x001D de kind 3 con el enfriamiento y luego el de
+                    # kind 4 con la duracion. Al principio solo se mandaba
+                    # el kind 4 y el icono salia pero SIN cuenta atras.
+                    _cd = int(_entrada['mag'].get('cd_ms') or 0)
                     _sal = [_cb.efecto_magia_self_inicio(_yo, _ef, _mid_buff),
-                            _cb.efecto_magia_self_fin(_yo, _ef, _mid_buff),
-                            struct.pack('<HIBBII', 0x001D, _yo, 1, 4,
-                                        _mid_buff, _dur)]
+                            _cb.efecto_magia_self_fin(_yo, _ef, _mid_buff)]
+                    if _cd > 0:
+                        _sal.append(struct.pack('<HIBBII', 0x001D, _yo, 1, 3,
+                                                _mid_buff, _cd))
+                        asyncio.get_event_loop().call_later(
+                            _cd / 1000.0,
+                            lambda b=_mid_buff: ses.enviar_inmediato(
+                                struct.pack('<HIBBII', 0x001D,
+                                            ses.personaje.entity_id,
+                                            1, 3, b, 0)))
+                    _sal.append(struct.pack('<HIBBII', 0x001D, _yo, 1, 4,
+                                            _mid_buff, _dur))
+                    # Y la vida y el mana al tope nuevo, como hace el hechizo
+                    # cuando el buff sube los maximos: si no, se queda con la
+                    # barra a medias sobre un maximo mas grande.
+                    if _entrada.get('hp_bonus'):
+                        ses.personaje.hp = _vida_max(ses.personaje,
+                                                     ses.inventario)
+                        _sal.append(_cb.atributo(_yo, ses.personaje.hp,
+                                                 _cb.KIND_HP))
+                    if _entrada.get('mp_bonus'):
+                        ses.personaje.mp = _mana_max(ses.personaje,
+                                                     ses.inventario)
+                        _sal.append(_cb.atributo(_yo, ses.personaje.mp,
+                                                 _cb.KIND_MP))
                     _sal.extend(_refrescar(ses, [ranura]))
                     _sal.append(_stats_ses(ses))
                     ses.enviar(*_sal)
