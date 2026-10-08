@@ -2974,6 +2974,11 @@ class Servidor:
                 _pres.salir(ses)
             except Exception:
                 log.exception('presencia: fallo al salir')
+            try:
+                import equipos as _eq
+                _eq.salir(ses)
+            except Exception:
+                log.exception('equipos: fallo al salir del grupo')
             if getattr(ses, 'patrulla_task', None):
                 ses.patrulla_task.cancel()
             if getattr(ses, 'regen_task', None):
@@ -4161,6 +4166,30 @@ class Servidor:
             log.info(f"[{addr}] entro al mundo: '{p.nombre}' entidad={p.entity_id} "
                      f"char_id={p.char_id} tile=({p.tile_x},{p.tile_y})")
             log.info(f"[{addr}] (credenciales NO validadas: formato aun sin descifrar)")
+            return
+
+        # EQUIPOS. Los dos opcodes salen de una captura del Global con tres
+        # cuentas montando un grupo de verdad; ver server/equipos.py.
+        if opcode == 0x0017 and ses.rol == 'mundo' and cuerpo:
+            import equipos as _eq
+            nombre = cuerpo.split(bytes(1))[0].decode('ascii', 'replace').strip()
+
+            def _por_nombre(n):
+                for s in self.mundos:
+                    p2 = getattr(s, 'personaje', None)
+                    if p2 is not None and (getattr(p2, 'nombre', '') or '') == n:
+                        return s
+                return None
+            ok, por_que = _eq.invitar(ses, nombre, _por_nombre)
+            log.info("[%s] invita a '%s': %s", addr, nombre,
+                     'cartel mandado' if ok else por_que)
+            return
+
+        if opcode == 0x0018 and ses.rol == 'mundo':
+            import equipos as _eq
+            cod = cuerpo[0] if cuerpo else 0
+            log.info('[%s] grupo, accion %d: %s', addr, cod,
+                     _eq.accion(ses, cod))
             return
 
         if opcode == 0x0002 and ses.entity_id:
