@@ -805,6 +805,82 @@ def es_jefe(npc_type: int) -> bool:
     return int(npc_type or 0) in _JEFES
 
 
+_NIVEL_ITEM = None
+
+
+def _niveles_de_item() -> dict:
+    """item_id -> nivel, de la columna 物品等級, TODOS de una vez.
+
+    De una vez y no uno a uno a proposito: inventario.nivel_de_item() abre
+    una conexion nueva a content.db en cada llamada, y comprobar los
+    cuarenta items de una tabla de drops con eso tardaba lo suficiente como
+    para que se notara el tiron la primera vez que muere cada clase de
+    bicho. Son 60.000 filas y entran en memoria sin problema.
+    """
+    global _NIVEL_ITEM
+    if _NIVEL_ITEM is not None:
+        return _NIVEL_ITEM
+    _NIVEL_ITEM = {}
+    db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
+    if not db.exists():
+        return _NIVEL_ITEM
+    try:
+        con = sqlite3.connect(db)
+        for t in ('item', 'item2', 'item3', 'item4', 'item5',
+                  'item6', 'item7', 'item8', 'item9'):
+            try:
+                cols = [c[1] for c in con.execute('pragma table_info(%s)' % t)]
+                if '物品等級' not in cols:
+                    continue
+                for iid, lv in con.execute(
+                        'select id, "物品等級" from %s' % t):
+                    try:
+                        iid = int(iid)
+                    except (TypeError, ValueError):
+                        continue
+                    if iid in _NIVEL_ITEM:
+                        continue
+                    try:
+                        _NIVEL_ITEM[iid] = int(lv)
+                    except (TypeError, ValueError):
+                        continue
+            except Exception:
+                continue
+        con.close()
+    except Exception as e:
+        logging.getLogger('combate').warning(
+            'no se pudieron leer los niveles de los items (%s: %s); '
+            'no se filtraran las tablas de drops heredadas por nombre',
+            type(e).__name__, e)
+    return _NIVEL_ITEM
+
+
+def _nivel_item(item_id: int):
+    """El nivel de ese item, o None si no lo declara."""
+    return _niveles_de_item().get(int(item_id)) or None
+
+
+def _nivel_plausible(lista_raw, nivel_monstruo: int) -> bool:
+    """Si esa lista de drops pega con un bicho de ese nivel.
+
+    Se usa solo para descartar las tablas heredadas por NOMBRE de un
+    homonimo mucho mas debil. Se mira la MEDIANA y no el minimo, porque una
+    tabla buena puede llevar sueltos un par de materiales de nivel bajo sin
+    que eso la invalide.
+    """
+    niveles = []
+    for par in lista_raw or []:
+        if isinstance(par, (list, tuple)) and par:
+            lv = _nivel_item(int(par[0]))
+            if lv:
+                niveles.append(lv)
+    if not niveles:
+        return True        # sin dato no se descarta nada
+    niveles.sort()
+    mediana = niveles[len(niveles) // 2]
+    return mediana * 2 >= int(nivel_monstruo or 0)
+
+
 def botin_items(npc_type: int, nombre: str = '', nivel: int = 0) -> list:
     """Items que suelta el monstruo de drops_monstruos.json o content.db con multiplicador de drops."""
     global _DROPS_CACHE, _MON_INFO_CACHE
@@ -866,6 +942,21 @@ def botin_items(npc_type: int, nombre: str = '', nivel: int = 0) -> list:
                     if nom_k.startswith(pref) and nom_k[len(pref):] in drops_por_nom:
                         lista_raw = drops_por_nom[nom_k[len(pref):]]
                         break
+            # EL NOMBRE NO BASTA: hay bichos homonimos con cien niveles de
+            # diferencia. El juego reusa nombres, y buscar la tabla de drops
+            # por el nombre hace que el grande herede la del chico:
+            #
+            #   Dragon Soldier    nivel 414 -> items de nivel 89
+            #   Blue Merman       nivel 384 -> items de nivel 89
+            #   Magic Pumpkinman  nivel 300 -> items de nivel 15
+            #   Spring Fairy      nivel 264 -> items de nivel 110
+            #
+            # Son cuatro en todo el juego, pero son justo los que te dejan
+            # soltando basura a un bicho de nivel 400. Si lo que sale por el
+            # nombre esta por debajo de la mitad del nivel del monstruo, no
+            # vale y se pasa al cubo de nivel, que da equipo de su nivel.
+            if lista_raw and mon_nv and not _nivel_plausible(lista_raw, mon_nv):
+                lista_raw = None
 
         # 3. Fallback por bucket de nivel para regiones nuevas (Forest, Desert, Candy, Floating, etc.)
         if not lista_raw and not candidatos and drops_por_nv:
