@@ -40,14 +40,32 @@ def _limpiar_registro():
     presencia._POR_MAPA.clear()
 
 
+def test_el_jugador_se_manda_con_el_0x0001_y_no_con_el_0x0008():
+    """El primer intento uso el 0x0008, el de los NPC, y no funciono: dos
+    clientes en casillas pegadas no se veian. El bueno es el 0x0001, que
+    salio de la captura del Global con tres cuentas."""
+    _limpiar_registro()
+    a = Falsa('Ana', (40, 50))
+    paquete = presencia._spawn(a)
+    assert struct.unpack_from('<H', paquete, 0)[0] == 0x0001
+    cuerpo = paquete[2:]
+    assert len(cuerpo) == 184, len(cuerpo)
+    assert struct.unpack_from('<I', cuerpo, presencia.OFF_ENTIDAD)[0] == presencia.entidad_de(a)
+    assert struct.unpack_from('<I', cuerpo, presencia.OFF_X)[0] == 40
+    assert struct.unpack_from('<I', cuerpo, presencia.OFF_Y)[0] == 50
+    assert cuerpo[16:19] == b'Ana', cuerpo[16:32]
+    # la guild del jugador capturado no puede colarse
+    assert b'Moonlights' not in cuerpo
+
+
 def test_el_segundo_en_llegar_ve_al_primero_y_viceversa():
     _limpiar_registro()
     a, b = Falsa('Ana'), Falsa('Beto')
     presencia.entrar(a, 100)
     assert not a.enviados, 'al primero no hay nadie que presentarle'
     presencia.entrar(b, 100)
-    assert 0x0008 in b.opcodes(), 'Beto no ve a Ana'
-    assert 0x0008 in a.opcodes(), 'Ana no ve llegar a Beto'
+    assert presencia.APARECE in b.opcodes(), 'Beto no ve a Ana'
+    assert presencia.APARECE in a.opcodes(), 'Ana no ve llegar a Beto'
     assert presencia.cuantos(100) == 2
 
 

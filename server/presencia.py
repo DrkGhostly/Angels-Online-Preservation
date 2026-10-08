@@ -19,18 +19,38 @@ Esto es la primera capa de las tres que hacen falta:
        kick, promote, disband, deny) y, encima, las copias de instancia por
        equipo.
 
-POR QUE SE DIBUJA CON EL 0x0008. El paquete con el que el servidor original
-presenta a OTRO jugador no se conoce: las 1.230 sesiones grabadas del
-proyecto no traen ni uno. Se comprobo sacando todos los nombres de los
-0x0008 que no figuran en las tablas de monstruos ni de NPC, y los 180 que
-salieron son nombres de bicho CORTADOS a los 16 bytes del campo, no
-jugadores. El que capturo iba siempre solo.
+EL PAQUETE ES EL 0x0001, Y SE SUPO POR UNA CAPTURA. El primer intento uso
+el 0x0008, que es el que dibuja NPC y monstruos, y NO FUNCIONO: dos clientes
+en Bling Plaza, en casillas pegadas, no se veian. Lo que faltaba era una
+captura con jugadores de verdad dentro, y la trajo la sesion del Global con
+tres cuentas montando un equipo (Yuki, KarmaSilk y KarmaWeapon).
 
-Asi que se usa lo que si esta medido y funciona: el 0x0008 dibuja una
-entidad con su nombre, su casilla y su sprite, y el 0x0005 la mueve. Es como
-se dibujan los NPC y los monstruos. El aspecto no sera el del equipo que
-lleve puesto el otro jugador -- para eso haria falta el paquete de verdad --
-pero se le ve, se le ve moverse y se le lee el nombre encima.
+Buscando que paquetes S2C llevan el nombre de un jugador salio en seguida:
+
+    0x0026  98 B   x14845   la ficha de un jugador, el mismo bloque de 98
+                            bytes que usa cada miembro en la lista del grupo
+    0x0001  184 B  x73      APARECE UN JUGADOR
+
+Y el 0x0001 se confirmo cruzandolo con el movimiento: las cinco entidades
+que salen en sus 0x0001 son las mismas que luego andan en los 0x0005 -- la
+de KarmaSilk dio 59 pasos -- asi que el id esta donde se creia y el
+movimiento va por el mismo 0x0005 de siempre, que es lo unico que ya estaba
+bien del primer intento.
+
+    +0   u32 entity_id
+    +8   u32 casilla x
+    +12  u32 casilla y
+    +16  nombre ASCIIZ (16 bytes)
+    +150 nombre de la GUILD ASCIIZ
+    el resto: apariencia y equipo
+
+EL CUERPO SE COPIA. De los 184 bytes solo se entienden esos cuatro campos;
+el resto es la apariencia y no se sabe armar. Se coge uno capturado de un
+jugador de verdad y se le cambian la entidad, la casilla y el nombre, que es
+el mismo truco que ya se usa para dibujar los tornados y los objetos de
+mapa. Consecuencia: todos los jugadores se veran con la pinta del que se
+capturo hasta que se sepa leer la apariencia. Se les ve, se les ve andar y
+se les lee el nombre, que es lo que hacia falta.
 
 EL SPRITE sale de la clase del personaje. El cliente arma la ruta del dibujo
 como \\chr\\iNNNg\\2NNNN_Wait.spr a partir de la apariencia, y en la lista de
@@ -75,19 +95,36 @@ def _datos(ses):
             int(getattr(p, 'sprite', 0) or 0))
 
 
+# Un 0x0001 de un jugador DE VERDAD, de la captura del Global
+# (mundo_141825, KarmaWeapon en el stage de Bling Plaza). Se le cambian la
+# entidad, la casilla y el nombre; lo demas es su apariencia y se copia.
+PLANTILLA = bytes.fromhex(
+    '14039a520000000053000000ca0000004b61726d61576561706f6e00e5859200c8000000'
+    '53b9870801043d00e8030000a0526161777200db81620000a06b870801b30b0098967608'
+    '00ee030cc6040000000000000000000009001a0102000000a0550100441300000a000000'
+    '00000000a2550100a3550100dc1200003d1000000a0000001e55010000000000000000'
+    '00000c000000004d6f6f6e6c69676874730084e5b88ce69c9b000300000000000004'
+    '66010000000000')
+OFF_ENTIDAD, OFF_X, OFF_Y, OFF_NOMBRE, TAM_NOMBRE = 0, 8, 12, 16, 16
+OFF_GUILD, TAM_GUILD = 150, 10
+APARECE = 0x0001
+
+
 def _spawn(ses):
-    """El 0x0008 que presenta a ese jugador ante los demas."""
+    """El 0x0001 que presenta a ese jugador ante los demas."""
     d = _datos(ses)
     if d is None:
         return None
-    import login as _lg
-    eid, nombre, tx, ty, sprite = d
-    # klass 400: en las capturas los 0x0008 de klass alto son NPC con figura
-    # de persona. No es el valor que usa el servidor original para un
-    # jugador -- no se conoce -- pero dibuja un muneco con nombre encima,
-    # que es lo que hace falta para verse.
-    return _lg._npc_spawn(eid, 0, nombre[:16], (tx, ty),
-                          sprite=sprite or 40001, klass=400, visible=1)
+    eid, nombre, tx, ty, _sprite = d
+    b = bytearray(PLANTILLA)
+    struct.pack_into('<I', b, OFF_ENTIDAD, eid)
+    struct.pack_into('<I', b, OFF_X, tx)
+    struct.pack_into('<I', b, OFF_Y, ty)
+    n = nombre.encode('ascii', 'replace')[:TAM_NOMBRE - 1]
+    b[OFF_NOMBRE:OFF_NOMBRE + TAM_NOMBRE] = n + bytes(TAM_NOMBRE - len(n))
+    # La guild de la plantilla no es de este jugador: se borra.
+    b[OFF_GUILD:OFF_GUILD + TAM_GUILD] = bytes(TAM_GUILD)
+    return struct.pack('<H', APARECE) + bytes(b)
 
 
 def _despawn(eid):
