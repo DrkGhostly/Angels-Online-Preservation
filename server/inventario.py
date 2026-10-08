@@ -2278,12 +2278,29 @@ def bonificador(item_id: int):
 # entrada byte a byte. Solo cambiaron estos:
 #
 #   offset 82           el NUMERO DE HUECOS: fue 1 -> 2 -> 3
-#   offsets 62, 66, 70  la gema de cada hueco, u16 con el id del item
+#   offsets 62, 66, 70  la gema de cada hueco, con el id del item
 #
 # Las gemas que salieron fueron 3113 Sapphire, 3118 Purple Gem y 3093 Ruby,
 # las tres de categoria 寶石. Y las cuentas cuadran solas: 62 + 5 huecos de
 # 4 bytes = 82, que es justo donde empieza el contador. O sea CINCO huecos,
 # ni uno mas.
+#
+# EL ID VA EN U32, NO EN U16. Esto se escribia con u16 porque las tres gemas
+# de aquella medida son de id bajo y con ellas los dos tamanios dan el mismo
+# byte a byte. Pero el hueco mide CUATRO bytes -- lo prueba el paso de 62 a
+# 66 a 70 y que 62 + 5*4 caiga justo en el contador -- y las gemas modernas
+# no caben en dos:
+#
+#     Purple Spar Rune = 66354.  66354 & 0xFFFF = 818, que es un item oculto
+#     que se llama literalmente "530 Quest Item".
+#
+# Y eso es lo que salia en el arma: cinco renglones de "530 Quest Item" en
+# vez de la runa. El id guardado en la cuenta SIEMPRE fue el bueno (66354),
+# solo se rompia al meterlo en el paquete, asi que el bono de la gema si se
+# aplicaba. Era un fallo de lo que VE el jugador, no de lo que tiene.
+#
+# Escribir los cuatro bytes es ademas mas seguro que escribir dos: antes los
+# dos de arriba se quedaban con lo que hubiera en la plantilla.
 #
 # Sin esto el cliente no dibujaba ningun sitio donde meter la gema, asi que
 # el mortero de perforar abria el primer hueco, pedia una gema para seguir,
@@ -2304,10 +2321,10 @@ def marcar_huecos(entrada: bytes, huecos: int, gemas=None) -> bytes:
     b[base + OFF_HUECOS] = n
     for i in range(MAX_HUECOS_ENTRADA):
         o = base + OFF_GEMAS + i * TAM_GEMA
-        if o + 2 > len(b):
+        if o + TAM_GEMA > len(b):
             break
         g = (gemas or [])[i] if i < len(gemas or []) else 0
-        struct.pack_into('<H', b, o, int(g or 0) & 0xFFFF)
+        struct.pack_into('<I', b, o, int(g or 0) & 0xFFFFFFFF)
     return bytes(b)
 
 
@@ -2320,9 +2337,9 @@ def leer_huecos(entrada: bytes):
     gemas = []
     for i in range(min(n, MAX_HUECOS_ENTRADA)):
         o = base + OFF_GEMAS + i * TAM_GEMA
-        if o + 2 > len(entrada):
+        if o + TAM_GEMA > len(entrada):
             break
-        gemas.append(struct.unpack_from('<H', entrada, o)[0])
+        gemas.append(struct.unpack_from('<I', entrada, o)[0])
     return (n, gemas)
 
 
