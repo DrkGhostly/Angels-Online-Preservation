@@ -7832,6 +7832,39 @@ class Servidor:
                 log.info(f"[{addr}] consumible usado: {item_id} (ranura {ranura}) -> {ef_con}")
                 return
 
+            # Caso 5b: BOLSAS DE LA SUERTE, HUEVOS Y REGALOS.
+            # Son 22.055 items entre las categorias 紅包 y 禮物 y hasta
+            # ahora no hacian nada al usarlos. Lo que sale esta en la
+            # columna 動態資料1 del propio item: o apunta a una fila de
+            # drop_table y se sortea con sus pesos, o apunta a un item
+            # suelto y se da ese. Ver server/bolsas.py.
+            import bolsas as _bol
+            if _bol.es_bolsa(item_id):
+                premio = _bol.abrir(item_id)
+                if not premio:
+                    # Tabla vacia: NO se gasta la bolsa. Mas vale que se la
+                    # quede a que la pierda a cambio de nada.
+                    ses.enviar(_c.aviso('Nothing inside.', tipo=0,
+                                        msg_id=_c.MSG_ITEM))
+                    log.warning('[%s] la bolsa %s no tiene nada que dar',
+                                addr, item_id)
+                    return
+                premio_id, premio_n = premio
+                _sacar(ses, ranura, 1)
+                destino = _meter(ses, premio_id, premio_n)
+                nom_premio = _nombre_item(premio_id)
+                tocadas = [ranura] + ([destino] if destino is not None else [])
+                salida = [_c.aviso('You got %s x%d!' % (nom_premio, premio_n),
+                                   tipo=0, msg_id=_c.MSG_ITEM)]
+                salida.extend(_refrescar(ses, tocadas))
+                ses.enviar(*salida)
+                if getattr(ses, 'usuario', None):
+                    cuentas.guardar_inventario(ses.usuario, cid, bolsa,
+                                               _cantidades(ses))
+                log.info('[%s] bolsa %s abierta -> %s x%d (%s)',
+                         addr, item_id, premio_id, premio_n, nom_premio)
+                return
+
             # Caso 6: Tarjetas de Monstruo / Coleccionables
             if inv.es_tarjeta_coleccion(item_id):
                 _sacar(ses, ranura, 1)
