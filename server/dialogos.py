@@ -2688,17 +2688,27 @@ def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
         pkg_bank = struct.pack('<HI', 0x004E, 0)
         return (pkg_bank, pkg_cierre)
 
-    # Skill Angel: 5024 ("Change Skill" / redistribucion) vs 5820 ("Choose profession skills")
+    # SKILL ANGEL. Su 0x0012 capturado es
+    #
+    #     9f130000 04 000003 00 a0130000 bc160000 a1160000
+    #     msg 5023    val      opc 5024  opc 5820  opc 5793
+    #
+    # o sea tres opciones: 5024 "I wish to change my skill.", 5820 "The
+    # limit of changing skill." y 5793 "Quit.".
     if opcion_id == 5024:
         pkg_cierre = struct.pack('<H', 0x0012) + FIN
         # 0x001D kind=10 es la ventana nativa de redistribucion de puntos
         pkg_skill_reset = struct.pack('<HIBBII', 0x001D, entidad, 1, 10, 0, 0)
         return (pkg_skill_reset, pkg_cierre)
     if opcion_id == 5820:
-        pkg_cierre = struct.pack('<H', 0x0012) + FIN
-        # 0x001D kind=12 es la ventana de seleccion de profesion
-        pkg_prof = struct.pack('<HIBBII', 0x001D, entidad, 1, 12, 0, 0)
-        return (pkg_prof, pkg_cierre)
+        # LA 5820 ES UNA PREGUNTA, NO UN BOTON. Pregunta por el LIMITE para
+        # cambiar de habilidad, y lo que toca es contestarla: el 5821 lo
+        # explica -- "Before you reach level 20 you may change your skill
+        # for free. But, when you reach level 20, you must use one [Skill
+        # Crystal]..." --. Antes abria la ventana de seleccion de profesion,
+        # que no tiene nada que ver y dejaba al jugador en una pantalla de
+        # elegir clase sin haberla pedido.
+        return (armar_linea(5821, val=4),)
 
     # Reparacion de equipo (Repair Angel: 5101 / Repair Expert: 5227 / Repair Robot: 7990) -> abre WND_REPAIR (opcode 0x004F)
     # El 508866 es el del Vulcan Repairer de Whitefang: estaba pulsado en la
