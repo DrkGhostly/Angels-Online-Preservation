@@ -4,14 +4,9 @@ Son 22.055 items entre las dos categorias que usa el juego -- 紅包, que es
 "sobre rojo" y agrupa las lucky bags y los huevos, y 禮物, que son los
 regalos -- y hasta ahora ninguno hacia nada al usarlo.
 
-DONDE ESTA EL CONTENIDO. En la columna 動態資料1 del propio item, y apunta a
-una de dos cosas segun el item:
-
-    * a una fila de drop_table -> se TIRA entre sus items, con sus pesos;
-    * a un item suelto         -> se da ESE item, sin sorteo.
-
-De los 22.055: 3.818 tiran de una tabla, 18.199 dan un item fijo y 38 no
-declaran nada y se quedan fuera.
+DONDE ESTA EL CONTENIDO. En la columna 動態資料1 del propio item, cuando
+apunta a una fila de drop_table: se tira entre sus items con sus pesos. Son
+3.818 de los 22.055.
 
 COMO SE SUPO. El Angel Treasure Lucky Bag, el item 3733, tiene 動態資料1=698,
 y la fila 698 de drop_table se llama literalmente "Angel Treasure Lucky Bag".
@@ -23,10 +18,22 @@ Swift Ring, Power Ring, Ice Magic Cat, Fiery Nightwolf, Beast God of Forest,
 Marmot..." -- y son, en ese orden, los item1, item2, item3, item4, item5,
 item6 y item7 de la fila 698.
 
-El otro ejemplo que pidio el usuario cuadra igual: el Assassin Weapon Egg
-(77224) apunta a la tabla 27154, y el Kyrio Angel Magic Stone (60534), que
-es de los de "Right click to unseal", apunta al item 22430, que es
-"Transform into Cactus" -- no sortea nada, se abre y da eso.
+LOS OTROS 18.199 NO SE ABREN, Y ES A PROPOSITO. En ellos el 動態資料1 no
+apunta a ninguna tabla, y el primer intento dio por hecho que entonces era
+el id del item que sale. ERA FALSO, y lo destapo el usuario con un caso
+concreto: el Kyrio Angel Magic Stone sellado (60534) tiene 動態資料1=22430,
+pero al desellarlo NO sale el item 22430 -- que es "Transform into Cactus" --
+sino el 63816, que es la piedra sin sellar. El numero existe como item, pero
+eso no prueba nada: casi cualquier numero de ese rango existe como item.
+
+Se probaron y se descartaron dos lecturas mas: que fuera el gemelo con el
+mismo nombre base (de doce items "Sealed" mirados, el 動態資料1 no apuntaba
+al gemelo en NINGUNO) y que fuera una fila de exchange.xml (las filas
+existen -- el fichero tiene 22.684 -- pero su premio y su material no son el
+item esperado en ninguno de los cuatro casos probados).
+
+Asi que hasta saber que es ese numero, esas bolsas se dejan sin abrir. Mas
+vale que no hagan nada a que den el item equivocado.
 
 EL FACTOR NO SIEMPRE SE RESPETA. Hay tablas cuyos pesos no suman su factor;
 en esas se sortea sobre la suma real, que es lo unico que no se puede
@@ -71,10 +78,6 @@ def _cargar():
     try:
         con = sqlite3.connect(db)
         tablas = {str(r[0]) for r in con.execute('select id from drop_table')}
-        existentes = set()
-        for t in TABLAS_ITEM:
-            for (i,) in con.execute('select id from %s' % t):
-                existentes.add(str(i))
         for t in TABLAS_ITEM:
             cols = [c[1] for c in con.execute('pragma table_info(%s)' % t)]
             if COL_CATEGORIA not in cols or COL_DINAMICO not in cols:
@@ -92,8 +95,7 @@ def _cargar():
                     continue
                 if d in tablas:
                     _CACHE[clave] = ('tabla', d)
-                elif d in existentes:
-                    _CACHE[clave] = ('item', int(d))
+                # Si no es una tabla NO se guarda: ver la nota de arriba.
         con.close()
     except Exception as e:
         log.warning('no se pudo leer el contenido de las bolsas (%s: %s); '
@@ -160,6 +162,4 @@ def abrir(item_id: int):
     if not que:
         return None
     clase, valor = que
-    if clase == 'item':
-        return (int(valor), 1)
     return _sorteo(valor)

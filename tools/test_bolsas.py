@@ -26,16 +26,23 @@ KYRIO_STONE = 60534          # -> item 22430, sin sorteo
 TRANSFORM_CACTUS = 22430
 
 
-def test_las_tres_que_pidio_el_usuario_se_abren():
-    for iid in (ANGEL_TREASURE, ASSASSIN_EGG, KYRIO_STONE):
+def test_las_dos_que_tiran_de_tabla_se_abren():
+    for iid in (ANGEL_TREASURE, ASSASSIN_EGG):
         assert bolsas.es_bolsa(iid), iid
         assert bolsas.abrir(iid), iid
 
 
-def test_el_regalo_sellado_da_siempre_lo_mismo():
-    """Los de "Right click to unseal" no sortean: su 動態資料1 ES el item."""
-    for _ in range(50):
-        assert bolsas.abrir(KYRIO_STONE) == (TRANSFORM_CACTUS, 1)
+def test_el_sellado_no_se_abre_con_un_item_inventado():
+    """El fallo que destapo el usuario. El Kyrio Angel Magic Stone sellado
+    (60534) tiene 動態資料1=22430, y el primer intento dio por hecho que ese
+    era el item que sale. Es falso: al desellarlo sale el 63816, la piedra
+    sin sellar, no el 22430, que es "Transform into Cactus".
+
+    Que el numero exista como item no prueba nada -- casi cualquier numero
+    de ese rango existe -- asi que mientras no se sepa que es, esa bolsa no
+    se abre. Mas vale que no haga nada a que de lo que no es."""
+    assert not bolsas.es_bolsa(KYRIO_STONE)
+    assert bolsas.abrir(KYRIO_STONE) is None
 
 
 def test_la_bolsa_sortea_entre_todos_los_de_su_tabla():
@@ -84,7 +91,7 @@ def test_lo_que_no_es_bolsa_no_se_toca():
     assert bolsas.abrir(73) is None
 
 
-def test_cubre_casi_todas_las_bolsas_del_juego():
+def test_solo_se_abren_las_que_tienen_tabla():
     con = sqlite3.connect(RAIZ / 'corpus' / 'content.db')
     cat = '\u7269\u54c1\u985e\u5225'
     total = 0
@@ -97,7 +104,9 @@ def test_cubre_casi_todas_las_bolsas_del_juego():
             (bolsas.CAT_BOLSA, bolsas.CAT_REGALO)).fetchone()[0]
     cubiertas = len(bolsas._cargar())
     assert total > 20000, total
-    assert cubiertas > 14000, cubiertas
+    # Solo las que apuntan a una fila de drop_table, que son las unicas
+    # comprobadas. Las otras 18.199 se quedan fuera a proposito.
+    assert 3000 < cubiertas < 5000, cubiertas
 
 
 def test_el_servidor_las_abre_al_usarlas():
