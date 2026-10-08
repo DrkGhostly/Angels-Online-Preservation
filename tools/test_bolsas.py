@@ -116,6 +116,44 @@ def test_el_servidor_las_abre_al_usarlas():
         'quito la proteccion de no gastar una bolsa vacia'
 
 
+# ---------------------------------------------------------------------------
+# Objetos que bufean
+# ---------------------------------------------------------------------------
+KYRIO_SIN_SELLAR = 63816
+MAGIA_KYRIO = 20834
+
+
+def test_el_item_sabe_que_magia_aplica():
+    assert bolsas.hechizo_de(KYRIO_SIN_SELLAR) == MAGIA_KYRIO
+
+
+def test_la_magia_de_la_piedra_es_la_que_dice_el_juego():
+    """No hay que interpretar nada a mano: datos_magia() ya parsea la fila."""
+    import combate as cb
+    m = cb.datos_magia(MAGIA_KYRIO)
+    assert m['es_buff'] is True
+    assert m['dur_ms'] == 3600 * 1000, m['dur_ms']
+    assert m['hp_bonus'] == 12000 and m['mp_bonus'] == 9600
+    assert m['def_bonus'] == 4000 and m['matk_bonus'] == 2800
+    assert m['hit_bonus'] == 100 and m['eva_bonus'] == 100
+
+
+def test_hay_miles_de_objetos_que_bufean():
+    assert len(bolsas._cargar_buffs()) > 9000, len(bolsas._cargar_buffs())
+
+
+def test_una_bolsa_no_se_confunde_con_un_buff():
+    assert bolsas.hechizo_de(ANGEL_TREASURE) is None
+    assert not bolsas.es_bolsa(KYRIO_SIN_SELLAR)
+
+
+def test_el_servidor_aplica_el_buff_al_usar_el_objeto():
+    fuente = (RAIZ / 'server' / 'app.py').read_text(encoding='utf-8')
+    assert '_bol0.hechizo_de(item_id)' in fuente, 'no se engancho el buff'
+    assert 'personaje.buffs[_mid_buff]' in fuente, 'no se guarda el buff'
+    assert '_fin_buff_item' in fuente, 'el buff no expira'
+
+
 if __name__ == '__main__':
     fallos = 0
     for nombre, fn in sorted(globals().items()):

@@ -163,3 +163,59 @@ def abrir(item_id: int):
         return None
     clase, valor = que
     return _sorteo(valor)
+
+
+# ---------------------------------------------------------------------------
+# OBJETOS QUE BUFEAN
+#
+# El buff de un item esta en su columna 常駐法術 ("hechizo permanente"), que
+# es un id de magic, y la fila de magic lo trae TODO. La Kyrio Angel Magic
+# Stone sin sellar (63816) apunta a la magia 20834:
+#
+#     objetivo uno mismo, 3600 s de duracion, HP max +12000, MP max +9600,
+#     defensa +4000, ataque magico +2800, precision +100, agilidad +100,
+#     velocidad +16, no se pierde al morir, no acumula con otra igual
+#
+# Y no hay que interpretarla a mano: combate.datos_magia() ya parsea esa fila
+# entera y devuelve es_buff, dur_ms y los _bonus. Son 13.185 items con ese
+# campo, asi que el mecanismo es uno solo para todos.
+# ---------------------------------------------------------------------------
+
+COL_HECHIZO = '常駐法術'
+_BUFFS = None
+
+
+def _cargar_buffs():
+    global _BUFFS
+    if _BUFFS is not None:
+        return _BUFFS
+    _BUFFS = {}
+    db = _db()
+    if not db.exists():
+        return _BUFFS
+    try:
+        con = sqlite3.connect(db)
+        for t in TABLAS_ITEM:
+            cols = [c[1] for c in con.execute('pragma table_info(%s)' % t)]
+            if COL_HECHIZO not in cols:
+                continue
+            for iid, mid in con.execute(
+                    'select id, "%s" from %s where "%s" is not null '
+                    'and "%s" <> "" and "%s" <> "0"'
+                    % (COL_HECHIZO, t, COL_HECHIZO, COL_HECHIZO, COL_HECHIZO)):
+                try:
+                    i, m = int(iid), int(mid)
+                except (TypeError, ValueError):
+                    continue
+                if i not in _BUFFS and m > 0:
+                    _BUFFS[i] = m
+        con.close()
+    except Exception as e:
+        log.warning('no se pudieron leer los hechizos de los items '
+                    '(%s: %s); ningun objeto bufeara', type(e).__name__, e)
+    return _BUFFS
+
+
+def hechizo_de(item_id: int):
+    """El id de magic que aplica ese item al usarlo, o None."""
+    return _cargar_buffs().get(int(item_id or 0))
