@@ -7824,8 +7824,16 @@ class Servidor:
                     if _bol0.se_gasta(item_id):
                         _sacar(ses, ranura, 1)
                     ses.personaje.buffs[_mid_buff] = _entrada
+                    # EL ICONO DE ABAJO es el 0x001D de kind 4, con el id
+                    # del hechizo y los milisegundos que dura. Sin el, el
+                    # buff se aplicaba de verdad -- los stats subian -- pero
+                    # el jugador solo veia la animacion y nada mas, sin
+                    # forma de saber cuanto le quedaba. Esta documentado en
+                    # combate.py: "s2c 0x001D kind 4, duracion 600494 ms".
                     _sal = [_cb.efecto_magia_self_inicio(_yo, _ef, _mid_buff),
-                            _cb.efecto_magia_self_fin(_yo, _ef, _mid_buff)]
+                            _cb.efecto_magia_self_fin(_yo, _ef, _mid_buff),
+                            struct.pack('<HIBBII', 0x001D, _yo, 1, 4,
+                                        _mid_buff, _dur)]
                     _sal.extend(_refrescar(ses, [ranura]))
                     _sal.append(_stats_ses(ses))
                     ses.enviar(*_sal)
@@ -7839,7 +7847,11 @@ class Servidor:
                             return      # se renovo: este temporizador no vale
                         p2.buffs.pop(bid, None)
                         try:
-                            ses.enviar_inmediato(_stats_ses(ses))
+                            # apagar el icono: el mismo 0x001D con 0 ms
+                            ses.enviar_inmediato(
+                                struct.pack('<HIBBII', 0x001D,
+                                            p2.entity_id, 1, 4, bid, 0),
+                                _stats_ses(ses))
                         except Exception:
                             pass
                     if _dur > 0:

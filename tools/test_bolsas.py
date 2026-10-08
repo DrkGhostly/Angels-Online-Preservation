@@ -220,6 +220,23 @@ def test_no_se_gasta_el_objeto_que_no_se_gasta():
 
 
 
+def test_se_manda_el_icono_del_buff():
+    """El fallo que se vio: los stats SI subian -- +2800 de Spl Atk, +4000
+    de Dfs, +100 de Rigor y +100 de Agility, medido en pantalla -- pero
+    abajo no salia el icono y el jugador no tenia forma de saber si le
+    habia hecho algo ni cuanto le quedaba.
+
+    El icono es el 0x001D de kind 4, con el id del hechizo y los
+    milisegundos. Esta documentado en combate.py a partir de una captura:
+    "s2c 0x001D kind 4, duracion 600494 ms"."""
+    fuente = (RAIZ / 'server' / 'app.py').read_text(encoding='utf-8')
+    i = fuente.index('Caso 4.9')
+    trozo = fuente[i:i + 4500]
+    assert "0x001D, _yo, 1, 4" in trozo, 'no se manda el icono del buff'
+    assert "_mid_buff, _dur" in trozo, 'el icono va sin duracion'
+    assert "1, 4, bid, 0" in trozo, 'el icono no se apaga al expirar'
+
+
 if __name__ == '__main__':
     fallos = 0
     for nombre, fn in sorted(globals().items()):
