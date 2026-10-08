@@ -12,8 +12,8 @@ import datetime
 # =====================================================================
 # 1.0 = Experiencia normal oficial
 # 2.0 = Doble experiencia, etc.
-TASA_EXP_BASE = 2000.0           # Multiplicador de EXP de personaje
-TASA_SKILL_EXP_BASE = 10000.0     # Multiplicador de EXP de habilidades (stamina/skills)
+TASA_EXP_BASE = 20000.0           # Multiplicador de EXP de personaje
+TASA_SKILL_EXP_BASE = 100000.0     # Multiplicador de EXP de habilidades (stamina/skills)
 TASA_DROP_BASE = 0.001          # Multiplicador de probabilidad de drop de items
 TASA_ORO_BASE = 7.5           # Multiplicador de oro obtenido de monstruos
 
