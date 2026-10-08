@@ -92,6 +92,56 @@ def hechizos_de_rama(sid: int) -> list:
     return list(HECHIZOS_INICIALES_RAMA.get(sid_int, []))
 
 
+def hechizos_de_ramas_activas(skill_ids, solo_maximo: bool = True) -> list:
+    """[(magic_id, nombre, rango)] de las ramas equipadas, leidos de content.db.
+
+    No hay una lista fija: cada llamada mira la tabla magic actual, asi que
+    un hechizo anadido despues entra la siguiente vez que se use el comando.
+    Un rango alto que no trae rama propia hereda la de su grupo. Con
+    solo_maximo se queda el rango mas alto de cada linea.
+    """
+    sids = set()
+    for sid in skill_ids or []:
+        sids.add(int(sid[0] if isinstance(sid, (list, tuple)) else sid))
+    chinos = {RAMA_A_CHINO[s] for s in sids if s in RAMA_A_CHINO}
+    if not chinos or not DB_PATH.exists():
+        return []
+    con = sqlite3.connect(DB_PATH)
+    try:
+        rows = con.execute(
+            'select id, name, "技能限制1", "群組編號", "法術等級" from magic'
+        ).fetchall()
+    finally:
+        con.close()
+    grupo_rama = {}
+    for _mid, _name, restr, grupo, _rank in rows:
+        if restr and grupo and str(grupo) not in grupo_rama:
+            grupo_rama[str(grupo)] = str(restr).strip()
+    mejor = {}
+    for mid, name, restr, grupo, rank in rows:
+        nom = str(name or '')
+        if nom.lower().startswith('test'):
+            continue
+        rama = str(restr).strip() if restr else ''
+        if not rama and grupo:
+            rama = grupo_rama.get(str(grupo), '')
+        if rama not in chinos:
+            continue
+        try:
+            mid_i = int(mid)
+            rk = int(rank or 1)
+        except (TypeError, ValueError):
+            continue
+        if solo_maximo:
+            clave = str(grupo) if grupo else 'id:%d' % mid_i
+            prev = mejor.get(clave)
+            if prev is None or rk > prev[0] or (rk == prev[0] and mid_i > prev[1]):
+                mejor[clave] = (rk, mid_i, nom)
+        else:
+            mejor[mid_i] = (rk, mid_i, nom)
+    return sorted((mid, nom, rk) for rk, mid, nom in mejor.values())
+
+
 # LAS RANURAS DE RAMA DE HABILIDAD.
 #
 # De serie son SEIS: asi salen los seis personajes de data/cuentas.json y

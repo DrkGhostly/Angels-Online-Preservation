@@ -179,6 +179,12 @@ def hechizos_de_rama(sid: int):
     return skills.hechizos_de_rama(sid)
 
 
+def hechizos_de_ramas_activas(skill_ids, solo_maximo: bool = True):
+    """Hechizos actuales de esas ramas, leidos de la tabla magic."""
+    import skills
+    return skills.hechizos_de_ramas_activas(skill_ids, solo_maximo=solo_maximo)
+
+
 def info_pergamino(item_id: int):
     """Consulta si un item es un pergamino de habilidad y que hechizo enseña."""
     import skills
