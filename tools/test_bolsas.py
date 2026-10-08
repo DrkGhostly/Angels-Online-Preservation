@@ -193,6 +193,33 @@ def test_las_claves_del_buff_son_las_que_lee_el_servidor():
     assert set(('def', 'matk', 'hit', 'eva', 'hp_bonus', 'mp_bonus')) <= set(entrada)
 
 
+def test_la_piedra_no_se_gasta_al_usarla():
+    """Lo conto el usuario: "es un consumible permanente, se usa y queda ahi
+    hasta que se pierda el buff y lo uses de nuevo". Lo dice la columna
+    使用不扣 ("usar sin descontar"), que marca 2.069 objetos."""
+    assert bolsas.se_gasta(KYRIO_SIN_SELLAR) is False
+    assert bolsas.se_gasta(1228) is True       # una hierba normal si
+
+
+def test_el_buff_va_antes_que_los_consumibles():
+    """EL FALLO QUE SE VIO EN VIVO. efecto_consumible() lee el hp y el mp de
+    la fila de magia y los toma por una pocion, asi que la piedra "curaba"
+    12000 de vida, SE GASTABA y no bufeaba nada. El hp de esa fila no es una
+    cura: es +12000 al MAXIMO."""
+    import inventario as inv
+    # el consumible generico sigue viendo hp/mp en ese item...
+    assert inv.efecto_consumible(KYRIO_SIN_SELLAR), 'cambio efecto_consumible'
+    # ...asi que el orden de los casos es lo unico que lo salva
+    fuente = (RAIZ / 'server' / 'app.py').read_text(encoding='utf-8')
+    assert fuente.index('Caso 4.9') < fuente.index('Caso 5: Consumibles'),         'el buff volvio a quedar detras de los consumibles'
+
+
+def test_no_se_gasta_el_objeto_que_no_se_gasta():
+    fuente = (RAIZ / 'server' / 'app.py').read_text(encoding='utf-8')
+    assert 'if _bol0.se_gasta(item_id):' in fuente,         'volvio a gastarse siempre el objeto'
+
+
+
 if __name__ == '__main__':
     fallos = 0
     for nombre, fn in sorted(globals().items()):

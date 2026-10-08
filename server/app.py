@@ -7798,6 +7798,60 @@ class Servidor:
                 log.info(f"[{addr}] Ring of Angel Wings usado: teletransporte al checkpoint stage {dst} tile {lleg}")
                 return
 
+            # Caso 4.9: OBJETOS QUE BUFEAN. VA ANTES QUE LOS CONSUMIBLES, y
+            # no es un detalle: efecto_consumible() lee el hp y el mp de la
+            # fila de magia y los toma por una pocion, asi que la Kyrio Angel
+            # Magic Stone "curaba" 12000 de vida, se gastaba y no bufeaba
+            # nada. El hp de esa fila no es una cura: es +12000 al MAXIMO. El buff esta en la columna
+            # 常駐法術 del item, que es un id de magic, y datos_magia() ya
+            # parsea esa fila entera. Son 9.349 items. Se reusa la
+            # maquinaria de buffs que ya tienen los hechizos: el mismo
+            # diccionario personaje.buffs, los mismos paquetes de efecto y
+            # el mismo temporizador de expiracion.
+            import bolsas as _bol0
+            _bf = _bol0.buff_de(item_id, time.time()) if ses.personaje else None
+            if _bf:
+                import combate as _cb
+                _mid_buff, _entrada, _dur = _bf
+                if True:
+                    _yo = ses.personaje.entity_id
+                    _ef = _entrada['mag'].get('efecto', 0)
+                    # (el 'if True' es para no reindentar el bloque entero)
+                    # 使用不扣 ("usar sin descontar"): hay 2.069 objetos que
+                    # NO desaparecen al usarlos, y la piedra es uno. Se usa,
+                    # se queda en la mochila y se vuelve a usar cuando se
+                    # acaba el buff. Gastarla le borraba el objeto al jugador.
+                    if _bol0.se_gasta(item_id):
+                        _sacar(ses, ranura, 1)
+                    ses.personaje.buffs[_mid_buff] = _entrada
+                    _sal = [_cb.efecto_magia_self_inicio(_yo, _ef, _mid_buff),
+                            _cb.efecto_magia_self_fin(_yo, _ef, _mid_buff)]
+                    _sal.extend(_refrescar(ses, [ranura]))
+                    _sal.append(_stats_ses(ses))
+                    ses.enviar(*_sal)
+
+                    def _fin_buff_item(bid=_mid_buff, fin=_entrada['fin']):
+                        p2 = getattr(ses, 'personaje', None)
+                        if p2 is None:
+                            return
+                        b2 = (p2.buffs or {}).get(bid)
+                        if not b2 or b2.get('fin', 0) > fin + 0.5:
+                            return      # se renovo: este temporizador no vale
+                        p2.buffs.pop(bid, None)
+                        try:
+                            ses.enviar_inmediato(_stats_ses(ses))
+                        except Exception:
+                            pass
+                    if _dur > 0:
+                        asyncio.get_event_loop().call_later(
+                            _dur / 1000.0, _fin_buff_item)
+                    if getattr(ses, 'usuario', None):
+                        cuentas.guardar_inventario(ses.usuario, cid, bolsa,
+                                                   _cantidades(ses))
+                    log.info('[%s] %s da el buff %s durante %ds',
+                             addr, item_id, _mid_buff, _dur // 1000)
+                    return
+
             # Caso 5: Consumibles (Pociones HP/MP, Hierba Magica 1228, Biscuits 2, etc.)
             ef_con = inv.efecto_consumible(item_id)
             if ef_con and ses.personaje:
@@ -7831,54 +7885,6 @@ class Servidor:
                                    _cantidades(ses))
                 log.info(f"[{addr}] consumible usado: {item_id} (ranura {ranura}) -> {ef_con}")
                 return
-
-            # Caso 5a: OBJETOS QUE BUFEAN. El buff esta en la columna
-            # 常駐法術 del item, que es un id de magic, y datos_magia() ya
-            # parsea esa fila entera. Son 9.349 items. Se reusa la
-            # maquinaria de buffs que ya tienen los hechizos: el mismo
-            # diccionario personaje.buffs, los mismos paquetes de efecto y
-            # el mismo temporizador de expiracion.
-            import bolsas as _bol0
-            _bf = _bol0.buff_de(item_id, time.time()) if ses.personaje else None
-            if _bf:
-                import combate as _cb
-                _mid_buff, _entrada, _dur = _bf
-                if True:
-                    _yo = ses.personaje.entity_id
-                    _ef = _entrada['mag'].get('efecto', 0)
-                    # (el 'if True' es para no reindentar el bloque entero)
-                    # 使用不扣: hay items que no se gastan al usarlos. Esa
-                    # columna no se lee todavia, asi que de momento TODOS se
-                    # gastan, que es lo que no regala nada al jugador.
-                    _sacar(ses, ranura, 1)
-                    ses.personaje.buffs[_mid_buff] = _entrada
-                    _sal = [_cb.efecto_magia_self_inicio(_yo, _ef, _mid_buff),
-                            _cb.efecto_magia_self_fin(_yo, _ef, _mid_buff)]
-                    _sal.extend(_refrescar(ses, [ranura]))
-                    _sal.append(_stats_ses(ses))
-                    ses.enviar(*_sal)
-
-                    def _fin_buff_item(bid=_mid_buff, fin=_entrada['fin']):
-                        p2 = getattr(ses, 'personaje', None)
-                        if p2 is None:
-                            return
-                        b2 = (p2.buffs or {}).get(bid)
-                        if not b2 or b2.get('fin', 0) > fin + 0.5:
-                            return      # se renovo: este temporizador no vale
-                        p2.buffs.pop(bid, None)
-                        try:
-                            ses.enviar_inmediato(_stats_ses(ses))
-                        except Exception:
-                            pass
-                    if _dur > 0:
-                        asyncio.get_event_loop().call_later(
-                            _dur / 1000.0, _fin_buff_item)
-                    if getattr(ses, 'usuario', None):
-                        cuentas.guardar_inventario(ses.usuario, cid, bolsa,
-                                                   _cantidades(ses))
-                    log.info('[%s] %s da el buff %s durante %ds',
-                             addr, item_id, _mid_buff, _dur // 1000)
-                    return
 
             # Caso 5b: BOLSAS DE LA SUERTE, HUEVOS Y REGALOS.
             # Son 22.055 items entre las categorias 紅包 y 禮物 y hasta

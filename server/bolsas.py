@@ -181,8 +181,10 @@ def abrir(item_id: int):
 # campo, asi que el mecanismo es uno solo para todos.
 # ---------------------------------------------------------------------------
 
-COL_HECHIZO = '常駐法術'
+COL_HECHIZO = '常駐法術'      # el buff que aplica
+COL_NO_GASTA = '使用不扣'    # "usar sin descontar"
 _BUFFS = None
+_NO_GASTAN = None
 
 
 def _cargar_buffs():
@@ -190,6 +192,8 @@ def _cargar_buffs():
     if _BUFFS is not None:
         return _BUFFS
     _BUFFS = {}
+    if _NO_GASTAN is None:
+        globals()['_NO_GASTAN'] = set()
     db = _db()
     if not db.exists():
         return _BUFFS
@@ -209,6 +213,20 @@ def _cargar_buffs():
                     continue
                 if i not in _BUFFS and m > 0:
                     _BUFFS[i] = m
+        # Y los que NO se gastan al usarlos. La piedra es uno: se usa, se
+        # queda en la mochila y se vuelve a usar cuando se acaba el buff.
+        _NO_GASTAN.clear()
+        for t in TABLAS_ITEM:
+            cols = [c[1] for c in con.execute('pragma table_info(%s)' % t)]
+            if COL_NO_GASTA not in cols:
+                continue
+            for (iid,) in con.execute(
+                    'select id from %s where "%s" = ?' % (t, COL_NO_GASTA),
+                    ('是',)):
+                try:
+                    _NO_GASTAN.add(int(iid))
+                except (TypeError, ValueError):
+                    continue
         con.close()
     except Exception as e:
         log.warning('no se pudieron leer los hechizos de los items '
@@ -250,3 +268,15 @@ def buff_de(item_id, ahora=0.0):
         if mag.get(origen):
             entrada[destino] = mag[origen]
     return mid, entrada, dur
+
+
+def se_gasta(item_id) -> bool:
+    """Si el objeto desaparece al usarlo.
+
+    La columna 使用不扣 ("usar sin descontar") marca los que NO. La Kyrio
+    Angel Magic Stone es uno: se usa, se queda en la mochila y se vuelve a
+    usar cuando se acaba el buff. Gastarla era un error que se cargaba el
+    objeto del jugador.
+    """
+    _cargar_buffs()
+    return int(item_id or 0) not in (_NO_GASTAN or set())
