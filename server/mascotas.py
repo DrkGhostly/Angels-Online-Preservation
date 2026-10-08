@@ -1132,6 +1132,11 @@ def rama_por_crianza(ficha: dict):
     el contador de crianza a la vista, asi que el sentido de la comparacion
     es lo unico de aqui que no esta comprobado del todo.
     """
+    # /pet path stores the branch by hand. While it is set it wins over the
+    # raise score, because the raise window never reports which scene came up.
+    forzada = ficha.get('rama')
+    if forzada in (RAMA_MEAN_NOMBRE, RAMA_NICE_NOMBRE):
+        return forzada
     tope = crianza_necesaria(ficha.get('sprite'))
     if tope is None:
         tope = UMBRAL_CRIANZA

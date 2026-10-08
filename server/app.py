@@ -28,6 +28,7 @@ import cuentas
 import login_server
 from codec import Msg
 import messages  # noqa
+import gm
 import struct
 
 log = logging.getLogger('app')
@@ -856,6 +857,9 @@ PALABRAS_GM = frozenset((
     'estacion', 'season', 'modo',
     'rango', 'rank',
     'sistemas', 'album', 'logros', 'cartas', 'estrellas', 'casa',
+    'level', 'lvl', 'lv', 'levelall', 'lvlall',
+    'skills', 'learnall', 'spells', 'skillall',
+    'pet', 'mascota',
 ))
 
 
@@ -901,13 +905,14 @@ def _gm_texto(cuerpo: bytes):
         # vendia nada y al jugador le salia "usage: /item <id> [qty]" en el
         # chat. Lo mismo le podia pasar a cualquier otro paquete.
         #
-        # Asi que sin barra hace falta mucho mas: una palabra de cuatro
-        # letras o mas de la lista, y que el texto sea TODO el cuerpo (lo
+        # Asi que sin barra hace falta mucho mas: una palabra de la lista
+        # de tres letras o mas, y que el texto sea TODO el cuerpo (lo
         # que venga detras del NUL tiene que ser relleno a ceros). Un
         # comando de verdad cumple las dos; un id de instancia no cumple
-        # ninguna.
+        # ninguna. Tres, y no una: /pet y /lvl tienen que entrar, pero la
+        # "i" suelta de un id de instancia no.
         primera = (t.lower().split() or [''])[0]
-        if len(primera) < 4 or primera not in PALABRAS_GM:
+        if len(primera) < 3 or primera not in PALABRAS_GM:
             continue
         resto = cuerpo[off:]
         nul2 = resto.find(b'\x00')
@@ -962,6 +967,11 @@ def _gm_parsear(texto: str):
             return ('rango', int(partes[1], 0))
         except ValueError:
             return ('err', 'usage: /rango [1..20]')
+    if cmd in ('level', 'lvl', 'lv', 'levelall', 'lvlall',
+               'skills', 'learnall', 'spells', 'skillall',
+               'pet', 'mascota'):
+        import gm as _gm
+        return _gm.parsear(texto)
     if cmd not in ('item', 'give', 'i'):
         return None
     if len(partes) < 2:
@@ -989,7 +999,11 @@ def _probar_gm(ses, cuerpo, addr) -> bool:
     if leido is None:
         return False
     if leido[0] == 'help':
-        ses.enviar(_cl.aviso('GM: /item <id> [qty] | /rango [1..20] | /estacion <normal|navidad|halloween|sakura|verano>', tipo=0, msg_id=_cl.MSG_ITEM))
+        ses.enviar(_cl.aviso(
+            'GM: /item <id> [qty] | /level <n> | /levelall <n> | /skills [n] | '
+            '/pet level|exp|path|evolve | /rango [1..20] | '
+            '/estacion <normal|navidad|halloween|sakura|verano>',
+            tipo=0, msg_id=_cl.MSG_ITEM))
         log.info('[%s] GM help' % (addr,))
         return True
     if leido[0] == 'err':
@@ -1155,6 +1169,11 @@ def _probar_gm(ses, cuerpo, addr) -> bool:
         if getattr(ses, 'usuario', None):
             cuentas.guardar_rango(ses.usuario, ses.personaje.char_id, _rk_new, _cred_rk)
         log.info('[%s] GM rango -> %d (%s)' % (addr, _rk_new, _tit))
+        return True
+    if leido[0] in ('level', 'levelall', 'skills', 'skilllevel', 'pet'):
+        import gm as _gm
+        msg = _gm.aplicar(ses, leido)
+        log.info('[%s] GM %s' % (addr, msg))
         return True
     _, iid, cant = leido
     msg = _gm_dar_item(ses, iid, cant)
@@ -9182,6 +9201,10 @@ class Servidor:
         ses = self._sesion_mundo()
         if ses is None:
             return 'GM: no hay personaje en el mundo todavia'
+        if leido[0] != 'item':
+            cuerpo = linea.strip().encode('ascii', 'replace') + b'\x00'
+            _probar_gm(ses, cuerpo, 'consola')
+            return 'GM sent'
         _, iid, cant = leido
         msg = _gm_dar_item(ses, iid, cant)
         if not msg.startswith('dado '):
@@ -9250,6 +9273,9 @@ class Servidor:
         except OSError as e:
             log.warning(f"no se pudo abrir el puerto de archivos {self.fport}: {e}")
         log.info("server.xml del cliente ya apunta aca (ip=127.0.0.1 port=16768)")
+        log.info("GM: /item <id> [qty]  /level <n>  /levelall <n>  (also console or data/gm.txt)")
+        tareas.append(gm.consola(self))
+        tareas.append(gm.cola(self))
 
         # SEÑUELOS: el binario muestra que la ip y el puerto del mundo NO
         # salen del redirect sino de la lista de servidores (sub_51A370 los
