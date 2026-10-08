@@ -149,9 +149,48 @@ def test_una_bolsa_no_se_confunde_con_un_buff():
 
 def test_el_servidor_aplica_el_buff_al_usar_el_objeto():
     fuente = (RAIZ / 'server' / 'app.py').read_text(encoding='utf-8')
-    assert '_bol0.hechizo_de(item_id)' in fuente, 'no se engancho el buff'
+    assert '_bol0.buff_de(item_id' in fuente, 'no se engancho el buff'
     assert 'personaje.buffs[_mid_buff]' in fuente, 'no se guarda el buff'
     assert '_fin_buff_item' in fuente, 'el buff no expira'
+
+
+def test_el_buff_trae_cada_linea_del_cartel_del_objeto():
+    """El cartel de la piedra en el juego dice, linea por linea:
+
+        Increase 12000 Maximum HP      Increase 9600 Maximum MP
+        Increase 4000 Defense          Increase 2800 Spell Attack
+        Increase 100 Rigor             Increase 100 Agility
+        Increase 16% Movement Speed    Effect lasts for 1 hrs.
+
+    Todas tienen que acabar en el diccionario de buffs del personaje, y con
+    las claves que lee la funcion de stats del servidor."""
+    mid, entrada, dur = bolsas.buff_de(KYRIO_SIN_SELLAR, 0.0)
+    assert mid == MAGIA_KYRIO
+    assert dur == 3600 * 1000, dur
+    assert entrada['hp_bonus'] == 12000
+    assert entrada['mp_bonus'] == 9600
+    assert entrada['def'] == 4000
+    assert entrada['matk'] == 2800
+    assert entrada['hit'] == 100, 'Rigor'
+    assert entrada['eva'] == 100, 'Agility'
+    # la velocidad no va suelta: _velocidad_de la saca de dentro de 'mag'
+    assert entrada['mag']['move_speed_bonus'] == 16
+
+
+def test_las_claves_del_buff_son_las_que_lee_el_servidor():
+    """Si alguien renombra una clave, el buff se aplicaria a medias y en
+    silencio. Se comprueba contra el codigo que suma los stats."""
+    # La suma de stats vive en inventario.py, no en app.py.
+    fuente = (RAIZ / 'server' / 'inventario.py').read_text(encoding='utf-8')
+    vel = (RAIZ / 'server' / 'app.py').read_text(encoding='utf-8')
+    _mid, entrada, _d = bolsas.buff_de(KYRIO_SIN_SELLAR, 0.0)
+    for clave in ('def', 'matk', 'hit', 'eva'):
+        assert "b_data['%s']" % clave in fuente, clave
+    for clave in ('hp_bonus', 'mp_bonus'):
+        assert "b_data['%s']" % clave in fuente or \
+               "b_data.get('%s')" % clave in fuente, clave
+    assert "move_speed_bonus" in vel, 'la velocidad no se lee'
+    assert set(('def', 'matk', 'hit', 'eva', 'hp_bonus', 'mp_bonus')) <= set(entrada)
 
 
 if __name__ == '__main__':

@@ -7839,24 +7839,14 @@ class Servidor:
             # diccionario personaje.buffs, los mismos paquetes de efecto y
             # el mismo temporizador de expiracion.
             import bolsas as _bol0
-            _mid_buff = _bol0.hechizo_de(item_id)
-            if _mid_buff and ses.personaje:
+            _bf = _bol0.buff_de(item_id, time.time()) if ses.personaje else None
+            if _bf:
                 import combate as _cb
-                _mag = _cb.datos_magia(_mid_buff)
-                if _mag and _mag.get('es_buff'):
+                _mid_buff, _entrada, _dur = _bf
+                if True:
                     _yo = ses.personaje.entity_id
-                    _ef = _mag.get('efecto', 0)
-                    _dur = int(_mag.get('dur_ms') or 0)
-                    _entrada = {'fin': time.time() + _dur / 1000.0,
-                                'mag': _mag, 'de_item': item_id}
-                    for _k, _d in (('def_bonus', 'def'), ('atk_bonus', 'atk'),
-                                   ('matk_bonus', 'matk'),
-                                   ('mdef_bonus', 'mdef'),
-                                   ('hit_bonus', 'hit'), ('eva_bonus', 'eva'),
-                                   ('hp_bonus', 'hp_bonus'),
-                                   ('mp_bonus', 'mp_bonus')):
-                        if _mag.get(_k):
-                            _entrada[_d] = _mag[_k]
+                    _ef = _entrada['mag'].get('efecto', 0)
+                    # (el 'if True' es para no reindentar el bloque entero)
                     # 使用不扣: hay items que no se gastan al usarlos. Esa
                     # columna no se lee todavia, asi que de momento TODOS se
                     # gastan, que es lo que no regala nada al jugador.

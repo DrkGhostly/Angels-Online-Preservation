@@ -219,3 +219,34 @@ def _cargar_buffs():
 def hechizo_de(item_id: int):
     """El id de magic que aplica ese item al usarlo, o None."""
     return _cargar_buffs().get(int(item_id or 0))
+
+
+# Como se traduce la fila de magic al diccionario de buffs del personaje.
+# Las claves de la izquierda son las que devuelve combate.datos_magia() y
+# las de la derecha las que lee la funcion de stats del servidor.
+EQUIVALENCIAS = (('def_bonus', 'def'), ('atk_bonus', 'atk'),
+                 ('matk_bonus', 'matk'), ('mdef_bonus', 'mdef'),
+                 ('hit_bonus', 'hit'), ('eva_bonus', 'eva'),
+                 ('hp_bonus', 'hp_bonus'), ('mp_bonus', 'mp_bonus'))
+
+
+def buff_de(item_id, ahora=0.0):
+    """La entrada de personaje.buffs que deja ese item, o None.
+
+    La VELOCIDAD no va como clave suelta: _velocidad_de() la saca de
+    buff['mag']['move_speed_bonus'], asi que basta con guardar la fila de
+    magic entera, que ademas hace falta para los procs.
+    """
+    import combate as _cb
+    mid = hechizo_de(item_id)
+    if not mid:
+        return None
+    mag = _cb.datos_magia(mid)
+    if not mag or not mag.get('es_buff'):
+        return None
+    dur = int(mag.get('dur_ms') or 0)
+    entrada = {'fin': ahora + dur / 1000.0, 'mag': mag, 'de_item': int(item_id)}
+    for origen, destino in EQUIVALENCIAS:
+        if mag.get(origen):
+            entrada[destino] = mag[origen]
+    return mid, entrada, dur
