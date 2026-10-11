@@ -23,6 +23,13 @@ Angel_unpacked.c
 
 # Cuentas y personajes: datos locales de cada quien, con contrasenas.
 data/cuentas.json
+data/cuentas*
+cuentas.db
+cuentas.db-*
+data/cuentas.db
+data/cuentas.db-*
+data/content.db
+data/backups/
 
 # Codigo heredado de un proyecto anterior, que solo se consulto.
 src/

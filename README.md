@@ -184,6 +184,18 @@ a guess, it says so.
   - Instant SP skill execution (e.g., `Earth Blessing V`, `Shark Shift V`, `Angel Protection`) with tick timers, HP/MP recovery, and stat enhancements.
 - **Buffs, HoT & DoT Tick Engine**:
   - Timed buff management for self-buffs, regeneration ticks (Earth Blessing HP/MP HoT), potion effects, and long-duration utility cards.
+- **High-Tier Combat & Skill Progression**:
+  - **Multi-Hit Combos & Continuous Barrages**: full support for chained skills and continuous attacks (formulas 36 and 40, e.g., *Raijin's Fury*, *Steel Rain*, *Victory Sword*, *Quake Spear*, *Strangle Strike*), executing all sequential hits (up to 12 combo hits) for both single targets and AoE barrages.
+  - **High-Tier Skill Delegation**: launcher skills for archers and long-range classes (formulas 63 and 7, e.g., *TNT Arrow*, *Aparctias Shot*, *Toma Tornado*, *Windbreaker Arrow*) resolve their combat sub-spells to inherit genuine Stance Power, AoE explosion radii (5-6 tiles), and secondary debuffs (knockback, silence, elemental DoT, blind).
+  - **Summon & Totem Secondary Effects**: summons and totems trigger their automated auras and DoTs (e.g. *Black Thorn Totem* corrosive DoT and slow), enforcing official non-coexistence rules with *Guardian Star (Starchaos)*.
+  - **Balanced Physical Damage & Proc Scaling**: resolved oversized multipliers on physical procs (*Nimble Hands*), restoring faithful Stance Power weighting (`PESO_STANCE = 2.0`).
+- **Account and Character Database (`cuentas.db`)**: automatic transparent migration from legacy `cuentas.json` on startup if the database is empty or missing.
+- **Bound Equipment & Enchanted Fashion with Residual Times = 0**: ownership verified by persistent `char_id` (offset 53 of packet `0x001B` / `sub_58B640` in `Angel.exe`). If the player is the registered owner, the item can be equipped freely even when 0 residual times remain.
+- **Weapon Switching (Slots 11 & 12)**: quick swapping between primary and alternate weapon sets with dynamic stat and bonus recalculations.
+- **Equipment Enhancement & Piercing System (Pestles, Enhanced Pestles, Piercing Hammers)**:
+  - Full support for enhancing and socketing level 410+ endgame equipment using tier 40 tools (40-Star Lucky Enhanced Pestle, 40-Star Lucky Piercing Hammer, and standard pestles).
+  - Gem inlaying into sockets, Green Hammer rerolling (additional attribute rolls parsed from `adv.xml`), genuine success rates, and level penalties on failure.
+- **Robust Inventory Packet Sync**: stackable consumables, slot-by-slot delta sync via official `0x001B` without client stream desynchronization.
 
 **The customised client**
 
@@ -205,41 +217,43 @@ The server prepares the local client on startup, always taking a `.bak` first:
 
 **Partly**
 
+- **Multiplayer Online Presence**: players see each other on map screens via official 128-byte `0x0001`, synchronize real-time movement (`0x0005`), and synchronize transformations (`0x0013`). Visual synchronization of pets, third-party minions/mercenaries, and complete third-party fashion skin overlays is currently being refined.
+- **Party / Teams System**: server recognizes and logs incoming team invitations (`0x0017`), but party acceptance handling, UI group bar, shared EXP, and member management (`0x0018`) are in progress.
+- **Gold Cap / Gold Flag**: implemented, but thorough in-client testing is pending.
 - NPC dialogue: 17 of the Lyceum's 52 NPCs have their text and options, plus
-  expansion to regional and dungeon skill vendors
+  expansion to regional and dungeon skill vendors.
 - **Skills and spells**: melee combat, AoE spells, and magic trees are operational
   (casting, costs, damage, buffs, debuffs, summons, and progression). The longbow now lands
   its ranged basic (Basic Shot I, range 12); whether the arrow is drawn in flight is still
-  unconfirmed, since the effect is only sent for skills. The dagger has had less testing
+  unconfirmed, since the effect is only sent for skills. The dagger has had less testing.
 - Spells: they show up on F1-F3, cast, buff and deal damage, but some visual
-  effects are still missing
+  effects are still missing.
 - Physical and spell damage formulas now scale with linear defense mitigation
   and elemental stats, though extreme high levels (300+) or monsters with outlier
-  attributes may still need fine calibration against packet captures
+  attributes may still need fine calibration against packet captures.
 - ~~Combos are read from `magic.xml` but never executed~~ **fixed**: all 475 run (376 direct
-  via `連擊次數`, 99 chained via `轉嫁法術`), and the extra hits process the monster's death
-- The slow effect is registered but doesn't change movement speed
+  via `連擊次數`, 99 chained via `轉嫁法術`), and the extra hits process the monster's death.
+- The slow effect is registered but doesn't change movement speed.
 - The staff and the axe use the sword's attack animation until someone
-  captures theirs
+  captures theirs.
 - Mounts equip to slot 10 and do speed you up, but not by the right amount:
   two different mounts that declare the same `move_speed` give different
   speeds in the real server, so what a mount contributes depends on its own
-  instance, and that doesn't travel in `item.xml`
+  instance, and that doesn't travel in `item.xml`.
 
 **Does not work**
 
+- **Quest System**: outside of the Lyceum/Raphael tutorial, general quests and quest progress are not persisted in SQLite and lack complete quest chains (they reset on reconnect).
 - The ID Card draws the character in their underwear, even though the sprite
   in the world is dressed correctly. `0x0179`, the last suspect, was ruled
-  out: its ids are hammers, not clothing (see below)
+  out: its ids are hammers, not clothing (see below).
 - Resources can't be gathered, so the nine skills tied to gathering and
-  crafting never level up
-- Five of the Lyceum's NPCs were never captured and are missing
-- Passwords are **not validated**: the auth block hasn't been decrypted
-- Quests and whether you have spoken to Michael are **not saved to disk**:
-  they survive the session and are lost on reconnect
+  crafting never level up.
+- Five of the Lyceum's NPCs were never captured and are missing.
+- Passwords are **not validated**: the auth block hasn't been decrypted.
 - The diving gate is **documented but not enforced**: both trainers, their
   dialogue and the two skills are captured, but the portal into the
-  underwater maps still lets anyone through
+  underwater maps still lets anyone through.
 - Instances: nobody has been inside any of them. **Five entrances are
   identified and left switched off** -- Nightmare Palace, Half-beast Hamlet,
   Giant Wooden Stairs (which has two tornados leading to the same place) and
@@ -249,9 +263,8 @@ The server prepares the local client on startup, always taking a `.bak` first:
   dialogue, the two modes and the rejection messages are captured; their
   monsters are known from the wiki, their positions are not. Careful with one
   thing: that two-mode dialogue is **not** how instances are entered in
-  general -- most ask nothing at all
-- Parties and the friend list: the protocol is documented from a two-account
-  capture, but the server does not implement either yet
+  general -- most ask nothing at all.
+- Friend list system: documented from packet captures, but not yet implemented.
 
 ---
 

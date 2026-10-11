@@ -133,7 +133,9 @@ def hechizos_de_ramas_activas(skill_ids, solo_maximo: bool = True) -> list:
         except (TypeError, ValueError):
             continue
         if solo_maximo:
-            clave = str(grupo) if grupo else 'id:%d' % mid_i
+            if not grupo or str(grupo).strip() in ('', '0'):
+                continue
+            clave = str(grupo)
             prev = mejor.get(clave)
             if prev is None or rk > prev[0] or (rk == prev[0] and mid_i > prev[1]):
                 mejor[clave] = (rk, mid_i, nom)

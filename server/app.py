@@ -408,7 +408,12 @@ def _cargar_precios():
 
 def _precio_item(item_id: int) -> int:
     """Precio de lista del item, mirando las nueve tablas."""
-    return _cargar_precios().get(int(item_id or 0), (0, 0))[0]
+    lista, venta = _cargar_precios().get(int(item_id or 0), (0, 0))
+    if lista > 0:
+        return lista
+    if venta > 0:
+        return venta * 2
+    return 0
 
 
 # Lo que descuenta la tienda sobre el precio de lista al comprar. La Red
@@ -422,9 +427,15 @@ DESCUENTO_COMPRA = 7 / 8
 def _precio_compra(item_id: int) -> int:
     """Lo que cuesta comprar ese item en una tienda."""
     import configuracion as _conf
-    if getattr(_conf, 'COMPRAS_1_DE_ORO', False):
+    flag = getattr(_conf, 'FLAG_ORO', None)
+    if flag is None:
+        flag = getattr(_conf, 'COMPRAS_1_DE_ORO', False)
+    if flag:
         return 1
-    return max(1, int(_precio_item(item_id) * DESCUENTO_COMPRA))
+    precio = _precio_item(item_id)
+    if precio <= 0:
+        return 1
+    return max(1, int(precio * DESCUENTO_COMPRA))
 
 
 def _precio_venta(item_id: int) -> int:
@@ -693,10 +704,10 @@ def _con_oro(ses):
 
 
 def _dueno(ses):
-    """La entidad del personaje, que es lo que va en los mensajes de
-    inventario; no es lo mismo que su char_id."""
+    """El char_id del personaje que posee el inventario (necesario para la comprobacion
+    de vinculacion de equipo con residual times 0 en Angel.exe)."""
     p = getattr(ses, 'personaje', None)
-    return getattr(p, 'entity_id', None) or getattr(ses, 'entity_id', None)
+    return getattr(p, 'char_id', None) or getattr(ses, 'char_id', None) or 4980
 
 
 def _refrescar(ses, ranuras, con_oro=False):
@@ -1437,8 +1448,12 @@ def _usar_mejora(ses, addr, ranura, objetivo) -> bool:
         # maximo de todos a la vez.
         est = p.mejoras.setdefault(int(objetivo), {'veces': 0, 'gemas': [],
                                                    'extra': {}, 'huecos': 0})
+        est.setdefault('veces', 0)
+        est.setdefault('gemas', [])
+        est.setdefault('extra', {})
+        est.setdefault('huecos', 0)
         tope_v = _mj.tope_nivel(item)
-        if tope_v and nivel_pieza > tope_v:
+        if tope_v and tope_v < 400 and nivel_pieza > tope_v:
             ok, msg = False, 'sirve hasta nivel %d' % tope_v
         else:
             # Los rangos salen de la PIEZA que se mejora, no de una tabla
@@ -1534,6 +1549,9 @@ def _tipo_de_pieza(item_id, ranura):
     import inventario as _iv
     if _iv.es_mascota(item_id):
         return 'mascota'
+    cat = _iv.categoria_item(item_id)
+    if cat in ('座騎', '機甲'):
+        return 'montura'
     r = _iv.ranura_equipo_de(item_id) or ranura
     if r in (10, 174):
         return 'montura'
@@ -1737,6 +1755,10 @@ def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
     if ses.personaje and ses.personaje.stage == 57 and m.npc_type == 224:
         ses.slarm_kills = getattr(ses, 'slarm_kills', 0) + 1
         log.info(f"[{addr}] Little Slarm derrotado en Fighting Palace ({ses.slarm_kills}/2)")
+
+    if ses.personaje:
+        import misiones as _mis_muerte
+        _mis_muerte.registrar_baja_monstruo(ses, m.npc_type)
 
     if getattr(m, 'encantado', False):
         m.encantado = False
@@ -2670,12 +2692,20 @@ def _ejecutar_proc_subhechizo(ses, yo, m, sub_id: int, addr=None) -> list:
     es_mag_p = int(float(d_sub.get('平均傷害') or 0)) > 0 or str(d_sub.get('公式') or '') in ('4', '5', '6', '7', '17')
     st_bin = _iv.stats(ses.inventario, p.habilidades, buffs=getattr(p, 'buffs', None), mejoras=_mejoras_de(ses))
     atk_pow = struct.unpack_from('<I', st_bin, 2 + 44)[0] if es_mag_p else struct.unpack_from('<I', st_bin, 2 + 20 + 4)[0]
-    dano_base_p = smag.get('dano_base', 0)
-    denom_p = smag.get('base_denom', 200) or (200 if es_mag_p else 300)
-    mult_p = (dano_base_p / float(denom_p)) if dano_base_p > 0 else 1.0
-    var_p = 0.05 if es_mag_p else 0.03
-    if es_mag_p and smag.get('dano_coef', 0) > 0:
-        mult_p *= (smag['dano_coef'] / 100.0)
+    if not es_mag_p:
+        stance_p = _cb.stance_de(int(sub_id))
+        atk_pow += int(round(stance_p * _cb.PESO_STANCE))
+        mult_p = 1.0
+        var_p = 0.03
+        if smag.get('dano_coef', 0) > 0:
+            mult_p *= (smag['dano_coef'] / 100.0)
+    else:
+        dano_base_p = int(float(d_sub.get('平均傷害') or 0)) or smag.get('dano_base', 0)
+        denom_p = smag.get('base_denom', 200) or 200
+        mult_p = (dano_base_p / float(denom_p)) if dano_base_p > 0 else 1.0
+        var_p = 0.05
+        if smag.get('dano_coef', 0) > 0:
+            mult_p *= (smag['dano_coef'] / 100.0)
     mods_eq_p = _iv.modificadores_porcentuales_equipo(ses.inventario)
     _clave_pct_p = 'mag_dmg_pct' if es_mag_p else 'phys_dmg_pct'
     if mods_eq_p.get(_clave_pct_p, 0) > 0:
@@ -2748,6 +2778,28 @@ def _procesar_triggers_buffs(ses, yo, m, addr=None, en_ataque=True) -> list:
                         _cb.atributo(yo, p.mp, _cb.KIND_MP),
                         _stats_ses(ses),
                     ])
+
+        # Wolf's Claw (16802..16806): Se activa cuando el enemigo tiene menos del 20% de HP
+        wc_sub = int(bdata.get('wolf_claw_sub') or 0)
+        if wc_sub and en_ataque and m and getattr(m, 'vivo', False):
+            hp_cur = getattr(m, 'hp', 0)
+            hp_max = max(1, getattr(m, 'hp_max', 1))
+            if (hp_cur / hp_max) < 0.20:
+                pkgs.extend(_ejecutar_proc_subhechizo(ses, yo, m, wc_sub, addr=addr))
+                if int(bdata.get('usos_restantes') or 0) > 0:
+                    bdata['usos_restantes'] = int(bdata['usos_restantes']) - 1
+                    if bdata['usos_restantes'] <= 0:
+                        p.buffs.pop(bid, None)
+                        pkgs.extend([
+                            struct.pack('<HIBBII', 0x001D, yo, 1, 4, int(bid), 0),
+                            _cb.atributo(yo, 0, _cb.KIND_TRANSFORM),
+                            _stats_ses(ses),
+                        ])
+                        try:
+                            import presencia as _pres
+                            _pres.notificar_transformacion(ses, 0)
+                        except Exception:
+                            pass
     return pkgs
 
 
@@ -3310,6 +3362,11 @@ class Servidor:
                         p.entity_id, _todos_hech))
             # Y que el cliente dibuje al personaje con lo que lleva puesto.
             ses.enviar(*_apariencia(ses))
+            try:
+                import presencia as _pres
+                _pres.entrar(ses, p.stage)
+            except Exception:
+                log.exception('presencia: fallo al entrar al mapa en login')
             # Iniciar tarea asincrona de IA para que los monstruos paseen por el mapa y ataquen
             async def _ia_monstruos():
                 import random, time
@@ -3354,6 +3411,8 @@ class Servidor:
                                 ses.enviar(_cb.atributo(inv['entity_id'], 0, _cb.KIND_HP),
                                            _cb.despawn_monstruo(inv['entity_id']),
                                            struct.pack('<HIBBI', 0x0013, yo, 1, 0x3d, 0))
+                                import presencia as _pr
+                                _pr.notificar_invocacion_despawn(ses, inv['entity_id'])
                                 setattr(ses, inv_key, None)
                                 log.info(f"[{addr}] invocacion {inv.get('nombre')} expirada/despawned")
                             else:
@@ -3361,6 +3420,15 @@ class Servidor:
                                 if targ and (not getattr(targ, 'vivo', False) or targ.hp <= 0 or getattr(targ, 'encantado', False)):
                                     inv['objetivo'] = None
                                     targ = None
+
+                                if not targ and (inv.get('move_speed', 50) or 0) <= 0:
+                                    # Totem estático auto-adquiere cualquier monstruo hostil cercano dentro de su rango
+                                    for cand_m in list(getattr(ses, 'monstruos', {}).values()):
+                                        if cand_m and getattr(cand_m, 'vivo', False) and cand_m.hp > 0 and not getattr(cand_m, 'encantado', False):
+                                            if max(abs(inv['tile_x'] - cand_m.tile_x), abs(inv['tile_y'] - cand_m.tile_y)) <= inv.get('atk_range', 10):
+                                                inv['objetivo'] = cand_m
+                                                targ = cand_m
+                                                break
 
                                 if targ:
                                     dist_tx = abs(inv['tile_x'] - targ.tile_x)
@@ -3374,16 +3442,19 @@ class Servidor:
                                         if ahora - inv.get('ultimo_ataque', 0) >= cad_inv:
                                             inv['ultimo_ataque'] = ahora
                                             skills_inv = inv.get('skills', [])
-                                            usa_skill = skills_inv and (random.random() < 0.45)
+                                            es_totem_inv = (inv.get('move_speed', 50) or 0) <= 0
+                                            usa_skill = bool(skills_inv) if es_totem_inv else (skills_inv and (random.random() < 0.45))
                                             crit_rate = inv.get('crit_rate', 5)
                                             es_crit = (random.randint(1, 100) <= crit_rate)
                                             mult_inv = 1.5 if es_crit else 1.0
 
+                                            d_mag_inv = {}
                                             if usa_skill:
                                                 atk_magic = random.choice(skills_inv)
-                                                atk_efecto = _cb.efecto_de_ataque(atk_magic) or 148
+                                                d_mag_inv = _cb.datos_magia(atk_magic) or {}
+                                                atk_efecto = _cb.efecto_de_ataque(atk_magic) or d_mag_inv.get('efecto', 148)
                                                 pow_atk = max(inv['atk'], inv.get('matk', 0))
-                                                dano_base = pow_atk + int(round(_cb.stance_de(atk_magic) * _cb.PESO_STANCE))
+                                                dano_base = d_mag_inv.get('dano_base') or (pow_atk + int(round(_cb.stance_de(atk_magic) * _cb.PESO_STANCE)))
                                                 mult_inv *= 1.2
                                                 es_mag = True
                                             else:
@@ -3404,6 +3475,12 @@ class Servidor:
                                                     _cb.numero_de_dano(inv['entity_id'], targ.entity_id, dano_inv, ataque=atk_magic, efecto=atk_efecto),
                                                     _cb.cierre_de_dano(inv['entity_id'], targ.entity_id, ataque=atk_magic, efecto=atk_efecto),
                                                 ])
+                                                _ef_inv = _cb.efecto_secundario(atk_magic)
+                                                if _ef_inv and random.random() * 100 < _ef_inv.get('prob', 0):
+                                                    targ.aplicar_efecto(_ef_inv)
+                                                    _mid_inv = _ef_inv.get('magia', atk_magic)
+                                                    _dur_inv = _ef_inv.get('dur_ms', 10000)
+                                                    pkgs_inv_hit.append(struct.pack('<HIBBII', 0x001D, targ.entity_id, 1, 4, _mid_inv, _dur_inv))
                                             pkgs_inv_hit.append(_cb.numero_flotante(targ.entity_id, dano_inv, tipo=tipo_dmg))
 
                                             if targ.hp <= 0:
@@ -3416,7 +3493,7 @@ class Servidor:
                                                 pkgs_inv_hit.append(_cb.atributo(targ.entity_id, targ.porcentaje))
                                                 ses.enviar_inmediato(*pkgs_inv_hit)
                                     else:
-                                        if ahora >= inv.get('proximo_paso', 0):
+                                        if (inv.get('move_speed', 50) or 0) > 0 and ahora >= inv.get('proximo_paso', 0):
                                             dx = targ.tile_x - inv['tile_x']
                                             dy = targ.tile_y - inv['tile_y']
                                             dist_t = max(abs(dx), abs(dy))
@@ -3431,11 +3508,16 @@ class Servidor:
                                             _pasos = max(abs(stx), abs(sty)) or 1
                                             spd = inv.get('move_speed', 50) or 50
                                             inv['proximo_paso'] = ahora + (_pasos * 32.0 / spd)
-                                            ses.enviar(MOVE.build(entity_id=inv['entity_id'],
-                                                                  cur_x=cur_x, cur_y=cur_y,
-                                                                  dst_x=dst_x, dst_y=dst_y,
-                                                                  speed=spd))
+                                            _mv_inv = MOVE.build(entity_id=inv['entity_id'],
+                                                                 cur_x=cur_x, cur_y=cur_y,
+                                                                 dst_x=dst_x, dst_y=dst_y,
+                                                                 speed=spd)
+                                            ses.enviar(_mv_inv)
+                                            import presencia as _pr
+                                            _pr.notificar_invocacion_movimiento(ses, inv['entity_id'], _mv_inv)
                                 else:
+                                    if (inv.get('move_speed', 50) or 0) <= 0:
+                                        continue
                                     # Seguir al jugador si no tiene objetivo
                                     _off_inv_x = -1 if inv_key == 'invocacion2' else 1
                                     p_dx = (p.tile_x + _off_inv_x) - inv['tile_x']
@@ -3445,10 +3527,13 @@ class Servidor:
                                         inv['tile_x'] = p.tile_x + _off_inv_x
                                         inv['tile_y'] = p.tile_y
                                         cur_x, cur_y = inv['tile_x'] * 32, inv['tile_y'] * 32
-                                        ses.enviar(MOVE.build(entity_id=inv['entity_id'],
-                                                              cur_x=cur_x, cur_y=cur_y,
-                                                              dst_x=cur_x, dst_y=cur_y,
-                                                              speed=inv.get('move_speed', 50) or 50))
+                                        _mv_inv = MOVE.build(entity_id=inv['entity_id'],
+                                                             cur_x=cur_x, cur_y=cur_y,
+                                                             dst_x=cur_x, dst_y=cur_y,
+                                                             speed=inv.get('move_speed', 50) or 50)
+                                        ses.enviar(_mv_inv)
+                                        import presencia as _pr
+                                        _pr.notificar_invocacion_movimiento(ses, inv['entity_id'], _mv_inv)
                                     elif p_dist > 2 and ahora >= inv.get('proximo_paso', 0):
                                         pasos_dar = min(p_dist - 2, 3)
                                         stx = (1 if p_dx > 0 else (-1 if p_dx < 0 else 0)) * pasos_dar
@@ -3460,10 +3545,13 @@ class Servidor:
                                         _pasos = max(abs(stx), abs(sty)) or 1
                                         spd = inv.get('move_speed', 50) or 50
                                         inv['proximo_paso'] = ahora + (_pasos * 32.0 / spd)
-                                        ses.enviar(MOVE.build(entity_id=inv['entity_id'],
-                                                              cur_x=cur_x, cur_y=cur_y,
-                                                              dst_x=dst_x, dst_y=dst_y,
-                                                              speed=spd))
+                                        _mv_inv = MOVE.build(entity_id=inv['entity_id'],
+                                                             cur_x=cur_x, cur_y=cur_y,
+                                                             dst_x=dst_x, dst_y=dst_y,
+                                                             speed=spd)
+                                        ses.enviar(_mv_inv)
+                                        import presencia as _pr
+                                        _pr.notificar_invocacion_movimiento(ses, inv['entity_id'], _mv_inv)
 
                         # LOS QUE ESTAN LEJOS NO SE PIENSAN. Este bucle corre
                         # cada TICK_IA, o sea diez veces por segundo, y antes
@@ -4127,6 +4215,27 @@ class Servidor:
                                                 _cb.numero_flotante(pet_targ.entity_id, dano_pet),
                                                 _cb.atributo(pet_targ.entity_id, pet_targ.porcentaje if pet_targ.hp > 0 else 0)
                                             )
+                                            _combo_p = _cb.combo_de(sk_usada)
+                                            if _combo_p and _combo_p.get('golpes', 1) > 1:
+                                                _golpes = _combo_p['golpes']
+                                                _sep_p = max(0.05, _combo_p.get('intervalo_ms', 200) / 1000.0)
+                                                for _gk in range(1, _golpes):
+                                                    def _pet_subgolpe(k_dmg=dano_pet):
+                                                        if not getattr(pet_targ, 'vivo', False) or pet_targ.hp <= 0:
+                                                            return
+                                                        pet_targ.hp = max(0, pet_targ.hp - k_dmg)
+                                                        ses.enviar_inmediato(
+                                                            _cb.numero_de_dano(pet_eid, pet_targ.entity_id, k_dmg, ataque=sk_usada, efecto=ef_pet),
+                                                            _cb.cierre_de_dano(pet_eid, pet_targ.entity_id, ataque=sk_usada, efecto=ef_pet),
+                                                            _cb.numero_flotante(pet_targ.entity_id, k_dmg),
+                                                            _cb.atributo(pet_targ.entity_id, pet_targ.porcentaje if pet_targ.hp > 0 else 0)
+                                                        )
+                                                        if pet_targ.hp <= 0:
+                                                            _procesar_muerte_monstruo(ses, pet_targ, yo, addr, espera=0.1)
+                                                    try:
+                                                        asyncio.get_event_loop().call_later(_sep_p * _gk, _pet_subgolpe)
+                                                    except Exception:
+                                                        pass
                                         else:
                                             dano_pet = max(10, int(base_atk_pet * 1.2) - (getattr(pet_targ, 'defensa', 0) // 3))
                                             pet_targ.registrar_dano(min(pet_targ.hp, dano_pet), es_pet=True)
@@ -4157,7 +4266,10 @@ class Servidor:
                                         ses.pet_tile = [nx_p, ny_p]
                                         dst_px, dst_py = nx_p * 32, ny_p * 32
                                         f_pet['proximo_paso'] = ahora + (32.0 * pasos_dar / float(spd_p))
-                                        ses.enviar(MOVE.build(entity_id=pet_eid, cur_x=cur_px, cur_y=cur_py, dst_x=dst_px, dst_y=dst_py, speed=spd_p))
+                                        _p_mv = MOVE.build(entity_id=pet_eid, cur_x=cur_px, cur_y=cur_py, dst_x=dst_px, dst_y=dst_py, speed=spd_p)
+                                        ses.enviar(_p_mv)
+                                        import presencia as _pr
+                                        _pr.notificar_mascota_movimiento(ses, pet_eid, _p_mv)
                             else:
                                 dp_x = p.tile_x - pet_x
                                 dp_y = p.tile_y - pet_y
@@ -4168,10 +4280,13 @@ class Servidor:
                                     f_pet['y'] = p.tile_y
                                     ses.pet_tile = [f_pet['x'], f_pet['y']]
                                     cur_px, cur_py = f_pet['x'] * 32, f_pet['y'] * 32
+                                    _p_mv = MOVE.build(entity_id=pet_eid, cur_x=cur_px, cur_y=cur_py, dst_x=cur_px, dst_y=cur_py, speed=spd_p)
                                     ses.enviar(
                                         struct.pack('<HIII', 0x0003, pet_eid, f_pet['x'], f_pet['y']),
-                                        MOVE.build(entity_id=pet_eid, cur_x=cur_px, cur_y=cur_py, dst_x=cur_px, dst_y=cur_py, speed=spd_p)
+                                        _p_mv
                                     )
+                                    import presencia as _pr
+                                    _pr.notificar_mascota_movimiento(ses, pet_eid, _p_mv)
                                 elif dist_jug > 1 and ahora >= f_pet.get('proximo_paso', 0):
                                     pasos_dar = min(dist_jug - 1, 4)
                                     cur_px, cur_py = pet_x * 32, pet_y * 32
@@ -4186,7 +4301,10 @@ class Servidor:
                                     ses.pet_tile = [nx_j, ny_j]
                                     dst_px, dst_py = nx_j * 32, ny_j * 32
                                     f_pet['proximo_paso'] = ahora + (32.0 * pasos_dar / float(spd_p))
-                                    ses.enviar(MOVE.build(entity_id=pet_eid, cur_x=cur_px, cur_y=cur_py, dst_x=dst_px, dst_y=dst_py, speed=spd_p))
+                                    _p_mv = MOVE.build(entity_id=pet_eid, cur_x=cur_px, cur_y=cur_py, dst_x=dst_px, dst_y=dst_py, speed=spd_p)
+                                    ses.enviar(_p_mv)
+                                    import presencia as _pr
+                                    _pr.notificar_mascota_movimiento(ses, pet_eid, _p_mv)
 
                         # AL FINAL DE CADA TICK, A LA RED. Sin esto el paseo
                         # se quedaba en el buffer hasta que el cliente mandaba
@@ -4594,8 +4712,11 @@ class Servidor:
                 npc_t = mag.get('invoca_npc')
                 info_inv = _cb.datos_invocacion(npc_t)
 
-                # Coordenadas donde se invoca: si el cliente mando tx, ty validas cerca, usarlas; sino al lado del personaje
-                if tx > 0 and ty > 0 and ses.personaje and max(abs(tx - ses.personaje.tile_x), abs(ty - ses.personaje.tile_y)) <= 14:
+                # Coordenadas donde se invoca: si es totem, siempre a los pies del jugador; sino tx, ty o al lado
+                es_totem = 'totem' in str(info_inv.get('nombre', '')).lower() or (info_inv.get('move_speed', 70) or 0) <= 0
+                if es_totem and ses.personaje:
+                    stx, sty = ses.personaje.tile_x, ses.personaje.tile_y
+                elif tx > 0 and ty > 0 and ses.personaje and max(abs(tx - ses.personaje.tile_x), abs(ty - ses.personaje.tile_y)) <= 14:
                     stx, sty = tx, ty
                 else:
                     _off_sx = -1 if summon_slot == 'invocacion2' else 1
@@ -4618,8 +4739,8 @@ class Servidor:
                     'accuracy': info_inv.get('accuracy', 50),
                     'agility': info_inv.get('agility', 50),
                     'crit_rate': info_inv.get('crit_rate', 5),
-                    'atk_range': info_inv.get('atk_range', 1),
-                    'move_speed': info_inv.get('move_speed', 70),
+                    'atk_range': 8 if es_totem else info_inv.get('atk_range', 1),
+                    'move_speed': 0 if es_totem else info_inv.get('move_speed', 70),
                     'atk_speed': info_inv.get('atk_speed', 70),
                     'skills': info_inv.get('skills', []),
                     'tile_x': stx,
@@ -4664,6 +4785,8 @@ class Servidor:
 
                     pkgs_inv.extend(_otorgar_skill_exp(ses, ses.personaje, yo, magic_id=tipo))
                     ses.enviar_inmediato(*pkgs_inv)
+                    import presencia as _pr
+                    _pr.notificar_invocacion_spawn(ses, getattr(ses, 'invocacion', None) or getattr(ses, 'invocacion2', None), spawn_pkg, hp_pkg)
 
                 _ret_inv = max(0.14, min(2.5, cast_time / 1000.0))
                 asyncio.get_event_loop().call_later(_ret_inv, _fin_invoca)
@@ -4799,8 +4922,19 @@ class Servidor:
                         else:
                             ataque = struct.unpack_from('<I', st, 2 + 20 + 4)[0]
                             stance = _cb.stance_de(tipo)
-                            denom = mag.get('base_denom', 300) or 300
-                            mult_spell = 1.0 + (stance / float(denom))
+                            dano_extra = int(round(stance * _cb.PESO_STANCE))
+                            ataque += dano_extra
+                            denom = mag.get('base_denom', 200) or 200
+                            dano_base = mag.get('dano_base', 0)
+                            if stance > 0:
+                                mult_spell = 1.0
+                            elif dano_base > 0:
+                                mult_spell = dano_base / float(denom)
+                            else:
+                                mult_spell = 1.0
+                            coef = mag.get('dano_coef', 0)
+                            if coef > 0:
+                                mult_spell *= (coef / 100.0)
                             var_pct = 0.03
 
                         mods_eq = _iv.modificadores_porcentuales_equipo(ses.inventario)
@@ -4836,6 +4970,8 @@ class Servidor:
                                 b.aplicar_efecto(_ef2)
                                 if _ef2.get('magia') and _ef2.get('dur_ms'):
                                     pkg_debuff.append(struct.pack('<HIBBII', 0x001D, b.entity_id, 1, 4, _ef2['magia'], _ef2['dur_ms']))
+                                if _ef2.get('sub_debuff'):
+                                    pkg_debuff.append(struct.pack('<HIBBII', 0x001D, b.entity_id, 1, 4, _ef2['sub_debuff'], _ef2.get('dur_ms', 5000)))
 
                             _tipo_num = _cb.TIPO_DANO_CRITICO if es_crit else _cb.TIPO_DANO
                             ses.enviar_inmediato(
@@ -4849,6 +4985,39 @@ class Servidor:
                             else:
                                 if b.en_combate_con != yo:
                                     b.en_combate_con = yo
+
+                        # Combo continuo para ataques de area (Steel Rain, Victory Sword, Quake Spear, etc.)
+                        _combo_aoe = _cb.combo_de(tipo)
+                        if _combo_aoe and _combo_aoe.get('golpes', 1) > 1:
+                            _golpes_aoe = _combo_aoe['golpes']
+                            _sep_aoe = max(0.08, _combo_aoe.get('intervalo_ms', 200) / 1000.0)
+                            for _gk in range(1, _golpes_aoe):
+                                def _subgolpe_aoe(k_idx=_gk):
+                                    if not ses.personaje or getattr(ses, 'muerto', False):
+                                        return
+                                    vivos = [b for b in blancos if getattr(b, 'vivo', False)]
+                                    if not vivos:
+                                        return
+                                    targets_golpe = vivos if len(vivos) <= 2 else random.sample(vivos, min(3, len(vivos)))
+                                    for tgt in targets_golpe:
+                                        _c_k = random.random() < crit_prob
+                                        _mult_k = mult_spell * (1.5 if _c_k else 1.0)
+                                        _d_k = tgt.recibir(ataque, es_magico=is_magic_skill, mult=_mult_k, var_pct=var_pct)
+                                        if not _d_k:
+                                            continue
+                                        _tipo_num_k = _cb.TIPO_DANO_CRITICO if _c_k else _cb.TIPO_DANO
+                                        ses.enviar_inmediato(
+                                            _cb.numero_de_dano(yo, tgt.entity_id, _d_k, ataque=tipo, efecto=ef, es_magia=is_magic_skill),
+                                            _cb.cierre_de_dano(yo, tgt.entity_id, ataque=tipo, efecto=ef, es_magia=is_magic_skill),
+                                            _cb.atributo(tgt.entity_id, tgt.porcentaje),
+                                            _cb.numero_flotante(tgt.entity_id, _d_k, _tipo_num_k),
+                                        )
+                                        if not tgt.vivo:
+                                            _procesar_muerte_monstruo(ses, tgt, yo, addr, espera=0.0)
+                                try:
+                                    asyncio.get_event_loop().call_later(_sep_aoe * _gk, _subgolpe_aoe)
+                                except Exception:
+                                    pass
 
                         _b_proc_t = next((b for b in blancos if getattr(b, 'vivo', False)), blancos[0])
                         _pkgs_tr_aoe = _procesar_triggers_buffs(ses, yo, _b_proc_t, addr=addr, en_ataque=True)
@@ -5083,12 +5252,21 @@ class Servidor:
                         # Si es transformacion y ya la tenia activa, re-castear reinstaura su forma humana
                         if mag.get('es_transformacion') and tipo in getattr(ses.personaje, 'buffs', {}):
                             ses.personaje.buffs.pop(tipo, None)
+                            ses.personaje.hp = min(ses.personaje.hp, _vida_max(ses.personaje, ses.inventario))
+                            ses.personaje.mp = min(ses.personaje.mp, _mana_max(ses.personaje, ses.inventario))
                             ses.enviar(
                                 _cb.efecto_magia_self_fin(yo, ef, tipo),
                                 struct.pack('<HIBBII', 0x001D, yo, 1, 4, tipo, 0),
                                 _cb.atributo(yo, 0, _cb.KIND_TRANSFORM),
+                                _cb.atributo(yo, ses.personaje.hp, _cb.KIND_HP),
+                                _cb.atributo(yo, ses.personaje.mp, _cb.KIND_MP),
                                 _stats_ses(ses)
                             )
+                            try:
+                                import presencia as _pres
+                                _pres.notificar_transformacion(ses, 0)
+                            except Exception:
+                                pass
                             log.info(f"[{addr}] transformacion {tipo} ({mag.get('nombre')}) cancelada / reinstaurada")
                             return
 
@@ -5103,6 +5281,11 @@ class Servidor:
                                         struct.pack('<HIBBII', 0x001D, yo, 1, 4, prev_bid, 0),
                                         _cb.atributo(yo, 0, _cb.KIND_TRANSFORM)
                                     )
+                                    try:
+                                        import presencia as _pres
+                                        _pres.notificar_transformacion(ses, 0)
+                                    except Exception:
+                                        pass
 
                         # Registrar buff UNICAMENTE en el objetivo seleccionado (jugador o mascota)
                         if ses.personaje:
@@ -5127,6 +5310,28 @@ class Servidor:
                             buff_entry['fin'] = time.time() + buff_dur_s
                             buff_entry['mag'] = mag
                             buff_entry['es_transform'] = mag.get('es_transformacion', False)
+                            if mag.get('trans_sprite'):
+                                buff_entry['trans_sprite'] = int(mag['trans_sprite'])
+                            if mag.get('es_melee_trans'):
+                                buff_entry['es_melee_trans'] = True
+                            if mag.get('matk_pct'):
+                                buff_entry['matk_pct'] = mag.get('matk_pct')
+                            if mag.get('mdef_pct'):
+                                buff_entry['mdef_pct'] = mag.get('mdef_pct')
+                            if mag.get('atk_pct'):
+                                buff_entry['atk_pct'] = mag.get('atk_pct')
+                            if mag.get('def_pct'):
+                                buff_entry['def_pct'] = mag.get('def_pct')
+                            if mag.get('hp_pct'):
+                                buff_entry['hp_pct'] = mag.get('hp_pct')
+                            if mag.get('mp_pct'):
+                                buff_entry['mp_pct'] = mag.get('mp_pct')
+                            if mag.get('mp_to_hp_pct'):
+                                buff_entry['mp_to_hp_pct'] = mag.get('mp_to_hp_pct')
+                            if mag.get('move_speed_bonus'):
+                                buff_entry['move_speed_bonus'] = mag.get('move_speed_bonus')
+                            if mag.get('atk_speed_bonus'):
+                                buff_entry['atk_speed'] = mag.get('atk_speed_bonus')
                             if mag.get('proc_max_uses', 0) > 0:
                                 buff_entry['usos_restantes'] = int(mag['proc_max_uses'])
                             if mag.get('crit_rate'):
@@ -5197,6 +5402,11 @@ class Servidor:
                                     pkgs_buff.append(_cb.atributo(yo, ses.personaje.mp, _cb.KIND_MP))
                                     if mag.get('es_transformacion') and mag.get('trans_sprite'):
                                         pkgs_buff.append(_cb.atributo(yo, mag['trans_sprite'], _cb.KIND_TRANSFORM))
+                                        try:
+                                            import presencia as _pres
+                                            _pres.notificar_transformacion(ses, mag['trans_sprite'])
+                                        except Exception:
+                                            pass
                                 pkgs_buff.append(_stats_ses(ses))
 
                                 def _expirar_buff(sk_id=tipo,
@@ -5235,6 +5445,11 @@ class Servidor:
                                                 pkgs_expirar.append(
                                                     _cb.atributo(yo, 0,
                                                                  _cb.KIND_TRANSFORM))
+                                                try:
+                                                    import presencia as _pres
+                                                    _pres.notificar_transformacion(ses, 0)
+                                                except Exception:
+                                                    pass
                                             pkgs_expirar.append(_stats_ses(ses))
                                     if pkgs_expirar:
                                         ses.enviar_inmediato(*pkgs_expirar)
@@ -5264,9 +5479,90 @@ class Servidor:
 
             # Si el objetivo es un monstruo encantado (aliado), no se le ataca ni con golpe basico ni magia hostil
             if getattr(m, 'encantado', False):
-                if tipo == _cb.ATAQUE_NORMAL or not mag.get('es_encanto'):
+                if not mag.get('es_wolf_spirit') and (tipo == _cb.ATAQUE_NORMAL or not mag.get('es_encanto')):
                     log.info(f"[{addr}] ataque rechazado: {m.nombre} es un aliado encantado")
                     return
+
+            # Wolf Spirit (16669..16673): Sacrifica al monstruo y otorga forma Wolf Spirit y bonos
+            if tipo != _cb.ATAQUE_NORMAL and mag.get('es_wolf_spirit'):
+                mp_coste = mag.get('mp', 0)
+                if ses.personaje and mp_coste > 0:
+                    if ses.personaje.mp < mp_coste:
+                        log.info(f"[{addr}] MP insuficiente para Wolf Spirit {tipo}")
+                        return
+                    ses.personaje.mp = max(0, ses.personaje.mp - mp_coste)
+                    ses.enviar(_cb.atributo(yo, ses.personaje.mp, _cb.KIND_MP))
+
+                cd_ms = mag.get('cd_ms', 1000)
+                if cd_ms > 0 and ses.personaje:
+                    _sk_ids_copia = _cb.grupo_de(tipo)
+                    cd_pkgs = [struct.pack('<HIBBII', 0x001D, yo, 1, 3, sk_id, cd_ms)
+                               for sk_id in _sk_ids_copia]
+                    ses.enviar(*cd_pkgs, _cb.gcd_paquete())
+                    try:
+                        asyncio.get_event_loop().call_later(cd_ms / 1000.0,
+                            lambda ids=_sk_ids_copia: ses.enviar_inmediato(*[
+                                struct.pack('<HIBBII', 0x001D, yo, 1, 3, sk_id, 0)
+                                for sk_id in ids
+                            ]))
+                    except Exception:
+                        pass
+
+                # Sacrificar el monstruo objetivo
+                m.recibir(m.hp)
+                ef = mag.get('efecto', 714)
+                cast_time = _cb.calcular_cast_time(mag.get('cast_time', 1000), es_magia=True)
+
+                es_mag_m = getattr(m, 'matk', 0) > getattr(m, 'atk', 0)
+                sub_id = mag.get('sub_buff_spell', 16801) if es_mag_m else mag.get('sub_buff_phys', 16796)
+                sub_mag = _cb.datos_magia(sub_id) or {}
+                dur_ms = int(sub_mag.get('dur_ms') or 1800000)
+                buff_entry = dict(sub_mag)
+                buff_entry['fin'] = time.time() + (dur_ms / 1000.0)
+                buff_entry['es_transform'] = True
+                buff_entry['trans_sprite'] = 42146
+                buff_entry['atk'] = sub_mag.get('atk_bonus', 0)
+                buff_entry['def'] = sub_mag.get('def_bonus', 0)
+                buff_entry['matk'] = sub_mag.get('matk_bonus', 0)
+                buff_entry['mdef'] = sub_mag.get('mdef_bonus', 0)
+                rank_uses = {16669: 5, 16670: 6, 16671: 7, 16672: 8, 16673: 10}.get(tipo, 5)
+                buff_entry['usos_restantes'] = rank_uses
+                buff_entry['wolf_claw_sub'] = 16802 + (tipo - 16669 if 16669 <= tipo <= 16673 else 0)
+                if ses.personaje:
+                    ses.personaje.buffs = getattr(ses.personaje, 'buffs', {}) or {}
+                    ses.personaje.buffs[tipo] = buff_entry
+
+                def _expirar_wolf_spirit():
+                    if not ses.personaje:
+                        return
+                    ses.personaje.buffs.pop(tipo, None)
+                    ses.enviar_inmediato(
+                        struct.pack('<HIBBII', 0x001D, yo, 1, 4, tipo, 0),
+                        _cb.atributo(yo, 0, _cb.KIND_TRANSFORM),
+                        _stats_ses(ses)
+                    )
+                    try:
+                        import presencia as _pres
+                        _pres.notificar_transformacion(ses, 0)
+                    except Exception:
+                        pass
+                asyncio.get_event_loop().call_later(dur_ms / 1000.0, _expirar_wolf_spirit)
+
+                ses.enviar(
+                    _cb.confirmar_cast(objetivo, m.tile_x, m.tile_y),
+                    _cb.numero_de_dano(yo, objetivo, dano=0, ataque=tipo, efecto=ef, cast_time=cast_time),
+                    _cb.despawn_monstruo(m.entity_id),
+                    _cb.atributo(yo, 42146, _cb.KIND_TRANSFORM),
+                    struct.pack('<HIBBII', 0x001D, yo, 1, 4, tipo, dur_ms),
+                    _stats_ses(ses),
+                )
+                try:
+                    import presencia as _pres
+                    _pres.notificar_transformacion(ses, 42146)
+                except Exception:
+                    pass
+                log.info(f"[{addr}] Wolf Spirit activado para {yo}: monstruo {m.nombre} sacrificado")
+                return
 
             # Hechizo de encanto (Shining Charm I..V de Earth)
             if tipo != _cb.ATAQUE_NORMAL and mag.get('es_encanto'):
@@ -5633,17 +5929,20 @@ class Servidor:
                 if coef > 0:
                     mult_spell *= (coef / 100.0)
             else:
-                # Daño Fisico de AO: (R.Atk * Multiplicador) - DEF
+                # Daño Fisico de AO: (R.Atk + Stance Power) * Multiplicadores - DEF
                 if tipo != _cb.ATAQUE_NORMAL:
                     stance = _cb.stance_de(tipo)
-                    denom = mag.get('base_denom', 300) or 300
+                    denom = mag.get('base_denom', 200) or 200
                     dano_base = mag.get('dano_base', 0)
                     if stance > 0:
-                        mult_spell = 1.0 + (stance / float(denom))
+                        mult_spell = 1.0
                     elif dano_base > 0:
                         mult_spell = dano_base / float(denom)
                     else:
                         mult_spell = 1.0
+                    coef = mag.get('dano_coef', 0)
+                    if coef > 0:
+                        mult_spell *= (coef / 100.0)
                 else:
                     mult_spell = 1.0
                 var_pct = 0.03
@@ -5667,11 +5966,11 @@ class Servidor:
             if es_crit:
                 mult_spell = mult_base_combo * 1.5
 
-            total_atk = ataque
+            total_atk = ataque + (0 if is_magic_skill else dano_extra)
             dano = m.recibir(total_atk, es_magico=is_magic_skill, mult=mult_spell, var_pct=var_pct)
             if tipo != _cb.ATAQUE_NORMAL:
                 log.info(f"[{addr}] habilidad {tipo} ({'magica' if is_magic_skill else 'fisica'}): "
-                         f"{'Spl Atk' if is_magic_skill else 'R.Atk'} {ataque} * mult {mult_spell:.3f}"
+                         f"{'Spl Atk' if is_magic_skill else 'R.Atk'} {total_atk} * mult {mult_spell:.3f}"
                          f"{' (critico)' if es_crit else ''} -> {dano} de dano "
                          f"al {m.nombre} ({m.hp}/{m.hp_max})")
             # El ataque puede encadenar otro hechizo (轉嫁法術): Slicing Hit
@@ -5719,6 +6018,14 @@ class Servidor:
                     mid = _ef2.get('magia', tipo)
                     _pkg_debuff_m.append(struct.pack('<HIBBII', 0x001D, m.entity_id, 1, 4, mid, dur_ms))
                     _pkg_debuff_m.append(_cb.efecto_aura_objetivo(yo, objetivo, m.tile_x, m.tile_y, mid))
+                    _sub_deb_id = _ef2.get('sub_debuff')
+                    if _sub_deb_id:
+                        _pkg_debuff_m.append(struct.pack('<HIBBII', 0x001D, m.entity_id, 1, 4, _sub_deb_id, dur_ms))
+                        _pkg_debuff_m.append(_cb.efecto_aura_objetivo(yo, objetivo, m.tile_x, m.tile_y, _sub_deb_id))
+                        try:
+                            asyncio.get_event_loop().call_later(dur_ms / 1000.0, lambda eid=m.entity_id, did=_sub_deb_id: ses.enviar_inmediato(struct.pack('<HIBBII', 0x001D, eid, 1, 4, did, 0)))
+                        except Exception:
+                            pass
                     def _expirar_debuff_m(eid=m.entity_id, deb_id=mid):
                         if getattr(m, 'efectos_activos', None):
                             m.efectos_activos.pop(deb_id, None)
@@ -5736,12 +6043,14 @@ class Servidor:
                 _hp_drain = mag.get('drain_hp_pct', 0)
                 _mp_drain = mag.get('drain_mp_pct', 0)
                 if _hp_drain > 0:
-                    _hp_gain = max(1, int(round(dano * (_hp_drain / 100.0))))
-                    ses.personaje.hp = min(_vida_max(ses.personaje),
-                                          ses.personaje.hp + _hp_gain)
-                    _pkgs_drain.append(_cb.atributo(yo, ses.personaje.hp, _cb.KIND_HP))
-                    _pkgs_drain.append(_cb.numero_flotante(yo, _hp_gain,
-                                                           _cb.TIPO_CURA_HP))
+                    _prob_drain = mag.get('drain_hp_prob', 100)
+                    if random.random() * 100.0 < _prob_drain:
+                        _hp_gain = max(1, int(round(dano * (_hp_drain / 100.0))))
+                        ses.personaje.hp = min(_vida_max(ses.personaje),
+                                              ses.personaje.hp + _hp_gain)
+                        _pkgs_drain.append(_cb.atributo(yo, ses.personaje.hp, _cb.KIND_HP))
+                        _pkgs_drain.append(_cb.numero_flotante(yo, _hp_gain,
+                                                               _cb.TIPO_CURA_HP))
                 if _mp_drain > 0:
                     _mp_gain = max(1, int(round(dano * (_mp_drain / 100.0))))
                     ses.personaje.mp = min(_mana_max(ses.personaje),
@@ -6004,6 +6313,8 @@ class Servidor:
                                 return
                             _sumar_sp(ses, yo, _sp_por_golpe(ses), addr)
                             ses.enviar_inmediato(
+                                _cb.numero_de_dano(yo, objetivo, _d, ataque=tipo, efecto=atk_efecto, es_magia=is_magic_skill),
+                                _cb.cierre_de_dano(yo, objetivo, ataque=tipo, efecto=atk_efecto, es_magia=is_magic_skill),
                                 _cb.atributo(objetivo, m.porcentaje),
                                 _cb.numero_flotante(
                                     objetivo, _d,
@@ -6237,6 +6548,11 @@ class Servidor:
 
             ses.portal_pisado = None
             ses.mapa_cambiado_en = time.time()
+            try:
+                import presencia as _pres
+                _pres.entrar(ses, p.stage)
+            except Exception:
+                log.exception('presencia: fallo al entrar al mapa en 0x0009')
 
             log.info(f"[{addr}] mapa cargado exitosamente: stage {p.stage} "
                      f"tile ({p.tile_x},{p.tile_y})")
@@ -6481,53 +6797,7 @@ class Servidor:
                          f"{_sk.nombre_rama(_dentro)} (Lv {_nv_rec}) "
                          f"-> clase={_p.class_id} ({len(_nuevos)} hechizos iniciales)")
                 return
-            if _contenedor == 14:
-                # EL BANCO. Medido en la captura de Edo City del 28/09/2026:
-                # [u8 14][u32 origen][u32 destino], con las casillas del
-                # almacen numeradas desde 1, y el servidor contesta DOS
-                # sub-mensajes 0x001B: uno diciendo que la casilla de origen
-                # quedo vacia y otro con lo que hay ahora en la de destino.
-                #
-                # OJO: en la captura solo hay movimientos DENTRO del almacen.
-                # Como numera el cliente un salto entre la mochila y el banco
-                # no se ha visto, asi que aqui solo se mueve dentro del banco
-                # y cualquier casilla que no exista se deja pasar sin tocar
-                # nada.
-                import inventario as _iv2
-                _ori, _dst = struct.unpack_from('<II', cuerpo, 1)
-                _p = ses.personaje
-                if _p.banco is None:
-                    _p.banco = {}
-                if _ori not in _p.banco or _dst in _p.banco:
-                    log.info(f"[{addr}] banco: movimiento {_ori} -> {_dst} "
-                             f"que no se puede resolver con lo que hay "
-                             f"guardado ({sorted(_p.banco)})")
-                    return
-                _v = _p.banco.pop(_ori)
-                _it, _cn = _v if isinstance(_v, tuple) else (_v, 1)
-                _p.banco[_dst] = (_it, _cn)
-                ses.enviar(_iv2.banco_vaciar_ranura(_ori),
-                           _iv2.banco_poner(_p.char_id, _dst, _it, _cn,
-                                            dueno=_p.entity_id))
-                log.info(f"[{addr}] banco: item {_it} de la casilla "
-                         f"{_ori} a la {_dst}")
-                return
-
             if _contenedor in (14, 16, 17, 23):
-                # BANCO. Los cuatro contenedores mueven cosas entre la
-                # mochila y el almacen, y NINGUNO dice el sentido: lo decide
-                # donde este el objeto.
-                #
-                # Se creyo que el 17 era solo guardar y el 16 solo sacar, y
-                # es falso. En la captura del 29/09/2026 hay un "cont=17
-                # 44 -> 0" cuya respuesta VACIA EL BANCO y pone en la
-                # mochila. Con la lectura vieja ese movimiento no hacia nada.
-                #
-                # El destino en 0 quiere decir "donde quepa". Y por debajo de
-                # 20 es la posicion de la rejilla que se ve, no la casilla:
-                # la mochila empieza en la 20 y de la 0 a la 19 esta el
-                # equipo, asi que aceptarlo tal cual metia lo que salia del
-                # banco en una ranura de equipo.
                 import inventario as _iv3
                 _ori, _dst = struct.unpack_from('<II', cuerpo, 1)
                 _p = ses.personaje
@@ -6535,69 +6805,91 @@ class Servidor:
                 if _p.banco is None:
                     _p.banco = {}
 
-                def _en_bolsa(n):
-                    """La ranura REAL de la mochila para esa posicion, o None.
+                # 1. Movimiento / intercambio DENTRO del banco (contenedor 14 con ori en banco)
+                if _contenedor == 14 and _ori in _p.banco and (_dst in _p.banco or (_dst > 0 and _dst not in _bolsa and (_dst - 20) not in _bolsa)):
+                    if _dst in _p.banco:
+                        _v_ori = _p.banco[_ori]
+                        _v_dst = _p.banco[_dst]
+                        _p.banco[_ori] = _v_dst
+                        _p.banco[_dst] = _v_ori
+                        _it1, _cn1 = _v_ori if isinstance(_v_ori, tuple) else (_v_ori, 1)
+                        _it2, _cn2 = _v_dst if isinstance(_v_dst, tuple) else (_v_dst, 1)
+                        ses.enviar(
+                            _iv3.banco_poner(_p.char_id, _dst, _it1, _cn1, dueno=_p.entity_id),
+                            _iv3.banco_poner(_p.char_id, _ori, _it2, _cn2, dueno=_p.entity_id)
+                        )
+                        log.info(f"[{addr}] banco: swap casilla {_ori} ({_it1}) <-> {_dst} ({_it2})")
+                    else:
+                        _v = _p.banco.pop(_ori)
+                        _it, _cn = _v if isinstance(_v, tuple) else (_v, 1)
+                        _p.banco[_dst] = (_it, _cn)
+                        ses.enviar(
+                            _iv3.banco_vaciar_ranura(_ori),
+                            _iv3.banco_poner(_p.char_id, _dst, _it, _cn, dueno=_p.entity_id)
+                        )
+                        log.info(f"[{addr}] banco: mover item {_it} de casilla {_ori} a {_dst}")
+                    if getattr(ses, 'usuario', None):
+                        cuentas.guardar_banco(ses.usuario, _p.char_id, _p.banco)
+                    return
 
-                    Aqui estaba el fallo que vaciaba el equipo. El numero que
-                    manda el cliente por debajo de 20 es la posicion de la
-                    REJILLA de la mochila, no una ranura: la mochila empieza
-                    en la 20 y de la 0 a la 19 esta el equipo.
+                def _buscar_en_bolsa(n):
+                    if n in _bolsa and n >= 20:
+                        return n
+                    if (n + 20) in _bolsa:
+                        return n + 20
+                    if n in _bolsa:
+                        return n
+                    return None
 
-                    Mirando primero `n in _bolsa`, un "banco casilla 5" caia
-                    en la ranura 5 del INVENTARIO -- que es una pieza
-                    equipada -- y se la llevaba al almacen. Por eso
-                    desaparecian los objetos puestos.
-
-                    Por debajo de 20 solo vale la mochila (n + 20). De 20 en
-                    adelante el numero ya es la ranura de verdad.
-                    """
-                    if n < 20:
-                        return n + 20 if (n + 20) in _bolsa else None
-                    return n if n in _bolsa else None
-
-                _desde_bolsa = _en_bolsa(_ori)
-                if _desde_bolsa is not None:
-                    # MOCHILA -> BANCO
-                    _d = _dst if (_dst and _dst not in _p.banco) else next(
-                        (k for k in range(1, 25) if k not in _p.banco), None)
+                # 2. De la MOCHILA al BANCO (depositar / click o arrastre)
+                _desde_bolsa = _buscar_en_bolsa(_ori)
+                if _desde_bolsa is not None and _desde_bolsa >= 20:
+                    _d = _dst if (_dst and _dst not in _p.banco and _dst not in _bolsa) else next(
+                        (k for k in range(1, 49) if k not in _p.banco), None)
                     if _d is None:
-                        log.info('[%s] banco lleno, no se guarda' % (addr,))
+                        log.info(f"[{addr}] banco lleno, no se guarda")
                         return
                     _it = _bolsa.pop(_desde_bolsa)
                     _cn = ses.cantidades.pop(_desde_bolsa, 1)
                     _p.banco[_d] = (_it, _cn)
-                    ses.enviar(_iv3.vaciar_ranura(_p.entity_id, _desde_bolsa),
-                               _stats_ses(ses),
-                               _iv3.banco_poner(_p.char_id, _d, _it, _cn,
-                                                dueno=_p.entity_id))
-                    log.info('[%s] banco: guardado el item %d de la mochila '
-                             '%d (el cliente dijo %d) en la casilla %d'
-                             % (addr, _it, _desde_bolsa, _ori, _d))
+                    ses.enviar(
+                        _iv3.vaciar_ranura(_p.entity_id, _desde_bolsa),
+                        _stats_ses(ses),
+                        _iv3.banco_poner(_p.char_id, _d, _it, _cn, dueno=_p.entity_id)
+                    )
+                    if getattr(ses, 'usuario', None):
+                        cuentas.guardar_banco(ses.usuario, _p.char_id, _p.banco)
+                        _guardar_bolsa(ses, _p.char_id)
+                    log.info(f"[{addr}] banco: guardado item {_it} (x{_cn}) de mochila {_desde_bolsa} en banco {_d}")
                     return
 
+                # 3. Del BANCO a la MOCHILA (retirar / click o arrastre)
                 if _ori in _p.banco:
-                    # BANCO -> MOCHILA
-                    _d = _dst + 20 if (_dst and _dst < 20) else _dst
-                    if not _d or _d in _bolsa or _d < 20:
+                    _d = _dst if (_dst and _dst >= 20 and _dst not in _bolsa) else None
+                    if not _d and _dst and (_dst + 20) not in _bolsa and (_dst + 20) not in _p.banco:
+                        _d = _dst + 20
+                    if not _d:
                         _d = _ranura_libre(_bolsa, desde=20)
+                    if _d is None:
+                        log.info(f"[{addr}] mochila llena, no se puede sacar del banco")
+                        return
                     _v = _p.banco.pop(_ori)
                     _it, _cn = _v if isinstance(_v, tuple) else (_v, 1)
                     _bolsa[_d] = _it
                     if _cn > 1:
                         ses.cantidades[_d] = _cn
-                    ses.enviar(_iv3.banco_sacar(_p.char_id, _d, _it, _cn,
-                                                dueno=_p.entity_id),
-                               _iv3.banco_vaciar_ranura(_ori),
-                               _stats_ses(ses))
-                    log.info('[%s] banco: sacado el item %d de la casilla %d '
-                             'a la mochila %d (el cliente pidio la %d)'
-                             % (addr, _it, _ori, _d, _dst))
+                    ses.enviar(
+                        _iv3.banco_sacar(_p.char_id, _d, _it, _cn, dueno=_p.entity_id),
+                        _iv3.banco_vaciar_ranura(_ori),
+                        _stats_ses(ses)
+                    )
+                    if getattr(ses, 'usuario', None):
+                        cuentas.guardar_banco(ses.usuario, _p.char_id, _p.banco)
+                        _guardar_bolsa(ses, _p.char_id)
+                    log.info(f"[{addr}] banco: sacado item {_it} (x{_cn}) de banco {_ori} a mochila {_d}")
                     return
 
-                log.warning('[%s] banco: movimiento %d -> %d y en la %d no '
-                            'hay nada. Mochila: %s; almacen: %s'
-                            % (addr, _ori, _dst, _ori, sorted(_bolsa),
-                               sorted(_p.banco)))
+                log.warning(f"[{addr}] banco: movimiento {_ori} -> {_dst} no resuelto. Bolsa: {sorted(_bolsa)}, Banco: {sorted(_p.banco)}")
                 return
 
             if _contenedor != 11:
@@ -6915,6 +7207,9 @@ class Servidor:
                     salida.append(_stats_ses(ses))
                     salida.extend(_apariencia(ses))
                 ses.enviar(*salida)
+                if inv.es_equipo(org) or inv.es_equipo(dst):
+                    import presencia as _pr
+                    _pr.notificar_equipo(ses)
                 if ses.personaje and getattr(ses, 'usuario', None):
                     _guardar_bolsa(ses, ses.personaje.char_id)
                 log.info(f"[{addr}] swap ranuras {org} ({it_org}) <-> {dst} ({it_dst})")
@@ -6951,15 +7246,23 @@ class Servidor:
                 sp = inv.sprite_de_mascota(it)
                 pet_eid = (ses.personaje.entity_id if ses.personaje else 1001) + 5000
                 ses.pet_entity_id = pet_eid
+                ses.pet_sprite = sp
                 import login as _lg
                 salida.append(_lg._npc_spawn(pet_eid, 9999, "Pet", (ses.personaje.tile_x + 1, ses.personaje.tile_y), sprite=sp))
+                import presencia as _pr
+                _pr.notificar_mascota_spawn(ses, pet_eid, sp, ses.personaje.tile_x + 1, ses.personaje.tile_y)
             elif org == 9 and dst != 9:
                 pet_eid = getattr(ses, 'pet_entity_id', None)
                 if pet_eid:
                     import combate as _cb
                     salida.append(_cb.atributo(pet_eid, 0, _cb.VIDA))
+                    import presencia as _pr
+                    _pr.notificar_mascota_despawn(ses, pet_eid)
                     ses.pet_entity_id = None
             ses.enviar(*salida)
+            if inv.es_equipo(org) or inv.es_equipo(dst):
+                import presencia as _pr
+                _pr.notificar_equipo(ses)
             if ses.personaje and getattr(ses, 'usuario', None):
                 _guardar_bolsa(ses, ses.personaje.char_id)
             log.info(f"[{addr}] item {it}: ranura {org} -> {dst}"
@@ -7593,8 +7896,12 @@ class Servidor:
                 if ranura == 9 and getattr(ses, 'pet_entity_id', None):
                     import combate as _cb
                     salida.append(_cb.atributo(ses.pet_entity_id, 0, _cb.VIDA))
+                    import presencia as _pr
+                    _pr.notificar_mascota_despawn(ses, ses.pet_entity_id)
                     ses.pet_entity_id = None
                 ses.enviar(*salida)
+                import presencia as _pr
+                _pr.notificar_equipo(ses)
                 if ses.personaje and getattr(ses, 'usuario', None):
                     cuentas.guardar_inventario(ses.usuario, cid, bolsa,
                                    _cantidades(ses))
@@ -7696,10 +8003,15 @@ class Servidor:
                     sp = inv.sprite_de_mascota(item_id)
                     pet_eid = (ses.personaje.entity_id if ses.personaje else 1001) + 5000
                     ses.pet_entity_id = pet_eid
+                    ses.pet_sprite = sp
                     import login as _lg
                     salida.append(_lg._npc_spawn(pet_eid, 9999, "Pet", (ses.personaje.tile_x + 1, ses.personaje.tile_y), sprite=sp))
+                    import presencia as _pr
+                    _pr.notificar_mascota_spawn(ses, pet_eid, sp, ses.personaje.tile_x + 1, ses.personaje.tile_y)
 
                 ses.enviar(*salida)
+                import presencia as _pr
+                _pr.notificar_equipo(ses)
                 if ses.personaje and getattr(ses, 'usuario', None):
                     cuentas.guardar_inventario(ses.usuario, cid, bolsa,
                                    _cantidades(ses))
@@ -8289,6 +8601,8 @@ class Servidor:
                 elif 122460 <= ent <= 122495 or (30336 <= ent <= 30339): _st_ent = 104  # Waterfall Camp
                 elif 122585 <= ent <= 122610 or (30608 <= ent <= 30611): _st_ent = 121  # Desert Racetrack
                 elif 122730 <= ent <= 122760 or (31008 <= ent <= 31011): _st_ent = 146  # Airship Station
+                elif 122761 <= ent <= 122789: _st_ent = 151  # Mushroom Village
+                elif 122790 <= ent <= 122799: _st_ent = 152  # Building Blocks County
                 elif 122800 <= ent <= 122820 or (31120 <= ent <= 31123): _st_ent = 153  # Building Blocks City
                 elif 122890 <= ent <= 122925 or (31280 <= ent <= 31283): _st_ent = 163  # Hoca Village
                 elif 123000 <= ent <= 123030 or (31392 <= ent <= 31395): _st_ent = 170  # Pharaoh Village
@@ -8507,6 +8821,8 @@ class Servidor:
                 elif 122460 <= ent <= 122495 or (30336 <= ent <= 30339): _st_ent = 104  # Waterfall Camp
                 elif 122585 <= ent <= 122610 or (30608 <= ent <= 30611): _st_ent = 121  # Desert Racetrack
                 elif 122730 <= ent <= 122760 or (31008 <= ent <= 31011): _st_ent = 146  # Airship Station
+                elif 122761 <= ent <= 122789: _st_ent = 151  # Mushroom Village
+                elif 122790 <= ent <= 122799: _st_ent = 152  # Building Blocks County
                 elif 122800 <= ent <= 122820 or (31120 <= ent <= 31123): _st_ent = 153  # Building Blocks City
                 elif 122890 <= ent <= 122925 or (31280 <= ent <= 31283): _st_ent = 163  # Hoca Village
                 elif 123000 <= ent <= 123030 or (31392 <= ent <= 31395): _st_ent = 170  # Pharaoh Village
@@ -8697,37 +9013,95 @@ class Servidor:
                     # West Playground A1..A5
                     _sincronizar_cambio_mapa(ses, 43, 186, 27)
                     log.info(f"[{addr}] West Portal: al West Playground (stage 43)")
+                elif _el in (20002, 30002, 40002, 50002) and ses.personaje:
+                    import misiones as _mis
+                    import clases as _cl
+                    # 1. Guia de la ciudad (Explorer Lim, Risker Zalfer, Pioneer Ocadon, Explorer Gulin)
+                    if ent in _mis.GUIAS_CIUDAD:
+                        _st_g, _q_con, _nom_g, _ = _mis.GUIAS_CIUDAD[ent]
+                        if _mis.tiene_mision(ses.personaje, _q_con) and not _mis.mision_completada(ses.personaje, _q_con):
+                            _mis.completar_mision(ses, _q_con, exp=1500, oro=500)
+                            log.info(f"[{addr}] {ses.personaje.nombre} completo mision {_q_con} con {_nom_g}")
+                        else:
+                            ses.enviar(_cl.aviso(f"{_nom_g}: Welcome to our city, Angel!", tipo=0, msg_id=_cl.MSG_QUEST))
+                    # 2. Block Envoy (Mushroom Village)
+                    elif ent == 122784 or 'Block Envoy' in (_nombre_entidad(ses, ent) or ''):
+                        _st_m142, _pa142, _comp142 = _mis.estado_mision(ses.personaje, _mis.QUEST_EDEN_NEEDS_HELP)
+                        if not _st_m142 or _pa142 <= 1:
+                            if not _st_m142:
+                                _mis.aceptar_mision(ses, _mis.QUEST_EDEN_NEEDS_HELP)
+                            _mis.avanzar_paso(ses, _mis.QUEST_EDEN_NEEDS_HELP, 2)
+                            ses.enviar(_cl.aviso("Quest [Eden Needs Help]: Defeat 100 Young Witches or Crystal Envoys!", tipo=0, msg_id=_cl.MSG_QUEST))
+                        elif _pa142 == 3:
+                            _mis.avanzar_paso(ses, _mis.QUEST_EDEN_NEEDS_HELP, 4)
+                            ses.enviar(_cl.aviso("Quest [Eden Needs Help]: Report to Guerrilla Leader Mola in Building Blocks County!", tipo=0, msg_id=_cl.MSG_QUEST))
+                            _sincronizar_cambio_mapa(ses, 152, 132, 95)
+                    # 3. Guerrilla Leader Mola (Building Blocks County)
+                    elif ent == 122793 or 'Mola' in (_nombre_entidad(ses, ent) or '') or 'Guerrilla' in (_nombre_entidad(ses, ent) or ''):
+                        _st_m142, _pa142, _ = _mis.estado_mision(ses.personaje, _mis.QUEST_EDEN_NEEDS_HELP)
+                        _st_m143, _pa143, _ = _mis.estado_mision(ses.personaje, _mis.QUEST_FINAL_LINE)
+                        if _st_m142 and _pa142 == 4:
+                            _mis.completar_mision(ses, _mis.QUEST_EDEN_NEEDS_HELP, exp=50000, oro=20000)
+                            _mis.aceptar_mision(ses, _mis.QUEST_FINAL_LINE)
+                            _mis.avanzar_paso(ses, _mis.QUEST_FINAL_LINE, 1)
+                            ses.enviar(_cl.aviso("Quest [The Final Line]: Defeat 100 Fireball Babies or Flower Thorn Babies!", tipo=0, msg_id=_cl.MSG_QUEST))
+                        elif _st_m143:
+                            if _pa143 == 2:
+                                _mis.avanzar_paso(ses, _mis.QUEST_FINAL_LINE, 3)
+                                ses.enviar(_cl.aviso("Quest [The Final Line]: Defeat 100 Dog Fighters!", tipo=0, msg_id=_cl.MSG_QUEST))
+                            elif _pa143 == 4:
+                                _mis.avanzar_paso(ses, _mis.QUEST_FINAL_LINE, 5)
+                                ses.enviar(_cl.aviso("Quest [The Final Line]: Report to Lord Kahn in Building Blocks City!", tipo=0, msg_id=_cl.MSG_QUEST))
+                                _sincronizar_cambio_mapa(ses, 153, 51, 136)
+                    # 4. Lord Kahn (Building Blocks City)
+                    elif ent == 122809 or 'Kahn' in (_nombre_entidad(ses, ent) or ''):
+                        _st_m143, _pa143, _ = _mis.estado_mision(ses.personaje, _mis.QUEST_FINAL_LINE)
+                        if _st_m143 and _pa143 == 5:
+                            _mis.completar_mision(ses, _mis.QUEST_FINAL_LINE, exp=100000, oro=50000, creditos_honor=50)
+                            _mis.aceptar_mision(ses, 144)
+                            _mis.avanzar_paso(ses, 144, 1)
+                            ses.enviar(_cl.aviso("Quest [Recapturing Eden]: Accepted from Lord Kahn!", tipo=0, msg_id=_cl.MSG_QUEST))
+                    # 5. Angel de Ciudad: Registro
+                    elif _el in _dlg_mod.CIUDAD_POR_OPCION and _el % 10000 == 2:
+                        _pjr = ses.personaje
+                        _cfgr = _dlg_mod.ANGEL_DE_CIUDAD[_dlg_mod.CIUDAD_POR_OPCION[_el]]
+                        _q_reg = _cfgr['mision_registro']
+                        _nuevas_q = (_cfgr['mision_conocer'], _cfgr['mision_nivel'])
+                        _mis.completar_mision(ses, _q_reg, exp=500, oro=200)
+                        for _q in _nuevas_q:
+                            if not _mis.tiene_mision(_pjr, _q):
+                                _mis.aceptar_mision(ses, _q)
+                        log.info(f"[{addr}] {_pjr.nombre} se registro con el Angel de su ciudad: misiones {_nuevas_q}, la {_q_reg} completada")
                 elif (_el in _dlg_mod.CIUDAD_POR_OPCION
-                      and _el % 10000 == 2 and ses.personaje):
-                    # "I have come here to register!": completa la mision de
-                    # registro y da las dos siguientes. Medido con el Angel
-                    # de Breeze Woods: llegan la 136 "Knowing Breeze Woods",
-                    # la 140 "Reaching higher level" y la 130 con el paso 1.
-                    # LAS QUESTS SON LAS DE SU CIUDAD, no las de Breeze
-                    # Woods. Antes estaban escritas a mano (136, 140 y 130),
-                    # asi que registrarse en Aurora completaba la quest de
-                    # Breeze y daba las suyas.
-                    import clases as _clr, time as _tmr
-                    _pjr = ses.personaje
-                    _cfgr = _dlg_mod.ANGEL_DE_CIUDAD[
-                        _dlg_mod.CIUDAD_POR_OPCION[_el]]
-                    _q_reg = _cfgr['mision_registro']
-                    _nuevas_q = (_cfgr['mision_conocer'], _cfgr['mision_nivel'])
-                    _paqr = []
-                    for _q in _nuevas_q:
-                        if _q not in [x[0] for x in (_pjr.quests or [])]:
-                            _pjr.quests = list(_pjr.quests or []) + [(_q, 0)]
-                        _paqr += [_clr.mision(_pjr.char_id, _q, 0),
-                                  _clr.aviso(_clr.nombre_de_quest(_q), tipo=0,
-                                             msg_id=_clr.MSG_QUEST)]
-                    _pjr.quests = [(q, 1 if q == _q_reg else pa)
-                                   for q, pa in (_pjr.quests or [])]
-                    _paqr.append(_clr.mision(_pjr.char_id, _q_reg, 1,
-                                             int(_tmr.time())))
-                    ses.enviar(*_paqr)
-                    log.info(f"[{addr}] {_pjr.nombre} se registro con el Angel "
-                             f"de su ciudad: misiones {_nuevas_q}, la "
-                             f"{_q_reg} completada")
+                      and _el % 10000 == 3 and ses.personaje):
+                    # Angel de Ciudad: Reaching higher level (Misiones 137, 138, 139, 140)
+                    import misiones as _mis
+                    import clases as _cl
+                    _cfgr = _dlg_mod.ANGEL_DE_CIUDAD[_dlg_mod.CIUDAD_POR_OPCION[_el]]
+                    _q_niv = _cfgr['mision_nivel']
+                    _pj = ses.personaje
+                    _rango_act = getattr(_pj, 'rango', 1)
+                    if _mis.tiene_mision(_pj, _q_niv) and not _mis.mision_completada(_pj, _q_niv):
+                        if _pj.nivel >= 20 and _rango_act >= 2:
+                            _mis.completar_mision(ses, _q_niv, exp=10000, oro=5000, creditos_honor=20)
+                            ses.enviar(_cl.aviso("Quest Completed! Talk to Paradise Angel to journey into Eden.", tipo=0, msg_id=_cl.MSG_QUEST))
+                            log.info(f"[{addr}] {_pj.nombre} completo mision de nivel {_q_niv}")
+                        else:
+                            ses.enviar(_cl.aviso(f"Requires Lv 20 (Lv {_pj.nivel}) & Angel Rank 2 (Rank {_rango_act}).", tipo=0, msg_id=_cl.MSG_QUEST))
+                elif _el == 14303 and ses.personaje:
+                    import misiones as _mis
+                    import clases as _cl
+                    if not _mis.tiene_mision(ses.personaje, _mis.QUEST_FINAL_LINE):
+                        _mis.aceptar_mision(ses, _mis.QUEST_FINAL_LINE)
+                        _mis.avanzar_paso(ses, _mis.QUEST_FINAL_LINE, 1)
+                        ses.enviar(_cl.aviso("Quest [The Final Line]: Defeat 100 Fireball Babies or Flower Thorn Babies!", tipo=0, msg_id=_cl.MSG_QUEST))
+                elif _el == 14402 and ses.personaje:
+                    import misiones as _mis
+                    import clases as _cl
+                    if not _mis.tiene_mision(ses.personaje, 144):
+                        _mis.aceptar_mision(ses, 144)
+                        _mis.avanzar_paso(ses, 144, 1)
+                        ses.enviar(_cl.aviso("Quest [Recapturing Eden]: Accepted from Lord Kahn!", tipo=0, msg_id=_cl.MSG_QUEST))
                 elif (_el in _dlg_mod.CIUDAD_POR_OPCION
                       and _el % 10000 == 18 and ses.personaje):
                     # "Send me back to the Angel Lyceum" del Angel de una
@@ -8738,20 +9112,28 @@ class Servidor:
                     log.info(f"[{addr}] {ses.personaje.nombre} vuelve al "
                              f"Angel Lyceum cuando se cierre el dialogo")
                 elif _el == 5080 and ses.personaje:
-                    # Director Wolay: retorno a la ciudad de faccion elegida
-                    # La faccion guardada ya no es el nombre de la ciudad
-                    # ("Breeze Woods") sino el de la faccion ("Beasts"), asi
-                    # que esta tabla, que iba por el nombre viejo, no
-                    # encontraba ninguna y mandaba a todos a Aurora. Se usa
-                    # el mismo destino que al elegirla con el Angel.
-                    CIUDAD_POR_FACCION = {
-                        NOMBRE_DE_FACCION[c]: CIUDAD_DE_FACCION[c]
-                        for c in CIUDAD_DE_FACCION if c in NOMBRE_DE_FACCION
-                    }
-                    st_dest, tile_dest = CIUDAD_POR_FACCION.get(
-                        ses.personaje.faction, CIUDAD_DE_FACCION["Aurora"])
-                    _sincronizar_cambio_mapa(ses, st_dest, tile_dest[0], tile_dest[1])
-                    log.info(f"[{addr}] Director Wolay: retorno a {ses.personaje.faction} (stage {st_dest})")
+                    import misiones as _mis
+                    # 1. Paradise Angel (lleva a Mushroom Village en Eden y otorga Quest 142)
+                    if ent in _mis.PARADISE_ANGELS or 'Paradise' in (_nombre_entidad(ses, ent) or ''):
+                        if not _mis.tiene_mision(ses.personaje, _mis.QUEST_EDEN_NEEDS_HELP):
+                            _mis.aceptar_mision(ses, _mis.QUEST_EDEN_NEEDS_HELP)
+                            _mis.avanzar_paso(ses, _mis.QUEST_EDEN_NEEDS_HELP, 1)
+                        _sincronizar_cambio_mapa(ses, 151, 195, 146)
+                        log.info(f"[{addr}] Paradise Angel: {ses.personaje.nombre} enviado a Mushroom Village (stage 151)")
+                    elif ent == 122784 or 'Block Envoy' in (_nombre_entidad(ses, ent) or ''):
+                        # Block Envoy: viaje a Building Blocks County
+                        _sincronizar_cambio_mapa(ses, 152, 132, 95)
+                        log.info(f"[{addr}] Block Envoy: {ses.personaje.nombre} enviado a Building Blocks County (stage 152)")
+                    else:
+                        # Director Wolay: retorno a la ciudad de faccion elegida
+                        CIUDAD_POR_FACCION = {
+                            NOMBRE_DE_FACCION[c]: CIUDAD_DE_FACCION[c]
+                            for c in CIUDAD_DE_FACCION if c in NOMBRE_DE_FACCION
+                        }
+                        st_dest, tile_dest = CIUDAD_POR_FACCION.get(
+                            ses.personaje.faction, CIUDAD_DE_FACCION["Aurora"])
+                        _sincronizar_cambio_mapa(ses, st_dest, tile_dest[0], tile_dest[1])
+                        log.info(f"[{addr}] Director Wolay: retorno a {ses.personaje.faction} (stage {st_dest})")
                 elif _el == 5058 and ses.personaje:
                     # Raphael (Fighting Palace): Repetir explicacion
                     nom = ses.personaje.nombre if ses.personaje else 'Jugador'
@@ -8975,6 +9357,80 @@ class Servidor:
                 act_code = 8 if ses.sentado else 0
                 ses.enviar(struct.pack('<HIII', 0x000A, yo, 0, act_code))
                 log.info(f"[{addr}] personaje {'se sento' if ses.sentado else 'se levanto'} (accion={act_code})")
+                return
+            if accion == 0x0D and ses.personaje and not getattr(ses, 'muerto', False):
+                # WEAPON SWITCH (Alt+~ / Boton [ I ] [ II ])
+                # Intercambia el conjunto de armas activo (ranuras 3 y 4)
+                # con el conjunto de reserva Set II (ranuras 11 y 12).
+                bolsa = getattr(ses, 'inventario', None)
+                if bolsa is not None:
+                    cants = _cantidades(ses)
+                    cid = ses.personaje.char_id
+
+                    # 1. Swap ranura 3 (Main Weapon) <-> 11 (Main Weapon II)
+                    it3 = bolsa.pop(3, None) if 3 in bolsa else bolsa.pop('3', None)
+                    it11 = bolsa.pop(11, None) if 11 in bolsa else bolsa.pop('11', None)
+                    c3 = cants.pop(3, None) if 3 in cants else cants.pop('3', None)
+                    c11 = cants.pop(11, None) if 11 in cants else cants.pop('11', None)
+                    if it3 is not None:
+                        bolsa[11] = it3
+                    if it11 is not None:
+                        bolsa[3] = it11
+                    if c3 is not None and c3 > 1:
+                        cants[11] = c3
+                    if c11 is not None and c11 > 1:
+                        cants[3] = c11
+                    _mover_inst(ses, 3, 11)
+
+                    # 2. Swap ranura 4 (Offhand/Shield/Ammo) <-> 12 (Offhand II)
+                    it4 = bolsa.pop(4, None) if 4 in bolsa else bolsa.pop('4', None)
+                    it12 = bolsa.pop(12, None) if 12 in bolsa else bolsa.pop('12', None)
+                    c4 = cants.pop(4, None) if 4 in cants else cants.pop('4', None)
+                    c12 = cants.pop(12, None) if 12 in cants else cants.pop('12', None)
+                    if it4 is not None:
+                        bolsa[12] = it4
+                    if it12 is not None:
+                        bolsa[4] = it12
+                    if c4 is not None and c4 > 1:
+                        cants[12] = c4
+                    if c12 is not None and c12 > 1:
+                        cants[4] = c12
+                    _mover_inst(ses, 4, 12)
+
+                    # 3. Guardar cambios en base de datos
+                    _guardar_bolsa(ses, cid)
+                    if getattr(ses, 'usuario', None):
+                        cuentas.guardar_mejoras(ses.usuario, cid, ses.personaje.mejoras)
+
+                    # 4. Respuesta oficial Celestia:
+                    # s2c 0x0016 [0d 00 00]
+                    ack_switch = struct.pack('<H', 0x0016) + b'\x0d\x00\x00'
+                    salida = [ack_switch]
+
+                    # Refrescar las 4 casillas con sus 0x001B
+                    salida.extend(_refrescar(ses, [3, 4, 11, 12]))
+
+                    # Recalcular stats y ajustar limites de HP/MP
+                    import combate as _cb
+                    _max_h = _vida_max(ses.personaje, bolsa=bolsa)
+                    if ses.personaje.hp > _max_h:
+                        ses.personaje.hp = _max_h
+                    _max_m = _mana_max(ses.personaje, bolsa=bolsa)
+                    if ses.personaje.mp > _max_m:
+                        ses.personaje.mp = _max_m
+                    salida.append(_cb.atributo(ses.personaje.entity_id, ses.personaje.hp, _cb.KIND_HP))
+                    salida.append(_cb.atributo(ses.personaje.entity_id, ses.personaje.mp, _cb.KIND_MP))
+
+                    salida.append(_stats_ses(ses))
+                    salida.extend(_apariencia(ses))
+
+                    ses.enviar(*salida)
+
+                    # Notificar a los demas jugadores para que vean el cambio de arma
+                    import presencia as _pr
+                    _pr.notificar_equipo(ses)
+
+                    log.info(f"[{addr}] switch de armas (Alt+~): mano der {it11} <-> {it3}, mano izq {it12} <-> {it4}")
                 return
 
         if opcode == 0x0004 and d:
@@ -9300,6 +9756,7 @@ class Servidor:
         log.info("GM: /item <id> [qty]  /level <n>  /levelall <n>  (also console or data/gm.txt)")
         tareas.append(gm.consola(self))
         tareas.append(gm.cola(self))
+        tareas.append(cuentas.tarea_backup_periodico())
 
         # SEÑUELOS: el binario muestra que la ip y el puerto del mundo NO
         # salen del redirect sino de la lista de servidores (sub_51A370 los

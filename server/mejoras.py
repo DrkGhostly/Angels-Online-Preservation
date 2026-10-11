@@ -177,17 +177,29 @@ def clase_de(item_id) -> str:
 def tope_nivel(item_id) -> int:
     """Hasta que nivel de equipo sirve, leido de la descripcion.
 
-    Las descripciones dicen "under lvl 119", "under Lvl 209" o "for rides
-    under Lvl 39". Se devuelve ese numero; 0 si no lo dice.
+    Las descripciones dicen "under lvl 119", "under Lvl 209", "for rides
+    under Lvl 39", "レベル259以下", "tingkat 39 ke bawah", "209級以下", etc.
+    Se devuelve ese numero; 0 si no tiene restriccion de nivel (sirve para todo).
     """
     f = _fila(item_id)
     if not f or not f[3]:
         return 0
-    # Cada familia lo escribe a su manera: los morteros dicen "under lvl
-    # 119", los piensos "under Lvl 209" y el martillo verde "below level 19".
-    for patron in (r'under\s+lvl\s*(\d+)', r'below\s+level\s*(\d+)',
-                   r'under\s+level\s*(\d+)'):
-        m = re.search(patron, f[3], re.I)
+    desc = f[3]
+    for patron in (
+        r'under\s+lvl\s*(\d+)',
+        r'below\s+level\s*(\d+)',
+        r'under\s+level\s*(\d+)',
+        r'below\s+lvl\s*(\d+)',
+        r'lvl\s*(\d+)\s*or\s+below',
+        r'level\s*(\d+)\s*or\s+below',
+        r'(\d+)\s*[級级]\s*以下',
+        r'等[級级]\s*(\d+)\s*以下',
+        r'レベル\s*(\d+)\s*以下',
+        r'tingkat\s+(\d+)\s+ke\s+bawah',
+        r'dibawah\s+level\s+(\d+)',
+        r'under\s*(\d+)\s*level',
+    ):
+        m = re.search(patron, desc, re.I)
         if m:
             return int(m.group(1))
     return 0
@@ -260,6 +272,7 @@ BONOS_POR_DEFECTO = {
     'arma': {'atk': 6, 'matk': 6},
     'armadura': {'dfs': 3, 'mdef': 3},
     'escudo': {'dfs': 3, 'mdef': 3},
+    'montura': {'atk': 8, 'matk': 8, 'velocidad': 2},
 }
 
 # Y lo que sube un pienso de montura, que si lo dicen todos.
@@ -274,7 +287,8 @@ def puede_perforar(item_id, nivel_equipo: int, tipo: str):
     if clase_de(item_id) != 'perforar':
         return False, 'no es un martillo de perforar'
     tope = tope_nivel(item_id)
-    if tope and nivel_equipo > tope:
+    # Nivel maximo de herramientas (40-star / tope >= 400): cubren todo el equipo endgame (410+)
+    if tope and tope < 400 and nivel_equipo > tope:
         return False, ('sirve hasta nivel %d y la pieza es de %d'
                        % (tope, nivel_equipo))
     if tipo not in ('arma', 'armadura', 'escudo'):
@@ -294,6 +308,9 @@ def perforar(estado: dict, ranura, item_id, nivel_equipo: int, tipo: str,
     rng = rng or random
     st = estado.setdefault(int(ranura), {'veces': 0, 'gemas': [],
                                          'extra': {}, 'huecos': 0})
+    st.setdefault('veces', 0)
+    st.setdefault('gemas', [])
+    st.setdefault('extra', {})
     st.setdefault('huecos', 0)
     ok, motivo = puede_perforar(item_id, nivel_equipo, tipo)
     if not ok:
@@ -323,6 +340,10 @@ def engarzar(estado: dict, ranura, gema_id, nivel_equipo: int, tipo: str):
     """Mete una gema en un hueco libre."""
     st = estado.setdefault(int(ranura), {'veces': 0, 'gemas': [],
                                          'extra': {}, 'huecos': 0})
+    st.setdefault('veces', 0)
+    st.setdefault('gemas', [])
+    st.setdefault('extra', {})
+    st.setdefault('huecos', 0)
     libres = st.get('huecos', 0) - len(st['gemas'])
     ok, motivo = puede_engarzar(gema_id, nivel_equipo, tipo, libres)
     if not ok:
@@ -339,15 +360,16 @@ def puede_mejorar(item_id, nivel_equipo: int, tipo: str, veces: int):
     if veces >= MAX_MEJORA:
         return False, 'ya esta al maximo (+%d)' % MAX_MEJORA
     tope = tope_nivel(item_id)
-    if tope and nivel_equipo > tope:
+    # Nivel maximo de herramientas (40-star / tope >= 400): cubren todo el equipo endgame (410+)
+    if tope and tope < 400 and nivel_equipo > tope:
         return False, ('sirve hasta nivel %d y la pieza es de %d'
                        % (tope, nivel_equipo))
     if cl == 'pienso_montura' and tipo != 'montura':
-        return False, 'el pienso es solo para monturas'
+        return False, 'el pienso es solo para monturas y robots'
     if cl == 'pienso_mascota' and tipo != 'mascota':
         return False, 'ese pienso es solo para mascotas'
-    if cl == 'mortero' and tipo not in ('arma', 'armadura', 'escudo'):
-        return False, 'el mortero es para armas, armaduras y escudos'
+    if cl == 'mortero' and tipo not in ('arma', 'armadura', 'escudo', 'montura'):
+        return False, 'el mortero es para armas, armaduras, escudos y monturas/robots'
     return True, ''
 
 
@@ -431,11 +453,13 @@ RANGOS_POR_TIPO = {
 
 CATEGORIAS_VERDE = {
     '劍': 'arma', '斧': 'arma', '刀': 'arma', '槍': 'arma',
-    '弓箭': 'arma', '杖': 'arma', '影刃': 'arma',
+    '弓箭': 'arma', '彈弓': 'arma', '杖': 'arma', '影刃': 'arma',
+    '鎚': 'arma', '锤': 'arma', '釣竿': 'arma', '鐵鍬': 'arma',
     '衣服': 'armadura', '頭飾': 'armadura',
     '鞋子': 'armadura', '手套': 'armadura',
-    '座騎': 'montura', '背包': 'mochila',
-    '披風': 'capa', '飾品': 'accesorio',
+    '座騎': 'montura', '機甲': 'montura',
+    '背包': 'mochila', '披風': 'capa',
+    '飾品': 'accesorio', '徽章': 'accesorio',
 }
 
 
@@ -458,12 +482,14 @@ TABLA_VERDES = (pathlib.Path(__file__).parent / 'plantillas' / 'verdes.json')
 # saber si es ligera, pesada o tunica.
 PARTE_POR_CATEGORIA = {
     '劍': '武器刀劍', '刀': '武器刀劍',
-    '斧': '武器斧锤', '锤': '武器斧锤',
-    '弓箭': '武器弓彈', '槍': '武器槍',
+    '斧': '武器斧鎚', '鎚': '武器斧鎚', '锤': '武器斧鎚',
+    '弓箭': '武器弓彈', '彈弓': '武器弓彈', '槍': '武器槍',
     '杖': '武器杖', '影刃': '武器影刃',
+    '釣竿': '武器杖', '鐵鍬': '武器斧鎚',
     '盾': '盾牌', '座騎': '座騎',
     '背包': '背包', '披風': '披風',
-    '飾品': '飾品', '機甲': '機甲',
+    '飾品': '飾品', '徽章': '飾品',
+    '機甲': '機甲',
 }
 
 # Las que si lo necesitan: se les pega 袍, 輕 o 重 detras.
@@ -563,11 +589,25 @@ def rangos_verde(item_id):
     """Los rangos de stats verdes de esa pieza, tal cual los da el juego."""
     parte = parte_de(item_id)
     fila = _fila_verde(parte, nivel_de_pieza(item_id)) if parte else None
-    if not fila:
-        # Sin la tabla no se inventa nada: mejor no dar verdes que dar
-        # numeros de mas, que es lo que cerraba el cliente.
-        return {}
-    return {st: (v[0], v[1]) for st, v in fila.items() if v[1] > 0}
+    if fila:
+        res = {st: (v[0], v[1]) for st, v in fila.items() if v[1] > 0}
+        if res:
+            return res
+    # Respaldo por tipo si no esta en la tabla adv.xml
+    import inventario as _inv
+    cat = _inv.categoria_item(item_id) or ''
+    tipo = CATEGORIAS_VERDE.get(cat)
+    if not tipo:
+        r = _inv.ranura_equipo_de(item_id)
+        if r in (10, 174): tipo = 'montura'
+        elif r in (3, 4, 169, 170): tipo = 'arma'
+        elif r in (8, 9, 173): tipo = 'accesorio'
+        elif r == 14: tipo = 'mochila'
+        elif r == 13: tipo = 'capa'
+        elif r in (1, 2, 5, 6, 7, 168, 171, 172): tipo = 'armadura'
+    if tipo and tipo in RANGOS_POR_TIPO:
+        return RANGOS_POR_TIPO[tipo]
+    return {}
 
 
 def tirar_verde(rangos, todos: bool = False, rng=None):
@@ -613,7 +653,11 @@ def aplicar(estado: dict, ranura, item_id, nivel_equipo: int, tipo: str,
     """
     rng = rng or random
     st = estado.setdefault(int(ranura), {'veces': 0, 'gemas': [],
-                                         'extra': {}})
+                                         'extra': {}, 'huecos': 0})
+    st.setdefault('veces', 0)
+    st.setdefault('gemas', [])
+    st.setdefault('extra', {})
+    st.setdefault('huecos', 0)
     ok, motivo = puede_mejorar(item_id, nivel_equipo, tipo, st['veces'])
     if not ok:
         return False, motivo
@@ -669,6 +713,14 @@ def tipo_de_ranura(ranura, item_id=None):
     hacha) en lugar de un escudo, sus mejoras "+N" son de 'arma' (+6% atk/matk
     por mejora) para que el L.Atk coincida con el R.Atk.
     """
+    if item_id:
+        try:
+            import inventario as _iv
+            cat = _iv.categoria_item(int(item_id))
+            if cat in ('座騎', '機甲'):
+                return 'montura'
+        except Exception:
+            pass
     r = int(ranura)
     if r in (10, 174):
         return 'montura'

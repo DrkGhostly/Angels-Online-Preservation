@@ -46,27 +46,96 @@ RAIZ_PROYECTO = pathlib.Path(__file__).parent.parent
 #
 # El pak que manda es update26.pak, el de numero mas alto que trae
 # SETTING\ENG\STAGE.XML.
+CONFIG_ESTACION = {
+    'normal': {
+        3:  (None, '無'),
+        26: (None, '無'),
+        29: (None, '無'),
+        38: (None, '無'),
+        41: (None, '無'),
+        87: (None, '無'),
+        88: (None, '無'),
+    },
+    'navidad': {
+        3:  (r'map\003xmas.mpc', '自動下雪'),
+        26: (r'map\026xmas.mpc', '小雪'),
+        29: (r'map\029xmas.mpc', '小雪'),
+        38: (r'map\038xmas.mpc', '小雪'),
+        41: (r'map\041xmas.mpc', '小雪'),
+        87: (r'map\087xmas.mpc', '自動下雪'),
+        88: (r'map\088xmas.mpc', '自動下雪'),
+    },
+    'halloween': {
+        3:  (r'map\003halloween.mpc', '無'),
+        26: (r'map\026halloween.mpc', '無'),
+        29: (r'map\029halloween.mpc', '無'),
+        38: (r'map\038halloween.mpc', '無'),
+        41: (r'map\041halloween.mpc', '無'),
+        87: (None, '無'),
+        88: (r'map\088halloween.mpc', '無'),
+    },
+    'sakura': {
+        3:  (r'map\003sakura.mpc', '無'),
+        26: (r'map\026sakura.mpc', '無'),
+        29: (r'map\029sakura.mpc', '無'),
+        38: (r'map\038sakura.mpc', '無'),
+        41: (r'map\041sakura.mpc', '無'),
+        87: (None, '無'),
+        88: (None, '無'),
+    },
+    'verano': {
+        3:  (None, '無'),
+        26: (None, '無'),
+        29: (None, '無'),
+        38: (None, '無'),
+        41: (r'map\041matsuri.mpc', '無'),
+        87: (None, '無'),
+        88: (None, '無'),
+    },
+}
+
 ESTACIONES = {
-    'normal':    (None,                       '無'),
-    'navidad':   (r'map\041xmas.mpc',      '小雪'),
-    'halloween': (r'map\041halloween.mpc', '無'),
-    'sakura':    (r'map\041sakura.mpc',    '無'),
-    'verano':    (r'map\041matsuri.mpc',   '無'),
+    k: CONFIG_ESTACION[k][41] for k in CONFIG_ESTACION
+}
+MAPAS_ESTACION = CONFIG_ESTACION
+
+TODOS_DECORADOS = {
+    '003xmas.mpc', '003halloween.mpc', '003sakura.mpc',
+    '026xmas.mpc', '026halloween.mpc', '026sakura.mpc',
+    '029xmas.mpc', '029halloween.mpc', '029sakura.mpc',
+    '038xmas.mpc', '038halloween.mpc', '038sakura.mpc',
+    '041xmas.mpc', '041halloween.mpc', '041sakura.mpc', '041matsuri.mpc',
+    '087xmas.mpc',
+    '088xmas.mpc', '088halloween.mpc',
+    'map041.mpc',
 }
 
-# De donde sale cada mapa de decoracion si no esta la plantilla.
-DECORADOS_ESTACION = {
-    'navidad':   RAIZ_PROYECTO / 'extracted_paks' / 'UPDATE10' / 'map' / '041xmas.mpc',
-    'halloween': RAIZ_PROYECTO / 'extracted_paks' / 'UPDATE6' / 'map' / '041halloween.mpc',
-    'sakura':    RAIZ_PROYECTO / 'extracted_paks' / 'UPDATE6' / 'map' / '041sakura.mpc',
-    'verano':    RAIZ_PROYECTO / 'extracted_paks' / 'UPDATE19' / 'map' / '041matsuri.mpc',
+FUENTES_DECORADOS = {
+    '003xmas.mpc': RAIZ_PROYECTO / 'extracted_paks' / 'UPDATE10' / 'map' / '003xmas.mpc',
+    '026xmas.mpc': RAIZ_PROYECTO / 'extracted_paks' / 'UPDATE10' / 'map' / '026xmas.mpc',
+    '029xmas.mpc': RAIZ_PROYECTO / 'extracted_paks' / 'UPDATE10' / 'map' / '029xmas.mpc',
+    '038xmas.mpc': RAIZ_PROYECTO / 'extracted_paks' / 'UPDATE10' / 'map' / '038xmas.mpc',
+    '041xmas.mpc': RAIZ_PROYECTO / 'extracted_paks' / 'UPDATE10' / 'map' / '041xmas.mpc',
+    '087xmas.mpc': RAIZ_PROYECTO / 'extracted_paks' / 'UPDATE10' / 'map' / '087xmas.mpc',
+    '088xmas.mpc': RAIZ_PROYECTO / 'extracted_paks' / 'UPDATE10' / 'map' / '088xmas.mpc',
+    '003halloween.mpc': RAIZ_PROYECTO / 'extracted_paks' / 'UPDATE10' / 'map' / '003halloween.mpc',
+    '026halloween.mpc': RAIZ_PROYECTO / 'extracted_paks' / 'UPDATE10' / 'map' / '026halloween.mpc',
+    '029halloween.mpc': RAIZ_PROYECTO / 'extracted_paks' / 'UPDATE10' / 'map' / '029halloween.mpc',
+    '038halloween.mpc': RAIZ_PROYECTO / 'extracted_paks' / 'UPDATE10' / 'map' / '038halloween.mpc',
+    '041halloween.mpc': RAIZ_PROYECTO / 'extracted_paks' / 'UPDATE10' / 'map' / '041halloween.mpc',
+    '088halloween.mpc': RAIZ_PROYECTO / 'extracted_paks' / 'UPDATE10' / 'map' / '088halloween.mpc',
+    '003sakura.mpc': RAIZ_PROYECTO / 'extracted_paks' / 'UPDATE6' / 'map' / '003sakura.mpc',
+    '026sakura.mpc': RAIZ_PROYECTO / 'extracted_paks' / 'UPDATE6' / 'map' / '026sakura.mpc',
+    '029sakura.mpc': RAIZ_PROYECTO / 'extracted_paks' / 'UPDATE6' / 'map' / '029sakura.mpc',
+    '038sakura.mpc': RAIZ_PROYECTO / 'extracted_paks' / 'UPDATE6' / 'map' / '038sakura.mpc',
+    '041sakura.mpc': RAIZ_PROYECTO / 'extracted_paks' / 'UPDATE6' / 'map' / '041sakura.mpc',
+    '041matsuri.mpc': RAIZ_PROYECTO / 'extracted_paks' / 'UPDATE19' / 'map' / '041matsuri.mpc',
 }
 
-# Tope de copias a la vez y respiro entre una y otra.
+DECORADOS_ESTACION = FUENTES_DECORADOS
+
 MAX_CLIENTES = 10
 RESPIRO_ENTRE_CLIENTES = 1.5
-
-MAPAS_ESTACION = ESTACIONES      # nombre viejo, por si algo lo importa
 
 
 LINEA_XML_MEDALLA = (
@@ -423,56 +492,65 @@ def _extraer_archivo_pak(pak_path: pathlib.Path, nombre_buscado: str) -> bytes:
     return b''
 
 
-def _obtener_decorado(modo_Norm: str) -> bytes:
-    """Los bytes del mapa de DECORACION de esa estacion, o vacio si no lleva."""
-    f_zlib = (pathlib.Path(__file__).parent / 'plantillas' / 'mapas_estacion'
-              / f'{modo_Norm}.zlib')
+def _obtener_decorado_archivo(nombre_archivo: str) -> bytes:
+    """Devuelve los bytes descomprimidos del mapa de decoracion solicitado."""
+    dir_p = pathlib.Path(__file__).parent / 'plantillas' / 'mapas_estacion'
+    f_zlib = dir_p / f'{nombre_archivo}.zlib'
     if f_zlib.exists():
         try:
             return zlib.decompress(f_zlib.read_bytes())
         except Exception:
             pass
-    f = DECORADOS_ESTACION.get(modo_Norm)
-    return f.read_bytes() if (f and f.exists()) else b''
+    f_crudo = dir_p / nombre_archivo
+    if f_crudo.exists():
+        return f_crudo.read_bytes()
+    f_src = FUENTES_DECORADOS.get(nombre_archivo)
+    if f_src and f_src.exists():
+        return f_src.read_bytes()
+    return b''
 
 
-# La escena 41 del stage.xml, para cambiarle el decorado y el clima.
-_RE_ESCENA_41 = re.compile(
-    '<場景 編號="41"[^>]*/>'.encode('utf-8'))
+def _obtener_decorado(modo_Norm: str) -> bytes:
+    """Compatibilidad: decorado de Lyceum (escena 41) para esa estacion."""
+    dec = CONFIG_ESTACION.get(modo_Norm, {}).get(41, (None, ''))[0]
+    return _obtener_decorado_archivo(dec.split('\\')[-1]) if dec else b''
 
 
 def _parchear_stage_xml(raw: bytes, modo_Norm: str) -> bytes:
-    """Deja la escena 41 con el decorado y el clima de esa estacion."""
-    m = _RE_ESCENA_41.search(raw)
-    if not m:
-        return raw
-    tag = m.group(0).decode('utf-8')
-    decorado, clima = ESTACIONES.get(modo_Norm, (None, '無'))
-
-    # fuera el decorado y el clima que hubiera
-    tag = re.sub(r'\s*裝飾地圖檔="[^"]*"', '', tag)
-    tag = re.sub('天氣="[^"]*"', '天氣="%s"' % clima, tag)
-    if '天氣=' not in tag:
-        tag = tag.replace('/>', '天氣="%s" />' % clima)
-    if decorado:
-        # va justo detras del mapa base, que es donde lo pone el
-        # original. La sustitucion va con lambda a proposito: la
-        # ruta lleva \041 y re.sub se lo comia como escape.
-        tag = re.sub('(地圖檔="[^"]*")',
-                     lambda mm: mm.group(1) + ' 裝飾地圖檔="' + decorado + '"',
-                     tag, count=1)
-    return raw[:m.start()] + tag.encode('utf-8') + raw[m.end():]
+    """Deja las escenas de Lyceum, ciudades y Palm Base con el decorado y clima de esa estacion."""
+    cfg = CONFIG_ESTACION.get(modo_Norm, CONFIG_ESTACION['normal'])
+    txt = raw.decode('utf-8', errors='ignore')
+    for sid, (decorado, clima) in cfg.items():
+        pat = rf'<場景\s+[^>]*?編號="{sid}"[^>]*?/>'
+        m = re.search(pat, txt)
+        if not m:
+            continue
+        tag = m.group(0)
+        # fuera el decorado previo si habia
+        tag = re.sub(r'\s*裝飾地圖檔="[^"]*"', '', tag)
+        # clima
+        if '天氣=' in tag:
+            tag = re.sub(r'天氣="[^"]*"', f'天氣="{clima}"', tag)
+        else:
+            tag = tag.replace('/>', f'天氣="{clima}" />')
+        # decorado si corresponde
+        if decorado:
+            tag = re.sub(
+                r'(地圖檔="[^"]*")',
+                lambda mm: mm.group(1) + f' 裝飾地圖檔="{decorado}"',
+                tag,
+                count=1
+            )
+        txt = txt[:m.start()] + tag + txt[m.end():]
+    return txt.encode('utf-8')
 
 
 def aplicar_modo_estacion(modo: str = None) -> str:
-    """Aplica la estacion y el item custom 83266 en el cliente local.
-
-    La estacion se cambia en stage.xml, NO en map041.mpc: ver el comentario
-    de ESTACIONES arriba.
-    """
+    """Aplica la estacion en Lyceum, las cuatro ciudades y Palm Base,
+    y el item custom 83266 en el cliente local."""
     registrar_medalla_en_servidor()
     modo_Norm = (modo or getattr(_cf, 'MODO_ESTACION', 'normal') or 'normal').strip().lower()
-    if modo_Norm not in ESTACIONES:
+    if modo_Norm not in CONFIG_ESTACION:
         modo_Norm = 'normal'
     _cf.MODO_ESTACION = modo_Norm
 
@@ -493,31 +571,40 @@ def aplicar_modo_estacion(modo: str = None) -> str:
     if raw_item9:
         reemplazos[r'SETTING\ENG\ITEM9.XML'] = _parchear_item9_xml_bytes(raw_item9)
 
-    # La estacion: se parte SIEMPRE del stage.xml original del .bak, que si
-    # no, cada cambio se aplicaria encima del anterior.
+    # La estacion en stage.xml: se parte SIEMPRE del original del .bak
     raw_stage = _extraer_archivo_pak(bak26 if bak26.exists() else pak26,
                                      r'SETTING\ENG\STAGE.XML')
     if raw_stage:
         reemplazos[r'SETTING\ENG\STAGE.XML'] = _parchear_stage_xml(raw_stage, modo_Norm)
 
-    # El mapa de decoracion va suelto en map\, que el cliente lo lee antes
-    # que el del pak y ademas el pak no admite archivos nuevos.
+    # Los mapas de decoracion van sueltos en map\, que el cliente lee antes que los paks
     dir_map = ruta_cli / 'map'
     try:
         dir_map.mkdir(parents=True, exist_ok=True)
-        deco = _obtener_decorado(modo_Norm)
-        nombre = (ESTACIONES[modo_Norm][0] or '').split('\\')[-1]
-        if deco and nombre:
-            (dir_map / nombre).write_bytes(deco)
-        # Un map041.mpc suelto de antes tapaba el del pak. Aqui se cambiaba
-        # el mapa BASE creyendo que era la estacion, asi que si quedo uno
-        # escrito hay que quitarlo o el Lyceum se queda como lo dejaron.
-        suelto = dir_map / 'map041.mpc'
-        if suelto.exists():
-            suelto.unlink()
-            log.info('quitado el map041.mpc suelto: la estacion no va ahi')
-    except Exception:
-        pass
+        cfg_modo = CONFIG_ESTACION.get(modo_Norm, CONFIG_ESTACION['normal'])
+        archivos_activos = {dec.split('\\')[-1] for dec, _ in cfg_modo.values() if dec}
+
+        # 1. Limpiar decorados de estaciones no activas para que el cliente no pinte mapas viejos
+        for dec_file in TODOS_DECORADOS:
+            if dec_file not in archivos_activos:
+                f_del = dir_map / dec_file
+                if f_del.exists():
+                    try:
+                        f_del.unlink()
+                        log.info(f'Quitado decorado no activo: {dec_file}')
+                    except Exception:
+                        pass
+
+        # 2. Asegurar decorados activos de la estacion seleccionada
+        for dec_file in archivos_activos:
+            f_dst = dir_map / dec_file
+            deco = _obtener_decorado_archivo(dec_file)
+            if deco:
+                if not f_dst.exists() or f_dst.stat().st_size != len(deco):
+                    f_dst.write_bytes(deco)
+                    log.info(f'Aplicado decorado de estacion {modo_Norm}: {dec_file}')
+    except Exception as e:
+        log.warning(f'Error gestionando mapas en {dir_map}: {e}')
 
     if reemplazos:
         try:
@@ -722,26 +809,28 @@ TEXTOS = {
     'es': {
         'titulo': 'Angels Online - Servidor Local Custom',
         'estado': 'Estado:', 'online': 'ONLINE (127.0.0.1)',
-        'estacion': 'Estacion activa en Angel Lyceum:',
+        'estacion': 'Estacion activa en el mundo (Ciudades, Lyceum y Palm Base):',
         'cambiar': 'Cambiar estacion del cliente antes de entrar:',
         'copias': 'Abrir varias copias del cliente a la vez:',
         'abiertas': 'abiertas',
+        'lanzar': 'Abrir',
         'pie1': 'Flechas y bolitas infinitas activas',
         'pie2': 'Rank Promotion Medal (ID 83266) disponible (+1 Rango por uso)',
         'temporadas': ['Normal (Clasico)', 'Navidad (Nieve)', 'Halloween',
-                       'Sakura (Primavera)', 'Verano (Matsuri)'],
+            'Sakura (Primavera)', 'Verano (Matsuri)'],
     },
     'en': {
         'titulo': 'Angels Online - Custom Local Server',
         'estado': 'Status:', 'online': 'ONLINE (127.0.0.1)',
-        'estacion': 'Active season in Angel Lyceum:',
+        'estacion': 'Active season in the world (Cities, Lyceum & Palm Base):',
         'cambiar': 'Change the client season before you log in:',
         'copias': 'Open several copies of the client at once:',
         'abiertas': 'opened',
+        'lanzar': 'Launch',
         'pie1': 'Infinite arrows and pellets enabled',
         'pie2': 'Rank Promotion Medal (ID 83266) available (+1 Rank per use)',
         'temporadas': ['Normal (Classic)', 'Christmas (Snow)', 'Halloween',
-                       'Sakura (Spring)', 'Summer (Matsuri)'],
+            'Sakura (Spring)', 'Summer (Matsuri)'],
     },
 }
 
@@ -903,8 +992,10 @@ async def _manejar_http(reader: asyncio.StreamReader, writer: asyncio.StreamWrit
         abiertos = 0
         if 'abrir=' in path:
             try:
-                abiertos = abrir_clientes(int(path.split('abrir=', 1)[1]
-                                              .split('&')[0].strip() or 1))
+                cuantos_req = int(path.split('abrir=', 1)[1]
+                                              .split('&')[0].strip() or 1)
+                asyncio.create_task(asyncio.to_thread(abrir_clientes, cuantos_req))
+                abiertos = cuantos_req
             except ValueError:
                 abiertos = 0
 
@@ -960,10 +1051,14 @@ async def _manejar_http(reader: asyncio.StreamReader, writer: asyncio.StreamWrit
             f"{T['copias']}</div>"
             + "".join(
                 f'<a href="/p.htm?abrir={n}" style="display:inline-block;'
-                f'margin:3px 4px;padding:4px 11px;background:#2b3448;color:#e6edf3;'
+                f'margin:3px 3px;padding:3px 9px;background:#2b3448;color:#e6edf3;'
                 f'text-decoration:none;font-weight:bold;border:1px solid #637394;'
-                f'font-size:11px;">x{n}</a>' for n in (1, 2, 3, 4, 5, 8))
-            + (f"<span style='color:#56d364;margin-left:8px;'>{T['abiertas']} {abiertos}</span>"
+                f'font-size:11px;">x{n}</a>' for n in (1, 2, 3, 4, 5, 8, 10))
+            + f'<form action="/p.htm" method="GET" style="display:inline-block;margin:0 0 0 6px;vertical-align:middle;">'
+            f'<input type="number" name="abrir" min="1" max="20" value="1" style="width:38px;background:#111622;color:#fff;border:1px solid #637394;padding:2px 4px;font-size:11px;text-align:center;">'
+            f'<button type="submit" style="margin-left:4px;padding:2px 8px;background:#354463;color:#e6edf3;border:1px solid #637394;cursor:pointer;font-weight:bold;font-size:11px;">{T["lanzar"]}</button>'
+            f'</form>'
+            + (f"<span style='color:#56d364;margin-left:8px;font-weight:bold;'>✔ {T['abiertas']} {abiertos}</span>"
                if abiertos else "")
             + "</div>"
             "<div style='margin-top:6px;color:#8b949e;font-size:11px;'>"

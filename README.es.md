@@ -192,7 +192,19 @@ Path`, `Third Spirit`, `Limit Breaker`, `Shadow Meld`, `Killer Intent`) y la
   - Acumulación de puntos de SP en combate hasta el tope (2000 SP / 4 lámparas), con persistencia completa al reconectar.
   - Ejecución de habilidades instantáneas de SP (`Earth Blessing V`, `Shark Shift V`, `Angel Protection`, etc.) con temporizadores de tics, regeneración de HP/MP y aumento de estadísticas.
 - **Motor de Bufos, HoT y DoT**:
-  - Gestión de duración de bufos, tics de curación en el tiempo (HoT de Earth Blessing HP/MP), efectos de pociones y cartas de larga duración.
+  - Gestión temporal de estados activos, ticks de regeneración de HP/MP, efectos de pociones y cartas de utilidad.
+- **Sistema de Combate y Habilidades de Alto Nivel**:
+  - **Combos multihit y ráfagas continuas**: soporte completo para habilidades encadenadas y de ráfaga (fórmulas 36 y 40, ej. *Raijin's Fury*, *Steel Rain*, *Victory Sword*, *Quake Spear*, *Strangle Strike*), ejecutando todos los golpes secuenciales (hasta 12 impactos) tanto contra objetivos individuales como en lluvia de área (AoE).
+  - **Delegación de habilidades de tier alto**: habilidades lanzadoras de arquero y largo alcance (fórmulas 63 y 7, ej. *TNT Arrow*, *Aparctias Shot*, *Toma Tornado*, *Windbreaker Arrow*) resuelven sus sub-hechizos de combate para heredar Stance Power auténtico, radio de explosión de área (5-6 casillas) y efectos secundarios (derribo/knockback, silencio, DoT elemental y ceguera/blind).
+  - **Efectos secundarios de invocaciones y tótems**: tótems e invocaciones aplican sus auras y DoTs automáticos (ej. *Black Thorn Totem* aplica corrosión y lentitud), respetando la regla oficial de no coexistencia con *Guardian Star (Starchaos)*.
+  - **Cálculo de daño físico y procs balanceados**: resolución del multiplicador excesivo en procs de buffs (*Nimble Hands*), restaurando el peso de Stance Power auténtico (`PESO_STANCE = 2.0`).
+- **Base de datos de cuentas y personajes (`cuentas.db`)**: migración automática y transparente desde `cuentas.json` al arrancar si la base de datos está vacía o no existe.
+- **Equipamiento vinculado y Enchanted Fashion con Residual Times = 0**: validación de pertenencia por `char_id` (offset 53 del paquete `0x001B` / `sub_58B640` en `Angel.exe`). Si el jugador es el dueño del ítem, puede equiparlo libremente aunque le queden 0 usos restantes.
+- **Switch de armas (ranuras 11 y 12)**: alternancia rápida de conjuntos de armas con recálculo dinámico de estadísticas y bonos correspondientes.
+- **Sistema de Mejoras de Equipo (Pestles, Enhanced Pestles y Piercing Hammers)**:
+  - Soporte completo para mejorar y perforar (abrir huecos) en equipo de nivel 410+ utilizando las herramientas de tier 40 (40-Star Lucky Enhanced Pestle, 40-Star Lucky Piercing Hammer y morteros generales).
+  - Engarce de gemas en huecos abiertos, martillo verde (reroll de stats adicionales leídos de `adv.xml`), probabilidades auténticas de éxito y bajada de nivel en caso de fallo.
+- **Gestión de inventario robusta**: apilamiento de consumibles, actualización casilla por casilla con el `0x001B` oficial sin desincronizar la lectura del cliente.
 
 **El cliente, personalizado**
 
@@ -214,43 +226,45 @@ El servidor deja el cliente local listo al arrancar, siempre con un `.bak` antes
 
 **A medias**
 
+- **Sistema Online / Presencia Multijugador**: los jugadores se ven entre sí en el mapa (`0x0001` oficial de 128 bytes), ven el movimiento ajeno en tiempo real (`0x0005`) y sincronizan transformaciones (`0x0013`). Falta pulir la sincronización visual de mascotas, esbirros/mercenarios en pantallas de terceros y la visualización completa de sets/skins de fashion en otros jugadores.
+- **Sistema de Equipos / Teams**: el servidor detecta y recibe las solicitudes (`0x0017`), pero el flujo de aceptación, la barra de equipo en pantalla, compartir experiencia y la gestión de miembros (`0x0018`) está en fase de desarrollo.
+- **Flag de Oro / Gold Cap**: implementado pero pendiente de testeo exhaustivo en cliente.
 - Diálogos de NPC: 17 de los 52 del Lyceum tienen su texto y sus opciones, más expansión
-  a vendedores regionales de habilidades
+  a vendedores regionales de habilidades.
 - **Habilidades y magias**: las ramas de combate cuerpo a cuerpo, AoEs, invocaciones y magia están
   operativas (lanzamiento, costes, daño, buffs, debuffs, invocaciones y progresión). El arco ya
   pega a distancia con su básico (Basic Shot I, alcance 12); falta confirmar si se dibuja la
-  flecha volando, porque el efecto solo se manda en las habilidades. La daga tiene menos pruebas
+  flecha volando, porque el efecto solo se manda en las habilidades. La daga tiene menos pruebas.
 - Hechizos: salen en F1-F3, se lanzan, dan buff y hacen daño, pero faltan
-  algunos efectos visuales
+  algunos efectos visuales.
 - La fórmula de daño físico y mágico ahora escala con mitigación lineal de
   defensa y atributos elementales, pero a niveles extremos (300+) o contra
-  monstruos con estadísticas atípicas puede requerir ajustes finos de calibración
+  monstruos con estadísticas atípicas puede requerir ajustes finos de calibración.
 - ~~Los combos se leen de `magic.xml` pero no se ejecutan~~ **resuelto**: los 475
   (376 directos por `連擊次數` y 99 encadenados por `轉嫁法術`) se ejecutan, y los
-  golpes extra procesan la muerte del monstruo
-- El efecto de lentitud se registra pero no cambia la velocidad de movimiento
+  golpes extra procesan la muerte del monstruo.
+- El efecto de lentitud se registra pero no cambia la velocidad de movimiento.
 - El bastón y el hacha usan la animación de ataque de la espada hasta que
-  alguien capture la suya
+  alguien capture la suya.
 - Las monturas se equipan en la ranura 10 y sí dan velocidad, pero no la
   correcta: dos monturas distintas que declaran el mismo `move_speed` dan
   velocidades distintas en el servidor real, así que lo que aporta una
-  montura depende de su propia instancia y eso no viaja en `item.xml`
+  montura depende de su propia instancia y eso no viaja en `item.xml`.
 
 **No funciona**
 
+- **Sistema de Misiones (Quests)**: salvo el tutorial del Lyceum/Raphael, las misiones y la progresión general no se guardan en base de datos ni tienen la cadena completa implementada (se pierden al reconectar).
 - La ID Card dibuja al personaje en ropa interior, aunque el muñeco del mundo
   sí sale vestido. El `0x0179`, que era el último sospechoso, quedó
-  descartado: sus ids son martillos, no ropa (más abajo)
+  descartado: sus ids son martillos, no ropa (más abajo).
 - Los recursos no se recolectan, así que las nueve habilidades de recolección
-  y producción no suben nunca
-- Faltan cinco NPC del Lyceum que nunca se capturaron
+  y producción no suben nunca.
+- Faltan cinco NPC del Lyceum que nunca se capturaron.
 - Las contraseñas **no se validan**: el bloque de autenticación sigue sin
-  descifrar
-- Las misiones y si se habló con Michael **no se guardan en disco**: duran lo
-  que dura la sesión y se pierden al reconectar
+  descifrar.
 - La puerta del buceo está **documentada pero no se aplica**: los dos
   entrenadores, sus diálogos y las dos habilidades están capturados, pero el
-  portal a los mapas submarinos deja pasar a cualquiera
+  portal a los mapas submarinos deja pasar a cualquiera.
 - Las instancias: nadie ha entrado en ninguna. **Hay cinco entradas
   identificadas y dejadas apagadas**: Nightmare Palace, Half-beast Hamlet,
   Giant Wooden Stairs (que tiene dos tornados al mismo sitio) y Chocolate
@@ -260,9 +274,7 @@ El servidor deja el cliente local listo al arrancar, siempre con un `.bak` antes
   entrada, los dos modos y los mensajes de rechazo; sus monstruos se saben
   por la wiki, sus posiciones no. Ojo con una cosa: ese diálogo de dos modos
   **no** es como se entra a las instancias en general, la mayoría no pregunta
-  nada
-- Los equipos y la lista de amigos: el protocolo está documentado desde una
-  captura con dos cuentas, pero el servidor todavía no implementa ninguno
+  nada.
 
 ---
 

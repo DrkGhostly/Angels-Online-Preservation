@@ -98,6 +98,7 @@ class Personaje:
     cartas: list = field(default_factory=list)       # ids de carta
     estrellas: list = field(default_factory=list)    # [(nombre, nivel)]
     casa: dict = field(default_factory=dict)         # {'muebles': [ids]}
+    apariencia: list = field(default_factory=lambda: [0, 0, 0, 8, 8])
 
 
 def _cargar_secuencia():
@@ -1201,6 +1202,8 @@ def _ficha(p, base):
     # aunque el servidor tuviera guardada la faccion correcta.
     if len(crudo) > 62:
         crudo[62] = CODIGO_FACCION.get(getattr(p, 'faction', ''), 5)
+    if len(crudo) >= 0xd8:
+        struct.pack_into('<I', crudo, 0xd4, int(p.char_id or 0))
     return bytes(crudo)
 
 

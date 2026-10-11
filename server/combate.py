@@ -550,7 +550,8 @@ class Monstruo:
         if ef.get('hp_tick', 0) < 0:
             self.sangra_hasta = max(self.sangra_hasta, fin)
             self.sangra_cada = max(1, ef.get('intervalo') or 1)
-            self.sangra_hp = abs(ef['hp_tick'])
+            dano_elem = ef.get('elem_dmg', 0)
+            self.sangra_hp = abs(ef['hp_tick']) + dano_elem
             self.sangra_ultimo = ahora
             nom = ef.get('nombre', '').lower()
             return 'veneno' if ('poison' in nom or ef.get('estado') == '閃綠色') else 'sangrado'
@@ -1020,6 +1021,31 @@ RATIO_POR_FORMULA = {
 RATIO_FORMULA_DEFECTO = 1.0
 
 
+def encontrar_sub_combate(mid: int, d: dict, tabla: dict):
+    """Encuentra el subhechizo real de combate si el hechizo lanzador delega (TNT Arrow, Aparctias Shot, etc.)."""
+    if not d or not tabla:
+        return None
+    form = str(d.get('公式') or '')
+    p1 = d.get('動態參數1')
+    hijo = d.get('轉嫁法術')
+    hp = d.get('HP') or d.get('hp')
+
+    if form == '7' and p1 and str(p1).isdigit() and int(p1) in tabla:
+        return int(p1)
+    if form == '63':
+        if 16619 <= mid <= 16623 and (mid + 113) in tabla:
+            return mid + 113
+        if 13781 <= mid <= 13805 and (mid + 120) in tabla:
+            return mid + 120
+        if p1 and str(p1).isdigit() and int(p1) in tabla:
+            return int(p1)
+    if hijo and str(hijo).isdigit() and int(hijo) in tabla:
+        h_d = tabla[int(hijo)]
+        if not hp and (h_d.get('HP') or h_d.get('hp')):
+            return int(hijo)
+    return None
+
+
 def datos_magia(magic_id: int) -> dict:
     """Informacion del hechizo/skill desde magic.xml."""
     global _MAGIC_CACHE
@@ -1069,8 +1095,6 @@ def datos_magia(magic_id: int) -> dict:
             res['phys_mit'] = _num(d.get('物理傷害抵銷'), 0)
             res['mag_mit'] = _num(d.get('魔法傷害抵銷'), 0)
             res['dano_base'] = _num(d.get('平均傷害'), 0)
-            if not res['dano_base'] and d.get('攻擊型') == '是' and res['hp'] > 0 and str(d.get('HP定義') or '') != '最大值':
-                res['dano_base'] = res['hp']
             # EL 高權位 NO ES UNA MAGNITUD, ES UNA CATEGORIA.
             #
             # Se usaba de divisor del daño, y eso castigaba sin motivo a
@@ -1163,14 +1187,17 @@ def datos_magia(magic_id: int) -> dict:
             is_real_summon = (
                 d.get('召喚型') == '是' or
                 any(nom_l.startswith(k) for k in ('summon ', 'lvl 60 summon', 'lvl 90 summon', 'lvl 120 summon')) or
-                any(k in nom_l for k in ('ghostly swordsman', 'shadow clone', 'avatar', 'putridox', 'minotaur', 'leech', 'azrael', 'muncher'))
-            ) and not d.get('魔法狀態') and not ('soul shield' in nom_l) and not res.get('es_brand') and not (13595 <= magic_id <= 13599)
+                any(k in nom_l for k in ('ghostly swordsman', 'shadow clone', 'avatar', 'putridox', 'minotaur', 'leech', 'azrael', 'muncher', 'totem', '1otem'))
+            ) and not d.get('魔法狀態') and not ('soul shield' in nom_l) and not res.get('es_brand') and not (13595 <= magic_id <= 13599) and (d.get('變身型') != '是') and not ('shift' in nom_l and target == '自己')
             res['es_invocacion'] = bool(res['invoca_npc'] > 0 and is_real_summon)
 
-            # Robos de HP y MP (Forbidden Curse / Formula 39)
-            if res['formula'] == 39 or (5116 <= magic_id <= 5120) or ('forbidden curse' in nom_l):
-                res['drain_hp_pct'] = _num(d.get('動態參數2'), 25)
-                res['drain_mp_pct'] = _num(d.get('動態參數3'), 3)
+            # Robos de HP y MP (Forbidden Curse / Formula 39 y Bloodthirst Arrow / Formula 24)
+            if res['formula'] in (24, 39) or (5116 <= magic_id <= 5120) or ('forbidden curse' in nom_l) or ('bloodthirst arrow' in nom_l):
+                res['drain_hp_pct'] = _num(d.get('動態參數2'), 30 if res['formula'] == 24 else 25)
+                if res['formula'] == 24 or ('bloodthirst arrow' in nom_l):
+                    res['drain_hp_prob'] = _num(d.get('動態參數1'), 80)
+                else:
+                    res['drain_mp_pct'] = _num(d.get('動態參數3'), 3)
 
             # RECUPERAR AL MATAR (Gnash y compania).
             #
@@ -1210,6 +1237,13 @@ def datos_magia(magic_id: int) -> dict:
                 res['es_self_aoe'] = False
                 res['es_aoe'] = False
 
+            # Wolf Spirit (Formula 38): Sacrifica un monstruo y otorga forma Wolf Spirit y bonos
+            if res['formula'] == 38 or (16669 <= magic_id <= 16673):
+                res['es_wolf_spirit'] = True
+                res['es_ataque'] = False
+                res['sub_buff_phys'] = _num(d.get('動態參數1'), 16792)
+                res['sub_buff_spell'] = _num(d.get('動態參數2'), 16797)
+
             # Hechizo de encanto / control de monstruos (Shining Charm I..V, Creature Charm, etc.)
             # OJO: usar _palabra('charm', nom_l) para no confundir "Charming Blessing" con un hechizo de encanto!
             res['es_encanto'] = (d.get('魔法狀態') == '媚惑' or (_palabra('charm', nom_l) and 'lava charm' not in nom_l)) and not res['es_invocacion']
@@ -1227,6 +1261,10 @@ def datos_magia(magic_id: int) -> dict:
                 d.get('變身型') == '是' or
                 ('shift' in nom_l and target == '自己')
             )
+            if res['es_transformacion']:
+                res['invoca_npc'] = 0
+                res['es_invocacion'] = False
+
             res['trans_sprite'] = _num(d.get('動態參數1'), 0)
             res['def_bonus'] = _num(d.get('防禦力') or d.get('防禦') or d.get('def'), 0)
             res['atk_bonus'] = _num(d.get('攻擊力') or d.get('攻擊') or d.get('atk'), 0)
@@ -1236,6 +1274,11 @@ def datos_magia(magic_id: int) -> dict:
             res['eva_bonus'] = _num(d.get('dodge') or d.get('靈敏'), 0)
             res['move_speed_bonus'] = _num(d.get('move_speed') or d.get('移動速度'), 0)
             res['atk_speed_bonus'] = _num(d.get('atk_speed') or d.get('攻擊速度'), 0)
+            res['crit_rate'] = _num(d.get('重擊機率') or d.get('爆擊率') or d.get('crit_rate'), 0)
+            res['res_elec'] = _num(d.get('雷電防禦'), 0)
+            res['res_fire'] = _num(d.get('火焰防禦'), 0)
+            res['res_ice'] = _num(d.get('寒冰防禦'), 0)
+            res['res_poison'] = _num(d.get('腐蝕防禦'), 0)
             # Definicion de HP / MP:
             #   '最大值'       -> bono plano a Max HP / Max MP (hp_bonus / mp_bonus)
             #   '最大值百分比' -> bono porcentual a Max HP / Max MP (hp_pct / mp_pct)
@@ -1248,18 +1291,25 @@ def datos_magia(magic_id: int) -> dict:
             res['mp_bonus'] = raw_mp_val if mp_def == '最大值' else 0
             if '百分比' in hp_def or hp_def == '最大值百分比':
                 res['hp_pct'] = raw_hp_val
+
+            if res['es_transformacion']:
+                res['es_melee_trans'] = (d.get('魔法狀態') == '近戰化' or 'shark' in nom_l)
+                if res['es_melee_trans']:
+                    res['matk_pct'] = _num(d.get('matk') or d.get('magic_attack') or d.get('魔攻'), 0)
+                    res['mdef_pct'] = _num(d.get('mdef') or d.get('magic_defend') or d.get('魔防'), 0)
+                    res['atk_pct'] = _num(d.get('atk') or d.get('攻擊力') or d.get('攻擊'), 0)
+                    res['def_pct'] = _num(d.get('def') or d.get('防禦力') or d.get('防禦'), 0)
+                else:
+                    res['matk_pct'] = 0
+                    res['mdef_pct'] = 0
+                    res['atk_pct'] = 0
+                    res['def_pct'] = 0
+
             if '百分比' in mp_def or mp_def == '最大值百分比':
-                if res['es_transformacion']:
+                if res.get('es_transformacion') and res.get('es_melee_trans'):
                     res['mp_to_hp_pct'] = raw_mp_val
                 else:
                     res['mp_pct'] = raw_mp_val
-
-            if res['es_transformacion']:
-                res['matk_pct'] = _num(d.get('matk') or d.get('magic_attack') or d.get('魔攻'), 0)
-                res['mdef_pct'] = _num(d.get('mdef') or d.get('magic_defend') or d.get('魔防'), 0)
-                res['atk_pct'] = _num(d.get('atk') or d.get('攻擊力') or d.get('攻擊'), 0)
-                res['def_pct'] = _num(d.get('def') or d.get('防禦力') or d.get('防禦'), 0)
-                res['es_melee_trans'] = (d.get('魔法狀態') == '近戰化' or 'shark' in nom_l)
 
             # Auras de equipo (範圍效果光環 == '是', ej. Merlin's Circle, Guardian's Circle, Sacred Circle):
             # heredan sus bonos de stats del sub-hechizo indicado en 動態參數1.
@@ -1408,6 +1458,22 @@ def datos_magia(magic_id: int) -> dict:
                 (act in ('無動作', '', 'None') and not res['es_ataque'] and not res['es_cura'] and not res['es_auto']) or
                 any(k in nom_l for k in ('enhance', 'grapple', 'reserve', 'finesse', 'garment', 'mastery'))
             )
+            # Resolucion de subhechizo delegado para habilidades de combate de alto rango (TNT Arrow, Aparctias Shot, Steel Rain, etc.)
+            sub_id = encontrar_sub_combate(magic_id, d, _magic_xml())
+            if sub_id and sub_id != magic_id and sub_id in _magic_xml():
+                res['sub_spell'] = sub_id
+                sub_d = _magic_xml()[sub_id]
+                sub_hp = _num(sub_d.get('hp') if sub_d.get('hp') is not None else sub_d.get('HP'), 0)
+                if not res.get('hp') and sub_hp:
+                    res['hp'] = sub_hp
+                sub_area = _num(sub_d.get('影響範圍') or sub_d.get('範圍'), 0)
+                if not res.get('area') and sub_area:
+                    res['area'] = sub_area
+                    res['es_aoe'] = True
+                if not res.get('dano_base'):
+                    sub_dano = _num(sub_d.get('平均傷害'), 0)
+                    if sub_dano:
+                        res['dano_base'] = sub_dano
         except Exception:
             pass
     _MAGIC_CACHE[magic_id] = res
@@ -1497,18 +1563,32 @@ def datos_invocacion(npc_type: int) -> dict:
                 if val is not None and str(val).strip().isdigit() and int(val) > 0:
                     sks.append(int(val))
             nom_raw = str(r[0] or 'Summon')
-            for k_b5, k_num in (('T', ' 1'), ('U', ' 2'), ('V', ' 3'), ('W', ' 4'), ('X', ' 5'), ('\ufffdT', ' 1'), ('\ufffdU', ' 2'), ('\ufffdV', ' 3'), ('\ufffdW', ' 4'), ('\ufffdX', ' 5')):
+            # Solo reemplazar sufijos de rango I..V (T..X en Big5) si estan al final o aislados
+            import re
+            for k_b5, k_num in (('\ufffdT', ' I'), ('\ufffdU', ' II'), ('\ufffdV', ' III'), ('\ufffdW', ' IV'), ('\ufffdX', ' V')):
                 nom_raw = nom_raw.replace(k_b5, k_num)
+            nom_raw = re.sub(r'\bT\b', 'I', nom_raw)
+            nom_raw = re.sub(r'\bU\b', 'II', nom_raw)
+            nom_raw = re.sub(r'\bV\b', 'III', nom_raw)
+            nom_raw = re.sub(r'\bW\b', 'IV', nom_raw)
+            nom_raw = re.sub(r'\bX\b', 'V', nom_raw)
             nom_limpio = nom_raw.encode('ascii', 'ignore').decode('ascii').strip() or 'Summon'
+            if '1otem' in nom_limpio:
+                nom_limpio = nom_limpio.replace('1otem', 'Totem')
+
+            es_totem = 'totem' in nom_limpio.lower()
+            spd_mov = 0 if es_totem else int(r[5] or 70)
+            rango_atk = max(10, int(r[7] or 1)) if es_totem else int(r[7] or 1)
+
             return {
                 'nombre': nom_limpio,
                 'sprite': int(r[1] or 42142),
                 'hp': max(50, int(r[2] or 160)),
                 'atk': max(10, int(r[3] or 50)),
                 'def': max(5, int(r[4] or 20)),
-                'move_speed': int(r[5] or 70),
+                'move_speed': spd_mov,
                 'atk_speed': int(r[6] or 70),
-                'atk_range': int(r[7] or 1),
+                'atk_range': rango_atk,
                 'matk': int(r[8] or 0),
                 'mdef': int(r[9] or 0),
                 'level': int(r[10] or 1),
@@ -1627,8 +1707,9 @@ def combo_de(magic_id: int):
                 'dano': _n(d.get('HP'))}
     ef = efecto_secundario(magic_id)
     if ef and ef.get('golpes', 1) > 1:
+        _int_ms = min(250, max(120, _n(tabla.get(ef['magia'], {}).get('命中時間'), 200)))
         return {'golpes': ef['golpes'],
-                'intervalo_ms': _n(tabla.get(ef['magia'], {}).get('命中時間'), 200),
+                'intervalo_ms': _int_ms,
                 'dano': ef.get('dano_golpe', 0)}
     return None
 
@@ -1669,26 +1750,59 @@ def efecto_secundario(magic_id: int):
     """
     tabla = _magic_xml()
     d = tabla.get(int(magic_id or 0))
-    if not d or not d.get('轉嫁法術'):
+    if not d:
         return None
     def _n(v, x=0):
         try: return int(float(v)) if v not in (None, '') else x
         except (TypeError, ValueError): return x
-    hijo = _n(d['轉嫁法術'])
+    sub_id = encontrar_sub_combate(magic_id, d, tabla)
+    hijo = _n(d.get('轉嫁法術'))
+    if not hijo and sub_id and sub_id != magic_id:
+        sub_d = tabla.get(sub_id, {})
+        hijo = _n(sub_d.get('轉嫁法術'))
+    if not hijo:
+        return None
     h = tabla.get(hijo, {})
-    # Los ataques en combo encadenan un hijo marcado 單體多次攻擊 ("varios
-    # golpes sobre un solo objetivo"). El numero de golpes es 動態參數2 del
-    # PADRE y el dano de cada uno el HP del HIJO. Comprobado contra la wiki:
-    # Strangle Strike I es 2000 x5 y el XML da HP=2000 con 動態參數2=5; el V
-    # es 3200 x9 y da HP=3200 con 動態參數2=9.
-    golpes = _n(d.get('動態參數2'), 1) if h.get('單體多次攻擊') == '是' else 1
-    return {'magia': hijo, 'prob': _n(d.get('轉嫁機率')),
+    # Los ataques en combo encadenan un hijo marcado 單體多次攻擊 o usan formula 40/36 / Combo Hit en descripcion.
+    desc_padre = str(d.get('說明') or '').lower()
+    desc_hijo = str(h.get('說明') or '').lower()
+    es_combo_multi = (
+        h.get('單體多次攻擊') == '是' or
+        str(d.get('公式') or '') in ('40', '36') or
+        'combo' in desc_padre or
+        'combo' in desc_hijo
+    )
+    golpes = 0
+    if str(d.get('公式') or '') == '36':
+        golpes = _n(d.get('動態參數1'))
+    elif str(d.get('公式') or '') == '40':
+        golpes = _n(d.get('動態參數2'))
+    if not golpes:
+        golpes = _n(d.get('動態參數2')) or _n(d.get('動態參數1'))
+    if not golpes:
+        for txt in (desc_padre, desc_hijo):
+            m_cb = re.search(r'combo\s*(?:hit|number|count)?\s*[:：]?\s*(\d+)', txt)
+            if m_cb:
+                golpes = int(m_cb.group(1))
+                break
+            m_cb = re.search(r'(\d+)\s*(?:combo|hit|hits)', txt)
+            if m_cb:
+                golpes = int(m_cb.group(1))
+                break
+    golpes = max(1, golpes) if es_combo_multi else 1
+
+    elem_dmg = max(_n(h.get('雷電攻擊')), _n(h.get('火焰攻擊')), _n(h.get('寒冰攻擊')), _n(h.get('腐蝕攻擊')))
+    sub_deb = _n(h.get('動態參數2')) if (_n(h.get('動態參數2')) in tabla) else 0
+
+    return {'magia': hijo, 'prob': _n(h.get('轉嫁機率') or d.get('轉嫁機率') or 100),
             'nombre': h.get('名稱', ''),
             'golpes': max(1, golpes),
-            'dano_golpe': _n(h.get('HP')) if h.get('單體多次攻擊') == '是' else 0,
+            'dano_golpe': _n(h.get('HP')) if es_combo_multi else 0,
             'estado': ESTADOS.get(h.get('魔法狀態', ''), h.get('魔法狀態', '')),
             'dur_ms': _n(h.get('持續時間')) * 1000,
             'hp_tick': _n(h.get('HP')),
+            'elem_dmg': elem_dmg,
+            'sub_debuff': sub_deb,
             'intervalo': _n(h.get('作用間隔')),
             'vel_mov': _n(h.get('移動速度'))}
 

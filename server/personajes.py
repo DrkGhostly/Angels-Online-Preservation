@@ -114,13 +114,6 @@ def respuesta_creacion(ranura: int, p: dict) -> bytes:
     return struct.pack('<H', 0x0001) + bytes(cuerpo)
 
 
-def guardar(usuario: str, p: dict, archivo: pathlib.Path):
-    d = json.loads(archivo.read_text(encoding='utf-8'))
-    c = d['cuentas'].setdefault(usuario, {'password': '', 'personajes': []})
-    c['personajes'] = [x for x in c['personajes'] if x.get('ranura') != p['ranura']]
-    c['personajes'].append(p)
-    c['personajes'].sort(key=lambda x: x.get('ranura', 0))
-    # Usar el mismo guardado atómico que el resto del sistema. Se importa
-    # aquí para conservar la compatibilidad con las llamadas existentes.
+def guardar(usuario: str, p: dict, archivo: pathlib.Path = None):
     import cuentas
-    cuentas.guardar_documento(d)
+    cuentas.guardar_personaje_nuevo(usuario, p)

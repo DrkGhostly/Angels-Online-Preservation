@@ -28,6 +28,8 @@ SHA_FILE = ROOT / 'data' / '.upstream_sha'
 PROTECT = (
     'corpus/',
     'data/cuentas.json',
+    'data/cuentas.db',
+    'data/backups/',
     'data/gm.txt',
     'data/.upstream_sha',
     'content.db',

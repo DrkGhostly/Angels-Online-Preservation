@@ -318,6 +318,7 @@ _CIUDADES = (
 ANGEL_DE_CIUDAD = {}
 for _st, _b, _i in _CIUDADES:
     ANGEL_DE_CIUDAD[_st] = {
+        'base': _b,
         'sin_registrar': (_b + 1, (_b + 2, _b + 3, _b + 4, _b + 18, _b + 5),
                           (0x0f4258, 0x0f4252, 0x0f4254, 0x0f4260, 0)),
         'registrado': (_b + 1, (_b + 3, _b + 4, _b + 18, _b + 5),
@@ -326,6 +327,7 @@ for _st, _b, _i in _CIUDADES:
         'mision_conocer': 133 + _i,
         'mision_nivel': 137 + _i,
         'opcion_registrar': _b + 2,
+        'opcion_nivel': _b + 3,
         'opcion_lyceum': _b + 18,
         'msg_traslado': _b + 19,
         '_medido': _st == 29,
@@ -336,6 +338,7 @@ del _st, _b, _i
 CIUDAD_POR_OPCION = {}
 for _st, _cfg in ANGEL_DE_CIUDAD.items():
     CIUDAD_POR_OPCION[_cfg['opcion_registrar']] = _st
+    CIUDAD_POR_OPCION[_cfg['opcion_nivel']] = _st
     CIUDAD_POR_OPCION[_cfg['opcion_lyceum']] = _st
 del _st, _cfg
 
@@ -448,6 +451,33 @@ def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
         return [armar_linea(150804, npc_val or 1496, [])[2:]]
 
     # Prioridad por id de entidad exacto de NPC de ciudad
+    # --- Guias de las 4 Ciudades (Misiones 133, 134, 135, 136) ---
+    if entidad == 121633:  # Explorer Lim (Aurora City, Stage 3)
+        return [armar_linea(20010, npc_val or 65, [20002, 20005])[2:]]
+    if entidad == 121914:  # Risker Zalfer (Dark City, Stage 26)
+        return [armar_linea(30010, npc_val or 18, [30002, 30005])[2:]]
+    if entidad == 122110:  # Pioneer Ocadon (Iron Castle, Stage 38)
+        return [armar_linea(40010, npc_val or 39, [40002, 40005])[2:]]
+    if entidad == 121967:  # Explorer Gulin (Breeze Woods, Stage 29)
+        return [armar_linea(50010, npc_val or 30, [50002, 50005])[2:]]
+
+    # --- Cadena de Heart of Eden (Misiones 142, 143, 144) ---
+    # Paradise Angel en las 4 ciudades (Aurora 121671, Dark 121905, Iron 122154, Breeze 121990)
+    if entidad in (121671, 121905, 122154, 121990) or nombre == 'Paradise Angel':
+        return [armar_linea(14201, npc_val or 179, [14202, 14203, 5080, 5081])[2:]]
+
+    # Block Envoy (Mushroom Village, Stage 151)
+    if entidad == 122784 or nombre == 'Block Envoy':
+        return [armar_linea(14216, npc_val or 1007, [20002, 5080, 5081])[2:]]
+
+    # Guerrilla Leader Mola (Building Blocks County, Stage 152)
+    if entidad == 122793 or 'Mola' in nombre or 'Guerrilla Leader' in nombre:
+        return [armar_linea(14222, npc_val or 1016, [20002, 14303, 5081])[2:]]
+
+    # Lord Kahn (Building Blocks City, Stage 153)
+    if entidad == 122809 or 'Kahn' in nombre:
+        return [armar_linea(14313, npc_val or 1112, [20002, 14402, 5081])[2:]]
+
     # --- Aurora City (Stage 3) ---
     if entidad == 121625:  # Ride Seller (Horses/Steeds, Magic Donkey)
         return [armar_linea(5189, npc_val or 66, [5262, 5190, 5191])[2:]]
@@ -1391,16 +1421,15 @@ def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
             # vienen las categorias (armas, robots, muebles, pergaminos V,
             # gemas...).
             #
-            # OJO CON EL TEXTO: el id 504131 NO dice lo mismo en todos los
-            # paks. En UPDATE8 es "Howdy! Name's Fortunia...", en UPDATE6 y
-            # UPDATE7 es un NPC del Huevo, y desde UPDATE9 en adelante es
-            # "Hi, I'm Pasqua". Manda el pak mas nuevo, asi que el cliente
-            # de hoy la hace presentarse como Pasqua aunque el NPC siga
-            # llamandose Fortunia en npc.xml, en los 26 updates.
-            #
-            # Las opciones y toda la estructura son las mismas en los dos,
-            # solo cambia la redaccion.
-            return [armar_linea(504131, npc_val or 4, [504132, 504133])[2:]]
+            # Opciones completas de Fortunia en Angel Lyceum:
+            # 504132: I want to exchange vouchers for rewards.
+            # 504825: I want to exchange Top Weapon or armor.
+            # 505907: I want to exchange for weapons and armor.
+            # 510922: I want to exchange for rides and robots.
+            # 511419: I want to exchange for enchanted items.
+            # 5020:   Quit.
+            return [armar_linea(504131, npc_val or 2,
+                                [504132, 504825, 505907, 510922, 511419, 5020])[2:]]
         if nombre == 'Voucher Angel':
             # Vende los dos Angelic Voucher, el de 100 y el de 10 millones
             # (items 42399 y 42400). Los dos se compran y se venden al
@@ -2166,6 +2195,18 @@ TIENDAS_POR_OPCION = {
     117121: 138, # City Magic Resea -> Shop 138
     121013: 144, # Fruity Expert(W) -> Shop 144
     121015: 143, # Fruity Expert(S) -> Shop 143
+
+    # --- Fortunia (Angel Lyceum) ---
+    504825: 45,  # Top Weapon or armor -> Shop 45
+    505907: 132, # Weapons and armor -> Shop 132
+    510922: 538, # Rides and robots -> Shop 538
+    511419: 539, # Enchanted items -> Shop 539
+    504141: 596, # Runestone -> Shop 596
+    512476: 294, # 100-1 Exchange -> Shop 294
+    510689: 594, # Attribute Lucky Hammer -> Shop 594
+    504139: 595, # Enhanced Pestle and Ride Feed -> Shop 595
+    504138: 57,  # Spell V Scrolls, Classic Trinkets -> Shop 57
+    504136: 56,  # Robots, Production Gears or Collection Cores -> Shop 56
 }
 
 
@@ -2366,12 +2407,31 @@ def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
                 break
         return (armar_linea(mid, val, [10235, 10236], None, list(acc)),)
 
-    # Opcion 50002: "I have come here to register!" con el Angel de la
+    # Opcion 20002/30002/40002/50002: "I have come here to register!" con el Angel de la
     # ciudad. Medido: cinco lineas seguidas y al final las misiones nuevas y
     # la de registro completada.
-    if opcion_id == 50002:
-        return tuple(armar_linea(m, 112) for m in
-                     (50006, 50007, 50008, 50009, 50010, 50017))
+    if opcion_id in CIUDAD_POR_OPCION and opcion_id % 10000 == 2:
+        _b = ANGEL_DE_CIUDAD[CIUDAD_POR_OPCION[opcion_id]]['base']
+        return tuple(armar_linea(_b + off, 112) for off in (6, 7, 8, 9, 10, 17))
+
+    # Cadena de Eden: Paradise Angel
+    if opcion_id == 14202:
+        return (armar_linea(14205, 179),
+                armar_linea(14208, 179),
+                armar_linea(14209, 179, [5080, 5081]))
+    if opcion_id == 14203:
+        return (armar_linea(14206, 179),
+                armar_linea(14207, 179),
+                armar_linea(14208, 179),
+                armar_linea(14209, 179, [5080, 5081]))
+
+    # Guerrilla Leader Mola
+    if opcion_id == 14303:
+        return (armar_linea(14305, 1016),)
+
+    # Lord Kahn
+    if opcion_id == 14402:
+        return (armar_linea(14404, 1112),)
 
     # Opcion 20018: "Send me back to the Angel Lyceum" del Angel de una
     # ciudad. Medido: contesta con el 50019 y al cerrarse el cuadro cambia al
@@ -2412,6 +2472,11 @@ def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
         return (armar_linea(8388, val, [8389, 8390, 8391, 8392, 8393],
                             acciones=[1000094, 1000095, 1000096, 1000097,
                                       1000098]),)
+
+    # --- Fortunia (Angel Lyceum): submenu de canje de vales ---
+    if opcion_id == 504132:
+        return (armar_linea(504134, val or 2,
+                            [504141, 512476, 510689, 504139, 504138, 504136, 5020]),)
 
     # --- Joaquin: la segunda pagina del Smith y del Master ---
     # La primera opcion de los dos abre esta, donde se elige la banda de
@@ -2758,7 +2823,7 @@ def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
     # Village; sin ellos el dialogo se quedaba abierto al decir que no.
     if opcion_id in (5012, 5191, 5242, 5046, 5059, 5064, 5271, 7536, 5238, 7933, 7983, 7991,
                      5278, 5371, 112004, 5033, 5020, 121004,
-                     8387, 508047, 508056, 508064):  # Quit / cerrar
+                     8387, 508047, 508056, 508064, 504133):  # Quit / cerrar
         return (struct.pack('<H', 0x0012) + FIN,)
 
     # Angel Raphael (Fighting Palace): 5063 "I'm ready to go to the Angel Lyceum."

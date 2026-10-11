@@ -64,7 +64,7 @@ CARTEL = 0x0023           # s2c, "X te invita"
 LISTA = 0x0024            # s2c, la lista del grupo
 
 ACEPTAR = 1               # medido
-TAM_MIEMBRO = 98
+TAM_MIEMBRO = 78
 CABECERA = 10
 
 # char_id del lider -> [sesiones], en orden de entrada (el lider primero).
@@ -92,11 +92,12 @@ def grupo_de(ses):
 
 
 def cartel_de_invitacion(ses_lider) -> bytes:
-    """El s2c 0x0023 que le saca el cuadro al invitado."""
-    b = bytearray(38)
+    """El s2c 0x0023 que le saca el cuadro al invitado (38 bytes con opcode)."""
+    b = bytearray(36)
     struct.pack_into('<I', b, 0, _char_id(ses_lider))
-    n = _nombre(ses_lider).encode('ascii', 'replace')[:28]
+    n = _nombre(ses_lider).encode('ascii', 'replace')[:16]
     b[4:4 + len(n)] = n
+    b[21] = 0
     return struct.pack('<H', CARTEL) + bytes(b)
 
 
@@ -104,7 +105,7 @@ def lista_del_grupo(lider_id) -> bytes:
     """El s2c 0x0024 con los miembros, tal como lo arma el servidor real."""
     miembros = _GRUPOS.get(lider_id) or []
     b = bytearray(CABECERA + TAM_MIEMBRO * len(miembros))
-    struct.pack_into('<I', b, 0, 0x400011AC)
+    struct.pack_into('<I', b, 0, 0x0000006A)
     b[4] = 0
     struct.pack_into('<I', b, 5, int(lider_id))
     b[9] = len(miembros) & 0xFF
@@ -112,12 +113,18 @@ def lista_del_grupo(lider_id) -> bytes:
         o = CABECERA + i * TAM_MIEMBRO
         p = getattr(s, 'personaje', None)
         struct.pack_into('<I', b, o, _char_id(s))
-        n = _nombre(s).encode('ascii', 'replace')[:30]
+        struct.pack_into('<I', b, o + 4, 0)
+        n = _nombre(s).encode('ascii', 'replace')[:16]
         b[o + 8:o + 8 + len(n)] = n
         if p is not None:
-            struct.pack_into('<H', b, o + 41,
+            struct.pack_into('<H', b, o + 24,
                              min(0xFFFF, int(getattr(p, 'nivel', 1) or 1)))
-            b[o + 51] = 100
+            struct.pack_into('<H', b, o + 26, 0)
+            struct.pack_into('<I', b, o + 28, int(getattr(p, 'class_id', 1) or 1))
+            hp_cur = getattr(p, 'hp', 100) or 100
+            hp_max = max(1, getattr(p, 'hp_max', 100) or 100)
+            hp_pct = max(0, min(100, int(round(hp_cur * 100.0 / hp_max))))
+            struct.pack_into('<H', b, o + 32, hp_pct)
     return struct.pack('<H', LISTA) + bytes(b)
 
 

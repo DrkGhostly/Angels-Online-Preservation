@@ -422,7 +422,7 @@ def bonos_de_equipo(bolsa, mejoras: dict = None) -> dict:
             iid = int(item_id)
         except (ValueError, TypeError):
             continue
-        if not es_equipo(r) or r == RANURA_ORO:
+        if not es_equipo(r) or r == RANURA_ORO or r in (11, 12):
             continue
         x = dict(_bonus(iid))
         # LOS STATS DEL MARTILLO VERDE. Se guardaban y se enseñaban en el
@@ -654,7 +654,7 @@ def modificadores_porcentuales_equipo(bolsa) -> dict:
 
     grupos = {}
     for ranura, item_id in bolsa.items():
-        if not es_equipo(ranura) or ranura == RANURA_ORO:
+        if not es_equipo(ranura) or ranura == RANURA_ORO or ranura in (11, 12):
             continue
         try:
             iid = int(item_id)
@@ -1146,6 +1146,7 @@ def marcar_vinculacion(entrada, estado):
     if struct.unpack_from('<I', b, base + 9)[0] != v['item_id']:
         return entrada
     b[base + 57] = max(0, min(255, int(v['restantes'])))
+    b[base + 58] = 1
     return bytes(b)
 
 
@@ -1354,8 +1355,10 @@ def es_ranura_valida(item_id: int, ranura: int) -> bool:
     else:
         if es_item_fashion(item_id):
             return False # Un item de Fashion NUNCA va en la pestaña de Gear!
-        if target == 3 and ranura in (3, 4):
-            return ranura == 3 or es_arma_dual(item_id)
+        if target == 3 and ranura in (3, 4, 11, 12):
+            return ranura in (3, 11) or es_arma_dual(item_id)
+        if target == 4 and ranura in (4, 12):
+            return True
         return ranura == target
 
 
@@ -1747,8 +1750,12 @@ def _entrada(char_id: int, ranura: int, item_id: int, cant: int,
         struct.pack_into('<I', base, 34, dueno)
         struct.pack_into('<H', base, 38, ranura)
         struct.pack_into('<I', base, 40, cant)
+        # OJO: el byte 0 de la entrada es el sub-op del cliente, asi que
+        # todos los offsets de Angel.exe (v19 + N) son N + 1 aqui. El WORD
+        # de longitud extra (v19 + 50) es e[51:53]: 0x0091 -> 145 + 85 + 1 = 231.
         base[51] = 0x91
-        struct.pack_into('<I', base, 53, char_id if char_id else (dueno or 0))
+        base[52] = 0
+        struct.pack_into('<I', base, 53, int(char_id if char_id else (dueno or 0)))
         base[57] = 0
         base[58] = 0
         struct.pack_into('<H', base, 84, inst_id & 0xFFFF)
@@ -1759,19 +1766,20 @@ def _entrada(char_id: int, ranura: int, item_id: int, cant: int,
         # Donde esta puesta la prenda. Comparando el mismo NewbieHeavy
         # Costume en la mochila y en el cuerpo, lo unico que cambia ademas
         # de la casilla es esto:
-        #     off 53  la entidad que la lleva, o cero si esta guardada
-        #     off 57  el contenedor: 3 mochila, 2 cuerpo
-        # Nosotros dejabamos los dos en cero, asi que el cliente nunca se
-        # enteraba de que la prenda estaba PUESTA y seguia dibujando al
-        # personaje en ropa interior.
+        #     off 53  el char_id del dueno (Angel.exe v19+52, comparado con
+        #             el char_id del 0x0002 en 0xd4 para el residual times)
+        #     off 57  vinculaciones restantes (v19+56)
+        #     off 58  bit 1 = vinculable (v19+57)
         puesta = es_equipo(ranura)
-        struct.pack_into('<I', e, 53, char_id if char_id else (dueno or 0))
+        cid = int(char_id if char_id else (dueno or 0))
+        struct.pack_into('<I', e, 53, cid)
         limite, al_equipar = vinculaciones_de(item_id)
         e[57] = min(255, max(0, limite - int(puesta and al_equipar)))
         e[58] = 1
-        # Offset 51 (0x33) es el campo que le indica al cliente que esta entrada
-        # mide 119 bytes (86 + 33 extra). NUNCA debe alterarse en un equipable.
+        # Offset 51 (WORD v19+50) le indica al cliente que esta entrada
+        # mide 119 bytes (1 + 85 + 33 extra). NUNCA debe alterarse.
         e[51] = 0x21
+        e[52] = 0
         # Y el servidor repite ahi los dieciseis bits bajos del numero de
         # instancia.
         struct.pack_into('<I', e, 84,
