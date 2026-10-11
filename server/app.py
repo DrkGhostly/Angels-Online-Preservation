@@ -3211,8 +3211,8 @@ class Servidor:
                 return
             ses.enviar(struct.pack('<HHI', 0x0002, 0, char_id))
             cta = cuentas.cargar()['cuentas'].get(ses.usuario) or {'personajes': []}
-            ses.enviar(_ls.respuesta_login(cta.get('personajes', []),
-                                           cuenta=ses.usuario))
+            ses.enviar_crudo(_ls.respuesta_login(cta.get('personajes', []),
+                                                 cuenta=ses.usuario))
             log.info(f"[{addr}] PERSONAJE BORRADO: ranura {ranura} "
                      f"char_id {char_id} (sin espera)")
             return
@@ -4920,18 +4920,23 @@ class Servidor:
                             dano_var = mag.get('dano_var', 0)
                             var_pct = min(0.15, max(0.02, dano_var / float(denom))) if dano_var > 0 else 0.05
                         else:
-                            ataque = struct.unpack_from('<I', st, 2 + 20 + 4)[0]
+                            r_atk = struct.unpack_from('<I', st, 2 + 24)[0]
+                            l_atk = struct.unpack_from('<I', st, 2 + 28)[0]
+                            if lleva_duales_ses(ses):
+                                ataque = r_atk + l_atk
+                            else:
+                                ataque = r_atk
                             stance = _cb.stance_de(tipo)
                             dano_extra = int(round(stance * _cb.PESO_STANCE))
                             ataque += dano_extra
                             denom = mag.get('base_denom', 200) or 200
                             dano_base = mag.get('dano_base', 0)
-                            if stance > 0:
-                                mult_spell = 1.0
-                            elif dano_base > 0:
-                                mult_spell = dano_base / float(denom)
+                            _cb_aoe_info = _cb.combo_de(tipo)
+                            es_combo_aoe = bool(_cb_aoe_info and _cb_aoe_info.get('golpes', 1) > 1)
+                            if es_combo_aoe:
+                                mult_spell = 1.7
                             else:
-                                mult_spell = 1.0
+                                mult_spell = 2.5
                             coef = mag.get('dano_coef', 0)
                             if coef > 0:
                                 mult_spell *= (coef / 100.0)
@@ -4953,71 +4958,176 @@ class Servidor:
                                     extra_crit += b_data['crit']
                         crit_prob = min(0.90, (critico_jugador(ses) + extra_crit) / 100.0)
 
-                        for b in blancos:
-                            # Un encantado (Shining Charm) es ALIADO: el AoE
-                            # no le entra. Aqui se colaba, y era por donde
-                            # el mago le pegaba a su propio bicho con las
-                            # habilidades de area. El combo de la 5601 si
-                            # lo filtraba.
-                            if not b.vivo or getattr(b, 'encantado', False):
-                                continue
-                            es_crit = (random.random() < crit_prob)
-                            mult_crit = 1.5 if es_crit else 1.0
-                            dano = b.recibir(ataque, es_magico=is_magic_skill, mult=mult_spell * mult_crit, var_pct=var_pct)
-
-                            pkg_debuff = []
-                            if _ef2 and random.randint(1, 100) <= _ef2.get('prob', 100):
-                                b.aplicar_efecto(_ef2)
-                                if _ef2.get('magia') and _ef2.get('dur_ms'):
-                                    pkg_debuff.append(struct.pack('<HIBBII', 0x001D, b.entity_id, 1, 4, _ef2['magia'], _ef2['dur_ms']))
-                                if _ef2.get('sub_debuff'):
-                                    pkg_debuff.append(struct.pack('<HIBBII', 0x001D, b.entity_id, 1, 4, _ef2['sub_debuff'], _ef2.get('dur_ms', 5000)))
-
-                            _tipo_num = _cb.TIPO_DANO_CRITICO if es_crit else _cb.TIPO_DANO
-                            ses.enviar_inmediato(
-                                _cb.atributo(b.entity_id, b.porcentaje),
-                                _cb.numero_flotante(b.entity_id, dano, _tipo_num),
-                                *pkg_debuff
-                            )
-
-                            if not b.vivo:
-                                _procesar_muerte_monstruo(ses, b, yo, addr, espera=0.0)
-                            else:
-                                if b.en_combate_con != yo:
-                                    b.en_combate_con = yo
-
-                        # Combo continuo para ataques de area (Steel Rain, Victory Sword, Quake Spear, etc.)
                         _combo_aoe = _cb.combo_de(tipo)
-                        if _combo_aoe and _combo_aoe.get('golpes', 1) > 1:
-                            _golpes_aoe = _combo_aoe['golpes']
-                            _sep_aoe = max(0.08, _combo_aoe.get('intervalo_ms', 200) / 1000.0)
+                        _formula_str = str(mag.get('formula') or mag.get('公式') or '')
+                        es_ricochet = bool(_combo_aoe and _combo_aoe.get('es_ricochet'))
+                        es_barrage = (_formula_str == '36') or bool(_combo_aoe and not es_ricochet and 'random' in mag.get('desc', '').lower())
+
+                        if es_barrage:
+                            # Rafaga aleatoria en area (Steel Rain, Sword of Kings, Quake Spear, Flaming Blade Rain, etc.)
+                            # Distribuye N golpes aleatorios entre los enemigos vivos del area.
+                            _golpes_aoe = _combo_aoe.get('golpes', 1) if _combo_aoe else 1
+                            _sep_aoe = max(0.08, _combo_aoe.get('intervalo_ms', 200) / 1000.0) if _combo_aoe else 0.2
+                            vivos_ini = [b for b in blancos if getattr(b, 'vivo', False) and not getattr(b, 'encantado', False)]
+                            if vivos_ini:
+                                b_primero = random.choice(vivos_ini)
+                                es_crit = (random.random() < crit_prob)
+                                mult_crit = 1.5 if es_crit else 1.0
+                                dano = b_primero.recibir(ataque, es_magico=is_magic_skill, mult=mult_spell * mult_crit, var_pct=var_pct)
+                                pkg_debuff = []
+                                if _ef2 and random.randint(1, 100) <= _ef2.get('prob', 100):
+                                    b_primero.aplicar_efecto(_ef2)
+                                    if _ef2.get('magia') and _ef2.get('dur_ms'):
+                                        pkg_debuff.append(struct.pack('<HIBBII', 0x001D, b_primero.entity_id, 1, 4, _ef2['magia'], _ef2['dur_ms']))
+                                    if _ef2.get('sub_debuff'):
+                                        pkg_debuff.append(struct.pack('<HIBBII', 0x001D, b_primero.entity_id, 1, 4, _ef2['sub_debuff'], _ef2.get('dur_ms', 5000)))
+                                _tipo_num = _cb.TIPO_DANO_CRITICO if es_crit else _cb.TIPO_DANO
+                                ses.enviar_inmediato(
+                                    _cb.atributo(b_primero.entity_id, b_primero.porcentaje),
+                                    _cb.numero_flotante(b_primero.entity_id, dano, _tipo_num),
+                                    *pkg_debuff
+                                )
+                                if not b_primero.vivo:
+                                    _procesar_muerte_monstruo(ses, b_primero, yo, addr, espera=0.0)
+                                elif b_primero.en_combate_con != yo:
+                                    b_primero.en_combate_con = yo
+
                             for _gk in range(1, _golpes_aoe):
-                                def _subgolpe_aoe(k_idx=_gk):
+                                def _subgolpe_barrage(k_idx=_gk):
                                     if not ses.personaje or getattr(ses, 'muerto', False):
                                         return
-                                    vivos = [b for b in blancos if getattr(b, 'vivo', False)]
+                                    vivos = [b for b in blancos if getattr(b, 'vivo', False) and not getattr(b, 'encantado', False)]
                                     if not vivos:
                                         return
-                                    targets_golpe = vivos if len(vivos) <= 2 else random.sample(vivos, min(3, len(vivos)))
-                                    for tgt in targets_golpe:
-                                        _c_k = random.random() < crit_prob
-                                        _mult_k = mult_spell * (1.5 if _c_k else 1.0)
-                                        _d_k = tgt.recibir(ataque, es_magico=is_magic_skill, mult=_mult_k, var_pct=var_pct)
-                                        if not _d_k:
-                                            continue
-                                        _tipo_num_k = _cb.TIPO_DANO_CRITICO if _c_k else _cb.TIPO_DANO
-                                        ses.enviar_inmediato(
-                                            _cb.numero_de_dano(yo, tgt.entity_id, _d_k, ataque=tipo, efecto=ef, es_magia=is_magic_skill),
-                                            _cb.cierre_de_dano(yo, tgt.entity_id, ataque=tipo, efecto=ef, es_magia=is_magic_skill),
-                                            _cb.atributo(tgt.entity_id, tgt.porcentaje),
-                                            _cb.numero_flotante(tgt.entity_id, _d_k, _tipo_num_k),
-                                        )
-                                        if not tgt.vivo:
-                                            _procesar_muerte_monstruo(ses, tgt, yo, addr, espera=0.0)
+                                    tgt = random.choice(vivos)
+                                    _c_k = random.random() < crit_prob
+                                    _mult_k = mult_spell * (1.5 if _c_k else 1.0)
+                                    _d_k = tgt.recibir(ataque, es_magico=is_magic_skill, mult=_mult_k, var_pct=var_pct)
+                                    if not _d_k:
+                                        return
+                                    _tipo_num_k = _cb.TIPO_DANO_CRITICO if _c_k else _cb.TIPO_DANO
+                                    ses.enviar_inmediato(
+                                        _cb.atributo(tgt.entity_id, tgt.porcentaje),
+                                        _cb.numero_flotante(tgt.entity_id, _d_k, _tipo_num_k),
+                                    )
+                                    if not tgt.vivo:
+                                        _procesar_muerte_monstruo(ses, tgt, yo, addr, espera=0.0)
+                                    elif tgt.en_combate_con != yo:
+                                        tgt.en_combate_con = yo
                                 try:
-                                    asyncio.get_event_loop().call_later(_sep_aoe * _gk, _subgolpe_aoe)
+                                    asyncio.get_event_loop().call_later(_sep_aoe * _gk, _subgolpe_barrage)
                                 except Exception:
                                     pass
+
+                        elif es_ricochet:
+                            # Tornado AoE inicial que golpea a todos + rebotes individuales (Windbreaker Arrow I..V)
+                            for b in blancos:
+                                if not b.vivo or getattr(b, 'encantado', False):
+                                    continue
+                                es_crit = (random.random() < crit_prob)
+                                mult_crit = 1.5 if es_crit else 1.0
+                                dano = b.recibir(ataque, es_magico=is_magic_skill, mult=mult_spell * mult_crit, var_pct=var_pct)
+                                pkg_debuff = []
+                                if _ef2 and random.randint(1, 100) <= _ef2.get('prob', 100):
+                                    b.aplicar_efecto(_ef2)
+                                    if _ef2.get('magia') and _ef2.get('dur_ms'):
+                                        pkg_debuff.append(struct.pack('<HIBBII', 0x001D, b.entity_id, 1, 4, _ef2['magia'], _ef2['dur_ms']))
+                                    if _ef2.get('sub_debuff'):
+                                        pkg_debuff.append(struct.pack('<HIBBII', 0x001D, b.entity_id, 1, 4, _ef2['sub_debuff'], _ef2.get('dur_ms', 5000)))
+                                _tipo_num = _cb.TIPO_DANO_CRITICO if es_crit else _cb.TIPO_DANO
+                                ses.enviar_inmediato(
+                                    _cb.atributo(b.entity_id, b.porcentaje),
+                                    _cb.numero_flotante(b.entity_id, dano, _tipo_num),
+                                    *pkg_debuff
+                                )
+                                if not b.vivo:
+                                    _procesar_muerte_monstruo(ses, b, yo, addr, espera=0.0)
+                                elif b.en_combate_con != yo:
+                                    b.en_combate_con = yo
+
+                            _golpes_aoe = _combo_aoe.get('golpes', 1) if _combo_aoe else 1
+                            _sep_aoe = max(0.08, _combo_aoe.get('intervalo_ms', 200) / 1000.0) if _combo_aoe else 0.2
+                            for _gk in range(1, _golpes_aoe + 1):
+                                def _subgolpe_ricochet(k_idx=_gk):
+                                    if not ses.personaje or getattr(ses, 'muerto', False):
+                                        return
+                                    vivos = [b for b in blancos if getattr(b, 'vivo', False) and not getattr(b, 'encantado', False)]
+                                    if not vivos:
+                                        return
+                                    tgt = random.choice(vivos)
+                                    _c_k = random.random() < crit_prob
+                                    _mult_k = mult_spell * (1.5 if _c_k else 1.0)
+                                    _d_k = tgt.recibir(ataque, es_magico=is_magic_skill, mult=_mult_k, var_pct=var_pct)
+                                    if not _d_k:
+                                        return
+                                    _tipo_num_k = _cb.TIPO_DANO_CRITICO if _c_k else _cb.TIPO_DANO
+                                    ses.enviar_inmediato(
+                                        _cb.atributo(tgt.entity_id, tgt.porcentaje),
+                                        _cb.numero_flotante(tgt.entity_id, _d_k, _tipo_num_k),
+                                    )
+                                    if not tgt.vivo:
+                                        _procesar_muerte_monstruo(ses, tgt, yo, addr, espera=0.0)
+                                    elif tgt.en_combate_con != yo:
+                                        tgt.en_combate_con = yo
+                                try:
+                                    asyncio.get_event_loop().call_later(_sep_aoe * _gk, _subgolpe_ricochet)
+                                except Exception:
+                                    pass
+
+                        else:
+                            for b in blancos:
+                                if not b.vivo or getattr(b, 'encantado', False):
+                                    continue
+                                es_crit = (random.random() < crit_prob)
+                                mult_crit = 1.5 if es_crit else 1.0
+                                dano = b.recibir(ataque, es_magico=is_magic_skill, mult=mult_spell * mult_crit, var_pct=var_pct)
+                                pkg_debuff = []
+                                if _ef2 and random.randint(1, 100) <= _ef2.get('prob', 100):
+                                    b.aplicar_efecto(_ef2)
+                                    if _ef2.get('magia') and _ef2.get('dur_ms'):
+                                        pkg_debuff.append(struct.pack('<HIBBII', 0x001D, b.entity_id, 1, 4, _ef2['magia'], _ef2['dur_ms']))
+                                    if _ef2.get('sub_debuff'):
+                                        pkg_debuff.append(struct.pack('<HIBBII', 0x001D, b.entity_id, 1, 4, _ef2['sub_debuff'], _ef2.get('dur_ms', 5000)))
+                                _tipo_num = _cb.TIPO_DANO_CRITICO if es_crit else _cb.TIPO_DANO
+                                ses.enviar_inmediato(
+                                    _cb.atributo(b.entity_id, b.porcentaje),
+                                    _cb.numero_flotante(b.entity_id, dano, _tipo_num),
+                                    *pkg_debuff
+                                )
+                                if not b.vivo:
+                                    _procesar_muerte_monstruo(ses, b, yo, addr, espera=0.0)
+                                elif b.en_combate_con != yo:
+                                    b.en_combate_con = yo
+
+                            if _combo_aoe and _combo_aoe.get('golpes', 1) > 1:
+                                _golpes_aoe = _combo_aoe['golpes']
+                                _sep_aoe = max(0.08, _combo_aoe.get('intervalo_ms', 200) / 1000.0)
+                                for _gk in range(1, _golpes_aoe):
+                                    def _subgolpe_aoe(k_idx=_gk):
+                                        if not ses.personaje or getattr(ses, 'muerto', False):
+                                            return
+                                        vivos = [b for b in blancos if getattr(b, 'vivo', False) and not getattr(b, 'encantado', False)]
+                                        if not vivos:
+                                            return
+                                        for tgt in vivos:
+                                            _c_k = random.random() < crit_prob
+                                            _mult_k = mult_spell * (1.5 if _c_k else 1.0)
+                                            _d_k = tgt.recibir(ataque, es_magico=is_magic_skill, mult=_mult_k, var_pct=var_pct)
+                                            if not _d_k:
+                                                continue
+                                            _tipo_num_k = _cb.TIPO_DANO_CRITICO if _c_k else _cb.TIPO_DANO
+                                            ses.enviar_inmediato(
+                                                _cb.atributo(tgt.entity_id, tgt.porcentaje),
+                                                _cb.numero_flotante(tgt.entity_id, _d_k, _tipo_num_k),
+                                            )
+                                            if not tgt.vivo:
+                                                _procesar_muerte_monstruo(ses, tgt, yo, addr, espera=0.0)
+                                            elif tgt.en_combate_con != yo:
+                                                tgt.en_combate_con = yo
+                                    try:
+                                        asyncio.get_event_loop().call_later(_sep_aoe * _gk, _subgolpe_aoe)
+                                    except Exception:
+                                        pass
 
                         _b_proc_t = next((b for b in blancos if getattr(b, 'vivo', False)), blancos[0])
                         _pkgs_tr_aoe = _procesar_triggers_buffs(ses, yo, _b_proc_t, addr=addr, en_ataque=True)
@@ -5818,7 +5928,12 @@ class Servidor:
             if is_magic_skill:
                 ataque = struct.unpack_from('<I', st, 2 + 44)[0]
             else:
-                ataque = struct.unpack_from('<I', st, 2 + 20 + 4)[0]
+                r_atk = struct.unpack_from('<I', st, 2 + 24)[0]
+                l_atk = struct.unpack_from('<I', st, 2 + 28)[0]
+                if lleva_duales_ses(ses):
+                    ataque = r_atk + l_atk
+                else:
+                    ataque = r_atk
 
             # Si se usa una habilidad activa (ej. Slicing Hit, Basic Beating, etc.)
             dano_extra = 0
@@ -5929,17 +6044,20 @@ class Servidor:
                 if coef > 0:
                     mult_spell *= (coef / 100.0)
             else:
-                # Daño Fisico de AO: (R.Atk + Stance Power) * Multiplicadores - DEF
+                # Daño Fisico de AO: (R.Atk + Stance Power * PESO_STANCE) * Multiplicadores - DEF
                 if tipo != _cb.ATAQUE_NORMAL:
-                    stance = _cb.stance_de(tipo)
-                    denom = mag.get('base_denom', 200) or 200
-                    dano_base = mag.get('dano_base', 0)
-                    if stance > 0:
-                        mult_spell = 1.0
-                    elif dano_base > 0:
-                        mult_spell = dano_base / float(denom)
+                    _cb_data = _cb.combo_de(tipo)
+                    es_combo_skill = bool(_cb_data and _cb_data.get('golpes', 1) > 1)
+                    if es_combo_skill:
+                        mult_spell = 1.7
                     else:
-                        mult_spell = 1.0
+                        mult_spell = 2.5
+
+                    # Boss penalty para Rapidfire (reduccion al 50% frente a Jefes)
+                    is_rapidfire = bool(5766 <= tipo <= 5770 or 5957 <= tipo <= 5961 or 'Rapidfire' in mag.get('nombre', ''))
+                    if is_rapidfire and m and _cb.es_jefe(getattr(m, 'npc_type', 0)):
+                        mult_spell *= 0.5
+
                     coef = mag.get('dano_coef', 0)
                     if coef > 0:
                         mult_spell *= (coef / 100.0)
@@ -6313,8 +6431,6 @@ class Servidor:
                                 return
                             _sumar_sp(ses, yo, _sp_por_golpe(ses), addr)
                             ses.enviar_inmediato(
-                                _cb.numero_de_dano(yo, objetivo, _d, ataque=tipo, efecto=atk_efecto, es_magia=is_magic_skill),
-                                _cb.cierre_de_dano(yo, objetivo, ataque=tipo, efecto=atk_efecto, es_magia=is_magic_skill),
                                 _cb.atributo(objetivo, m.porcentaje),
                                 _cb.numero_flotante(
                                     objetivo, _d,

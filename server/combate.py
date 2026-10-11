@@ -1710,7 +1710,8 @@ def combo_de(magic_id: int):
         _int_ms = min(250, max(120, _n(tabla.get(ef['magia'], {}).get('命中時間'), 200)))
         return {'golpes': ef['golpes'],
                 'intervalo_ms': _int_ms,
-                'dano': ef.get('dano_golpe', 0)}
+                'dano': ef.get('dano_golpe', 0),
+                'es_ricochet': ef.get('es_ricochet', False)}
     return None
 
 
@@ -1763,25 +1764,40 @@ def efecto_secundario(magic_id: int):
     if not hijo:
         return None
     h = tabla.get(hijo, {})
-    # Los ataques en combo encadenan un hijo marcado 單體多次攻擊 o usan formula 40/36 / Combo Hit en descripcion.
+    # Los ataques en combo encadenan un hijo marcado 單體多次攻擊 o usan formula 40/36/42 / Combo Hit en descripcion.
     desc_padre = str(d.get('說明') or '').lower()
     desc_hijo = str(h.get('說明') or '').lower()
+    sub_d = tabla.get(sub_id, {}) if (sub_id and sub_id != magic_id) else {}
+    desc_sub = str(sub_d.get('說明') or '').lower()
+    es_ricochet = (str(sub_d.get('公式') or '') == '42' or str(d.get('公式') or '') == '42' or
+                   'ricochet' in desc_padre or 'ricochet' in desc_sub)
     es_combo_multi = (
         h.get('單體多次攻擊') == '是' or
-        str(d.get('公式') or '') in ('40', '36') or
+        str(d.get('公式') or '') in ('40', '36', '42') or
+        str(sub_d.get('公式') or '') in ('40', '36', '42') or
         'combo' in desc_padre or
-        'combo' in desc_hijo
+        'combo' in desc_hijo or
+        'combo' in desc_sub or
+        es_ricochet
     )
     golpes = 0
     if str(d.get('公式') or '') == '36':
         golpes = _n(d.get('動態參數1'))
     elif str(d.get('公式') or '') == '40':
         golpes = _n(d.get('動態參數2'))
+    elif str(sub_d.get('公式') or '') == '42':
+        golpes = _n(sub_d.get('動態參數1'))
+    elif str(d.get('公式') or '') == '42':
+        golpes = _n(d.get('動態參數1'))
     if not golpes:
-        golpes = _n(d.get('動態參數2')) or _n(d.get('動態參數1'))
+        golpes = _n(d.get('動態參數2')) or _n(d.get('動態參數1')) or _n(sub_d.get('動態參數2')) or _n(sub_d.get('動態參數1'))
     if not golpes:
-        for txt in (desc_padre, desc_hijo):
+        for txt in (desc_padre, desc_hijo, desc_sub):
             m_cb = re.search(r'combo\s*(?:hit|number|count)?\s*[:：]?\s*(\d+)', txt)
+            if m_cb:
+                golpes = int(m_cb.group(1))
+                break
+            m_cb = re.search(r'ricochets?\s*(\d+)', txt)
             if m_cb:
                 golpes = int(m_cb.group(1))
                 break
@@ -1798,6 +1814,7 @@ def efecto_secundario(magic_id: int):
             'nombre': h.get('名稱', ''),
             'golpes': max(1, golpes),
             'dano_golpe': _n(h.get('HP')) if es_combo_multi else 0,
+            'es_ricochet': es_ricochet,
             'estado': ESTADOS.get(h.get('魔法狀態', ''), h.get('魔法狀態', '')),
             'dur_ms': _n(h.get('持續時間')) * 1000,
             'hp_tick': _n(h.get('HP')),
