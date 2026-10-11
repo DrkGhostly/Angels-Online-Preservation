@@ -330,6 +330,13 @@ def mision(char_id: int, quest_id: int, paso: int = 0, sello: int = 0) -> bytes:
             + struct.pack('<HB', char_id & 0xFFFF, 1))
 
 
+def borrar_mision(char_id: int, quest_id: int) -> bytes:
+    """0x0022 con modo 2 (byte 17 = 2): elimina UNA mision del registro del cliente."""
+    return (struct.pack('<HIIHBII', 0x0022, 1, char_id, quest_id, 0,
+                        0, 0)
+            + struct.pack('<HB', char_id & 0xFFFF, 2))
+
+
 def aviso(texto: str, tipo: int = 7, msg_id: int = MSG_HABILIDAD) -> bytes:
     """Sub-mensaje 0x000D: el cartel de 'aprendiste X' / 'obtuviste X'.
 

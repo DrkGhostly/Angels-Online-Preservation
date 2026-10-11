@@ -5,6 +5,7 @@ sys.path.insert(0, r'f:\Ao Proyect\AO 2\server')
 
 import misiones
 import dialogos
+import clases
 
 
 class MockPersonaje:
@@ -51,22 +52,47 @@ class TestSistemaMisionesCompleto(unittest.TestCase):
         # Mision no repetible
         self.assertFalse(misiones.es_repetible(100))
 
-    def test_caceria_dinamica_por_nombre_y_tipo(self):
-        """Verifica que matar monstruos avance el paso de misiones dinamicamente."""
+    def test_caceria_paso_a_paso_sin_salto_prematuro(self):
+        """Verifica que las bajas se registren y la entrega requiera hablar con el NPC sin saltar solo."""
         ses = MockSesion()
         p = ses.personaje
         
-        # Quest 115: 'Battle-Primary course' -> Defeat 10 Slarm
-        misiones.aceptar_mision(ses, 115)
-        self.assertTrue(misiones.tiene_mision(p, 115))
-        
-        # Matar 10 Slarms (npc_type 19, nombre 'Slarm')
-        for i in range(10):
-            act = misiones.registrar_baja_monstruo(ses, 19, 'Slarm')
-            self.assertTrue(act)
-        
-        # Al llegar a 10 muertes, debe avanzar automaticamente al paso 2
-        st, pa, comp = misiones.estado_mision(p, 115)
+        # Quest 1: 'Quest for test' -> Defeat 5 Slarm, turn in to Angels' Tutor
+        # Usamos quest 202: 20 Pumpkins
+        misiones.aceptar_mision(ses, 202)
+        self.assertTrue(misiones.tiene_mision(p, 202))
+        st, pa, comp = misiones.estado_mision(p, 202)
+        self.assertEqual(pa, 1)
+        self.assertFalse(comp)
+
+        # Matar 10 Pumpkins (menos de los 20 requeridos)
+        for _ in range(10):
+            misiones.registrar_baja_monstruo(ses, 21, 'Pumpkin')
+
+        # No debe haber avanzado de paso todavia
+        st, pa, comp = misiones.estado_mision(p, 202)
+        self.assertEqual(pa, 1)
+        self.assertFalse(comp)
+
+        # Hablar con Spike Farmer antes de tiempo: caceria_incompleta
+        proc, tipo, datos = misiones.interactuar_npc(ses, 'Spike Farmer')
+        self.assertTrue(proc)
+        self.assertEqual(tipo, 'caceria_incompleta')
+
+        # Matar los 10 restantes para llegar a 20/20
+        for _ in range(10):
+            misiones.registrar_baja_monstruo(ses, 21, 'Pumpkin')
+
+        # Las bajas estan listas (20/20), pero en el campo de combate NO salta el paso
+        self.assertEqual(ses.quest_kills.get((202, 1)), 20)
+        self.assertEqual(p.quests[0][1], 1)
+
+        # Ahora el jugador va donde Spike Farmer y habla con el
+        proc, tipo, datos = misiones.interactuar_npc(ses, 'Spike Farmer')
+        self.assertTrue(proc)
+        self.assertEqual(tipo, 'avanzada')
+        # Ahora avanza al paso 2
+        st, pa, comp = misiones.estado_mision(p, 202)
         self.assertEqual(pa, 2)
 
     def test_recoleccion_y_entrega_items(self):
@@ -94,6 +120,77 @@ class TestSistemaMisionesCompleto(unittest.TestCase):
         self.assertEqual(ses.inventario.get(20, 0), 0)
         # Y completado o avanzado la mision
         self.assertIn(tipo, ('completada', 'avanzada'))
+
+    def test_abandonar_mision(self):
+        """Verifica que el jugador pueda abandonar/quitar misiones tomadas (0x0016 accion 8 / 0x0022 modo 2)."""
+        ses = MockSesion()
+        p = ses.personaje
+
+        # Aceptar quest normal
+        misiones.aceptar_mision(ses, 1501)
+        self.assertTrue(misiones.tiene_mision(p, 1501))
+
+        # Abandonar mision
+        ok = misiones.abandonar_mision(ses, 1501)
+        self.assertTrue(ok)
+        self.assertFalse(misiones.tiene_mision(p, 1501))
+
+        # Verificar paquete 0x0022 de borrado enviado
+        encontro_paquete_borrado = False
+        for pkg in ses.enviados:
+            if len(pkg) >= 24 and pkg[:2] == b'\x22\x00':
+                # El byte 17 de la estructura de mision (offset 23 del paquete) debe ser modo 2
+                if pkg[23] == 2:
+                    encontro_paquete_borrado = True
+                    break
+        self.assertTrue(encontro_paquete_borrado, "Debe enviar paquete 0x0022 con modo=2 para borrar en cliente")
+
+        # Proteger misiones del tutorial: no deben poder ser abandonadas
+        p.quests.append((101, 1))
+        ok_tut = misiones.abandonar_mision(ses, 101)
+        self.assertFalse(ok_tut, "Las misiones de tutorial no se deben poder abandonar")
+        self.assertTrue(misiones.tiene_mision(p, 101))
+
+    def test_sin_teletransporte_automatico(self):
+        """Verifica que no se teletransporte al jugador al aceptar o completar misiones normales."""
+        ses = MockSesion()
+        p = ses.personaje
+        stage_original = p.stage
+
+        # Aceptar mision normal
+        misiones.aceptar_mision(ses, 201)
+        # El stage no debe cambiar
+        self.assertEqual(p.stage, stage_original)
+
+        # obtener_mapa_instancia debe devolver None para misiones normales de mundo abierto
+        self.assertIsNone(misiones.obtener_mapa_instancia(201, 1))
+        self.assertIsNone(misiones.obtener_mapa_instancia(1000, 1))
+
+    def test_proteccion_tutorial_y_faccion(self):
+        """Verifica que interactuar_npc no toque a los NPCs de tutorial ni de eleccion de faccion."""
+        ses = MockSesion()
+        p = ses.personaje
+
+        # Angel Raphael
+        proc, tipo, _ = misiones.interactuar_npc(ses, 'Angel Raphael')
+        self.assertFalse(proc)
+        self.assertEqual(tipo, 'tutorial')
+
+        # Director Wolay
+        proc, tipo, _ = misiones.interactuar_npc(ses, 'Director Wolay')
+        self.assertFalse(proc)
+        self.assertEqual(tipo, 'tutorial')
+
+        # Angeles de faccion
+        proc, tipo, _ = misiones.interactuar_npc(ses, 'Angel of Aurora')
+        self.assertFalse(proc)
+        self.assertEqual(tipo, 'tutorial')
+
+        # Si el personaje esta en stage 51 o 57 (palacios del tutorial)
+        p.stage = 51
+        proc, tipo, _ = misiones.interactuar_npc(ses, 'Spike Farmer')
+        self.assertFalse(proc)
+        self.assertEqual(tipo, 'tutorial')
 
     def test_misiones_repetibles(self):
         """Verifica que una mision repetible se pueda volver a tomar tras completarse."""
@@ -129,8 +226,8 @@ class TestSistemaMisionesCompleto(unittest.TestCase):
         self.assertIn(150102, ops)
         self.assertIn(150103, ops)
 
-    def test_resolucion_mapa_instancia(self):
-        """Verifica que quests con mapa especial devuelvan su stage_id correcto."""
+    def test_resolucion_mapa_instancia_especiales(self):
+        """Verifica que instancias reales sigan en QUEST_MAPAS_INSTANCIA."""
         # Training Palace (stage 244)
         st123 = misiones.obtener_mapa_instancia(123, 1)
         self.assertEqual(st123, 244)

@@ -8863,18 +8863,31 @@ class Servidor:
 
                 _nom_ent = _nombre_entidad(ses, ent) or ''
                 import misiones as _mis
+                g_quest = None
                 if _nom_ent and ses.personaje:
                     proc, tipo_proc, datos_proc = _mis.interactuar_npc(ses, _nom_ent, entidad=ent)
                     if proc:
                         if tipo_proc in ('completada', 'avanzada'):
                             qid_proc = datos_proc.get('qid')
-                            mapa_inst = _mis.obtener_mapa_instancia(qid_proc)
-                            if mapa_inst and ses.personaje.stage != mapa_inst:
-                                log.info(f"[{addr}] Quest {qid_proc}: teletransporte a instancia/mapa {mapa_inst}")
-                                _sincronizar_cambio_mapa(ses, mapa_inst, 100, 100)
+                            nom2 = ses.personaje.nombre if ses.personaje else 'Jugador'
+                            g_comp = dialogos.guion_de_mision(qid_proc, _nom_ent, jugador=nom2)
+                            if g_comp:
+                                ses.dlg_ent, ses.dlg_guion, ses.dlg_paso = ent, g_comp, 1
+                                ses.dlg_val = struct.unpack_from('<H', g_comp[0], 4)[0] if len(g_comp[0]) >= 6 else 4
+                                ses.enviar(dialogos.linea_de(g_comp, 0, nom2))
+                                log.info(f"[{addr}] Quest {qid_proc} {tipo_proc} con {_nom_ent}")
                             return
                         elif tipo_proc in ('recoleccion_incompleta', 'caceria_incompleta'):
                             return
+                        elif tipo_proc == 'ofrece_mision':
+                            disponibles = datos_proc.get('disponibles', [])
+                            if disponibles:
+                                qid_ofrecer = disponibles[0]
+                                g_cand = dialogos.guion_de_mision(qid_ofrecer, _nom_ent,
+                                                                  jugador=ses.personaje.nombre)
+                                if g_cand:
+                                    g_quest = g_cand
+                                    ses.dlg_quest_opciones = {qid_ofrecer * 100 + 2: qid_ofrecer, 5080: qid_ofrecer}
 
                 g2 = dialogos.propio(
                     _nom_ent, faccion=faccion,
@@ -8884,15 +8897,8 @@ class Servidor:
                     stage=getattr(ses.personaje, 'stage', 0) if ses.personaje else 0,
                     registrado=_ya_registrado(ses),
                     entidad=ent)
-                if not g2 and _nom_ent and ses.personaje:
-                    disponibles = _mis.misiones_disponibles_npc(ses.personaje, _nom_ent)
-                    if disponibles:
-                        qid_ofrecer = disponibles[0]
-                        g_quest = dialogos.guion_de_mision(qid_ofrecer, _nom_ent,
-                                                           jugador=ses.personaje.nombre)
-                        if g_quest:
-                            g2 = g_quest
-                            ses.dlg_quest_opciones = {qid_ofrecer * 100 + 2: qid_ofrecer, 5080: qid_ofrecer}
+                if not g2 and g_quest:
+                    g2 = g_quest
 
                 if g2:
                     nom2 = ses.personaje.nombre if ses.personaje else 'Jugador'
@@ -9448,10 +9454,6 @@ class Servidor:
                         if _mis_opt.info_mision(_qid_cand):
                             if not _mis_opt.tiene_mision(ses.personaje, _qid_cand) or _mis_opt.es_repetible(_qid_cand):
                                 _mis_opt.aceptar_mision(ses, _qid_cand)
-                                _m_inst = _mis_opt.obtener_mapa_instancia(_qid_cand, 1)
-                                if _m_inst and ses.personaje.stage != _m_inst:
-                                    log.info(f"[{addr}] Quest {_qid_cand}: salto al mapa/instancia {_m_inst}")
-                                    _sincronizar_cambio_mapa(ses, _m_inst, 100, 100)
 
                 termina = any(
                     m.endswith(dialogos.FIN) or struct.unpack_from('<H', m, 0)[0] in (0x0034, 0x002B, 0x001D)
@@ -9653,6 +9655,12 @@ class Servidor:
                 act_code = 8 if ses.sentado else 0
                 ses.enviar(struct.pack('<HIII', 0x000A, yo, 0, act_code))
                 log.info(f"[{addr}] personaje {'se sento' if ses.sentado else 'se levanto'} (accion={act_code})")
+                return
+            if accion == 8 and ses.personaje:
+                # ABANDONAR / BORRAR MISION (game.deletequest en Angel.exe 0x584ae0 -> 0x614da0)
+                qid_borrar = parametro
+                import misiones as _mis_del
+                _mis_del.abandonar_mision(ses, qid_borrar)
                 return
             if accion == 0x0D and ses.personaje and not getattr(ses, 'muerto', False):
                 # WEAPON SWITCH (Alt+~ / Boton [ I ] [ II ])

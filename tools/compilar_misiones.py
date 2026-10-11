@@ -57,6 +57,12 @@ def cargar_monstruos():
     return {k: sorted(list(v)) for k, v in nombre_a_tipos.items()}
 
 
+def limpiar_nombre_npc(nom: str) -> str:
+    if not nom:
+        return ''
+    return re.sub(r'^Lvl\s*\d+\s*-\s*', '', nom.strip(), flags=re.IGNORECASE).strip()
+
+
 def parsear_objetivo(texto_paso, npc_paso, mapa_paso, monstruos_dict, stages_dict):
     """Clasifica el objetivo de un paso y extrae sus requisitos."""
     tl = texto_paso.lower()
@@ -66,6 +72,13 @@ def parsear_objetivo(texto_paso, npc_paso, mapa_paso, monstruos_dict, stages_dic
     palabras_matar = ('defeat', 'kill', 'drive ', 'punish', 'eliminate', 'slay', 'send troops against')
     es_caceria = any(w in tl for w in palabras_matar)
     
+    # Comprobar si el texto inicial antes de dos puntos es un monstruo conocido (ej. 1.Pumpkin:)
+    m0 = re.search(r'^\d+\.\s*(.*?)(?::|/c|\.\s*$|$)', texto_paso)
+    if m0:
+        cand0 = m0.group(1).strip().lower()
+        if cand0 in monstruos_dict or cand0.rstrip('s') in monstruos_dict:
+            es_caceria = True
+
     # Cantidad requerida
     cant = 1
     m_cant = RE_CANTIDAD.search(texto_paso)
@@ -77,13 +90,16 @@ def parsear_objetivo(texto_paso, npc_paso, mapa_paso, monstruos_dict, stages_dic
         cant = int(m_cant.group(1))
 
     if es_caceria:
-        # Extraer candidatos de texto de cacería
         matched_mobs = []
         matched_ids = []
+        candidatos = []
+
+        # Caso 0: nombre al inicio antes de dos puntos (ej. 1.Pumpkin:)
+        if m0 and m0.group(1).strip():
+            candidatos.append(m0.group(1).strip())
         
         # Caso 1: nombre entre verbo y dos puntos o /c
         m1 = re.search(r'(?:defeat|kill|drive|punish|eliminate|slay)\s+(.*?)(?::|/c|\.\s*$|$)', texto_paso, re.IGNORECASE)
-        candidatos = []
         if m1 and m1.group(1).strip():
             raw_cands = re.split(r'\s+(?:or|and)\s+|,', m1.group(1).strip())
             candidatos.extend(c.strip() for c in raw_cands if c.strip())
@@ -96,8 +112,14 @@ def parsear_objetivo(texto_paso, npc_paso, mapa_paso, monstruos_dict, stages_dic
 
         for c in candidatos:
             c_low = c.lower().strip()
-            # Probar exacto, sin 's' final, o con 's'
-            variants = [c_low, c_low.rstrip('s'), c_low + 's']
+            variants = [
+                c_low,
+                c_low.rstrip('s'),
+                c_low + 's',
+                c_low.replace('mice', 'mouse'),
+                c_low.replace('wolves', 'wolf'),
+                c_low.replace('thieves', 'thief'),
+            ]
             encontrado = False
             for var in variants:
                 if var in monstruos_dict:
@@ -114,7 +136,7 @@ def parsear_objetivo(texto_paso, npc_paso, mapa_paso, monstruos_dict, stages_dic
             'monstruos': list(dict.fromkeys(matched_mobs)),
             'monstruo_ids': sorted(list(set(matched_ids))),
             'token_id': int(tokens[0][0]) if tokens else None,
-            'npc_entrega': npc_paso,
+            'npc_entrega': limpiar_nombre_npc(npc_paso),
             'mapa': mapa_paso,
             'stage_id': stages_dict.get(mapa_paso.lower()) if mapa_paso else None
         }
@@ -137,7 +159,7 @@ def parsear_objetivo(texto_paso, npc_paso, mapa_paso, monstruos_dict, stages_dic
             'items': items_req,
             'cantidad': cant,
             'token_id': int(tokens[0][0]) if tokens else None,
-            'npc_entrega': npc_paso,
+            'npc_entrega': limpiar_nombre_npc(npc_paso),
             'mapa': mapa_paso,
             'stage_id': stages_dict.get(mapa_paso.lower()) if mapa_paso else None
         }
@@ -146,7 +168,7 @@ def parsear_objetivo(texto_paso, npc_paso, mapa_paso, monstruos_dict, stages_dic
     return {
         'tipo': 'hablar',
         'cantidad': 1,
-        'npc_entrega': npc_paso,
+        'npc_entrega': limpiar_nombre_npc(npc_paso),
         'mapa': mapa_paso,
         'stage_id': stages_dict.get(mapa_paso.lower()) if mapa_paso else None
     }
@@ -185,8 +207,7 @@ def compilar():
             repetibles_set.add(qid)
 
         mapa_inicio = q.attrib.get('地點') or q.attrib.get('地點01') or ''
-        npc_inicio = q.attrib.get('承接') or q.attrib.get('承接01') or ''
-        npc_inicio = npc_inicio.strip()
+        npc_inicio = limpiar_nombre_npc(q.attrib.get('承接') or q.attrib.get('承接01') or '')
 
         # Items a borrar al terminar
         borrar_items = []
@@ -206,7 +227,7 @@ def compilar():
                 break
             texto_p = q.attrib[k_paso]
             mapa_p = q.attrib.get(f'地點{idx:02d}', mapa_inicio)
-            npc_p = q.attrib.get(f'承接{idx:02d}', npc_inicio)
+            npc_p = limpiar_nombre_npc(q.attrib.get(f'承接{idx:02d}', npc_inicio))
 
             obj = parsear_objetivo(texto_p, npc_p, mapa_p, monstruos_dict, stages_dict)
             obj['paso'] = idx

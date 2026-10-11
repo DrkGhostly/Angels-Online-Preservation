@@ -173,8 +173,7 @@ def estado_mision(p, qid: int):
             m = info_mision(qid)
             pasos = m.get('pasos', [])
             total_pasos = len(pasos) if pasos else 1
-            # Si pa >= 1 y es de 1 solo paso o pa > total_pasos: completada
-            completada = (pa >= 1 and total_pasos <= 1) or (pa > total_pasos)
+            completada = (pa > total_pasos) or (pa == 999)
             return (True, pa, completada)
     return (False, 0, False)
 
@@ -193,9 +192,7 @@ def mision_completada(p, qid: int) -> bool:
             m = info_mision(qid)
             pasos = m.get('pasos', [])
             total_pasos = len(pasos) if pasos else 1
-            if total_pasos <= 1:
-                return pa >= 1
-            return pa > total_pasos or pa == 999
+            return (pa > total_pasos) or (pa == 999)
     return False
 
 
@@ -252,7 +249,7 @@ def aceptar_mision(ses, qid: int) -> bool:
     nom = nombre_mision(qid)
     info = info_mision(qid)
     pasos = info.get('pasos', [])
-    paso_inicial = 1 if len(pasos) > 1 else 0
+    paso_inicial = 1
 
     # Actualizar lista de quests del personaje
     nueva_lista = [item for item in (p.quests or []) if item[0] != qid]
@@ -315,8 +312,7 @@ def completar_mision(ses, qid: int, exp: int = 0, oro: int = 0,
     info = info_mision(qid)
     pasos = info.get('pasos', [])
     total_pasos = len(pasos) if pasos else 1
-    # Marca de completado: 1 si es single step, o total_pasos + 1
-    paso_completado = 1 if total_pasos <= 1 else (total_pasos + 1)
+    paso_completado = total_pasos + 1
 
     sello = int(time.time())
     nueva_lista = []
@@ -429,6 +425,50 @@ def completar_mision(ses, qid: int, exp: int = 0, oro: int = 0,
     return True
 
 
+def abandonar_mision(ses, qid: int) -> bool:
+    """Elimina una mision activa del registro del jugador y sincroniza con el cliente."""
+    p = getattr(ses, 'personaje', None)
+    if not p:
+        return False
+
+    # Proteger tutorial y faccion
+    if qid in (100, 101, 102, 103, 104, 105, 106, 107) or qid in range(1, 10):
+        log.warning(f"Intento de abandonar mision protegida {qid}")
+        return False
+
+    tiene = False
+    nueva_lista = []
+    for q, pa in (p.quests or []):
+        if q == qid:
+            tiene = True
+        else:
+            nueva_lista.append((q, pa))
+
+    if not tiene:
+        return False
+
+    p.quests = nueva_lista
+
+    # Limpiar contadores de caceria de esta mision
+    if hasattr(ses, 'quest_kills'):
+        for k in list(ses.quest_kills.keys()):
+            if isinstance(k, tuple) and k[0] == qid:
+                del ses.quest_kills[k]
+
+    # Guardar en base de datos
+    if getattr(ses, 'usuario', None):
+        cuentas.guardar_quests(ses.usuario, p.char_id, p.quests)
+
+    # Enviar paquete S2C 0x0022 con modo 2 (borrado)
+    pkg_del = _cl.borrar_mision(p.char_id, qid)
+    ses.enviar(pkg_del)
+
+    nom = nombre_mision(qid)
+    ses.enviar(_cl.aviso(f"Quest [{nom}] abandoned.", tipo=0, msg_id=_cl.MSG_QUEST))
+    log.info(f"[{getattr(ses, 'addr', '')}] {p.nombre} abandono la mision {qid} '{nom}'")
+    return True
+
+
 def registrar_baja_monstruo(ses, npc_type: int, monster_name: str = None) -> bool:
     """Verifica si el monstruo derrotado suma para alguna mision activa del jugador."""
     _cargar_db()
@@ -486,14 +526,17 @@ def registrar_baja_monstruo(ses, npc_type: int, monster_name: str = None) -> boo
                 if cnt % 10 == 0 or cnt == req:
                     ses.enviar(_cl.aviso(f"Defeated {nom_obj} ({cnt}/{req})", tipo=0, msg_id=_cl.MSG_QUEST))
                 if cnt >= req:
-                    sig = c_data.get('siguiente_paso', pa + 1)
-                    avanzar_paso(ses, q, sig)
-                    npc_ent = c_data.get('npc_entrega')
-                    mapa_ent = c_data.get('mapa')
+                    ses.quest_kills[clave] = req
+                    npc_ent = c_data.get('npc_entrega') or ''
+                    mapa_ent = c_data.get('mapa') or ''
                     nom_q = nombre_mision(q)
+                    aviso_txt = f"Quest [{nom_q}]: Defeated {nom_obj} ({req}/{req})!"
                     if npc_ent:
-                        ses.enviar(_cl.aviso(f"Quest [{nom_q}]: Report to {npc_ent} ({mapa_ent})!", tipo=0, msg_id=_cl.MSG_QUEST))
-                    log.info(f"[{getattr(ses, 'addr', '')}] {p.nombre} completo caceria de {nom_obj} ({cnt}/{req}) para mision {q}")
+                        aviso_txt += f" Report to {npc_ent}"
+                    if mapa_ent:
+                        aviso_txt += f" ({mapa_ent})"
+                    ses.enviar(_cl.aviso(aviso_txt, tipo=0, msg_id=_cl.MSG_QUEST))
+                    log.info(f"[{getattr(ses, 'addr', '')}] {p.nombre} cumplio caceria de {nom_obj} ({req}/{req}) para mision {q}")
 
     return actualizado
 
@@ -564,8 +607,17 @@ def interactuar_npc(ses, npc_nombre: str, entidad: int = 0) -> tuple:
 
     nom_clean = npc_nombre.strip().lower()
 
+    # 0. Proteger tutorial de Guide Palace (51), Fighting Palace (57) y eleccion de faccion
+    stage = getattr(p, 'stage', 0)
+    if stage in (51, 57) or nom_clean in (
+        'angel raphael', "angels' tutor", 'director wolay', 'michael',
+        'angel of aurora', 'angel of beast', 'angel of iron', 'angel of shadow',
+        'battle professor', 'magic professor', 'mine professor', 'guardian angel',
+    ):
+        return (False, 'tutorial', {})
+
     # 1. Comprobar si el jugador tiene una misión activa que requiera hablar con este NPC
-    for q, pa in (p.quests or []):
+    for q, pa in list(p.quests or []):
         if mision_completada(p, q):
             continue
         info = info_mision(q)
@@ -575,6 +627,9 @@ def interactuar_npc(ses, npc_nombre: str, entidad: int = 0) -> tuple:
 
         if paso_actual:
             npc_target = (paso_actual.get('npc_entrega') or paso_actual.get('npc') or '').strip().lower()
+            if not npc_target:
+                npc_target = (info.get('npc_inicio') or '').strip().lower()
+
             if npc_target and (npc_target == nom_clean or nom_clean in npc_target or npc_target in nom_clean):
                 tipo_obj = paso_actual.get('tipo', 'hablar')
                 
@@ -590,21 +645,23 @@ def interactuar_npc(ses, npc_nombre: str, entidad: int = 0) -> tuple:
                     if kills < req:
                         ses.enviar(_cl.aviso(f"Defeat targets first! ({kills}/{req})", tipo=0, msg_id=_cl.MSG_QUEST))
                         return (True, 'caceria_incompleta', {'qid': q, 'paso': pa})
+                    if hasattr(ses, 'quest_kills') and (q, pa) in ses.quest_kills:
+                        del ses.quest_kills[(q, pa)]
 
                 # Avanzar o completar
                 es_ultimo = paso_actual.get('es_ultimo', False) or (pa >= len(pasos))
                 if es_ultimo:
                     completar_mision(ses, q)
-                    return (True, 'completada', {'qid': q})
+                    return (True, 'completada', {'qid': q, 'nom_npc': npc_nombre})
                 else:
                     sig = paso_actual.get('siguiente_paso', pa + 1)
                     avanzar_paso(ses, q, sig)
-                    return (True, 'avanzada', {'qid': q, 'nuevo_paso': sig})
+                    return (True, 'avanzada', {'qid': q, 'nuevo_paso': sig, 'nom_npc': npc_nombre})
 
     # 2. Comprobar si el NPC tiene misiones para ofrecer
     disponibles = misiones_disponibles_npc(p, npc_nombre)
     if disponibles:
-        # Si tiene misiones, retornar la primera o lista para que dialogos arme el menu
+        # Si tiene misiones, retornar para que dialogos arme el menu
         return (True, 'ofrece_mision', {'disponibles': disponibles})
 
     return (False, 'sin_accion', {})
@@ -614,10 +671,4 @@ def obtener_mapa_instancia(qid: int, paso: int = 1) -> int:
     """Devuelve el stage_id si la mision requiere entrar a una instancia o mapa especial."""
     if (qid, paso) in QUEST_MAPAS_INSTANCIA:
         return QUEST_MAPAS_INSTANCIA[(qid, paso)]
-    info = info_mision(qid)
-    pasos = info.get('pasos', [])
-    if 0 < paso <= len(pasos):
-        st = pasos[paso - 1].get('stage_id')
-        if st:
-            return st
-    return info.get('stage_id')
+    return None
