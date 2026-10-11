@@ -1758,7 +1758,7 @@ def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
 
     if ses.personaje:
         import misiones as _mis_muerte
-        _mis_muerte.registrar_baja_monstruo(ses, m.npc_type)
+        _mis_muerte.registrar_baja_monstruo(ses, m.npc_type, getattr(m, 'nombre', None))
 
     if getattr(m, 'encantado', False):
         m.encantado = False
@@ -8861,20 +8861,45 @@ class Servidor:
                 if _st_ent and ses.personaje and (not getattr(ses.personaje, 'stage', 0) or ses.personaje.stage != _st_ent):
                     ses.personaje.stage = _st_ent
 
+                _nom_ent = _nombre_entidad(ses, ent) or ''
+                import misiones as _mis
+                if _nom_ent and ses.personaje:
+                    proc, tipo_proc, datos_proc = _mis.interactuar_npc(ses, _nom_ent, entidad=ent)
+                    if proc:
+                        if tipo_proc in ('completada', 'avanzada'):
+                            qid_proc = datos_proc.get('qid')
+                            mapa_inst = _mis.obtener_mapa_instancia(qid_proc)
+                            if mapa_inst and ses.personaje.stage != mapa_inst:
+                                log.info(f"[{addr}] Quest {qid_proc}: teletransporte a instancia/mapa {mapa_inst}")
+                                _sincronizar_cambio_mapa(ses, mapa_inst, 100, 100)
+                            return
+                        elif tipo_proc in ('recoleccion_incompleta', 'caceria_incompleta'):
+                            return
+
                 g2 = dialogos.propio(
-                    _nombre_entidad(ses, ent), faccion=faccion,
+                    _nom_ent, faccion=faccion,
                     jugador=getattr(ses.personaje, 'nombre', '') if ses.personaje else '',
                     visto_michael=bool(getattr(ses.personaje, 'hablo_michael', False)
                                        if ses.personaje else False),
                     stage=getattr(ses.personaje, 'stage', 0) if ses.personaje else 0,
                     registrado=_ya_registrado(ses),
                     entidad=ent)
+                if not g2 and _nom_ent and ses.personaje:
+                    disponibles = _mis.misiones_disponibles_npc(ses.personaje, _nom_ent)
+                    if disponibles:
+                        qid_ofrecer = disponibles[0]
+                        g_quest = dialogos.guion_de_mision(qid_ofrecer, _nom_ent,
+                                                           jugador=ses.personaje.nombre)
+                        if g_quest:
+                            g2 = g_quest
+                            ses.dlg_quest_opciones = {qid_ofrecer * 100 + 2: qid_ofrecer, 5080: qid_ofrecer}
+
                 if g2:
                     nom2 = ses.personaje.nombre if ses.personaje else 'Jugador'
                     ses.dlg_ent, ses.dlg_guion, ses.dlg_paso = ent, g2, 1
                     ses.dlg_val = struct.unpack_from('<H', g2[0], 4)[0] if len(g2[0]) >= 6 else 4
                     ses.enviar(dialogos.linea_de(g2, 0, nom2))
-                    log.info(f"[{addr}] dialogo de {_nombre_entidad(ses, ent)} (val={ses.dlg_val})")
+                    log.info(f"[{addr}] dialogo de {_nom_ent} (val={ses.dlg_val})")
                     return
                 if ses.personaje:
                     stg = str(ses.personaje.stage)
@@ -9410,6 +9435,23 @@ class Servidor:
                     _sincronizar_cambio_mapa(ses, 41, 152, 74)
                     log.info(f"[{addr}] Raphael (Fighting Palace): combate completado -> teletransportado a Angel Lyceum (41)")
                     return
+                elif ses.personaje:
+                    # Comprobar si la opcion elegida corresponde a aceptar una quest
+                    _qid_cand = None
+                    if getattr(ses, 'dlg_quest_opciones', None) and _el in ses.dlg_quest_opciones:
+                        _qid_cand = ses.dlg_quest_opciones[_el]
+                    elif _el and _el > 1000 and (_el % 100 in (2, 3, 4)):
+                        _qid_cand = _el // 100
+
+                    if _qid_cand:
+                        import misiones as _mis_opt
+                        if _mis_opt.info_mision(_qid_cand):
+                            if not _mis_opt.tiene_mision(ses.personaje, _qid_cand) or _mis_opt.es_repetible(_qid_cand):
+                                _mis_opt.aceptar_mision(ses, _qid_cand)
+                                _m_inst = _mis_opt.obtener_mapa_instancia(_qid_cand, 1)
+                                if _m_inst and ses.personaje.stage != _m_inst:
+                                    log.info(f"[{addr}] Quest {_qid_cand}: salto al mapa/instancia {_m_inst}")
+                                    _sincronizar_cambio_mapa(ses, _m_inst, 100, 100)
 
                 termina = any(
                     m.endswith(dialogos.FIN) or struct.unpack_from('<H', m, 0)[0] in (0x0034, 0x002B, 0x001D)

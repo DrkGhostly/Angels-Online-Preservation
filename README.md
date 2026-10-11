@@ -246,9 +246,17 @@ The server prepares the local client on startup, always taking a `.bak` first:
   speeds in the real server, so what a mount contributes depends on its own
   instance, and that doesn't travel in `item.xml`.
 
+- **Comprehensive Quest System (1,489 quests)**:
+  - Complete quest catalog compiled from `quest.xml` with 1,489 quests and 662 repeatable quests.
+  - Dynamic combat hunting tracking (877 automatic kill steps triggered by mob defeats across all maps).
+  - Item collection objectives (819 steps with inventory validation and automatic item turn-in).
+  - NPC interaction & turn-in flow (over 1,500 delivery points and 1,100 quest-giving NPCs).
+  - Repeatable, daily, and weekly rotating quest pools.
+  - Automatic warps to quest instances / training arenas tied to specific quest stages.
+  - Full persistence in SQLite and real-time client sync via opcodes `0x0021` and `0x0022`.
+
 **Does not work**
 
-- **Quest System**: outside of the Lyceum/Raphael tutorial, general quests and quest progress are not persisted in SQLite and lack complete quest chains (they reset on reconnect).
 - The ID Card draws the character in their underwear, even though the sprite
   in the world is dressed correctly. `0x0179`, the last suspect, was ruled
   out: its ids are hammers, not clothing (see below).

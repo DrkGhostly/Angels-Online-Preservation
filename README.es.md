@@ -256,9 +256,17 @@ El servidor deja el cliente local listo al arrancar, siempre con un `.bak` antes
   velocidades distintas en el servidor real, así que lo que aporta una
   montura depende de su propia instancia y eso no viaja en `item.xml`.
 
+- **Sistema Integral de Misiones (1.489 quests)**:
+  - Catálogo completo compilado desde `quest.xml` con 1.489 misiones y 662 repetibles.
+  - Seguimiento dinámico de cacerías (877 objetivos de combate automáticos al matar monstruos en cualquier mapa).
+  - Objetivos de recolección (819 pasos con verificación de inventario y consumo automático de items).
+  - Interacción y entrega con NPCs (más de 1.500 puntos de entrega y 1.100 NPCs asignadores).
+  - Misiones repetibles y rotativas diarias/semanales.
+  - Teletransporte automático a mapas de instancia / entrenamiento vinculados a quests.
+  - Persistencia completa en base de datos SQLite y sincronización con el cliente vía paquetes `0x0021` y `0x0022`.
+
 **No funciona**
 
-- **Sistema de Misiones (Quests)**: salvo el tutorial del Lyceum/Raphael, las misiones y la progresión general no se guardan en base de datos ni tienen la cadena completa implementada (se pierden al reconectar).
 - La ID Card dibuja al personaje en ropa interior, aunque el muñeco del mundo
   sí sale vestido. El `0x0179`, que era el último sospechoso, quedó
   descartado: sus ids son martillos, no ropa (más abajo).

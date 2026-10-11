@@ -2859,5 +2859,39 @@ def guion_fighting_palace(kills: int, nombre: str):
         ]
 
 
+_MSG_IDS = None
 
 
+def _validar_msg_id(mid: int) -> bool:
+    global _MSG_IDS
+    if _MSG_IDS is None:
+        _MSG_IDS = set()
+        p = pathlib.Path(__file__).parent.parent / 'extracted_paks' / 'update26' / 'setting' / 'eng' / 'msg.xml'
+        if p.exists():
+            import xml.etree.ElementTree as ET
+            for ev, elem in ET.iterparse(str(p)):
+                if elem.tag == '字串':
+                    m_id = elem.attrib.get('編號')
+                    if m_id:
+                        try:
+                            _MSG_IDS.add(int(m_id))
+                        except ValueError:
+                            pass
+                    elem.clear()
+    return mid in _MSG_IDS
+
+
+def guion_de_mision(qid: int, npc_nombre: str = '', jugador: str = '', npc_val: int = 4):
+    """Genera el guión de diálogo para aceptar o interactuar con una misión en msg.xml."""
+    base = qid * 100
+    mid = base + 1
+    if not _validar_msg_id(mid):
+        mid = 5001
+
+    op_aceptar = base + 2 if _validar_msg_id(base + 2) else 5080
+    op_salir = base + 3 if _validar_msg_id(base + 3) else (base + 4 if _validar_msg_id(base + 4) else 5081)
+    ops = [op_aceptar, op_salir]
+
+    cadenas = ['1', jugador] if jugador else []
+    sub = armar_linea(mid, npc_val or 4, ops, strings=cadenas)
+    return [sub[2:]]
