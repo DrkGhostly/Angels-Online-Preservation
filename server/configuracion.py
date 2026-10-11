@@ -124,7 +124,7 @@ CREDITOS_INICIALES = 0
 #
 # Con esto se prueba lo primero. Si con un objeto dentro el almacen abre, era
 # la lista vacia; en cuanto se sepa, esto sobra y se quita.
-ALMACEN_INICIAL = {0: 62}
+ALMACEN_INICIAL = {}
 
 # =====================================================================
 # REGENERACION DE HP Y MP

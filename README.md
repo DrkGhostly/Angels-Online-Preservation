@@ -196,6 +196,10 @@ a guess, it says so.
 - **Equipment Enhancement & Piercing System (Pestles, Enhanced Pestles, Piercing Hammers)**:
   - Full support for enhancing and socketing level 410+ endgame equipment using tier 40 tools (40-Star Lucky Enhanced Pestle, 40-Star Lucky Piercing Hammer, and standard pestles).
   - Gem inlaying into sockets, Green Hammer rerolling (additional attribute rolls parsed from `adv.xml`), genuine success rates, and level penalties on failure.
+- **Personal Bank & Self Storage System**:
+  - Full support for depositing (`0x0038`) and withdrawing (`0x0039`) gold to/from the bank via the client's native *Sum* input dialog, with persistent `banco_oro` in SQLite `cuentas.db` and realtime two-way sync.
+  - Proper right-click handling: container 16 (`usebankitem`) withdraws from bank slot to bag, and container 17 (`usecharitem`) deposits from bag slot into bank without slot misalignment or item collisions.
+  - Seamless drag-and-drop between bank and bag (or within bank slots) mapping genuine slot IDs (1..48 in bank, 20..163 in bag).
 - **Robust Inventory Packet Sync**: stackable consumables, slot-by-slot delta sync via official `0x001B` without client stream desynchronization.
 
 **The customised client**

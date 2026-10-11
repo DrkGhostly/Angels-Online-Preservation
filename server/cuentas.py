@@ -415,6 +415,7 @@ def personaje_de(cuenta, indice=0):
         nivel=p.get('nivel', 1),
         exp=p.get('exp', 0),
         banco={int(k): v for k, v in p.get('banco', {}).items()},
+        banco_oro=int(p.get('banco_oro', 0)),
         album={str(k): int(v) for k, v in (p.get('album') or {}).items()},
         logros=[int(x) for x in (p.get('logros') or [])],
         cartas=[int(x) for x in (p.get('cartas') or [])],
@@ -639,6 +640,12 @@ def guardar_sistemas(usuario: str, char_id: int, p):
 def guardar_banco(usuario: str, char_id: int, banco: dict):
     def _mut(p):
         p['banco'] = {str(k): v for k, v in sorted(banco.items())}
+    _actualizar_personaje(usuario, char_id, _mut)
+
+
+def guardar_banco_oro(usuario: str, char_id: int, oro: int):
+    def _mut(p):
+        p['banco_oro'] = int(oro)
     _actualizar_personaje(usuario, char_id, _mut)
 
 

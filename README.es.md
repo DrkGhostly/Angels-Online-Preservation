@@ -205,6 +205,10 @@ Path`, `Third Spirit`, `Limit Breaker`, `Shadow Meld`, `Killer Intent`) y la
 - **Sistema de Mejoras de Equipo (Pestles, Enhanced Pestles y Piercing Hammers)**:
   - Soporte completo para mejorar y perforar (abrir huecos) en equipo de nivel 410+ utilizando las herramientas de tier 40 (40-Star Lucky Enhanced Pestle, 40-Star Lucky Piercing Hammer y morteros generales).
   - Engarce de gemas en huecos abiertos, martillo verde (reroll de stats adicionales leídos de `adv.xml`), probabilidades auténticas de éxito y bajada de nivel en caso de fallo.
+- **Sistema de Banco y Almacén Personal (Self Storage)**:
+  - Soporte completo para ingresar (`0x0038`) y retirar (`0x0039`) dinero del banco a través del diálogo nativo del cliente (*Sum*), con persistencia de `banco_oro` en SQLite `cuentas.db` y sincronización bidireccional en tiempo real.
+  - Resolución limpia de click derecho: contenedor 16 (`usebankitem`) retira de la casilla del banco a la mochila, y contenedor 17 (`usecharitem`) deposita de la casilla de la mochila al banco sin desalineación ni cruce de slots.
+  - Arrastre fluido de objetos entre banco y mochila (o reordenamiento dentro del banco) respetando ranuras auténticas (1..48 en banco, 20..163 en mochila).
 - **Gestión de inventario robusta**: apilamiento de consumibles, actualización casilla por casilla con el `0x001B` oficial sin desincronizar la lectura del cliente.
 
 **El cliente, personalizado**

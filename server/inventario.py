@@ -1930,7 +1930,7 @@ def _entrada_marcada(char_id, ranura, item_id, cant, inst, dueno,
     """La entrada de siempre con el contenedor, las unidades y el eco."""
     e = bytearray(_entrada(char_id, ranura, item_id, cant, inst, dueno))
     struct.pack_into('<BI', e, 33, contenedor, ident)
-    e[40] = min(int(cant), 255)
+    struct.pack_into('<I', e, 40, int(cant))
     struct.pack_into('<H', e, 84, struct.unpack_from('<H', e, 1)[0])
     return bytes(e)
 

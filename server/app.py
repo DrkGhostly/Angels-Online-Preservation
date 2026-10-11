@@ -6903,7 +6903,68 @@ class Servidor:
                          f"{_sk.nombre_rama(_dentro)} (Lv {_nv_rec}) "
                          f"-> clase={_p.class_id} ({len(_nuevos)} hechizos iniciales)")
                 return
-            if _contenedor in (14, 16, 17, 23):
+            if _contenedor == 16:
+                # Click derecho en casilla del BANCO (usebankitem) -> Retirar a la mochila
+                import inventario as _iv3
+                _ori = struct.unpack_from('<I', cuerpo, 1)[0]
+                _p = ses.personaje
+                _bolsa = getattr(ses, 'inventario', {})
+                if _p.banco is None:
+                    _p.banco = {}
+                if _ori in _p.banco:
+                    _d = _ranura_libre(_bolsa, desde=20)
+                    if _d is None:
+                        log.info(f"[{addr}] mochila llena, no se puede sacar del banco")
+                        return
+                    _v = _p.banco.pop(_ori)
+                    _it, _cn = _v if isinstance(_v, tuple) else (_v, 1)
+                    _bolsa[_d] = _it
+                    if _cn > 1:
+                        ses.cantidades[_d] = _cn
+                    ses.enviar(
+                        _iv3.banco_sacar(_p.char_id, _d, _it, _cn, dueno=_p.entity_id),
+                        _iv3.banco_vaciar_ranura(_ori),
+                        _stats_ses(ses)
+                    )
+                    if getattr(ses, 'usuario', None):
+                        cuentas.guardar_banco(ses.usuario, _p.char_id, _p.banco)
+                        _guardar_bolsa(ses, _p.char_id)
+                    log.info(f"[{addr}] banco click derecho: sacado item {_it} (x{_cn}) de banco {_ori} a mochila {_d}")
+                else:
+                    log.warning(f"[{addr}] banco click derecho: casilla {_ori} no esta en banco {_p.banco}")
+                return
+
+            if _contenedor == 17:
+                # Click derecho en casilla de la MOCHILA con banco abierto (usecharitem) -> Depositar al banco
+                import inventario as _iv3
+                _ori = struct.unpack_from('<I', cuerpo, 1)[0]
+                _p = ses.personaje
+                _bolsa = getattr(ses, 'inventario', {})
+                if _p.banco is None:
+                    _p.banco = {}
+                if _ori in _bolsa and _ori >= 20:
+                    _d = next((k for k in range(1, 49) if k not in _p.banco), None)
+                    if _d is None:
+                        log.info(f"[{addr}] banco lleno, no se guarda")
+                        return
+                    _it = _bolsa.pop(_ori)
+                    _cn = ses.cantidades.pop(_ori, 1)
+                    _p.banco[_d] = (_it, _cn)
+                    ses.enviar(
+                        _iv3.vaciar_ranura(_p.entity_id, _ori),
+                        _stats_ses(ses),
+                        _iv3.banco_poner(_p.char_id, _d, _it, _cn, dueno=_p.entity_id)
+                    )
+                    if getattr(ses, 'usuario', None):
+                        cuentas.guardar_banco(ses.usuario, _p.char_id, _p.banco)
+                        _guardar_bolsa(ses, _p.char_id)
+                    log.info(f"[{addr}] banco click derecho: guardado item {_it} (x{_cn}) de mochila {_ori} en banco {_d}")
+                else:
+                    log.warning(f"[{addr}] banco click derecho: casilla {_ori} no es de mochila o no existe")
+                return
+
+            if _contenedor in (14, 23):
+                # Arrastre dentro del banco, o entre banco y mochila
                 import inventario as _iv3
                 _ori, _dst = struct.unpack_from('<II', cuerpo, 1)
                 _p = ses.personaje
@@ -6911,8 +6972,8 @@ class Servidor:
                 if _p.banco is None:
                     _p.banco = {}
 
-                # 1. Movimiento / intercambio DENTRO del banco (contenedor 14 con ori en banco)
-                if _contenedor == 14 and _ori in _p.banco and (_dst in _p.banco or (_dst > 0 and _dst not in _bolsa and (_dst - 20) not in _bolsa)):
+                # 1. Movimiento / intercambio DENTRO del banco (Bank -> Bank)
+                if _ori in _p.banco and 1 <= _dst <= 48:
                     if _dst in _p.banco:
                         _v_ori = _p.banco[_ori]
                         _v_dst = _p.banco[_dst]
@@ -6938,62 +6999,44 @@ class Servidor:
                         cuentas.guardar_banco(ses.usuario, _p.char_id, _p.banco)
                     return
 
-                def _buscar_en_bolsa(n):
-                    if n in _bolsa and n >= 20:
-                        return n
-                    if (n + 20) in _bolsa:
-                        return n + 20
-                    if n in _bolsa:
-                        return n
-                    return None
-
-                # 2. De la MOCHILA al BANCO (depositar / click o arrastre)
-                _desde_bolsa = _buscar_en_bolsa(_ori)
-                if _desde_bolsa is not None and _desde_bolsa >= 20:
-                    _d = _dst if (_dst and _dst not in _p.banco and _dst not in _bolsa) else next(
+                # 2. De MOCHILA a BANCO por arrastre (Mochila -> Bank)
+                if _ori in _bolsa and _ori >= 20:
+                    _d = _dst if (1 <= _dst <= 48 and _dst not in _p.banco) else next(
                         (k for k in range(1, 49) if k not in _p.banco), None)
-                    if _d is None:
-                        log.info(f"[{addr}] banco lleno, no se guarda")
+                    if _d is not None:
+                        _it = _bolsa.pop(_ori)
+                        _cn = ses.cantidades.pop(_ori, 1)
+                        _p.banco[_d] = (_it, _cn)
+                        ses.enviar(
+                            _iv3.vaciar_ranura(_p.entity_id, _ori),
+                            _stats_ses(ses),
+                            _iv3.banco_poner(_p.char_id, _d, _it, _cn, dueno=_p.entity_id)
+                        )
+                        if getattr(ses, 'usuario', None):
+                            cuentas.guardar_banco(ses.usuario, _p.char_id, _p.banco)
+                            _guardar_bolsa(ses, _p.char_id)
+                        log.info(f"[{addr}] banco: guardado item {_it} de mochila {_ori} en banco {_d}")
                         return
-                    _it = _bolsa.pop(_desde_bolsa)
-                    _cn = ses.cantidades.pop(_desde_bolsa, 1)
-                    _p.banco[_d] = (_it, _cn)
-                    ses.enviar(
-                        _iv3.vaciar_ranura(_p.entity_id, _desde_bolsa),
-                        _stats_ses(ses),
-                        _iv3.banco_poner(_p.char_id, _d, _it, _cn, dueno=_p.entity_id)
-                    )
-                    if getattr(ses, 'usuario', None):
-                        cuentas.guardar_banco(ses.usuario, _p.char_id, _p.banco)
-                        _guardar_bolsa(ses, _p.char_id)
-                    log.info(f"[{addr}] banco: guardado item {_it} (x{_cn}) de mochila {_desde_bolsa} en banco {_d}")
-                    return
 
-                # 3. Del BANCO a la MOCHILA (retirar / click o arrastre)
+                # 3. De BANCO a MOCHILA por arrastre (Bank -> Mochila)
                 if _ori in _p.banco:
-                    _d = _dst if (_dst and _dst >= 20 and _dst not in _bolsa) else None
-                    if not _d and _dst and (_dst + 20) not in _bolsa and (_dst + 20) not in _p.banco:
-                        _d = _dst + 20
-                    if not _d:
-                        _d = _ranura_libre(_bolsa, desde=20)
-                    if _d is None:
-                        log.info(f"[{addr}] mochila llena, no se puede sacar del banco")
+                    _d = _dst if (_dst >= 20 and _dst not in _bolsa) else _ranura_libre(_bolsa, desde=20)
+                    if _d is not None:
+                        _v = _p.banco.pop(_ori)
+                        _it, _cn = _v if isinstance(_v, tuple) else (_v, 1)
+                        _bolsa[_d] = _it
+                        if _cn > 1:
+                            ses.cantidades[_d] = _cn
+                        ses.enviar(
+                            _iv3.banco_sacar(_p.char_id, _d, _it, _cn, dueno=_p.entity_id),
+                            _iv3.banco_vaciar_ranura(_ori),
+                            _stats_ses(ses)
+                        )
+                        if getattr(ses, 'usuario', None):
+                            cuentas.guardar_banco(ses.usuario, _p.char_id, _p.banco)
+                            _guardar_bolsa(ses, _p.char_id)
+                        log.info(f"[{addr}] banco: sacado item {_it} de banco {_ori} a mochila {_d}")
                         return
-                    _v = _p.banco.pop(_ori)
-                    _it, _cn = _v if isinstance(_v, tuple) else (_v, 1)
-                    _bolsa[_d] = _it
-                    if _cn > 1:
-                        ses.cantidades[_d] = _cn
-                    ses.enviar(
-                        _iv3.banco_sacar(_p.char_id, _d, _it, _cn, dueno=_p.entity_id),
-                        _iv3.banco_vaciar_ranura(_ori),
-                        _stats_ses(ses)
-                    )
-                    if getattr(ses, 'usuario', None):
-                        cuentas.guardar_banco(ses.usuario, _p.char_id, _p.banco)
-                        _guardar_bolsa(ses, _p.char_id)
-                    log.info(f"[{addr}] banco: sacado item {_it} (x{_cn}) de banco {_ori} a mochila {_d}")
-                    return
 
                 log.warning(f"[{addr}] banco: movimiento {_ori} -> {_dst} no resuelto. Bolsa: {sorted(_bolsa)}, Banco: {sorted(_p.banco)}")
                 return
@@ -7025,6 +7068,107 @@ class Servidor:
             _guardar_bolsa(ses, cid)
             log.info(f"[{addr}] separadas {cuantas} de {item_id}: casilla "
                      f"{origen} ({hay} -> {hay - cuantas}) y casilla {destino}")
+            return
+
+        # --- Banco: 0x0038 (depositar oro o drop mochila -> banco) ---
+        if opcode == 0x0038 and ses.rol == 'mundo' and ses.personaje and len(cuerpo) >= 8:
+            import inventario as _iv3
+            arg1, arg2, arg3 = struct.unpack_from('<HHI', cuerpo, 0)
+            _p = ses.personaje
+            if _p.banco is None:
+                _p.banco = {}
+
+            if arg1 == 0 and arg2 == 0:
+                # Depositar oro al banco (setsplitmoneynum)
+                monto = min(int(arg3), getattr(ses, 'oro', 0))
+                if monto > 0:
+                    ses.oro -= monto
+                    _p.oro = ses.oro
+                    _p.banco_oro = getattr(_p, 'banco_oro', 0) + monto
+                    ses.enviar(
+                        _iv3.actualizar_ranura(_p.char_id, _iv3.RANURA_ORO, _iv3.ITEM_ORO,
+                                               _inst(ses, _iv3.RANURA_ORO), _p.entity_id, cantidad=ses.oro),
+                        _stats_ses(ses),
+                        _iv3.banco_poner(_p.char_id, 0, _iv3.ITEM_ORO, cant=_p.banco_oro, dueno=_p.entity_id)
+                    )
+                    if getattr(ses, 'usuario', None):
+                        cuentas.guardar_oro(ses.usuario, _p.char_id, ses.oro)
+                        cuentas.guardar_banco_oro(ses.usuario, _p.char_id, _p.banco_oro)
+                    log.info(f"[{addr}] banco: depositado {monto} oro. Mochila: {ses.oro}, Banco: {_p.banco_oro}")
+                return
+
+            # Arrastrar objeto de la mochila al banco (dropbankitem)
+            _bolsa = getattr(ses, 'inventario', {})
+            _desde_bolsa = arg1
+            if _desde_bolsa in _bolsa and _desde_bolsa >= 20:
+                _d = arg2 if (1 <= arg2 <= 48 and arg2 not in _p.banco) else next(
+                    (k for k in range(1, 49) if k not in _p.banco), None)
+                if _d is None:
+                    log.info(f"[{addr}] banco lleno, no se guarda")
+                    return
+                _it = _bolsa.pop(_desde_bolsa)
+                _cn = ses.cantidades.pop(_desde_bolsa, 1)
+                _p.banco[_d] = (_it, _cn)
+                ses.enviar(
+                    _iv3.vaciar_ranura(_p.entity_id, _desde_bolsa),
+                    _stats_ses(ses),
+                    _iv3.banco_poner(_p.char_id, _d, _it, _cn, dueno=_p.entity_id)
+                )
+                if getattr(ses, 'usuario', None):
+                    cuentas.guardar_banco(ses.usuario, _p.char_id, _p.banco)
+                    _guardar_bolsa(ses, _p.char_id)
+                log.info(f"[{addr}] banco: guardado item {_it} (x{_cn}) de mochila {_desde_bolsa} en banco {_d}")
+            return
+
+        # --- Banco: 0x0039 (retirar oro o drop banco -> mochila) ---
+        if opcode == 0x0039 and ses.rol == 'mundo' and ses.personaje and len(cuerpo) >= 8:
+            import inventario as _iv3
+            arg1, arg2, arg3 = struct.unpack_from('<HHI', cuerpo, 0)
+            _p = ses.personaje
+            if _p.banco is None:
+                _p.banco = {}
+
+            if arg1 == 0 and arg2 == 0:
+                # Retirar oro del banco a la mochila (setsplitmoneynum)
+                banco_oro_actual = getattr(_p, 'banco_oro', 0)
+                monto = min(int(arg3), banco_oro_actual)
+                if monto > 0:
+                    _p.banco_oro -= monto
+                    ses.oro = min(2000000000, getattr(ses, 'oro', 0) + monto)
+                    _p.oro = ses.oro
+                    ses.enviar(
+                        _iv3.actualizar_ranura(_p.char_id, _iv3.RANURA_ORO, _iv3.ITEM_ORO,
+                                               _inst(ses, _iv3.RANURA_ORO), _p.entity_id, cantidad=ses.oro),
+                        _stats_ses(ses),
+                        _iv3.banco_poner(_p.char_id, 0, _iv3.ITEM_ORO, cant=_p.banco_oro, dueno=_p.entity_id)
+                    )
+                    if getattr(ses, 'usuario', None):
+                        cuentas.guardar_oro(ses.usuario, _p.char_id, ses.oro)
+                        cuentas.guardar_banco_oro(ses.usuario, _p.char_id, _p.banco_oro)
+                    log.info(f"[{addr}] banco: retirado {monto} oro. Mochila: {ses.oro}, Banco: {_p.banco_oro}")
+                return
+
+            # Arrastrar objeto del banco a la mochila (dropcharitem)
+            _bolsa = getattr(ses, 'inventario', {})
+            if arg1 in _p.banco:
+                _d = arg2 if (arg2 >= 20 and arg2 not in _bolsa) else _ranura_libre(_bolsa, desde=20)
+                if _d is None:
+                    log.info(f"[{addr}] mochila llena, no se puede sacar del banco")
+                    return
+                _v = _p.banco.pop(arg1)
+                _it, _cn = _v if isinstance(_v, tuple) else (_v, 1)
+                _bolsa[_d] = _it
+                if _cn > 1:
+                    ses.cantidades[_d] = _cn
+                ses.enviar(
+                    _iv3.banco_sacar(_p.char_id, _d, _it, _cn, dueno=_p.entity_id),
+                    _iv3.banco_vaciar_ranura(arg1),
+                    _stats_ses(ses)
+                )
+                if getattr(ses, 'usuario', None):
+                    cuentas.guardar_banco(ses.usuario, _p.char_id, _p.banco)
+                    _guardar_bolsa(ses, _p.char_id)
+                log.info(f"[{addr}] banco: sacado item {_it} (x{_cn}) de banco {arg1} a mochila {_d}")
             return
 
         # --- destruir un monton entero (papelera) ------------------------
@@ -8966,13 +9110,17 @@ class Servidor:
                 # un 0x004E vacio de marcador y se sustituye por el de verdad.
                 if ses.personaje and any(m[:2] == struct.pack('<H', 0x004E) for m in submsgs):
                     import inventario as _inv
-                    import configuracion as _cf
-                    _bco = ses.personaje.banco or getattr(
-                        _cf, 'ALMACEN_INICIAL', {}) or {}
-                    # Cada casilla guarda (item, cantidad); las viejas que
-                    # solo tienen el item se leen como una unidad.
-                    _guardado = [(r,) + (v if isinstance(v, tuple) else (v, 1))
-                                 for r, v in sorted(_bco.items())]
+                    _bco = dict(ses.personaje.banco or {})
+                    # Slot 0 SIEMPRE representa el dinero depositado en el banco
+                    _bco_oro = getattr(ses.personaje, 'banco_oro', 0)
+                    _guardado = [(0, _inv.ITEM_ORO, _bco_oro)]
+                    for r, v in sorted(_bco.items()):
+                        if int(r) == 0:
+                            continue
+                        if isinstance(v, tuple):
+                            _guardado.append((int(r), int(v[0]), int(v[1]) if len(v) > 1 else 1))
+                        else:
+                            _guardado.append((int(r), int(v), 1))
                     _real = _inv.almacen(ses.personaje.char_id, _guardado,
                                          ses.personaje.entity_id)
                     submsgs = tuple(_real if m[:2] == struct.pack('<H', 0x004E) else m

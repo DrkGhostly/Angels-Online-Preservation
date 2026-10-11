@@ -71,6 +71,7 @@ class Personaje:
     nivel: int = 1
     exp: int = 0
     banco: dict = field(default_factory=dict)
+    banco_oro: int = 0
     # Creditos de rango, los que la ficha muestra como "Credit:". Suben con
     # las quests y con los objetos de investitem.xml, que dan de cinco en
     # cinco los mas baratos.
