@@ -4920,12 +4920,7 @@ class Servidor:
                             dano_var = mag.get('dano_var', 0)
                             var_pct = min(0.15, max(0.02, dano_var / float(denom))) if dano_var > 0 else 0.05
                         else:
-                            r_atk = struct.unpack_from('<I', st, 2 + 24)[0]
-                            l_atk = struct.unpack_from('<I', st, 2 + 28)[0]
-                            if lleva_duales_ses(ses):
-                                ataque = r_atk + l_atk
-                            else:
-                                ataque = r_atk
+                            ataque = struct.unpack_from('<I', st, 2 + 20 + 4)[0]
                             stance = _cb.stance_de(tipo)
                             dano_extra = int(round(stance * _cb.PESO_STANCE))
                             ataque += dano_extra
@@ -4934,9 +4929,9 @@ class Servidor:
                             _cb_aoe_info = _cb.combo_de(tipo)
                             es_combo_aoe = bool(_cb_aoe_info and _cb_aoe_info.get('golpes', 1) > 1)
                             if es_combo_aoe:
-                                mult_spell = 1.7
+                                mult_spell = 1.2
                             else:
-                                mult_spell = 2.5
+                                mult_spell = 1.35
                             coef = mag.get('dano_coef', 0)
                             if coef > 0:
                                 mult_spell *= (coef / 100.0)
@@ -5928,12 +5923,7 @@ class Servidor:
             if is_magic_skill:
                 ataque = struct.unpack_from('<I', st, 2 + 44)[0]
             else:
-                r_atk = struct.unpack_from('<I', st, 2 + 24)[0]
-                l_atk = struct.unpack_from('<I', st, 2 + 28)[0]
-                if lleva_duales_ses(ses):
-                    ataque = r_atk + l_atk
-                else:
-                    ataque = r_atk
+                ataque = struct.unpack_from('<I', st, 2 + 20 + 4)[0]
 
             # Si se usa una habilidad activa (ej. Slicing Hit, Basic Beating, etc.)
             dano_extra = 0
@@ -6049,9 +6039,9 @@ class Servidor:
                     _cb_data = _cb.combo_de(tipo)
                     es_combo_skill = bool(_cb_data and _cb_data.get('golpes', 1) > 1)
                     if es_combo_skill:
-                        mult_spell = 1.7
+                        mult_spell = 1.2
                     else:
-                        mult_spell = 2.5
+                        mult_spell = 1.35
 
                     # Boss penalty para Rapidfire (reduccion al 50% frente a Jefes)
                     is_rapidfire = bool(5766 <= tipo <= 5770 or 5957 <= tipo <= 5961 or 'Rapidfire' in mag.get('nombre', ''))
