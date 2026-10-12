@@ -183,7 +183,7 @@ def _unidades() -> list:
 
 def _parece_cliente(d: pathlib.Path) -> bool:
     try:
-        if not (d / 'Angel.exe').exists():
+        if not ((d / 'angel.dat').exists() or (d / 'Angel.exe').exists()):
             return False
         return any(d.glob('*.pak')) or any(d.glob('*.PAK'))
     except OSError:
@@ -691,18 +691,19 @@ def parchear_launcher():
                 raw[0x00E3D5:0x00E3D5 + 20] = parche_ready
                 cambiado = True
 
-            # Cambiar recurso de cadena 24 ("angel.dat" en UTF-16LE en 0x168258) por "Angel.exe"
-            # para que al pulsar ENTER / START lance nuestro cliente Angel.exe desempaquetado
-            str_angel_exe = 'Angel.exe'.encode('utf-16le')
-            if len(raw) >= 0x168258 + len(str_angel_exe):
-                if raw[0x168258:0x168258 + len(str_angel_exe)] != str_angel_exe:
-                    raw[0x168258:0x168258 + len(str_angel_exe)] = str_angel_exe
+            # Recurso de cadena 24 ("angel.dat" en UTF-16LE en 0x168258).
+            # En el cliente oficial, START.EXE lanza "./angel.dat" (el ejecutable PE nativo).
+            # Aseguramos "angel.dat" para no depender de ningun Angel.exe externo en la carpeta.
+            str_angel_dat = 'angel.dat'.encode('utf-16le')
+            if len(raw) >= 0x168258 + len(str_angel_dat):
+                if raw[0x168258:0x168258 + len(str_angel_dat)] != str_angel_dat:
+                    raw[0x168258:0x168258 + len(str_angel_dat)] = str_angel_dat
                     cambiado = True
 
         if cambiado:
             try:
                 start_exe.write_bytes(bytes(raw))
-                log.info(f"Parcheado {start_exe} -> listo al instante, HTTP 127.0.0.1:{puerto_http} -> Angel.exe")
+                log.info(f"Parcheado {start_exe} -> listo al instante, HTTP 127.0.0.1:{puerto_http} -> angel.dat")
             except Exception as e:
                 log.warning(f"No se pudo parchear {start_exe} (quiza esta en ejecucion): {e}")
 
@@ -951,7 +952,7 @@ def quitar_exclusion_ramas() -> int:
 
 
 def abrir_clientes(cuantos: int = 1) -> int:
-    """Lanza N copias de Angel.exe y devuelve cuantas arrancaron.
+    """Lanza N copias del cliente (angel.dat o Angel.exe) y devuelve cuantas arrancaron.
 
     El cliente se lanza con el directorio del juego como cwd, que es de
     donde lee reg.ini para saber a que servidor conectarse. Van con un
@@ -959,9 +960,11 @@ def abrir_clientes(cuantos: int = 1) -> int:
     .pak y alguna se queda a medias.
     """
     ruta_cli = ruta_cliente()
-    exe = ruta_cli / 'Angel.exe'
+    exe = ruta_cli / 'angel.dat'
     if not exe.exists():
-        log.warning('no esta %s, no se abre nada' % exe)
+        exe = ruta_cli / 'Angel.exe'
+    if not exe.exists():
+        log.warning('no esta angel.dat ni Angel.exe en %s, no se abre nada' % ruta_cli)
         return 0
     cuantos = max(1, min(int(cuantos or 1), MAX_CLIENTES))
     abiertos = 0

@@ -116,3 +116,4 @@ with open(dlg_path, 'w', encoding='utf-8') as f:
     json.dump(dlg_existente, f, indent=2, ensure_ascii=False)
 
 print("dialogos_npc.json actualizado exitosamente con TODOS los NPCs!")
+
