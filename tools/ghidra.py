@@ -31,10 +31,21 @@ ficha) y 0x56e110 -- que caen todas dentro de ese .text.
 
 MONTAJE. Ghidra 12.1.4 en G:/ghidra y un JDK 64 bits (vale el 25 de
 Temurin). No hace falta interfaz ni ningun MCP: analyzeHeadless importa,
-analiza y corre scripts de PyGhidra (Python 3).
+analiza y corre scripts. VAN EN JAVA Y NO EN PYTHON: los de PyGhidra piden
+arrancar Ghidra con su lanzador propio, y los de Java corren tal cual sin
+instalar nada.
 
     python tools/ghidra.py --analizar          una vez, tarda un buen rato
-    python tools/ghidra.py --script red_despachador.py
+    python tools/ghidra.py --script descompilar.java 0081e900 300
+
+Lo que hay en tools/ghidra_scripts, de mas util a mas especifico:
+
+    descompilar.java            una funcion a C, mas quien la llama
+    referencias.java            quien toca una direccion, y si lee o escribe
+    saltos_grandes.java         los switch gordos del binario (despachadores)
+    registro_de_manejadores.java  tablas que se llenan en ejecucion
+    tablas_de_punteros.java     tablas de punteros ya escritas en el fichero
+    red_despachador.java        sube desde los socket de WS2_32
 
 El proyecto queda en G:/ghidra_proj y se reaprovecha entre sesiones: el
 analisis solo se hace una vez.
