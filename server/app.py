@@ -8882,11 +8882,21 @@ class Servidor:
                                 ses.enviar(dialogos.linea_de(g_comp, 0, nom2))
                                 log.info(f"[{addr}] Quest {qid_proc} {tipo_proc} con {_nom_ent}")
                             return
-                        elif tipo_proc in ('recoleccion_incompleta', 'caceria_incompleta'):
+                        elif tipo_proc in ('incompleta', 'recoleccion_incompleta', 'caceria_incompleta'):
+                            qid_proc = datos_proc.get('qid')
+                            nom2 = ses.personaje.nombre if ses.personaje else 'Jugador'
+                            g_prog = dialogos.guion_de_mision(qid_proc, _nom_ent, jugador=nom2, entidad=ent, en_progreso=True)
+                            if g_prog:
+                                ses.dlg_ent, ses.dlg_guion, ses.dlg_paso = ent, g_prog, 1
+                                ses.dlg_val = dialogos.val_por_entidad(ent)
+                                ses.enviar(dialogos.linea_de(g_prog, 0, nom2))
+                                log.info(f"[{addr}] {_nom_ent}: recordatorio de mision {qid_proc} en curso a {nom2}")
+                                return
                             return
 
                     # 2. Si no habia mision activa con este NPC, comprobar si ofrece misiones disponibles
-                    disponibles = _mis.misiones_disponibles_npc(ses.personaje, _nom_ent)
+                    stg_act = getattr(ses.personaje, 'stage', 0) if ses.personaje else 0
+                    disponibles = _mis.misiones_disponibles_npc(ses.personaje, _nom_ent, stage=stg_act)
                     if disponibles:
                         qid_ofrecer = disponibles[0]
                         nom2 = ses.personaje.nombre if ses.personaje else 'Jugador'
@@ -8895,6 +8905,7 @@ class Servidor:
                             ses.dlg_ent, ses.dlg_guion, ses.dlg_paso = ent, g_ofrecer, 1
                             ses.dlg_val = dialogos.val_por_entidad(ent)
                             ses.dlg_quest_ofrecida = qid_ofrecer
+                            ses.dlg_quest_fase = 'interes'
                             ses.enviar(dialogos.linea_de(g_ofrecer, 0, nom2))
                             log.info(f"[{addr}] {_nom_ent} ofrece mision {qid_ofrecer} a {nom2}")
                             return
@@ -9056,22 +9067,56 @@ class Servidor:
                     ses.enviar(struct.pack('<H', 0x0012) + dialogos.FIN)
                     return
 
-                # Opciones de mision interactiva (Aceptar / Rechazar)
+                # Opciones de mision interactiva (Interes [Ayudar/Salir] o Propuesta [Aceptar/Rechazar])
                 if getattr(ses, 'dlg_quest_ofrecida', None):
                     qid_ofrecida = ses.dlg_quest_ofrecida
-                    ses.dlg_quest_ofrecida = None
-                    if _i == 0:  # Primera opcion: Aceptar mision
-                        import misiones as _mis_op
-                        _mis_op.aceptar_mision(ses, qid_ofrecida)
-                        ses.dlg_ent = None
-                        ses.enviar(struct.pack('<H', 0x0012) + dialogos.FIN)
-                        log.info(f"[{addr}] {ses.personaje.nombre} acepto mision {qid_ofrecida} de {_nombre_entidad(ses, ent)}")
-                        return
-                    else:  # Segunda opcion u otra: Rechazar / Salir
-                        ses.dlg_ent = None
-                        ses.enviar(struct.pack('<H', 0x0012) + dialogos.FIN)
-                        log.info(f"[{addr}] {ses.personaje.nombre} rechazo mision {qid_ofrecida}")
-                        return
+                    fase = getattr(ses, 'dlg_quest_fase', 'interes')
+                    val = getattr(ses, 'dlg_val', 4)
+                    flujo = dialogos.info_flujo_mision(qid_ofrecida)
+                    nom2 = ses.personaje.nombre if ses.personaje else 'Jugador'
+
+                    if fase == 'interes':
+                        if _i == 0:  # Eligió la primera opción: "Tell me how I can help." / "About help"
+                            # Mostrar la propuesta detallada de la misión (Página 3)
+                            ses.dlg_quest_fase = 'propuesta'
+                            line_prop = dialogos.armar_linea(flujo['propuesta'], val, flujo.get('ops_prop', []), strings=[nom2])
+                            ses.dlg_guion = [line_prop[2:]]
+                            ses.dlg_paso = 1
+                            ses.enviar(line_prop)
+                            log.info(f"[{addr}] {nom2} mostro interes en mision {qid_ofrecida}; mostrando propuesta {flujo['propuesta']}")
+                            return
+                        else:  # Eligió "Leave." / "I quit."
+                            ses.dlg_quest_ofrecida = None
+                            ses.dlg_quest_fase = None
+                            ses.dlg_ent = None
+                            ses.enviar(struct.pack('<H', 0x0012) + dialogos.FIN)
+                            log.info(f"[{addr}] {nom2} no mostro interes en mision {qid_ofrecida}")
+                            return
+
+                    elif fase == 'propuesta':
+                        if _i == 0:  # Eligió "Ok" / Aceptar misión
+                            ses.dlg_quest_ofrecida = None
+                            ses.dlg_quest_fase = None
+                            import misiones as _mis_op
+                            _mis_op.aceptar_mision(ses, qid_ofrecida)
+                            log.info(f"[{addr}] {nom2} ACEPTÓ la mision {qid_ofrecida} de {_nombre_entidad(ses, ent)}")
+                            # Si hay diálogo de despedida/buena suerte (base + 8), mostrarlo
+                            if flujo.get('exito'):
+                                line_exito = dialogos.armar_linea(flujo['exito'], val, [], strings=[nom2])
+                                ses.dlg_guion = [line_exito[2:]]
+                                ses.dlg_paso = 1
+                                ses.enviar(line_exito)
+                            else:
+                                ses.dlg_ent = None
+                                ses.enviar(struct.pack('<H', 0x0012) + dialogos.FIN)
+                            return
+                        else:  # Eligió "It sounds dangerous. I'm leaving." / Rechazar
+                            ses.dlg_quest_ofrecida = None
+                            ses.dlg_quest_fase = None
+                            ses.dlg_ent = None
+                            ses.enviar(struct.pack('<H', 0x0012) + dialogos.FIN)
+                            log.info(f"[{addr}] {nom2} rechazo la propuesta de mision {qid_ofrecida}")
+                            return
 
                 # Casos especiales de opciones en Guide Palace:
                 # 1. Interface Tutor: 5241 ("OK") -> Inicia explicacion paso a paso

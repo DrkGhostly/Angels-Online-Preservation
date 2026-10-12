@@ -237,30 +237,55 @@ def obtener_paso_actual(p, qid: int) -> int:
     return 0
 
 
-def misiones_disponibles_npc(p, npc_nombre: str) -> list:
+def misiones_disponibles_npc(p, npc_nombre: str, stage: int = 0) -> list:
     """Devuelve la lista de IDs de misiones que este NPC puede ofrecer al personaje."""
     _cargar_db()
     if not npc_nombre:
         return []
-    qids = _NPC_INICIO.get(npc_nombre.strip().lower(), [])
+    nom_l = npc_nombre.strip().lower()
+    qids = list(_NPC_INICIO.get(nom_l, []))
     disponibles = []
+
+    # Si el personaje ya tiene UNA misión activa de este NPC, no se ofrece otra
+    for q_act, pa_act in list(getattr(p, 'quests', []) or []):
+        if not mision_completada(p, q_act):
+            q_info = info_mision(q_act)
+            if (q_info.get('npc_inicio') or '').strip().lower() == nom_l:
+                return []
+            pasos = q_info.get('pasos', [])
+            idx_p = pa_act - 1 if 0 < pa_act <= len(pasos) else 0
+            if idx_p < len(pasos):
+                p_npc = (pasos[idx_p].get('npc_entrega') or pasos[idx_p].get('npc') or '').strip().lower()
+                if p_npc == nom_l:
+                    return []
 
     # Faccion del personaje normalizada
     p_fac = getattr(p, 'faction', 'Heaven') or 'Heaven'
     p_fac_l = p_fac.strip().lower()
     p_norm = 'aurora' if 'aurora' in p_fac_l else ('shadow' if ('shadow' in p_fac_l or 'dark' in p_fac_l) else ('steel' if ('steel' in p_fac_l or 'iron' in p_fac_l) else ('beasts' if ('beast' in p_fac_l or 'breeze' in p_fac_l) else 'heaven')))
 
+    # Orden especial para jefes de milicia / ciudad
+    if nom_l == 'militia chief' and stage == 29:
+        # Cadena de Breeze Woods: Mysterious Garden (556, 555, 554) primero, luego las siguientes
+        cadena_orden = [556, 555, 554, 553, 552, 551, 550, 549, 548, 547, 546, 545, 544, 543, 542]
+        qids = [q for q in cadena_orden if q in qids] + [q for q in qids if q not in cadena_orden]
+
     for qid in qids:
-        # Si ya la tiene activa, no se ofrece de nuevo
+        info = info_mision(qid)
+        # 1. Filtro por mapa / stage
+        q_stage = info.get('stage_id')
+        if q_stage and stage and q_stage != stage:
+            continue
+
+        # 2. Si ya la tiene activa, no se ofrece de nuevo
         st, pa, comp = estado_mision(p, qid)
         if st and not comp:
             continue
-        # Si ya la completo: solo se ofrece si es repetible
+        # 3. Si ya la completo: solo se ofrece si es repetible
         if comp and not es_repetible(qid):
             continue
 
-        # Comprobar faccion de la mision
-        info = info_mision(qid)
+        # 4. Comprobar faccion de la mision
         q_fac = info.get('faccion')
         if q_fac:
             q_fac_l = q_fac.strip().lower()
@@ -269,6 +294,12 @@ def misiones_disponibles_npc(p, npc_nombre: str) -> list:
                 continue
 
         disponibles.append(qid)
+
+    # Si hay misiones sin completar, darles prioridad sobre repetibles ya hechas
+    sin_completar = [q for q in disponibles if not mision_completada(p, q)]
+    if sin_completar:
+        return sin_completar
+
     return disponibles
 
 
@@ -739,7 +770,7 @@ def interactuar_npc(ses, npc_nombre: str, entidad: int = 0) -> tuple:
                 # Objetivo de recoleccion
                 if tipo_obj == 'recolectar':
                     if not verificar_entrega_items(ses, q, pa):
-                        return (True, 'recoleccion_incompleta', {'qid': q, 'paso': pa})
+                        return (True, 'incompleta', {'qid': q, 'paso': pa, 'nom_npc': npc_nombre})
 
                 # Objetivo de caceria
                 if tipo_obj == 'matar':
@@ -747,7 +778,7 @@ def interactuar_npc(ses, npc_nombre: str, entidad: int = 0) -> tuple:
                     kills = (getattr(ses, 'quest_kills', {}) or {}).get((q, pa), 0)
                     if kills < req:
                         ses.enviar(_cl.aviso(f"Defeat targets first! ({kills}/{req})", tipo=0, msg_id=_cl.MSG_QUEST))
-                        return (True, 'caceria_incompleta', {'qid': q, 'paso': pa})
+                        return (True, 'incompleta', {'qid': q, 'paso': pa, 'nom_npc': npc_nombre})
                     if hasattr(ses, 'quest_kills') and (q, pa) in ses.quest_kills:
                         del ses.quest_kills[(q, pa)]
 

@@ -2973,36 +2973,84 @@ def opciones_de_mision(qid: int) -> tuple:
     return (mid_prompt or 5006, op_aceptar, op_salir)
 
 
-def guion_de_mision(qid: int, npc_nombre: str = '', jugador: str = '', npc_val: int = 0, entidad: int = 0, completada: bool = False):
+def info_flujo_mision(qid: int) -> dict:
+    """Extrae el flujo completo de diálogos para una misión desde msg.xml:
+    - intro: diálogos de saludo / normas previas a la pregunta
+    - pregunta: diálogo con contexto y opciones para ofrecer ayuda
+    - ops_preg: lista de opciones de interés [ayudar, salir]
+    - propuesta: diálogo con la descripción detallada de la misión
+    - ops_prop: opciones de aceptación [ok/aceptar, rechazar/cancelar]
+    - exito: diálogo de despedida/buena suerte tras aceptar
+    - progreso: diálogo recordatorio mientras la misión sigue activa
+    - completada: lista de diálogos de felicitación y entrega de premio
+    """
+    msgs = _cargar_msg_dict()
+    base = qid * 100
+
+    # 1. Patrón estándar de Angels Online (utilizado en más de 1,300 misiones)
+    if (base + 2) in msgs and (base + 5) in msgs and (base + 6) in msgs:
+        return {
+            'tipo': 'estandar',
+            'intro': [base + 1] if (base + 1) in msgs else [],
+            'pregunta': base + 2,
+            'ops_preg': [base + 3, base + 4] if (base + 3) in msgs and (base + 4) in msgs else [base + 3],
+            'propuesta': base + 5,
+            'ops_prop': [base + 6, base + 7] if (base + 7) in msgs else [base + 6],
+            'exito': base + 8 if (base + 8) in msgs else None,
+            'progreso': base + 9 if (base + 9) in msgs else None,
+            'completada': [m for m in (base + 10, base + 11) if m in msgs] or [base + 5],
+        }
+
+    # 2. Casos especiales como Quest 506 (Inspection Tour)
+    if qid == 506:
+        return {
+            'tipo': '506',
+            'intro': [],
+            'pregunta': 50601,
+            'ops_preg': [50604, 50605],
+            'propuesta': 50610,
+            'ops_prop': [50611, 50612],
+            'exito': 50613,
+            'progreso': 50614,
+            'completada': [50610],
+        }
+
+    # 3. Fallback general buscando opciones
+    mid_prompt, op_aceptar, op_salir = opciones_de_mision(qid)
+    return {
+        'tipo': 'simple',
+        'intro': [],
+        'pregunta': mid_prompt,
+        'ops_preg': [op_aceptar, op_salir] if op_aceptar else [],
+        'propuesta': mid_prompt,
+        'ops_prop': [op_aceptar, op_salir] if op_aceptar else [],
+        'exito': None,
+        'progreso': (base + 9) if (base + 9) in msgs else None,
+        'completada': [m for m in (base + 10, base + 11) if m in msgs] or [mid_prompt],
+    }
+
+
+def guion_de_mision(qid: int, npc_nombre: str = '', jugador: str = '', npc_val: int = 0, entidad: int = 0, completada: bool = False, en_progreso: bool = False):
     """Genera el guión de diálogo para aceptar o interactuar con una misión en msg.xml."""
     val_final = npc_val or (val_por_entidad(entidad, 0) if entidad else 0)
     if not val_final:
         val_final = val_por_entidad(entidad, 3) if entidad else 3
 
-    msgs = _cargar_msg_dict()
-    base = qid * 100
+    flujo = info_flujo_mision(qid)
+    cadenas = [jugador] if jugador else []
 
     if completada:
-        # Buscar dialogo de agradecimiento / finalizacion
-        mid_comp = None
-        import re
-        re_comp = re.compile(r'\b(thank|congratulat|great success|award|reward|you defeated|you have defeated|success)\b', re.IGNORECASE)
-        for delta in (10, 11, 15, 8, 9, 7, 5, 2):
-            cand = base + delta
-            if cand in msgs and re_comp.search(msgs[cand]):
-                mid_comp = cand
-                break
-        if not mid_comp:
-            for cand in (base + 10, base + 11, base + 15, base + 5, base + 2):
-                if cand in msgs:
-                    mid_comp = cand
-                    break
-        if mid_comp:
-            sub = armar_linea(mid_comp, val_final, [], strings=[jugador] if jugador else [])
-            return [sub[2:]]
+        mids = flujo.get('completada') or [qid * 100 + 10]
+        return [armar_linea(m, val_final, [], strings=cadenas)[2:] for m in mids]
 
-    mid, op_aceptar, op_salir = opciones_de_mision(qid)
-    ops = [op_aceptar, op_salir] if op_aceptar else []
-    cadenas = [jugador] if jugador else []
-    sub = armar_linea(mid, val_final, ops, strings=cadenas)
-    return [sub[2:]]
+    if en_progreso:
+        m_prog = flujo.get('progreso')
+        if m_prog:
+            return [armar_linea(m_prog, val_final, [], strings=cadenas)[2:]]
+
+    # Fase inicial de ofrecimiento: intro (si tiene) + pregunta con opciones de interes
+    lineas = []
+    for m_in in flujo.get('intro', []):
+        lineas.append(armar_linea(m_in, val_final, [], strings=cadenas)[2:])
+    lineas.append(armar_linea(flujo['pregunta'], val_final, flujo.get('ops_preg', []), strings=cadenas)[2:])
+    return lineas
