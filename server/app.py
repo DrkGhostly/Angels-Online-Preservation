@@ -2862,7 +2862,7 @@ class Servidor:
                 for mid, m in list(monstruos.items()):
                     if not _en_instancia and m.toca_reaparecer():
                         m.revivir()
-                        ses.enviar(_lg._npc_spawn(m.entity_id, m.npc_type, m.nombre, m.spawn_tile, klass=1))
+                        ses.enviar(_lg._npc_spawn(m.entity_id, m.npc_type, m.nombre, m.spawn_tile, sprite=getattr(m, 'sprite', 0), klass=1))
                         log.info(f"monstruo {m.nombre} (eid={m.entity_id}) reaparecio en {m.spawn_tile}")
 
                 out = ses.drenar()
@@ -8870,7 +8870,12 @@ class Servidor:
                         if tipo_proc in ('completada', 'avanzada'):
                             qid_proc = datos_proc.get('qid')
                             nom2 = ses.personaje.nombre if ses.personaje else 'Jugador'
-                            g_comp = dialogos.guion_de_mision(qid_proc, _nom_ent, jugador=nom2)
+                            g_mis = dialogos.guion_de_mision(qid_proc, _nom_ent, jugador=nom2, entidad=ent)
+                            dp = dialogos.propio(_nom_ent, faccion=faccion, jugador=nom2, entidad=ent)
+                            if _nom_ent.lower() in ('aurora angel', 'dark city angel', 'ironcastle angel', 'breezewood angel'):
+                                g_comp = dp if dp else g_mis
+                            else:
+                                g_comp = g_mis if g_mis else dp
                             if g_comp:
                                 ses.dlg_ent, ses.dlg_guion, ses.dlg_paso = ent, g_comp, 1
                                 ses.dlg_val = struct.unpack_from('<H', g_comp[0], 4)[0] if len(g_comp[0]) >= 6 else 4
@@ -8879,26 +8884,14 @@ class Servidor:
                             return
                         elif tipo_proc in ('recoleccion_incompleta', 'caceria_incompleta'):
                             return
-                        elif tipo_proc == 'ofrece_mision':
-                            disponibles = datos_proc.get('disponibles', [])
-                            if disponibles:
-                                qid_ofrecer = disponibles[0]
-                                g_cand = dialogos.guion_de_mision(qid_ofrecer, _nom_ent,
-                                                                  jugador=ses.personaje.nombre)
-                                if g_cand:
-                                    g_quest = g_cand
-                                    ses.dlg_quest_opciones = {qid_ofrecer * 100 + 2: qid_ofrecer, 5080: qid_ofrecer}
-
                 g2 = dialogos.propio(
-                    _nom_ent, faccion=faccion,
-                    jugador=getattr(ses.personaje, 'nombre', '') if ses.personaje else '',
-                    visto_michael=bool(getattr(ses.personaje, 'hablo_michael', False)
-                                       if ses.personaje else False),
-                    stage=getattr(ses.personaje, 'stage', 0) if ses.personaje else 0,
-                    registrado=_ya_registrado(ses),
-                    entidad=ent)
-                if not g2 and g_quest:
-                    g2 = g_quest
+                        _nom_ent, faccion=faccion,
+                        jugador=getattr(ses.personaje, 'nombre', '') if ses.personaje else '',
+                        visto_michael=bool(getattr(ses.personaje, 'hablo_michael', False)
+                                           if ses.personaje else False),
+                        stage=getattr(ses.personaje, 'stage', 0) if ses.personaje else 0,
+                        registrado=_ya_registrado(ses),
+                        entidad=ent)
 
                 if g2:
                     nom2 = ses.personaje.nombre if ses.personaje else 'Jugador'
@@ -9266,14 +9259,6 @@ class Servidor:
                     log.info(f"[{addr}] {_pj.nombre} fijo el punto de revivir "
                              f"con Cupid: mapa {_pj.stage} casilla "
                              f"({_pj.tile_x},{_pj.tile_y})")
-                elif _el == 20001 and ses.personaje:
-                    # Teleporter Jack: East Field A1 (stage 42)
-                    _sincronizar_cambio_mapa(ses, 42, 11, 113)
-                    log.info(f"[{addr}] Teleporter Jack: al East Playground (stage 42)")
-                elif _el == 20003 and ses.personaje:
-                    # Teleporter Shiva: West Field A1 (stage 43)
-                    _sincronizar_cambio_mapa(ses, 43, 189, 24)
-                    log.info(f"[{addr}] Teleporter Shiva: al West Playground (stage 43)")
                 elif 5802 <= _el <= 5806 and ses.personaje:
                     # East Playground A1..A5
                     _sincronizar_cambio_mapa(ses, 42, 11, 113)
@@ -9346,7 +9331,7 @@ class Servidor:
                             _mis.aceptar_mision(ses, 144)
                             _mis.avanzar_paso(ses, 144, 1)
                             ses.enviar(_cl.aviso("Quest [Recapturing Eden]: Accepted from Lord Kahn!", tipo=0, msg_id=_cl.MSG_QUEST))
-                    # 5. Angel de Ciudad: Registro
+                    # 5. Angel de Ciudad: Registro (Opcion 2)
                     elif _el in _dlg_mod.CIUDAD_POR_OPCION and _el % 10000 == 2:
                         _pjr = ses.personaje
                         _cfgr = _dlg_mod.ANGEL_DE_CIUDAD[_dlg_mod.CIUDAD_POR_OPCION[_el]]
@@ -9354,25 +9339,33 @@ class Servidor:
                         _nuevas_q = (_cfgr['mision_conocer'], _cfgr['mision_nivel'])
                         _mis.completar_mision(ses, _q_reg, exp=500, oro=200)
                         for _q in _nuevas_q:
-                            if not _mis.tiene_mision(_pjr, _q):
+                            if not _mis.tiene_mision(_pjr, _q) and not _mis.mision_completada(_pjr, _q):
                                 _mis.aceptar_mision(ses, _q)
                         log.info(f"[{addr}] {_pjr.nombre} se registro con el Angel de su ciudad: misiones {_nuevas_q}, la {_q_reg} completada")
                 elif (_el in _dlg_mod.CIUDAD_POR_OPCION
                       and _el % 10000 == 3 and ses.personaje):
-                    # Angel de Ciudad: Reaching higher level (Misiones 137, 138, 139, 140)
+                    # Angel de Ciudad: The mission of the Angel Protector (Opcion 3)
                     import misiones as _mis
                     import clases as _cl
                     _cfgr = _dlg_mod.ANGEL_DE_CIUDAD[_dlg_mod.CIUDAD_POR_OPCION[_el]]
                     _q_niv = _cfgr['mision_nivel']
+                    _q_con = _cfgr['mision_conocer']
                     _pj = ses.personaje
                     _rango_act = getattr(_pj, 'rango', 1)
+                    if not _mis.tiene_mision(_pj, _q_con) and not _mis.mision_completada(_pj, _q_con):
+                        _mis.aceptar_mision(ses, _q_con)
+                    if not _mis.tiene_mision(_pj, _q_niv) and not _mis.mision_completada(_pj, _q_niv):
+                        _mis.aceptar_mision(ses, _q_niv)
                     if _mis.tiene_mision(_pj, _q_niv) and not _mis.mision_completada(_pj, _q_niv):
                         if _pj.nivel >= 20 and _rango_act >= 2:
                             _mis.completar_mision(ses, _q_niv, exp=10000, oro=5000, creditos_honor=20)
                             ses.enviar(_cl.aviso("Quest Completed! Talk to Paradise Angel to journey into Eden.", tipo=0, msg_id=_cl.MSG_QUEST))
                             log.info(f"[{addr}] {_pj.nombre} completo mision de nivel {_q_niv}")
-                        else:
-                            ses.enviar(_cl.aviso(f"Requires Lv 20 (Lv {_pj.nivel}) & Angel Rank 2 (Rank {_rango_act}).", tipo=0, msg_id=_cl.MSG_QUEST))
+                elif (_el in _dlg_mod.CIUDAD_POR_OPCION
+                      and _el % 10000 == 18 and ses.personaje):
+                    # Angel de Ciudad: Volver al Angel Lyceum (Opcion 18)
+                    ses.viaje_pendiente = (41, (152, 74), 'Angel Lyceum')
+                    log.info(f"[{addr}] {ses.personaje.nombre} pidio volver al Angel Lyceum desde su ciudad")
                 elif _el == 14303 and ses.personaje:
                     import misiones as _mis
                     import clases as _cl

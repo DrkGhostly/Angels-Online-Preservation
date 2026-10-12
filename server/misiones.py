@@ -103,6 +103,16 @@ QUEST_MAPAS_INSTANCIA = {
     (163, 1): 158,  # Poker Castle
 }
 
+# Alias y sinonimos conocidos de nombres de monstruos entre textos de quests y tablas de cliente
+MONSTER_NAME_ALIASES = {
+    'trainee witch': ['young witch', 'junior witch'],
+    'young witch': ['trainee witch', 'junior witch'],
+    'trainee witches': ['young witch', 'young witches'],
+    'young witches': ['trainee witch', 'trainee witches'],
+    'junior witch': ['young witch', 'trainee witch'],
+}
+
+
 
 def _cargar_db():
     global _DB, _MISIONES, _CACERIAS, _RECOLECCIONES, _NPC_INICIO, _NPC_PASOS, _REPETIBLES
@@ -178,6 +188,17 @@ def estado_mision(p, qid: int):
     return (False, 0, False)
 
 
+def total_pasos_mision(qid: int) -> int:
+    m = info_mision(qid)
+    pasos = m.get('pasos', [])
+    return len(pasos) if pasos else 1
+
+
+def mision_completada_raw(qid: int, pa: int) -> bool:
+    tot = total_pasos_mision(qid)
+    return (pa > tot) or (pa == 999)
+
+
 def tiene_mision(p, qid: int) -> bool:
     if not p or not getattr(p, 'quests', None):
         return False
@@ -223,6 +244,12 @@ def misiones_disponibles_npc(p, npc_nombre: str) -> list:
         return []
     qids = _NPC_INICIO.get(npc_nombre.strip().lower(), [])
     disponibles = []
+
+    # Faccion del personaje normalizada
+    p_fac = getattr(p, 'faction', 'Heaven') or 'Heaven'
+    p_fac_l = p_fac.strip().lower()
+    p_norm = 'aurora' if 'aurora' in p_fac_l else ('shadow' if ('shadow' in p_fac_l or 'dark' in p_fac_l) else ('steel' if ('steel' in p_fac_l or 'iron' in p_fac_l) else ('beasts' if ('beast' in p_fac_l or 'breeze' in p_fac_l) else 'heaven')))
+
     for qid in qids:
         # Si ya la tiene activa, no se ofrece de nuevo
         st, pa, comp = estado_mision(p, qid)
@@ -231,6 +258,16 @@ def misiones_disponibles_npc(p, npc_nombre: str) -> list:
         # Si ya la completo: solo se ofrece si es repetible
         if comp and not es_repetible(qid):
             continue
+
+        # Comprobar faccion de la mision
+        info = info_mision(qid)
+        q_fac = info.get('faccion')
+        if q_fac:
+            q_fac_l = q_fac.strip().lower()
+            q_norm = 'aurora' if 'aurora' in q_fac_l else ('shadow' if ('shadow' in q_fac_l or 'dark' in q_fac_l) else ('steel' if ('steel' in q_fac_l or 'iron' in q_fac_l) else ('beasts' if ('beast' in q_fac_l or 'breeze' in q_fac_l) else '')))
+            if q_norm and p_norm != 'heaven' and p_norm != q_norm:
+                continue
+
         disponibles.append(qid)
     return disponibles
 
@@ -251,13 +288,13 @@ def aceptar_mision(ses, qid: int) -> bool:
     pasos = info.get('pasos', [])
     paso_inicial = 1
 
-    # Actualizar lista de quests del personaje
+    # Actualizar lista de quests del personaje (1-based internamente)
     nueva_lista = [item for item in (p.quests or []) if item[0] != qid]
     nueva_lista.append((qid, paso_inicial))
     p.quests = nueva_lista
 
-    # 0x0022: alta de mision
-    pkg_m = _cl.mision(char_id, qid, paso_inicial, 0)
+    # 0x0022: alta de mision en cliente (paso de red 0 = primer paso activo)
+    pkg_m = _cl.mision(char_id, qid, 0, 0)
     # 0x000D: cartel amarillo "You accept the quest [X]"
     pkg_av = _cl.aviso(nom, tipo=0, msg_id=_cl.MSG_QUEST)
 
@@ -291,10 +328,18 @@ def avanzar_paso(ses, qid: int, nuevo_paso: int) -> bool:
     char_id = p.char_id
     nom = nombre_mision(qid)
 
-    pkg_m = _cl.mision(char_id, qid, nuevo_paso, 0)
+    # En red el paso activo es 0-indexed: paso 1 = 0, paso 2 = 1, etc.
+    paso_red = max(0, nuevo_paso - 1)
+    pkg_m = _cl.mision(char_id, qid, paso_red, 0)
     pkg_av = _cl.aviso(f"{nom} ({nuevo_paso})", tipo=0, msg_id=_cl.MSG_QUEST)
 
     ses.enviar(pkg_m, pkg_av)
+    try:
+        import inventario as _inv_av
+        dueno = getattr(ses, 'entity_id', char_id)
+        ses.enviar(_inv_av.vaciar_ranura(dueno, 497 + (qid % 60)))
+    except Exception:
+        pass
     if getattr(ses, 'usuario', None):
         cuentas.guardar_quests(ses.usuario, char_id, p.quests)
 
@@ -331,8 +376,8 @@ def completar_mision(ses, qid: int, exp: int = 0, oro: int = 0,
     char_id = p.char_id
     nom = nombre_mision(qid)
 
-    # 1. Paquete de mision completada (0x0022 con paso completado y sello de tiempo)
-    pkg_m = _cl.mision(char_id, qid, paso_completado, sello)
+    # 1. Paquete de mision completada (0x0022 con total_pasos y sello de tiempo)
+    pkg_m = _cl.mision(char_id, qid, total_pasos, sello)
 
     # 2. Cartel de aviso
     pkg_av = _cl.aviso(f"Quest [{nom}] Completed!", tipo=0, msg_id=492)
@@ -431,8 +476,8 @@ def abandonar_mision(ses, qid: int) -> bool:
     if not p:
         return False
 
-    # Proteger tutorial y faccion
-    if qid in (100, 101, 102, 103, 104, 105, 106, 107) or qid in range(1, 10):
+    # Proteger tutorial del Guide Palace (101, 102) y etapas 1..9
+    if qid in (101, 102) or qid in range(1, 10):
         log.warning(f"Intento de abandonar mision protegida {qid}")
         return False
 
@@ -459,11 +504,20 @@ def abandonar_mision(ses, qid: int) -> bool:
     if getattr(ses, 'usuario', None):
         cuentas.guardar_quests(ses.usuario, p.char_id, p.quests)
 
-    # Enviar paquete S2C 0x0022 con modo 2 (borrado)
+    # Sincronizar de forma 100% segura con el cliente:
+    # 1. Enviar 0x0021 QUEST_LOG con la lista actualizada (limpia y reconstruye el registro en el cliente)
+    pkg_log = _cl.paquete_quest_log(p.char_id, p.quests)
+    # 2. Enviar 0x0022 con modo 2 (borrado puntual)
     pkg_del = _cl.borrar_mision(p.char_id, qid)
-    ses.enviar(pkg_del)
+    ses.enviar(pkg_log, pkg_del)
 
     nom = nombre_mision(qid)
+    try:
+        import inventario as _inv_ab
+        dueno = getattr(ses, 'entity_id', p.char_id)
+        ses.enviar(_inv_ab.vaciar_ranura(dueno, 497 + (qid % 60)))
+    except Exception:
+        pass
     ses.enviar(_cl.aviso(f"Quest [{nom}] abandoned.", tipo=0, msg_id=_cl.MSG_QUEST))
     log.info(f"[{getattr(ses, 'addr', '')}] {p.nombre} abandono la mision {qid} '{nom}'")
     return True
@@ -476,67 +530,115 @@ def registrar_baja_monstruo(ses, npc_type: int, monster_name: str = None) -> boo
     if not p or not getattr(p, 'quests', None):
         return False
 
-    actualizado = False
-    if not hasattr(ses, 'quest_kills'):
-        ses.quest_kills = {}
+    if not hasattr(p, 'quest_kills') or p.quest_kills is None:
+        p.quest_kills = {}
+    if not hasattr(ses, 'quest_kills') or ses.quest_kills is None:
+        ses.quest_kills = p.quest_kills
 
     m_nom_clean = monster_name.lower().strip() if monster_name else ''
+    actualizado = False
 
-    # 1. Comprobar diccionario clásico primero (compatibilidad)
-    for (qid, paso), obj in OBJETIVOS_CACERIA.items():
-        for q, pa in p.quests:
-            if q == qid and pa == paso:
-                if npc_type in obj['monstruos'] or (m_nom_clean and any(m in m_nom_clean for m in [obj['nombre_objetivo'].lower()])):
-                    clave = (qid, paso)
-                    cnt = ses.quest_kills.get(clave, 0) + 1
-                    ses.quest_kills[clave] = cnt
-                    actualizado = True
-                    nom_obj = obj['nombre_objetivo']
-                    req = obj['cantidad']
-                    if cnt % 10 == 0 or cnt == req:
-                        ses.enviar(_cl.aviso(f"Defeated {nom_obj} ({cnt}/{req})", tipo=0, msg_id=_cl.MSG_QUEST))
-                    if cnt >= req:
-                        avanzar_paso(ses, qid, obj['siguiente_paso'])
-                        if obj.get('aviso_fin'):
-                            ses.enviar(_cl.aviso(obj['aviso_fin'], tipo=0, msg_id=_cl.MSG_QUEST))
-                        log.info(f"[{getattr(ses, 'addr', '')}] {p.nombre} completo caceria de {nom_obj} ({cnt}/{req}) para mision {qid}")
-
-    # 2. Comprobar catálogo dinámico completo (_CACERIAS)
-    for q, pa in p.quests:
+    # Revisar cada mision activa una sola vez (evita duplicar conteos)
+    for q, pa in list(p.quests):
         k_cac = f"{q}_{pa}"
-        if k_cac in _CACERIAS:
+        clave_tupla = (q, pa)
+
+        c_data = None
+        if clave_tupla in OBJETIVOS_CACERIA:
+            c_data = OBJETIVOS_CACERIA[clave_tupla]
+        elif k_cac in _CACERIAS:
             c_data = _CACERIAS[k_cac]
-            req = c_data.get('cantidad', 1)
-            token = c_data.get('token_id')
-            m_ids = c_data.get('monstruo_ids', [])
-            m_noms = c_data.get('monstruos', [])
 
-            coincide = False
-            if npc_type in m_ids or (token and npc_type == token):
-                coincide = True
-            elif m_nom_clean and any(mn in m_nom_clean or m_nom_clean in mn for mn in m_noms):
-                coincide = True
+        if not c_data:
+            continue
 
-            if coincide:
-                clave = (q, pa)
-                cnt = ses.quest_kills.get(clave, 0) + 1
-                ses.quest_kills[clave] = cnt
-                actualizado = True
-                nom_obj = c_data.get('nombre_objetivo') or 'Target'
-                if cnt % 10 == 0 or cnt == req:
-                    ses.enviar(_cl.aviso(f"Defeated {nom_obj} ({cnt}/{req})", tipo=0, msg_id=_cl.MSG_QUEST))
-                if cnt >= req:
-                    ses.quest_kills[clave] = req
-                    npc_ent = c_data.get('npc_entrega') or ''
-                    mapa_ent = c_data.get('mapa') or ''
-                    nom_q = nombre_mision(q)
-                    aviso_txt = f"Quest [{nom_q}]: Defeated {nom_obj} ({req}/{req})!"
+        req = c_data.get('cantidad', 1)
+        token = c_data.get('token_id')
+        m_ids = (c_data.get('monstruos', ()) if ('monstruos' in c_data and isinstance(c_data['monstruos'], (list, tuple))
+                 and (not c_data['monstruos'] or isinstance(c_data['monstruos'][0], int)))
+                 else c_data.get('monstruo_ids', []))
+        m_noms = (c_data.get('monstruos', []) if ('monstruos' in c_data and isinstance(c_data['monstruos'], (list, tuple))
+                  and c_data['monstruos'] and isinstance(c_data['monstruos'][0], str))
+                  else [])
+
+        nom_obj = c_data.get('nombre_objetivo') or 'Target'
+        if 'defeat trainee witch' in nom_obj.lower():
+            nom_obj = 'Young Witch / Crystal Envoy'
+
+        coincide = False
+        if npc_type in m_ids or (token and npc_type == token):
+            coincide = True
+        elif m_nom_clean:
+            cand_noms = [m_nom_clean] + MONSTER_NAME_ALIASES.get(m_nom_clean, [])
+            for cn in cand_noms:
+                if any(mn in cn or cn in mn for mn in m_noms):
+                    coincide = True
+                    break
+                for mn in m_noms:
+                    if any(al in cn or cn in al for al in MONSTER_NAME_ALIASES.get(mn, [])):
+                        coincide = True
+                        break
+                if coincide:
+                    break
+
+        if coincide:
+            cnt = int(p.quest_kills.get(k_cac, 0)) + 1
+            p.quest_kills[k_cac] = cnt
+            ses.quest_kills[k_cac] = cnt
+            ses.quest_kills[clave_tupla] = cnt
+            actualizado = True
+
+            # 1. Notificar en pantalla/chat EN CADA BAJA para que el jugador sepa de inmediato que cuenta
+            ses.enviar(_cl.aviso(f"Defeated {nom_obj} ({cnt}/{req})", tipo=0, msg_id=_cl.MSG_QUEST))
+
+            # 2. Sincronizar token oculto en ranura 497..556 (no ocupa mochila, actualiza HUD en cliente)
+            token_id = token or (16075 if q == 142 else None)
+            slot_oculta = 497 + (int(q) % 60)
+            if token_id:
+                try:
+                    import inventario as _inv
+                    dueno = getattr(ses, 'entity_id', p.char_id)
+                    entrada = _inv.entrada_recuperada(p.char_id, slot_oculta, token_id, cant=cnt, dueno=dueno)
+                    pkg_item = struct.pack('<H', 0x001B) + struct.pack('<I', 1) + entrada
+                    ses.enviar(pkg_item)
+                except Exception as _e_tok:
+                    log.warning(f"Error sincronizando token oculto de mision {q}: {_e_tok}")
+
+            # 3. Guardar conteo en base de datos inmediatamente
+            if getattr(ses, 'usuario', None):
+                cuentas.guardar_quest_kills(ses.usuario, p.char_id, p.quest_kills)
+
+            # 4. Al completar el total requerido
+            if cnt >= req:
+                p.quest_kills[k_cac] = req
+                ses.quest_kills[k_cac] = req
+                ses.quest_kills[clave_tupla] = req
+
+                # Vaciar la ranura oculta del token
+                if token_id:
+                    try:
+                        import inventario as _inv
+                        ses.enviar(_inv.vaciar_ranura(getattr(ses, 'entity_id', p.char_id), slot_oculta))
+                    except Exception:
+                        pass
+
+                auto_avanzar = (clave_tupla in OBJETIVOS_CACERIA) or (not c_data.get('npc_entrega'))
+                if auto_avanzar:
+                    sig_paso = c_data.get('siguiente_paso') or (pa + 1)
+                    avanzar_paso(ses, q, sig_paso)
+
+                nom_q = nombre_mision(q)
+                npc_ent = c_data.get('npc_entrega') or ('Blocks Envoy' if q == 142 else '')
+                mapa_ent = c_data.get('mapa') or ('Mushroom Village' if q == 142 else '')
+                aviso_fin = c_data.get('aviso_fin')
+                if not aviso_fin:
+                    aviso_fin = f"Quest [{nom_q}]: Defeated {nom_obj} ({req}/{req})!"
                     if npc_ent:
-                        aviso_txt += f" Report to {npc_ent}"
+                        aviso_fin += f" Report to {npc_ent}"
                     if mapa_ent:
-                        aviso_txt += f" ({mapa_ent})"
-                    ses.enviar(_cl.aviso(aviso_txt, tipo=0, msg_id=_cl.MSG_QUEST))
-                    log.info(f"[{getattr(ses, 'addr', '')}] {p.nombre} cumplio caceria de {nom_obj} ({req}/{req}) para mision {q}")
+                        aviso_fin += f" ({mapa_ent})"
+                ses.enviar(_cl.aviso(aviso_fin, tipo=0, msg_id=_cl.MSG_QUEST))
+                log.info(f"[{getattr(ses, 'addr', '')}] {p.nombre} completo caceria de {nom_obj} ({req}/{req}) para mision {q}")
 
     return actualizado
 
@@ -613,6 +715,7 @@ def interactuar_npc(ses, npc_nombre: str, entidad: int = 0) -> tuple:
         'angel raphael', "angels' tutor", 'director wolay', 'michael',
         'angel of aurora', 'angel of beast', 'angel of iron', 'angel of shadow',
         'battle professor', 'magic professor', 'mine professor', 'guardian angel',
+        'aurora angel', 'dark city angel', 'ironcastle angel', 'breezewood angel',
     ):
         return (False, 'tutorial', {})
 
@@ -648,21 +751,33 @@ def interactuar_npc(ses, npc_nombre: str, entidad: int = 0) -> tuple:
                     if hasattr(ses, 'quest_kills') and (q, pa) in ses.quest_kills:
                         del ses.quest_kills[(q, pa)]
 
-                # Avanzar o completar
-                es_ultimo = paso_actual.get('es_ultimo', False) or (pa >= len(pasos))
-                if es_ultimo:
-                    completar_mision(ses, q)
-                    return (True, 'completada', {'qid': q, 'nom_npc': npc_nombre})
-                else:
-                    sig = paso_actual.get('siguiente_paso', pa + 1)
+                # Avanzar o completar (encadenando pasos consecutivos de 'hablar' con este mismo NPC)
+                cur_pa = pa
+                while True:
+                    idx_cur = cur_pa - 1
+                    if idx_cur >= len(pasos):
+                        completar_mision(ses, q)
+                        return (True, 'completada', {'qid': q, 'nom_npc': npc_nombre})
+                    p_cur = pasos[idx_cur]
+                    es_ult = p_cur.get('es_ultimo', False) or (cur_pa >= len(pasos))
+                    if es_ult:
+                        completar_mision(ses, q)
+                        return (True, 'completada', {'qid': q, 'nom_npc': npc_nombre})
+
+                    sig = p_cur.get('siguiente_paso', cur_pa + 1)
+                    sig_idx = sig - 1
+                    if sig_idx < len(pasos):
+                        sig_p = pasos[sig_idx]
+                        sig_npc = (sig_p.get('npc_entrega') or sig_p.get('npc') or '').strip().lower()
+                        sig_tipo = sig_p.get('tipo', 'hablar')
+                        if sig_tipo == 'hablar' and (not sig_npc or sig_npc == nom_clean or nom_clean in sig_npc or sig_npc in nom_clean):
+                            # El paso siguiente es hablar con este mismo NPC: avanzamos internamente y seguimos la cadena
+                            avanzar_paso(ses, q, sig)
+                            cur_pa = sig
+                            continue
+
                     avanzar_paso(ses, q, sig)
                     return (True, 'avanzada', {'qid': q, 'nuevo_paso': sig, 'nom_npc': npc_nombre})
-
-    # 2. Comprobar si el NPC tiene misiones para ofrecer
-    disponibles = misiones_disponibles_npc(p, npc_nombre)
-    if disponibles:
-        # Si tiene misiones, retornar para que dialogos arme el menu
-        return (True, 'ofrece_mision', {'disponibles': disponibles})
 
     return (False, 'sin_accion', {})
 

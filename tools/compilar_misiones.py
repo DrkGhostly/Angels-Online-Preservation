@@ -273,10 +273,23 @@ def compilar():
         exp_base = 500 + qid * 80
         oro_base = 200 + qid * 30
 
+        # Determinación de facción si la misión pertenece a una ciudad o facción exclusiva
+        fac_q = None
+        texto_comb = (nombre + ' ' + tipo + ' ' + mapa_inicio + ' ' + intro).lower()
+        if qid in (127, 133, 137) or 'aurora' in texto_comb:
+            fac_q = 'Aurora'
+        elif qid in (128, 134, 138) or 'dark city' in texto_comb or 'shadow' in texto_comb:
+            fac_q = 'Shadow'
+        elif qid in (129, 135, 139) or 'iron castle' in texto_comb or 'steel' in texto_comb:
+            fac_q = 'Steel'
+        elif qid in (130, 136, 140) or 'breeze wood' in texto_comb or 'beast' in texto_comb:
+            fac_q = 'Beasts'
+
         misiones[qid] = {
             'id': qid,
             'nombre': nombre,
             'tipo': tipo,
+            'faccion': fac_q,
             'intro': intro,
             'repetible': repetible,
             'npc_inicio': npc_inicio,

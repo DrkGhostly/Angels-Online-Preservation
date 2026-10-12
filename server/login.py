@@ -100,6 +100,7 @@ class Personaje:
     estrellas: list = field(default_factory=list)    # [(nombre, nivel)]
     casa: dict = field(default_factory=dict)         # {'muebles': [ids]}
     apariencia: list = field(default_factory=lambda: [0, 0, 0, 8, 8])
+    quest_kills: dict = field(default_factory=dict)  # {'qid_paso': count}
 
 
 def _cargar_secuencia():
@@ -159,12 +160,17 @@ def secuencia(p: Personaje):
         sec = [m for m in sec if m['opcode'] not in NPC_DE_GUIDE_PALACE]
 
     salida = []
+    mando_quests = False
     for m in sec:
         op, base = m['opcode'], m['datos']
         if op == 0x0002:
             salida.append(_ficha(p, base))
+            salida.append(_quests(p, b''))
+            mando_quests = True
         elif op == 0x0021:
-            salida.append(_quests(p, base))
+            if not mando_quests:
+                salida.append(_quests(p, base))
+                mando_quests = True
         elif op == 0x005B:
             salida.append(_barra(p, base))
         elif op == 0x0014:
@@ -199,6 +205,20 @@ def secuencia(p: Personaje):
                        p.oro if int(r) == _inv.RANURA_ORO
                        else max(1, int((p.cantidades or {}).get(int(r), 1))))
                       for r, it in p.inventario.items()]
+            # Sincronizar tokens de cacerias activas a ranuras ocultas (497..556)
+            for _q_t, _pa_t in (p.quests or []):
+                _k_cac = f"{_q_t}_{_pa_t}"
+                _k_cnt = (getattr(p, 'quest_kills', None) or {}).get(_k_cac, 0)
+                if _k_cnt > 0:
+                    _tok_id = 16075 if _q_t == 142 else None
+                    if not _tok_id:
+                        import misiones as _mis_t
+                        _mis_t._cargar_db()
+                        _c_d = getattr(_mis_t, '_CACERIAS', {}).get(_k_cac, {})
+                        _tok_id = _c_d.get('token_id')
+                    if _tok_id:
+                        _slot_oc = 497 + (int(_q_t) % 60)
+                        _items.append((_slot_oc, int(_tok_id), int(_k_cnt)))
             salida.append(_inv.completo(p.char_id, _items, p.entity_id,
                                         mejoras=getattr(p, 'mejoras', None),
                                         mascota=getattr(p, 'mascota', None),
@@ -331,7 +351,7 @@ def _monster_spawn(entity_id, npc_type, nombre, tile, sprite=0):
     n = str(nombre).encode('ascii', 'replace')[:16]
     b[16:16 + len(n)] = n
     SPRITES = {19: 42107, 7: 42041, 1: 42055, 2: 42056, 3: 42057, 4: 42058, 224: 42107}
-    sprite_id = sprite or SPRITES.get(npc_type, 42107)
+    sprite_id = sprite or SPRITES.get(npc_type) or sprite_de(npc_type, 42107)
     b[32] = 0
     b[33] = 4 if npc_type == 19 else 1
     # EL SPRITE ES U32, NO U16. Lo escribiamos en 16 bits y cualquier sprite
@@ -1211,9 +1231,13 @@ def _ficha(p, base):
 def _quests(p, base):
     m = Msg.registry[(0x0021, 's2c', 'privado')]
     if not p.quests:
-        return struct.pack('<H', 0x0021) + base
-    qs = [{'char_id': p.char_id, 'quest_id': q, 'paso': s, 'resto': b'\x00' * 11}
-          for q, s in p.quests]
+        return struct.pack('<HI', 0x0021, 0)
+    import misiones as _mis
+    qs = []
+    for q, s in p.quests:
+        comp = _mis.mision_completada(p, q)
+        paso_red = _mis.total_pasos_mision(q) if comp else max(0, s - 1)
+        qs.append({'char_id': p.char_id, 'quest_id': q, 'paso': paso_red, 'resto': b'\x00' * 11})
     return m.build(n=len(qs), quests=qs)
 
 

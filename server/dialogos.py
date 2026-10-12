@@ -339,6 +339,7 @@ CIUDAD_POR_OPCION = {}
 for _st, _cfg in ANGEL_DE_CIUDAD.items():
     CIUDAD_POR_OPCION[_cfg['opcion_registrar']] = _st
     CIUDAD_POR_OPCION[_cfg['opcion_nivel']] = _st
+    CIUDAD_POR_OPCION[_cfg['base'] + 4] = _st
     CIUDAD_POR_OPCION[_cfg['opcion_lyceum']] = _st
 del _st, _cfg
 
@@ -450,16 +451,15 @@ def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
     if entidad == 123932:   # Biologist Boris
         return [armar_linea(150804, npc_val or 1496, [])[2:]]
 
-    # Prioridad por id de entidad exacto de NPC de ciudad
     # --- Guias de las 4 Ciudades (Misiones 133, 134, 135, 136) ---
     if entidad == 121633:  # Explorer Lim (Aurora City, Stage 3)
-        return [armar_linea(20010, npc_val or 65, [20002, 20005])[2:]]
+        return [armar_linea(20010, npc_val or 108, [])[2:]]
     if entidad == 121914:  # Risker Zalfer (Dark City, Stage 26)
-        return [armar_linea(30010, npc_val or 18, [30002, 30005])[2:]]
+        return [armar_linea(30010, npc_val or 110, [])[2:]]
     if entidad == 122110:  # Pioneer Ocadon (Iron Castle, Stage 38)
-        return [armar_linea(40010, npc_val or 39, [40002, 40005])[2:]]
+        return [armar_linea(40010, npc_val or 112, [])[2:]]
     if entidad == 121967:  # Explorer Gulin (Breeze Woods, Stage 29)
-        return [armar_linea(50010, npc_val or 30, [50002, 50005])[2:]]
+        return [armar_linea(50010, npc_val or 200, [])[2:]]
 
     # --- Cadena de Heart of Eden (Misiones 142, 143, 144) ---
     # Paradise Angel en las 4 ciudades (Aurora 121671, Dark 121905, Iron 122154, Breeze 121990)
@@ -605,9 +605,26 @@ def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
                 armar_linea(10102, 2, [10135, 10110],
                             acciones=[0x0f4272, 0x0f4391])[2:]]
     if 'Jack' in nombre:
-        return [armar_linea(5235, 4, [20001, 20002])[2:]]
+        return [armar_linea(5801, npc_val or 4, [5802])[2:]]
     if 'Shiva' in nombre:
-        return [armar_linea(5235, 4, [20003, 20004])[2:]]
+        return [armar_linea(5801, npc_val or 4, [5807])[2:]]
+    # Residentes y guias de las cuatro ciudades de faccion
+    if 'Explorer Gulin' in nombre or 'Gulin' in nombre:
+        return [armar_linea(50010, npc_val or 200, [])[2:]]
+    if 'Expert Tailor' in nombre or 'Tailor' in nombre:
+        return [armar_linea(50009, npc_val or 113, [])[2:]]
+    if 'Explorer Lim' in nombre or 'Lim' in nombre:
+        return [armar_linea(20010, npc_val or 108, [])[2:]]
+    if 'Merchant Aliser' in nombre or 'Aliser' in nombre:
+        return [armar_linea(20009, npc_val or 107, [])[2:]]
+    if 'Risker Zalfer' in nombre or 'Zalfer' in nombre:
+        return [armar_linea(30010, npc_val or 110, [])[2:]]
+    if 'Merchant Glanze' in nombre or 'Glanze' in nombre:
+        return [armar_linea(30009, npc_val or 109, [])[2:]]
+    if 'Pioneer Ocadon' in nombre or 'Ocadon' in nombre:
+        return [armar_linea(40010, npc_val or 112, [])[2:]]
+    if 'Merchant Saleen' in nombre or 'Saleen' in nombre:
+        return [armar_linea(40009, npc_val or 111, [])[2:]]
     if 'Aurora Totem' in nombre:
         # msg.xml 5136. Un totem solo dice su frase: el bloque
         # anterior devolvia, para faccion Heaven, el dialogo 10201 que es
@@ -2408,11 +2425,20 @@ def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
         return (armar_linea(mid, val, [10235, 10236], None, list(acc)),)
 
     # Opcion 20002/30002/40002/50002: "I have come here to register!" con el Angel de la
-    # ciudad. Medido: cinco lineas seguidas y al final las misiones nuevas y
-    # la de registro completada.
-    if opcion_id in CIUDAD_POR_OPCION and opcion_id % 10000 == 2:
+    # ciudad, mision del protector, honor y retorno a Lyceum.
+    if opcion_id in CIUDAD_POR_OPCION:
         _b = ANGEL_DE_CIUDAD[CIUDAD_POR_OPCION[opcion_id]]['base']
-        return tuple(armar_linea(_b + off, 112) for off in (6, 7, 8, 9, 10, 17))
+        _sub = opcion_id % 10000
+        if _sub == 2:
+            return tuple(armar_linea(_b + off, 112) for off in (6, 7, 8, 9, 10, 17))
+        elif _sub == 3:
+            return tuple(armar_linea(_b + off, 112) for off in (11, 12, 17))
+        elif _sub == 4:
+            return tuple(armar_linea(_b + off, 112) for off in (13, 14, 15))
+        elif _sub == 18:
+            return (armar_linea(_b + 19, 112),)
+        elif _sub == 5:
+            return (struct.pack('<H', 0x0012) + FIN,)
 
     # Cadena de Eden: Paradise Angel
     if opcion_id == 14202:
@@ -2813,7 +2839,7 @@ def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
     # Director Wolay: 5080 (Return to City), 5081 (Leave)
     if opcion_id == 5080:
         return (armar_linea(5082, val, []),)
-    if opcion_id in (5081, 20002, 20004):
+    if opcion_id == 5081:
         return (struct.pack('<H', 0x0012) + FIN,)
 
     # Angel Raphael (Guide Palace)
@@ -2881,17 +2907,26 @@ def _validar_msg_id(mid: int) -> bool:
     return mid in _MSG_IDS
 
 
-def guion_de_mision(qid: int, npc_nombre: str = '', jugador: str = '', npc_val: int = 4):
+def guion_de_mision(qid: int, npc_nombre: str = '', jugador: str = '', npc_val: int = 0, entidad: int = 0):
     """Genera el guión de diálogo para aceptar o interactuar con una misión en msg.xml."""
+    val_final = npc_val or (val_por_entidad(entidad, 0) if entidad else 0)
+    dp = propio(npc_nombre, jugador=jugador, val=val_final, entidad=entidad) if npc_nombre else None
+
     base = qid * 100
     mid = base + 1
     if not _validar_msg_id(mid):
-        mid = 5001
+        if dp:
+            return dp
+        # Usar saludo seguro (5006) en lugar de Guidance Class (5001)
+        mid = 5006 if _validar_msg_id(5006) else 5001
+
+    if not val_final:
+        val_final = 112 if mid >= 50000 else (108 if mid >= 20000 else 3)
 
     op_aceptar = base + 2 if _validar_msg_id(base + 2) else 5080
     op_salir = base + 3 if _validar_msg_id(base + 3) else (base + 4 if _validar_msg_id(base + 4) else 5081)
     ops = [op_aceptar, op_salir]
 
-    cadenas = ['1', jugador] if jugador else []
-    sub = armar_linea(mid, npc_val or 4, ops, strings=cadenas)
+    cadenas = [jugador] if jugador else []
+    sub = armar_linea(mid, val_final, ops, strings=cadenas)
     return [sub[2:]]

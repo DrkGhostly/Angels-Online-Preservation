@@ -433,6 +433,7 @@ def personaje_de(cuenta, indice=0):
         mascota=_cargar_mascota(p.get('mascota')),
         mascotas=_cargar_mascotas(p),
         apariencia=list(p.get('apariencia') or [0, 0, 0, 8, 8]),
+        quest_kills={str(k): int(v) for k, v in (p.get('quest_kills') or {}).items()},
     )
 
 
@@ -568,6 +569,14 @@ def guardar_quests(usuario: str, char_id: int, quests: list):
         return
     def _mut(p):
         p['quests'] = [list(q) for q in (quests or [])]
+    _actualizar_personaje(usuario, char_id, _mut)
+
+
+def guardar_quest_kills(usuario: str, char_id: int, quest_kills: dict):
+    if not usuario:
+        return
+    def _mut(p):
+        p['quest_kills'] = {str(k): int(v) for k, v in (quest_kills or {}).items()}
     _actualizar_personaje(usuario, char_id, _mut)
 
 

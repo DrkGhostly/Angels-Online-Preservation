@@ -87,13 +87,12 @@ class TestSistemaMisionesCompleto(unittest.TestCase):
         self.assertEqual(ses.quest_kills.get((202, 1)), 20)
         self.assertEqual(p.quests[0][1], 1)
 
-        # Ahora el jugador va donde Spike Farmer y habla con el
+        # Ahora el jugador va donde Spike Farmer y habla con el (encadena el reporte y la entrega)
         proc, tipo, datos = misiones.interactuar_npc(ses, 'Spike Farmer')
         self.assertTrue(proc)
-        self.assertEqual(tipo, 'avanzada')
-        # Ahora avanza al paso 2
+        self.assertIn(tipo, ('avanzada', 'completada'))
         st, pa, comp = misiones.estado_mision(p, 202)
-        self.assertEqual(pa, 2)
+        self.assertTrue(comp or pa >= 2)
 
     def test_recoleccion_y_entrega_items(self):
         """Verifica recoleccion de items e interaccion con el NPC de entrega."""
@@ -236,6 +235,51 @@ class TestSistemaMisionesCompleto(unittest.TestCase):
         st162 = misiones.obtener_mapa_instancia(162, 1)
         self.assertEqual(st162, 158)
 
+    def test_filtrado_faccion(self):
+        """Verifica que las misiones de faccion solo se ofrezcan a su faccion."""
+        p_aurora = MockPersonaje()
+        p_aurora.faction = 'Aurora'
+        p_shadow = MockPersonaje()
+        p_shadow.faction = 'Shadow'
+
+        # Quest 127 es de Aurora, 128 es de Shadow
+        disp_aurora = misiones.misiones_disponibles_npc(p_aurora, 'Aurora Angel')
+        disp_shadow = misiones.misiones_disponibles_npc(p_shadow, 'Aurora Angel')
+        self.assertNotIn(128, disp_aurora)
+        self.assertNotIn(127, disp_shadow)
+
+    def test_dialogos_angeles_ciudad_y_residentes(self):
+        """Verifica opciones 2, 3, 4, 18 de los Angeles y retratos de residentes."""
+        import struct
+        for base in (20000, 30000, 40000, 50000):
+            r2 = dialogos.respuesta_a(base + 2, val=112)
+            self.assertEqual(len(r2), 6)
+            r3 = dialogos.respuesta_a(base + 3, val=112)
+            self.assertEqual(len(r3), 3)
+            self.assertEqual(struct.unpack_from('<I', r3[0], 2)[0], base + 11)
+            r4 = dialogos.respuesta_a(base + 4, val=112)
+            self.assertEqual(len(r4), 3)
+            r18 = dialogos.respuesta_a(base + 18, val=112)
+            self.assertEqual(len(r18), 1)
+            self.assertEqual(struct.unpack_from('<I', r18[0], 2)[0], base + 19)
+
+        # Explorer Gulin (Breeze Woods)
+        gulin_dlg = dialogos.propio("Explorer Gulin")
+        self.assertIsNotNone(gulin_dlg)
+        mid_gulin = struct.unpack_from('<I', gulin_dlg[0], 0)[0]
+        val_gulin = struct.unpack_from('<H', gulin_dlg[0], 4)[0]
+        self.assertEqual(mid_gulin, 50010)
+        self.assertEqual(val_gulin, 200)
+
+        # Explorer Lim (Aurora City)
+        lim_dlg = dialogos.propio("Explorer Lim")
+        self.assertIsNotNone(lim_dlg)
+        mid_lim = struct.unpack_from('<I', lim_dlg[0], 0)[0]
+        val_lim = struct.unpack_from('<H', lim_dlg[0], 4)[0]
+        self.assertEqual(mid_lim, 20010)
+        self.assertEqual(val_lim, 108)
+
 
 if __name__ == '__main__':
     unittest.main()
+

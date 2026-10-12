@@ -337,6 +337,19 @@ def borrar_mision(char_id: int, quest_id: int) -> bytes:
             + struct.pack('<HB', char_id & 0xFFFF, 2))
 
 
+def paquete_quest_log(char_id: int, quests: list) -> bytes:
+    """0x0021 QUEST_LOG: sincroniza la lista completa de misiones del personaje."""
+    if not quests:
+        return struct.pack('<HI', 0x0021, 0)
+    import misiones as _mis
+    recs = []
+    for q, s in quests:
+        comp = _mis.mision_completada_raw(q, s)
+        paso_red = _mis.total_pasos_mision(q) if comp else max(0, s - 1)
+        recs.append(struct.pack('<IIHB11s', char_id, q, paso_red, b'\x00' * 11))
+    return struct.pack('<HI', 0x0021, len(recs)) + b''.join(recs)
+
+
 def aviso(texto: str, tipo: int = 7, msg_id: int = MSG_HABILIDAD) -> bytes:
     """Sub-mensaje 0x000D: el cartel de 'aprendiste X' / 'obtuviste X'.
 
