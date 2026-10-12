@@ -1573,11 +1573,22 @@ def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
         return [armar_linea(147510, npc_val or 1432, [])[2:]]
 
     d = _propios().get(nombre)
+    if not d and nombre:
+        nom_l = nombre.strip().lower()
+        for k, v in _propios().items():
+            if k.lower() == nom_l:
+                d = v
+                break
+
     if not d:
-        return None
+        val_f = npc_val or (val_por_entidad(entidad, 3) if entidad else 3)
+        return [armar_linea(5006, val_f, [])[2:]]
+
     res_b = bytearray(bytes.fromhex(d['hex']))
     if npc_val > 0 and len(res_b) >= 6:
         struct.pack_into('<H', res_b, 4, npc_val)
+    elif entidad and len(res_b) >= 6:
+        struct.pack_into('<H', res_b, 4, val_por_entidad(entidad, 3))
     return [bytes(res_b)]
 
 
@@ -2886,47 +2897,112 @@ def guion_fighting_palace(kills: int, nombre: str):
 
 
 _MSG_IDS = None
+_MSGS_DICT = None
+
+
+def _cargar_msg_dict() -> dict:
+    global _MSGS_DICT, _MSG_IDS
+    if _MSGS_DICT is not None:
+        return _MSGS_DICT
+    _MSGS_DICT = {}
+    _MSG_IDS = set()
+    p = pathlib.Path(__file__).parent.parent / 'extracted_paks' / 'update26' / 'setting' / 'eng' / 'msg.xml'
+    if p.exists():
+        import xml.etree.ElementTree as ET
+        try:
+            for ev, elem in ET.iterparse(str(p)):
+                vals = list(elem.attrib.values())
+                if len(vals) >= 2 and vals[0].isdigit():
+                    try:
+                        mid = int(vals[0])
+                        _MSG_IDS.add(mid)
+                        _MSGS_DICT[mid] = vals[1].strip()
+                    except ValueError:
+                        pass
+                elem.clear()
+        except Exception:
+            pass
+    return _MSGS_DICT
 
 
 def _validar_msg_id(mid: int) -> bool:
     global _MSG_IDS
     if _MSG_IDS is None:
-        _MSG_IDS = set()
-        p = pathlib.Path(__file__).parent.parent / 'extracted_paks' / 'update26' / 'setting' / 'eng' / 'msg.xml'
-        if p.exists():
-            import xml.etree.ElementTree as ET
-            for ev, elem in ET.iterparse(str(p)):
-                if elem.tag == '字串':
-                    m_id = elem.attrib.get('編號')
-                    if m_id:
-                        try:
-                            _MSG_IDS.add(int(m_id))
-                        except ValueError:
-                            pass
-                    elem.clear()
+        _cargar_msg_dict()
     return mid in _MSG_IDS
 
 
-def guion_de_mision(qid: int, npc_nombre: str = '', jugador: str = '', npc_val: int = 0, entidad: int = 0):
+def opciones_de_mision(qid: int) -> tuple:
+    """Encuentra el prompt (mensaje inicial), opcion de aceptar y opcion de salir para una mision."""
+    msgs = _cargar_msg_dict()
+    base = qid * 100
+    mid_prompt = None
+    op_aceptar = None
+    op_salir = None
+
+    # 1. Buscar prompt
+    for delta in (1, 5, 10, 12, 15):
+        cand = base + delta
+        if cand in msgs:
+            txt = msgs[cand]
+            if len(txt) > 20 and not any(w in txt.lower() for w in ('quit', 'leave', 'refuse', 'cancel', 'not now')):
+                mid_prompt = cand
+                break
+    if not mid_prompt and (base + 1) in msgs:
+        mid_prompt = base + 1
+
+    # 2. Buscar opciones autenticas en el rango de la quest
+    import re
+    re_acep = re.compile(r'\b(ok|accept|help|take|agree|sure|yes|i will|do you need|confirm)\b', re.IGNORECASE)
+    re_rech = re.compile(r'\b(quit|leave|refuse|cancel|not now|sorry|next time|later)\b', re.IGNORECASE)
+
+    for delta in range(2, 16):
+        cand = base + delta
+        if cand in msgs:
+            txt = msgs[cand]
+            if not op_aceptar and re_acep.search(txt) and len(txt) < 80:
+                op_aceptar = cand
+            elif not op_salir and re_rech.search(txt) and len(txt) < 80:
+                op_salir = cand
+
+    if not op_aceptar:
+        op_aceptar = (base + 2) if (base + 2) in msgs else 61303
+    if not op_salir:
+        op_salir = (base + 4) if (base + 4) in msgs else ((base + 5) if (base + 5) in msgs else 7536)
+
+    return (mid_prompt or 5006, op_aceptar, op_salir)
+
+
+def guion_de_mision(qid: int, npc_nombre: str = '', jugador: str = '', npc_val: int = 0, entidad: int = 0, completada: bool = False):
     """Genera el guión de diálogo para aceptar o interactuar con una misión en msg.xml."""
     val_final = npc_val or (val_por_entidad(entidad, 0) if entidad else 0)
-    dp = propio(npc_nombre, jugador=jugador, val=val_final, entidad=entidad) if npc_nombre else None
-
-    base = qid * 100
-    mid = base + 1
-    if not _validar_msg_id(mid):
-        if dp:
-            return dp
-        # Usar saludo seguro (5006) en lugar de Guidance Class (5001)
-        mid = 5006 if _validar_msg_id(5006) else 5001
-
     if not val_final:
-        val_final = 112 if mid >= 50000 else (108 if mid >= 20000 else 3)
+        val_final = val_por_entidad(entidad, 3) if entidad else 3
 
-    op_aceptar = base + 2 if _validar_msg_id(base + 2) else 5080
-    op_salir = base + 3 if _validar_msg_id(base + 3) else (base + 4 if _validar_msg_id(base + 4) else 5081)
-    ops = [op_aceptar, op_salir]
+    msgs = _cargar_msg_dict()
+    base = qid * 100
 
+    if completada:
+        # Buscar dialogo de agradecimiento / finalizacion
+        mid_comp = None
+        import re
+        re_comp = re.compile(r'\b(thank|congratulat|great success|award|reward|you defeated|you have defeated|success)\b', re.IGNORECASE)
+        for delta in (10, 11, 15, 8, 9, 7, 5, 2):
+            cand = base + delta
+            if cand in msgs and re_comp.search(msgs[cand]):
+                mid_comp = cand
+                break
+        if not mid_comp:
+            for cand in (base + 10, base + 11, base + 15, base + 5, base + 2):
+                if cand in msgs:
+                    mid_comp = cand
+                    break
+        if mid_comp:
+            sub = armar_linea(mid_comp, val_final, [], strings=[jugador] if jugador else [])
+            return [sub[2:]]
+
+    mid, op_aceptar, op_salir = opciones_de_mision(qid)
+    ops = [op_aceptar, op_salir] if op_aceptar else []
     cadenas = [jugador] if jugador else []
     sub = armar_linea(mid, val_final, ops, strings=cadenas)
     return [sub[2:]]

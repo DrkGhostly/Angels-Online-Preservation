@@ -8870,7 +8870,7 @@ class Servidor:
                         if tipo_proc in ('completada', 'avanzada'):
                             qid_proc = datos_proc.get('qid')
                             nom2 = ses.personaje.nombre if ses.personaje else 'Jugador'
-                            g_mis = dialogos.guion_de_mision(qid_proc, _nom_ent, jugador=nom2, entidad=ent)
+                            g_mis = dialogos.guion_de_mision(qid_proc, _nom_ent, jugador=nom2, entidad=ent, completada=(tipo_proc == 'completada'))
                             dp = dialogos.propio(_nom_ent, faccion=faccion, jugador=nom2, entidad=ent)
                             if _nom_ent.lower() in ('aurora angel', 'dark city angel', 'ironcastle angel', 'breezewood angel'):
                                 g_comp = dp if dp else g_mis
@@ -8883,6 +8883,20 @@ class Servidor:
                                 log.info(f"[{addr}] Quest {qid_proc} {tipo_proc} con {_nom_ent}")
                             return
                         elif tipo_proc in ('recoleccion_incompleta', 'caceria_incompleta'):
+                            return
+
+                    # 2. Si no habia mision activa con este NPC, comprobar si ofrece misiones disponibles
+                    disponibles = _mis.misiones_disponibles_npc(ses.personaje, _nom_ent)
+                    if disponibles:
+                        qid_ofrecer = disponibles[0]
+                        nom2 = ses.personaje.nombre if ses.personaje else 'Jugador'
+                        g_ofrecer = dialogos.guion_de_mision(qid_ofrecer, _nom_ent, jugador=nom2, entidad=ent, completada=False)
+                        if g_ofrecer:
+                            ses.dlg_ent, ses.dlg_guion, ses.dlg_paso = ent, g_ofrecer, 1
+                            ses.dlg_val = dialogos.val_por_entidad(ent)
+                            ses.dlg_quest_ofrecida = qid_ofrecer
+                            ses.enviar(dialogos.linea_de(g_ofrecer, 0, nom2))
+                            log.info(f"[{addr}] {_nom_ent} ofrece mision {qid_ofrecer} a {nom2}")
                             return
                 g2 = dialogos.propio(
                         _nom_ent, faccion=faccion,
@@ -9041,6 +9055,23 @@ class Servidor:
                     ses.dlg_ent = None
                     ses.enviar(struct.pack('<H', 0x0012) + dialogos.FIN)
                     return
+
+                # Opciones de mision interactiva (Aceptar / Rechazar)
+                if getattr(ses, 'dlg_quest_ofrecida', None):
+                    qid_ofrecida = ses.dlg_quest_ofrecida
+                    ses.dlg_quest_ofrecida = None
+                    if _i == 0:  # Primera opcion: Aceptar mision
+                        import misiones as _mis_op
+                        _mis_op.aceptar_mision(ses, qid_ofrecida)
+                        ses.dlg_ent = None
+                        ses.enviar(struct.pack('<H', 0x0012) + dialogos.FIN)
+                        log.info(f"[{addr}] {ses.personaje.nombre} acepto mision {qid_ofrecida} de {_nombre_entidad(ses, ent)}")
+                        return
+                    else:  # Segunda opcion u otra: Rechazar / Salir
+                        ses.dlg_ent = None
+                        ses.enviar(struct.pack('<H', 0x0012) + dialogos.FIN)
+                        log.info(f"[{addr}] {ses.personaje.nombre} rechazo mision {qid_ofrecida}")
+                        return
 
                 # Casos especiales de opciones en Guide Palace:
                 # 1. Interface Tutor: 5241 ("OK") -> Inicia explicacion paso a paso
