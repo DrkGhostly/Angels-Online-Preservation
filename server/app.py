@@ -1985,6 +1985,11 @@ def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
     salida_combate.append(_cl.aviso(f'{oro} Gold', tipo=0, msg_id=_cl.MSG_ITEM))
 
     drops = _cb.botin_items(m.npc_type, nombre=getattr(m, 'nombre', ''), nivel=getattr(m, 'nivel', 0))
+    if ses.personaje:
+        import misiones as _mis_drop
+        drops_mis = _mis_drop.verificar_botin_mision(ses, m.npc_type, getattr(m, 'nombre', ''))
+        if drops_mis:
+            drops = list(drops) + list(drops_mis)
     bolsa = getattr(ses, 'inventario', {})
     max_ranura = _tope_bolsa(bolsa)
 
@@ -8834,35 +8839,38 @@ class Servidor:
                 # Fuera del tutorial, cada NPC tiene su propia linea, sacada
                 # de msg.xml por su nombre.
                 faccion = ses.personaje.faction if ses.personaje else "Heaven"
-                if 121600 <= ent <= 121699: _st_ent = 3     # Aurora City
-                elif 121700 <= ent <= 121725: _st_ent = 5   # Cherry Village
-                elif 121765 <= ent <= 121775: _st_ent = 15  # Mysterious Wetland
-                elif 121799 <= ent <= 121811: _st_ent = 21  # Dragon Graveyard
-                elif 121812 <= ent <= 121835: _st_ent = 22  # Mysterious Garden
-                elif 121850 <= ent <= 121919: _st_ent = 26  # Dark City
-                elif 121920 <= ent <= 121999: _st_ent = 29  # Breeze Woods
-                elif 122040 <= ent <= 122063: _st_ent = 35  # Memory Cave
-                elif 122064 <= ent <= 122085: _st_ent = 36  # Gebuer Vale
-                elif 122086 <= ent <= 122199: _st_ent = 38  # Iron Castle
-                elif 122295 <= ent <= 122305: _st_ent = 69  # Lava Cave
-                elif 122306 <= ent <= 122315: _st_ent = 70  # Flaming Door
-                elif 122355 <= ent <= 122404 or (30080 <= ent <= 30083): _st_ent = 88  # Palm Base
-                elif 122408 <= ent <= 122415 or (30112 <= ent <= 30115): _st_ent = 90  # Blue Ocean
-                elif 122460 <= ent <= 122495 or (30336 <= ent <= 30339): _st_ent = 104  # Waterfall Camp
-                elif 122585 <= ent <= 122610 or (30608 <= ent <= 30611): _st_ent = 121  # Desert Racetrack
-                elif 122730 <= ent <= 122760 or (31008 <= ent <= 31011): _st_ent = 146  # Airship Station
-                elif 122761 <= ent <= 122789: _st_ent = 151  # Mushroom Village
-                elif 122790 <= ent <= 122799: _st_ent = 152  # Building Blocks County
-                elif 122800 <= ent <= 122820 or (31120 <= ent <= 31123): _st_ent = 153  # Building Blocks City
-                elif 122890 <= ent <= 122925 or (31280 <= ent <= 31283): _st_ent = 163  # Hoca Village
-                elif 123000 <= ent <= 123030 or (31392 <= ent <= 31395): _st_ent = 170  # Pharaoh Village
-                else: _st_ent = None
+                import misiones as _mis
+                _st_ent = _mis.stage_de_entidad(ent) or None
+                if not _st_ent:
+                    if 121600 <= ent <= 121699: _st_ent = 3     # Aurora City
+                    elif 121700 <= ent <= 121725: _st_ent = 5   # Cherry Village
+                    elif 121765 <= ent <= 121775: _st_ent = 15  # Mysterious Wetland
+                    elif 121799 <= ent <= 121811: _st_ent = 21  # Dragon Graveyard
+                    elif 121812 <= ent <= 121832: _st_ent = 22  # Mysterious Garden
+                    elif 121833 <= ent <= 121849: _st_ent = 23  # Dense Forest
+                    elif 121850 <= ent <= 121919: _st_ent = 26  # Dark City
+                    elif 121920 <= ent <= 121999: _st_ent = 29  # Breeze Woods
+                    elif 122040 <= ent <= 122063: _st_ent = 35  # Memory Cave
+                    elif 122064 <= ent <= 122085: _st_ent = 36  # Gebuer Vale
+                    elif 122086 <= ent <= 122199: _st_ent = 38  # Iron Castle
+                    elif 122295 <= ent <= 122305: _st_ent = 69  # Lava Cave
+                    elif 122306 <= ent <= 122315: _st_ent = 70  # Flaming Door
+                    elif 122355 <= ent <= 122404 or (30080 <= ent <= 30083): _st_ent = 88  # Palm Base
+                    elif 122408 <= ent <= 122415 or (30112 <= ent <= 30115): _st_ent = 90  # Blue Ocean
+                    elif 122460 <= ent <= 122495 or (30336 <= ent <= 30339): _st_ent = 104  # Waterfall Camp
+                    elif 122585 <= ent <= 122610 or (30608 <= ent <= 30611): _st_ent = 121  # Desert Racetrack
+                    elif 122730 <= ent <= 122760 or (31008 <= ent <= 31011): _st_ent = 146  # Airship Station
+                    elif 122761 <= ent <= 122789: _st_ent = 151  # Mushroom Village
+                    elif 122790 <= ent <= 122799: _st_ent = 152  # Building Blocks County
+                    elif 122800 <= ent <= 122820 or (31120 <= ent <= 31123): _st_ent = 153  # Building Blocks City
+                    elif 122890 <= ent <= 122925 or (31280 <= ent <= 31283): _st_ent = 163  # Hoca Village
+                    elif 123000 <= ent <= 123030 or (31392 <= ent <= 31395): _st_ent = 170  # Pharaoh Village
+                    else: _st_ent = None
 
                 if _st_ent and ses.personaje and (not getattr(ses.personaje, 'stage', 0) or ses.personaje.stage != _st_ent):
                     ses.personaje.stage = _st_ent
 
                 _nom_ent = _nombre_entidad(ses, ent) or ''
-                import misiones as _mis
                 g_quest = None
                 if _nom_ent and ses.personaje:
                     proc, tipo_proc, datos_proc = _mis.interactuar_npc(ses, _nom_ent, entidad=ent)
@@ -8895,8 +8903,8 @@ class Servidor:
                             return
 
                     # 2. Si no habia mision activa con este NPC, comprobar si ofrece misiones disponibles
-                    stg_act = getattr(ses.personaje, 'stage', 0) if ses.personaje else 0
-                    disponibles = _mis.misiones_disponibles_npc(ses.personaje, _nom_ent, stage=stg_act)
+                    stg_act = _st_ent or (getattr(ses.personaje, 'stage', 0) if ses.personaje else 0)
+                    disponibles = _mis.misiones_disponibles_npc(ses.personaje, _nom_ent, stage=stg_act, entidad=ent)
                     if disponibles:
                         qid_ofrecer = disponibles[0]
                         nom2 = ses.personaje.nombre if ses.personaje else 'Jugador'

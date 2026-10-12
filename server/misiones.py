@@ -112,6 +112,58 @@ MONSTER_NAME_ALIASES = {
     'junior witch': ['young witch', 'trainee witch'],
 }
 
+# Cadenas de misiones de comandantes de ciudad (orden canonico de Angel Online)
+_CADENAS_CIUDAD = {
+    'militia chief': [556, 555, 554, 553, 552, 551, 550, 549, 548, 547, 546, 545, 544, 543, 542],  # Breeze Woods (29)
+    'guard captain': [255, 254, 253, 251, 250, 249, 248, 247, 246, 245, 244, 243, 242, 241, 240],  # Aurora City (3)
+    'executive puyi': [357, 356, 355, 354, 353, 352, 351, 350, 349, 348, 347, 346, 345, 344, 343],  # Dark City (26)
+    'chief assistant': [458, 457, 456, 454, 453, 452, 451, 450, 449, 448, 447, 446, 445, 444, 443],  # Iron Castle (38)
+}
+
+_NPC_STAGE_MAP = None
+_ITEM_NAMES_CACHE = None
+
+
+def stage_de_entidad(ent_id: int) -> int:
+    """Devuelve el stage_id exacto donde se encuentra este NPC segun las plantillas."""
+    global _NPC_STAGE_MAP
+    if _NPC_STAGE_MAP is None:
+        _NPC_STAGE_MAP = {}
+        plantillas_dir = pathlib.Path(__file__).parent / 'plantillas'
+        for f in plantillas_dir.glob('*.json'):
+            try:
+                d = json.loads(f.read_text(encoding='utf-8'))
+                if isinstance(d, dict) and 'stage' in d:
+                    st = int(d['stage'])
+                    for s in d.get('spawns', []):
+                        if isinstance(s, dict) and not s.get('monstruo') and 'entity_id' in s:
+                            _NPC_STAGE_MAP[int(s['entity_id'])] = st
+            except Exception:
+                pass
+    return _NPC_STAGE_MAP.get(int(ent_id or 0), 0)
+
+
+def nombre_item(item_id: int) -> str:
+    """Nombre del item desde corpus/content.db con cache."""
+    global _ITEM_NAMES_CACHE
+    if _ITEM_NAMES_CACHE is None:
+        _ITEM_NAMES_CACHE = {10: "FreshmanSabre", 83266: "Rank Promotion Medal"}
+    if item_id in _ITEM_NAMES_CACHE:
+        return _ITEM_NAMES_CACHE[item_id]
+    db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
+    if db.exists():
+        try:
+            import sqlite3
+            con = sqlite3.connect(db)
+            import inventario as _iv
+            r = _iv.fila_item(con, '"基本名稱"', item_id)
+            con.close()
+            if r and r[0]:
+                _ITEM_NAMES_CACHE[item_id] = r[0]
+                return r[0]
+        except Exception:
+            pass
+    return f"Item{item_id}"
 
 
 def _cargar_db():
@@ -237,12 +289,26 @@ def obtener_paso_actual(p, qid: int) -> int:
     return 0
 
 
-def misiones_disponibles_npc(p, npc_nombre: str, stage: int = 0) -> list:
+def misiones_disponibles_npc(p, npc_nombre: str, stage: int = 0, entidad: int = 0) -> list:
     """Devuelve la lista de IDs de misiones que este NPC puede ofrecer al personaje."""
     _cargar_db()
     if not npc_nombre:
         return []
     nom_l = npc_nombre.strip().lower()
+
+    # Si se proporcionó entidad, obtener su mapa exacto
+    if entidad:
+        st_ent = stage_de_entidad(entidad)
+        if st_ent:
+            stage = st_ent
+
+    # Si stage es 0 o desconocido y es un comandante de ciudad, inferir su stage principal
+    if not stage:
+        if nom_l == 'militia chief': stage = 29
+        elif nom_l == 'guard captain': stage = 3
+        elif nom_l == 'executive puyi': stage = 26
+        elif nom_l == 'chief assistant': stage = 38
+
     qids = list(_NPC_INICIO.get(nom_l, []))
     disponibles = []
 
@@ -264,10 +330,9 @@ def misiones_disponibles_npc(p, npc_nombre: str, stage: int = 0) -> list:
     p_fac_l = p_fac.strip().lower()
     p_norm = 'aurora' if 'aurora' in p_fac_l else ('shadow' if ('shadow' in p_fac_l or 'dark' in p_fac_l) else ('steel' if ('steel' in p_fac_l or 'iron' in p_fac_l) else ('beasts' if ('beast' in p_fac_l or 'breeze' in p_fac_l) else 'heaven')))
 
-    # Orden especial para jefes de milicia / ciudad
-    if nom_l == 'militia chief' and stage == 29:
-        # Cadena de Breeze Woods: Mysterious Garden (556, 555, 554) primero, luego las siguientes
-        cadena_orden = [556, 555, 554, 553, 552, 551, 550, 549, 548, 547, 546, 545, 544, 543, 542]
+    # Orden especial para jefes de milicia / ciudad en las 4 capitales
+    if nom_l in _CADENAS_CIUDAD and (not stage or stage in (29, 3, 26, 38)):
+        cadena_orden = _CADENAS_CIUDAD[nom_l]
         qids = [q for q in cadena_orden if q in qids] + [q for q in qids if q not in cadena_orden]
 
     for qid in qids:
@@ -645,18 +710,9 @@ def registrar_baja_monstruo(ses, npc_type: int, monster_name: str = None) -> boo
                 ses.quest_kills[k_cac] = req
                 ses.quest_kills[clave_tupla] = req
 
-                # Vaciar la ranura oculta del token
-                if token_id:
-                    try:
-                        import inventario as _inv
-                        ses.enviar(_inv.vaciar_ranura(getattr(ses, 'entity_id', p.char_id), slot_oculta))
-                    except Exception:
-                        pass
-
-                auto_avanzar = (clave_tupla in OBJETIVOS_CACERIA) or (not c_data.get('npc_entrega'))
-                if auto_avanzar:
-                    sig_paso = c_data.get('siguiente_paso') or (pa + 1)
-                    avanzar_paso(ses, q, sig_paso)
+                # Avanzar al siguiente paso (cambia el objetivo de caceria a entrega/hablar en el HUD del cliente)
+                sig_paso = c_data.get('siguiente_paso') or (pa + 1)
+                avanzar_paso(ses, q, sig_paso)
 
                 nom_q = nombre_mision(q)
                 npc_ent = c_data.get('npc_entrega') or ('Blocks Envoy' if q == 142 else '')
@@ -672,6 +728,66 @@ def registrar_baja_monstruo(ses, npc_type: int, monster_name: str = None) -> boo
                 log.info(f"[{getattr(ses, 'addr', '')}] {p.nombre} completo caceria de {nom_obj} ({req}/{req}) para mision {q}")
 
     return actualizado
+
+
+def verificar_botin_mision(ses, npc_type: int, monster_name: str = None) -> list:
+    """
+    Comprueba si el monstruo derrotado debe soltar un objeto para una misión
+    de recolección activa del jugador, y devuelve [(item_id, cantidad)].
+    """
+    p = getattr(ses, 'personaje', None)
+    if not p or not getattr(p, 'quests', None):
+        return []
+
+    _cargar_db()
+    m_nom = (monster_name or '').lower().strip()
+    drops_mision = []
+
+    inv = getattr(ses, 'inventario', {}) or {}
+    cants = getattr(ses, 'cantidades', {}) or {}
+
+    for q, pa in list(p.quests or []):
+        if mision_completada(p, q):
+            continue
+        k_rec = f"{q}_{pa}"
+        if k_rec not in _RECOLECCIONES:
+            continue
+        r_data = _RECOLECCIONES[k_rec]
+        req_items = r_data.get('items', [])
+        for req in req_items:
+            iid = req.get('item_id')
+            req_cnt = req.get('cantidad', 1)
+            if not iid:
+                continue
+
+            # Contar cuántos tiene ya el jugador
+            actual = sum(cants.get(r, 1) for r, it in inv.items() if it == iid)
+            if actual >= req_cnt:
+                continue
+
+            # Comprobar si el monstruo coincide con el item o la misión
+            # 1. Nombre del monstruo coincide o está contenido en el nombre del item
+            # (Ej: "Wild Lily" en "Wild Lily's Petal", item 193)
+            item_nom = nombre_item(iid).lower()
+            coincide = False
+            if m_nom and (m_nom in item_nom or item_nom in m_nom):
+                coincide = True
+            elif npc_type and iid == npc_type:
+                coincide = True
+            else:
+                # Comprobar si la descripción del paso menciona a este monstruo
+                q_info = info_mision(q)
+                pasos = q_info.get('pasos', [])
+                idx_p = pa - 1 if 0 < pa <= len(pasos) else 0
+                if idx_p < len(pasos):
+                    txt_paso = (pasos[idx_p].get('texto', '')).lower()
+                    if m_nom and m_nom in txt_paso:
+                        coincide = True
+
+            if coincide:
+                drops_mision.append((iid, 1))
+
+    return drops_mision
 
 
 def verificar_entrega_items(ses, qid: int, paso: int) -> bool:
