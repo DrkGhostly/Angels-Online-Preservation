@@ -52,6 +52,15 @@ RAMA_A_CHINO = {
 
 CHINO_A_RAMA = {v: k for k, v in RAMA_A_CHINO.items()}
 
+# Habilidades comunes: grupos 1000-1199 de magic.xml. Cada una lista varias
+# ramas en 技能限制1..5. Las de arma las aprende un guerrero; las de las
+# cuatro magias, un mago. Panther Killing, Bloody Storm y Crazy Roar caen
+# en el lado de arma.
+RAMAS_MELEE = (9, 10, 11, 14, 17, 32)
+RAMAS_MAGIA = (1, 2, 3, 4)
+GRUPO_COMUN_MIN = 1000
+GRUPO_COMUN_MAX = 1199
+
 # Hechizos iniciales de nivel 1 otorgados al equipar cada rama de combate
 # Medidos directamente de content.db
 HECHIZOS_INICIALES_RAMA = {
@@ -92,7 +101,17 @@ def hechizos_de_rama(sid: int) -> list:
     return list(HECHIZOS_INICIALES_RAMA.get(sid_int, []))
 
 
-def hechizos_de_ramas_activas(skill_ids, solo_maximo: bool = True, max_rank: int = 5) -> list:
+def _entero(valor):
+    try:
+        if valor is None or str(valor).strip() == '':
+            return None
+        return int(valor)
+    except (TypeError, ValueError):
+        return None
+
+
+def hechizos_de_ramas_activas(skill_ids, solo_maximo: bool = True, max_rank: int | None = 5,
+                              nivel_tope: int | None = None, incluir_comunes: bool = False) -> list:
     """[(magic_id, nombre, rango)] de las ramas equipadas, leidos de content.db.
 
     No hay una lista fija: cada llamada mira la tabla magic actual, asi que
@@ -101,6 +120,10 @@ def hechizos_de_ramas_activas(skill_ids, solo_maximo: bool = True, max_rank: int
     solo_maximo se queda el rango mas alto de cada linea (hasta max_rank).
     Si los elementos de skill_ids son (sid, nivel, ...), se filtra por
     el nivel requerido de la habilidad (技能等限 <= nivel).
+
+    Sin solo_maximo se devuelven todos los rangos que de verdad se aprenden
+    (traen 技能等限). nivel_tope, si viene, deja fuera los que piden mas.
+    incluir_comunes anade el bloque 1000-1199 del lado melee o mago.
     """
     sids = set()
     niveles = {}
@@ -114,12 +137,23 @@ def hechizos_de_ramas_activas(skill_ids, solo_maximo: bool = True, max_rank: int
             s = int(sid)
             sids.add(s)
     chinos = {RAMA_A_CHINO[s]: s for s in sids if s in RAMA_A_CHINO}
-    if not chinos or not DB_PATH.exists():
+    lados = set()
+    if incluir_comunes:
+        if sids & set(RAMAS_MELEE):
+            lados.add('melee')
+        if sids & set(RAMAS_MAGIA):
+            lados.add('magia')
+    if not chinos and not lados:
         return []
+    if not DB_PATH.exists():
+        return []
+    chino_melee = {RAMA_A_CHINO[s] for s in RAMAS_MELEE if s in RAMA_A_CHINO}
+    chino_magia = {RAMA_A_CHINO[s] for s in RAMAS_MAGIA if s in RAMA_A_CHINO}
     con = sqlite3.connect(DB_PATH)
     try:
         rows = con.execute(
-            'select id, name, "技能限制1", "技能等限", "群組編號", "法術等級" from magic'
+            'select id, name, "技能限制1", "技能等限", "群組編號", "法術等級", '
+            '"技能限制2", "技能限制3", "技能限制4", "技能限制5" from magic'
         ).fetchall()
         # Cargar IDs de magias que tienen pergamino en el juego
         scroll_mids = set()
@@ -133,48 +167,71 @@ def hechizos_de_ramas_activas(skill_ids, solo_maximo: bool = True, max_rank: int
     finally:
         con.close()
     grupo_rama = {}
-    for _mid, _name, restr, _req, grupo, _rank in rows:
+    for _mid, _name, restr, _req, grupo, _rank, *_extras in rows:
         if restr and grupo and str(grupo) not in grupo_rama:
             grupo_rama[str(grupo)] = str(restr).strip()
     mejor = {}
-    for mid, name, restr, req_lvl, grupo, rank in rows:
+    for mid, name, restr, req_lvl, grupo, rank, r2, r3, r4, r5 in rows:
         nom = str(name or '')
         if nom.lower().startswith('test'):
             continue
         rama = str(restr).strip() if restr else ''
         if not rama and grupo:
             rama = grupo_rama.get(str(grupo), '')
-        if rama not in chinos:
-            continue
         try:
             mid_i = int(mid)
             rk = int(rank or 1)
         except (TypeError, ValueError):
             continue
-        if rk > max_rank:
+        if max_rank is not None and rk > max_rank:
             continue
-        # Si la magia no es de las iniciales (lvl 1) y no tiene pergamino, es efecto interno
-        if mid_i not in scroll_mids and rk > 1:
-            continue
-        # Validar nivel requerido de habilidad si esta disponible
-        sid_rama = chinos[rama]
-        if sid_rama in niveles:
-            try:
-                req_i = int(req_lvl or 0)
+        req_i = _entero(req_lvl)
+        if solo_maximo:
+            if rama not in chinos:
+                continue
+            # Si la magia no es de las iniciales (lvl 1) y no tiene pergamino, es efecto interno
+            if mid_i not in scroll_mids and rk > 1:
+                continue
+            # Validar nivel requerido de habilidad si esta disponible
+            sid_rama = chinos[rama]
+            if sid_rama in niveles:
+                if req_i is None:
+                    req_i = 0
                 if req_i > niveles[sid_rama]:
                     continue
-            except (TypeError, ValueError):
-                pass
-        if solo_maximo:
             if not grupo or str(grupo).strip() in ('', '0'):
                 continue
-            # Clave unica: (rama, grupo) o mid_i si hay multiples habilidades que comparten grupo
+            # Clave unica: (rama, grupo) y la primera palabra del nombre
             clave = f"{rama}_{grupo}_{nom.split()[0]}"
             prev = mejor.get(clave)
             if prev is None or rk > prev[0] or (rk == prev[0] and mid_i > prev[1]):
                 mejor[clave] = (rk, mid_i, nom)
-        else:
-            mejor[mid_i] = (rk, mid_i, nom)
+            continue
+        # Todos los rangos que se aprenden. Sin 技能等限 es un efecto interno.
+        if req_i is None or not nom.strip():
+            continue
+        if nivel_tope is not None and req_i > int(nivel_tope):
+            continue
+        es_clase = rama in chinos
+        es_comun = False
+        if lados:
+            try:
+                gnum = int(grupo)
+            except (TypeError, ValueError):
+                gnum = -1
+            if GRUPO_COMUN_MIN <= gnum <= GRUPO_COMUN_MAX:
+                lims = set()
+                for pieza in (restr, r2, r3, r4, r5):
+                    texto = str(pieza or '').strip()
+                    if texto:
+                        lims.add(texto)
+                if 'melee' in lados and lims & chino_melee:
+                    es_comun = True
+                if 'magia' in lados and lims & chino_magia:
+                    es_comun = True
+        if not es_clase and not es_comun:
+            continue
+        mejor[mid_i] = (rk, mid_i, nom)
     return sorted((mid, nom, rk) for rk, mid, nom in mejor.values())
 
 

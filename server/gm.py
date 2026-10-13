@@ -32,7 +32,7 @@ _CMDS_PET = ('pet', 'mascota')
 _CMDS = frozenset(('help',) + _CMDS_ITEM + _CMDS_LEVEL + _CMDS_LEVELALL + _CMDS_SKILLS + _CMDS_PET)
 
 AYUDA = ("GM: /item <id> [qty]  /level <n>  /levelall <n>  "
-         "/skills [n]  /pet level|exp|path|evolve  "
+         "/skills [lv]  /pet level|exp|path|evolve  "
          "/rango [1..20]  /estacion <normal|navidad|halloween|sakura|verano>")
 
 
@@ -186,9 +186,14 @@ def poner_skills(ses, n: int) -> str:
     return f"skills {n} ({len(p.habilidades)} current)"
 
 
-def dar_hechizos_ramas(ses) -> str:
-    """Grant every non-test spell of the skill trees currently equipped."""
-    a = _app()
+def dar_hechizos_ramas(ses, nivel_tope: int | None = None) -> str:
+    """Grant every learnable rank of the equipped class trees, plus common skills.
+
+    Warriors (sword, axe, spear, bow, shadowblade, shield) also get the
+    fighter common set: every common stance, plus Panther Killing, Bloody
+    Storm and Crazy Roar. Mages get the caster common set and not those
+    three. nivel_tope keeps out spells whose skill requirement is higher.
+    """
     import clases as _cl
     p = getattr(ses, 'personaje', None)
     if p is None:
@@ -196,7 +201,10 @@ def dar_hechizos_ramas(ses) -> str:
     ids = [h[0] if isinstance(h, (list, tuple)) else h for h in (p.habilidades or [])]
     if not ids:
         return "no skill sets equipped"
-    hech = _cl.hechizos_de_ramas_activas(ids, solo_maximo=True)
+    hech = _cl.hechizos_de_ramas_activas(
+        ids, solo_maximo=False, max_rank=None,
+        nivel_tope=nivel_tope, incluir_comunes=True,
+    )
     if not hech:
         return "no learnable spells on the equipped skill sets"
     if not getattr(p, 'hechizos_aprendidos', None):
@@ -205,11 +213,13 @@ def dar_hechizos_ramas(ses) -> str:
         p.hechizos_aprendidos.add(mid)
     nombres = [_cl.nombre_de_rama(sid) for sid in ids]
     yo = p.entity_id
+    if nivel_tope is None:
+        texto = f"Learned {len(hech)} spells from {', '.join(nombres)}."
+    else:
+        texto = (f"Learned {len(hech)} spells up to skill level {nivel_tope} "
+                 f"from {', '.join(nombres)}.")
     salida = [
-        _cl.aviso(
-            f"Learned {len(hech)} spells from {', '.join(nombres)}.",
-            tipo=0, msg_id=_cl.MSG_ITEM,
-        ),
+        _cl.aviso(texto, tipo=0, msg_id=_cl.MSG_ITEM),
     ]
     salida.extend(_cl.otorgar_hechizos(yo, [(m, lv) for m, _n, lv in hech]))
     ses.enviar(*salida)
@@ -360,8 +370,8 @@ def parsear(texto: str):
                 return ('err', 'skill level must be a number')
             if n < NIVEL_MIN or n > _nivel_max():
                 return ('err', f'skill level must be {NIVEL_MIN}-{_nivel_max()}')
-            return ('skilllevel', n)
-        return ('skills',)
+            return ('skills', n)
+        return ('skills', None)
     if cmd in _CMDS_PET:
         return ('pet', parts[1:])
     return None
@@ -396,7 +406,8 @@ def aplicar(ses, parsed) -> str:
         b = poner_skills(ses, n)
         return f"{a}; {b}"
     if kind == 'skills':
-        return dar_hechizos_ramas(ses)
+        tope = parsed[1] if len(parsed) > 1 else None
+        return dar_hechizos_ramas(ses, tope)
     if kind == 'skilllevel':
         return poner_skills(ses, parsed[1])
     if kind == 'pet':
