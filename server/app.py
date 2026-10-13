@@ -2431,8 +2431,13 @@ def _aplicar_efectos(ses, addr, efectos, motivo=''):
                 import inventario as _iv_ef
                 for item, cant in ef[1]:
                     iid = int(item)
-                    if _iv_ef.es_item_oculto(iid):
-                        log.info(f"[{addr}] efecto dar: item {iid} es token oculto de mision, ignorado para la mochila visible")
+                    # Los tokens de mision NO van a la mochila, pero tampoco
+                    # se tiran: van a las ranuras ocultas 497..556. Ahi los
+                    # lee la condicion QUESTITEM para saber si ya van 30 y
+                    # ahi los lee el HUD para el "X/30". Descartandolos, la
+                    # 901 se quedaba en 0/30 por muchos dragones que cayeran.
+                    if _iv_ef.es_item_oculto(iid) or _ev.es_objeto_de_mision(iid):
+                        _dar_token_oculto(ses, addr, iid, int(cant))
                         continue
                     r = _meter(ses, iid, int(cant))
                     if r is not None:
@@ -2451,6 +2456,9 @@ def _aplicar_efectos(ses, addr, efectos, motivo=''):
             elif que == 'quitar':
                 tocadas = []
                 for item, cant in ef[1]:
+                    if _ev.es_objeto_de_mision(int(item)):
+                        _quitar_token_oculto(ses, addr, int(item), int(cant))
+                        continue
                     r = _ranura_de_item(ses, int(item))
                     if r is not None:
                         _sacar(ses, r, int(cant))
@@ -2476,13 +2484,34 @@ def _aplicar_efectos(ses, addr, efectos, motivo=''):
                     _mis.avanzar_paso(ses, qid, paso_servidor)
             elif que == 'matar_para_avanzar':
                 # KILLTO_NEXTSTEP(mision, paso, objeto oculto, por baja,
-                # probabilidad, cuantos para completar). El contador de
-                # cacerias ya existe en misiones.py; aqui solo se le dice
-                # cual es, que es lo que antes habia que escribir a mano.
+                # probabilidad, cuantos para completar), tal como lo firma el
+                # eventdef. Lo hace entero aqui, con los datos del mapa:
+                #
+                #   si la mision va por ese paso, con esa probabilidad, suma
+                #   'por baja' del objeto oculto (a las ranuras 497..556, que
+                #   es de donde el HUD saca el "X/N"); y al llegar al total,
+                #   pasa al paso siguiente.
+                #
+                # Antes se lo pasaba al contador viejo de misiones.py con el
+                # bicho en 0, y como esas entradas salieron rotas del
+                # compilador, no contaba nada: 97 cacerias atascadas en 0.
+                # Los 531 usos del juego llevan objeto oculto y dan 1 por baja.
                 import misiones as _mis
-                qid = int(ef[1])
-                if _mis.obtener_paso_actual(p, qid) == int(ef[2]) + 1:
-                    _mis.registrar_baja_monstruo(ses, 0, None)
+                qid, paso_c, item, por, prob, total = (int(x) for x in ef[1:7])
+                if p and _mis.obtener_paso_actual(p, qid) == paso_c + 1:
+                    ahora = 0
+                    _r = _ranura_oculta_de(ses, item)
+                    if _r is not None:
+                        ahora = int((p.cantidades or {}).get(_r, 1))
+                    if ahora < total and (prob >= 100 or random.randint(1, 100) <= prob):
+                        _dar_token_oculto(ses, addr, item, max(1, por))
+                        ahora += max(1, por)
+                    if ahora >= total:
+                        # paso_c es el del CLIENTE (empieza en 0); el servidor
+                        # cuenta desde 1, asi que el siguiente es paso_c + 2.
+                        _mis.avanzar_paso(ses, qid, paso_c + 2)
+                        log.info('[%s] mision %d: %d/%d, pasa al paso %d'
+                                 % (addr, qid, ahora, total, paso_c + 2))
             elif que in ('nota', 'chat', 'chat_npc'):
                 import clases as _cl
                 textos = ef[1] if que == 'chat_npc' else (
@@ -2515,6 +2544,92 @@ def _aplicar_efectos(ses, addr, efectos, motivo=''):
     if sin_hacer:
         log.debug('[%s] evento%s: efectos que aun no se obedecen: %s',
                   addr, motivo, sorted(set(sin_hacer)))
+
+
+def _sigilo_activo(ses, ahora=None):
+    """Si el jugador sigue en sigilo (Sneak). Caduca solo por tiempo."""
+    return (ahora or time.time()) < float(getattr(ses, 'sigilo_hasta', 0) or 0)
+
+
+def _romper_sigilo(ses, addr, motivo=''):
+    """Saca al jugador del sigilo y le quita el icono y la animacion.
+
+    Es el mismo 0x001D de fin de estado que se manda al caducar un buff
+    (tipo 4 con duracion 0), con el id del Sneak que lo puso.
+    """
+    if not _sigilo_activo(ses):
+        return
+    ses.sigilo_hasta = 0
+    mid = int(getattr(ses, 'sigilo_mid', 0) or 0)
+    p = getattr(ses, 'personaje', None)
+    if mid and p:
+        ses.enviar(struct.pack('<HIBBII', 0x001D, p.entity_id, 1, 4, mid, 0))
+    log.info('[%s] sale del sigilo %s', addr, motivo)
+
+
+OCULTA_PRIMERA, OCULTA_ULTIMA = 497, 556
+
+
+def _ranura_oculta_de(ses, item_id):
+    inv = ses.personaje.inventario
+    for r in range(OCULTA_PRIMERA, OCULTA_ULTIMA + 1):
+        if inv.get(r) == item_id:
+            return r
+    return None
+
+
+def _dar_token_oculto(ses, addr, item_id, cant=1):
+    """Suma un token de mision en las ranuras ocultas y lo pinta en el HUD.
+
+    Si ya hay una ranura con ese token se suma ahi; si no, la primera libre.
+    Se evitan las que misiones.py reserva para sus cacerias (497 + quest % 60)
+    de las misiones que lleva el personaje, para no pisarse con ellas.
+    """
+    import inventario as _inv
+    p = ses.personaje
+    if not p:
+        return
+    cant_de = p.cantidades if p.cantidades is not None else {}
+    p.cantidades = cant_de
+    r = _ranura_oculta_de(ses, item_id)
+    if r is None:
+        reservadas = {OCULTA_PRIMERA + (int(q) % 60) for q, _pa in (p.quests or [])}
+        libres = [x for x in range(OCULTA_PRIMERA, OCULTA_ULTIMA + 1)
+                  if not p.inventario.get(x)]
+        r = next((x for x in libres if x not in reservadas),
+                 libres[0] if libres else None)
+        if r is None:
+            log.warning('[%s] no queda ranura oculta para el token %s', addr, item_id)
+            return
+        p.inventario[r] = item_id
+        cant_de[r] = 0
+    cant_de[r] = int(cant_de.get(r, 0)) + max(1, cant)
+    dueno = getattr(ses, 'entity_id', p.char_id)
+    entrada = _inv.entrada_recuperada(p.char_id, r, item_id, cant=cant_de[r], dueno=dueno)
+    ses.enviar(struct.pack('<HI', 0x001B, 1) + entrada)
+    _guardar_bolsa(ses, p.char_id)
+    log.info('[%s] token de mision %s -> ranura oculta %d (ahora %d)',
+             addr, item_id, r, cant_de[r])
+
+
+def _quitar_token_oculto(ses, addr, item_id, cant=1):
+    """Resta un token de las ranuras ocultas; si llega a 0, vacia la ranura."""
+    import inventario as _inv
+    p = ses.personaje
+    r = _ranura_oculta_de(ses, item_id) if p else None
+    if r is None:
+        return
+    queda = int((p.cantidades or {}).get(r, 1)) - max(1, cant)
+    dueno = getattr(ses, 'entity_id', p.char_id)
+    if queda > 0:
+        p.cantidades[r] = queda
+        ses.enviar(struct.pack('<HI', 0x001B, 1)
+                   + _inv.entrada_recuperada(p.char_id, r, item_id, cant=queda, dueno=dueno))
+    else:
+        p.inventario.pop(r, None)
+        (p.cantidades or {}).pop(r, None)
+        ses.enviar(_inv.vaciar_ranura(dueno, r))
+    _guardar_bolsa(ses, p.char_id)
 
 
 def _eventos_al_pisar(ses, addr, tile):
@@ -3972,7 +4087,14 @@ class Servidor:
                                             else:
                                                 def_targ = 100
                                             suyo = _cb.dano_recibido(m.pegar(), def_targ)
-                                            if targ_eid == yo:
+                                            # En sigilo se esquiva: Sneak V da
+                                            # un 75% (物理迴避). Un golpe esquivado
+                                            # hace 0; no hay paquete de "Miss"
+                                            # medido y no se inventa uno.
+                                            if (targ_eid == yo and _sigilo_activo(ses, ahora)
+                                                    and random.randint(1, 100) <= int(getattr(ses, 'sigilo_esquiva', 0) or 0)):
+                                                suyo = 0
+                                            if targ_eid == yo and suyo:
                                                 bolsa_yo = getattr(ses, 'inventario', None)
                                                 if bolsa_yo:
                                                     mods_eq = _iv.modificadores_porcentuales_equipo(bolsa_yo)
@@ -4793,6 +4915,28 @@ class Servidor:
                     ses.ultimo_golpe = 0
 
             _ahora_atk = time.time()
+
+            # SIGILO. Las tecnicas de asesino (暗殺型) solo se usan en sigilo, y
+            # en sigilo SOLO se usan ellas: es lo que dice Sneak ("Only
+            # assassination techniques may be used in stealth mode") y lo que
+            # dice Assassination ("Only usable in stealth mode"). Por eso
+            # Assassination tiene 1 s de enfriamiento: se encadena DENTRO del
+            # sigilo, no lo rompe. Cualquier otra cosa -- un golpe normal u
+            # otra habilidad -- te saca de el.
+            _en_sigilo = _sigilo_activo(ses, _ahora_atk)
+            if mag.get('asesino') and not _en_sigilo:
+                log.info(f"[{addr}] {mag.get('nombre')} RECHAZADA: es tecnica de "
+                         f"asesino y no estas en sigilo")
+                return
+            # Solo lo rompe ATACAR: un golpe normal o una habilidad ofensiva que
+            # no sea de asesino. Los buffs sobre uno mismo no: el cliente deja
+            # lanzarlos en sigilo, y rompiendolo con ellos pasaba esto --
+            # Sneak, a los 2 s Energy Accumulation (un buff de SP), sigilo roto
+            # y Assassination rechazada.
+            _ofensiva = (tipo == _cb.ATAQUE_NORMAL) or bool(mag.get('es_ataque'))
+            if _en_sigilo and _ofensiva and not mag.get('asesino'):
+                _romper_sigilo(ses, addr, f"por atacar con {mag.get('nombre') or 'un golpe normal'}")
+
             if tipo != _cb.ATAQUE_NORMAL:
                 _cd = max(0.0, mag.get('cd_ms', 0) / 1000.0)
                 _usos = getattr(ses, 'ultimo_uso', None)
@@ -5083,6 +5227,22 @@ class Servidor:
                     tile_ef_y = cy
 
                 area = max(1, mag.get('area', 1))
+                # Si es de "varios golpes individuales en el area", lo que se ve
+                # caer sobre cada objetivo es su hechizo hijo: Spear Shower V
+                # marca la zona con el 511 y las lanzas son el 493 del 13374.
+                # Sin esto solo salian los numeros de dano, sin las lanzas.
+                _hijo_area = int(mag.get('hijo_area') or 0)
+                _ef_hijo_id = _cb.efecto_de_ataque(_hijo_area) if _hijo_area else 0
+
+                def _ef_hijo(eid):
+                    if not _hijo_area or not _ef_hijo_id:
+                        return ()
+                    return (_cb.numero_de_dano(yo, eid, dano=0, ataque=_hijo_area,
+                                               efecto=_ef_hijo_id, cast_time=0,
+                                               es_magia=is_magic_skill),
+                            _cb.cierre_de_dano(yo, eid, ataque=_hijo_area,
+                                               efecto=_ef_hijo_id,
+                                               es_magia=is_magic_skill))
                 _ef2 = _cb.efecto_secundario(tipo)
 
                 def _fin_aoe(enviar_cierre=True):
@@ -5207,7 +5367,7 @@ class Servidor:
                                     _tipo_num_k = _cb.TIPO_DANO_CRITICO if _c_k else _cb.TIPO_DANO
                                     ses.enviar_inmediato(
                                         _cb.atributo(tgt.entity_id, tgt.porcentaje),
-                                        _cb.numero_flotante(tgt.entity_id, _d_k, _tipo_num_k),
+                                        _cb.numero_flotante(tgt.entity_id, _d_k, _tipo_num_k), *_ef_hijo(tgt.entity_id),
                                     )
                                     if not tgt.vivo:
                                         _procesar_muerte_monstruo(ses, tgt, yo, addr, espera=0.0)
@@ -5236,7 +5396,7 @@ class Servidor:
                                 _tipo_num = _cb.TIPO_DANO_CRITICO if es_crit else _cb.TIPO_DANO
                                 ses.enviar_inmediato(
                                     _cb.atributo(b.entity_id, b.porcentaje),
-                                    _cb.numero_flotante(b.entity_id, dano, _tipo_num),
+                                    _cb.numero_flotante(b.entity_id, dano, _tipo_num), *_ef_hijo(b.entity_id),
                                     *pkg_debuff
                                 )
                                 if not b.vivo:
@@ -5262,7 +5422,7 @@ class Servidor:
                                     _tipo_num_k = _cb.TIPO_DANO_CRITICO if _c_k else _cb.TIPO_DANO
                                     ses.enviar_inmediato(
                                         _cb.atributo(tgt.entity_id, tgt.porcentaje),
-                                        _cb.numero_flotante(tgt.entity_id, _d_k, _tipo_num_k),
+                                        _cb.numero_flotante(tgt.entity_id, _d_k, _tipo_num_k), *_ef_hijo(tgt.entity_id),
                                     )
                                     if not tgt.vivo:
                                         _procesar_muerte_monstruo(ses, tgt, yo, addr, espera=0.0)
@@ -5290,7 +5450,7 @@ class Servidor:
                                 _tipo_num = _cb.TIPO_DANO_CRITICO if es_crit else _cb.TIPO_DANO
                                 ses.enviar_inmediato(
                                     _cb.atributo(b.entity_id, b.porcentaje),
-                                    _cb.numero_flotante(b.entity_id, dano, _tipo_num),
+                                    _cb.numero_flotante(b.entity_id, dano, _tipo_num), *_ef_hijo(b.entity_id),
                                     *pkg_debuff
                                 )
                                 if not b.vivo:
@@ -5317,7 +5477,7 @@ class Servidor:
                                             _tipo_num_k = _cb.TIPO_DANO_CRITICO if _c_k else _cb.TIPO_DANO
                                             ses.enviar_inmediato(
                                                 _cb.atributo(tgt.entity_id, tgt.porcentaje),
-                                                _cb.numero_flotante(tgt.entity_id, _d_k, _tipo_num_k),
+                                                _cb.numero_flotante(tgt.entity_id, _d_k, _tipo_num_k), *_ef_hijo(tgt.entity_id),
                                             )
                                             if not tgt.vivo:
                                                 _procesar_muerte_monstruo(ses, tgt, yo, addr, espera=0.0)
@@ -5802,6 +5962,13 @@ class Servidor:
                                                      ses.personaje.habilidades,
                                                      hp_max=ses.personaje.hp_max, mp_max=ses.personaje.mp_max, sp=getattr(ses, "sp", None), buffs=getattr(ses.personaje, "buffs", None) if ses.personaje else None)
                         log.info(f"[{addr}] buff {tipo} ({mag.get('nombre')}) ejecutado (efecto {ef}, dur={dur_ms}ms, cd={cd_ms}ms)")
+                        # Sneak: entra en sigilo lo que dure el buff, con su esquiva.
+                        if mag.get('sigilo') and dur_ms > 0:
+                            ses.sigilo_hasta = time.time() + dur_ms / 1000.0
+                            ses.sigilo_mid = tipo
+                            ses.sigilo_esquiva = int(mag.get('esquiva_fis') or 0)
+                            log.info(f"[{addr}] entra en sigilo {dur_ms // 1000}s "
+                                     f"(esquiva {ses.sigilo_esquiva}%)")
                     return
                 log.debug(f"[{addr}] ataque a la entidad {objetivo}: no es un monstruo conocido")
                 return

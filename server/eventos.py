@@ -478,6 +478,56 @@ def ejecutar(stage, evento, disparo, ctx):
     return efectos
 
 
+_TOKENS = None
+_PASOS_POR_MUERTE = None
+
+
+def es_objeto_de_mision(item_id):
+    """Si ese objeto es un TOKEN de mision: de los que van a las ranuras
+    ocultas 497..556 y no a la mochila.
+
+    No se adivina por el nombre ni por la categoria del objeto: es token todo
+    lo que alguna condicion QUESTITEM de los mapas pregunta. Asi es como el
+    propio juego los trata -- la 901 da el 8461 al matar un dragon y luego
+    mira QUESTITEM(8461) para saber si ya van 30 --, y el HUD lee el contador
+    de esas mismas ranuras.
+    """
+    global _TOKENS
+    if _TOKENS is None:
+        _TOKENS = set()
+        for d in _datos()['stages'].values():
+            for x in d['disparadores']:
+                for n, p in x['si']:
+                    if n == 7 and p:
+                        _TOKENS.add(int(p[0]))
+    return int(item_id) in _TOKENS
+
+
+def paso_definido_por_muertes(quest, paso_cliente):
+    """Si los mapas ya definen que pasa al matar bichos en ese paso.
+
+    Sirve para no contar dos veces: cuando el mapa lo trae, es la fuente
+    exacta -- que bicho da que token y cuando se avanza -- y el conteo viejo
+    de misiones.py sobra.
+    """
+    global _PASOS_POR_MUERTE
+    if _PASOS_POR_MUERTE is None:
+        _PASOS_POR_MUERTE = set()
+        for d in _datos()['stages'].values():
+            for x in d['disparadores']:
+                if x['d'] not in DISPAROS_AL_MORIR:
+                    continue
+                for n, p in x['si']:
+                    if n == 2 and len(p) > 1:
+                        _PASOS_POR_MUERTE.add((int(p[0]), int(p[1])))
+                # y los de KILLTO_NEXTSTEP, que llevan mision y paso en la
+                # propia accion y no en una condicion
+                for n, p in x['haz']:
+                    if n == 41 and len(p) > 1:
+                        _PASOS_POR_MUERTE.add((int(p[0]), int(p[1])))
+    return (int(quest), int(paso_cliente)) in _PASOS_POR_MUERTE
+
+
 def cobertura():
     """Que parte de lo que usan los mapas sabe este interprete.
 

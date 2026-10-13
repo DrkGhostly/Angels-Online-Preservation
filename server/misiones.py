@@ -140,7 +140,14 @@ def normalizar_nombre_npc(nom: str) -> str:
         'adventure guild': 'adventure guild admin',
         'adventure guild ': 'adventure guild admin',
     }
-    return ALIASES.get(n, n)
+    n = ALIASES.get(n, n)
+    # CORTADO A 16, IGUAL EN LOS DOS LADOS. Los NPC de las plantillas llevan
+    # el nombre como viaja en el mensaje, cortado a 16 caracteres, y las
+    # misiones lo llevan entero. Con la lista de arriba habia que anadir cada
+    # NPC a mano, y el que faltaba se quedaba mudo: Camp Leader Messi sale en
+    # el mapa como "Camp Leader Mess", no casaba con su mision 902 y no la
+    # ofrecia. Cortando los dos a 16 casan solos todos los demas tambien.
+    return n[:16].strip()
 
 _NPC_STAGE_MAP = None
 _ITEM_NAMES_CACHE = None
@@ -316,6 +323,23 @@ def obtener_paso_actual(p, qid: int) -> int:
     return 0
 
 
+_REQUISITOS = None
+
+
+def requisitos_de(qid):
+    """Lo que pide la mision para ofrecerse: caminos de misiones previas
+    (basta cumplir uno) y si la faccion es libre. Sale de
+    tools/requisitos_misiones.py, que lo lee de los mapas y de quest.xml."""
+    global _REQUISITOS
+    if _REQUISITOS is None:
+        f = pathlib.Path(__file__).parent / 'plantillas' / 'requisitos_misiones.json'
+        try:
+            _REQUISITOS = json.loads(f.read_text(encoding='utf-8')).get('misiones', {})
+        except Exception:
+            _REQUISITOS = {}
+    return _REQUISITOS.get(str(int(qid)))
+
+
 def misiones_disponibles_npc(p, npc_nombre: str, stage: int = 0, entidad: int = 0) -> list:
     """Devuelve la lista de IDs de misiones que este NPC puede ofrecer al personaje."""
     _cargar_db()
@@ -390,8 +414,26 @@ def misiones_disponibles_npc(p, npc_nombre: str, stage: int = 0, entidad: int = 
         if comp and not es_repetible(qid):
             continue
 
+        # 3b. REQUISITO PREVIO, de los datos del cliente (requisitos_misiones
+        # .json). Sin esto no habia orden: Camp Leader Messi ofrecia la 905 y
+        # la 910 a quien acababa de terminar la 901. El dialogo de Messi en el
+        # mapa dice que la 902 se ofrece al que termino la 901, la 905 al que
+        # termino la 904 y la 910 al que termino la 908 (o, en otro mapa, la
+        # 909): con cumplir UN camino basta.
+        _rq = requisitos_de(qid)
+        if _rq and _rq.get('caminos'):
+            if not any(all(mision_completada(p, int(pr)) for pr in cam)
+                       for cam in _rq['caminos']):
+                continue
+
         # 4. Comprobar faccion de la mision
         q_fac = info.get('faccion')
+        # La faccion de misiones_completas.json la puso el compilador, porque
+        # quest.xml no la trae. Cuando la oferta esta en el dialogo de un mapa
+        # y ese dialogo NO pide faccion, la mision es para todas: asi la 902
+        # "The Return Plan", que salio como solo-Beasts y la hace cualquiera.
+        if _rq and _rq.get('faccion_libre'):
+            q_fac = None
         if q_fac:
             q_fac_l = q_fac.strip().lower()
             q_norm = 'aurora' if 'aurora' in q_fac_l else ('shadow' if ('shadow' in q_fac_l or 'dark' in q_fac_l) else ('steel' if ('steel' in q_fac_l or 'iron' in q_fac_l) else ('beasts' if ('beast' in q_fac_l or 'breeze' in q_fac_l) else '')))
@@ -727,6 +769,24 @@ def registrar_baja_monstruo(ses, npc_type: int, monster_name: str = None) -> boo
         if clave_tupla in OBJETIVOS_CACERIA:
             c_data = OBJETIVOS_CACERIA[clave_tupla]
         elif k_cac in _CACERIAS:
+            # Las entradas COMPILADAS se apartan cuando el mapa del cliente ya
+            # define este paso: alli esta exacto que bicho da que token y
+            # cuando se avanza, y lo ejecuta server/eventos.py. El compilador
+            # rompia justo estos casos -- en la 901 tomo "the following
+            # monsters away" por nombre de monstruo y sumaba las cuatro
+            # cacerias en un solo contador, con ese texto en el chat. Las de
+            # OBJETIVOS_CACERIA, puestas a mano, no se tocan.
+            #
+            # Y solo las ROTAS, las que el compilador dejo sin ids de
+            # monstruo (481 de 880): las que si tienen ids ya contaban y se
+            # dejan como estaban, para no cambiar misiones que funcionan.
+            try:
+                import eventos as _ev_m
+                if (not _CACERIAS[k_cac].get('monstruo_ids')
+                        and _ev_m.paso_definido_por_muertes(q, max(0, int(pa) - 1))):
+                    continue
+            except Exception:
+                pass
             c_data = _CACERIAS[k_cac]
 
         if not c_data:

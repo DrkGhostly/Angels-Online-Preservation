@@ -1091,6 +1091,20 @@ def datos_magia(magic_id: int) -> dict:
             # log decia "_dar_sp(Bloodlust V): sp_gana=0" y no daba nada.
             # Solo se toma si el hijo de verdad trae SP: hay miles de
             # encadenados de ataque (aturdir, sangrar, veneno) y esos no.
+            # SIGILO Y TECNICAS DE ASESINO, de los propios datos:
+            #   魔法狀態 = 潛行  -> el hechizo pone en sigilo (Sneak I..V)
+            #   物理迴避        -> la esquiva que da mientras dura (75 en V)
+            #   暗殺型 = 是      -> tecnica de asesino: solo se usa en sigilo
+            # "Varios golpes individuales dentro del area": el hechizo marca la
+            # zona y lo que cae sobre CADA objetivo es su encadenado
+            # (轉嫁法術), con su propio efecto. Spear Shower V es el 13284 con
+            # el efecto 511 y su hijo el 13374, que lleva el 493 -- las lanzas
+            # que caen -- y los 3500 de poder del tooltip.
+            res['multi_golpe_area'] = d.get('範圍多次單體攻擊') == '是'
+            res['hijo_area'] = _num(d.get('轉嫁法術'), 0) if res['multi_golpe_area'] else 0
+            res['sigilo'] = d.get('魔法狀態') == '潛行'
+            res['esquiva_fis'] = _num(d.get('物理迴避'), 0)
+            res['asesino'] = d.get('暗殺型') == '是'
             res['sp_gana_prob'] = 100
             _hijo = _num(d.get('轉嫁法術'), 0)
             if not res['sp_gana'] and _hijo and _hijo != magic_id:
@@ -1483,10 +1497,15 @@ def datos_magia(magic_id: int) -> dict:
             # Se puede usar sobre uno mismo si es curacion, buff, invocacion o self-aoe
             res['es_auto'] = res['es_cura'] or res['es_buff'] or res['es_invocacion'] or res['es_self_aoe']
 
+            # La regla del nombre es para las ramas pasivas (Enhance, Grapple,
+            # Reserve...), pero cogia tambien a "Mad ENHANCEment V", que es un
+            # buff de 30 s: se marcaba pasiva, no se ejecutaba al pulsarla y
+            # solo se apuntaba su enfriamiento. Algo con DURACION no es pasivo.
             res['es_pasiva'] = (not res['es_invocacion']) and (
                 d.get('被動') == '是' or
                 (act in ('無動作', '', 'None') and not res['es_ataque'] and not res['es_cura'] and not res['es_auto']) or
-                any(k in nom_l for k in ('enhance', 'grapple', 'reserve', 'finesse', 'garment', 'mastery'))
+                (res['dur_ms'] <= 0 and
+                 any(k in nom_l for k in ('enhance', 'grapple', 'reserve', 'finesse', 'garment', 'mastery')))
             )
             # Resolucion de subhechizo delegado para habilidades de combate de alto rango (TNT Arrow, Aparctias Shot, Steel Rain, etc.)
             sub_id = encontrar_sub_combate(magic_id, d, _magic_xml())
