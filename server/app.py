@@ -3381,7 +3381,11 @@ class Servidor:
             cta = cuentas.cargar()['cuentas'].get(ses.usuario) or {'personajes': []}
             usados = {x.get('char_id', 0) for x in cta.get('personajes', [])}
             nuevo = personajes.personaje_nuevo(
-                d['nombre'], d['ranura'], max(usados or [1000]) + 1)
+                d['nombre'], d['ranura'], max(usados or [1000]) + 1,
+                elegidos=d.get('elegidos'))
+            log.info(f"[{addr}] CREAR: elegido (bytes +1..+5) = "
+                     f"{bytes(d.get('elegidos') or []).hex(' ')} -> "
+                     f"apariencia={nuevo['apariencia']}")
             personajes.guardar(ses.usuario, nuevo, cuentas.ARCHIVO)
             ses.enviar(personajes.respuesta_creacion(d['ranura'], nuevo))
             log.info(f"[{addr}] PERSONAJE CREADO '{nuevo['nombre']}' "

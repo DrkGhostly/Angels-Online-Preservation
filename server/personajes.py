@@ -42,7 +42,12 @@ def parsear_creacion(cuerpo: bytes) -> dict:
     ranura = struct.unpack_from('<I', cuerpo, 0)[0] if len(cuerpo) >= 4 else 0
     fin = cuerpo.find(b'\x00', 6)
     nombre = cuerpo[6:fin if fin > 6 else 6].decode('ascii', 'replace').strip()
-    return {'ranura': ranura & 0xFF, 'nombre': nombre}
+    # Los bytes +1..+5 llevan lo que el jugador eligio en el dialogo de
+    # creacion (genero, peinado, etc.). Antes se tiraban y la apariencia
+    # quedaba SIEMPRE en [0,0,0,8,8], que el cliente dibuja como mujer.
+    # Medido: hombre -> 01 01 01 00 00. El primero es el genero.
+    elegidos = list(cuerpo[1:6]) if len(cuerpo) >= 6 else []
+    return {'ranura': ranura & 0xFF, 'nombre': nombre, 'elegidos': elegidos}
 
 
 # Kit con el que arranca un personaje. Los id salen de item.xml y estan
@@ -75,7 +80,24 @@ INVENTARIO_INICIAL = [
 # que se capturaron. Ver docs/01_HECHOS_VERIFICADOS.md.
 
 
-def personaje_nuevo(nombre: str, ranura: int, char_id: int) -> dict:
+def apariencia_de_creacion(elegidos) -> list:
+    """Apariencia inicial a partir de lo elegido en el dialogo de creacion.
+
+    Medido con dos personajes de hombre:
+        01 01 01 00 00   (peinado y color distintos)
+        01 00 01 03 00   (peinado por defecto, color gris)
+    O sea: +1 genero, +2 peinado, +4 color de pelo (el +3 y el +5 no
+    cambiaron). Se guardan los CINCO tal cual los manda el cliente, que es lo
+    que hace un servidor real: los devuelve en la ficha de la lista y en la
+    del mundo. Si no llega nada, se usa la apariencia por defecto de siempre.
+    """
+    if not elegidos or len(elegidos) < 5:
+        return [0, 0, 0, 8, 8]
+    return [int(v) & 0xFF for v in list(elegidos)[:5]]
+
+
+def personaje_nuevo(nombre: str, ranura: int, char_id: int,
+                    elegidos=None) -> dict:
     return {
         'nombre': nombre,
         'char_id': char_id,
@@ -87,7 +109,7 @@ def personaje_nuevo(nombre: str, ranura: int, char_id: int) -> dict:
         'hp_max': HP_MAX_INICIAL,
         'mp': MP_INICIAL,
         'mp_max': MP_MAX_INICIAL,
-        'apariencia': [0, 0, 0, 8, 8],
+        'apariencia': apariencia_de_creacion(elegidos),
         'tile_x': TILE_INICIAL[0],
         'tile_y': TILE_INICIAL[1],
         'habilidades': [],
