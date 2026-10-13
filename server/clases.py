@@ -419,7 +419,7 @@ ARMA_POR_SKILL = {
 #   - el resto, una sola arma en la derecha
 SKILL_ESCUDO = 14
 ESCUDO = 19820                     # FreshmanRound Shield
-DOS_ARMAS = {9, 10, 32}            # Sword (9), Axe/Hammer (10 - Warrior), Mantle (32 - Shadowblade): armas dobles
+DOS_ARMAS = {9, 10}                # Sword (9), Axe/Hammer (10 - Warrior): armas dobles. Shadowblade (32) lleva UNA, en la mano derecha
 # Las clases magicas (Priest, Summoner, Wizard, Magician) no tienen habilidad
 # de arma cuerpo a cuerpo, pero llevan baston. Si entre las seis hay alguna
 # habilidad de magia y ninguna de arma, se les da el baston.
@@ -709,6 +709,8 @@ def es_dos_manos(item_id) -> bool:
             except Exception:
                 pass
     if not item_id:
+        return False
+    if skill_de_item(item_id) == 32:      # 影刃: una mano, solo en la derecha
         return False
     return not _MANOS_ITEM.get(int(item_id), True)
 
