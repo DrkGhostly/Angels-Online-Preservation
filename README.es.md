@@ -259,7 +259,7 @@ El servidor deja el cliente local listo al arrancar, siempre con un `.bak` antes
 - **Sistema Integral de Misiones (1.489 quests)**:
   - Catálogo completo compilado desde `quest.xml` con 1.489 misiones y 662 repetibles.
   - Seguimiento dinámico de cacerías (877 objetivos de combate automáticos al matar monstruos en cualquier mapa con alias y nombres canónicos).
-  - Objetivos de recolección (819 pasos con verificación de inventario, drop directo a la mochila visible y avisos de progreso `Collected X (y/z)`).
+  - Objetivos de recolección e **Inventario Oculto de Misiones**: items comunes van a la mochila visible, mientras que tokens y credenciales de categoría `5001` (como *Work ID* 78179 o *Microcoin* 78180) van a las ranuras ocultas `497..556`. Confirmado con el desensamblado de `Angel.exe`: `sub_4A48C0` (ventana Prop) solo itera `20..94`, mientras que `sub_4A47E0` (HUD de seguimiento) y `sub_4A4720` (entrega al NPC) iteran `20..154` y `497..556`. Esto permite ver el progreso en pantalla (`1 / 1.`) y entregar la misión sin saturar ni mostrar tokens en la mochila del jugador.
   - Diálogos y flujo de NPCs corregidos: opciones alineadas con la UI original, comprobación de requisitos de nivel (ej. Mr. Fleming en Wise Institute nv. 380, Leif en Sandy Heights) y encadenamiento continuo de comandantes de ciudad.
   - Interacción y entrega con NPCs (más de 1.500 puntos de entrega y 1.100 NPCs asignadores).
   - Misiones repetibles y rotativas diarias/semanales.

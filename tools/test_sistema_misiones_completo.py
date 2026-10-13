@@ -306,6 +306,8 @@ class TestSistemaMisionesCompleto(unittest.TestCase):
         self.assertTrue(inventario.es_item_oculto(969))
         self.assertTrue(inventario.es_item_oculto(956))
         self.assertTrue(inventario.es_item_oculto(16075))
+        self.assertTrue(inventario.es_item_oculto(78179))
+        self.assertTrue(inventario.es_item_oculto(78180))
         self.assertFalse(inventario.es_item_oculto(181)) # Mushroom normal
 
         ses = MockSesion()
@@ -314,7 +316,30 @@ class TestSistemaMisionesCompleto(unittest.TestCase):
         res = app._meter(ses, 969, 1)
         self.assertIsNone(res, "Item oculto 969 no debe poder entrar en la mochila")
 
+    def test_tokens_mision_inventario_oculto(self):
+        """Verifica que los tokens de mision (cat 5001) se enruten a ranuras ocultas 497..556."""
+        import inventario
+        ses = MockSesion()
+        p = MockPersonaje()
+        p.quests = [[1590, 2]]
+        ses.personaje = p
+        ses.inventario = {}
+        ses.cantidades = {}
+
+        slot = misiones.slot_oculto_para_item(ses, 78179, qid=1590)
+        self.assertTrue(497 <= slot <= 556, f"Slot {slot} debe estar en el rango 497..556")
+        self.assertEqual(slot, 527)
+
+        # vaciar_ranura debe permitir ranuras 497..556
+        pkg_vac = inventario.vaciar_ranura(1001, 527)
+        self.assertGreater(len(pkg_vac), 0)
+
+        # actualizar_ranura debe generar entrada valida para el cliente
+        pkg_act = inventario.actualizar_ranura(1001, 527, 78179, 1)
+        self.assertGreater(len(pkg_act), 0)
+
 
 if __name__ == '__main__':
     unittest.main()
+
 

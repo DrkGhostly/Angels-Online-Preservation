@@ -203,9 +203,9 @@ def secuencia(p: Personaje):
             # cantidad es p.oro.
             _items = [(int(r), _inv.ITEM_ORO if int(r) == _inv.RANURA_ORO else int(it),
                        p.oro if int(r) == _inv.RANURA_ORO
-                       else max(1, int((p.cantidades or {}).get(int(r), 1))))
+                       else max(1, int((p.cantidades or {}).get(int(r), (p.cantidades or {}).get(str(r), 1)))))
                       for r, it in p.inventario.items()
-                      if (int(r) == _inv.RANURA_ORO or (it and int(it) > 0)) and int(r) < 60]
+                      if (int(r) == _inv.RANURA_ORO or (it and int(it) > 0)) and (int(r) <= 120 or 497 <= int(r) <= 556)]
             salida.append(_inv.completo(p.char_id, _items, p.entity_id,
                                         mejoras=getattr(p, 'mejoras', None),
                                         mascota=getattr(p, 'mascota', None),

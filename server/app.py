@@ -1994,6 +1994,18 @@ def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
     tocadas_botin = []
     for item_drop, cant in drops:
         cant = max(1, int(cant))
+        if _iv.es_item_oculto(item_drop):
+            import misiones as _mis_sl
+            slot_oc = _mis_sl.slot_oculto_para_item(ses, item_drop)
+            bolsa[slot_oc] = item_drop
+            _instancias(ses)[slot_oc] = _iv.instancia_nueva()
+            _cant_actual = int(_cantidades(ses).get(int(slot_oc), 0))
+            _cantidades(ses)[slot_oc] = _cant_actual + cant
+            _cantidades(ses)[str(slot_oc)] = _cant_actual + cant
+            tocadas_botin.append(slot_oc)
+            salida_combate.append(_cl.aviso(_nombre_item(item_drop), tipo=0, msg_id=_cl.MSG_ITEM))
+            continue
+
         apila = None
         if _iv.es_apilable(item_drop):
             for s_r, it_id in bolsa.items():

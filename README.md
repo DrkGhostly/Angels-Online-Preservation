@@ -249,7 +249,7 @@ The server prepares the local client on startup, always taking a `.bak` first:
 - **Comprehensive Quest System (1,489 quests)**:
   - Complete quest catalog compiled from `quest.xml` with 1,489 quests and 662 repeatable quests.
   - Dynamic combat hunting tracking (877 automatic kill steps triggered by mob defeats across all maps with monster aliases and canonical naming).
-  - Item collection objectives (819 steps with inventory validation, direct drops into player backpack, and `Collected X (y/z)` toast notifications).
+  - Item collection objectives & **Hidden Quest Inventory**: regular collectable items drop into the visible bag, while Category `5001` quest tokens/credentials (such as *Work ID* 78179 or *Microcoin* 78180) route to hidden slot range `497..556`. Confirmed via disassembly of `Angel.exe`: `sub_4A48C0` (Prop window) strictly loops `20..94`, while `sub_4A47E0` (HUD tracker counter) and `sub_4A4720` (NPC turn-in check) iterate `20..154` and `497..556`. This allows HUD tracking progress (`1 / 1.`) and turn-in without cluttering the player's visible backpack.
   - Fixed NPC quest dialogue progression: UI option order matching official client, level requirement checks (e.g., Mr. Fleming in Wise Institute lv. 380, Leif in Sandy Heights), and continuous city commander quest chains.
   - NPC interaction & turn-in flow (over 1,500 delivery points and 1,100 quest-giving NPCs).
   - Repeatable, daily, and weekly rotating quest pools.

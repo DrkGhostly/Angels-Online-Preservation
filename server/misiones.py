@@ -800,6 +800,42 @@ def registrar_baja_monstruo(ses, npc_type: int, monster_name: str = None) -> boo
     return actualizado
 
 
+def slot_oculto_para_item(ses, item_id: int, qid: int = 0) -> int:
+    """Busca o asigna una ranura libre en el rango 497..556 para un item de mision oculto."""
+    inv = getattr(ses, 'inventario', {}) or {}
+    iid = int(item_id)
+    # 1. Si el item ya esta en alguna ranura oculta, reutilizar esa
+    for r, it in inv.items():
+        try:
+            r_int = int(r)
+            if 497 <= r_int <= 556 and int(it) == iid:
+                return r_int
+        except (ValueError, TypeError):
+            continue
+    # 2. Preferir ranura basada en qid si se conoce o se puede deducir
+    target_qid = qid
+    if not target_qid:
+        p = getattr(ses, 'personaje', None)
+        if p and getattr(p, 'quests', None):
+            _cargar_db()
+            for q, pa in list(p.quests):
+                k_rec = f"{q}_{pa}"
+                if k_rec in _RECOLECCIONES:
+                    reqs = _RECOLECCIONES[k_rec].get('items', [])
+                    if any(req.get('item_id') == iid for req in reqs):
+                        target_qid = q
+                        break
+    if target_qid > 0:
+        pref = 497 + (target_qid % 60)
+        if pref not in inv and str(pref) not in inv:
+            return pref
+    # 3. Buscar la primera ranura libre en 497..556
+    for r in range(497, 557):
+        if r not in inv and str(r) not in inv:
+            return r
+    return 497
+
+
 def verificar_botin_mision(ses, npc_type: int, monster_name: str = None) -> list:
     """
     Comprueba si el monstruo derrotado debe soltar un objeto para una misión

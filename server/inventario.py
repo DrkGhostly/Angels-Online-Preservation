@@ -143,7 +143,7 @@ def vaciar_ranura(dueno: int, ranura: int,
     El byte del contenedor se creia fijo en 1. Al guardar algo en el banco el
     servidor real manda 02 y de dueno el 252 en vez de la entidad.
     """
-    if contenedor == CONT_MOCHILA and (ranura < 0 or ranura >= 60):
+    if contenedor == CONT_MOCHILA and (ranura < 0 or (ranura > 154 and not (497 <= ranura <= 556))):
         log.warning(f"Intento de vaciar ranura fuera de limites ({ranura}) en CONT_MOCHILA - omitido para evitar crash")
         return b''
     return struct.pack('<HIBBIH', 0x001B, 1, 2, contenedor, dueno, ranura)
@@ -993,25 +993,52 @@ def es_apilable(item_id: int) -> bool:
     return True
 
 
+_OCULTO_CACHE = {}
+
+
 def es_item_oculto(item_id: int) -> bool:
-    """Si el item es un token de mision ficticio (ej. '142 Quest Item', '555 Quest Item').
-    Estos tokens no son objetos reales del juego y no deben entrar en la mochila.
-    Los items reales de recoleccion (Work ID, Microcoin, Mushroom, etc.) si entran en la mochila.
+    """Si el item es un token de mision ficticio u objeto exclusivo de mision (ej. category 5001).
+    Estos tokens van a las ranuras ocultas de mision (497..556) y no entran en la mochila visible (20..94).
     """
     if not item_id or int(item_id) <= 0:
         return False
     iid = int(item_id)
-    if iid in (969, 956, 16075):
+    if iid in _OCULTO_CACHE:
+        return _OCULTO_CACHE[iid]
+
+    if iid in (969, 956, 16075, 78179, 78180):
+        _OCULTO_CACHE[iid] = True
         return True
+
+    try:
+        import sqlite3
+        db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
+        if db.exists():
+            con = sqlite3.connect(db)
+            col_proto = chr(0x539f) + chr(0x578b) + chr(0x4ecb) + chr(0x9762)
+            row = fila_item(con, f'[{col_proto}]', iid)
+            con.close()
+            if row and row[0] is not None:
+                proto_str = str(row[0]).strip()
+                if proto_str == '5001':
+                    _OCULTO_CACHE[iid] = True
+                    return True
+    except Exception:
+        pass
+
     try:
         import misiones as _mis
         import re
         nom = _mis.nombre_item(iid)
-        if re.match(r'^\d+\s+Quest\s+Item$', nom, re.IGNORECASE):
+        if re.search(r'(?:\d+\s+Quest\s+Item|^Quest\s+\d+\s+Item)', nom, re.IGNORECASE):
+            _OCULTO_CACHE[iid] = True
             return True
     except Exception:
         pass
+
+    _OCULTO_CACHE[iid] = False
     return False
+
 
 
 def datos_mascota(item_id: int) -> dict:
