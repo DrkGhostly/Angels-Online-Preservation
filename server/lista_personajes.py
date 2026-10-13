@@ -151,17 +151,21 @@ def bloque_cuenta(personajes, ranuras=MAX_RANURAS, subcanal=2,
     # Sub-canal: en la captura real valia 3, igual que el 分流="3" del
     # server.xml de ese cliente. El nuestro declara 分流="2".
     struct.pack_into('<I', a, OFF_SERVIDOR, subcanal)
+    # Cada personaje va en SU ranura (p['ranura']), no en el orden de la lista:
+    # el cliente no reordena las ranuras al borrar, y despues pide entrar con
+    # la que ve.
+    por_ranura = {p.get('ranura', k): p for k, p in enumerate(personajes) if p}
     for i in range(MAX_RANURAS):
         # El indice de ranura se escribe SIEMPRE, incluso si esta vacia.
         # Medido contra una captura real: en +150 y +297 (ranuras 1 y 2, ambas
         # sin personaje) el servidor mandaba 1 y 2; yo las salteaba enteras y
         # quedaban en cero.
         a[BASE_FICHAS + i * TAM_FICHA] = i & 0xFF
-        if i >= len(personajes) or not personajes[i]:
+        if i not in por_ranura:
             continue                      # ranura vacia: se puede crear
         base_f = BASE_FICHAS + i * TAM_FICHA
-        _ficha(a, base_f, i, personajes[i])
-        struct.pack_into('<I', a, base_f + 52, personajes[i].get('unk_52', 250))
+        _ficha(a, base_f, i, por_ranura[i])
+        struct.pack_into('<I', a, base_f + 52, por_ranura[i].get('unk_52', 250))
         # (el bloque de nombres secundarios de 595+ figura en CERO en la
         #  captura real; escribir ahi era invento mio)
         # HP/MP MAXIMOS: NO van en la ficha. El cliente los lee de arreglos
@@ -172,17 +176,19 @@ def bloque_cuenta(personajes, ranuras=MAX_RANURAS, subcanal=2,
         # arreglos, que se llenan desde los offsets 455 y 467 del bloque.
         # Escribirlos dentro de la ficha dejaba la tarjeta en "205 / 0".
         import inventario as _inv
-        inv_pj = personajes[i].get('inventario') or {}
-        habs_pj = personajes[i].get('habilidades', [])
-        eff_hp_max = _inv.vida_maxima(personajes[i].get('hp_max', personajes[i].get('hp', 0)), habs_pj, bolsa=inv_pj)
-        eff_mp_max = _inv.mana_maximo(personajes[i].get('mp_max', personajes[i].get('mp', 0)), habs_pj, bolsa=inv_pj)
+        inv_pj = por_ranura[i].get('inventario') or {}
+        habs_pj = por_ranura[i].get('habilidades', [])
+        eff_hp_max = _inv.vida_maxima(por_ranura[i].get('hp_max', por_ranura[i].get('hp', 0)), habs_pj, bolsa=inv_pj)
+        eff_mp_max = _inv.mana_maximo(por_ranura[i].get('mp_max', por_ranura[i].get('mp', 0)), habs_pj, bolsa=inv_pj)
         struct.pack_into('<I', a, OFF_HP_MAX + 4 * i, eff_hp_max & 0xFFFFFFFF)
         struct.pack_into('<I', a, OFF_MP_MAX + 4 * i, eff_mp_max & 0xFFFFFFFF)
     # [479] son las HABILIDADES evaluadas para la clase (sub_71C380).
     # Cada ranura ocupa 36 bytes (9 DWORDs = 36 B, desde 479 + 36 * i):
     # seis habilidades iniciales y tres ceros. Con salto de 24 se solapaban.
-    for i in range(min(len(personajes), ranuras)):
-        for k, h in enumerate(personajes[i].get('habilidades', [])[:6]):
+    for i, p_i in por_ranura.items():
+        if i >= min(MAX_RANURAS, ranuras):
+            continue
+        for k, h in enumerate(p_i.get('habilidades', [])[:6]):
             sid = h[0] if isinstance(h, (list, tuple)) else h
             struct.pack_into('<I', a, OFF_SKILLS + 36 * i + 4 * k,
                              int(sid) & 0xFFFFFFFF)

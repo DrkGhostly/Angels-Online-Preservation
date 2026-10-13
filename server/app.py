@@ -3411,14 +3411,16 @@ class Servidor:
             ranura = cuerpo[0] if cuerpo else 0
             char_id = cuentas.borrar_personaje(ses.usuario, ranura)
             if char_id is None:
+                # Se contesta igual con la lista: sin respuesta el cliente
+                # se queda esperando con la pantalla en negro.
                 log.warning(f"[{addr}] BORRAR: no hay personaje en la ranura {ranura}")
-                return
-            ses.enviar(struct.pack('<HHI', 0x0002, 0, char_id))
-            cta = cuentas.cargar()['cuentas'].get(ses.usuario) or {'personajes': []}
-            ses.enviar_crudo(_ls.respuesta_login(cta.get('personajes', []),
-                                                 cuenta=ses.usuario))
-            log.info(f"[{addr}] PERSONAJE BORRADO: ranura {ranura} "
-                     f"char_id {char_id} (sin espera)")
+            else:
+                ses.enviar(struct.pack('<HHI', 0x0002, 0, char_id))
+            ses.enviar_crudo(_ls.respuesta_login(
+                cuentas.lista_de_personajes(ses.usuario)[:3], cuenta=ses.usuario))
+            if char_id is not None:
+                log.info(f"[{addr}] PERSONAJE BORRADO: ranura {ranura} "
+                         f"char_id {char_id} (sin espera)")
             return
 
         if opcode == 0x0006 and ses.rol == 'login':
@@ -3429,8 +3431,8 @@ class Servidor:
             ranura = cuerpo[0] if cuerpo else 0
             txt = bytes(c if 32 <= c < 127 else 46 for c in cuerpo[:40]).decode()
             cta = cuentas.cargar()['cuentas'].get(ses.usuario) or {}
-            elegidos = list(cta.get('personajes', []))
-            nombre = elegidos[ranura]['nombre'] if ranura < len(elegidos) else '?'
+            nombre = next((x['nombre'] for x in cta.get('personajes', [])
+                           if x.get('ranura') == ranura), '?')
             self.pendientes[addr[0]] = (ses.usuario, ranura)
             log.info(f"[{addr}] ENTRAR AL MUNDO ranura={ranura} -> '{nombre}'")
             log.info(f"[{addr}] 0x0006 sprite: {txt}")
