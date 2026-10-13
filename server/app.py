@@ -884,7 +884,7 @@ PALABRAS_GM = frozenset((
     'rango', 'rank',
     'sistemas', 'album', 'logros', 'cartas', 'estrellas', 'casa',
     'level', 'lvl', 'lv', 'levelall', 'lvlall',
-    'skills', 'learnall', 'spells', 'skillall',
+    'skills', 'spells', 'skillsall', 'learnall', 'skillall',
     'pet', 'mascota',
 ))
 
@@ -994,7 +994,7 @@ def _gm_parsear(texto: str):
         except ValueError:
             return ('err', 'usage: /rango [1..20]')
     if cmd in ('level', 'lvl', 'lv', 'levelall', 'lvlall',
-               'skills', 'learnall', 'spells', 'skillall',
+               'skills', 'spells', 'skillsall', 'learnall', 'skillall',
                'pet', 'mascota'):
         import gm as _gm
         return _gm.parsear(texto)
@@ -1026,7 +1026,7 @@ def _probar_gm(ses, cuerpo, addr) -> bool:
         return False
     if leido[0] == 'help':
         ses.enviar(_cl.aviso(
-            'GM: /item <id> [qty] | /level <n> | /levelall <n> | /skills [lv] | '
+            'GM: /item <id> [qty] | /level <n> | /levelall <n> | /skills [lv] | /skillsall [lv] | '
             '/pet level|exp|path|evolve | /rango [1..20] | '
             '/estacion <normal|navidad|halloween|sakura|verano>',
             tipo=0, msg_id=_cl.MSG_ITEM))
@@ -1196,7 +1196,7 @@ def _probar_gm(ses, cuerpo, addr) -> bool:
             cuentas.guardar_rango(ses.usuario, ses.personaje.char_id, _rk_new, _cred_rk)
         log.info('[%s] GM rango -> %d (%s)' % (addr, _rk_new, _tit))
         return True
-    if leido[0] in ('level', 'levelall', 'skills', 'skilllevel', 'pet'):
+    if leido[0] in ('level', 'levelall', 'skills', 'skillsall', 'skilllevel', 'pet'):
         import gm as _gm
         msg = _gm.aplicar(ses, leido)
         log.info('[%s] GM %s' % (addr, msg))
