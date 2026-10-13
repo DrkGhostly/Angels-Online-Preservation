@@ -14,6 +14,7 @@ import json
 import pathlib
 import datetime
 import hashlib
+import hmac
 import os
 import tempfile
 import threading
@@ -31,10 +32,10 @@ MUESTRAS = pathlib.Path(__file__).parent.parent / 'logs' / 'auth_muestras'
 
 _LOCK = threading.RLock()
 GUARDAR_AUTH_CRUDO = os.environ.get('AO_GUARDAR_AUTH_CRUDO', '0') == '1'
-REGISTRAR_HASH_PRIMER_LOGIN = os.environ.get('AO_REGISTRAR_PRIMER_HASH', '0') == '1'
-VALIDAR_PASSWORD = os.environ.get('AO_VALIDAR_PASSWORD', '0') == '1'
-OFF_HASH = 21
-LARGO_HASH = 32
+# La contrasena viaja al final del AUTH (73 B para un usuario de hasta 7
+# letras): [usuario][13 B que cambian en cada ingreso][52 B que dependen solo
+# de la contrasena escrita]. Se guarda y se compara tal cual, sin descifrar.
+LARGO_HASH = 52
 
 _CAMBIOS_DESDE_BACKUP = 0
 _ULTIMO_BACKUP = time.time()
@@ -332,41 +333,47 @@ def _actualizar_personaje(usuario: str, char_id: int, mutador_fn):
 
 
 def hash_de_auth(cuerpo: bytes) -> str:
-    return (cuerpo[OFF_HASH:OFF_HASH + LARGO_HASH].hex()
-            if len(cuerpo) >= OFF_HASH + LARGO_HASH else '')
+    return cuerpo[-LARGO_HASH:].hex() if len(cuerpo) > LARGO_HASH else ''
+
+
+def _firmar(h: str, sal: str) -> str:
+    return hashlib.sha256((sal + h).encode('ascii')).hexdigest()
 
 
 def validar(usuario: str, cuerpo_auth: bytes = b'') -> tuple:
-    """Valida la cuenta en SQLite. La crea en el primer ingreso si no existe."""
+    """Valida la contrasena. Una cuenta sin contrasena guardada (nueva, o
+    creada antes de esta validacion) se queda con la de este ingreso."""
+    h = hash_de_auth(cuerpo_auth)
+    if not h:
+        return None, "contrasena vacia"
     with _LOCK:
         con = _get_conn()
         try:
             cur = con.cursor()
             cur.execute("SELECT password FROM cuentas WHERE usuario = ?", (usuario,))
             row = cur.fetchone()
-            if row is None:
-                con.execute("INSERT INTO cuentas (usuario, password) VALUES (?, '')", (usuario,))
+            guardado = row[0] if row else ''
+            if '$' in guardado:
+                sal, firma = guardado.split('$', 1)
+                if not hmac.compare_digest(_firmar(h, sal), firma):
+                    return None, "contrasena incorrecta"
+                motivo = "ok"
+            else:
+                sal = os.urandom(16).hex()
+                registro = f"{sal}${_firmar(h, sal)}"
+                if row is None:
+                    con.execute("INSERT INTO cuentas (usuario, password) VALUES (?, ?)",
+                                (usuario, registro))
+                    motivo = f"cuenta '{usuario}' creada en el primer ingreso"
+                else:
+                    con.execute("UPDATE cuentas SET password = ? WHERE usuario = ?",
+                                (registro, usuario))
+                    motivo = "contrasena registrada"
                 con.commit()
                 _notificar_cambio(inmediato=True)
-                cta = {'password': '', 'personajes': []}
-                if VALIDAR_PASSWORD and not REGISTRAR_HASH_PRIMER_LOGIN:
-                    return None, "cuenta nueva: requiere registro inicial controlado"
-                return cta, f"cuenta '{usuario}' creada en el primer ingreso"
-
-            pw = row[0]
-            # Obtener los personajes de la cuenta
             cur.execute("SELECT datos FROM personajes WHERE usuario = ? ORDER BY ranura ASC", (usuario,))
-            pjs = [json.loads(d_row[0]) for d_row in cur.fetchall()]
-            cta = {'password': pw, 'personajes': pjs}
-
-            h = hash_de_auth(cuerpo_auth)
-            if VALIDAR_PASSWORD and (not h or set(h) == {'0'}):
-                return None, "contrasena vacia"
-
-            guardado = pw
-            if VALIDAR_PASSWORD and guardado and guardado != h:
-                return None, "contrasena incorrecta"
-            return cta, "ok"
+            pjs = [json.loads(d[0]) for d in cur.fetchall()]
+            return {'personajes': pjs}, motivo
         finally:
             con.close()
 
