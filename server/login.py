@@ -1180,6 +1180,12 @@ def _ficha(p, base):
             u50[43] = max(1, min(20, getattr(p, 'rango', 1) or 1))
             struct.pack_into('<I', u50, 44,
                              (getattr(p, 'creditos', 0) or 0) & 0xFFFFFFFF)
+        # APARIENCIA: los bytes 55..59 de la ficha (u50[5:10]) son los cinco
+        # de la apariencia (genero, peinado, color...). Sin esto salia la de
+        # la plantilla capturada, sin importar lo elegido al crear.
+        _ap = getattr(p, 'apariencia', None)
+        if _ap and len(_ap) >= 5:
+            u50[5:10] = bytes(int(v) & 0xFF for v in _ap[:5])
         d['unk_50'] = bytes(u50)
     # HP y MP. El campo 'stats' arranca en +102 de la ficha (a3 + 104), asi que los
     # cuatro LE32 del principio son hp, hp_max, mp, mp_max (+102, +106,
