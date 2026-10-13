@@ -187,12 +187,14 @@ def poner_skills(ses, n: int) -> str:
 
 
 def dar_hechizos_ramas(ses, nivel_tope: int | None = None) -> str:
-    """Grant every learnable rank of the equipped class trees, plus common skills.
+    """Grant the current rank of each equipped class line, plus common skills.
 
-    Warriors (sword, axe, spear, bow, shadowblade, shield) also get the
+    For each line, only the highest rank whose skill requirement is within
+    nivel_tope is granted. Chain Lightning is rank I at 145 and rank V at
+    177. Warriors (sword, axe, spear, bow, shadowblade, shield) also get the
     fighter common set: every common stance, plus Panther Killing, Bloody
     Storm and Crazy Roar. Mages get the caster common set and not those
-    three. nivel_tope keeps out spells whose skill requirement is higher.
+    three.
     """
     import clases as _cl
     p = getattr(ses, 'personaje', None)
