@@ -188,6 +188,7 @@ def _limpiar_backups_antiguos():
 
 def _exportar_json_disco():
     """Escribe data/cuentas.json de forma atomica para inspeccion externa."""
+    temporal = None
     try:
         datos = cargar()
         fd, temporal = tempfile.mkstemp(prefix='cuentas_mirror_', suffix='.tmp', dir=str(BASE))
@@ -196,8 +197,24 @@ def _exportar_json_disco():
             f.flush()
             os.fsync(f.fileno())
         os.replace(str(temporal), str(ARCHIVO))
+        temporal = None
+    except PermissionError:
+        # El caso de siempre: cuentas.json esta ABIERTO en un editor y
+        # Windows no deja reemplazarlo. No es un error de verdad -- el espejo
+        # es solo para mirar, los datos viven en cuentas.db -- asi que basta
+        # un aviso, sin la traza entera en cada guardado.
+        log.warning("cuentas.json esta abierto en otro programa; el espejo "
+                    "se actualizara cuando se cierre")
     except Exception:
         log.exception("Error al sincronizar cuentas.json espejo")
+    finally:
+        # Si el reemplazo fallo, el temporal se quedaba tirado en data/: se
+        # habian juntado 71 (21 MB) con cuentas.json abierto en el editor.
+        if temporal:
+            try:
+                os.remove(temporal)
+            except OSError:
+                pass
 
 
 def _notificar_cambio(inmediato=False):
@@ -398,6 +415,24 @@ def personaje_de(cuenta, indice=0):
     if not cuenta or indice >= len(cuenta.get('personajes', [])):
         return None
     p = cuenta['personajes'][indice]
+    # REPARACION AL CARGAR. El banco guarda cada casilla como (objeto,
+    # cantidad); en memoria es tupla pero de la base vuelve como LISTA, y el
+    # codigo del banco solo miraba la tupla. Al sacar algo, la lista entera
+    # [objeto, cantidad] acababa DENTRO de la mochila como si fuera un id, y
+    # desde ese momento todo lo que calcula peso o stats reventaba con
+    # "int() ... not 'list'": no se podia mover nada. Aqui se deshace: la
+    # casilla se queda con el objeto y la cantidad pasa a donde va.
+    _cant_limpia = {int(k): int(v) for k, v in p.get('cantidades', {}).items()}
+    _inv_limpio = {}
+    for _k, _v in p.get('inventario', {}).items():
+        if isinstance(_v, (list, tuple)):
+            if not _v:
+                continue
+            _inv_limpio[int(_k)] = int(_v[0])
+            if len(_v) > 1 and int(_v[1]) > 1:
+                _cant_limpia[int(_k)] = int(_v[1])
+        else:
+            _inv_limpio[int(_k)] = _v
     return Personaje(
         entity_id=1000 + p['char_id'] % 1000,
         char_id=p['char_id'],
@@ -408,20 +443,21 @@ def personaje_de(cuenta, indice=0):
         quests=[tuple(x) for x in p['quests']],
         hp=p.get('hp', 205), hp_max=p.get('hp_max', 205),
         mp=p.get('mp', 154), mp_max=p.get('mp_max', 154),
-        inventario={int(k): v for k, v in p.get('inventario', {}).items()},
+        inventario=_inv_limpio,
         sp=max(0, min(int(p.get('sp') or 0), 10 * 1000)),
         mejoras={int(k): v for k, v in (p.get('mejoras') or {}).items()},
         checkpoint_stage=int((p.get('checkpoint') or {}).get('stage', 0)),
         checkpoint_x=int(((p.get('checkpoint') or {}).get('tile') or [0, 0])[0]),
         checkpoint_y=int(((p.get('checkpoint') or {}).get('tile') or [0, 0])[1]),
-        cantidades={int(k): int(v) for k, v in p.get('cantidades', {}).items()},
+        cantidades=_cant_limpia,
         tutorial=p.get('tutorial', 0),
         oro=p.get('oro', 0),
         stage=p.get('stage_id', 51),
         faction=p.get('faction', 'Heaven'),
         nivel=p.get('nivel', 1),
         exp=p.get('exp', 0),
-        banco={int(k): v for k, v in p.get('banco', {}).items()},
+        banco={int(k): (tuple(v) if isinstance(v, list) else v)
+               for k, v in p.get('banco', {}).items()},
         banco_oro=int(p.get('banco_oro', 0)),
         album={str(k): int(v) for k, v in (p.get('album') or {}).items()},
         logros=[int(x) for x in (p.get('logros') or [])],

@@ -88,6 +88,22 @@ def declarados(stage):
     return salida
 
 
+# Los totems los pone el cliente como "Totem" a secas y el servidor los
+# lleva aparte, con el id de cada ciudad sacado de capturas. No se tocan.
+NO_SON_NPC = {'Totem'}
+
+
+def _corto(nombre):
+    """El nombre como lo guarda el servidor: CORTADO A 16 caracteres.
+
+    Las plantillas salen de capturas y el mensaje del NPC lleva el nombre en
+    16 bytes, asi que "Adventure Guild Admin" queda en "Adventure Guild " y
+    "Bassil Archeologist" en "Bassil Archeolog". Sin cortar, un NPC que ya
+    estaba en una casilla vecina salia como "falta" y se habria duplicado.
+    """
+    return (nombre or '')[:16].strip().lower()
+
+
 def _plantillas_por_stage():
     """stage -> (ruta del json, datos). Solo las que declaran stage."""
     salida = {}
@@ -139,12 +155,14 @@ def revisar(solo=None):
                 if s.get('tile'):
                     por_casilla[tuple(s['tile'])] = s
                 if s.get('nombre'):
-                    por_nombre[s['nombre']] = s
+                    por_nombre[_corto(s['nombre'])] = s
         pendientes = []
         for n in dice:
             if tuple(n['tile']) in por_casilla:
                 continue                     # ya hay alguien ahi
-            p = por_nombre.get(n['nombre'])
+            if n['nombre'] in NO_SON_NPC:
+                continue
+            p = por_nombre.get(_corto(n['nombre']))
             if p is None:
                 pendientes.append(n)
             else:
@@ -174,7 +192,10 @@ def poner(solo=None):
             usadas.add(eid)
             datos['spawns'].append({
                 'entity_id': eid,
-                'nombre': n['nombre'],
+                # cortado a 16 como los que vienen de capturas: asi
+                # lo buscan los dialogos y asi va en el mensaje
+                'nombre': n['nombre'][:16],
+                'nombre_completo': n['nombre'],
                 'npc_type': n['npc_type'],
                 'sprite': n['sprite'],
                 'klass': 400,

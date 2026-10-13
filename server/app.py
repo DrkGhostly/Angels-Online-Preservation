@@ -1663,6 +1663,10 @@ def _dar_sp(ses, yo, mag, addr=''):
         return
     antes = max(0, int(getattr(ses, 'sp', 0) or 0))
     ganado = 0
+    # Si el SP viene del hechizo encadenado, lleva su probabilidad (轉嫁機率).
+    _prob = int((mag or {}).get('sp_gana_prob', 100) or 100)
+    if da > 0 and _prob < 100 and random.randint(1, 100) > _prob:
+        da = 0
     if da > 0:
         for _p in _coste_vida(ses, yo, mag, addr):
             ses.enviar(_p)
@@ -5510,6 +5514,11 @@ class Servidor:
                         else:
                             ses.personaje.hp = min(_vida_max(ses.personaje), ses.personaje.hp + cura)
                             targ_cura_vis = yo
+                            # Y el MP, si lo cura (Soul Discharge V: +12000).
+                            _mp_c = int(mag.get('mp_cura') or 0)
+                            if _mp_c > 0:
+                                ses.personaje.mp = min(_mana_max(ses.personaje),
+                                                       ses.personaje.mp + _mp_c)
                         ses.enviar(_cb.efecto_curacion_inicio(yo, targ_cura_vis, cura, efecto=ef), _cb.gcd_paquete())
 
                         def _fin_cura():
@@ -5760,6 +5769,26 @@ class Servidor:
                                         ses.enviar_inmediato(*pkgs_expirar)
                                 asyncio.get_event_loop().call_later(dur_ms / 1000.0, _expirar_buff)
 
+                            # Recuperacion instantanea de un buff de 0 ms (Soul
+                            # Discharge V: +15000 HP y +12000 MP). Va aqui, con el
+                            # resto del buff, para que salga con SU animacion.
+                            _hc = int(mag.get('hp_cura_buff') or 0)
+                            _mc = int(mag.get('mp_cura') or 0)
+                            if (_hc or _mc) and ses.personaje:
+                                if _hc:
+                                    ses.personaje.hp = min(_vida_max(ses.personaje),
+                                                           ses.personaje.hp + _hc)
+                                    pkgs_buff.extend([
+                                        _cb.numero_flotante(yo, _hc, _cb.TIPO_CURA_HP),
+                                        _cb.atributo(yo, ses.personaje.hp, _cb.KIND_HP)])
+                                if _mc:
+                                    ses.personaje.mp = min(_mana_max(ses.personaje),
+                                                           ses.personaje.mp + _mc)
+                                    pkgs_buff.extend([
+                                        _cb.numero_flotante(yo, _mc, _cb.TIPO_CURA_MP),
+                                        _cb.atributo(yo, ses.personaje.mp, _cb.KIND_MP)])
+                                log.info('[%s] %s recupera %d HP y %d MP'
+                                         % (addr, mag.get('nombre'), _hc, _mc))
                             pkgs_buff.extend(_otorgar_skill_exp(ses, ses.personaje, yo, magic_id=tipo))
                             ses.enviar_inmediato(*pkgs_buff)
 
@@ -7117,7 +7146,7 @@ class Servidor:
                         log.info(f"[{addr}] mochila llena, no se puede sacar del banco")
                         return
                     _v = _p.banco.pop(_ori)
-                    _it, _cn = _v if isinstance(_v, tuple) else (_v, 1)
+                    _it, _cn = _v if isinstance(_v, (list, tuple)) else (_v, 1)
                     _bolsa[_d] = _it
                     if _cn > 1:
                         ses.cantidades[_d] = _cn
@@ -7179,8 +7208,8 @@ class Servidor:
                         _v_dst = _p.banco[_dst]
                         _p.banco[_ori] = _v_dst
                         _p.banco[_dst] = _v_ori
-                        _it1, _cn1 = _v_ori if isinstance(_v_ori, tuple) else (_v_ori, 1)
-                        _it2, _cn2 = _v_dst if isinstance(_v_dst, tuple) else (_v_dst, 1)
+                        _it1, _cn1 = _v_ori if isinstance(_v_ori, (list, tuple)) else (_v_ori, 1)
+                        _it2, _cn2 = _v_dst if isinstance(_v_dst, (list, tuple)) else (_v_dst, 1)
                         ses.enviar(
                             _iv3.banco_poner(_p.char_id, _dst, _it1, _cn1, dueno=_p.entity_id),
                             _iv3.banco_poner(_p.char_id, _ori, _it2, _cn2, dueno=_p.entity_id)
@@ -7188,7 +7217,7 @@ class Servidor:
                         log.info(f"[{addr}] banco: swap casilla {_ori} ({_it1}) <-> {_dst} ({_it2})")
                     else:
                         _v = _p.banco.pop(_ori)
-                        _it, _cn = _v if isinstance(_v, tuple) else (_v, 1)
+                        _it, _cn = _v if isinstance(_v, (list, tuple)) else (_v, 1)
                         _p.banco[_dst] = (_it, _cn)
                         ses.enviar(
                             _iv3.banco_vaciar_ranura(_ori),
@@ -7223,7 +7252,7 @@ class Servidor:
                     _d = _dst if (_dst >= 20 and _dst not in _bolsa) else _ranura_libre(_bolsa, desde=20)
                     if _d is not None:
                         _v = _p.banco.pop(_ori)
-                        _it, _cn = _v if isinstance(_v, tuple) else (_v, 1)
+                        _it, _cn = _v if isinstance(_v, (list, tuple)) else (_v, 1)
                         _bolsa[_d] = _it
                         if _cn > 1:
                             ses.cantidades[_d] = _cn
@@ -7356,7 +7385,7 @@ class Servidor:
                     log.info(f"[{addr}] mochila llena, no se puede sacar del banco")
                     return
                 _v = _p.banco.pop(arg1)
-                _it, _cn = _v if isinstance(_v, tuple) else (_v, 1)
+                _it, _cn = _v if isinstance(_v, (list, tuple)) else (_v, 1)
                 _bolsa[_d] = _it
                 if _cn > 1:
                     ses.cantidades[_d] = _cn
@@ -9447,7 +9476,11 @@ class Servidor:
                     for r, v in sorted(_bco.items()):
                         if int(r) == 0:
                             continue
-                        if isinstance(v, tuple):
+                        # (objeto, cantidad). En memoria es tupla, pero al
+                        # volver de cuentas.db llega como LISTA, y solo se
+                        # miraba la tupla: int([item, n]) reventaba al abrir
+                        # el almacen de cualquier personaje recien cargado.
+                        if isinstance(v, (tuple, list)):
                             _guardado.append((int(r), int(v[0]), int(v[1]) if len(v) > 1 else 1))
                         else:
                             _guardado.append((int(r), int(v), 1))

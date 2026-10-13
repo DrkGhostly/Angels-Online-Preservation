@@ -163,7 +163,11 @@ def _propios():
     global _PROPIOS
     if _PROPIOS is None:
         if DIALOGOS_NPC.exists():
-            _PROPIOS = json.loads(DIALOGOS_NPC.read_text(encoding='utf-8'))['npcs']
+            d = json.loads(DIALOGOS_NPC.read_text(encoding='utf-8'))
+            _PROPIOS = dict(d.get('npcs', {}))
+            for k, v in d.items():
+                if k not in ('_nota', 'npcs') and isinstance(v, dict):
+                    _PROPIOS[k] = v
         else:
             _PROPIOS = {}
     return _PROPIOS
@@ -377,6 +381,24 @@ def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
         return [armar_linea(156616, npc_val or val_por_entidad(entidad), [])[2:]]
     if nom_lower in ('mr. fleming', 'fleming', 'mr fleming') or entidad == 90406000:
         return [armar_linea(157311, npc_val or val_por_entidad(entidad), [])[2:]]
+    if nom_lower in ('green forest scholar', 'green forest sch'):
+        return [armar_linea(90101, npc_val or val_por_entidad(entidad), [])[2:]]
+    if nom_lower in ('bassil archeologist', 'bassil archeolog'):
+        return [armar_linea(36601, npc_val or val_por_entidad(entidad), [])[2:]]
+    if nom_lower == 'nark paul':
+        return [armar_linea(85201, npc_val or val_por_entidad(entidad), [])[2:]]
+
+    # LOS BANQUEROS DE LAS CAPITALES. Se llaman "Bank Clerk" o "Banker" a
+    # secas -- en Aurora, Iron Castle, Cherry, Gebuer, Memory Cave, Mysterious
+    # Garden y Breeze Woods -- o "Bank Clerk Aibey/Aiky" en Dark City, y
+    # ninguna rama los cogia: el log decia "clic en la entidad 122139 (Bank
+    # Clerk): sin dialogo". Llevan el flujo medido en Steam Town, Edo y
+    # Shuwa: 5225 con [5030, 5032, 5033], la 5032 lleva a la 5236 (en
+    # respuesta_a) y la 5237 abre el almacen. Se compara el nombre ENTERO
+    # para no quitarle el turno a ningun banquero con rama propia.
+    if nom_lower in ('bank clerk', 'banker', 'bank clerk aibey', 'bank clerk aiky'):
+        return [armar_linea(5225, npc_val or val_por_entidad(entidad),
+                            [5030, 5032, 5033])[2:]]
 
     # --- Busy Market (region de Warring Realm) ---
     # Medido en mundo_131157_254492_orden.jsonl, seis clics. Misma forma
@@ -2995,7 +3017,8 @@ def ordenar_opciones_mision(opciones: list) -> list:
         palabras_salida = ('leave', 'going', 'quit', 'sorry', 'refuse', 'cancel',
                            'not now', 'not interested', 'go away', 'suspicious',
                            'too dangerous', 'something else', 'will not', 'dare not',
-                           'decide to leave', 'no, sorry')
+                           'decide to leave', 'no, sorry', 'bye', 'see you', 'take care',
+                           'another day', 'next time', 'alone', 'later', 'busy')
         return any(w in txt for w in palabras_salida)
     
     positivas = [m for m in opciones if not es_salida(m)]
@@ -3018,6 +3041,67 @@ def info_flujo_mision(qid: int) -> dict:
     base = qid * 100
     import re
     is_lvl = lambda t: bool(re.search(r'level.*?\d+|等級|haven\'t|hasn\'t', t, re.I)) and len(t) > 15
+
+    # Casos especificos medidos exactamente en msg.xml:
+    if qid == 852:  # Nark Paul (Desert Racetrack / Crescent Valley)
+        return {
+            'tipo': '852',
+            'intro': [],
+            'rechazo_nivel': 85207,
+            'pregunta': 85201,
+            'ops_preg': [85202, 85203],
+            'historia': [],
+            'propuesta': 85204,
+            'ops_prop': [85205, 85206],
+            'exito': 85208,
+            'progreso': 85209,
+            'completada': [85210, 85211],
+        }
+
+    if qid == 853:  # Nark Paul (Poisonous Powder)
+        return {
+            'tipo': '853',
+            'intro': [],
+            'rechazo_nivel': None,
+            'pregunta': 85301,
+            'ops_preg': [85302, 85303],
+            'historia': [],
+            'propuesta': 85304,
+            'ops_prop': [85305, 85306],
+            'exito': 85307,
+            'progreso': 85308,
+            'completada': [85312],
+        }
+
+    if qid == 366:  # Bassil Archeologist (From the Legend of the Ancients)
+        return {
+            'tipo': '366',
+            'intro': [],
+            'rechazo_nivel': 36602,
+            'pregunta': 36601,
+            'ops_preg': [36604, 36605],
+            'historia': [],
+            'propuesta': 36603,
+            'ops_prop': [36604, 36605],
+            'exito': 36606,
+            'progreso': 36607,
+            'completada': [36614, 36615],
+        }
+
+    if qid == 901:  # Green Forest Scholar (For the Wind Pinecones)
+        return {
+            'tipo': '901',
+            'intro': [],
+            'rechazo_nivel': 90109,
+            'pregunta': 90101,
+            'ops_preg': [90103, 90104],
+            'historia': [90110],
+            'propuesta': 90111,
+            'ops_prop': [90112, 90113],
+            'exito': 90114,
+            'progreso': 90115,
+            'completada': [90114],
+        }
 
     # 1. Patrón B (misiones de Eden como 1572, 1573, 1574, 1575... donde base + 1 es saludo, base + 2/3 opciones, base + 4 rechazo nivel)
     if (base + 1) in msgs and (base + 2) in msgs and is_lvl(msgs.get(base + 4, '')):

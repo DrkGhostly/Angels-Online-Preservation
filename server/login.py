@@ -205,7 +205,21 @@ def secuencia(p: Personaje):
                        p.oro if int(r) == _inv.RANURA_ORO
                        else max(1, int((p.cantidades or {}).get(int(r), (p.cantidades or {}).get(str(r), 1)))))
                       for r, it in p.inventario.items()
-                      if (int(r) == _inv.RANURA_ORO or (it and int(it) > 0)) and (int(r) <= 120 or 497 <= int(r) <= 556)]
+                      # DE LA 167 EN ADELANTE es todo del personaje y se
+                      # quedaba fuera de este filtro, que solo dejaba pasar
+                      # hasta la 120 y las ocultas de mision. Como esto se
+                      # manda al entrar y en CADA cambio de mapa, al cruzar un
+                      # portal desaparecia del cliente aunque el servidor lo
+                      # tuviera guardado en su sitio:
+                      #   167..174  la ropa de fashion puesta
+                      #   175       la insignia
+                      #   176..275  la bolsa de Fashion (4 paginas de 25)
+                      #   276..     las pestanas Card y Furniture de esa bolsa
+                      # El rango sale de las ranuras que de verdad usan los
+                      # personajes guardados: fashion en 176..199 y tarjetas
+                      # coleccionables en la 276 y la 277.
+                      if (int(r) == _inv.RANURA_ORO or (it and int(it) > 0))
+                      and (int(r) <= 120 or 167 <= int(r) <= 556)]
             salida.append(_inv.completo(p.char_id, _items, p.entity_id,
                                         mejoras=getattr(p, 'mejoras', None),
                                         mascota=getattr(p, 'mascota', None),

@@ -1084,6 +1084,20 @@ def datos_magia(magic_id: int) -> dict:
             res['cost_sp'] = _num(d.get('消耗SP燈') or d.get('cost_sp'), 0)
             res['sp'] = res['cost_sp']
             res['sp_gana'] = _num(d.get('SP'), 0)
+            # EL SP PUEDE VENIR DEL HECHIZO ENCADENADO. Bloodlust V (5680) no
+            # trae SP: trae el sacrificio -- hp -6000 de vida MAXIMA durante
+            # 300 s -- y encadena por 轉嫁法術 el 4650 con 轉嫁機率 100, que
+            # es el que lleva SP 6000. Leyendo solo la columna del padre el
+            # log decia "_dar_sp(Bloodlust V): sp_gana=0" y no daba nada.
+            # Solo se toma si el hijo de verdad trae SP: hay miles de
+            # encadenados de ataque (aturdir, sangrar, veneno) y esos no.
+            res['sp_gana_prob'] = 100
+            _hijo = _num(d.get('轉嫁法術'), 0)
+            if not res['sp_gana'] and _hijo and _hijo != magic_id:
+                _sp_hijo = datos_magia(_hijo).get('sp_gana', 0)
+                if _sp_hijo > 0:
+                    res['sp_gana'] = _sp_hijo
+                    res['sp_gana_prob'] = _num(d.get('轉嫁機率'), 100) or 100
             res['efecto'] = _num(d.get('特效編號'), EFECTO_GOLPE)
             res['hp'] = _num(d.get('hp') if d.get('hp') is not None else d.get('HP'), 0)
             res['cd_ms'] = _num(d.get('後置時間'), 1000)
@@ -1431,6 +1445,22 @@ def datos_magia(magic_id: int) -> dict:
                 any(k in nom_l for k in ('cure spell', 'mighty cure', 'holy light', 'angel prayer', 'tears of life', "angel's tears")) or
                 ('restores hp' in desc_l and 'speed' not in desc_l and 'injury' not in nom_l and 'song' not in nom_l)
             ) and d.get('攻擊型') != '是'
+
+            # RECUPERACION INSTANTANEA DENTRO DE UN BUFF. Soul Discharge V es un
+            # buff de 0 ms -- y con SU animacion, que es la buena -- que ademas
+            # suma vida y mana al momento: "Recovers your HP and MP", hp 15000
+            # y mp 12000 en VALOR FIJO (HP定義/MP定義 = 數值). Se probo pasarla
+            # por el camino de las curas y recuperaba, pero con la animacion de
+            # Cure Spell en vez de la suya. Asi que se queda como buff y app.py
+            # aplica estos dos valores al ejecutarlo.
+            # El MP va en 'mp_cura' y no en 'mp', que en este diccionario es lo
+            # que CUESTA el hechizo (消耗MP).
+            _instant = (target == '自己' and res['dur_ms'] == 0
+                        and d.get('攻擊型') != '是' and not res['es_cura'])
+            res['hp_cura_buff'] = (max(0, res['hp']) if _instant
+                                   and d.get('HP定義') == '數值' else 0)
+            res['mp_cura'] = (max(0, _num(d.get('mp'), 0)) if _instant
+                              and d.get('MP定義') == '數值' else 0)
 
             # Buff temporal (aumenta defensa, velocidad, critico, % reduccion de dano, etc.)
             res['es_buff'] = (not res['es_invocacion']) and (not res['es_encanto']) and (not res['es_panico']) and (not res['es_debuff']) and (not res.get('es_brand')) and (

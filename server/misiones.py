@@ -126,12 +126,21 @@ _CADENAS_CIUDAD = {
 
 
 def normalizar_nombre_npc(nom: str) -> str:
-    """Normaliza el nombre de un NPC quitando prefijos de titulo comunes (Mr., Dr., etc.)."""
+    """Normaliza el nombre de un NPC quitando prefijos de nivel, titulo y mapeando nombres truncados."""
     n = (nom or '').strip().lower()
-    for prefix in ('mr. ', 'mr ', 'dr. ', 'dr ', 'mrs. ', 'ms. ', 'sage '):
+    import re
+    n = re.sub(r'^(?:level|lvl)\s*\d+\s*[-–:]\s*', '', n).strip()
+    for prefix in ('mr. ', 'mr ', 'dr. ', 'dr ', 'mrs. ', 'ms. ', 'sage ', 'elder ', 'master '):
         if n.startswith(prefix):
-            return n[len(prefix):].strip()
-    return n
+            n = n[len(prefix):].strip()
+            break
+    ALIASES = {
+        'green forest sch': 'green forest scholar',
+        'bassil archeolog': 'bassil archeologist',
+        'adventure guild': 'adventure guild admin',
+        'adventure guild ': 'adventure guild admin',
+    }
+    return ALIASES.get(n, n)
 
 _NPC_STAGE_MAP = None
 _ITEM_NAMES_CACHE = None
@@ -368,7 +377,10 @@ def misiones_disponibles_npc(p, npc_nombre: str, stage: int = 0, entidad: int = 
         # 1. Filtro por mapa / stage
         q_stage = info.get('stage_id')
         if q_stage and stage and q_stage != stage:
-            continue
+            if stage in (3, 26, 29, 38) and normalizar_nombre_npc(info.get('npc_inicio')) == norm_l:
+                pass
+            else:
+                continue
 
         # 2. Si ya la tiene activa, no se ofrece de nuevo
         st, pa, comp = estado_mision(p, qid)
