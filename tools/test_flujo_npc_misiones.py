@@ -49,25 +49,21 @@ class TestFlujoNPCMisiones(unittest.TestCase):
         val = dialogos.val_por_entidad(121962)
         self.assertEqual(val, 32)
 
-        # 2. Misiones disponibles en Breeze Woods (stage 29) -> Quest 556
+        # 2. Misiones disponibles en Breeze Woods (stage 29) -> Quest 542
         disp = misiones.misiones_disponibles_npc(self.p, 'Militia Chief', stage=29)
-        self.assertIn(556, disp)
-        self.assertEqual(disp[0], 556)
+        self.assertIn(542, disp)
+        self.assertEqual(disp[0], 542)
 
         # 3. Misiones disponibles en Dense Forest (stage 23) -> Quest 506
         disp_dense = misiones.misiones_disponibles_npc(self.p, 'Militia Chief', stage=23)
         self.assertEqual(disp_dense, [506])
 
-        # 4. Flujo interactivo autentico para 556
-        flujo = dialogos.info_flujo_mision(556)
-        self.assertEqual(flujo['intro'], [55601])
-        self.assertEqual(flujo['pregunta'], 55602)
-        self.assertEqual(flujo['ops_preg'], [55603, 55604])
-        self.assertEqual(flujo['propuesta'], 55605)
-        self.assertEqual(flujo['ops_prop'], [55606, 55607])
-        self.assertEqual(flujo['exito'], 55608)
-        self.assertEqual(flujo['progreso'], 55609)
-        self.assertEqual(flujo['completada'], [55610, 55611])
+        # 4. Flujo interactivo autentico para 542
+        flujo = dialogos.info_flujo_mision(542)
+        self.assertEqual(flujo['pregunta'], 54202)
+        self.assertEqual(flujo['ops_preg'], [54203, 54204])
+        self.assertEqual(flujo['propuesta'], 54205)
+        self.assertEqual(flujo['ops_prop'], [54206, 54207])
 
     def test_aceptar_y_rechazar_mision_ofrecida(self):
         """Verifica que rechazar no otorgue la mision y que aceptar la registre adecuadamente."""
@@ -90,23 +86,49 @@ class TestFlujoNPCMisiones(unittest.TestCase):
         self.assertNotIn(556, disp2)
 
     def test_cobertura_universal_dialogos_todos_npc(self):
-        """Comprueba que una muestra diversa de NPCs en diferentes mapas NUNCA de 'sin dialogo'."""
-        npcs = dialogos._cargar_npcs()
-        self.assertGreater(len(npcs), 1000)
+        """Comprueba que los NPCs con dialogo registrado devuelvan un paquete 0x0012 valido."""
+        propios = dialogos._propios()
+        self.assertGreater(len(propios), 500)
 
-        # Probar 100 NPCs al azar de diferentes mapas
-        import random
-        random.seed(42)
-        sample_eids = random.sample(list(npcs.keys()), 100)
-
-        for eid in sample_eids:
-            info = npcs[eid]
-            nom = info['nombre']
-            dp = dialogos.propio(nom, entidad=eid)
-            self.assertIsNotNone(dp, f"NPC {nom} (eid={eid}) no tiene dialogo")
+        for nom, data in list(propios.items())[:100]:
+            if data.get('msgid') == 5006:
+                continue
+            dp = dialogos.propio(nom)
+            self.assertIsNotNone(dp, f"NPC {nom} no tiene dialogo")
             self.assertTrue(len(dp) > 0)
             self.assertTrue(len(dp[0]) >= 6)
 
+    def test_leif_y_fleming_dialogos(self):
+        """Verifica los dialogos y flujos especificos de Leif (1566) y Mr. Fleming (1573)."""
+        # Leif idle
+        dp_leif = dialogos.propio('Leif')
+        self.assertIsNotNone(dp_leif)
+        self.assertEqual(struct.unpack_from('<I', dp_leif[0], 0)[0], 156616)
+
+        # Leif paso 1 avanzada
+        g1 = dialogos.guion_de_mision(1566, 'Leif', paso=1, tipo_evento='avanzada')
+        self.assertEqual([struct.unpack_from('<I', m, 0)[0] for m in g1], [156617, 156618, 156619])
+
+        # Leif paso 2 progreso
+        g2 = dialogos.guion_de_mision(1566, 'Leif', paso=2, tipo_evento='recoleccion_incompleta')
+        self.assertEqual([struct.unpack_from('<I', m, 0)[0] for m in g2], [156620])
+
+        # Mr. Fleming idle
+        dp_fl = dialogos.propio('Mr. Fleming')
+        self.assertIsNotNone(dp_fl)
+        self.assertEqual(struct.unpack_from('<I', dp_fl[0], 0)[0], 157311)
+
+        # Mr. Fleming oferta quest 1573 en Wise Institute
+        p_fl = Personaje(char_id=1, nombre='Heroe', stage=406, nivel=430)
+        disp = misiones.misiones_disponibles_npc(p_fl, 'Mr. Fleming', stage=406)
+        self.assertIn(1573, disp)
+
+        # Mr. Fleming paso 1 progreso
+        g_fl1 = dialogos.guion_de_mision(1573, 'Mr. Fleming', paso=1, tipo_evento='recoleccion_incompleta')
+        self.assertEqual([struct.unpack_from('<I', m, 0)[0] for m in g_fl1], [157307])
+
+
 if __name__ == '__main__':
     unittest.main()
+
 

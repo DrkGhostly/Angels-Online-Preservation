@@ -4,7 +4,7 @@
  "spawns": [
   {
    "entity_id": 592710326,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -20,7 +20,7 @@
   },
   {
    "entity_id": 593627844,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -36,7 +36,7 @@
   },
   {
    "entity_id": 604048227,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -52,7 +52,7 @@
   },
   {
    "entity_id": 604506986,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -68,7 +68,7 @@
   },
   {
    "entity_id": 604834671,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -84,7 +84,7 @@
   },
   {
    "entity_id": 605227893,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -100,7 +100,7 @@
   },
   {
    "entity_id": 605293430,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -116,7 +116,7 @@
   },
   {
    "entity_id": 605424504,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -132,7 +132,7 @@
   },
   {
    "entity_id": 605555578,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -148,7 +148,7 @@
   },
   {
    "entity_id": 607259540,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -164,7 +164,7 @@
   },
   {
    "entity_id": 607587225,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -180,7 +180,7 @@
   },
   {
    "entity_id": 618466367,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -196,7 +196,7 @@
   },
   {
    "entity_id": 618925126,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -212,7 +212,7 @@
   },
   {
    "entity_id": 619187274,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -244,7 +244,7 @@
   },
   {
    "entity_id": 619646033,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -260,7 +260,7 @@
   },
   {
    "entity_id": 621218921,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -292,7 +292,7 @@
   },
   {
    "entity_id": 627641547,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -356,7 +356,7 @@
   },
   {
    "entity_id": 628165843,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -404,7 +404,7 @@
   },
   {
    "entity_id": 628493528,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -420,7 +420,7 @@
   },
   {
    "entity_id": 628559065,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -436,7 +436,7 @@
   },
   {
    "entity_id": 628624602,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -452,7 +452,7 @@
   },
   {
    "entity_id": 628755676,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -468,7 +468,7 @@
   },
   {
    "entity_id": 628821213,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -484,7 +484,7 @@
   },
   {
    "entity_id": 629083361,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -500,7 +500,7 @@
   },
   {
    "entity_id": 630197490,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -628,7 +628,7 @@
   },
   {
    "entity_id": 638782837,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -644,7 +644,7 @@
   },
   {
    "entity_id": 639044985,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -660,7 +660,7 @@
   },
   {
    "entity_id": 639896966,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -884,7 +884,7 @@
   },
   {
    "entity_id": 650182747,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -900,7 +900,7 @@
   },
   {
    "entity_id": 650707043,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -916,7 +916,7 @@
   },
   {
    "entity_id": 650838117,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -1044,7 +1044,7 @@
   },
   {
    "entity_id": 658243832,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -1060,7 +1060,7 @@
   },
   {
    "entity_id": 661782830,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -1076,7 +1076,7 @@
   },
   {
    "entity_id": 662044978,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -1092,7 +1092,7 @@
   },
   {
    "entity_id": 662307126,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -1124,7 +1124,7 @@
   },
   {
    "entity_id": 665452902,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -1300,7 +1300,7 @@
   },
   {
    "entity_id": 672989928,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -1316,7 +1316,7 @@
   },
   {
    "entity_id": 673383166,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -1332,7 +1332,7 @@
   },
   {
    "entity_id": 673579777,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -1348,7 +1348,7 @@
   },
   {
    "entity_id": 674169610,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -1364,7 +1364,7 @@
   },
   {
    "entity_id": 674497295,
-   "nombre": "Hardworking Pig",
+   "nombre": "Duty Pig",
    "npc_type": 23765,
    "sprite": 111492,
    "klass": 1,
@@ -1874,7 +1874,7 @@
   },
   {
    "entity_id": 2139095796,
-   "nombre": "E-Hardworking Pig",
+   "nombre": "E-Duty Pig",
    "npc_type": 23771,
    "sprite": 111492,
    "klass": 1,
@@ -1890,7 +1890,7 @@
   },
   {
    "entity_id": 2139161333,
-   "nombre": "E-Hardworking Pig",
+   "nombre": "E-Duty Pig",
    "npc_type": 23771,
    "sprite": 111492,
    "klass": 1,
@@ -1906,7 +1906,7 @@
   },
   {
    "entity_id": 2139226870,
-   "nombre": "E-Hardworking Pig",
+   "nombre": "E-Duty Pig",
    "npc_type": 23771,
    "sprite": 111492,
    "klass": 1,
@@ -1922,7 +1922,7 @@
   },
   {
    "entity_id": 2139292407,
-   "nombre": "E-Hardworking Pig",
+   "nombre": "E-Duty Pig",
    "npc_type": 23771,
    "sprite": 111492,
    "klass": 1,
@@ -1938,7 +1938,7 @@
   },
   {
    "entity_id": 2139357944,
-   "nombre": "E-Hardworking Pig",
+   "nombre": "E-Duty Pig",
    "npc_type": 23771,
    "sprite": 111492,
    "klass": 1,
@@ -2370,7 +2370,7 @@
   },
   {
    "entity_id": 3618308247,
-   "nombre": "Transport Worker",
+   "nombre": "Transporter",
    "npc_type": 23768,
    "sprite": 111505,
    "klass": 1,
@@ -2386,7 +2386,7 @@
   },
   {
    "entity_id": 3618898080,
-   "nombre": "Transport Worker",
+   "nombre": "Transporter",
    "npc_type": 23768,
    "sprite": 111505,
    "klass": 1,
@@ -2402,7 +2402,7 @@
   },
   {
    "entity_id": 3619225765,
-   "nombre": "Transport Worker",
+   "nombre": "Transporter",
    "npc_type": 23768,
    "sprite": 111505,
    "klass": 1,
@@ -2434,7 +2434,7 @@
   },
   {
    "entity_id": 3620405431,
-   "nombre": "Transport Worker",
+   "nombre": "Transporter",
    "npc_type": 23768,
    "sprite": 111505,
    "klass": 1,
@@ -2450,7 +2450,7 @@
   },
   {
    "entity_id": 3620667579,
-   "nombre": "Transport Worker",
+   "nombre": "Transporter",
    "npc_type": 23768,
    "sprite": 111505,
    "klass": 1,
@@ -2466,7 +2466,7 @@
   },
   {
    "entity_id": 3620733116,
-   "nombre": "Transport Worker",
+   "nombre": "Transporter",
    "npc_type": 23768,
    "sprite": 111505,
    "klass": 1,
@@ -2482,7 +2482,7 @@
   },
   {
    "entity_id": 3621060801,
-   "nombre": "Transport Worker",
+   "nombre": "Transporter",
    "npc_type": 23768,
    "sprite": 111505,
    "klass": 1,
@@ -2498,7 +2498,7 @@
   },
   {
    "entity_id": 3621257412,
-   "nombre": "Transport Worker",
+   "nombre": "Transporter",
    "npc_type": 23768,
    "sprite": 111505,
    "klass": 1,
@@ -2514,7 +2514,7 @@
   },
   {
    "entity_id": 3621519560,
-   "nombre": "Transport Worker",
+   "nombre": "Transporter",
    "npc_type": 23768,
    "sprite": 111505,
    "klass": 1,
@@ -2530,7 +2530,7 @@
   },
   {
    "entity_id": 3621650634,
-   "nombre": "Transport Worker",
+   "nombre": "Transporter",
    "npc_type": 23768,
    "sprite": 111505,
    "klass": 1,
@@ -2546,7 +2546,7 @@
   },
   {
    "entity_id": 3621781708,
-   "nombre": "Transport Worker",
+   "nombre": "Transporter",
    "npc_type": 23768,
    "sprite": 111505,
    "klass": 1,
@@ -2562,7 +2562,7 @@
   },
   {
    "entity_id": 3621912782,
-   "nombre": "Transport Worker",
+   "nombre": "Transporter",
    "npc_type": 23768,
    "sprite": 111505,
    "klass": 1,
@@ -2578,7 +2578,7 @@
   },
   {
    "entity_id": 3621978319,
-   "nombre": "Transport Worker",
+   "nombre": "Transporter",
    "npc_type": 23768,
    "sprite": 111505,
    "klass": 1,
@@ -2594,7 +2594,7 @@
   },
   {
    "entity_id": 3622240467,
-   "nombre": "Transport Worker",
+   "nombre": "Transporter",
    "npc_type": 23768,
    "sprite": 111505,
    "klass": 1,
@@ -2610,7 +2610,7 @@
   },
   {
    "entity_id": 3622502615,
-   "nombre": "Transport Worker",
+   "nombre": "Transporter",
    "npc_type": 23768,
    "sprite": 111505,
    "klass": 1,
@@ -2626,7 +2626,7 @@
   },
   {
    "entity_id": 3622633689,
-   "nombre": "Transport Worker",
+   "nombre": "Transporter",
    "npc_type": 23768,
    "sprite": 111505,
    "klass": 1,
@@ -2642,7 +2642,7 @@
   },
   {
    "entity_id": 3622699226,
-   "nombre": "Transport Worker",
+   "nombre": "Transporter",
    "npc_type": 23768,
    "sprite": 111505,
    "klass": 1,
@@ -2738,7 +2738,7 @@
   },
   {
    "entity_id": 3623747818,
-   "nombre": "Transport Worker",
+   "nombre": "Transporter",
    "npc_type": 23768,
    "sprite": 111505,
    "klass": 1,
@@ -2754,7 +2754,7 @@
   },
   {
    "entity_id": 3623813355,
-   "nombre": "Transport Worker",
+   "nombre": "Transporter",
    "npc_type": 23768,
    "sprite": 111505,
    "klass": 1,
@@ -2770,7 +2770,7 @@
   },
   {
    "entity_id": 3623878892,
-   "nombre": "Transport Worker",
+   "nombre": "Transporter",
    "npc_type": 23768,
    "sprite": 111505,
    "klass": 1,

@@ -143,6 +143,9 @@ def vaciar_ranura(dueno: int, ranura: int,
     El byte del contenedor se creia fijo en 1. Al guardar algo en el banco el
     servidor real manda 02 y de dueno el 252 en vez de la entidad.
     """
+    if contenedor == CONT_MOCHILA and (ranura < 0 or ranura >= 60):
+        log.warning(f"Intento de vaciar ranura fuera de limites ({ranura}) en CONT_MOCHILA - omitido para evitar crash")
+        return b''
     return struct.pack('<HIBBIH', 0x001B, 1, 2, contenedor, dueno, ranura)
 
 
@@ -990,6 +993,27 @@ def es_apilable(item_id: int) -> bool:
     return True
 
 
+def es_item_oculto(item_id: int) -> bool:
+    """Si el item es un token de mision oculto (categoria '隱藏' o 'Quest Item').
+    Estos items NUNCA deben meterse en la mochila visible del jugador (ranuras 20..59),
+    solo van en las ranuras de misiones ocultas (497..556).
+    """
+    if not item_id or int(item_id) <= 0:
+        return False
+    iid = int(item_id)
+    cat = categoria_item(iid)
+    if '隱' in cat or 'U' in cat:
+        return True
+    try:
+        import misiones as _mis
+        nom = _mis.nombre_item(iid)
+        if 'Quest Item' in nom:
+            return True
+    except Exception:
+        pass
+    return False
+
+
 def datos_mascota(item_id: int) -> dict:
     """Nombre y sprite de una mascota, sacados de item.xml.
 
@@ -1805,6 +1829,8 @@ def completo(char_id: int, items, dueno: int = None, mejoras=None,
     for it in sorted(items, key=lambda x: int(x[0])):
         ran = int(it[0])
         iid = int(it[1])
+        if iid <= 0:
+            continue
         cnt = int(it[2]) if len(it) > 2 else 1
         ins = it[3] if len(it) > 3 else None
         
@@ -1859,6 +1885,8 @@ def almacen(char_id: int, items, dueno: int = None,
     """
     lista = []
     for it in sorted(items, key=lambda x: int(x[0])):
+        if int(it[1]) <= 0:
+            continue
         lista.append(entrada_banco(char_id, int(it[0]), int(it[1]),
                                    int(it[2]) if len(it) > 2 else 1,
                                    it[3] if len(it) > 3 else None, dueno))

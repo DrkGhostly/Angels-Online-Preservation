@@ -372,6 +372,12 @@ def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
     """Una linea de dialogo para ese NPC, o None si no se le conoce ninguna."""
     npc_val = val or (val_por_entidad(entidad, 0) if entidad else 0)
 
+    nom_lower = (nombre or '').lower().strip()
+    if nom_lower == 'leif' or entidad == 90405000:
+        return [armar_linea(156616, npc_val or val_por_entidad(entidad), [])[2:]]
+    if nom_lower in ('mr. fleming', 'fleming', 'mr fleming') or entidad == 90406000:
+        return [armar_linea(157311, npc_val or val_por_entidad(entidad), [])[2:]]
+
     # --- Busy Market (region de Warring Realm) ---
     # Medido en mundo_131157_254492_orden.jsonl, seis clics. Misma forma
     # que Yatiss y Chilly: banco, tecnico que repara, mercader con dos
@@ -1580,9 +1586,11 @@ def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
                 d = v
                 break
 
+    if d and d.get('msgid') == 5006:
+        d = None
+
     if not d:
-        val_f = npc_val or (val_por_entidad(entidad, 3) if entidad else 3)
-        return [armar_linea(5006, val_f, [])[2:]]
+        return None
 
     res_b = bytearray(bytes.fromhex(d['hex']))
     if npc_val > 0 and len(res_b) >= 6:
@@ -2965,12 +2973,34 @@ def opciones_de_mision(qid: int) -> tuple:
             elif not op_salir and re_rech.search(txt) and len(txt) < 80:
                 op_salir = cand
 
+    if not mid_prompt:
+        return (None, None, None)
+
     if not op_aceptar:
         op_aceptar = (base + 2) if (base + 2) in msgs else 61303
     if not op_salir:
         op_salir = (base + 4) if (base + 4) in msgs else ((base + 5) if (base + 5) in msgs else 7536)
 
-    return (mid_prompt or 5006, op_aceptar, op_salir)
+    return (mid_prompt, op_aceptar, op_salir)
+
+
+def ordenar_opciones_mision(opciones: list) -> list:
+    """Ordena las opciones para que las de interés/aceptación vayan primero (arriba)
+    y las de salida/rechazo al final (abajo)."""
+    if not opciones or len(opciones) <= 1:
+        return list(opciones)
+    msgs = _cargar_msg_dict()
+    def es_salida(mid):
+        txt = (msgs.get(mid) or '').lower().strip()
+        palabras_salida = ('leave', 'going', 'quit', 'sorry', 'refuse', 'cancel',
+                           'not now', 'not interested', 'go away', 'suspicious',
+                           'too dangerous', 'something else', 'will not', 'dare not',
+                           'decide to leave', 'no, sorry')
+        return any(w in txt for w in palabras_salida)
+    
+    positivas = [m for m in opciones if not es_salida(m)]
+    negativas = [m for m in opciones if es_salida(m)]
+    return positivas + negativas
 
 
 def info_flujo_mision(qid: int) -> dict:
@@ -2986,67 +3016,236 @@ def info_flujo_mision(qid: int) -> dict:
     """
     msgs = _cargar_msg_dict()
     base = qid * 100
+    import re
+    is_lvl = lambda t: bool(re.search(r'level.*?\d+|等級|haven\'t|hasn\'t', t, re.I)) and len(t) > 15
 
-    # 1. Patrón estándar de Angels Online (utilizado en más de 1,300 misiones)
+    # 1. Patrón B (misiones de Eden como 1572, 1573, 1574, 1575... donde base + 1 es saludo, base + 2/3 opciones, base + 4 rechazo nivel)
+    if (base + 1) in msgs and (base + 2) in msgs and is_lvl(msgs.get(base + 4, '')):
+        ops_preg = [base + 2, base + 3] if (base + 3) in msgs else [base + 2]
+        historia = [base + 5] if (base + 5) in msgs and (base + 6) in msgs else []
+        propuesta = (base + 6) if (base + 6) in msgs else ((base + 5) if (base + 5) in msgs else (base + 1))
+        # Opciones estándar de confirmación de misión
+        ops_prop = [61303, 7536]
+        return {
+            'tipo': 'patron_b',
+            'intro': [],
+            'rechazo_nivel': base + 4,
+            'pregunta': base + 1,
+            'ops_preg': ordenar_opciones_mision(ops_preg),
+            'historia': historia,
+            'propuesta': propuesta,
+            'ops_prop': ordenar_opciones_mision(ops_prop),
+            'exito': None,
+            'progreso': (base + 7) if (base + 7) in msgs else None,
+            'completada': [m for m in (base + 10, base + 8) if m in msgs] or [propuesta],
+        }
+
+    # 2. Patrón largo con historia intermedia (misiones de Eden como 1566 donde base + 1 es rechazo nivel y base + 2 es saludo)
+    if (base + 9) in msgs and (base + 10) in msgs and (base + 11) in msgs:
+        t10 = msgs.get(base + 10, '')
+        t11 = msgs.get(base + 11, '')
+        if len(t10) < 80 and len(t11) < 80:
+            ops_preg = [base + 3, base + 4] if (base + 3) in msgs and (base + 4) in msgs else [base + 3]
+            ops_prop = [base + 10, base + 11]
+            historia = [m for m in (base + 5, base + 6, base + 7, base + 8) if m in msgs]
+            return {
+                'tipo': 'largo',
+                'intro': [],
+                'rechazo_nivel': base + 1 if (base + 1) in msgs and is_lvl(msgs[base + 1]) else None,
+                'pregunta': base + 2,
+                'ops_preg': ordenar_opciones_mision(ops_preg),
+                'historia': historia,
+                'propuesta': base + 9,
+                'ops_prop': ordenar_opciones_mision(ops_prop),
+                'exito': base + 12 if (base + 12) in msgs else None,
+                'progreso': base + 13 if (base + 13) in msgs else None,
+                'completada': [m for m in (base + 14, base + 15) if m in msgs] or [base + 12],
+            }
+
+    # 3. Patrón estándar corto (utilizado en misiones tradicionales)
     if (base + 2) in msgs and (base + 5) in msgs and (base + 6) in msgs:
+        ops_preg = [base + 3, base + 4] if (base + 3) in msgs and (base + 4) in msgs else [base + 3]
+        ops_prop = [base + 6, base + 7] if (base + 7) in msgs else [base + 6]
         return {
             'tipo': 'estandar',
-            'intro': [base + 1] if (base + 1) in msgs else [],
+            'intro': [],
+            'rechazo_nivel': base + 1 if (base + 1) in msgs and is_lvl(msgs[base + 1]) else None,
             'pregunta': base + 2,
-            'ops_preg': [base + 3, base + 4] if (base + 3) in msgs and (base + 4) in msgs else [base + 3],
+            'ops_preg': ordenar_opciones_mision(ops_preg),
+            'historia': [],
             'propuesta': base + 5,
-            'ops_prop': [base + 6, base + 7] if (base + 7) in msgs else [base + 6],
+            'ops_prop': ordenar_opciones_mision(ops_prop),
             'exito': base + 8 if (base + 8) in msgs else None,
             'progreso': base + 9 if (base + 9) in msgs else None,
             'completada': [m for m in (base + 10, base + 11) if m in msgs] or [base + 5],
         }
 
-    # 2. Casos especiales como Quest 506 (Inspection Tour)
+    # 4. Casos especiales como Quest 506 (Inspection Tour)
     if qid == 506:
         return {
             'tipo': '506',
             'intro': [],
             'pregunta': 50601,
-            'ops_preg': [50604, 50605],
+            'ops_preg': ordenar_opciones_mision([50604, 50605]),
             'propuesta': 50610,
-            'ops_prop': [50611, 50612],
+            'ops_prop': ordenar_opciones_mision([50611, 50612]),
             'exito': 50613,
             'progreso': 50614,
             'completada': [50610],
         }
 
-    # 3. Fallback general buscando opciones
+    # 5. Fallback general buscando opciones
     mid_prompt, op_aceptar, op_salir = opciones_de_mision(qid)
+    if not mid_prompt or mid_prompt == 5006:
+        return None
+
     return {
         'tipo': 'simple',
         'intro': [],
         'pregunta': mid_prompt,
-        'ops_preg': [op_aceptar, op_salir] if op_aceptar else [],
+        'ops_preg': ordenar_opciones_mision([op_aceptar, op_salir] if op_aceptar else []),
         'propuesta': mid_prompt,
-        'ops_prop': [op_aceptar, op_salir] if op_aceptar else [],
+        'ops_prop': ordenar_opciones_mision([op_aceptar, op_salir] if op_aceptar else []),
         'exito': None,
         'progreso': (base + 9) if (base + 9) in msgs else None,
         'completada': [m for m in (base + 10, base + 11) if m in msgs] or [mid_prompt],
     }
 
 
-def guion_de_mision(qid: int, npc_nombre: str = '', jugador: str = '', npc_val: int = 0, entidad: int = 0, completada: bool = False, en_progreso: bool = False):
+DIALOGOS_PASOS_ESPECIALES = {
+    # Quest 1566: Rogue Guardian (Leif en Sandy Heights)
+    (1566, 'leif'): {
+        1: [156617, 156618, 156619],
+        (1, 'avanzada'): [156617, 156618, 156619],
+        2: [156620],
+        (2, 'progreso'): [156620],
+        3: [156621, 156622],
+        (3, 'avanzada'): [156621, 156622],
+        4: [156623],
+        (4, 'progreso'): [156623],
+        5: [156624, 156625, 156626],
+        (5, 'avanzada'): [156624, 156625, 156626],
+        6: [156627],
+        (6, 'progreso'): [156627],
+        7: [156630],
+        (7, 'completada'): [156630],
+        'completada': [156630],
+        'idle': [156616],
+    },
+    (1566, 'weston'): {
+        'progreso': [156613],
+        'completada': [156614, 156615],
+    },
+
+    # Quest 1573: Disorder Institute (Mr. Fleming en Wise Institute)
+    (1573, 'fleming'): {
+        1: [157307],
+        (1, 'progreso'): [157307],
+        2: [157308],
+        (2, 'avanzada'): [157308],
+        3: [157309],
+        (3, 'progreso'): [157309],
+        4: [157310],
+        (4, 'completada'): [157310],
+        'completada': [157310],
+        'idle': [157311],
+    },
+    (1573, 'mr. fleming'): {
+        1: [157307],
+        (1, 'progreso'): [157307],
+        2: [157308],
+        (2, 'avanzada'): [157308],
+        3: [157309],
+        (3, 'progreso'): [157309],
+        4: [157310],
+        (4, 'completada'): [157310],
+        'completada': [157310],
+        'idle': [157311],
+    },
+
+    # Quest 1572: Desert Flower (Sage Oros & Amil en Sandy Heights)
+    (1572, 'sage oros'): {
+        1: [157212, 157213, 157214],
+        (1, 'avanzada'): [157212, 157213, 157214],
+        2: [157215],
+        (2, 'progreso'): [157215],
+        3: [157216, 157217, 157218],
+        (3, 'avanzada'): [157216, 157217, 157218],
+        4: [157219],
+        (4, 'avanzada'): [157219],
+        'idle': [157220],
+    },
+    (1572, 'oros'): {
+        1: [157212, 157213, 157214],
+        (1, 'avanzada'): [157212, 157213, 157214],
+        2: [157215],
+        (2, 'progreso'): [157215],
+        3: [157216, 157217, 157218],
+        (3, 'avanzada'): [157216, 157217, 157218],
+        4: [157219],
+        (4, 'avanzada'): [157219],
+        'idle': [157220],
+    },
+    (1572, 'amil'): {
+        'progreso': [157207],
+        'completada': [157208],
+        'idle': [157209],
+    },
+}
+
+
+def guion_de_mision(qid: int, npc_nombre: str = '', jugador: str = '', npc_val: int = 0,
+                    entidad: int = 0, completada: bool = False, en_progreso: bool = False,
+                    paso: int = 1, tipo_evento: str = ''):
     """Genera el guión de diálogo para aceptar o interactuar con una misión en msg.xml."""
     val_final = npc_val or (val_por_entidad(entidad, 0) if entidad else 0)
     if not val_final:
         val_final = val_por_entidad(entidad, 3) if entidad else 3
 
-    flujo = info_flujo_mision(qid)
     cadenas = [jugador] if jugador else []
+    nom_l = (npc_nombre or '').strip().lower()
+
+    # Normalizar prefijos
+    norm_nom = nom_l
+    for pfx in ('mr. ', 'dr. ', 'mrs. ', 'ms. ', 'sage '):
+        if norm_nom.startswith(pfx):
+            norm_nom = norm_nom[len(pfx):].strip()
+            break
+
+    # 1. Comprobar si hay un mapeo especial por paso y NPC
+    mapa_esp = DIALOGOS_PASOS_ESPECIALES.get((qid, nom_l)) or DIALOGOS_PASOS_ESPECIALES.get((qid, norm_nom))
+    if mapa_esp:
+        mids = None
+        if completada:
+            mids = mapa_esp.get((paso, 'completada')) or mapa_esp.get('completada') or mapa_esp.get(paso)
+        elif tipo_evento == 'avanzada':
+            mids = mapa_esp.get((paso, 'avanzada')) or mapa_esp.get(paso)
+        elif en_progreso or ('incompleta' in tipo_evento):
+            mids = mapa_esp.get((paso, 'progreso')) or mapa_esp.get(paso) or mapa_esp.get('progreso')
+        elif paso in mapa_esp:
+            mids = mapa_esp[paso]
+
+        if mids:
+            return [armar_linea(m, val_final, [], strings=cadenas)[2:] for m in mids]
+
+    flujo = info_flujo_mision(qid)
+    if not flujo or not flujo.get('pregunta'):
+        return []
 
     if completada:
         mids = flujo.get('completada') or [qid * 100 + 10]
         return [armar_linea(m, val_final, [], strings=cadenas)[2:] for m in mids]
 
-    if en_progreso:
+    if en_progreso or ('incompleta' in tipo_evento):
         m_prog = flujo.get('progreso')
         if m_prog:
             return [armar_linea(m_prog, val_final, [], strings=cadenas)[2:]]
+
+    if tipo_evento == 'avanzada':
+        m_prog = flujo.get('progreso')
+        if m_prog:
+            return [armar_linea(m_prog, val_final, [], strings=cadenas)[2:]]
+        return []
 
     # Fase inicial de ofrecimiento: intro (si tiene) + pregunta con opciones de interes
     lineas = []

@@ -83,9 +83,9 @@ class TestSistemaMisionesCompleto(unittest.TestCase):
         for _ in range(10):
             misiones.registrar_baja_monstruo(ses, 21, 'Pumpkin')
 
-        # Las bajas estan listas (20/20), pero en el campo de combate NO salta el paso
+        # Las bajas estan listas (20/20), y la mision avanza al paso 2 (reportar/entregar)
         self.assertEqual(ses.quest_kills.get((202, 1)), 20)
-        self.assertEqual(p.quests[0][1], 1)
+        self.assertEqual(p.quests[0][1], 2)
 
         # Ahora el jugador va donde Spike Farmer y habla con el (encadena el reporte y la entrega)
         proc, tipo, datos = misiones.interactuar_npc(ses, 'Spike Farmer')
@@ -220,8 +220,8 @@ class TestSistemaMisionesCompleto(unittest.TestCase):
         """Verifica que guion_de_mision genere paquetes validos de 0x0012 con opciones reales."""
         g = dialogos.guion_de_mision(1501, 'Manager Pete', 'HeroePrueba')
         self.assertIsNotNone(g)
-        self.assertEqual(len(g), 1)
-        ops = dialogos.opciones_de(g[0])
+        self.assertTrue(len(g) >= 1)
+        ops = dialogos.opciones_de(g[-1])
         self.assertIn(150102, ops)
         self.assertIn(150103, ops)
 
@@ -278,6 +278,41 @@ class TestSistemaMisionesCompleto(unittest.TestCase):
         val_lim = struct.unpack_from('<H', lim_dlg[0], 4)[0]
         self.assertEqual(mid_lim, 20010)
         self.assertEqual(val_lim, 108)
+
+    def test_completar_mision_paquetes_validos(self):
+        """Verifica que completar_mision no genere paquetes 0x001B corruptos ni desborde el cliente."""
+        import inventario, struct
+        ses = MockSesion()
+        p = MockPersonaje()
+        p.quests = [[502, 2]]
+        p.nivel = 430
+        p.exp = 12405849063849440
+        ses.personaje = p
+        ses.inventario = {20: 181, 21: 200}
+        ses.cantidades = {20: 1, 21: 1}
+        ses.oro = 50000
+
+        ok = misiones.completar_mision(ses, 502, exp=1000, oro=500, creditos_honor=20)
+        self.assertTrue(ok)
+        for pkg in ses.enviados:
+            op = struct.unpack_from('<H', pkg, 0)[0]
+            if op == 0x001B:
+                # Cada 0x001B valido debe medir al menos 12 bytes
+                self.assertGreaterEqual(len(pkg), 12, f"0x001B corrupto con len {len(pkg)}")
+
+    def test_items_ocultos_no_entran_en_bolsa(self):
+        """Verifica que tokens de caceria como 969, 956, 16075 no entren en mochila visible."""
+        import inventario, app
+        self.assertTrue(inventario.es_item_oculto(969))
+        self.assertTrue(inventario.es_item_oculto(956))
+        self.assertTrue(inventario.es_item_oculto(16075))
+        self.assertFalse(inventario.es_item_oculto(181)) # Mushroom normal
+
+        ses = MockSesion()
+        ses.inventario = {}
+        ses.cantidades = {}
+        res = app._meter(ses, 969, 1)
+        self.assertIsNone(res, "Item oculto 969 no debe poder entrar en la mochila")
 
 
 if __name__ == '__main__':

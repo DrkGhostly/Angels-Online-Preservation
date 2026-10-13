@@ -110,15 +110,28 @@ MONSTER_NAME_ALIASES = {
     'trainee witches': ['young witch', 'young witches'],
     'young witches': ['trainee witch', 'trainee witches'],
     'junior witch': ['young witch', 'trainee witch'],
+    'hardworking pig': ['duty pig'],
+    'duty pig': ['hardworking pig'],
+    'transport worker': ['transporter'],
+    'transporter': ['transport worker'],
 }
 
 # Cadenas de misiones de comandantes de ciudad (orden canonico de Angel Online)
 _CADENAS_CIUDAD = {
-    'militia chief': [556, 555, 554, 553, 552, 551, 550, 549, 548, 547, 546, 545, 544, 543, 542],  # Breeze Woods (29)
-    'guard captain': [255, 254, 253, 251, 250, 249, 248, 247, 246, 245, 244, 243, 242, 241, 240],  # Aurora City (3)
-    'executive puyi': [357, 356, 355, 354, 353, 352, 351, 350, 349, 348, 347, 346, 345, 344, 343],  # Dark City (26)
-    'chief assistant': [458, 457, 456, 454, 453, 452, 451, 450, 449, 448, 447, 446, 445, 444, 443],  # Iron Castle (38)
+    'militia chief': [542, 543, 544, 545, 546, 547, 548, 549, 550, 551, 552, 553, 554, 555, 556],  # Breeze Woods (29)
+    'guard captain': [240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 253, 254, 255],  # Aurora City (3)
+    'executive puyi': [343, 344, 345, 346, 347, 348, 349, 350, 351, 352, 353, 354, 355, 356, 357],  # Dark City (26)
+    'chief assistant': [443, 444, 445, 446, 447, 448, 449, 450, 451, 452, 453, 454, 456, 457, 458],  # Iron Castle (38)
 }
+
+
+def normalizar_nombre_npc(nom: str) -> str:
+    """Normaliza el nombre de un NPC quitando prefijos de titulo comunes (Mr., Dr., etc.)."""
+    n = (nom or '').strip().lower()
+    for prefix in ('mr. ', 'mr ', 'dr. ', 'dr ', 'mrs. ', 'ms. ', 'sage '):
+        if n.startswith(prefix):
+            return n[len(prefix):].strip()
+    return n
 
 _NPC_STAGE_MAP = None
 _ITEM_NAMES_CACHE = None
@@ -295,6 +308,7 @@ def misiones_disponibles_npc(p, npc_nombre: str, stage: int = 0, entidad: int = 
     if not npc_nombre:
         return []
     nom_l = npc_nombre.strip().lower()
+    norm_l = normalizar_nombre_npc(nom_l)
 
     # Si se proporcionó entidad, obtener su mapa exacto
     if entidad:
@@ -310,19 +324,28 @@ def misiones_disponibles_npc(p, npc_nombre: str, stage: int = 0, entidad: int = 
         elif nom_l == 'chief assistant': stage = 38
 
     qids = list(_NPC_INICIO.get(nom_l, []))
+    if not qids and norm_l != nom_l:
+        qids = list(_NPC_INICIO.get(norm_l, []))
+    if not qids:
+        for k_npc, v_qids in _NPC_INICIO.items():
+            if normalizar_nombre_npc(k_npc) == norm_l:
+                qids = list(v_qids)
+                break
+
     disponibles = []
 
     # Si el personaje ya tiene UNA misión activa de este NPC, no se ofrece otra
     for q_act, pa_act in list(getattr(p, 'quests', []) or []):
         if not mision_completada(p, q_act):
             q_info = info_mision(q_act)
-            if (q_info.get('npc_inicio') or '').strip().lower() == nom_l:
+            ini_raw = (q_info.get('npc_inicio') or '').strip().lower()
+            if ini_raw in (nom_l, norm_l) or normalizar_nombre_npc(ini_raw) == norm_l:
                 return []
             pasos = q_info.get('pasos', [])
             idx_p = pa_act - 1 if 0 < pa_act <= len(pasos) else 0
             if idx_p < len(pasos):
-                p_npc = (pasos[idx_p].get('npc_entrega') or pasos[idx_p].get('npc') or '').strip().lower()
-                if p_npc == nom_l:
+                p_npc_raw = (pasos[idx_p].get('npc_entrega') or pasos[idx_p].get('npc') or '').strip().lower()
+                if p_npc_raw in (nom_l, norm_l) or normalizar_nombre_npc(p_npc_raw) == norm_l:
                     return []
 
     # Faccion del personaje normalizada
@@ -427,15 +450,9 @@ def avanzar_paso(ses, qid: int, nuevo_paso: int) -> bool:
     # En red el paso activo es 0-indexed: paso 1 = 0, paso 2 = 1, etc.
     paso_red = max(0, nuevo_paso - 1)
     pkg_m = _cl.mision(char_id, qid, paso_red, 0)
-    pkg_av = _cl.aviso(f"{nom} ({nuevo_paso})", tipo=0, msg_id=_cl.MSG_QUEST)
+    pkg_av = _cl.aviso(f"{nom} ({nuevo_paso})", tipo=0, msg_id=_cl.MSG_TEXTO)
 
     ses.enviar(pkg_m, pkg_av)
-    try:
-        import inventario as _inv_av
-        dueno = getattr(ses, 'entity_id', char_id)
-        ses.enviar(_inv_av.vaciar_ranura(dueno, 497 + (qid % 60)))
-    except Exception:
-        pass
     if getattr(ses, 'usuario', None):
         cuentas.guardar_quests(ses.usuario, char_id, p.quests)
 
@@ -450,6 +467,7 @@ def completar_mision(ses, qid: int, exp: int = 0, oro: int = 0,
     if not p:
         return False
 
+    import combate as _cb
     info = info_mision(qid)
     pasos = info.get('pasos', [])
     total_pasos = len(pasos) if pasos else 1
@@ -486,19 +504,30 @@ def completar_mision(ses, qid: int, exp: int = 0, oro: int = 0,
         inv = getattr(ses, 'inventario', {}) or {}
         cants = getattr(ses, 'cantidades', {}) or {}
         toco_inv = False
+        dueno = getattr(ses, 'entity_id', char_id)
         for ranura, iid in list(inv.items()):
             if iid in borrar_items:
-                _inv.vaciar_ranura(char_id, ranura)
-                inv[ranura] = 0
-                cants.pop(ranura, None)
-                envios.append(struct.pack('<HII', 0x001B, ranura, 0))
+                r_int = int(ranura)
+                inv[r_int] = 0
+                cants.pop(r_int, None)
+                cants.pop(str(r_int), None)
+                envios.append(_inv.vaciar_ranura(dueno, r_int))
                 toco_inv = True
-                log.info(f"Item de quest consumido: ID {iid} en ranura {ranura}")
+                log.info(f"Item de quest consumido: ID {iid} en ranura {r_int}")
         if toco_inv:
             ses.inventario = inv
             ses.cantidades = cants
             if getattr(ses, 'usuario', None):
                 cuentas.guardar_inventario(ses.usuario, char_id, inv, cants)
+
+    # Limpiar cualquier residuo en memoria de slots de mision
+    slot_oc = 497 + (qid % 60)
+    if hasattr(ses, 'inventario') and isinstance(ses.inventario, dict):
+        ses.inventario.pop(slot_oc, None)
+        ses.inventario.pop(str(slot_oc), None)
+    if hasattr(ses, 'cantidades') and isinstance(ses.cantidades, dict):
+        ses.cantidades.pop(slot_oc, None)
+        ses.cantidades.pop(str(slot_oc), None)
 
     # 4. Recompensas por defecto si no vienen fijadas
     recomp = info.get('recompensa', {})
@@ -508,12 +537,16 @@ def completar_mision(ses, qid: int, exp: int = 0, oro: int = 0,
         oro = recomp.get('oro', 0)
     if creditos_honor <= 0:
         creditos_honor = recomp.get('creditos', 0)
+    if creditos_honor <= 0:
+        creditos_honor = max(10, min(200, int((exp or 1000) // 1000) * 5))
 
     # 5. Oro de recompensa
     if oro > 0:
+        import inventario as _inv_oro
         ses.oro = getattr(ses, 'oro', 0) + oro
         p.oro = ses.oro
-        envios.append(struct.pack('<HII', 0x001B, 0, ses.oro))
+        dueno = getattr(ses, 'entity_id', char_id)
+        envios.append(_inv_oro.actualizar_ranura(char_id, _inv_oro.RANURA_ORO, _inv_oro.ITEM_ORO, ses.oro, dueno=dueno))
         envios.append(_cl.aviso(str(oro), tipo=0, msg_id=_cl.MSG_PAGO))
         if getattr(ses, 'usuario', None):
             cuentas.guardar_oro(ses.usuario, char_id, ses.oro)
@@ -523,7 +556,8 @@ def completar_mision(ses, qid: int, exp: int = 0, oro: int = 0,
         p.exp = getattr(p, 'exp', 0) + exp
         exp_actual_ui, _ = _cb.exp_para_barra(getattr(p, 'nivel', 1), p.exp)
         eid = getattr(p, 'entity_id', char_id)
-        envios.append(struct.pack('<HIBBQ', 0x001D, eid, 1, 32, max(0, int(exp_actual_ui))))
+        _u64 = lambda v: max(0, min(int(v or 0), 0xFFFFFFFFFFFFFFFF))
+        envios.append(struct.pack('<HIBBQ', 0x001D, eid, 1, 32, _u64(exp_actual_ui)))
         envios.append(_cl.aviso(str(exp), tipo=0, msg_id=_cl.MSG_EXP))
         if getattr(ses, 'usuario', None):
             cuentas.guardar_progreso(ses.usuario, char_id, p.nivel, p.exp)
@@ -532,16 +566,32 @@ def completar_mision(ses, qid: int, exp: int = 0, oro: int = 0,
     if creditos_honor > 0:
         nuevos_cred = getattr(p, 'creditos', 0) + creditos_honor
         p.creditos = nuevos_cred
-        envios.append(struct.pack('<HIBBI', 0x0013, p.entity_id, 1, 0x3d, nuevos_cred))
+        eid = getattr(p, 'entity_id', char_id)
+        # 0x0013 kind 49 (KIND_CREDITO) actualiza los creditos en la ficha
+        envios.append(_cb.atributo(eid, nuevos_cred, _cb.KIND_CREDITO))
+        # 0x000D msg 642 ("Obtain %s Credit.") muestra el aviso nativo en pantalla/chat
+        envios.append(_cl.aviso(str(creditos_honor), tipo=0, msg_id=642))
+        nuevo_rango = _cb.rango_de_creditos(nuevos_cred)
+        rango_act = getattr(p, 'rango', 1) or 1
+        if nuevo_rango > rango_act:
+            p.rango = nuevo_rango
+            envios.append(_cb.atributo(eid, nuevo_rango, _cb.KIND_RANGO))
+            nom_rk = _cb.NOMBRES_RANGO.get(nuevo_rango, f"Rank {nuevo_rango}")
+            envios.append(_cl.aviso(p.nombre, tipo=0, msg_id=675))
+            envios.append(_cl.aviso(f"Rank Promoted to [{nom_rk}]!", tipo=0, msg_id=_cl.MSG_TEXTO))
         if getattr(ses, 'usuario', None):
             cuentas.guardar_rango(ses.usuario, char_id, getattr(p, 'rango', 1), nuevos_cred)
 
     # 8. Items de recompensa
+    if not items:
+        items = recomp.get('items', [])
     if items:
         import inventario as _inv
         inv = getattr(ses, 'inventario', {}) or {}
+        cants = getattr(ses, 'cantidades', {}) or {}
         for it in items:
             item_id = it if isinstance(it, int) else it[1]
+            cant = 1 if isinstance(it, int) else (it[2] if len(it) > 2 else 1)
             ranura_libre = None
             for r in range(20, 60):
                 if r not in inv or inv[r] == 0:
@@ -549,13 +599,15 @@ def completar_mision(ses, qid: int, exp: int = 0, oro: int = 0,
                     break
             if ranura_libre is not None:
                 inv[ranura_libre] = item_id
+                cants[ranura_libre] = cant
                 ses.inventario = inv
-                pkg_item = struct.pack('<HII', 0x001B, ranura_libre, item_id)
-                envios.append(pkg_item)
+                ses.cantidades = cants
+                envios.append(_inv.actualizar_ranura(char_id, ranura_libre, item_id, cant))
+                nom_it = nombre_item(item_id)
+                envios.append(_cl.aviso(nom_it, tipo=0, msg_id=_cl.MSG_ITEM))
                 log.info(f"Entregado item de recompensa {item_id} en casilla {ranura_libre}")
         if getattr(ses, 'usuario', None):
-            cuentas.guardar_inventario(ses.usuario, char_id, getattr(ses, 'inventario', {}),
-                                       getattr(ses, 'cantidades', {}))
+            cuentas.guardar_inventario(ses.usuario, char_id, ses.inventario, ses.cantidades)
 
     ses.enviar(*envios)
 
@@ -595,26 +647,41 @@ def abandonar_mision(ses, qid: int) -> bool:
         for k in list(ses.quest_kills.keys()):
             if isinstance(k, tuple) and k[0] == qid:
                 del ses.quest_kills[k]
+            elif isinstance(k, str) and k.startswith(f"{qid}_"):
+                del ses.quest_kills[k]
+
+    if getattr(p, 'quest_kills', None):
+        for k in list(p.quest_kills.keys()):
+            if isinstance(k, tuple) and k[0] == qid:
+                del p.quest_kills[k]
+            elif isinstance(k, str) and k.startswith(f"{qid}_"):
+                del p.quest_kills[k]
 
     # Guardar en base de datos
     if getattr(ses, 'usuario', None):
         cuentas.guardar_quests(ses.usuario, p.char_id, p.quests)
+        if hasattr(p, 'quest_kills'):
+            cuentas.guardar_quest_kills(ses.usuario, p.char_id, p.quest_kills)
 
-    # Sincronizar de forma 100% segura con el cliente:
-    # 1. Enviar 0x0021 QUEST_LOG con la lista actualizada (limpia y reconstruye el registro en el cliente)
-    pkg_log = _cl.paquete_quest_log(p.char_id, p.quests)
-    # 2. Enviar 0x0022 con modo 2 (borrado puntual)
+    # Sincronizar con el cliente exactamente como el servidor oficial (mundo_180305_971213_orden.jsonl):
+    # Enviar UNICAMENTE el paquete 0x0022 con modo 2 (borrado puntual).
+    # NUNCA enviar 0x0021 aqui porque 0x0021 (sub_5FBD30) limpia y reconstruye la lista en Angel.exe;
+    # si la mision ya no esta en la lista, el posterior 0x0022 (sub_602BD0) llama a std::map::erase
+    # con un iterador invalido y la CRT de MSVC crashea el cliente con _invalid_parameter_noinfo.
     pkg_del = _cl.borrar_mision(p.char_id, qid)
-    ses.enviar(pkg_log, pkg_del)
+    ses.enviar(pkg_del)
+
+    # Limpiar cualquier resto en memoria de slots de mision
+    slot_oc = 497 + (qid % 60)
+    if hasattr(ses, 'inventario') and isinstance(ses.inventario, dict):
+        ses.inventario.pop(slot_oc, None)
+        ses.inventario.pop(str(slot_oc), None)
+    if hasattr(ses, 'cantidades') and isinstance(ses.cantidades, dict):
+        ses.cantidades.pop(slot_oc, None)
+        ses.cantidades.pop(str(slot_oc), None)
 
     nom = nombre_mision(qid)
-    try:
-        import inventario as _inv_ab
-        dueno = getattr(ses, 'entity_id', p.char_id)
-        ses.enviar(_inv_ab.vaciar_ranura(dueno, 497 + (qid % 60)))
-    except Exception:
-        pass
-    ses.enviar(_cl.aviso(f"Quest [{nom}] abandoned.", tipo=0, msg_id=_cl.MSG_QUEST))
+    ses.enviar(_cl.aviso(f"Quest [{nom}] abandoned.", tipo=0, msg_id=_cl.MSG_TEXTO))
     log.info(f"[{getattr(ses, 'addr', '')}] {p.nombre} abandono la mision {qid} '{nom}'")
     return True
 
@@ -677,6 +744,17 @@ def registrar_baja_monstruo(ses, npc_type: int, monster_name: str = None) -> boo
                 if coincide:
                     break
 
+        if not coincide and m_nom_clean:
+            # Fallback robusto: comprobar si el nombre del monstruo aparece directamente en el texto del paso
+            q_info = info_mision(q)
+            pasos = q_info.get('pasos', [])
+            idx_p = pa - 1 if 0 < pa <= len(pasos) else 0
+            if idx_p < len(pasos):
+                txt_paso = (pasos[idx_p].get('texto', '')).lower()
+                cand_noms = [m_nom_clean] + MONSTER_NAME_ALIASES.get(m_nom_clean, [])
+                if any(cn in txt_paso for cn in cand_noms):
+                    coincide = True
+
         if coincide:
             cnt = int(p.quest_kills.get(k_cac, 0)) + 1
             p.quest_kills[k_cac] = cnt
@@ -685,22 +763,9 @@ def registrar_baja_monstruo(ses, npc_type: int, monster_name: str = None) -> boo
             actualizado = True
 
             # 1. Notificar en pantalla/chat EN CADA BAJA para que el jugador sepa de inmediato que cuenta
-            ses.enviar(_cl.aviso(f"Defeated {nom_obj} ({cnt}/{req})", tipo=0, msg_id=_cl.MSG_QUEST))
+            ses.enviar(_cl.aviso(f"Defeated {nom_obj} ({cnt}/{req})", tipo=0, msg_id=_cl.MSG_TEXTO))
 
-            # 2. Sincronizar token oculto en ranura 497..556 (no ocupa mochila, actualiza HUD en cliente)
-            token_id = token or (16075 if q == 142 else None)
-            slot_oculta = 497 + (int(q) % 60)
-            if token_id:
-                try:
-                    import inventario as _inv
-                    dueno = getattr(ses, 'entity_id', p.char_id)
-                    entrada = _inv.entrada_recuperada(p.char_id, slot_oculta, token_id, cant=cnt, dueno=dueno)
-                    pkg_item = struct.pack('<H', 0x001B) + struct.pack('<I', 1) + entrada
-                    ses.enviar(pkg_item)
-                except Exception as _e_tok:
-                    log.warning(f"Error sincronizando token oculto de mision {q}: {_e_tok}")
-
-            # 3. Guardar conteo en base de datos inmediatamente
+            # 2. Guardar conteo en base de datos inmediatamente
             if getattr(ses, 'usuario', None):
                 cuentas.guardar_quest_kills(ses.usuario, p.char_id, p.quest_kills)
 
@@ -724,7 +789,7 @@ def registrar_baja_monstruo(ses, npc_type: int, monster_name: str = None) -> boo
                         aviso_fin += f" Report to {npc_ent}"
                     if mapa_ent:
                         aviso_fin += f" ({mapa_ent})"
-                ses.enviar(_cl.aviso(aviso_fin, tipo=0, msg_id=_cl.MSG_QUEST))
+                ses.enviar(_cl.aviso(aviso_fin, tipo=0, msg_id=_cl.MSG_TEXTO))
                 log.info(f"[{getattr(ses, 'addr', '')}] {p.nombre} completo caceria de {nom_obj} ({req}/{req}) para mision {q}")
 
     return actualizado
@@ -759,6 +824,9 @@ def verificar_botin_mision(ses, npc_type: int, monster_name: str = None) -> list
             req_cnt = req.get('cantidad', 1)
             if not iid:
                 continue
+            import inventario as _iv_rec
+            if _iv_rec.es_item_oculto(iid):
+                continue
 
             # Contar cuántos tiene ya el jugador
             actual = sum(cants.get(r, 1) for r, it in inv.items() if it == iid)
@@ -781,13 +849,52 @@ def verificar_botin_mision(ses, npc_type: int, monster_name: str = None) -> list
                 idx_p = pa - 1 if 0 < pa <= len(pasos) else 0
                 if idx_p < len(pasos):
                     txt_paso = (pasos[idx_p].get('texto', '')).lower()
-                    if m_nom and m_nom in txt_paso:
+                    cand_noms = [m_nom] + MONSTER_NAME_ALIASES.get(m_nom, [])
+                    if any(cn and cn in txt_paso for cn in cand_noms):
                         coincide = True
 
             if coincide:
                 drops_mision.append((iid, 1))
 
     return drops_mision
+
+
+def verificar_progreso_recoleccion(ses, items_tocados: list) -> list:
+    """Comprueba si alguno de los items añadidos al inventario forma parte de una
+    misión de recolección activa. Devuelve una lista de paquetes a enviar (avisos y 0x0021 QUEST_LOG)."""
+    p = getattr(ses, 'personaje', None)
+    if not p or not getattr(p, 'quests', None) or not items_tocados:
+        return []
+
+    _cargar_db()
+    inv = getattr(ses, 'inventario', {}) or {}
+    cants = getattr(ses, 'cantidades', {}) or {}
+    items_set = {int(x) for x in items_tocados if x and int(x) > 0}
+
+    paquetes = []
+    hubo_mision = False
+
+    for q, pa in list(p.quests or []):
+        if mision_completada(p, q):
+            continue
+        k_rec = f"{q}_{pa}"
+        if k_rec not in _RECOLECCIONES:
+            continue
+        r_data = _RECOLECCIONES[k_rec]
+        req_items = r_data.get('items', [])
+        for req in req_items:
+            iid = req.get('item_id')
+            req_cnt = req.get('cantidad', 1)
+            if iid in items_set:
+                hubo_mision = True
+                actual = sum(cants.get(r, 1) for r, it in inv.items() if it == iid)
+                nom = nombre_item(iid)
+                paquetes.append(_cl.aviso(f"Collected {nom} ({actual}/{req_cnt})", tipo=0, msg_id=_cl.MSG_TEXTO))
+
+    if hubo_mision:
+        paquetes.append(_cl.paquete_quest_log(p.char_id, p.quests))
+
+    return paquetes
 
 
 def verificar_entrega_items(ses, qid: int, paso: int) -> bool:
@@ -815,25 +922,29 @@ def verificar_entrega_items(ses, qid: int, paso: int) -> bool:
                 total_tenido += cants.get(r, 1)
         if total_tenido < req_cnt:
             nom_q = nombre_mision(qid)
-            ses.enviar(_cl.aviso(f"Quest [{nom_q}]: Missing items ({total_tenido}/{req_cnt})", tipo=0, msg_id=_cl.MSG_QUEST))
+            ses.enviar(_cl.aviso(f"Quest [{nom_q}]: Missing items ({total_tenido}/{req_cnt})", tipo=0, msg_id=_cl.MSG_TEXTO))
             return False
 
     # 2. Consumir los items
     import inventario as _inv
+    char_id = getattr(ses.personaje, 'char_id', 0)
+    dueno = getattr(ses, 'entity_id', char_id)
     for req in req_items:
         req_id = req.get('item_id')
         falta_quitar = req.get('cantidad', 1)
         for r in list(inv.keys()):
-            if inv.get(r) == req_id and falta_quitar > 0:
-                act = cants.get(r, 1)
+            r_int = int(r)
+            if inv.get(r_int) == req_id and falta_quitar > 0:
+                act = cants.get(r_int, 1)
                 if act <= falta_quitar:
                     falta_quitar -= act
-                    _inv.vaciar_ranura(getattr(ses.personaje, 'char_id', 0), r)
-                    inv[r] = 0
-                    cants.pop(r, None)
-                    ses.enviar(struct.pack('<HII', 0x001B, r, 0))
+                    inv[r_int] = 0
+                    cants.pop(r_int, None)
+                    cants.pop(str(r_int), None)
+                    ses.enviar(_inv.vaciar_ranura(dueno, r_int))
                 else:
-                    cants[r] = act - falta_quitar
+                    cants[r_int] = act - falta_quitar
+                    ses.enviar(_inv.actualizar_ranura(char_id, r_int, req_id, cants[r_int], dueno=dueno))
                     falta_quitar = 0
 
     ses.inventario = inv
@@ -880,21 +991,25 @@ def interactuar_npc(ses, npc_nombre: str, entidad: int = 0) -> tuple:
             if not npc_target:
                 npc_target = (info.get('npc_inicio') or '').strip().lower()
 
-            if npc_target and (npc_target == nom_clean or nom_clean in npc_target or npc_target in nom_clean):
+            target_norm = normalizar_nombre_npc(npc_target)
+            nom_norm = normalizar_nombre_npc(nom_clean)
+
+            if npc_target and (npc_target == nom_clean or nom_clean in npc_target or npc_target in nom_clean
+                               or target_norm == nom_norm or (target_norm and target_norm in nom_norm) or (nom_norm and nom_norm in target_norm)):
                 tipo_obj = paso_actual.get('tipo', 'hablar')
                 
                 # Objetivo de recoleccion
                 if tipo_obj == 'recolectar':
                     if not verificar_entrega_items(ses, q, pa):
-                        return (True, 'incompleta', {'qid': q, 'paso': pa, 'nom_npc': npc_nombre})
+                        return (True, 'recoleccion_incompleta', {'qid': q, 'paso': pa, 'nom_npc': npc_nombre})
 
                 # Objetivo de caceria
                 if tipo_obj == 'matar':
                     req = paso_actual.get('cantidad', 1)
                     kills = (getattr(ses, 'quest_kills', {}) or {}).get((q, pa), 0)
                     if kills < req:
-                        ses.enviar(_cl.aviso(f"Defeat targets first! ({kills}/{req})", tipo=0, msg_id=_cl.MSG_QUEST))
-                        return (True, 'incompleta', {'qid': q, 'paso': pa, 'nom_npc': npc_nombre})
+                        ses.enviar(_cl.aviso(f"Defeat targets first! ({kills}/{req})", tipo=0, msg_id=_cl.MSG_TEXTO))
+                        return (True, 'caceria_incompleta', {'qid': q, 'paso': pa, 'nom_npc': npc_nombre})
                     if hasattr(ses, 'quest_kills') and (q, pa) in ses.quest_kills:
                         del ses.quest_kills[(q, pa)]
 
@@ -904,27 +1019,28 @@ def interactuar_npc(ses, npc_nombre: str, entidad: int = 0) -> tuple:
                     idx_cur = cur_pa - 1
                     if idx_cur >= len(pasos):
                         completar_mision(ses, q)
-                        return (True, 'completada', {'qid': q, 'nom_npc': npc_nombre})
+                        return (True, 'completada', {'qid': q, 'paso': cur_pa, 'nom_npc': npc_nombre})
                     p_cur = pasos[idx_cur]
                     es_ult = p_cur.get('es_ultimo', False) or (cur_pa >= len(pasos))
                     if es_ult:
                         completar_mision(ses, q)
-                        return (True, 'completada', {'qid': q, 'nom_npc': npc_nombre})
+                        return (True, 'completada', {'qid': q, 'paso': cur_pa, 'nom_npc': npc_nombre})
 
                     sig = p_cur.get('siguiente_paso', cur_pa + 1)
                     sig_idx = sig - 1
                     if sig_idx < len(pasos):
                         sig_p = pasos[sig_idx]
                         sig_npc = (sig_p.get('npc_entrega') or sig_p.get('npc') or '').strip().lower()
+                        sig_norm = normalizar_nombre_npc(sig_npc)
                         sig_tipo = sig_p.get('tipo', 'hablar')
-                        if sig_tipo == 'hablar' and (not sig_npc or sig_npc == nom_clean or nom_clean in sig_npc or sig_npc in nom_clean):
+                        if sig_tipo == 'hablar' and (not sig_npc or sig_npc == nom_clean or nom_clean in sig_npc or sig_npc in nom_clean or sig_norm == nom_norm or (sig_norm and sig_norm in nom_norm)):
                             # El paso siguiente es hablar con este mismo NPC: avanzamos internamente y seguimos la cadena
                             avanzar_paso(ses, q, sig)
                             cur_pa = sig
                             continue
 
                     avanzar_paso(ses, q, sig)
-                    return (True, 'avanzada', {'qid': q, 'nuevo_paso': sig, 'nom_npc': npc_nombre})
+                    return (True, 'avanzada', {'qid': q, 'paso': cur_pa, 'nuevo_paso': sig, 'nom_npc': npc_nombre})
 
     return (False, 'sin_accion', {})
 

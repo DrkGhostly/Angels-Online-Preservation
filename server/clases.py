@@ -251,7 +251,20 @@ def parsear_eleccion(cuerpo: bytes):
     return [b for b in cuerpo[:6] if b]
 
 
-MSG_QUEST = 510            # "You accept the quest [X]"
+MSG_QUEST = 510            # "You accept the quest [%s]"
+
+# EL AVISO DE TEXTO LIBRE. El 0x000D no manda texto: manda un numero de
+# cadena del cliente y los trozos que rellenan sus %s. El 510 es la frase
+# de ACEPTAR UNA MISION, asi que mandar cualquier otra cosa con el sale
+# envuelto en ella, y asi es como el jugador acabo leyendo
+#
+#     You accept the quest [Quest [The Reivers]: Missing items (0/1)]
+#
+# cuatro veces seguidas, una por cada intento de entregar sin los objetos.
+# El 732 es '%s' a secas, que es lo que hace falta para un aviso propio.
+# Sale de setting/eng/string.xml, que es la tabla de los numeros bajos; la
+# de msg.xml empieza en el 5001 y es otra cosa.
+MSG_TEXTO = 732            # '%s'
 
 # Las cuatro misiones de registro, una por ciudad, y la de elegir pais.
 QUEST_ELEGIR_PAIS = 103
@@ -346,7 +359,7 @@ def paquete_quest_log(char_id: int, quests: list) -> bytes:
     for q, s in quests:
         comp = _mis.mision_completada_raw(q, s)
         paso_red = _mis.total_pasos_mision(q) if comp else max(0, s - 1)
-        recs.append(struct.pack('<IIHB11s', char_id, q, paso_red, b'\x00' * 11))
+        recs.append(struct.pack('<IHB11s', char_id, q, paso_red, b'\x00' * 11))
     return struct.pack('<HI', 0x0021, len(recs)) + b''.join(recs)
 
 

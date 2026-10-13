@@ -69,7 +69,40 @@ def _del_mapa(stage, ruta):
 
     tags = {str(n): [list(t) for t in pts] for n, pts in m.tags.items()}
 
+    # Los generadores, agrupados por su TAG de zona. Hacen falta para la
+    # condicion que mas manda en las instancias: GENERATOR_ALIVE(tag, =, 0),
+    # "cuando esa zona se queda sin bichos". El TAG del generador es el byte
+    # +21 del objeto, el mismo numero que indexa la tabla de TAGs: en el mapa
+    # 73 las zonas 218, 219 y 220 que preguntan los eventos 150, 151 y 153
+    # estan las tres entre los 42 valores del +21 y las tres en la tabla.
+    #
+    # La zona 0 se deja fuera: significa "aparece en su propia casilla", no
+    # es un grupo, y meterla juntaria generadores que no tienen nada que ver.
+    generadores = {}
+    for g in m.generadores():
+        if not g['zona']:
+            continue
+        e = generadores.setdefault(str(g['zona']),
+                                   {'cuantos': 0, 'tipos': [], 'puntos': []})
+        e['cuantos'] += g['cantidad']
+        if g['tipo'] not in e['tipos']:
+            e['tipos'].append(g['tipo'])
+        for p in g['puntos']:
+            if list(p) not in e['puntos']:
+                e['puntos'].append(list(p))
+
+    # Tipo de monstruo -> evento que dispara AL MORIR. Es lo que ata los
+    # botines de mision al bicho: los disparadores de muerte citan eventos
+    # que ningun objeto del mapa referencia, y el enlace esta en el +50 del
+    # registro del generador. Cada tipo lleva uno solo y siempre el mismo.
+    monstruos = {}
+    for o in m.objetos:
+        ev_m = o.get('evento_monstruo')
+        if o['tipo'] and ev_m:
+            monstruos[str(o['tipo'])] = ev_m
+
     return {'disparadores': disparadores, 'objetos': objetos, 'tags': tags,
+            'generadores': generadores, 'monstruos': monstruos,
             'ancho': m.ancho, 'alto': m.alto}
 
 
@@ -83,7 +116,8 @@ def propagar(verboso=True):
         except Exception as e:                      # un mapa roto no para el resto
             fallos.append((stage, '%s: %s' % (type(e).__name__, e)))
             continue
-        if d['disparadores'] or d['objetos']:
+        if (d['disparadores'] or d['objetos'] or d['generadores']
+                or d['monstruos']):
             stages[str(stage)] = d
 
     datos = {
@@ -105,7 +139,11 @@ def propagar(verboso=True):
         print('%s   %.1f MB' % (SALIDA, SALIDA.stat().st_size / 1e6))
         print('   %d mapas, %d disparadores, %d objetos que disparan'
               % (len(stages), n_disp, n_obj))
-        print('   %d acciones, %d condiciones' % (n_acc, n_con))
+        n_gen = sum(len(s['generadores']) for s in stages.values())
+        n_mon = sum(len(s['monstruos']) for s in stages.values())
+        print('   %d acciones, %d condiciones, %d zonas de generador'
+              % (n_acc, n_con, n_gen))
+        print('   %d monstruos con evento de muerte' % n_mon)
         por_disparo = collections.Counter(
             d['d'] for s in stages.values() for d in s['disparadores'])
         print('   por modo de disparo: %s'

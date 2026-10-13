@@ -248,12 +248,14 @@ The server prepares the local client on startup, always taking a `.bak` first:
 
 - **Comprehensive Quest System (1,489 quests)**:
   - Complete quest catalog compiled from `quest.xml` with 1,489 quests and 662 repeatable quests.
-  - Dynamic combat hunting tracking (877 automatic kill steps triggered by mob defeats across all maps).
-  - Item collection objectives (819 steps with inventory validation and automatic item turn-in).
+  - Dynamic combat hunting tracking (877 automatic kill steps triggered by mob defeats across all maps with monster aliases and canonical naming).
+  - Item collection objectives (819 steps with inventory validation, direct drops into player backpack, and `Collected X (y/z)` toast notifications).
+  - Fixed NPC quest dialogue progression: UI option order matching official client, level requirement checks (e.g., Mr. Fleming in Wise Institute lv. 380, Leif in Sandy Heights), and continuous city commander quest chains.
   - NPC interaction & turn-in flow (over 1,500 delivery points and 1,100 quest-giving NPCs).
   - Repeatable, daily, and weekly rotating quest pools.
   - Automatic warps to quest instances / training arenas tied to specific quest stages.
   - Full persistence in SQLite and real-time client sync via opcodes `0x0021` and `0x0022`.
+  - 100% stable quest abandonment and completion: disassembled `Angel.exe` (`sub_602BD0` / `0x004A5390`) and analyzed official packet traces (`mundo_180305_971213_orden.jsonl`) to send only `0x0022` mode 2 on abandon, eliminating `_invalid_parameter_noinfo` crashes and protecting against out-of-bounds backpack slots (> 60).
 
 **Does not work**
 

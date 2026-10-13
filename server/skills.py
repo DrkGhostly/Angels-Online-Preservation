@@ -92,33 +92,52 @@ def hechizos_de_rama(sid: int) -> list:
     return list(HECHIZOS_INICIALES_RAMA.get(sid_int, []))
 
 
-def hechizos_de_ramas_activas(skill_ids, solo_maximo: bool = True) -> list:
+def hechizos_de_ramas_activas(skill_ids, solo_maximo: bool = True, max_rank: int = 5) -> list:
     """[(magic_id, nombre, rango)] de las ramas equipadas, leidos de content.db.
 
     No hay una lista fija: cada llamada mira la tabla magic actual, asi que
     un hechizo anadido despues entra la siguiente vez que se use el comando.
     Un rango alto que no trae rama propia hereda la de su grupo. Con
-    solo_maximo se queda el rango mas alto de cada linea.
+    solo_maximo se queda el rango mas alto de cada linea (hasta max_rank).
+    Si los elementos de skill_ids son (sid, nivel, ...), se filtra por
+    el nivel requerido de la habilidad (技能等限 <= nivel).
     """
     sids = set()
+    niveles = {}
     for sid in skill_ids or []:
-        sids.add(int(sid[0] if isinstance(sid, (list, tuple)) else sid))
-    chinos = {RAMA_A_CHINO[s] for s in sids if s in RAMA_A_CHINO}
+        if isinstance(sid, (list, tuple)):
+            s = int(sid[0])
+            sids.add(s)
+            if len(sid) > 1 and sid[1] is not None:
+                niveles[s] = int(sid[1])
+        else:
+            s = int(sid)
+            sids.add(s)
+    chinos = {RAMA_A_CHINO[s]: s for s in sids if s in RAMA_A_CHINO}
     if not chinos or not DB_PATH.exists():
         return []
     con = sqlite3.connect(DB_PATH)
     try:
         rows = con.execute(
-            'select id, name, "技能限制1", "群組編號", "法術等級" from magic'
+            'select id, name, "技能限制1", "技能等限", "群組編號", "法術等級" from magic'
         ).fetchall()
+        # Cargar IDs de magias que tienen pergamino en el juego
+        scroll_mids = set()
+        for tbl in ('item', 'item2', 'item3', 'item4', 'item5', 'item6', 'item7', 'item8', 'item9'):
+            try:
+                for dyn, in con.execute(f'select "動態資料1" from {tbl} where "物品類別" = "卷軸"'):
+                    if dyn and str(dyn).strip().isdigit():
+                        scroll_mids.add(int(dyn))
+            except Exception:
+                continue
     finally:
         con.close()
     grupo_rama = {}
-    for _mid, _name, restr, grupo, _rank in rows:
+    for _mid, _name, restr, _req, grupo, _rank in rows:
         if restr and grupo and str(grupo) not in grupo_rama:
             grupo_rama[str(grupo)] = str(restr).strip()
     mejor = {}
-    for mid, name, restr, grupo, rank in rows:
+    for mid, name, restr, req_lvl, grupo, rank in rows:
         nom = str(name or '')
         if nom.lower().startswith('test'):
             continue
@@ -132,10 +151,25 @@ def hechizos_de_ramas_activas(skill_ids, solo_maximo: bool = True) -> list:
             rk = int(rank or 1)
         except (TypeError, ValueError):
             continue
+        if rk > max_rank:
+            continue
+        # Si la magia no es de las iniciales (lvl 1) y no tiene pergamino, es efecto interno
+        if mid_i not in scroll_mids and rk > 1:
+            continue
+        # Validar nivel requerido de habilidad si esta disponible
+        sid_rama = chinos[rama]
+        if sid_rama in niveles:
+            try:
+                req_i = int(req_lvl or 0)
+                if req_i > niveles[sid_rama]:
+                    continue
+            except (TypeError, ValueError):
+                pass
         if solo_maximo:
             if not grupo or str(grupo).strip() in ('', '0'):
                 continue
-            clave = str(grupo)
+            # Clave unica: (rama, grupo) o mid_i si hay multiples habilidades que comparten grupo
+            clave = f"{rama}_{grupo}_{nom.split()[0]}"
             prev = mejor.get(clave)
             if prev is None or rk > prev[0] or (rk == prev[0] and mid_i > prev[1]):
                 mejor[clave] = (rk, mid_i, nom)

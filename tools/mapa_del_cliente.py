@@ -160,6 +160,23 @@ class Mapa:
                            'capa': b[o + 16],
                            'zona': b[o + 21],
                            'tipo': struct.unpack_from('<H', b, o + 34)[0],
+                           # EL EVENTO DEL BICHO, que no es el del objeto.
+                           # El +24 es el evento que dispara el objeto al
+                           # pisarlo o pulsarlo; este otro es el que se
+                           # dispara cuando MUERE lo que sale del generador,
+                           # y es donde estan los botines de mision.
+                           #
+                           # Hacia falta porque los disparadores de muerte
+                           # citan eventos que ningun objeto del mapa
+                           # referencia: en Dense Forest los objetos solo
+                           # nombran el 1, 2, 3, 4 y 1001, y los botines
+                           # cuelgan del 501 al 505 y del 542. Buscando esos
+                           # numeros dentro de los 74 bytes salieron todos
+                           # en el +50, y cada tipo de monstruo lleva uno
+                           # solo y siempre el mismo: 112->501, 113->505,
+                           # 114->502, 116->542, 117->503.
+                           'evento_monstruo':
+                               struct.unpack_from('<H', b, o + 50)[0],
                            'tiempo': struct.unpack_from('<H', b, o + 38)[0],
                            'cantidad': struct.unpack_from('<H', b, o + 42)[0]})
         return salida

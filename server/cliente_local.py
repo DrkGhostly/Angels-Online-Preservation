@@ -708,7 +708,83 @@ def parchear_launcher():
                 log.warning(f"No se pudo parchear {start_exe} (quiza esta en ejecucion): {e}")
 
 
-async def _manejar_ftp(reader: asyncio.StreamReader, writer: asyncio.StreamWriter):
+async def _manejar_actualizacion(reader: asyncio.StreamReader,
+                                 writer: asyncio.StreamWriter):
+    """Atiende a los DOS launchers en el mismo puerto, oliendo el protocolo.
+
+    POR QUE. El START.EXE de IGG parchea por FTP y el de Global, que es el
+    mismo programa rehecho con VS2022, parchea por HTTP. Medido con una sonda
+    en el 2121, lo primero que manda el de Global es:
+
+        GET /alog-patch/version.ini HTTP/1.1
+        User-Agent: test app
+        Host: 127.0.0.1:2121
+
+    o sea que respeta UpdatePort pero habla otra cosa. Poner cada uno en su
+    puerto obligaria a tener dos reg.ini distintos, asi que se distinguen
+    solos: en FTP manda el SERVIDOR primero -- el 220 de saludo -- y en HTTP
+    manda el CLIENTE. Se espera medio segundo a ver si alguien habla; si
+    habla, es HTTP, y si calla, es FTP y se le saluda como siempre.
+
+    Medio segundo no se nota: los dos estan en 127.0.0.1 y el de HTTP manda
+    la peticion pegada al connect.
+    """
+    try:
+        primero = await asyncio.wait_for(reader.read(4096), timeout=0.5)
+    except asyncio.TimeoutError:
+        primero = b''
+    except Exception:
+        primero = b''
+    if primero[:4].upper() in (b'GET ', b'HEAD', b'POST'):
+        await _manejar_http_parche(primero, writer)
+        return
+    await _manejar_ftp(reader, writer, primero)
+
+
+async def _manejar_http_parche(peticion: bytes, writer: asyncio.StreamWriter):
+    """Sirve por HTTP el ini de version que pide el launcher de Global.
+
+    Pide /alog-patch/version.ini, pero el nombre y la carpeta salen de
+    IniURL y UpdateDir y pueden cambiar, asi que no se compara la ruta
+    entera: cualquier .ini se contesta con el mismo contenido. Lo que
+    importa es el contenido, y resulta ser EL MISMO formato que el
+    update3.ini del launcher viejo -- el binario lee INFO\\GameVerFrom,
+    INFO\\GameVerTrans, INFO\\LoaderVer, INFO\\LoaderURL, VERSION\\GameVer,
+    VERSION\\GameURL y COMPLEXFILE --, asi que vale el generador de siempre.
+
+    Sin esto el launcher saca "Failed to obtain the version", que es lo que
+    pasaba: se le estaba contestando 404.
+    """
+    try:
+        linea = peticion.split(b'\r\n', 1)[0].decode('latin-1', 'replace')
+        ruta = linea.split(' ')[1] if ' ' in linea else '/'
+    except Exception:
+        ruta = '/'
+    if ruta.lower().endswith('.ini'):
+        cuerpo = _contenido_update3_ini()
+        cab = (b'HTTP/1.1 200 OK\r\n'
+               b'Content-Type: text/plain\r\n'
+               b'Content-Length: ' + str(len(cuerpo)).encode('ascii') + b'\r\n'
+               b'Connection: close\r\n\r\n')
+        log.info('launcher Global: %s -> version ok (%d B)', ruta, len(cuerpo))
+    else:
+        cuerpo = b''
+        cab = (b'HTTP/1.1 404 Not Found\r\n'
+               b'Content-Length: 0\r\nConnection: close\r\n\r\n')
+        log.info('launcher Global: %s -> 404', ruta)
+    try:
+        writer.write(cab + cuerpo)
+        await writer.drain()
+    except Exception:
+        pass
+    try:
+        writer.close()
+    except Exception:
+        pass
+
+
+async def _manejar_ftp(reader: asyncio.StreamReader, writer: asyncio.StreamWriter,
+                       ya_leido: bytes = b''):
     """Mini servidor FTP local para que START.EXE valide update3.ini al instante."""
     pasv_srv = None
     pasv_queue = asyncio.Queue()
@@ -719,8 +795,20 @@ async def _manejar_ftp(reader: asyncio.StreamReader, writer: asyncio.StreamWrite
     try:
         writer.write(b"220 Angels Online Local Update Server Ready\r\n")
         await writer.drain()
+        # Lo que la olfateada de protocolo ya saco del socket. Con un cliente
+        # de FTP normal esto viene vacio -- esperan el 220 antes de hablar --,
+        # pero si algun dia llega uno que se adelanta, sus ordenes no se
+        # pierden.
+        pendiente = ya_leido
         while True:
-            line = await asyncio.wait_for(reader.readline(), timeout=15.0)
+            if pendiente:
+                corte = pendiente.find(b'\n')
+                if corte < 0:
+                    line, pendiente = pendiente, b''
+                else:
+                    line, pendiente = pendiente[:corte + 1], pendiente[corte + 1:]
+            else:
+                line = await asyncio.wait_for(reader.readline(), timeout=15.0)
             if not line:
                 break
             cmd_line = line.decode('ascii', errors='ignore').strip()
@@ -794,6 +882,10 @@ def _contenido_update3_ini() -> bytes:
     return (
         "[INFO]\r\n"
         "LoaderVer = 1.7\r\n"
+        # LoaderURL se lee DE AQUI, no del reg.ini: el binario de Global pide
+        # INFO\LoaderURL del fichero que acaba de bajarse. Por eso ponerlo en
+        # el reg.ini no servia de nada y seguia yendo a su host.
+        "LoaderURL = 127.0.0.1\r\n"
         "GameVerFrom = 8.5.1.0\r\n"
         "GameVerTrans = 8.5.1.0\r\n"
         "[VERSION]\r\n"
@@ -1093,9 +1185,9 @@ async def iniciar_servidores_launcher():
     p_http = int(getattr(_cf, 'PUERTO_UPDATE_HTTP', 8080))
     srvs = []
     try:
-        s_ftp = await asyncio.start_server(_manejar_ftp, '127.0.0.1', p_ftp)
+        s_ftp = await asyncio.start_server(_manejar_actualizacion, '127.0.0.1', p_ftp)
         srvs.append(s_ftp)
-        log.info(f"Servidor FTP de actualizacion (START.EXE) en 127.0.0.1:{p_ftp}")
+        log.info(f"Servidor de actualizacion (FTP del START.EXE de IGG y HTTP del de Global) en 127.0.0.1:{p_ftp}")
     except Exception as e:
         log.warning(f"No se pudo abrir puerto FTP {p_ftp}: {e}")
     try:

@@ -9445,5 +9445,20 @@
       "hex": "196d02002506000000",
       "texto": "Your level is not [/c$2 level 380 or above/c*], and does not match my criteria."
     }
+  },
+  "Leif": {
+    "msgid": 156616,
+    "opciones": [],
+    "acciones": []
+  },
+  "Mr. Fleming": {
+    "msgid": 157311,
+    "opciones": [],
+    "acciones": []
+  },
+  "Fleming": {
+    "msgid": 157311,
+    "opciones": [],
+    "acciones": []
   }
 }

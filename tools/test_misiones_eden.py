@@ -1,6 +1,7 @@
 import sys
 import unittest
 import types
+import struct
 
 sys.path.insert(0, r'f:\Ao Proyect\AO 2\server')
 
@@ -95,8 +96,8 @@ class TestMisionesEden(unittest.TestCase):
         # Explorer Lim (121633)
         dlg = dialogos.propio('Explorer Lim', entidad=121633)
         self.assertIsNotNone(dlg)
-        ops = dialogos.opciones_de(dlg[0])
-        self.assertIn(20002, ops)
+        mid_lim = struct.unpack_from('<I', dlg[0], 0)[0]
+        self.assertEqual(mid_lim, 20010)
 
         # Paradise Angel (121671)
         dlg = dialogos.propio('Paradise Angel', entidad=121671)

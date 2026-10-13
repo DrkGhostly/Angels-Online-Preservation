@@ -621,8 +621,11 @@ def _meter(ses, item_id: int, n: int = 1) -> int:
     para que las galletas y el pasto no llenaran el inventario.
     """
     import inventario as inv
-    bolsa = ses.inventario
     item_id = int(item_id)
+    if inv.es_item_oculto(item_id):
+        log.warning(f"Intento de meter item oculto de mision {item_id} en la mochila visible bloqueado")
+        return None
+    bolsa = ses.inventario
     n = max(1, int(n))
     if inv.es_apilable(item_id):
         for ranura, it in bolsa.items():
@@ -696,6 +699,8 @@ def _con_oro(ses):
     out = []
     for ranura, item_id in ses.inventario.items():
         r = int(ranura)
+        if r != inv.RANURA_ORO and (not item_id or int(item_id) <= 0):
+            continue
         if r == inv.RANURA_ORO:
             out.append((r, int(item_id), getattr(ses, 'oro', 0), _inst(ses, r)))
         else:
@@ -1759,6 +1764,8 @@ def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
     if ses.personaje:
         import misiones as _mis_muerte
         _mis_muerte.registrar_baja_monstruo(ses, m.npc_type, getattr(m, 'nombre', None))
+        _eventos_al_morir(ses, m, addr)
+        ses.volcar()
 
     if getattr(m, 'encantado', False):
         m.encantado = False
@@ -2010,6 +2017,10 @@ def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
         salida_combate.append(_cl.aviso(_nombre_item(item_drop), tipo=0, msg_id=_cl.MSG_ITEM))
 
     salida_combate.extend(_refrescar(ses, tocadas_botin, con_oro=True))
+    if ses.personaje and tocadas_botin:
+        import misiones as _mis_col
+        pkgs_rec = _mis_col.verificar_progreso_recoleccion(ses, [d[0] for d in drops])
+        salida_combate.extend(pkgs_rec)
     try:
         asyncio.get_event_loop().call_later(
             _espera_muerte,
@@ -2371,6 +2382,183 @@ def _cancelar_portal_armado(ses):
         except Exception:
             pass
         ses.portal_armado = None
+
+
+def _aplicar_efectos(ses, addr, efectos, motivo=''):
+    """Obedece los efectos que devuelve el interprete de eventos.
+
+    server/eventos.py lee la logica de los .mpc y devuelve EFECTOS; no toca
+    nada. Esta funcion es la que si toca, y a proposito no obedece todo: solo
+    lo que se sabe hacer SIN inventarse un paquete. Lo demas se cuenta en el
+    registro, que es como se ve que falta.
+
+    LO QUE QUEDA FUERA Y POR QUE. El grande es 52 CHANGE_STATICOBJ, el que
+    abre las puertas de las instancias. Se sabe lo que quiere decir -- pon el
+    objeto N en el TAG T -- y donde cae el TAG, pero no como se le dice al
+    cliente: de los 23 objetos que usan los mapas solo UNO tiene cuerpo
+    capturado, y los demas los dibuja el cliente por su cuenta desde el .mpc,
+    asi que no tienen id de entidad del servidor al que referirse. Mandar un
+    0x000E rearmado es justo lo que login.objeto_de_mapa avisa que no
+    equivale: los objetos reconstruidos no coinciden byte a byte con los que
+    mandaba el servidor original. Hace falta UNA captura abriendo una puerta
+    con el cliente oficial y el proxy puesto; hasta entonces el efecto se
+    apunta en el estado y se registra, pero no se manda nada.
+
+    Tampoco se obedece 25 BEGIN_MESSAGE todavia: el numero que trae es de los
+    dialogos DEL MAPA -- el segundo xml del .mpc -- y la plantilla de eventos
+    no los lleva, solo el numero.
+    """
+    import eventos as _ev
+    import eventos_mundo as _evm
+    if not efectos:
+        return
+    estado = _evm.estado_de(ses)
+    p = ses.personaje
+    sin_hacer = []
+    for ef in efectos:
+        que = ef[0]
+        try:
+            if que == 'dar':
+                tocadas = []
+                import clases as _cl
+                import inventario as _iv_ef
+                for item, cant in ef[1]:
+                    iid = int(item)
+                    if _iv_ef.es_item_oculto(iid):
+                        log.info(f"[{addr}] efecto dar: item {iid} es token oculto de mision, ignorado para la mochila visible")
+                        continue
+                    r = _meter(ses, iid, int(cant))
+                    if r is not None:
+                        tocadas.append(r)
+                        try:
+                            ses.enviar(_cl.aviso(_nombre_item(iid), tipo=0, msg_id=_cl.MSG_ITEM))
+                        except Exception:
+                            pass
+                if tocadas:
+                    ses.enviar(*_refrescar(ses, tocadas))
+                    if ses.personaje:
+                        import misiones as _mis_col
+                        pkgs_rec = _mis_col.verificar_progreso_recoleccion(ses, [ses.inventario.get(r) for r in tocadas])
+                        if pkgs_rec:
+                            ses.enviar(*pkgs_rec)
+            elif que == 'quitar':
+                tocadas = []
+                for item, cant in ef[1]:
+                    r = _ranura_de_item(ses, int(item))
+                    if r is not None:
+                        _sacar(ses, r, int(cant))
+                        tocadas.append(r)
+                if tocadas:
+                    ses.enviar(*_refrescar(ses, tocadas))
+            elif que == 'oro':
+                if p:
+                    p.oro = max(0, int(p.oro or 0) + int(ef[1]))
+                    ses.enviar(*_refrescar(ses, [], con_oro=True))
+            elif que == 'paso':
+                # EL PASO VIENE EN LA NUMERACION DEL CLIENTE, que empieza en
+                # 0; la del servidor empieza en 1. Es la misma conversion que
+                # hace misiones.avanzar_paso al reves con su `paso - 1`.
+                import misiones as _mis
+                qid = int(ef[1])
+                paso_servidor = int(ef[2]) + 1
+                if not _mis.tiene_mision(p, qid):
+                    _mis.aceptar_mision(ses, qid)
+                # Y solo si CAMBIA. Un evento de pisar salta cada vez que te
+                # paras encima, y sin esto el cartel se repetia en cada paso.
+                if _mis.obtener_paso_actual(p, qid) != paso_servidor:
+                    _mis.avanzar_paso(ses, qid, paso_servidor)
+            elif que == 'matar_para_avanzar':
+                # KILLTO_NEXTSTEP(mision, paso, objeto oculto, por baja,
+                # probabilidad, cuantos para completar). El contador de
+                # cacerias ya existe en misiones.py; aqui solo se le dice
+                # cual es, que es lo que antes habia que escribir a mano.
+                import misiones as _mis
+                qid = int(ef[1])
+                if _mis.obtener_paso_actual(p, qid) == int(ef[2]) + 1:
+                    _mis.registrar_baja_monstruo(ses, 0, None)
+            elif que in ('nota', 'chat', 'chat_npc'):
+                import clases as _cl
+                textos = ef[1] if que == 'chat_npc' else (
+                    ef[2] if que == 'chat' else [ef[1]])
+                for msg in (textos if isinstance(textos, list) else [textos]):
+                    ses.enviar(_cl.aviso('', tipo=0, msg_id=int(msg)))
+            elif que == 'variable':
+                modo, mapa, var, valor = ef[1], ef[2], ef[3], ef[4]
+                if modo == 'poner':
+                    estado.poner_variable(mapa, var, valor)
+                elif modo == 'sumar':
+                    estado.sumar_variable(mapa, var, valor)
+                else:
+                    estado.sumar_variable(mapa, var, -valor)
+            elif que == 'temporizador':
+                t = estado.temporizador(ef[1])
+                t[0] = bool(ef[2])
+                t[1] += 1
+            elif que == 'objeto_estatico':
+                # Se apunta para que la condicion que lo mire lo vea, pero no
+                # se manda nada: ver el comentario de arriba.
+                estado.objetos[int(ef[1])] = int(ef[2])
+                log.info('[%s] evento%s: puerta/objeto %s en el tag %s '
+                         '(anotado, falta la captura para mandarlo)',
+                         addr, motivo, ef[2], ef[1])
+            else:
+                sin_hacer.append(que)
+        except Exception:
+            log.exception('[%s] fallo al aplicar el efecto %s', addr, ef)
+    if sin_hacer:
+        log.debug('[%s] evento%s: efectos que aun no se obedecen: %s',
+                  addr, motivo, sorted(set(sin_hacer)))
+
+
+def _eventos_al_pisar(ses, addr, tile):
+    """Dispara el evento del mapa de la casilla en la que se acaba de parar.
+
+    Va DESPUES de _armar_portal_al_llegar y no en su lugar: los portales se
+    siguen resolviendo con portales.json, que esta medido uno a uno. Si el
+    evento de esa casilla era solo un portal, los efectos de viaje salen
+    igual pero no se obedecen, que es lo que hace que no se pisen entre si.
+    """
+    if not ses.personaje:
+        return
+    try:
+        import eventos_mundo as _evm
+        efectos = _evm.al_pisar(ses, tile)
+        efectos = [e for e in efectos if e[0] not in ('viajar', 'ir_a_tag')]
+        if efectos:
+            _aplicar_efectos(ses, addr, efectos, ' al pisar %s' % (tuple(tile),))
+    except Exception:
+        log.exception('fallo el evento al pisar')
+
+
+def _eventos_al_morir(ses, monstruo, addr):
+    """El evento del mapa que cuelga del bicho que acaba de morir.
+
+    Aqui estan los botines de mision, que es lo que faltaba. El mapa los
+    tiene escritos uno a uno; el de Dense Forest, por ejemplo:
+
+        evento 502, al morir en grupo
+          si QUEST_STEP(502, 0) y BAGITEM(181, =, 0)
+          y EMPTYSLOT_COUNT(>, 0) y PROB100(5)
+          -> CREATE_ITEM(181, 1)
+
+    o sea el Mushroom de The Reivers, al 5%, solo si no llevas ya uno y te
+    queda hueco. Nada de eso estaba escrito en el servidor y por eso el
+    diario se quedaba en 0/1 por mucho que mataras.
+
+    Tambien se repasan los eventos que se comprueban solos -- los de disparo
+    0 --, porque son los que miran si una zona se ha quedado sin bichos y es
+    justo ahora cuando puede haber pasado.
+    """
+    if not ses.personaje:
+        return
+    try:
+        import eventos_mundo as _evm
+        efectos = _evm.al_morir_monstruo(ses, monstruo) + _evm.pendientes(ses)
+        if efectos:
+            _aplicar_efectos(ses, addr, efectos,
+                             ' al morir %s' % getattr(monstruo, 'nombre', '?'))
+    except Exception:
+        log.exception('fallo el evento al morir el monstruo')
 
 
 def _cerrar_viaje(ses, addr, stage, tile, nombre_dest):
@@ -3059,7 +3247,7 @@ class Servidor:
                     writer.write(salida)
                     await writer.drain()
 
-        except (ConnectionResetError, asyncio.IncompleteReadError):
+        except (ConnectionResetError, ConnectionAbortedError, ConnectionError, asyncio.IncompleteReadError, OSError):
             pass
         finally:
             if ses in self.mundos:
@@ -8748,6 +8936,43 @@ class Servidor:
                     log.info(f"[{addr}] estatua {ent}: se ofrece el salto a "
                              f"{_est.get('llegada')}")
                     return
+
+                # PORTAL / TORNADO QUE TELETRANSPORTA (objeto de mapa, clic directo)
+                stg = str(ses.personaje.stage)
+                cfg_p = _portales()
+                portal_match = None
+                for por in cfg_p.get('mapas', {}).get(stg, []):
+                    if por.get('entity') == ent:
+                        portal_match = por
+                        break
+                if not portal_match:
+                    for s_k, plist in cfg_p.get('mapas', {}).items():
+                        for por in plist:
+                            if por.get('entity') == ent:
+                                portal_match = por
+                                break
+                        if portal_match:
+                            break
+                if portal_match:
+                    if portal_match.get('destino') is None and not portal_match.get('preguntar'):
+                        log.debug(f"[{addr}] clic en tornado {ent}: sin destino, no viaja")
+                        return
+                    if portal_match.get('preguntar'):
+                        import dialogos as _dlg
+                        _ops = portal_match.get('opciones') or cfg_p['opciones']
+                        sub = _dlg.armar_linea(portal_match.get('msg') or cfg_p['msg'], 0, _ops,
+                                               acciones=portal_match.get('acciones'))
+                        ses.dlg_ent = ent
+                        ses.dlg_guion = [sub[2:]]
+                        ses.dlg_paso = 1
+                        ses.dlg_val = 0
+                        ses.dlg_portal = portal_match
+                        ses.enviar(sub)
+                        log.info(f"[{addr}] clic en tornado {ent}: abriendo menu de portal")
+                        return
+                    else:
+                        _viajar_por_portal(ses, addr, portal_match, f"(clic en tornado {ent})")
+                        return
             # Si ya se cumplio lo que pedia el tramo actual, se avanza ANTES
             # de hablar: en el juego, en cuanto llevas el examen encima
             # Raphael te suelta el "Good for you!" y no repite lo anterior.
@@ -8871,14 +9096,23 @@ class Servidor:
                     ses.personaje.stage = _st_ent
 
                 _nom_ent = _nombre_entidad(ses, ent) or ''
+                if not _nom_ent:
+                    log.debug(f"[{addr}] clic en entidad {ent} sin nombre registrado")
+                    return
+
                 g_quest = None
-                if _nom_ent and ses.personaje:
+                if ses.personaje:
                     proc, tipo_proc, datos_proc = _mis.interactuar_npc(ses, _nom_ent, entidad=ent)
                     if proc:
                         if tipo_proc in ('completada', 'avanzada'):
                             qid_proc = datos_proc.get('qid')
+                            paso_proc = datos_proc.get('paso') or datos_proc.get('nuevo_paso', 1)
                             nom2 = ses.personaje.nombre if ses.personaje else 'Jugador'
-                            g_mis = dialogos.guion_de_mision(qid_proc, _nom_ent, jugador=nom2, entidad=ent, completada=(tipo_proc == 'completada'))
+                            g_mis = dialogos.guion_de_mision(
+                                qid_proc, _nom_ent, jugador=nom2, entidad=ent,
+                                completada=(tipo_proc == 'completada'),
+                                paso=paso_proc, tipo_evento=tipo_proc
+                            )
                             dp = dialogos.propio(_nom_ent, faccion=faccion, jugador=nom2, entidad=ent)
                             if _nom_ent.lower() in ('aurora angel', 'dark city angel', 'ironcastle angel', 'breezewood angel'):
                                 g_comp = dp if dp else g_mis
@@ -8892,8 +9126,12 @@ class Servidor:
                             return
                         elif tipo_proc in ('incompleta', 'recoleccion_incompleta', 'caceria_incompleta'):
                             qid_proc = datos_proc.get('qid')
+                            paso_proc = datos_proc.get('paso', 1)
                             nom2 = ses.personaje.nombre if ses.personaje else 'Jugador'
-                            g_prog = dialogos.guion_de_mision(qid_proc, _nom_ent, jugador=nom2, entidad=ent, en_progreso=True)
+                            g_prog = dialogos.guion_de_mision(
+                                qid_proc, _nom_ent, jugador=nom2, entidad=ent,
+                                en_progreso=True, paso=paso_proc, tipo_evento=tipo_proc
+                            )
                             if g_prog:
                                 ses.dlg_ent, ses.dlg_guion, ses.dlg_paso = ent, g_prog, 1
                                 ses.dlg_val = dialogos.val_por_entidad(ent)
@@ -8908,6 +9146,27 @@ class Servidor:
                     if disponibles:
                         qid_ofrecer = disponibles[0]
                         nom2 = ses.personaje.nombre if ses.personaje else 'Jugador'
+                        flujo = dialogos.info_flujo_mision(qid_ofrecer)
+                        # Comprobar nivel requerido
+                        req_lvl = _mis.info_mision(qid_ofrecer).get('nivel')
+                        if flujo and flujo.get('rechazo_nivel'):
+                            import re as _re_lvl
+                            txt_r = dialogos._cargar_msg_dict().get(flujo['rechazo_nivel'], '')
+                            m_lvl = _re_lvl.search(r'level\s+(?:is\s+not\s+|isn\'t\s+yet\s+|must\s+be\s+at\s+least\s+)?(?:/c\$2)?(\d+)', txt_r, _re_lvl.I)
+                            if m_lvl:
+                                req_lvl = int(m_lvl.group(1))
+                        lvl_act = getattr(ses.personaje, 'nivel', 1)
+                        if req_lvl and lvl_act < req_lvl and flujo and flujo.get('rechazo_nivel'):
+                            # Rechazo por nivel insuficiente
+                            sub_r = dialogos.armar_linea(flujo['rechazo_nivel'], dialogos.val_por_entidad(ent), [], strings=[nom2])
+                            ses.dlg_ent = ent
+                            ses.dlg_guion = [sub_r[2:]]
+                            ses.dlg_paso = 1
+                            ses.dlg_val = dialogos.val_por_entidad(ent)
+                            ses.enviar(sub_r)
+                            log.info(f"[{addr}] {_nom_ent}: nivel insuficiente ({lvl_act} < {req_lvl}) para mision {qid_ofrecer}")
+                            return
+
                         g_ofrecer = dialogos.guion_de_mision(qid_ofrecer, _nom_ent, jugador=nom2, entidad=ent, completada=False)
                         if g_ofrecer:
                             ses.dlg_ent, ses.dlg_guion, ses.dlg_paso = ent, g_ofrecer, 1
@@ -8933,56 +9192,8 @@ class Servidor:
                     ses.enviar(dialogos.linea_de(g2, 0, nom2))
                     log.info(f"[{addr}] dialogo de {_nom_ent} (val={ses.dlg_val})")
                     return
-                if ses.personaje:
-                    stg = str(ses.personaje.stage)
-                    cfg_p = _portales()
-                    portal_match = None
-                    for por in cfg_p.get('mapas', {}).get(stg, []):
-                        if por.get('entity') == ent:
-                            portal_match = por
-                            break
-                    if not portal_match:
-                        for s_k, plist in cfg_p.get('mapas', {}).items():
-                            for por in plist:
-                                if por.get('entity') == ent:
-                                    portal_match = por
-                                    break
-                            if portal_match:
-                                break
-                    # TORNADO SIN DESTINO: no se viaja. Es el mismo filtro que
-                    # hace _portal_en al PISARLOS, y aqui faltaba. Hay 39
-                    # tornados anotados con destino en null -- entradas de
-                    # instancia sin abrir y puertas cuyo evento solo saca un
-                    # dialogo -- y clicar cualquiera de ellos reventaba la
-                    # sesion con "Value after * must be an iterable, not
-                    # NoneType", porque _viajar_por_portal desempaqueta la
-                    # casilla de llegada. Los que PREGUNTAN tambien tienen el
-                    # destino en null, y a proposito: el suyo lo decide la
-                    # opcion que elija el jugador.
-                    if (portal_match and portal_match.get('destino') is None
-                            and not portal_match.get('preguntar')):
-                        log.debug(f"[{addr}] clic en el tornado {ent}: anotado "
-                                  f"sin destino, no lleva a ningun sitio")
-                        return
-                    if portal_match:
-                        if portal_match.get('preguntar'):
-                            import dialogos as _dlg
-                            _ops = portal_match.get('opciones') or cfg_p['opciones']
-                            sub = _dlg.armar_linea(portal_match.get('msg') or cfg_p['msg'], 0, _ops,
-                                                   acciones=portal_match.get('acciones'))
-                            ses.dlg_ent = ent
-                            ses.dlg_guion = [sub[2:]]
-                            ses.dlg_paso = 1
-                            ses.dlg_val = 0
-                            ses.dlg_portal = portal_match
-                            ses.enviar(sub)
-                            log.info(f"[{addr}] clic en tornado {ent}: abriendo menu de portal")
-                            return
-                        else:
-                            _viajar_por_portal(ses, addr, portal_match, f"(clic en tornado {ent})")
-                            return
 
-                log.debug(f"[{addr}] clic en la entidad {ent}: sin dialogo")
+                log.debug(f"[{addr}] clic en la entidad {ent} ({_nom_ent}): sin dialogo")
                 return
             # En Guide Palace (stage 51):
             inv_items = list((getattr(ses, 'inventario', {}) or {}).values())
@@ -9085,13 +9296,17 @@ class Servidor:
 
                     if fase == 'interes':
                         if _i == 0:  # Eligió la primera opción: "Tell me how I can help." / "About help"
-                            # Mostrar la propuesta detallada de la misión (Página 3)
+                            # Mostrar la propuesta detallada de la misión (con páginas de historia si tiene)
                             ses.dlg_quest_fase = 'propuesta'
-                            line_prop = dialogos.armar_linea(flujo['propuesta'], val, flujo.get('ops_prop', []), strings=[nom2])
-                            ses.dlg_guion = [line_prop[2:]]
+                            lineas_prop = []
+                            for m_hist in flujo.get('historia', []):
+                                lineas_prop.append(dialogos.armar_linea(m_hist, val, [], strings=[nom2])[2:])
+                            line_final = dialogos.armar_linea(flujo['propuesta'], val, flujo.get('ops_prop', []), strings=[nom2])
+                            lineas_prop.append(line_final[2:])
+                            ses.dlg_guion = lineas_prop
                             ses.dlg_paso = 1
-                            ses.enviar(line_prop)
-                            log.info(f"[{addr}] {nom2} mostro interes en mision {qid_ofrecida}; mostrando propuesta {flujo['propuesta']}")
+                            ses.enviar(dialogos.linea_de(lineas_prop, 0, nom2))
+                            log.info(f"[{addr}] {nom2} mostro interes en mision {qid_ofrecida}; mostrando historia/propuesta ({len(lineas_prop)} paginas)")
                             return
                         else:  # Eligió "Leave." / "I quit."
                             ses.dlg_quest_ofrecida = None
@@ -9377,7 +9592,7 @@ class Servidor:
                             _mis.completar_mision(ses, _q_con, exp=1500, oro=500)
                             log.info(f"[{addr}] {ses.personaje.nombre} completo mision {_q_con} con {_nom_g}")
                         else:
-                            ses.enviar(_cl.aviso(f"{_nom_g}: Welcome to our city, Angel!", tipo=0, msg_id=_cl.MSG_QUEST))
+                            ses.enviar(_cl.aviso(f"{_nom_g}: Welcome to our city, Angel!", tipo=0, msg_id=_cl.MSG_TEXTO))
                     # 2. Block Envoy (Mushroom Village)
                     elif ent == 122784 or 'Block Envoy' in (_nombre_entidad(ses, ent) or ''):
                         _st_m142, _pa142, _comp142 = _mis.estado_mision(ses.personaje, _mis.QUEST_EDEN_NEEDS_HELP)
@@ -9385,10 +9600,10 @@ class Servidor:
                             if not _st_m142:
                                 _mis.aceptar_mision(ses, _mis.QUEST_EDEN_NEEDS_HELP)
                             _mis.avanzar_paso(ses, _mis.QUEST_EDEN_NEEDS_HELP, 2)
-                            ses.enviar(_cl.aviso("Quest [Eden Needs Help]: Defeat 100 Young Witches or Crystal Envoys!", tipo=0, msg_id=_cl.MSG_QUEST))
+                            ses.enviar(_cl.aviso("Quest [Eden Needs Help]: Defeat 100 Young Witches or Crystal Envoys!", tipo=0, msg_id=_cl.MSG_TEXTO))
                         elif _pa142 == 3:
                             _mis.avanzar_paso(ses, _mis.QUEST_EDEN_NEEDS_HELP, 4)
-                            ses.enviar(_cl.aviso("Quest [Eden Needs Help]: Report to Guerrilla Leader Mola in Building Blocks County!", tipo=0, msg_id=_cl.MSG_QUEST))
+                            ses.enviar(_cl.aviso("Quest [Eden Needs Help]: Report to Guerrilla Leader Mola in Building Blocks County!", tipo=0, msg_id=_cl.MSG_TEXTO))
                             _sincronizar_cambio_mapa(ses, 152, 132, 95)
                     # 3. Guerrilla Leader Mola (Building Blocks County)
                     elif ent == 122793 or 'Mola' in (_nombre_entidad(ses, ent) or '') or 'Guerrilla' in (_nombre_entidad(ses, ent) or ''):
@@ -9398,14 +9613,14 @@ class Servidor:
                             _mis.completar_mision(ses, _mis.QUEST_EDEN_NEEDS_HELP, exp=50000, oro=20000)
                             _mis.aceptar_mision(ses, _mis.QUEST_FINAL_LINE)
                             _mis.avanzar_paso(ses, _mis.QUEST_FINAL_LINE, 1)
-                            ses.enviar(_cl.aviso("Quest [The Final Line]: Defeat 100 Fireball Babies or Flower Thorn Babies!", tipo=0, msg_id=_cl.MSG_QUEST))
+                            ses.enviar(_cl.aviso("Quest [The Final Line]: Defeat 100 Fireball Babies or Flower Thorn Babies!", tipo=0, msg_id=_cl.MSG_TEXTO))
                         elif _st_m143:
                             if _pa143 == 2:
                                 _mis.avanzar_paso(ses, _mis.QUEST_FINAL_LINE, 3)
-                                ses.enviar(_cl.aviso("Quest [The Final Line]: Defeat 100 Dog Fighters!", tipo=0, msg_id=_cl.MSG_QUEST))
+                                ses.enviar(_cl.aviso("Quest [The Final Line]: Defeat 100 Dog Fighters!", tipo=0, msg_id=_cl.MSG_TEXTO))
                             elif _pa143 == 4:
                                 _mis.avanzar_paso(ses, _mis.QUEST_FINAL_LINE, 5)
-                                ses.enviar(_cl.aviso("Quest [The Final Line]: Report to Lord Kahn in Building Blocks City!", tipo=0, msg_id=_cl.MSG_QUEST))
+                                ses.enviar(_cl.aviso("Quest [The Final Line]: Report to Lord Kahn in Building Blocks City!", tipo=0, msg_id=_cl.MSG_TEXTO))
                                 _sincronizar_cambio_mapa(ses, 153, 51, 136)
                     # 4. Lord Kahn (Building Blocks City)
                     elif ent == 122809 or 'Kahn' in (_nombre_entidad(ses, ent) or ''):
@@ -9414,7 +9629,7 @@ class Servidor:
                             _mis.completar_mision(ses, _mis.QUEST_FINAL_LINE, exp=100000, oro=50000, creditos_honor=50)
                             _mis.aceptar_mision(ses, 144)
                             _mis.avanzar_paso(ses, 144, 1)
-                            ses.enviar(_cl.aviso("Quest [Recapturing Eden]: Accepted from Lord Kahn!", tipo=0, msg_id=_cl.MSG_QUEST))
+                            ses.enviar(_cl.aviso("Quest [Recapturing Eden]: Accepted from Lord Kahn!", tipo=0, msg_id=_cl.MSG_TEXTO))
                     # 5. Angel de Ciudad: Registro (Opcion 2)
                     elif _el in _dlg_mod.CIUDAD_POR_OPCION and _el % 10000 == 2:
                         _pjr = ses.personaje
@@ -9443,7 +9658,7 @@ class Servidor:
                     if _mis.tiene_mision(_pj, _q_niv) and not _mis.mision_completada(_pj, _q_niv):
                         if _pj.nivel >= 20 and _rango_act >= 2:
                             _mis.completar_mision(ses, _q_niv, exp=10000, oro=5000, creditos_honor=20)
-                            ses.enviar(_cl.aviso("Quest Completed! Talk to Paradise Angel to journey into Eden.", tipo=0, msg_id=_cl.MSG_QUEST))
+                            ses.enviar(_cl.aviso("Quest Completed! Talk to Paradise Angel to journey into Eden.", tipo=0, msg_id=_cl.MSG_TEXTO))
                             log.info(f"[{addr}] {_pj.nombre} completo mision de nivel {_q_niv}")
                 elif (_el in _dlg_mod.CIUDAD_POR_OPCION
                       and _el % 10000 == 18 and ses.personaje):
@@ -9456,14 +9671,14 @@ class Servidor:
                     if not _mis.tiene_mision(ses.personaje, _mis.QUEST_FINAL_LINE):
                         _mis.aceptar_mision(ses, _mis.QUEST_FINAL_LINE)
                         _mis.avanzar_paso(ses, _mis.QUEST_FINAL_LINE, 1)
-                        ses.enviar(_cl.aviso("Quest [The Final Line]: Defeat 100 Fireball Babies or Flower Thorn Babies!", tipo=0, msg_id=_cl.MSG_QUEST))
+                        ses.enviar(_cl.aviso("Quest [The Final Line]: Defeat 100 Fireball Babies or Flower Thorn Babies!", tipo=0, msg_id=_cl.MSG_TEXTO))
                 elif _el == 14402 and ses.personaje:
                     import misiones as _mis
                     import clases as _cl
                     if not _mis.tiene_mision(ses.personaje, 144):
                         _mis.aceptar_mision(ses, 144)
                         _mis.avanzar_paso(ses, 144, 1)
-                        ses.enviar(_cl.aviso("Quest [Recapturing Eden]: Accepted from Lord Kahn!", tipo=0, msg_id=_cl.MSG_QUEST))
+                        ses.enviar(_cl.aviso("Quest [Recapturing Eden]: Accepted from Lord Kahn!", tipo=0, msg_id=_cl.MSG_TEXTO))
                 elif (_el in _dlg_mod.CIUDAD_POR_OPCION
                       and _el % 10000 == 18 and ses.personaje):
                     # "Send me back to the Angel Lyceum" del Angel de una
@@ -9523,8 +9738,6 @@ class Servidor:
                     _qid_cand = None
                     if getattr(ses, 'dlg_quest_opciones', None) and _el in ses.dlg_quest_opciones:
                         _qid_cand = ses.dlg_quest_opciones[_el]
-                    elif _el and _el > 1000 and (_el % 100 in (2, 3, 4)):
-                        _qid_cand = _el // 100
 
                     if _qid_cand:
                         import misiones as _mis_opt
@@ -9891,6 +10104,11 @@ class Servidor:
                     ses, addr, (ses.personaje.tile_x, ses.personaje.tile_y),
                     max(abs(ses.personaje.tile_x - _ox),
                         abs(ses.personaje.tile_y - _oy)))
+                # Y el evento del mapa de esa casilla, si lo hay. Va DESPUES
+                # del portal y no en su lugar: los portales siguen saliendo
+                # de portales.json, que esta medido uno a uno.
+                _eventos_al_pisar(
+                    ses, addr, (ses.personaje.tile_x, ses.personaje.tile_y))
 
                 # Si el movimiento termina LEJOS del objetivo, se lo suelta:
                 # atacabas, te ibas, y al pararte el personaje seguia pegandole

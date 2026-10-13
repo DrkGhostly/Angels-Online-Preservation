@@ -273,6 +273,17 @@ def compilar():
         exp_base = 500 + qid * 80
         oro_base = 200 + qid * 30
 
+        # Creditos de honor / contribución para subir rango
+        tipo_l = tipo.lower()
+        if 'city' in tipo_l or 'breeze' in tipo_l or 'aurora' in tipo_l or 'dark' in tipo_l or 'iron' in tipo_l:
+            cred_base = 20 + min(60, (qid // 100) * 5)
+        elif 'angel' in tipo_l or 'heaven' in tipo_l or 'eden' in tipo_l:
+            cred_base = 25 + min(75, (qid // 100) * 5)
+        elif repetible:
+            cred_base = 15
+        else:
+            cred_base = max(10, min(50, int(exp_base // 2000)))
+
         # Determinación de facción si la misión pertenece a una ciudad o facción exclusiva
         fac_q = None
         texto_comb = (nombre + ' ' + tipo + ' ' + mapa_inicio + ' ' + intro).lower()
@@ -300,7 +311,7 @@ def compilar():
             'recompensa': {
                 'exp': exp_base,
                 'oro': oro_base,
-                'creditos': 10 if 'angel' in tipo.lower() or 'heaven' in tipo.lower() else 0
+                'creditos': cred_base
             }
         }
 

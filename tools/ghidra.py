@@ -60,6 +60,16 @@ GHIDRA = pathlib.Path('G:/ghidra')
 PROYECTO = pathlib.Path('G:/ghidra_proj')
 NOMBRE_PROYECTO = 'AO'
 BINARIO = pathlib.Path('G:/Angel.exe')
+
+# Otros binarios que interesa mirar, cada uno en su proyecto para no
+# mezclarlos. El de Global es OTRO JUEGO compilado con VS2022: sus
+# direcciones no tienen nada que ver con las del de IGG, asi que meterlos en
+# el mismo proyecto solo serviria para confundirse.
+OTROS = {
+    'global': ('AO_GLOBAL',
+               pathlib.Path('G:/SteamLibrary/steamapps/common/'
+                            'Angels Online Global/angel.dat')),
+}
 SCRIPTS = RAIZ / 'tools' / 'ghidra_scripts'
 
 HEADLESS = GHIDRA / 'support' / 'analyzeHeadless.bat'
@@ -70,22 +80,36 @@ def _correr(args, timeout=None):
     return subprocess.run([str(a) for a in args], timeout=timeout).returncode
 
 
-def analizar():
+def _cual(nombre):
+    """(nombre del proyecto, binario) del que se pida."""
+    if not nombre or nombre == 'igg':
+        return NOMBRE_PROYECTO, BINARIO
+    if nombre not in OTROS:
+        raise SystemExit('no se que binario es %r; vale igg o %s'
+                         % (nombre, ', '.join(OTROS)))
+    return OTROS[nombre]
+
+
+def analizar(cual=None):
     """Importa el binario y lo analiza entero. Se hace UNA vez."""
+    proy, binario = _cual(cual)
+    if not binario.exists():
+        raise SystemExit('no esta %s' % binario)
     PROYECTO.mkdir(parents=True, exist_ok=True)
-    return _correr([HEADLESS, PROYECTO, NOMBRE_PROYECTO,
-                    '-import', BINARIO, '-overwrite',
+    return _correr([HEADLESS, PROYECTO, proy,
+                    '-import', binario, '-overwrite',
                     '-analysisTimeoutPerFile', '7200'])
 
 
-def script(nombre, *extra):
+def script(nombre, *extra, cual=None):
     """Corre un script de tools/ghidra_scripts sobre lo ya analizado."""
+    proy, binario = _cual(cual)
     ruta = SCRIPTS / nombre
     if not ruta.exists():
         print('no existe %s' % ruta)
         return 2
-    return _correr([HEADLESS, PROYECTO, NOMBRE_PROYECTO,
-                    '-process', BINARIO.name, '-noanalysis',
+    return _correr([HEADLESS, PROYECTO, proy,
+                    '-process', binario.name, '-noanalysis',
                     '-scriptPath', SCRIPTS,
                     '-postScript', nombre, *extra])
 
@@ -109,13 +133,16 @@ def main():
     ap.add_argument('--comprobar', action='store_true')
     ap.add_argument('--analizar', action='store_true')
     ap.add_argument('--script')
+    ap.add_argument('--cual', default='igg',
+                    help='que binario: igg (por defecto) o %s'
+                         % ', '.join(OTROS))
     ap.add_argument('extra', nargs='*')
     a = ap.parse_args()
     if a.comprobar or not (a.analizar or a.script):
         raise SystemExit(0 if comprobar() else 1)
     if a.analizar:
-        raise SystemExit(analizar())
-    raise SystemExit(script(a.script, *a.extra))
+        raise SystemExit(analizar(a.cual))
+    raise SystemExit(script(a.script, *a.extra, cual=a.cual))
 
 
 if __name__ == '__main__':

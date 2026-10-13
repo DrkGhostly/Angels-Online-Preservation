@@ -258,12 +258,14 @@ El servidor deja el cliente local listo al arrancar, siempre con un `.bak` antes
 
 - **Sistema Integral de Misiones (1.489 quests)**:
   - Catálogo completo compilado desde `quest.xml` con 1.489 misiones y 662 repetibles.
-  - Seguimiento dinámico de cacerías (877 objetivos de combate automáticos al matar monstruos en cualquier mapa).
-  - Objetivos de recolección (819 pasos con verificación de inventario y consumo automático de items).
+  - Seguimiento dinámico de cacerías (877 objetivos de combate automáticos al matar monstruos en cualquier mapa con alias y nombres canónicos).
+  - Objetivos de recolección (819 pasos con verificación de inventario, drop directo a la mochila visible y avisos de progreso `Collected X (y/z)`).
+  - Diálogos y flujo de NPCs corregidos: opciones alineadas con la UI original, comprobación de requisitos de nivel (ej. Mr. Fleming en Wise Institute nv. 380, Leif en Sandy Heights) y encadenamiento continuo de comandantes de ciudad.
   - Interacción y entrega con NPCs (más de 1.500 puntos de entrega y 1.100 NPCs asignadores).
   - Misiones repetibles y rotativas diarias/semanales.
   - Teletransporte automático a mapas de instancia / entrenamiento vinculados a quests.
   - Persistencia completa en base de datos SQLite y sincronización con el cliente vía paquetes `0x0021` y `0x0022`.
+  - Abandono y entrega 100% seguros: desensamblado de `Angel.exe` (`sub_602BD0` / `0x004A5390`) y capturas oficiales (`mundo_180305_971213_orden.jsonl`) para enviar únicamente `0x0022` modo 2, eliminando crashes de `_invalid_parameter_noinfo` y protegiendo slots de mochila fuera de límites (> 60).
 
 **No funciona**
 

@@ -204,21 +204,8 @@ def secuencia(p: Personaje):
             _items = [(int(r), _inv.ITEM_ORO if int(r) == _inv.RANURA_ORO else int(it),
                        p.oro if int(r) == _inv.RANURA_ORO
                        else max(1, int((p.cantidades or {}).get(int(r), 1))))
-                      for r, it in p.inventario.items()]
-            # Sincronizar tokens de cacerias activas a ranuras ocultas (497..556)
-            for _q_t, _pa_t in (p.quests or []):
-                _k_cac = f"{_q_t}_{_pa_t}"
-                _k_cnt = (getattr(p, 'quest_kills', None) or {}).get(_k_cac, 0)
-                if _k_cnt > 0:
-                    _tok_id = 16075 if _q_t == 142 else None
-                    if not _tok_id:
-                        import misiones as _mis_t
-                        _mis_t._cargar_db()
-                        _c_d = getattr(_mis_t, '_CACERIAS', {}).get(_k_cac, {})
-                        _tok_id = _c_d.get('token_id')
-                    if _tok_id:
-                        _slot_oc = 497 + (int(_q_t) % 60)
-                        _items.append((_slot_oc, int(_tok_id), int(_k_cnt)))
+                      for r, it in p.inventario.items()
+                      if (int(r) == _inv.RANURA_ORO or (it and int(it) > 0)) and int(r) < 60]
             salida.append(_inv.completo(p.char_id, _items, p.entity_id,
                                         mejoras=getattr(p, 'mejoras', None),
                                         mascota=getattr(p, 'mascota', None),
