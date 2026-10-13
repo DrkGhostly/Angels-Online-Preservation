@@ -994,20 +994,20 @@ def es_apilable(item_id: int) -> bool:
 
 
 def es_item_oculto(item_id: int) -> bool:
-    """Si el item es un token de mision oculto (categoria '隱藏' o 'Quest Item').
-    Estos items NUNCA deben meterse en la mochila visible del jugador (ranuras 20..59),
-    solo van en las ranuras de misiones ocultas (497..556).
+    """Si el item es un token de mision ficticio (ej. '142 Quest Item', '555 Quest Item').
+    Estos tokens no son objetos reales del juego y no deben entrar en la mochila.
+    Los items reales de recoleccion (Work ID, Microcoin, Mushroom, etc.) si entran en la mochila.
     """
     if not item_id or int(item_id) <= 0:
         return False
     iid = int(item_id)
-    cat = categoria_item(iid)
-    if '隱' in cat or 'U' in cat:
+    if iid in (969, 956, 16075):
         return True
     try:
         import misiones as _mis
+        import re
         nom = _mis.nombre_item(iid)
-        if 'Quest Item' in nom:
+        if re.match(r'^\d+\s+Quest\s+Item$', nom, re.IGNORECASE):
             return True
     except Exception:
         pass

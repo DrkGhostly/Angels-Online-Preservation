@@ -160,7 +160,12 @@ def nombre_item(item_id: int) -> str:
     """Nombre del item desde corpus/content.db con cache."""
     global _ITEM_NAMES_CACHE
     if _ITEM_NAMES_CACHE is None:
-        _ITEM_NAMES_CACHE = {10: "FreshmanSabre", 83266: "Rank Promotion Medal"}
+        _ITEM_NAMES_CACHE = {
+            10: "FreshmanSabre",
+            83266: "Rank Promotion Medal",
+            78179: "Work ID",
+            78180: "Microcoin",
+        }
     if item_id in _ITEM_NAMES_CACHE:
         return _ITEM_NAMES_CACHE[item_id]
     db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
@@ -824,10 +829,6 @@ def verificar_botin_mision(ses, npc_type: int, monster_name: str = None) -> list
             req_cnt = req.get('cantidad', 1)
             if not iid:
                 continue
-            import inventario as _iv_rec
-            if _iv_rec.es_item_oculto(iid):
-                continue
-
             # Contar cuántos tiene ya el jugador
             actual = sum(cants.get(r, 1) for r, it in inv.items() if it == iid)
             if actual >= req_cnt:
@@ -849,7 +850,8 @@ def verificar_botin_mision(ses, npc_type: int, monster_name: str = None) -> list
                 idx_p = pa - 1 if 0 < pa <= len(pasos) else 0
                 if idx_p < len(pasos):
                     txt_paso = (pasos[idx_p].get('texto', '')).lower()
-                    cand_noms = [m_nom] + MONSTER_NAME_ALIASES.get(m_nom, [])
+                    m_base = m_nom[2:].strip() if m_nom.startswith('e-') else m_nom
+                    cand_noms = [m_nom, m_base] + MONSTER_NAME_ALIASES.get(m_nom, []) + MONSTER_NAME_ALIASES.get(m_base, [])
                     if any(cn and cn in txt_paso for cn in cand_noms):
                         coincide = True
 

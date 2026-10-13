@@ -814,18 +814,9 @@ def _guardar_bolsa(ses, cid):
 
 def _nombre_item(item_id: int) -> str:
     """Nombre del item para el cartel de 'obtuviste X'."""
-    if item_id == 10:
-        return "FreshmanSabre"
-    if int(item_id) == 83266:
-        return "Rank Promotion Medal"
-    import sqlite3
-    db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
     try:
-        con = sqlite3.connect(db)
-        import inventario as _iv
-        r = _iv.fila_item(con, '"基本名稱"', item_id)
-        con.close()
-        return r[0] if r and r[0] else f'Item{item_id}'
+        import misiones as _mis_nom
+        return _mis_nom.nombre_item(int(item_id))
     except Exception:
         return f'Item{item_id}'
 
