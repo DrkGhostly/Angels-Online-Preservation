@@ -165,3 +165,4 @@ Antes de dar por completado un NPC, verificar:
 - [ ] ¿La opción positiva/misión es la opción 0 y la opción de salida/despedida es la última?
 - [ ] ¿El NPC tiene diálogo idle en `dialogos_npc.json` para cuando no haya quests disponibles?
 - [ ] ¿Se ejecutó `python tools/test_sistema_misiones_completo.py` sin errores?
+
