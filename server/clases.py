@@ -179,10 +179,10 @@ def hechizos_de_rama(sid: int):
     return skills.hechizos_de_rama(sid)
 
 
-def hechizos_de_ramas_activas(skill_ids, solo_maximo: bool = True):
+def hechizos_de_ramas_activas(skill_ids, solo_maximo: bool = True, **kwargs):
     """Hechizos actuales de esas ramas, leidos de la tabla magic."""
     import skills
-    return skills.hechizos_de_ramas_activas(skill_ids, solo_maximo=solo_maximo)
+    return skills.hechizos_de_ramas_activas(skill_ids, solo_maximo=solo_maximo, **kwargs)
 
 
 def info_pergamino(item_id: int):

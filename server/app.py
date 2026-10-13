@@ -1026,7 +1026,7 @@ def _probar_gm(ses, cuerpo, addr) -> bool:
         return False
     if leido[0] == 'help':
         ses.enviar(_cl.aviso(
-            'GM: /item <id> [qty] | /level <n> | /levelall <n> | /skills [n] | '
+            'GM: /item <id> [qty] | /level <n> | /levelall <n> | /skills [lv] | '
             '/pet level|exp|path|evolve | /rango [1..20] | '
             '/estacion <normal|navidad|halloween|sakura|verano>',
             tipo=0, msg_id=_cl.MSG_ITEM))
