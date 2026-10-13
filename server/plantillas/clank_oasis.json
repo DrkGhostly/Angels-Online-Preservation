@@ -1907,6 +1907,22 @@
    "visible": 0,
    "nivel": 405,
    "nombre_original": "潛影守衛"
+  },
+  {
+   "entity_id": 90407000,
+   "nombre": "Bot Carpenter",
+   "nombre_completo": "Bot Carpenter",
+   "npc_type": 24786,
+   "sprite": 40671,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    164,
+    120
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

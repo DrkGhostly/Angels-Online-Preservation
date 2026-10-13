@@ -1919,6 +1919,38 @@
    "visible": 0,
    "nivel": 425,
    "nombre_original": "肥油暴君威廉"
+  },
+  {
+   "entity_id": 90418000,
+   "nombre": "Weiss",
+   "nombre_completo": "Weiss",
+   "npc_type": 24811,
+   "sprite": 40038,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    154,
+    15
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90418001,
+   "nombre": "E. Lightman",
+   "nombre_completo": "E. Lightman",
+   "npc_type": 24812,
+   "sprite": 40393,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    30,
+    130
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

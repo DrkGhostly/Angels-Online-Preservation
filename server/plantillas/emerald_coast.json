@@ -3613,6 +3613,54 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 284
+  },
+  {
+   "entity_id": 123741,
+   "nombre": "East Shore",
+   "nombre_completo": "East Shore",
+   "npc_type": 14638,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    265,
+    104
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 123742,
+   "nombre": "South Shore",
+   "nombre_completo": "South Shore",
+   "npc_type": 14639,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    107,
+    20
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 123743,
+   "nombre": "North Shore",
+   "nombre_completo": "North Shore",
+   "npc_type": 14637,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    252,
+    165
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

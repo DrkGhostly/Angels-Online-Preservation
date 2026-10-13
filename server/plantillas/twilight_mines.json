@@ -3791,6 +3791,86 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 344
+  },
+  {
+   "entity_id": 123747,
+   "nombre": "East Terrain",
+   "nombre_completo": "East Terrain",
+   "npc_type": 14629,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    261,
+    66
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 123748,
+   "nombre": "West Terrain",
+   "nombre_completo": "West Terrain",
+   "npc_type": 14630,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    13,
+    106
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 123749,
+   "nombre": "South Terrain",
+   "nombre_completo": "South Terrain",
+   "npc_type": 14631,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    62,
+    26
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 123750,
+   "nombre": "North Terrain",
+   "nombre_completo": "North Terrain",
+   "npc_type": 14632,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    182,
+    163
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 123751,
+   "nombre": "Rock Corner",
+   "nombre_completo": "Rock Corner",
+   "npc_type": 14627,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    243,
+    152
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

@@ -3901,6 +3901,22 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 7
+  },
+  {
+   "entity_id": 90302000,
+   "nombre": "Magicoo",
+   "nombre_completo": "Magicoo",
+   "npc_type": 14493,
+   "sprite": 40211,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    11,
+    16
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

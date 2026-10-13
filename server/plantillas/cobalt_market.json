@@ -3477,6 +3477,54 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 319
+  },
+  {
+   "entity_id": 123744,
+   "nombre": "Vegetarian Stall",
+   "nombre_completo": "Vegetarian Stall",
+   "npc_type": 14647,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    266,
+    53
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 123745,
+   "nombre": "Fried Food Stall",
+   "nombre_completo": "Fried Food Stall",
+   "npc_type": 14648,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    232,
+    153
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 123746,
+   "nombre": "Juice Stall",
+   "nombre_completo": "Juice Stall",
+   "npc_type": 14649,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    82,
+    129
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

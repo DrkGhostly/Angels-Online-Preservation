@@ -3669,6 +3669,102 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 184
+  },
+  {
+   "entity_id": 123415,
+   "nombre": "Polluted Farmlan",
+   "nombre_completo": "Polluted Farmland",
+   "npc_type": 11322,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    114,
+    163
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 123416,
+   "nombre": "Polluted Farmlan",
+   "nombre_completo": "Polluted Farmland",
+   "npc_type": 11323,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    68,
+    117
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 123472,
+   "nombre": "Polluted Farmlan",
+   "nombre_completo": "Polluted Farmland",
+   "npc_type": 11324,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    273,
+    112
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 123473,
+   "nombre": "Polluted Farmlan",
+   "nombre_completo": "Polluted Farmland",
+   "npc_type": 11325,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    253,
+    27
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 123474,
+   "nombre": "Polluted Farmlan",
+   "nombre_completo": "Polluted Farmland",
+   "npc_type": 11326,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    65,
+    19
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 123475,
+   "nombre": "Sequoia's Consci",
+   "nombre_completo": "Sequoia's Conscious",
+   "npc_type": 11334,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    179,
+    74
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

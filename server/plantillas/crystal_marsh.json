@@ -3130,6 +3130,38 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 324
+  },
+  {
+   "entity_id": 123822,
+   "nombre": "East Marsh",
+   "nombre_completo": "East Marsh",
+   "npc_type": 14733,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    249,
+    51
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 123823,
+   "nombre": "West Marsh",
+   "nombre_completo": "West Marsh",
+   "npc_type": 14734,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    58,
+    28
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

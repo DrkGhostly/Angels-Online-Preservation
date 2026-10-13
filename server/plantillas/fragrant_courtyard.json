@@ -3833,6 +3833,86 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 309
+  },
+  {
+   "entity_id": 123605,
+   "nombre": "Razorex's Though",
+   "nombre_completo": "Razorex's Thoughts",
+   "npc_type": 14383,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    103,
+    121
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 123644,
+   "nombre": "Razorex's Calm",
+   "nombre_completo": "Razorex's Calm",
+   "npc_type": 14384,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    258,
+    159
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 123645,
+   "nombre": "Razorex's Regard",
+   "nombre_completo": "Razorex's Regard",
+   "npc_type": 14385,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    78,
+    14
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 123646,
+   "nombre": "Razorex's Kindne",
+   "nombre_completo": "Razorex's Kindness",
+   "npc_type": 14386,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    199,
+    20
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 123647,
+   "nombre": "Holy Altar",
+   "nombre_completo": "Holy Altar",
+   "npc_type": 14382,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    160,
+    110
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

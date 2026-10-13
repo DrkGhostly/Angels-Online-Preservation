@@ -1837,6 +1837,22 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 25
+  },
+  {
+   "entity_id": 122171,
+   "nombre": "Cliff Watchout",
+   "nombre_completo": "Cliff Watchout",
+   "npc_type": 2088,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    268,
+    10
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

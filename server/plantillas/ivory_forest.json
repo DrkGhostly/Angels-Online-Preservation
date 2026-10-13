@@ -3627,6 +3627,22 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 254
+  },
+  {
+   "entity_id": 123599,
+   "nombre": "Fragrant Flower",
+   "nombre_completo": "Fragrant Flower",
+   "npc_type": 14387,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    94,
+    143
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

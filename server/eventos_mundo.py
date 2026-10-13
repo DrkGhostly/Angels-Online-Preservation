@@ -78,8 +78,14 @@ BOLSA_ULTIMA = 199
 # No puede ser 0, que es el primer paso en la numeracion del cliente.
 PASO_SIN_MISION = -1
 
-_FACCIONES = {'Neutral': 0, 'Holy': 1, 'Earth': 2, 'Steel': 3, 'Shadow': 4,
-              'Heaven': 5}
+# Los codigos de ALIGNMENT del eventdef (1 聖光, 2 大地, 3 鋼鐵, 4 暗影, 5 天國)
+# con los NOMBRES que guarda el servidor, que son los de la ficha
+# (login.CODIGO_FACCION): Aurora, Beasts, Steel, Shadow, Heaven. Solo con
+# Holy/Earth, un personaje de Aurora o de Beasts salia como faccion 0 y no
+# cumplia ninguna condicion de faccion de los mapas.
+_FACCIONES = {'Aurora': 1, 'Holy': 1, 'Beasts': 2, 'Earth': 2, 'Steel': 3,
+              'Shadow': 4, 'Heaven': 5, 'Graduated': 5, 'Neutral': 5,
+              'Neutrally': 5}
 
 
 class EstadoDeMapa:

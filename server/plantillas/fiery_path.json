@@ -2156,6 +2156,38 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 62
+  },
+  {
+   "entity_id": 122323,
+   "nombre": "South Infall",
+   "nombre_completo": "South Infall",
+   "npc_type": 1999,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    140,
+    64
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 122324,
+   "nombre": "South Infall",
+   "nombre_completo": "South Infall",
+   "npc_type": 2119,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    163,
+    3
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

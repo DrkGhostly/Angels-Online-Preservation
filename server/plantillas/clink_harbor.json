@@ -2783,6 +2783,86 @@
    "visible": 0,
    "nivel": 395,
    "nombre_original": "運物工"
+  },
+  {
+   "entity_id": 2138112742,
+   "nombre": "Gamma",
+   "nombre_completo": "Gamma",
+   "npc_type": 24809,
+   "sprite": 40040,
+   "klass": 400,
+   "monstruo": false,
+   "tile": [
+    39,
+    167
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90416000,
+   "nombre": "Wanderer Miro",
+   "nombre_completo": "Wanderer Miro",
+   "npc_type": 24842,
+   "sprite": 40404,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    219,
+    169
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90416001,
+   "nombre": "Supervisor Ofur",
+   "nombre_completo": "Supervisor Ofur",
+   "npc_type": 24827,
+   "sprite": 40068,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    102,
+    138
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90416002,
+   "nombre": "West Check Point",
+   "nombre_completo": "West Check Point",
+   "npc_type": 24834,
+   "sprite": 40218,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    45,
+    61
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90416003,
+   "nombre": "East Check Point",
+   "nombre_completo": "East Check Point",
+   "npc_type": 24833,
+   "sprite": 40218,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    217,
+    125
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

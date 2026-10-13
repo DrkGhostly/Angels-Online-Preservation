@@ -4991,6 +4991,22 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 1
+  },
+  {
+   "entity_id": 90340000,
+   "nombre": "Jagga Messenger",
+   "nombre_completo": "Jagga Messenger",
+   "npc_type": 14787,
+   "sprite": 40405,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    16,
+    15
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

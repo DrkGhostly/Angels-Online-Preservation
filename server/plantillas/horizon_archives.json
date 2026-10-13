@@ -2346,6 +2346,22 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 384
+  },
+  {
+   "entity_id": 123894,
+   "nombre": "Special Spot",
+   "nombre_completo": "Special Spot",
+   "npc_type": 14919,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    71,
+    72
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

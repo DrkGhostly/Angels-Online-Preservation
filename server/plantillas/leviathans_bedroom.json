@@ -8761,6 +8761,150 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 130
+  },
+  {
+   "entity_id": 90127000,
+   "nombre": "Survival Warrior",
+   "nombre_completo": "Survival Warrior",
+   "npc_type": 2613,
+   "sprite": 40037,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    274,
+    31
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90127001,
+   "nombre": "Leviathan's Stat",
+   "nombre_completo": "Leviathan's Statue",
+   "npc_type": 2612,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    300,
+    65
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90127002,
+   "nombre": "Leviathan's Stat",
+   "nombre_completo": "Leviathan's Statue",
+   "npc_type": 2612,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    125,
+    189
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90127003,
+   "nombre": "Stone Warrior",
+   "nombre_completo": "Stone Warrior",
+   "npc_type": 2618,
+   "sprite": 40261,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    48,
+    227
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90127004,
+   "nombre": "Survival Warrior",
+   "nombre_completo": "Survival Warrior",
+   "npc_type": 2613,
+   "sprite": 40026,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    131,
+    54
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90127005,
+   "nombre": "Survival Warrior",
+   "nombre_completo": "Survival Warrior",
+   "npc_type": 2613,
+   "sprite": 40012,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    374,
+    157
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90127006,
+   "nombre": "Survival Warrior",
+   "nombre_completo": "Survival Warrior",
+   "npc_type": 2613,
+   "sprite": 40013,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    350,
+    189
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90127007,
+   "nombre": "Abdul",
+   "nombre_completo": "Abdul",
+   "npc_type": 2609,
+   "sprite": 40250,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    383,
+    32
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90127008,
+   "nombre": "Ella",
+   "nombre_completo": "Ella",
+   "npc_type": 2596,
+   "sprite": 40257,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    365,
+    58
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

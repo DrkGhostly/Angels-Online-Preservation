@@ -2595,6 +2595,102 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 99
+  },
+  {
+   "entity_id": 122555,
+   "nombre": "Kenny's Relique",
+   "nombre_completo": "Kenny's Relique",
+   "npc_type": 2204,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    281,
+    162
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 122556,
+   "nombre": "Mermaid Altar",
+   "nombre_completo": "Mermaid Altar",
+   "npc_type": 2219,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    29,
+    161
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 122557,
+   "nombre": "North  Remains",
+   "nombre_completo": "North  Remains",
+   "npc_type": 2190,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    141,
+    175
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 122558,
+   "nombre": "Northeast Skull",
+   "nombre_completo": "Northeast Skull",
+   "npc_type": 2191,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    290,
+    131
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 122559,
+   "nombre": "Southeast Skull",
+   "nombre_completo": "Southeast Skull",
+   "npc_type": 2192,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    243,
+    12
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 122560,
+   "nombre": "Southwest Skull",
+   "nombre_completo": "Southwest Skull",
+   "npc_type": 2193,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    45,
+    17
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [
@@ -4965,6 +5061,21 @@
    "orient": 6,
    "sprite": 60157,
    "cola": "00004080000000"
+  },
+  {
+   "entity_id": 69490000,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    9005,
+    5200
+   ],
+   "tile": [
+    281,
+    162
+   ],
+   "crudo": "50552404000000002d230000501400000000000027000000000000001a000000dc0691eb00004080140000",
+   "puesto_por": "objetos_de_mision"
   }
  ]
 }

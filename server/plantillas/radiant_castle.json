@@ -3166,6 +3166,150 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 370
+  },
+  {
+   "entity_id": 90325000,
+   "nombre": "Radiant Sentry",
+   "nombre_completo": "Radiant Sentry",
+   "npc_type": 14684,
+   "sprite": 40577,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    279,
+    26
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90325001,
+   "nombre": "Radiant Guard",
+   "nombre_completo": "Radiant Guard",
+   "npc_type": 14669,
+   "sprite": 40012,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    81,
+    16
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90325002,
+   "nombre": "Radiant Guard",
+   "nombre_completo": "Radiant Guard",
+   "npc_type": 14669,
+   "sprite": 40012,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    75,
+    107
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90325003,
+   "nombre": "Radiant Guard",
+   "nombre_completo": "Radiant Guard",
+   "npc_type": 14669,
+   "sprite": 40012,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    23,
+    22
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90325004,
+   "nombre": "Radiant Guard",
+   "nombre_completo": "Radiant Guard",
+   "npc_type": 14669,
+   "sprite": 40012,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    48,
+    85
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90325005,
+   "nombre": "Radiant Guard",
+   "nombre_completo": "Radiant Guard",
+   "npc_type": 14669,
+   "sprite": 40012,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    135,
+    161
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90325006,
+   "nombre": "Radiant Guard",
+   "nombre_completo": "Radiant Guard",
+   "npc_type": 14669,
+   "sprite": 40012,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    23,
+    115
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90325007,
+   "nombre": "Radiant Guard",
+   "nombre_completo": "Radiant Guard",
+   "npc_type": 14669,
+   "sprite": 40012,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    22,
+    62
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90325008,
+   "nombre": "Radiant Guard",
+   "nombre_completo": "Radiant Guard",
+   "npc_type": 14669,
+   "sprite": 40012,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    52,
+    46
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

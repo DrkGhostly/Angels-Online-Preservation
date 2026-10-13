@@ -454,8 +454,12 @@ def ejecutar(stage, evento, disparo, ctx):
     efectos = []
     for d in disparadores(stage, evento, disparo):
         corta = False
-        for n, parms in d['si']:
+        for c in d['si']:
+            n, parms = c[0], c[1]
             r = evaluar(n, parms, ctx)
+            # negada en el mapa (反向): se cumple si NO se cumple
+            if r is not None and len(c) > 2 and c[2]:
+                r = not r
             if r is None:
                 log.debug('evento %s/%s: condicion %s%s sin resolver',
                           stage, evento, nombre_condicion(n), tuple(parms))
@@ -497,7 +501,8 @@ def es_objeto_de_mision(item_id):
         _TOKENS = set()
         for d in _datos()['stages'].values():
             for x in d['disparadores']:
-                for n, p in x['si']:
+                for c in x['si']:
+                    n, p = c[0], c[1]
                     if n == 7 and p:
                         _TOKENS.add(int(p[0]))
     return int(item_id) in _TOKENS
@@ -517,8 +522,9 @@ def paso_definido_por_muertes(quest, paso_cliente):
             for x in d['disparadores']:
                 if x['d'] not in DISPAROS_AL_MORIR:
                     continue
-                for n, p in x['si']:
-                    if n == 2 and len(p) > 1:
+                for c in x['si']:
+                    n, p = c[0], c[1]
+                    if n == 2 and len(p) > 1 and not (len(c) > 2 and c[2]):
                         _PASOS_POR_MUERTE.add((int(p[0]), int(p[1])))
                 # y los de KILLTO_NEXTSTEP, que llevan mision y paso en la
                 # propia accion y no en una condicion
@@ -540,7 +546,8 @@ def cobertura():
             for n, _q in x['haz']:
                 acc += 1
                 acc_ok += n in SE_TRADUCEN
-            for n, _q in x['si']:
+            for c in x['si']:
+                n = c[0]
                 con += 1
                 con_ok += n in SE_EVALUAN
     return {'acciones': (acc_ok, acc), 'condiciones': (con_ok, con)}

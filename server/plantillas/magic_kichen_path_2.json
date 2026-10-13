@@ -1771,6 +1771,38 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 62
+  },
+  {
+   "entity_id": 90074000,
+   "nombre": "Annoying Clerk",
+   "nombre_completo": "Annoying Clerk",
+   "npc_type": 2101,
+   "sprite": 40125,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    287,
+    46
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90074001,
+   "nombre": "Annoying Clerk",
+   "nombre_completo": "Annoying Clerk",
+   "npc_type": 2101,
+   "sprite": 40125,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    416,
+    137
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": []

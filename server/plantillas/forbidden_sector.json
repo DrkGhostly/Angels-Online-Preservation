@@ -3536,6 +3536,22 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 198
+  },
+  {
+   "entity_id": 123261,
+   "nombre": "Nuclear Device",
+   "nombre_completo": "Nuclear Device",
+   "npc_type": 11118,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    41,
+    95
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

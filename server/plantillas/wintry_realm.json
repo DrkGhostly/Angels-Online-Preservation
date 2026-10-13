@@ -2116,6 +2116,22 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 418
+  },
+  {
+   "entity_id": 90387000,
+   "nombre": "Summer Elf",
+   "nombre_completo": "Summer Elf",
+   "npc_type": 24554,
+   "sprite": 40509,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    286,
+    16
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

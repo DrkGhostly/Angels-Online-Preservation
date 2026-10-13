@@ -7855,6 +7855,22 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 80
+  },
+  {
+   "entity_id": 57900524,
+   "nombre": "Hank",
+   "nombre_completo": "Hank",
+   "npc_type": 2114,
+   "sprite": 40103,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    29,
+    141
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

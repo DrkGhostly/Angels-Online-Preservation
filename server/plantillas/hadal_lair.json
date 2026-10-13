@@ -2491,6 +2491,22 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 395
+  },
+  {
+   "entity_id": 90369000,
+   "nombre": "Guile",
+   "nombre_completo": "Guile",
+   "npc_type": 24540,
+   "sprite": 40657,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    262,
+    73
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

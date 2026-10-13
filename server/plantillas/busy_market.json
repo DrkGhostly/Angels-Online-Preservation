@@ -3513,6 +3513,22 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 379
+  },
+  {
+   "entity_id": 124023,
+   "nombre": "Bulletin Board",
+   "nombre_completo": "Bulletin Board",
+   "npc_type": 24651,
+   "sprite": 7104,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    219,
+    36
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

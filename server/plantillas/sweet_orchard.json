@@ -3477,6 +3477,22 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 154
+  },
+  {
+   "entity_id": 123412,
+   "nombre": "Honey Radisaurus",
+   "nombre_completo": "Honey Radisaurus",
+   "npc_type": 11317,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    25,
+    253
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [
@@ -4781,6 +4797,36 @@
    "orient": 6,
    "sprite": 60157,
    "cola": "00004080140000"
+  },
+  {
+   "entity_id": 84590000,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    826,
+    8144
+   ],
+   "tile": [
+    25,
+    254
+   ],
+   "crudo": "b0bd0a05000000003a030000d01f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "puesto_por": "objetos_de_mision"
+  },
+  {
+   "entity_id": 84590001,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    771,
+    8144
+   ],
+   "tile": [
+    24,
+    254
+   ],
+   "crudo": "b1bd0a050000000003030000d01f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "puesto_por": "objetos_de_mision"
   }
  ]
 }

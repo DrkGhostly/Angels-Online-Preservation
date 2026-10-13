@@ -701,6 +701,38 @@
    ],
    "direccion": 6,
    "visible": 1
+  },
+  {
+   "entity_id": 122552,
+   "nombre": "Rank List",
+   "nombre_completo": "Rank List",
+   "npc_type": 2089,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    113,
+    90
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 122553,
+   "nombre": "House Bulletin",
+   "nombre_completo": "House Bulletin",
+   "npc_type": 2625,
+   "sprite": 60241,
+   "klass": 200,
+   "monstruo": false,
+   "tile": [
+    157,
+    113
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

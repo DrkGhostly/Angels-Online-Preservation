@@ -3669,6 +3669,22 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 194
+  },
+  {
+   "entity_id": 123476,
+   "nombre": "Refining Machine",
+   "nombre_completo": "Refining Machine",
+   "npc_type": 11328,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    42,
+    155
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

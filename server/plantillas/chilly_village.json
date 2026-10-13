@@ -3002,6 +3002,22 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 384
+  },
+  {
+   "entity_id": 124020,
+   "nombre": "Lake Water",
+   "nombre_completo": "Lake Water",
+   "npc_type": 24575,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    85,
+    135
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

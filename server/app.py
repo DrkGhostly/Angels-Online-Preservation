@@ -1795,6 +1795,8 @@ def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
         if es_instancia(getattr(ses.personaje, 'stage', 0) if ses.personaje
                         else 0):
             return
+        if getattr(m, 'generado', False):
+            return            # lo saco un evento (GENERATE): no vuelve solo
         if not getattr(m, 'vivo', False):
             m.revivir()
             import login as _lg
@@ -2530,6 +2532,24 @@ def _aplicar_efectos(ses, addr, efectos, motivo=''):
                 t = estado.temporizador(ef[1])
                 t[0] = bool(ef[2])
                 t[1] += 1
+            elif que == 'viajar':
+                # CHANGE_MAP(mapa, tag): la llegada es la primera casilla del
+                # TAG en el mapa de destino. Asi llevan los objetos de mision a
+                # otro mapa para seguirla.
+                dst, tag = int(ef[1]), int(ef[2])
+                cas = _ev.casillas_de_tag(dst, tag)
+                if cas and p:
+                    _viajar_por_portal(ses, addr, {'destino': dst, 'llegada': tuple(cas[0])},
+                                       motivo='por un evento del mapa%s' % motivo)
+            elif que == 'ir_a_tag':
+                cas = _ev.casillas_de_tag(estado.stage, int(ef[1]))
+                if cas and p:
+                    _viajar_dentro_del_mapa(ses, addr, {'llegada': tuple(cas[0])},
+                                            motivo='por un evento del mapa%s' % motivo)
+            elif que == 'dialogo':
+                _dialogo_del_mapa(ses, addr, estado.stage, int(ef[1]))
+            elif que == 'generar':
+                _generar_zona(ses, addr, estado.stage, int(ef[1]))
             elif que == 'objeto_estatico':
                 # Se apunta para que la condicion que lo mire lo vea, pero no
                 # se manda nada: ver el comentario de arriba.
@@ -2565,6 +2585,108 @@ def _romper_sigilo(ses, addr, motivo=''):
     if mid and p:
         ses.enviar(struct.pack('<HIBBII', 0x001D, p.entity_id, 1, 4, mid, 0))
     log.info('[%s] sale del sigilo %s', addr, motivo)
+
+
+_RECURSOS_POR_STAGE = {}
+
+
+def _recurso_con_entidad(stage, ent):
+    """La casilla del objeto de mapa con ese id de entidad, o None.
+
+    Los objetos de mapa ("recursos") los manda el servidor desde la plantilla
+    del mapa con su entity_id y su casilla; con la casilla se sabe que evento
+    tiene en el .mpc.
+    """
+    import login as _lg_r
+    if stage not in _RECURSOS_POR_STAGE:
+        idx = {}
+        f = _lg_r.PLANTILLAS_POR_STAGE.get(stage)
+        if f:
+            try:
+                import json as _js
+                d = _js.loads((pathlib.Path(__file__).parent / 'plantillas' / f)
+                              .read_text(encoding='utf-8'))
+                for r in d.get('recursos') or []:
+                    if r.get('entity_id') and r.get('tile'):
+                        idx[int(r['entity_id'])] = tuple(r['tile'])
+            except Exception:
+                pass
+        _RECURSOS_POR_STAGE[stage] = idx
+    return _RECURSOS_POR_STAGE[stage].get(int(ent))
+
+
+_MONSTRUOS_BD = None
+_SIG_GENERADO = [96_000_000]
+TOPE_GENERADOS = 30
+
+
+def _monstruo_bd(npc_type):
+    """(nombre, sprite) de monster.xml, via corpus/content.db."""
+    global _MONSTRUOS_BD
+    if _MONSTRUOS_BD is None:
+        import sqlite3
+        _MONSTRUOS_BD = {}
+        try:
+            con = sqlite3.connect(str(pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'))
+            for i, spr, nom in con.execute('select id, sprite_id, name from monster'):
+                if str(i).isdigit():
+                    _MONSTRUOS_BD[int(i)] = (nom or '?', int(spr) if str(spr or '').isdigit() else 0)
+            con.close()
+        except Exception:
+            log.exception('no pude leer monster de content.db')
+    return _MONSTRUOS_BD.get(int(npc_type), ('?', 0))
+
+
+def _generar_zona(ses, addr, stage, tag):
+    """GENERATE(tag): saca los monstruos de esa zona de generador.
+
+    Es lo que hacen los objetos de mision: en la 262, acercarse a la estatua
+    del mono con la mision en curso genera el bicho de la zona 66, y al
+    matarlo cae el objeto y avanza el paso. Se marcan como generados para que
+    no reaparezcan solos al morir: solo vuelven si el evento los vuelve a
+    pedir.
+    """
+    import eventos as _ev_g
+    import combate as _cb_g
+    import login as _lg_g
+    g = ((_ev_g.del_stage(stage) or {}).get('generadores') or {}).get(str(tag))
+    if not g or not g.get('tipos') or not g.get('puntos') or not ses.personaje:
+        log.debug('[%s] GENERATE %s en %s: la zona no esta en la plantilla', addr, tag, stage)
+        return
+    if ses.monstruos is None:
+        ses.monstruos = {}
+    n = max(1, min(TOPE_GENERADOS, int(g.get('cuantos') or 1)))
+    for i in range(n):
+        npc_type = int(g['tipos'][i % len(g['tipos'])])
+        tile = list(g['puntos'][i % len(g['puntos'])])
+        nombre, sprite = _monstruo_bd(npc_type)
+        eid = _SIG_GENERADO[0]
+        _SIG_GENERADO[0] += 1
+        m = _cb_g.Monstruo(eid, npc_type, nombre, tile, sprite)
+        m.generado = True
+        ses.monstruos[eid] = m
+        ses.enviar(_lg_g._npc_spawn(eid, npc_type, nombre, tuple(tile), sprite=sprite, klass=1))
+    log.info('[%s] GENERATE zona %s en %s: %d x %s', addr, tag, stage, n, g['tipos'])
+
+
+def _dialogo_del_mapa(ses, addr, stage, nodo):
+    """BEGIN_MESSAGE(nodo): muestra el dialogo del arbol del mapa."""
+    import dialogos as _dl
+    import dialogos_mapa as _dm
+    import eventos_mundo as _evm_d
+    p = ses.personaje
+    if not p:
+        return
+    r = _dm.lineas_del_nodo(stage, nodo, _evm_d.ContextoSesion(ses))
+    if not r:
+        log.debug('[%s] BEGIN_MESSAGE %s en %s: no esta en el arbol del mapa', addr, nodo, stage)
+        return
+    cara, msgs = r
+    cara = cara or 3
+    g = [_dl.armar_linea(mid, cara, [])[2:] for mid in msgs]
+    ses.dlg_ent, ses.dlg_guion, ses.dlg_paso, ses.dlg_val = p.entity_id, g, 1, cara
+    ses.enviar(_dl.linea_de(g, 0, p.nombre))
+    log.info('[%s] dialogo del mapa %s: %s', addr, nodo, msgs)
 
 
 OCULTA_PRIMERA, OCULTA_ULTIMA = 497, 556
@@ -2645,7 +2767,11 @@ def _eventos_al_pisar(ses, addr, tile):
     try:
         import eventos_mundo as _evm
         efectos = _evm.al_pisar(ses, tile)
-        efectos = [e for e in efectos if e[0] not in ('viajar', 'ir_a_tag')]
+        # Si esta casilla ya es un portal de portales.json, el viaje lo hace el
+        # portal (medido uno a uno). Si no lo es, el viaje es de un objeto de
+        # mision -- de los que te llevan a otro mapa para seguirla -- y se hace.
+        if _portal_en(ses.personaje.stage, *tile):
+            efectos = [e for e in efectos if e[0] not in ('viajar', 'ir_a_tag')]
         if efectos:
             _aplicar_efectos(ses, addr, efectos, ' al pisar %s' % (tuple(tile),))
     except Exception:
@@ -9142,6 +9268,25 @@ class Servidor:
                              f"{_est.get('llegada')}")
                     return
 
+                # OBJETO DE MISION QUE SE PULSA: la estela, la tumba, el nido...
+                # Es un objeto de mapa con su evento, y el evento dice que pasa
+                # (dar la mision, avanzarla, mostrar un dialogo, llevarte a
+                # otro mapa). El servidor ya los mandaba -- 81 de los 83 de
+                # mision --, pero al pulsarlos solo miraba si eran NPC o
+                # portal, asi que no pasaba nada.
+                _tile_obj = _recurso_con_entidad(ses.personaje.stage, ent)
+                if _tile_obj is not None:
+                    try:
+                        import eventos_mundo as _evm_p
+                        _ef_obj = _evm_p.al_pulsar(ses, _tile_obj)
+                        if _portal_en(ses.personaje.stage, *_tile_obj):
+                            _ef_obj = [e for e in _ef_obj if e[0] not in ('viajar', 'ir_a_tag')]
+                        if _ef_obj:
+                            _aplicar_efectos(ses, addr, _ef_obj, ' al pulsar el objeto %s' % ent)
+                            return
+                    except Exception:
+                        log.exception('evento del objeto pulsado')
+
                 # PORTAL / TORNADO QUE TELETRANSPORTA (objeto de mapa, clic directo)
                 stg = str(ses.personaje.stage)
                 cfg_p = _portales()
@@ -9333,13 +9478,34 @@ class Servidor:
                             qid_proc = datos_proc.get('qid')
                             paso_proc = datos_proc.get('paso', 1)
                             nom2 = ses.personaje.nombre if ses.personaje else 'Jugador'
-                            g_prog = dialogos.guion_de_mision(
-                                qid_proc, _nom_ent, jugador=nom2, entidad=ent,
-                                en_progreso=True, paso=paso_proc, tipo_evento=tipo_proc
-                            )
+                            # Primero el arbol de dialogo del MAPA, que dice la
+                            # linea exacta de este NPC en este paso; si no la
+                            # tiene, la que se deduce del bloque de la mision.
+                            # Asi Bella Bulu dice "consigue 20 Microcoins..." y
+                            # no la frase de Matia mandandote a buscarla.
+                            g_prog = None
+                            _cara_m = dialogos.val_por_entidad(ent)
+                            try:
+                                import dialogos_mapa as _dm
+                                import eventos_mundo as _evm_d
+                                _lm = _dm.lineas_sin_accion(
+                                    getattr(ses.personaje, 'stage', 0), _cara_m,
+                                    _evm_d.ContextoSesion(ses))
+                                if _lm:
+                                    _cara_m, _msgs_m = _lm
+                                    g_prog = [dialogos.armar_linea(mid, _cara_m, [])[2:]
+                                              for mid in _msgs_m]
+                                    log.info(f"[{addr}] {_nom_ent}: linea del arbol del mapa {_msgs_m}")
+                            except Exception:
+                                log.exception('arbol de dialogo del mapa')
+                            if not g_prog:
+                                g_prog = dialogos.guion_de_mision(
+                                    qid_proc, _nom_ent, jugador=nom2, entidad=ent,
+                                    en_progreso=True, paso=paso_proc, tipo_evento=tipo_proc
+                                )
                             if g_prog:
                                 ses.dlg_ent, ses.dlg_guion, ses.dlg_paso = ent, g_prog, 1
-                                ses.dlg_val = dialogos.val_por_entidad(ent)
+                                ses.dlg_val = _cara_m
                                 ses.enviar(dialogos.linea_de(g_prog, 0, nom2))
                                 log.info(f"[{addr}] {_nom_ent}: recordatorio de mision {qid_proc} en curso a {nom2}")
                                 return

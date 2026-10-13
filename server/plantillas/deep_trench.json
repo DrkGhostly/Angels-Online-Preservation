@@ -2759,6 +2759,54 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 344
+  },
+  {
+   "entity_id": 123951,
+   "nombre": "Bridge's Entranc",
+   "nombre_completo": "Bridge's Entrance",
+   "npc_type": 14989,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    210,
+    70
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 123952,
+   "nombre": "Bridge's Center",
+   "nombre_completo": "Bridge's Center",
+   "npc_type": 14990,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    223,
+    61
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 123953,
+   "nombre": "Bridge's Exit",
+   "nombre_completo": "Bridge's Exit",
+   "npc_type": 14991,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    237,
+    52
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

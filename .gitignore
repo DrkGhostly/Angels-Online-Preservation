@@ -48,3 +48,8 @@ items
 README_RE_partner_systems.md
 data/cuentas.json.old
 data/cuentas.bak
+
+# Respaldos que dejan las herramientas al tocar una plantilla
+# (tools/npcs_del_cliente.py, tools/objetos_de_mision.py). El historial de
+# git ya guarda la version anterior: subirlos solo es ruido.
+*.antes_*.bak

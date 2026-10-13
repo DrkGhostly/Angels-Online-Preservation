@@ -110,7 +110,12 @@ def test_el_censo_de_cada_cuarto_es_el_del_cliente():
                 # plantacion. Ver TOPE_POR_GENERADOR.
                 delcliente[cat[g['tipo']][0]] += max(
                     1, min(pob.TOPE_POR_GENERADOR, g['cantidad']))
-        dela = collections.Counter(e['nombre'] for e in d['spawns'])
+        # Los NPC que pone tools/npcs_del_cliente.py tambien salen del .mpc,
+        # pero de otro campo (el +22 del objeto, no los generadores), asi que
+        # no entran en este recuento de generadores. Lo que se vigila aqui
+        # -- ni un monstruo inventado -- sigue igual de estricto.
+        dela = collections.Counter(e['nombre'] for e in d['spawns']
+                                   if e.get('puesto_por') != 'npcs_del_cliente')
         assert dela == delcliente, (st, dela - delcliente, delcliente - dela)
 
 

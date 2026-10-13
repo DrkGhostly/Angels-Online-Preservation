@@ -6561,6 +6561,86 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 225
+  },
+  {
+   "entity_id": 90252000,
+   "nombre": "Demon Cloudifier",
+   "nombre_completo": "Demon Cloudifier",
+   "npc_type": 11359,
+   "sprite": 40220,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    92,
+    130
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90252001,
+   "nombre": "Demon Sweet",
+   "nombre_completo": "Demon Sweet",
+   "npc_type": 11360,
+   "sprite": 40231,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    123,
+    39
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90252002,
+   "nombre": "Demon Cottonseed",
+   "nombre_completo": "Demon Cottonseed Oil",
+   "npc_type": 11361,
+   "sprite": 40438,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    279,
+    149
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90252003,
+   "nombre": "Inspector Yared",
+   "nombre_completo": "Inspector Yared",
+   "npc_type": 11357,
+   "sprite": 40407,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    9,
+    10
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90252004,
+   "nombre": "Angel Inspector",
+   "nombre_completo": "Angel Inspector",
+   "npc_type": 1918,
+   "sprite": 40049,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    20,
+    15
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

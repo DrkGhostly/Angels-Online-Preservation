@@ -3369,6 +3369,22 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 194
+  },
+  {
+   "entity_id": 123478,
+   "nombre": "Mid Waterway",
+   "nombre_completo": "Mid Waterway",
+   "npc_type": 11489,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    75,
+    120
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

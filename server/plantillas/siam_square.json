@@ -3575,6 +3575,22 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 244
+  },
+  {
+   "entity_id": 123529,
+   "nombre": "Formation",
+   "nombre_completo": "Formation",
+   "npc_type": 11494,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    202,
+    141
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

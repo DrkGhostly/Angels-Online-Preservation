@@ -1096,6 +1096,54 @@
    ],
    "direccion": 2,
    "visible": 0
+  },
+  {
+   "entity_id": 57800073,
+   "nombre": "Loster",
+   "nombre_completo": "Loster",
+   "npc_type": 2093,
+   "sprite": 42019,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    219,
+    121
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 57800074,
+   "nombre": "Loster",
+   "nombre_completo": "Loster",
+   "npc_type": 2093,
+   "sprite": 42019,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    258,
+    87
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 57800075,
+   "nombre": "Loster",
+   "nombre_completo": "Loster",
+   "npc_type": 2093,
+   "sprite": 42019,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    201,
+    129
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

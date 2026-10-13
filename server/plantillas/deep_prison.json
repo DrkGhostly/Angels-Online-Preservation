@@ -2412,6 +2412,38 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 394
+  },
+  {
+   "entity_id": 124017,
+   "nombre": "Coral",
+   "nombre_completo": "Coral",
+   "npc_type": 24512,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    253,
+    92
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 124018,
+   "nombre": "Unnamed Tablet",
+   "nombre_completo": "Unnamed Tablet",
+   "npc_type": 24513,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    153,
+    87
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

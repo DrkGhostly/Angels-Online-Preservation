@@ -2459,6 +2459,70 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 354
+  },
+  {
+   "entity_id": 123954,
+   "nombre": "North Area",
+   "nombre_completo": "North Area",
+   "npc_type": 24504,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    222,
+    169
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 123982,
+   "nombre": "East Area",
+   "nombre_completo": "East Area",
+   "npc_type": 24505,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    219,
+    70
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 124011,
+   "nombre": "West Area",
+   "nombre_completo": "West Area",
+   "npc_type": 24506,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    37,
+    121
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 124012,
+   "nombre": "South Area",
+   "nombre_completo": "South Area",
+   "npc_type": 24507,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    25,
+    41
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

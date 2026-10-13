@@ -3823,6 +3823,22 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 294
+  },
+  {
+   "entity_id": 123690,
+   "nombre": "Andre's Home",
+   "nombre_completo": "Andre's Home",
+   "npc_type": 14532,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    215,
+    119
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

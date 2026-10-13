@@ -2409,6 +2409,54 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 62
+  },
+  {
+   "entity_id": 122325,
+   "nombre": "South Infall",
+   "nombre_completo": "South Infall",
+   "npc_type": 2119,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    96,
+    12
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 122326,
+   "nombre": "South Infall",
+   "nombre_completo": "South Infall",
+   "npc_type": 1999,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    179,
+    114
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 122327,
+   "nombre": "Pyromagma Zone",
+   "nombre_completo": "Pyromagma Zone",
+   "npc_type": 2123,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    205,
+    137
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

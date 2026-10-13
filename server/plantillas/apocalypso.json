@@ -4411,6 +4411,22 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 4
+  },
+  {
+   "entity_id": 90313000,
+   "nombre": "Lagus' Soul",
+   "nombre_completo": "Lagus' Soul",
+   "npc_type": 14582,
+   "sprite": 40566,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    293,
+    11
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

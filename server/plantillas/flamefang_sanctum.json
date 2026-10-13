@@ -4391,6 +4391,38 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 318
+  },
+  {
+   "entity_id": 90292000,
+   "nombre": "Sanctum Guard Ba",
+   "nombre_completo": "Sanctum Guard Bane",
+   "npc_type": 14412,
+   "sprite": 40508,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    283,
+    13
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90292001,
+   "nombre": "臥犬雕像",
+   "nombre_completo": "臥犬雕像",
+   "npc_type": 14417,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    227,
+    52
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

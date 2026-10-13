@@ -2287,6 +2287,22 @@
    "visible": 0,
    "nivel": 403,
    "nombre_original": "紅焰翅"
+  },
+  {
+   "entity_id": 90417000,
+   "nombre": "Tych",
+   "nombre_completo": "Tych",
+   "npc_type": 24810,
+   "sprite": 40037,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    260,
+    17
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [
@@ -4137,6 +4153,21 @@
    "orient": 6,
    "sprite": 60305,
    "cola": "00000280140000"
+  },
+  {
+   "entity_id": 101790000,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    2142,
+    3280
+   ],
+   "tile": [
+    66,
+    102
+   ],
+   "crudo": "30311106000000005e080000d00c00000000000027000000000000001a000000dc0691eb00004080140000",
+   "puesto_por": "objetos_de_mision"
   }
  ]
 }

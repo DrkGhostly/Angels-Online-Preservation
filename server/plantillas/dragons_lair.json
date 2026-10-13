@@ -2011,6 +2011,22 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 4
+  },
+  {
+   "entity_id": 90403000,
+   "nombre": "Shikigami Fox",
+   "nombre_completo": "Shikigami Fox",
+   "npc_type": 24734,
+   "sprite": 40748,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    31,
+    19
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

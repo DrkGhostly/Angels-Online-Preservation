@@ -3757,6 +3757,22 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 204
+  },
+  {
+   "entity_id": 123479,
+   "nombre": "Adventure Guide",
+   "nombre_completo": "Adventure Guide",
+   "npc_type": 11441,
+   "sprite": 40005,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    33,
+    176
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [
