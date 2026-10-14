@@ -1,0 +1,1341 @@
+{
+ "_nota": "magic_kichen_path_3 (stage 75). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map075.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "stage": 75,
+ "spawns": [
+  {
+   "entity_id": 57500000,
+   "nombre": "Fetor Slarm",
+   "npc_type": 835,
+   "sprite": 42307,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    37,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 65
+  },
+  {
+   "entity_id": 57500001,
+   "nombre": "Fetor Slarm",
+   "npc_type": 835,
+   "sprite": 42307,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    32,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 65
+  },
+  {
+   "entity_id": 57500002,
+   "nombre": "Fetor Slarm",
+   "npc_type": 835,
+   "sprite": 42307,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    32,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 65
+  },
+  {
+   "entity_id": 57500003,
+   "nombre": "Fetor Slarm",
+   "npc_type": 835,
+   "sprite": 42307,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    32,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 65
+  },
+  {
+   "entity_id": 57500004,
+   "nombre": "Fetor Slarm",
+   "npc_type": 835,
+   "sprite": 42307,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    37,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 65
+  },
+  {
+   "entity_id": 57500005,
+   "nombre": "Azrael Hook",
+   "npc_type": 887,
+   "sprite": 42325,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    37,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57500006,
+   "nombre": "Azrael Hook",
+   "npc_type": 887,
+   "sprite": 42325,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    42,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57500007,
+   "nombre": "Azrael Hook",
+   "npc_type": 887,
+   "sprite": 42325,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    42,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57500008,
+   "nombre": "Azrael Hook",
+   "npc_type": 887,
+   "sprite": 42325,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    42,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57500009,
+   "nombre": "Azrael Hook",
+   "npc_type": 887,
+   "sprite": 42325,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    27,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57500010,
+   "nombre": "Azrael Hook",
+   "npc_type": 887,
+   "sprite": 42325,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    27,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57500011,
+   "nombre": "Fetor Slarm",
+   "npc_type": 835,
+   "sprite": 42307,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    27,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 65
+  },
+  {
+   "entity_id": 57500012,
+   "nombre": "Fetor Slarm",
+   "npc_type": 835,
+   "sprite": 42307,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    27,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 65
+  },
+  {
+   "entity_id": 57500013,
+   "nombre": "Fetor Slarm",
+   "npc_type": 835,
+   "sprite": 42307,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    27,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 65
+  },
+  {
+   "entity_id": 57500014,
+   "nombre": "Fetor Slarm",
+   "npc_type": 835,
+   "sprite": 42307,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    32,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 65
+  },
+  {
+   "entity_id": 57500015,
+   "nombre": "Fetor Slarm",
+   "npc_type": 835,
+   "sprite": 42307,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    32,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 65
+  },
+  {
+   "entity_id": 57500016,
+   "nombre": "Fetor Slarm",
+   "npc_type": 835,
+   "sprite": 42307,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    37,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 65
+  },
+  {
+   "entity_id": 57500017,
+   "nombre": "Fetor Slarm",
+   "npc_type": 835,
+   "sprite": 42307,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    37,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 65
+  },
+  {
+   "entity_id": 57500018,
+   "nombre": "Fetor Slarm",
+   "npc_type": 835,
+   "sprite": 42307,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    42,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 65
+  },
+  {
+   "entity_id": 57500019,
+   "nombre": "Fetor Slarm",
+   "npc_type": 835,
+   "sprite": 42307,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    42,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 65
+  },
+  {
+   "entity_id": 57500020,
+   "nombre": "Fetor Slarm",
+   "npc_type": 835,
+   "sprite": 42307,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    47,
+    29
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 65
+  },
+  {
+   "entity_id": 57500021,
+   "nombre": "Fetor Slarm",
+   "npc_type": 835,
+   "sprite": 42307,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    47,
+    34
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 65
+  },
+  {
+   "entity_id": 57500022,
+   "nombre": "Blood Pillar",
+   "npc_type": 855,
+   "sprite": 42351,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    251,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 65
+  },
+  {
+   "entity_id": 57500023,
+   "nombre": "Blood Pillar",
+   "npc_type": 855,
+   "sprite": 42351,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    151
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 65
+  },
+  {
+   "entity_id": 57500024,
+   "nombre": "Blood Pillar",
+   "npc_type": 855,
+   "sprite": 42351,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    246,
+    156
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 65
+  },
+  {
+   "entity_id": 57500025,
+   "nombre": "Azrael Hook",
+   "npc_type": 887,
+   "sprite": 42325,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    47,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57500026,
+   "nombre": "Fetor Slarm",
+   "npc_type": 835,
+   "sprite": 42307,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    47,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 65
+  },
+  {
+   "entity_id": 57500027,
+   "nombre": "Azrael Hook",
+   "npc_type": 887,
+   "sprite": 42325,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    47,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57500028,
+   "nombre": "Azrael Hook",
+   "npc_type": 887,
+   "sprite": 42325,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    22,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57500029,
+   "nombre": "Blaze Fly",
+   "npc_type": 848,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 68
+  },
+  {
+   "entity_id": 57500030,
+   "nombre": "Blaze Fly",
+   "npc_type": 848,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 68
+  },
+  {
+   "entity_id": 57500031,
+   "nombre": "Blaze Fly",
+   "npc_type": 848,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 68
+  },
+  {
+   "entity_id": 57500032,
+   "nombre": "Blaze Fly",
+   "npc_type": 848,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 68
+  },
+  {
+   "entity_id": 57500033,
+   "nombre": "Blaze Fly",
+   "npc_type": 848,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 68
+  },
+  {
+   "entity_id": 57500034,
+   "nombre": "Blaze Fly",
+   "npc_type": 848,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    219,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 68
+  },
+  {
+   "entity_id": 57500035,
+   "nombre": "Blaze Fly",
+   "npc_type": 848,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    224,
+    140
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 68
+  },
+  {
+   "entity_id": 57500036,
+   "nombre": "Blaze Fly",
+   "npc_type": 848,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    224,
+    145
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 68
+  },
+  {
+   "entity_id": 57500037,
+   "nombre": "Blaze Fly",
+   "npc_type": 848,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    224,
+    150
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 68
+  },
+  {
+   "entity_id": 57500038,
+   "nombre": "Blaze Fly",
+   "npc_type": 848,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    209,
+    135
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 68
+  }
+ ],
+ "recursos": [
+  {
+   "entity_id": 67500000,
+   "sprite": 60300,
+   "capa": 0,
+   "px": [
+    3401,
+    1904
+   ],
+   "tile": [
+    106,
+    59
+   ],
+   "evento": 100,
+   "crudo": "e0f7050400000000490d0000700700000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500001,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5328,
+    3760
+   ],
+   "tile": [
+    166,
+    117
+   ],
+   "evento": 61101,
+   "crudo": "e1f7050400000000d0140000b00e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500002,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5346,
+    3792
+   ],
+   "tile": [
+    167,
+    118
+   ],
+   "evento": 61101,
+   "crudo": "e2f7050400000000e2140000d00e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500003,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5360,
+    3824
+   ],
+   "tile": [
+    167,
+    119
+   ],
+   "evento": 61101,
+   "crudo": "e3f7050400000000f0140000f00e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500004,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5368,
+    3856
+   ],
+   "tile": [
+    167,
+    120
+   ],
+   "evento": 61101,
+   "crudo": "e4f7050400000000f8140000100f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500005,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5379,
+    3888
+   ],
+   "tile": [
+    168,
+    121
+   ],
+   "evento": 61101,
+   "crudo": "e5f705040000000003150000300f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500006,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5387,
+    3920
+   ],
+   "tile": [
+    168,
+    122
+   ],
+   "evento": 61101,
+   "crudo": "e6f70504000000000b150000500f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500007,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5394,
+    3952
+   ],
+   "tile": [
+    168,
+    123
+   ],
+   "evento": 61101,
+   "crudo": "e7f705040000000012150000700f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500008,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5405,
+    3952
+   ],
+   "tile": [
+    168,
+    123
+   ],
+   "evento": 61101,
+   "crudo": "e8f70504000000001d150000700f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500009,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5434,
+    3984
+   ],
+   "tile": [
+    169,
+    124
+   ],
+   "evento": 61101,
+   "crudo": "e9f70504000000003a150000900f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500010,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5464,
+    3984
+   ],
+   "tile": [
+    170,
+    124
+   ],
+   "evento": 61101,
+   "crudo": "eaf705040000000058150000900f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500011,
+   "sprite": 60069,
+   "capa": 0,
+   "px": [
+    3842,
+    1904
+   ],
+   "tile": [
+    120,
+    59
+   ],
+   "evento": 61505,
+   "crudo": "ebf7050400000000020f0000700700000000000027000000000000001a000000dc06a5ea00004080020000",
+   "copiado_de": "cuerpo de una captura del objeto 60069",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500012,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5496,
+    4016
+   ],
+   "tile": [
+    171,
+    125
+   ],
+   "evento": 61101,
+   "crudo": "ecf705040000000078150000b00f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500013,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5525,
+    4016
+   ],
+   "tile": [
+    172,
+    125
+   ],
+   "evento": 61101,
+   "crudo": "edf705040000000095150000b00f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500014,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5557,
+    4016
+   ],
+   "tile": [
+    173,
+    125
+   ],
+   "evento": 61101,
+   "crudo": "eef7050400000000b5150000b00f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500015,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5589,
+    4016
+   ],
+   "tile": [
+    174,
+    125
+   ],
+   "evento": 61101,
+   "crudo": "eff7050400000000d5150000b00f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500016,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5621,
+    4016
+   ],
+   "tile": [
+    175,
+    125
+   ],
+   "evento": 61101,
+   "crudo": "f0f7050400000000f5150000b00f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500017,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5652,
+    4016
+   ],
+   "tile": [
+    176,
+    125
+   ],
+   "evento": 61101,
+   "crudo": "f1f705040000000014160000b00f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500018,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5682,
+    4016
+   ],
+   "tile": [
+    177,
+    125
+   ],
+   "evento": 61101,
+   "crudo": "f2f705040000000032160000b00f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500019,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5712,
+    4016
+   ],
+   "tile": [
+    178,
+    125
+   ],
+   "evento": 61101,
+   "crudo": "f3f705040000000050160000b00f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500020,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5743,
+    4016
+   ],
+   "tile": [
+    179,
+    125
+   ],
+   "evento": 61101,
+   "crudo": "f4f70504000000006f160000b00f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500021,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5774,
+    4016
+   ],
+   "tile": [
+    180,
+    125
+   ],
+   "evento": 61101,
+   "crudo": "f5f70504000000008e160000b00f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500022,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5805,
+    3984
+   ],
+   "tile": [
+    181,
+    124
+   ],
+   "evento": 61101,
+   "crudo": "f6f7050400000000ad160000900f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500023,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5837,
+    3984
+   ],
+   "tile": [
+    182,
+    124
+   ],
+   "evento": 61101,
+   "crudo": "f7f7050400000000cd160000900f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500024,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5867,
+    3984
+   ],
+   "tile": [
+    183,
+    124
+   ],
+   "evento": 61101,
+   "crudo": "f8f7050400000000eb160000900f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500025,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5721,
+    3440
+   ],
+   "tile": [
+    178,
+    107
+   ],
+   "evento": 61101,
+   "crudo": "f9f705040000000059160000700d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500026,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5725,
+    3472
+   ],
+   "tile": [
+    178,
+    108
+   ],
+   "evento": 61101,
+   "crudo": "faf70504000000005d160000900d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500027,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5736,
+    3504
+   ],
+   "tile": [
+    179,
+    109
+   ],
+   "evento": 61101,
+   "crudo": "fbf705040000000068160000b00d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500028,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5755,
+    3536
+   ],
+   "tile": [
+    179,
+    110
+   ],
+   "evento": 61101,
+   "crudo": "fcf70504000000007b160000d00d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500029,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5769,
+    3568
+   ],
+   "tile": [
+    180,
+    111
+   ],
+   "evento": 61101,
+   "crudo": "fdf705040000000089160000f00d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500030,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5786,
+    3600
+   ],
+   "tile": [
+    180,
+    112
+   ],
+   "evento": 61101,
+   "crudo": "fef70504000000009a160000100e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500031,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5816,
+    3632
+   ],
+   "tile": [
+    181,
+    113
+   ],
+   "evento": 61101,
+   "crudo": "fff7050400000000b8160000300e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500032,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5836,
+    3664
+   ],
+   "tile": [
+    182,
+    114
+   ],
+   "evento": 61101,
+   "crudo": "00f8050400000000cc160000500e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500033,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5857,
+    3696
+   ],
+   "tile": [
+    183,
+    115
+   ],
+   "evento": 61101,
+   "crudo": "01f8050400000000e1160000700e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500034,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5884,
+    3728
+   ],
+   "tile": [
+    183,
+    116
+   ],
+   "evento": 61101,
+   "crudo": "02f8050400000000fc160000900e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500035,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5898,
+    3760
+   ],
+   "tile": [
+    184,
+    117
+   ],
+   "evento": 61101,
+   "crudo": "03f80504000000000a170000b00e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500036,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5916,
+    3792
+   ],
+   "tile": [
+    184,
+    118
+   ],
+   "evento": 61101,
+   "crudo": "04f80504000000001c170000d00e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500037,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5933,
+    3824
+   ],
+   "tile": [
+    185,
+    119
+   ],
+   "evento": 61101,
+   "crudo": "05f80504000000002d170000f00e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500038,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5945,
+    3856
+   ],
+   "tile": [
+    185,
+    120
+   ],
+   "evento": 61101,
+   "crudo": "06f805040000000039170000100f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500039,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5942,
+    3888
+   ],
+   "tile": [
+    185,
+    121
+   ],
+   "evento": 61101,
+   "crudo": "07f805040000000036170000300f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500040,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5937,
+    3920
+   ],
+   "tile": [
+    185,
+    122
+   ],
+   "evento": 61101,
+   "crudo": "08f805040000000031170000500f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500041,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5916,
+    3920
+   ],
+   "tile": [
+    184,
+    122
+   ],
+   "evento": 61101,
+   "crudo": "09f80504000000001c170000500f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500042,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    5897,
+    3952
+   ],
+   "tile": [
+    184,
+    123
+   ],
+   "evento": 61101,
+   "crudo": "0af805040000000009170000700f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67500043,
+   "sprite": 60296,
+   "capa": 0,
+   "px": [
+    3064,
+    2256
+   ],
+   "tile": [
+    95,
+    70
+   ],
+   "evento": 0,
+   "crudo": "0bf8050400000000f80b0000d00800000000000027000000000000001a000000dc0688eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60296",
+   "puesto_por": "objetos_de_instancia"
+  }
+ ]
+}

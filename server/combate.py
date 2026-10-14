@@ -174,6 +174,12 @@ def _datos(npc_type: int):
                     'move_speed': _n(d.get('move_speed')),
                     'atk_speed': _n(d.get('atk_speed')) or 60,
                     'move_range': _n(d.get('move_range')) or 6,
+                    # 主動: el RADIO en casillas al que ataca solo, sin que le
+                    # peguen. Vacio = pasivo (Lily, Little Slarm). En las
+                    # instancias casi todos lo llevan: Fire Mummy 5, Dark
+                    # Protector y Earl Makice 12, Rock Slarm 5. Es el "Agr.
+                    # Yes" de las tablas de la wiki.
+                    'agro': max(0, _n(d.get('主動'))),
                 }
     return _MON.get(npc_type)
 
@@ -450,6 +456,12 @@ def parsear_ataque(cuerpo: bytes) -> AtaqueInfo:
     return AtaqueInfo(tipo, objetivo, 0, 0, 0)
 
 
+# La sesion que el servidor esta atendiendo ahora mismo (un solo hilo: o el
+# paquete de un cliente o el tic de IA de un jugador). La pone app.py; la lee
+# Monstruo.registrar_dano para saber de quien es cada golpe.
+ATACANTE = [None]
+
+
 class Monstruo:
     """Un bicho vivo en el mapa."""
 
@@ -484,6 +496,7 @@ class Monstruo:
         self.move_speed = d.get('move_speed', 50)
         self.atk_speed = d.get('atk_speed', 60)
         self.move_range = d.get('move_range', 6)
+        self.agro = d.get('agro', 0)
         # Las Lilys no se mueven de su lugar pero atacan a distancia como arqueros
         self.es_estatico = ('lily' in nombre.lower() or self.move_speed == 0)
         self.muerto_en = None
@@ -510,6 +523,15 @@ class Monstruo:
         c = max(0, int(cantidad or 0))
         if c <= 0:
             return
+        # Y de QUIEN es: el jugador de la sesion que se esta atendiendo (su
+        # mascota e invocaciones cuentan para el). Con bichos compartidos lo
+        # usa app._repartir_muerte para repartir exp, oro y botin.
+        _a = ATACANTE[0]
+        _cid = getattr(getattr(_a, 'personaje', None), 'char_id', None)
+        if _cid is not None:
+            if not isinstance(getattr(self, 'dano_por', None), dict):
+                self.dano_por = {}
+            self.dano_por[int(_cid)] = self.dano_por.get(int(_cid), 0) + c
         if es_pet:
             self.dano_pet = getattr(self, 'dano_pet', 0) + c
         else:
@@ -690,6 +712,7 @@ class Monstruo:
         self.panico_hasta = 0.0
         self.dano_jugador = 0
         self.dano_pet = 0
+        self.dano_por = {}
         if hasattr(self, 'debuffs') and self.debuffs:
             self.debuffs.clear()
 
@@ -2722,12 +2745,16 @@ def gcd_paquete() -> bytes:
     return struct.pack('<HIIIIIIIIBBH', 0x0149, 1, 0, 500, 0, 0, 0, 0, 72, 5, 255, 255)
 
 
-def efecto_magia_self_inicio(yo: int, ef: int, tipo: int, cast_time: int = 100) -> bytes:
-    """Fase 0x00 del efecto visual 0x0011 de buff sobre si mismo."""
+def efecto_magia_self_inicio(yo: int, ef: int, tipo: int, cast_time: int = 100,
+                             objetivo: int = None) -> bytes:
+    """Fase 0x00 del efecto visual 0x0011 de un buff.
+
+    +2 es QUIEN lo lanza (hace la animacion de lanzar) y +6 sobre QUIEN cae.
+    Con `objetivo` se lo pone a otro; sin el, a uno mismo."""
     b0 = bytearray(23)
     b0[0] = ef & 0xFF
     b0[1] = (ef >> 8) & 0x0F
-    struct.pack_into('<II', b0, 2, yo, yo)
+    struct.pack_into('<II', b0, 2, yo, yo if objetivo is None else objetivo)
     struct.pack_into('<H', b0, 18, cast_time & 0xFFFF)
     b0[20] = 2
     struct.pack_into('<H', b0, 21, tipo & 0xFFFF)
@@ -2782,12 +2809,12 @@ def entidad_aliada(entidad: int, a: int = 30, b: int = 15) -> bytes:
                        int(a) & 0xFFFFFFFF, int(b) & 0xFFFFFFFF, 0)
 
 
-def efecto_magia_self_fin(yo: int, ef: int, tipo: int) -> bytes:
-    """Fase 0x80 del efecto visual 0x0011 de buff sobre si mismo."""
+def efecto_magia_self_fin(yo: int, ef: int, tipo: int, objetivo: int = None) -> bytes:
+    """Fase 0x80 del efecto visual 0x0011 de un buff (ver el de inicio)."""
     b1 = bytearray(23)
     b1[0] = ef & 0xFF
     b1[1] = 0x80 | ((ef >> 8) & 0x0F)
-    struct.pack_into('<II', b1, 2, yo, yo)
+    struct.pack_into('<II', b1, 2, yo, yo if objetivo is None else objetivo)
     struct.pack_into('<H', b1, 18, 0)
     b1[20] = 2
     struct.pack_into('<H', b1, 21, tipo & 0xFFFF)

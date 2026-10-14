@@ -7,6 +7,7 @@ guardado y entrega de recompensas para las 1,489 misiones del juego.
 import json
 import logging
 import pathlib
+import re
 import time
 import struct
 
@@ -344,6 +345,17 @@ def requisitos_de(qid):
     return _REQUISITOS.get(str(int(qid)))
 
 
+def nivel_y_rango_requeridos(qid):
+    """(nivel, rango) que pide la mision, sacados del prefijo que quest.xml
+    pone en el NPC de inicio: "Lvl 20, Rank 2 - BreezeWood Angel" -> (20, 2).
+    0 donde no pide nada."""
+    ini = (info_mision(qid).get('npc_inicio') or '').strip().lower()
+    m = re.match(r'^(?:level|leve|lvl)\s*(\d+)(?:\s*,\s*rank\s*(\d+))?', ini)
+    if not m:
+        return 0, 0
+    return int(m.group(1)), int(m.group(2) or 0)
+
+
 def misiones_disponibles_npc(p, npc_nombre: str, stage: int = 0, entidad: int = 0) -> list:
     """Devuelve la lista de IDs de misiones que este NPC puede ofrecer al personaje."""
     _cargar_db()
@@ -368,11 +380,13 @@ def misiones_disponibles_npc(p, npc_nombre: str, stage: int = 0, entidad: int = 
     qids = list(_NPC_INICIO.get(nom_l, []))
     if not qids and norm_l != nom_l:
         qids = list(_NPC_INICIO.get(norm_l, []))
-    if not qids:
-        for k_npc, v_qids in _NPC_INICIO.items():
-            if normalizar_nombre_npc(k_npc) == norm_l:
-                qids = list(v_qids)
-                break
+    # Todas las claves que se quedan en el mismo NPC, no solo la primera:
+    # quest.xml pone "BreezeWood Angel" en unas y "Lvl 20, Rank 2 -
+    # BreezeWood Angel" en otras (la 558, la del Spy Angel), y con el nombre
+    # exacto encontrado ya no se miraban las del prefijo.
+    for k_npc, v_qids in _NPC_INICIO.items():
+        if normalizar_nombre_npc(k_npc) == norm_l:
+            qids += [q for q in v_qids if q not in qids]
     # Ultimo intento: el NPC es el FINAL del nombre de la mision ("Explorer
     # Nel" en la mision, "Nel" en el mapa). Solo con misiones de ESTE mapa,
     # para no ofrecer las de un NPC del mismo nombre en otro sitio.
@@ -436,6 +450,13 @@ def misiones_disponibles_npc(p, npc_nombre: str, stage: int = 0, entidad: int = 
             if not any(all(mision_completada(p, int(pr)) for pr in cam)
                        for cam in _rq['caminos']):
                 continue
+
+        # 3c. NIVEL Y RANGO del prefijo de npc_inicio ("Lvl 20, Rank 2 -").
+        _niv_rq, _rk_rq = nivel_y_rango_requeridos(qid)
+        if _niv_rq and int(getattr(p, 'nivel', 1) or 1) < _niv_rq:
+            continue
+        if _rk_rq and int(getattr(p, 'rango', 1) or 1) < _rk_rq:
+            continue
 
         # 4. Comprobar faccion de la mision
         q_fac = info.get('faccion')

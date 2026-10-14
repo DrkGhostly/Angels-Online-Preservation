@@ -1,54 +1,9 @@
 {
- "_nota": "magic_kichen_path_2 (stage 74). Poblado desde una captura del cliente GLOBAL, cuyo 0x0008 mide 46 bytes y no trae nombre: el nombre y el nivel salen de content.db por npc_type. Sin objetos de mapa: los 0x000E del Global miden 26 bytes y aqui se guardan crudos, asi que reenviarlos romperia nuestro cliente. Ver tools/poblar_instancia_global.py. Los objetos de mapa siguen vacios, pero los TORNADOS ya se dibujan: salen de portales.json, con la casilla sacada de map074.mpc. Ver tools/mapa_del_cliente.py.",
+ "_nota": "magic_kichen_path_2 (stage 74). Poblado desde una captura del cliente GLOBAL, cuyo 0x0008 mide 46 bytes y no trae nombre: el nombre y el nivel salen de content.db por npc_type. Sin objetos de mapa: los 0x000E del Global miden 26 bytes y aqui se guardan crudos, asi que reenviarlos romperia nuestro cliente. Ver tools/poblar_instancia_global.py. Los objetos de mapa siguen vacios, pero los TORNADOS ya se dibujan: salen de portales.json, con la casilla sacada de map074.mpc. Ver tools/mapa_del_cliente.py. OLEADAS (14/10/2026): fuera el Rock God Mendun y los Rock Slarm de la captura. El Mendun es la zona 76, que solo sale con GENERATE(76) a las 45 bajas (evento 102); los Rock Slarm de las zonas 75, 90 y 91 salen con ENABLE_GENERATOR al pisar la cocina (evento 151), y los que trajo la captura eran restos de esas oleadas. Se dejan los 14 Rock Slarm fijos que declara map074.mpc fuera de esas zonas. REPOBLADO (14/10/2026) desde los generadores del cliente (poblar_del_cliente.spawns_de, sin las zonas de evento): la captura Global no traia el pasillo de la carrera del Annoying Clerk (zonas 81-83: Terra Miner, Charming Flower, Hungry Eater). Se conservan los NPC. OLEADAS ya fuera.",
  "stage": 74,
  "spawns": [
   {
-   "entity_id": 1573454049,
-   "nombre": "Air Hole",
-   "npc_type": 854,
-   "sprite": 42350,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    247,
-    134
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 62
-  },
-  {
-   "entity_id": 1573519586,
-   "nombre": "Air Hole",
-   "npc_type": 854,
-   "sprite": 42350,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    185,
-    148
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 62
-  },
-  {
-   "entity_id": 1573585123,
-   "nombre": "Flame Fly",
-   "npc_type": 847,
-   "sprite": 42277,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    73,
-    172
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1573650660,
+   "entity_id": 57400000,
    "nombre": "Air Hole",
    "npc_type": 854,
    "sprite": 42350,
@@ -63,502 +18,37 @@
    "nivel": 62
   },
   {
-   "entity_id": 1573716197,
-   "nombre": "Hot Wildfire",
-   "npc_type": 895,
-   "sprite": 42332,
+   "entity_id": 57400001,
+   "nombre": "Air Hole",
+   "npc_type": 854,
+   "sprite": 42350,
    "klass": 1,
    "monstruo": true,
    "tile": [
-    248,
-    165
+    214,
+    156
    ],
    "direccion": 2,
    "visible": 0,
-   "nivel": 60
+   "nivel": 62
   },
   {
-   "entity_id": 1573912808,
-   "nombre": "Flame Fly",
-   "npc_type": 847,
-   "sprite": 42277,
+   "entity_id": 57400002,
+   "nombre": "Air Hole",
+   "npc_type": 854,
+   "sprite": 42350,
    "klass": 1,
    "monstruo": true,
    "tile": [
-    86,
-    176
+    214,
+    161
    ],
    "direccion": 2,
    "visible": 0,
-   "nivel": 60
+   "nivel": 62
   },
   {
-   "entity_id": 1573978345,
-   "nombre": "Flame Fly",
-   "npc_type": 847,
-   "sprite": 42277,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    90,
-    175
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1574043882,
-   "nombre": "Hot Wildfire",
-   "npc_type": 895,
-   "sprite": 42332,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    239,
-    172
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1574109419,
-   "nombre": "Hot Wildfire",
-   "npc_type": 895,
-   "sprite": 42332,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    242,
-    179
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1574174956,
-   "nombre": "Hot Wildfire",
-   "npc_type": 895,
-   "sprite": 42332,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    250,
-    166
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1574240493,
-   "nombre": "Hot Wildfire",
-   "npc_type": 895,
-   "sprite": 42332,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    332,
-    177
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1574306030,
-   "nombre": "Hot Wildfire",
-   "npc_type": 895,
-   "sprite": 42332,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    347,
-    176
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1574371567,
-   "nombre": "Hot Wildfire",
-   "npc_type": 895,
-   "sprite": 42332,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    332,
-    171
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1574437104,
-   "nombre": "Hot Wildfire",
-   "npc_type": 895,
-   "sprite": 42332,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    353,
-    173
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1574502641,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    377,
-    176
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1574568178,
-   "nombre": "Flame Fly",
-   "npc_type": 847,
-   "sprite": 42277,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    61,
-    184
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1574633715,
-   "nombre": "Flame Fly",
-   "npc_type": 847,
-   "sprite": 42277,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    77,
-    186
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1574699252,
-   "nombre": "Flame Fly",
-   "npc_type": 847,
-   "sprite": 42277,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    100,
-    189
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1574764789,
-   "nombre": "Flame Fly",
-   "npc_type": 847,
-   "sprite": 42277,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    99,
-    186
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1574830326,
-   "nombre": "Flame Fly",
-   "npc_type": 847,
-   "sprite": 42277,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    98,
-    186
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1574895863,
-   "nombre": "Flame Fly",
-   "npc_type": 847,
-   "sprite": 42277,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    205,
-    185
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1574961400,
-   "nombre": "Flame Fly",
-   "npc_type": 847,
-   "sprite": 42277,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    218,
-    189
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1575026937,
-   "nombre": "Flame Fly",
-   "npc_type": 847,
-   "sprite": 42277,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    221,
-    192
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1575092474,
-   "nombre": "Hot Wildfire",
-   "npc_type": 895,
-   "sprite": 42332,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    237,
-    183
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1575158011,
-   "nombre": "Hot Wildfire",
-   "npc_type": 895,
-   "sprite": 42332,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    312,
-    191
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1575223548,
-   "nombre": "Hot Wildfire",
-   "npc_type": 895,
-   "sprite": 42332,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    336,
-    178
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1575289085,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    383,
-    184
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1575354622,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    373,
-    182
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1575420159,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    382,
-    188
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1575485696,
-   "nombre": "Flame Fly",
-   "npc_type": 847,
-   "sprite": 42277,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    77,
-    199
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1575551233,
-   "nombre": "Flame Fly",
-   "npc_type": 847,
-   "sprite": 42277,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    84,
-    195
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1575616770,
-   "nombre": "Flame Fly",
-   "npc_type": 847,
-   "sprite": 42277,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    122,
-    199
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1575682307,
-   "nombre": "Hot Wildfire",
-   "npc_type": 895,
-   "sprite": 42332,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    195,
-    196
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1575747844,
-   "nombre": "Flame Fly",
-   "npc_type": 847,
-   "sprite": 42277,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    219,
-    192
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1575813381,
-   "nombre": "Hot Wildfire",
-   "npc_type": 895,
-   "sprite": 42332,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    299,
-    198
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1575878918,
-   "nombre": "Hot Wildfire",
-   "npc_type": 895,
-   "sprite": 42332,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    301,
-    200
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1575944455,
-   "nombre": "Hot Wildfire",
-   "npc_type": 895,
-   "sprite": 42332,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    310,
-    197
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1576009992,
+   "entity_id": 57400003,
    "nombre": "Flame Fly",
    "npc_type": 847,
    "sprite": 42277,
@@ -566,59 +56,74 @@
    "monstruo": true,
    "tile": [
     73,
-    210
+    243
    ],
    "direccion": 2,
    "visible": 0,
    "nivel": 60
   },
   {
-   "entity_id": 1576075529,
+   "entity_id": 57400004,
    "nombre": "Flame Fly",
    "npc_type": 847,
    "sprite": 42277,
    "klass": 1,
    "monstruo": true,
    "tile": [
-    98,
-    207
+    89,
+    225
    ],
    "direccion": 2,
    "visible": 0,
    "nivel": 60
   },
   {
-   "entity_id": 1576141066,
+   "entity_id": 57400005,
    "nombre": "Flame Fly",
    "npc_type": 847,
    "sprite": 42277,
    "klass": 1,
    "monstruo": true,
    "tile": [
-    117,
-    210
+    63,
+    182
    ],
    "direccion": 2,
    "visible": 0,
    "nivel": 60
   },
   {
-   "entity_id": 1576206603,
+   "entity_id": 57400006,
    "nombre": "Flame Fly",
    "npc_type": 847,
    "sprite": 42277,
    "klass": 1,
    "monstruo": true,
    "tile": [
-    116,
-    209
+    102,
+    188
    ],
    "direccion": 2,
    "visible": 0,
    "nivel": 60
   },
   {
-   "entity_id": 1576272140,
+   "entity_id": 57400007,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    135,
+    215
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400008,
    "nombre": "Hot Wildfire",
    "npc_type": 895,
    "sprite": 42332,
@@ -626,66 +131,6 @@
    "monstruo": true,
    "tile": [
     130,
-    211
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1576337677,
-   "nombre": "Hot Wildfire",
-   "npc_type": 895,
-   "sprite": 42332,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    141,
-    210
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1576403214,
-   "nombre": "Hot Wildfire",
-   "npc_type": 895,
-   "sprite": 42332,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    180,
-    208
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1576468751,
-   "nombre": "Hot Wildfire",
-   "npc_type": 895,
-   "sprite": 42332,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    186,
-    204
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1576534288,
-   "nombre": "Hot Wildfire",
-   "npc_type": 895,
-   "sprite": 42332,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    181,
     218
    ],
    "direccion": 2,
@@ -693,7 +138,22 @@
    "nivel": 60
   },
   {
-   "entity_id": 1576599825,
+   "entity_id": 57400009,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    192,
+    196
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400010,
    "nombre": "Hot Wildfire",
    "npc_type": 895,
    "sprite": 42332,
@@ -701,464 +161,104 @@
    "monstruo": true,
    "tile": [
     196,
-    198
+    204
    ],
    "direccion": 2,
    "visible": 0,
    "nivel": 60
   },
   {
-   "entity_id": 1576665362,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    247,
-    209
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1576730899,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    257,
-    212
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1576796436,
+   "entity_id": 57400011,
    "nombre": "Hot Wildfire",
    "npc_type": 895,
    "sprite": 42332,
    "klass": 1,
    "monstruo": true,
    "tile": [
-    298,
-    206
+    187,
+    205
    ],
    "direccion": 2,
    "visible": 0,
    "nivel": 60
   },
   {
-   "entity_id": 1576861973,
+   "entity_id": 57400012,
    "nombre": "Hot Wildfire",
    "npc_type": 895,
    "sprite": 42332,
    "klass": 1,
    "monstruo": true,
    "tile": [
-    293,
-    201
+    236,
+    172
    ],
    "direccion": 2,
    "visible": 0,
    "nivel": 60
   },
   {
-   "entity_id": 1576927510,
-   "nombre": "Flame Fly",
-   "npc_type": 847,
-   "sprite": 42277,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    74,
-    216
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1576993047,
-   "nombre": "Flame Fly",
-   "npc_type": 847,
-   "sprite": 42277,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    86,
-    226
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1577058584,
-   "nombre": "Flame Fly",
-   "npc_type": 847,
-   "sprite": 42277,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    90,
-    221
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1577124121,
+   "entity_id": 57400013,
    "nombre": "Hot Wildfire",
    "npc_type": 895,
    "sprite": 42332,
    "klass": 1,
    "monstruo": true,
    "tile": [
-    133,
-    220
+    248,
+    176
    ],
    "direccion": 2,
    "visible": 0,
    "nivel": 60
   },
   {
-   "entity_id": 1577189658,
+   "entity_id": 57400014,
    "nombre": "Hot Wildfire",
    "npc_type": 895,
    "sprite": 42332,
    "klass": 1,
    "monstruo": true,
    "tile": [
-    138,
-    221
+    236,
+    181
    ],
    "direccion": 2,
    "visible": 0,
    "nivel": 60
   },
   {
-   "entity_id": 1577255195,
+   "entity_id": 57400015,
    "nombre": "Hot Wildfire",
    "npc_type": 895,
    "sprite": 42332,
    "klass": 1,
    "monstruo": true,
    "tile": [
-    168,
-    231
+    253,
+    171
    ],
    "direccion": 2,
    "visible": 0,
    "nivel": 60
   },
   {
-   "entity_id": 1577320732,
+   "entity_id": 57400016,
    "nombre": "Hot Wildfire",
    "npc_type": 895,
    "sprite": 42332,
    "klass": 1,
    "monstruo": true,
    "tile": [
-    176,
-    224
+    242,
+    165
    ],
    "direccion": 2,
    "visible": 0,
    "nivel": 60
   },
   {
-   "entity_id": 1577386269,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    251,
-    218
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1577451806,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    260,
-    212
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1577517343,
-   "nombre": "Hot Wildfire",
-   "npc_type": 895,
-   "sprite": 42332,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    341,
-    224
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1577582880,
-   "nombre": "Hot Wildfire",
-   "npc_type": 895,
-   "sprite": 42332,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    352,
-    223
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1577648417,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    362,
-    233
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1577713954,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    379,
-    226
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1577845028,
-   "nombre": "Flame Fly",
-   "npc_type": 847,
-   "sprite": 42277,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    65,
-    238
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1577910565,
-   "nombre": "Hot Wildfire",
-   "npc_type": 895,
-   "sprite": 42332,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    157,
-    232
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1577976102,
-   "nombre": "Hot Wildfire",
-   "npc_type": 895,
-   "sprite": 42332,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    309,
-    239
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1578041639,
-   "nombre": "Hot Wildfire",
-   "npc_type": 895,
-   "sprite": 42332,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    304,
-    231
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1578107176,
-   "nombre": "Hot Wildfire",
-   "npc_type": 895,
-   "sprite": 42332,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    318,
-    231
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1578172713,
-   "nombre": "Hot Wildfire",
-   "npc_type": 895,
-   "sprite": 42332,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    320,
-    231
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1578238250,
-   "nombre": "Hot Wildfire",
-   "npc_type": 895,
-   "sprite": 42332,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    320,
-    234
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1578303787,
-   "nombre": "Hot Wildfire",
-   "npc_type": 895,
-   "sprite": 42332,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    344,
-    231
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1578369324,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    374,
-    239
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1578434861,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    362,
-    235
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1578500398,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    379,
-    236
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1578565935,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    372,
-    229
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1578697009,
-   "nombre": "Flame Fly",
-   "npc_type": 847,
-   "sprite": 42277,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    71,
-    246
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1578762546,
+   "entity_id": 57400017,
    "nombre": "Flame Fly",
    "npc_type": 847,
    "sprite": 42277,
@@ -1166,14 +266,479 @@
    "monstruo": true,
    "tile": [
     73,
-    247
+    167
    ],
    "direccion": 2,
    "visible": 0,
    "nivel": 60
   },
   {
-   "entity_id": 1578828083,
+   "entity_id": 57400018,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    169
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400019,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    97,
+    183
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400020,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    103,
+    181
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400021,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    84,
+    200
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400022,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    53,
+    238
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400023,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    71,
+    236
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400024,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    141,
+    214
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400025,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    162,
+    225
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400026,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    113,
+    207
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400027,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    208,
+    185
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400028,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    214,
+    195
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400029,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    65,
+    240
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400030,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    59,
+    245
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400031,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    67,
+    175
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400032,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    79,
+    196
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400033,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    119,
+    209
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400034,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    220
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400035,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    162,
+    232
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400036,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    170,
+    227
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400037,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    186,
+    212
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400038,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    218,
+    183
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400039,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    178,
+    209
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400040,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    380,
+    189
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400041,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    381,
+    179
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400042,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    385,
+    184
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400043,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    373,
+    186
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400044,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    348,
+    170
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400045,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    346,
+    177
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400046,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    337,
+    174
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400047,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    329,
+    179
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400048,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    341,
+    184
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400049,
    "nombre": "Hot Wildfire",
    "npc_type": 895,
    "sprite": 42332,
@@ -1181,596 +746,2006 @@
    "monstruo": true,
    "tile": [
     313,
-    241
+    197
    ],
    "direccion": 2,
    "visible": 0,
    "nivel": 60
   },
   {
-   "entity_id": 1579811138,
+   "entity_id": 57400050,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    300,
+    194
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400051,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    308,
+    190
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400052,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    306,
+    199
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400053,
    "nombre": "Rock Slarm",
    "npc_type": 832,
    "sprite": 42272,
    "klass": 1,
    "monstruo": true,
    "tile": [
-    210,
-    148
+    260,
+    210
    ],
    "direccion": 2,
    "visible": 0,
    "nivel": 63
   },
   {
-   "entity_id": 1579876675,
+   "entity_id": 57400054,
    "nombre": "Rock Slarm",
    "npc_type": 832,
    "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    212,
-    151
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1579942212,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    219,
-    138
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1580007749,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    212,
-    151
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1580073286,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    222,
-    153
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1580138823,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    227,
-    148
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1580204360,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    223,
-    140
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1580269897,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    214,
-    153
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1580335434,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    219,
-    138
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1580400971,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    210,
-    148
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1580466508,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    223,
-    140
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1580532045,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    219,
-    138
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1580597582,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    222,
-    153
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1580663119,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    225,
-    151
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1580728656,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    227,
-    148
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1580794193,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    225,
-    151
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1580859730,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    214,
-    153
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1580925267,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    222,
-    153
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1580990804,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    219,
-    138
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1581056341,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    222,
-    153
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1581121878,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    212,
-    151
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1581187415,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    212,
-    151
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1581252952,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    222,
-    153
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1581318489,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    219,
-    138
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1581384026,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    222,
-    153
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1581449563,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    214,
-    140
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1581515100,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    223,
-    140
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1581580637,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    219,
-    138
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1581777248,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    210,
-    148
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1581842785,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    210,
-    148
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1581908322,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    214,
-    140
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1581973859,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    210,
-    148
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1582039396,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    212,
-    151
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1582104933,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    212,
-    151
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1582170470,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    219,
-    138
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1582236007,
-   "nombre": "Rock Slarm",
-   "npc_type": 832,
-   "sprite": 42272,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    223,
-    140
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 63
-  },
-  {
-   "entity_id": 1582301544,
-   "nombre": "Rock God Mendun",
-   "npc_type": 817,
-   "sprite": 42286,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    219,
-    142
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 1582367081,
-   "nombre": "Air Hole",
-   "npc_type": 854,
-   "sprite": 42350,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    219,
-    161
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 62
-  },
-  {
-   "entity_id": 1582498155,
-   "nombre": "Air Hole",
-   "npc_type": 854,
-   "sprite": 42350,
    "klass": 1,
    "monstruo": true,
    "tile": [
     247,
-    134
+    210
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400055,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    252,
+    217
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400056,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    262,
+    218
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400057,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    324,
+    238
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400058,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    316,
+    232
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400059,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    305,
+    235
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400060,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    309,
+    230
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400061,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    323,
+    232
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400062,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    370,
+    237
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400063,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    383,
+    230
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400064,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    378,
+    227
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400065,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    364,
+    236
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400066,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    373,
+    229
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400067,
+   "nombre": "Rock Slarm",
+   "npc_type": 832,
+   "sprite": 42272,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    362,
+    227
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400068,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    122
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400069,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    117
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400070,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    122
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400071,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    127
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400072,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    117
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400073,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    127
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400074,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    111,
+    117
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400075,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    111,
+    122
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400076,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    111,
+    127
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400077,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    112
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400078,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    117
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400079,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    122
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400080,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    127
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400081,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    132
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400082,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    112
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400083,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    132
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400084,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    112
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400085,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    132
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400086,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    111,
+    112
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400087,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    111,
+    132
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400088,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    116,
+    112
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400089,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    116,
+    117
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400090,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    116,
+    122
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400091,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    116,
+    127
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400092,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    116,
+    132
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400093,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    147,
+    90
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400094,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    142,
+    85
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400095,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    142,
+    90
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400096,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    142,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400097,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    147,
+    85
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400098,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    147,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400099,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    152,
+    85
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400100,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    152,
+    90
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400101,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    152,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400102,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    80
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400103,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    85
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400104,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    90
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400105,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400106,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400107,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    142,
+    80
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400108,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    142,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400109,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    147,
+    80
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400110,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    147,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400111,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    152,
+    80
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400112,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    152,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400113,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    157,
+    80
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400114,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    157,
+    85
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400115,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    157,
+    90
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400116,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    157,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400117,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    157,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400118,
+   "nombre": "Hungry Eater",
+   "npc_type": 951,
+   "sprite": 42347,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    80
    ],
    "direccion": 2,
    "visible": 0,
    "nivel": 62
+  },
+  {
+   "entity_id": 57400119,
+   "nombre": "Hungry Eater",
+   "npc_type": 951,
+   "sprite": 42347,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    75
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 62
+  },
+  {
+   "entity_id": 57400120,
+   "nombre": "Hungry Eater",
+   "npc_type": 951,
+   "sprite": 42347,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    80
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 62
+  },
+  {
+   "entity_id": 57400121,
+   "nombre": "Hungry Eater",
+   "npc_type": 951,
+   "sprite": 42347,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    85
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 62
+  },
+  {
+   "entity_id": 57400122,
+   "nombre": "Hungry Eater",
+   "npc_type": 951,
+   "sprite": 42347,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    75
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 62
+  },
+  {
+   "entity_id": 57400123,
+   "nombre": "Hungry Eater",
+   "npc_type": 951,
+   "sprite": 42347,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    85
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 62
+  },
+  {
+   "entity_id": 57400124,
+   "nombre": "Hungry Eater",
+   "npc_type": 951,
+   "sprite": 42347,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    75
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 62
+  },
+  {
+   "entity_id": 57400125,
+   "nombre": "Hungry Eater",
+   "npc_type": 951,
+   "sprite": 42347,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    80
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 62
+  },
+  {
+   "entity_id": 57400126,
+   "nombre": "Hungry Eater",
+   "npc_type": 951,
+   "sprite": 42347,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    85
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 62
+  },
+  {
+   "entity_id": 57400127,
+   "nombre": "Hungry Eater",
+   "npc_type": 951,
+   "sprite": 42347,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 62
+  },
+  {
+   "entity_id": 57400128,
+   "nombre": "Hungry Eater",
+   "npc_type": 951,
+   "sprite": 42347,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    75
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 62
+  },
+  {
+   "entity_id": 57400129,
+   "nombre": "Hungry Eater",
+   "npc_type": 951,
+   "sprite": 42347,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    80
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 62
+  },
+  {
+   "entity_id": 57400130,
+   "nombre": "Hungry Eater",
+   "npc_type": 951,
+   "sprite": 42347,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    85
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 62
+  },
+  {
+   "entity_id": 57400131,
+   "nombre": "Hungry Eater",
+   "npc_type": 951,
+   "sprite": 42347,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    190,
+    90
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 62
+  },
+  {
+   "entity_id": 57400132,
+   "nombre": "Hungry Eater",
+   "npc_type": 951,
+   "sprite": 42347,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 62
+  },
+  {
+   "entity_id": 57400133,
+   "nombre": "Hungry Eater",
+   "npc_type": 951,
+   "sprite": 42347,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    195,
+    90
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 62
+  },
+  {
+   "entity_id": 57400134,
+   "nombre": "Hungry Eater",
+   "npc_type": 951,
+   "sprite": 42347,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 62
+  },
+  {
+   "entity_id": 57400135,
+   "nombre": "Hungry Eater",
+   "npc_type": 951,
+   "sprite": 42347,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    200,
+    90
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 62
+  },
+  {
+   "entity_id": 57400136,
+   "nombre": "Hungry Eater",
+   "npc_type": 951,
+   "sprite": 42347,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 62
+  },
+  {
+   "entity_id": 57400137,
+   "nombre": "Hungry Eater",
+   "npc_type": 951,
+   "sprite": 42347,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    90
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 62
+  },
+  {
+   "entity_id": 57400138,
+   "nombre": "Hungry Eater",
+   "npc_type": 951,
+   "sprite": 42347,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 62
+  },
+  {
+   "entity_id": 57400139,
+   "nombre": "Hungry Eater",
+   "npc_type": 951,
+   "sprite": 42347,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    75
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 62
+  },
+  {
+   "entity_id": 57400140,
+   "nombre": "Hungry Eater",
+   "npc_type": 951,
+   "sprite": 42347,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    80
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 62
+  },
+  {
+   "entity_id": 57400141,
+   "nombre": "Hungry Eater",
+   "npc_type": 951,
+   "sprite": 42347,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    85
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 62
+  },
+  {
+   "entity_id": 57400142,
+   "nombre": "Hungry Eater",
+   "npc_type": 951,
+   "sprite": 42347,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    210,
+    90
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 62
+  },
+  {
+   "entity_id": 57400143,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    91,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400144,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    91,
+    112
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400145,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    91,
+    117
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400146,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    91,
+    122
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400147,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    91,
+    127
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400148,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    91,
+    132
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400149,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    91,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400150,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400151,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    96,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400152,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400153,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400154,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400155,
+   "nombre": "Terra Miner",
+   "npc_type": 953,
+   "sprite": 42283,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    106,
+    137
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400156,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    75
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400157,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    80
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400158,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    85
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400159,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    90
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400160,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400161,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400162,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400163,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    75
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400164,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    137,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400165,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    142,
+    75
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400166,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    142,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400167,
+   "nombre": "Charming Flower",
+   "npc_type": 952,
+   "sprite": 42274,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    147,
+    75
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 63
+  },
+  {
+   "entity_id": 57400168,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    81,
+    182
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400169,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    82,
+    177
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400170,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    98,
+    205
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400171,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    140,
+    220
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400172,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    124,
+    199
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400173,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    76,
+    219
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400174,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    75,
+    212
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400175,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    227,
+    189
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400176,
+   "nombre": "Flame Fly",
+   "npc_type": 847,
+   "sprite": 42277,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    89,
+    175
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400177,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    295,
+    207
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400178,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    289,
+    204
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400179,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    341,
+    226
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400180,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    346,
+    229
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400181,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    346,
+    220
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
+  },
+  {
+   "entity_id": 57400182,
+   "nombre": "Hot Wildfire",
+   "npc_type": 895,
+   "sprite": 42332,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    315,
+    240
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 60
   },
   {
    "entity_id": 90074000,
@@ -1805,5 +2780,873 @@
    "puesto_por": "npcs_del_cliente"
   }
  ],
- "recursos": []
+ "recursos": [
+  {
+   "entity_id": 67400000,
+   "sprite": 60282,
+   "capa": 0,
+   "px": [
+    10059,
+    4976
+   ],
+   "tile": [
+    314,
+    155
+   ],
+   "evento": 0,
+   "crudo": "40710404000000004b270000701300000000000027000000000000001a000000dc067aeb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60282",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400001,
+   "sprite": 60296,
+   "capa": 0,
+   "px": [
+    12313,
+    7920
+   ],
+   "tile": [
+    384,
+    247
+   ],
+   "evento": 0,
+   "crudo": "417104040000000019300000f01e00000000000027000000000000001a000000dc0688eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60296",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400002,
+   "sprite": 60005,
+   "capa": 0,
+   "px": [
+    1299,
+    5360
+   ],
+   "tile": [
+    40,
+    167
+   ],
+   "evento": 0,
+   "crudo": "427104040000000013050000f01400000000000027000000000000001a000000dc0665ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400003,
+   "sprite": 60005,
+   "capa": 0,
+   "px": [
+    1450,
+    5136
+   ],
+   "tile": [
+    45,
+    160
+   ],
+   "evento": 0,
+   "crudo": "4371040400000000aa050000101400000000000027000000000000001a000000dc0665ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400004,
+   "sprite": 60005,
+   "capa": 0,
+   "px": [
+    1451,
+    5296
+   ],
+   "tile": [
+    45,
+    165
+   ],
+   "evento": 0,
+   "crudo": "4471040400000000ab050000b01400000000000027000000000000001a000000dc0665ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400005,
+   "sprite": 60005,
+   "capa": 0,
+   "px": [
+    1045,
+    7824
+   ],
+   "tile": [
+    32,
+    244
+   ],
+   "evento": 0,
+   "crudo": "457104040000000015040000901e00000000000027000000000000001a000000dc0665ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400006,
+   "sprite": 60005,
+   "capa": 0,
+   "px": [
+    1263,
+    7856
+   ],
+   "tile": [
+    39,
+    245
+   ],
+   "evento": 0,
+   "crudo": "4671040400000000ef040000b01e00000000000027000000000000001a000000dc0665ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400007,
+   "sprite": 60005,
+   "capa": 0,
+   "px": [
+    1328,
+    7984
+   ],
+   "tile": [
+    41,
+    249
+   ],
+   "evento": 0,
+   "crudo": "477104040000000030050000301f00000000000027000000000000001a000000dc0665ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400008,
+   "sprite": 60005,
+   "capa": 0,
+   "px": [
+    7168,
+    400
+   ],
+   "tile": [
+    224,
+    12
+   ],
+   "evento": 0,
+   "crudo": "4871040400000000001c0000900100000000000027000000000000001a000000dc0665ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400009,
+   "sprite": 60005,
+   "capa": 0,
+   "px": [
+    7437,
+    400
+   ],
+   "tile": [
+    232,
+    12
+   ],
+   "evento": 0,
+   "crudo": "49710404000000000d1d0000900100000000000027000000000000001a000000dc0665ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400010,
+   "sprite": 60005,
+   "capa": 0,
+   "px": [
+    7383,
+    272
+   ],
+   "tile": [
+    230,
+    8
+   ],
+   "evento": 0,
+   "crudo": "4a71040400000000d71c0000100100000000000027000000000000001a000000dc0665ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400011,
+   "sprite": 60300,
+   "capa": 0,
+   "px": [
+    12239,
+    7472
+   ],
+   "tile": [
+    382,
+    233
+   ],
+   "evento": 611,
+   "crudo": "4b71040400000000cf2f0000301d00000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400012,
+   "sprite": 60005,
+   "capa": 0,
+   "px": [
+    11990,
+    7632
+   ],
+   "tile": [
+    374,
+    238
+   ],
+   "evento": 0,
+   "crudo": "4c71040400000000d62e0000d01d00000000000027000000000000001a000000dc0665ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400013,
+   "sprite": 60005,
+   "capa": 0,
+   "px": [
+    12086,
+    7472
+   ],
+   "tile": [
+    377,
+    233
+   ],
+   "evento": 0,
+   "crudo": "4d71040400000000362f0000301d00000000000027000000000000001a000000dc0665ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400014,
+   "sprite": 60069,
+   "capa": 2,
+   "px": [
+    8224,
+    1616
+   ],
+   "tile": [
+    257,
+    50
+   ],
+   "evento": 61504,
+   "crudo": "4e7104040200000020200000500600000000000027000000000000001a000000dc06a5ea00004080020000",
+   "copiado_de": "cuerpo de una captura del objeto 60069",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400015,
+   "sprite": 60005,
+   "capa": 0,
+   "px": [
+    13261,
+    4336
+   ],
+   "tile": [
+    414,
+    135
+   ],
+   "evento": 0,
+   "crudo": "4f71040400000000cd330000f01000000000000027000000000000001a000000dc0665ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400016,
+   "sprite": 60005,
+   "capa": 0,
+   "px": [
+    13385,
+    4368
+   ],
+   "tile": [
+    418,
+    136
+   ],
+   "evento": 0,
+   "crudo": "507104040000000049340000101100000000000027000000000000001a000000dc0665ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400017,
+   "sprite": 60005,
+   "capa": 0,
+   "px": [
+    13358,
+    4464
+   ],
+   "tile": [
+    417,
+    139
+   ],
+   "evento": 0,
+   "crudo": "51710404000000002e340000701100000000000027000000000000001a000000dc0665ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400018,
+   "sprite": 60005,
+   "capa": 0,
+   "px": [
+    11743,
+    7568
+   ],
+   "tile": [
+    366,
+    236
+   ],
+   "evento": 0,
+   "crudo": "5271040400000000df2d0000901d00000000000027000000000000001a000000dc0665ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400019,
+   "sprite": 60005,
+   "capa": 0,
+   "px": [
+    8967,
+    1488
+   ],
+   "tile": [
+    280,
+    46
+   ],
+   "evento": 0,
+   "crudo": "537104040000000007230000d00500000000000027000000000000001a000000dc0665ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400020,
+   "sprite": 60005,
+   "capa": 0,
+   "px": [
+    9024,
+    1392
+   ],
+   "tile": [
+    282,
+    43
+   ],
+   "evento": 0,
+   "crudo": "547104040000000040230000700500000000000027000000000000001a000000dc0665ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400021,
+   "sprite": 60005,
+   "capa": 0,
+   "px": [
+    9181,
+    1360
+   ],
+   "tile": [
+    286,
+    42
+   ],
+   "evento": 0,
+   "crudo": "5571040400000000dd230000500500000000000027000000000000001a000000dc0665ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400022,
+   "sprite": 60005,
+   "capa": 0,
+   "px": [
+    2940,
+    3536
+   ],
+   "tile": [
+    91,
+    110
+   ],
+   "evento": 0,
+   "crudo": "56710404000000007c0b0000d00d00000000000027000000000000001a000000dc0665ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400023,
+   "sprite": 60005,
+   "capa": 0,
+   "px": [
+    2826,
+    3440
+   ],
+   "tile": [
+    88,
+    107
+   ],
+   "evento": 0,
+   "crudo": "57710404000000000a0b0000700d00000000000027000000000000001a000000dc0665ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400024,
+   "sprite": 60005,
+   "capa": 0,
+   "px": [
+    2661,
+    3536
+   ],
+   "tile": [
+    83,
+    110
+   ],
+   "evento": 0,
+   "crudo": "5871040400000000650a0000d00d00000000000027000000000000001a000000dc0665ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400025,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7615,
+    5200
+   ],
+   "tile": [
+    237,
+    162
+   ],
+   "evento": 151,
+   "crudo": "5971040400000000bf1d0000501400000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400026,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7630,
+    5168
+   ],
+   "tile": [
+    238,
+    161
+   ],
+   "evento": 151,
+   "crudo": "5a71040400000000ce1d0000301400000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400027,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7650,
+    5136
+   ],
+   "tile": [
+    239,
+    160
+   ],
+   "evento": 151,
+   "crudo": "5b71040400000000e21d0000101400000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400028,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7682,
+    5104
+   ],
+   "tile": [
+    240,
+    159
+   ],
+   "evento": 151,
+   "crudo": "5c71040400000000021e0000f01300000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400029,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7714,
+    5104
+   ],
+   "tile": [
+    241,
+    159
+   ],
+   "evento": 151,
+   "crudo": "5d71040400000000221e0000f01300000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400030,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7734,
+    5072
+   ],
+   "tile": [
+    241,
+    158
+   ],
+   "evento": 151,
+   "crudo": "5e71040400000000361e0000d01300000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400031,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7752,
+    5040
+   ],
+   "tile": [
+    242,
+    157
+   ],
+   "evento": 151,
+   "crudo": "5f71040400000000481e0000b01300000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400032,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7783,
+    5008
+   ],
+   "tile": [
+    243,
+    156
+   ],
+   "evento": 151,
+   "crudo": "6071040400000000671e0000901300000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400033,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7798,
+    4976
+   ],
+   "tile": [
+    243,
+    155
+   ],
+   "evento": 151,
+   "crudo": "6171040400000000761e0000701300000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400034,
+   "sprite": 60034,
+   "capa": 0,
+   "px": [
+    7214,
+    4848
+   ],
+   "tile": [
+    225,
+    151
+   ],
+   "evento": 0,
+   "crudo": "62710404000000002e1c0000f01200000000000027000000000000001a000000dc0682ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400035,
+   "sprite": 60034,
+   "capa": 0,
+   "px": [
+    6878,
+    4912
+   ],
+   "tile": [
+    214,
+    153
+   ],
+   "evento": 0,
+   "crudo": "6371040400000000de1a0000301300000000000027000000000000001a000000dc0682ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400036,
+   "sprite": 60034,
+   "capa": 0,
+   "px": [
+    7275,
+    4752
+   ],
+   "tile": [
+    227,
+    148
+   ],
+   "evento": 0,
+   "crudo": "64710404000000006b1c0000901200000000000027000000000000001a000000dc0682ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400037,
+   "sprite": 60034,
+   "capa": 0,
+   "px": [
+    7022,
+    4432
+   ],
+   "tile": [
+    219,
+    138
+   ],
+   "evento": 0,
+   "crudo": "65710404000000006e1b0000501100000000000027000000000000001a000000dc0682ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400038,
+   "sprite": 60034,
+   "capa": 0,
+   "px": [
+    6788,
+    4848
+   ],
+   "tile": [
+    212,
+    151
+   ],
+   "evento": 0,
+   "crudo": "6671040400000000841a0000f01200000000000027000000000000001a000000dc0682ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400039,
+   "sprite": 60034,
+   "capa": 0,
+   "px": [
+    6853,
+    4496
+   ],
+   "tile": [
+    214,
+    140
+   ],
+   "evento": 0,
+   "crudo": "6771040400000000c51a0000901100000000000027000000000000001a000000dc0682ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400040,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    12205,
+    7824
+   ],
+   "tile": [
+    381,
+    244
+   ],
+   "evento": 61101,
+   "crudo": "6871040400000000ad2f0000901e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400041,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    12237,
+    7824
+   ],
+   "tile": [
+    382,
+    244
+   ],
+   "evento": 61101,
+   "crudo": "6971040400000000cd2f0000901e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400042,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    12268,
+    7792
+   ],
+   "tile": [
+    383,
+    243
+   ],
+   "evento": 61101,
+   "crudo": "6a71040400000000ec2f0000701e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400043,
+   "sprite": 60300,
+   "capa": 0,
+   "px": [
+    9802,
+    4944
+   ],
+   "tile": [
+    306,
+    154
+   ],
+   "evento": 610,
+   "crudo": "6b710404000000004a260000501300000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400044,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7830,
+    4976
+   ],
+   "tile": [
+    244,
+    155
+   ],
+   "evento": 151,
+   "crudo": "6c71040400000000961e0000701300000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400045,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    7856,
+    4976
+   ],
+   "tile": [
+    245,
+    155
+   ],
+   "evento": 151,
+   "crudo": "6d71040400000000b01e0000701300000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400046,
+   "sprite": 60034,
+   "capa": 0,
+   "px": [
+    6746,
+    4752
+   ],
+   "tile": [
+    210,
+    148
+   ],
+   "evento": 0,
+   "crudo": "6e710404000000005a1a0000901200000000000027000000000000001a000000dc0682ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400047,
+   "sprite": 60034,
+   "capa": 0,
+   "px": [
+    7129,
+    4912
+   ],
+   "tile": [
+    222,
+    153
+   ],
+   "evento": 0,
+   "crudo": "6f71040400000000d91b0000301300000000000027000000000000001a000000dc0682ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400048,
+   "sprite": 60034,
+   "capa": 0,
+   "px": [
+    7165,
+    4496
+   ],
+   "tile": [
+    223,
+    140
+   ],
+   "evento": 0,
+   "crudo": "7071040400000000fd1b0000901100000000000027000000000000001a000000dc0682ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400049,
+   "sprite": 60069,
+   "capa": 0,
+   "px": [
+    12288,
+    6064
+   ],
+   "tile": [
+    384,
+    189
+   ],
+   "evento": 61503,
+   "crudo": "717104040000000000300000b01700000000000027000000000000001a000000dc06a5ea00004080020000",
+   "copiado_de": "cuerpo de una captura del objeto 60069",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67400050,
+   "sprite": 60069,
+   "capa": 0,
+   "px": [
+    9440,
+    5040
+   ],
+   "tile": [
+    295,
+    157
+   ],
+   "evento": 61502,
+   "crudo": "7271040400000000e0240000b01300000000000027000000000000001a000000dc06a5ea00004080020000",
+   "copiado_de": "cuerpo de una captura del objeto 60069",
+   "puesto_por": "objetos_de_instancia"
+  }
+ ]
 }

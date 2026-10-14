@@ -424,6 +424,11 @@ def traducir(numero, parms):
         return ('variable', 'sumar', _p(parms, 0), _p(parms, 1), _p(parms, 2))
     if numero == 60:
         return ('temporizador', _p(parms, 0), _p(parms, 1), _p(parms, 2))
+    if numero == 63:
+        # NPCKILLGAME(1 empieza / 0 termina): la carrera de bajas contra los
+        # NPC del Evil Lyceum (sala 2 de la Magic Kichen Path). Las bajas y
+        # el tiempo los lleva el servidor; ver app.py, 'juego_matar'.
+        return ('juego_matar', _p(parms, 0))
     if numero == 67:
         return ('botin', _p(parms, 0))
     if numero == 70:
@@ -440,7 +445,7 @@ def traducir(numero, parms):
 # Las acciones que traducir() convierte en efecto.
 SE_TRADUCEN = frozenset((1, 3, 4, 7, 8, 9, 10, 12, 13, 14, 18, 19, 20, 21, 24,
                          25, 29, 30, 31, 33, 36, 39, 41, 42, 47, 51, 52, 53,
-                         54, 55, 56, 57, 60, 67, 70, 72, 78, 81, 104))
+                         54, 55, 56, 57, 60, 63, 67, 70, 72, 78, 81, 104))
 
 
 def ejecutar(stage, evento, disparo, ctx):

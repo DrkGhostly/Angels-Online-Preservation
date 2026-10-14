@@ -89,6 +89,13 @@ def test_todos_los_cuartos_estan_registrados_y_poblados():
         d = _plantilla(st)
         assert d['stage'] == st, st
         mobs = sum(1 for e in d['spawns'] if e.get('monstruo'))
+        # Una sala puede empezar vacia si TODO lo suyo sale por evento: el
+        # laberinto de Gulp Room (77) solo tiene la zona del Sleeper Nalica,
+        # que saca un dialogo.
+        if mobs == 0 and 'OLEADAS' in d.get('_nota', ''):
+            zonas = {g.get('zona') for g in cli.mapa(st).generadores()}
+            assert zonas <= pob.zonas_de_evento(st), st
+            continue
         assert mobs > 0, st
 
 
@@ -103,7 +110,13 @@ def test_el_censo_de_cada_cuarto_es_el_del_cliente():
         if 'POBLADO DESDE EL CLIENTE' not in d.get('_nota', ''):
             continue
         delcliente = collections.Counter()
+        # Las zonas que saca un evento (GENERATE / ENABLE_GENERATOR) no van en
+        # la plantilla: salen con su mecanica. Ver tools/quitar_oleadas.py.
+        # Solo en las salas ya limpiadas (las que lo dicen en su nota).
+        de_evento = pob.zonas_de_evento(st) if 'OLEADAS' in d.get('_nota', '') else set()
         for g in cli.mapa(st).generadores():
+            if g.get('zona') in de_evento:
+                continue
             if g['tipo'] in cat:
                 # Con el tope: doce generadores de las instancias declaran
                 # entre 40 y 200 sobre UN SOLO punto y son de oleada, no una

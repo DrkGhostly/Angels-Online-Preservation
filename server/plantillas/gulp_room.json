@@ -1,69 +1,9 @@
 {
- "_nota": "gulp_room (stage 76). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map076.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "_nota": "gulp_room (stage 76). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map076.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py. OLEADAS: fuera 61 bichos de la captura que salen por evento (tools/quitar_oleadas.py). OLEADAS: fuera 11 bichos de la captura que salen por evento (tools/quitar_oleadas.py).",
  "stage": 76,
  "spawns": [
   {
    "entity_id": 57600000,
-   "nombre": "Fire Mummy",
-   "npc_type": 893,
-   "sprite": 42330,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    343,
-    166
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600001,
-   "nombre": "Fire Mummy",
-   "npc_type": 893,
-   "sprite": 42330,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    338,
-    161
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600002,
-   "nombre": "Fire Mummy",
-   "npc_type": 893,
-   "sprite": 42330,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    338,
-    166
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600003,
-   "nombre": "Fire Mummy",
-   "npc_type": 893,
-   "sprite": 42330,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    350,
-    169
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600004,
    "nombre": "Powder Pail",
    "npc_type": 807,
    "sprite": 40176,
@@ -78,7 +18,7 @@
    "nivel": 75
   },
   {
-   "entity_id": 57600005,
+   "entity_id": 57600001,
    "nombre": "Powder Pail",
    "npc_type": 807,
    "sprite": 40176,
@@ -93,7 +33,7 @@
    "nivel": 75
   },
   {
-   "entity_id": 57600006,
+   "entity_id": 57600002,
    "nombre": "Powder Pail",
    "npc_type": 807,
    "sprite": 40176,
@@ -108,7 +48,7 @@
    "nivel": 75
   },
   {
-   "entity_id": 57600007,
+   "entity_id": 57600003,
    "nombre": "Powder Pail",
    "npc_type": 807,
    "sprite": 40176,
@@ -123,7 +63,7 @@
    "nivel": 75
   },
   {
-   "entity_id": 57600008,
+   "entity_id": 57600004,
    "nombre": "Powder Pail",
    "npc_type": 807,
    "sprite": 40176,
@@ -138,7 +78,7 @@
    "nivel": 75
   },
   {
-   "entity_id": 57600009,
+   "entity_id": 57600005,
    "nombre": "Fire Mummy",
    "npc_type": 893,
    "sprite": 42330,
@@ -153,7 +93,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600010,
+   "entity_id": 57600006,
    "nombre": "Fire Mummy",
    "npc_type": 893,
    "sprite": 42330,
@@ -168,52 +108,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600011,
-   "nombre": "Dark Protector",
-   "npc_type": 898,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    76,
-    12
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600012,
-   "nombre": "Dark Protector",
-   "npc_type": 898,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    71,
-    7
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600013,
-   "nombre": "Dark Protector",
-   "npc_type": 898,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    71,
-    12
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600014,
+   "entity_id": 57600007,
    "nombre": "Earl Makice",
    "npc_type": 875,
    "sprite": 42317,
@@ -228,37 +123,7 @@
    "nivel": 77
   },
   {
-   "entity_id": 57600015,
-   "nombre": "Dark Elite",
-   "npc_type": 897,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    69,
-    17
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600016,
-   "nombre": "Dark Elite",
-   "npc_type": 897,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    74,
-    17
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600017,
+   "entity_id": 57600008,
    "nombre": "Lion Dragon",
    "npc_type": 802,
    "sprite": 42285,
@@ -273,52 +138,37 @@
    "nivel": 78
   },
   {
-   "entity_id": 57600018,
+   "entity_id": 57600009,
    "nombre": "Dark Elite",
    "npc_type": 897,
    "sprite": 42334,
    "klass": 1,
    "monstruo": true,
    "tile": [
-    81,
-    9
+    80,
+    10
    ],
    "direccion": 2,
    "visible": 0,
    "nivel": 70
   },
   {
-   "entity_id": 57600019,
+   "entity_id": 57600010,
    "nombre": "Dark Elite",
    "npc_type": 897,
    "sprite": 42334,
    "klass": 1,
    "monstruo": true,
    "tile": [
-    83,
-    14
+    85,
+    12
    ],
    "direccion": 2,
    "visible": 0,
    "nivel": 70
   },
   {
-   "entity_id": 57600020,
-   "nombre": "Flamen Tomomy",
-   "npc_type": 882,
-   "sprite": 42319,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    218,
-    68
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 82
-  },
-  {
-   "entity_id": 57600021,
+   "entity_id": 57600011,
    "nombre": "Fire Mummy",
    "npc_type": 893,
    "sprite": 42330,
@@ -333,7 +183,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600022,
+   "entity_id": 57600012,
    "nombre": "Fire Mummy",
    "npc_type": 893,
    "sprite": 42330,
@@ -348,7 +198,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600023,
+   "entity_id": 57600013,
    "nombre": "Fire Mummy",
    "npc_type": 893,
    "sprite": 42330,
@@ -363,7 +213,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600024,
+   "entity_id": 57600014,
    "nombre": "Fire Mummy",
    "npc_type": 893,
    "sprite": 42330,
@@ -378,7 +228,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600025,
+   "entity_id": 57600015,
    "nombre": "Fire Mummy",
    "npc_type": 893,
    "sprite": 42330,
@@ -393,7 +243,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600026,
+   "entity_id": 57600016,
    "nombre": "Fire Mummy",
    "npc_type": 893,
    "sprite": 42330,
@@ -408,7 +258,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600027,
+   "entity_id": 57600017,
    "nombre": "Fire Mummy",
    "npc_type": 893,
    "sprite": 42330,
@@ -423,7 +273,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600028,
+   "entity_id": 57600018,
    "nombre": "Fire Mummy",
    "npc_type": 893,
    "sprite": 42330,
@@ -438,7 +288,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600029,
+   "entity_id": 57600019,
    "nombre": "Fire Mummy",
    "npc_type": 893,
    "sprite": 42330,
@@ -453,7 +303,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600030,
+   "entity_id": 57600020,
    "nombre": "Fire Mummy",
    "npc_type": 893,
    "sprite": 42330,
@@ -468,217 +318,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600031,
-   "nombre": "Fire Mummy",
-   "npc_type": 893,
-   "sprite": 42330,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    358,
-    173
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600032,
-   "nombre": "Fire Mummy",
-   "npc_type": 893,
-   "sprite": 42330,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    353,
-    174
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600033,
-   "nombre": "Fire Mummy",
-   "npc_type": 893,
-   "sprite": 42330,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    355,
-    168
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600034,
-   "nombre": "Dark Protector",
-   "npc_type": 898,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    211,
-    67
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600035,
-   "nombre": "Dark Protector",
-   "npc_type": 898,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    206,
-    62
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600036,
-   "nombre": "Dark Protector",
-   "npc_type": 898,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    206,
-    67
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600037,
-   "nombre": "Dark Protector",
-   "npc_type": 898,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    206,
-    72
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600038,
-   "nombre": "Dark Protector",
-   "npc_type": 898,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    211,
-    62
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600039,
-   "nombre": "Dark Protector",
-   "npc_type": 898,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    211,
-    72
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600040,
-   "nombre": "Dark Protector",
-   "npc_type": 898,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    216,
-    62
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600041,
-   "nombre": "Dark Protector",
-   "npc_type": 898,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    216,
-    73
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600042,
-   "nombre": "Dark Protector",
-   "npc_type": 898,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    201,
-    57
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600043,
-   "nombre": "Dark Protector",
-   "npc_type": 898,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    201,
-    62
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600044,
-   "nombre": "Elite Fire Mummy",
-   "npc_type": 892,
-   "sprite": 42330,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    313,
-    174
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600045,
+   "entity_id": 57600021,
    "nombre": "Dark Elite",
    "npc_type": 1061,
    "sprite": 42334,
@@ -693,7 +333,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600046,
+   "entity_id": 57600022,
    "nombre": "Dark Protector",
    "npc_type": 1062,
    "sprite": 42334,
@@ -708,7 +348,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600047,
+   "entity_id": 57600023,
    "nombre": "Dark Protector",
    "npc_type": 1062,
    "sprite": 42334,
@@ -723,7 +363,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600048,
+   "entity_id": 57600024,
    "nombre": "Dark Protector",
    "npc_type": 1062,
    "sprite": 42334,
@@ -738,7 +378,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600049,
+   "entity_id": 57600025,
    "nombre": "Dark Elite",
    "npc_type": 1061,
    "sprite": 42334,
@@ -746,6 +386,366 @@
    "monstruo": true,
    "tile": [
     124,
+    226
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57600026,
+   "nombre": "Dark Protector",
+   "npc_type": 1062,
+   "sprite": 42334,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    129,
+    216
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57600027,
+   "nombre": "Dark Protector",
+   "npc_type": 1062,
+   "sprite": 42334,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    129,
+    226
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57600028,
+   "nombre": "Dark Protector",
+   "npc_type": 1062,
+   "sprite": 42334,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    142,
+    184
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57600029,
+   "nombre": "Dark Elite",
+   "npc_type": 1061,
+   "sprite": 42334,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    134,
+    216
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57600030,
+   "nombre": "Dark Protector",
+   "npc_type": 1062,
+   "sprite": 42334,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    134,
+    221
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57600031,
+   "nombre": "Dark Protector",
+   "npc_type": 1062,
+   "sprite": 42334,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    119,
+    214
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57600032,
+   "nombre": "Dark Protector",
+   "npc_type": 1062,
+   "sprite": 42334,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    142,
+    189
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57600033,
+   "nombre": "Dark Elite",
+   "npc_type": 1061,
+   "sprite": 42334,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    134,
+    226
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57600034,
+   "nombre": "Dark Protector",
+   "npc_type": 1062,
+   "sprite": 42334,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    119,
+    219
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57600035,
+   "nombre": "Dark Protector",
+   "npc_type": 1062,
+   "sprite": 42334,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    119,
+    224
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57600036,
+   "nombre": "Dark Protector",
+   "npc_type": 1062,
+   "sprite": 42334,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    142,
+    194
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57600037,
+   "nombre": "Dark Protector",
+   "npc_type": 1062,
+   "sprite": 42334,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    119,
+    229
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57600038,
+   "nombre": "Dark Protector",
+   "npc_type": 1062,
+   "sprite": 42334,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    124,
+    211
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57600039,
+   "nombre": "Dark Protector",
+   "npc_type": 1062,
+   "sprite": 42334,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    147,
+    184
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57600040,
+   "nombre": "Dark Elite",
+   "npc_type": 1061,
+   "sprite": 42334,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    129,
+    211
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57600041,
+   "nombre": "Dark Protector",
+   "npc_type": 1062,
+   "sprite": 42334,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    134,
+    211
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57600042,
+   "nombre": "Dark Protector",
+   "npc_type": 1062,
+   "sprite": 42334,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    114,
+    209
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57600043,
+   "nombre": "Dark Protector",
+   "npc_type": 1062,
+   "sprite": 42334,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    147,
+    194
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57600044,
+   "nombre": "Dark Elite",
+   "npc_type": 1061,
+   "sprite": 42334,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    139,
+    211
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57600045,
+   "nombre": "Dark Elite",
+   "npc_type": 1061,
+   "sprite": 42334,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    139,
+    216
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57600046,
+   "nombre": "Dark Protector",
+   "npc_type": 1062,
+   "sprite": 42334,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    139,
+    221
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57600047,
+   "nombre": "Dark Protector",
+   "npc_type": 1062,
+   "sprite": 42334,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    114,
+    214
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57600048,
+   "nombre": "Dark Protector",
+   "npc_type": 1062,
+   "sprite": 42334,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    152,
+    184
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57600049,
+   "nombre": "Dark Protector",
+   "npc_type": 1062,
+   "sprite": 42334,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    139,
     226
    ],
    "direccion": 2,
@@ -760,8 +760,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    129,
-    216
+    114,
+    219
    ],
    "direccion": 2,
    "visible": 0,
@@ -775,8 +775,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    129,
-    226
+    152,
+    189
    ],
    "direccion": 2,
    "visible": 0,
@@ -784,14 +784,14 @@
   },
   {
    "entity_id": 57600052,
-   "nombre": "Dark Protector",
-   "npc_type": 1062,
+   "nombre": "Dark Elite",
+   "npc_type": 1061,
    "sprite": 42334,
    "klass": 1,
    "monstruo": true,
    "tile": [
-    142,
-    184
+    119,
+    209
    ],
    "direccion": 2,
    "visible": 0,
@@ -799,471 +799,6 @@
   },
   {
    "entity_id": 57600053,
-   "nombre": "Dark Elite",
-   "npc_type": 1061,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    134,
-    216
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600054,
-   "nombre": "Dark Protector",
-   "npc_type": 1062,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    134,
-    221
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600055,
-   "nombre": "Dark Protector",
-   "npc_type": 1062,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    119,
-    214
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600056,
-   "nombre": "Dark Protector",
-   "npc_type": 1062,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    142,
-    189
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600057,
-   "nombre": "Dark Elite",
-   "npc_type": 1061,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    134,
-    226
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600058,
-   "nombre": "Dark Protector",
-   "npc_type": 1062,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    119,
-    219
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600059,
-   "nombre": "Dark Protector",
-   "npc_type": 1062,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    119,
-    224
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600060,
-   "nombre": "Dark Protector",
-   "npc_type": 1062,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    142,
-    194
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600061,
-   "nombre": "Elite Fire Mummy",
-   "npc_type": 892,
-   "sprite": 42330,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    321,
-    178
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600062,
-   "nombre": "Elite Fire Mummy",
-   "npc_type": 892,
-   "sprite": 42330,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    316,
-    179
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600063,
-   "nombre": "Fire Mummy",
-   "npc_type": 893,
-   "sprite": 42330,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    330,
-    182
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600064,
-   "nombre": "Fire Mummy",
-   "npc_type": 893,
-   "sprite": 42330,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    325,
-    183
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600065,
-   "nombre": "Fire Mummy",
-   "npc_type": 893,
-   "sprite": 42330,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    338,
-    187
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600066,
-   "nombre": "Fire Mummy",
-   "npc_type": 893,
-   "sprite": 42330,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    333,
-    187
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600067,
-   "nombre": "Fire Mummy",
-   "npc_type": 893,
-   "sprite": 42330,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    333,
-    192
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600068,
-   "nombre": "Dark Protector",
-   "npc_type": 1062,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    119,
-    229
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600069,
-   "nombre": "Dark Protector",
-   "npc_type": 1062,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    124,
-    211
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600070,
-   "nombre": "Dark Protector",
-   "npc_type": 1062,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    147,
-    184
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600071,
-   "nombre": "Dark Elite",
-   "npc_type": 1061,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    129,
-    211
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600072,
-   "nombre": "Dark Protector",
-   "npc_type": 1062,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    134,
-    211
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600073,
-   "nombre": "Dark Protector",
-   "npc_type": 1062,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    114,
-    209
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600074,
-   "nombre": "Dark Protector",
-   "npc_type": 1062,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    147,
-    194
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600075,
-   "nombre": "Dark Elite",
-   "npc_type": 1061,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    139,
-    211
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600076,
-   "nombre": "Dark Elite",
-   "npc_type": 1061,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    139,
-    216
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600077,
-   "nombre": "Dark Protector",
-   "npc_type": 1062,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    139,
-    221
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600078,
-   "nombre": "Dark Protector",
-   "npc_type": 1062,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    114,
-    214
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600079,
-   "nombre": "Dark Protector",
-   "npc_type": 1062,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    152,
-    184
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600080,
-   "nombre": "Dark Protector",
-   "npc_type": 1062,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    139,
-    226
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600081,
-   "nombre": "Dark Protector",
-   "npc_type": 1062,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    114,
-    219
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600082,
-   "nombre": "Dark Protector",
-   "npc_type": 1062,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    152,
-    189
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600083,
-   "nombre": "Dark Elite",
-   "npc_type": 1061,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    119,
-    209
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600084,
    "nombre": "Poo Poo Demon",
    "npc_type": 917,
    "sprite": 42349,
@@ -1278,7 +813,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600085,
+   "entity_id": 57600054,
    "nombre": "Poo Poo Demon",
    "npc_type": 917,
    "sprite": 42349,
@@ -1293,7 +828,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600086,
+   "entity_id": 57600055,
    "nombre": "Poo Poo Demon",
    "npc_type": 917,
    "sprite": 42349,
@@ -1308,7 +843,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600087,
+   "entity_id": 57600056,
    "nombre": "Poo Poo Demon",
    "npc_type": 917,
    "sprite": 42349,
@@ -1323,7 +858,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600088,
+   "entity_id": 57600057,
    "nombre": "Poo Poo Demon",
    "npc_type": 917,
    "sprite": 42349,
@@ -1338,7 +873,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600089,
+   "entity_id": 57600058,
    "nombre": "Poo Poo Demon",
    "npc_type": 917,
    "sprite": 42349,
@@ -1353,7 +888,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600090,
+   "entity_id": 57600059,
    "nombre": "Poo Poo Demon",
    "npc_type": 917,
    "sprite": 42349,
@@ -1368,7 +903,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600091,
+   "entity_id": 57600060,
    "nombre": "Poo Poo Demon",
    "npc_type": 917,
    "sprite": 42349,
@@ -1383,7 +918,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600092,
+   "entity_id": 57600061,
    "nombre": "Poo Poo Demon",
    "npc_type": 917,
    "sprite": 42349,
@@ -1398,7 +933,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600093,
+   "entity_id": 57600062,
    "nombre": "Poo Poo Demon",
    "npc_type": 917,
    "sprite": 42349,
@@ -1413,7 +948,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600094,
+   "entity_id": 57600063,
    "nombre": "Poo Poo Demon",
    "npc_type": 917,
    "sprite": 42349,
@@ -1428,7 +963,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600095,
+   "entity_id": 57600064,
    "nombre": "Poo Poo Demon",
    "npc_type": 917,
    "sprite": 42349,
@@ -1443,7 +978,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600096,
+   "entity_id": 57600065,
    "nombre": "Poo Poo Demon",
    "npc_type": 917,
    "sprite": 42349,
@@ -1458,7 +993,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600097,
+   "entity_id": 57600066,
    "nombre": "Poo Poo Demon",
    "npc_type": 917,
    "sprite": 42349,
@@ -1473,7 +1008,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600098,
+   "entity_id": 57600067,
    "nombre": "Poo Poo Demon",
    "npc_type": 917,
    "sprite": 42349,
@@ -1488,7 +1023,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600099,
+   "entity_id": 57600068,
    "nombre": "Poo Poo Demon",
    "npc_type": 916,
    "sprite": 42349,
@@ -1503,7 +1038,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600100,
+   "entity_id": 57600069,
    "nombre": "Poo Poo Demon",
    "npc_type": 917,
    "sprite": 42349,
@@ -1518,7 +1053,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600101,
+   "entity_id": 57600070,
    "nombre": "Poo Poo Demon",
    "npc_type": 917,
    "sprite": 42349,
@@ -1533,7 +1068,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600102,
+   "entity_id": 57600071,
    "nombre": "Poo Poo Demon",
    "npc_type": 916,
    "sprite": 42349,
@@ -1548,7 +1083,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600103,
+   "entity_id": 57600072,
    "nombre": "Poo Poo Demon",
    "npc_type": 917,
    "sprite": 42349,
@@ -1563,7 +1098,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600104,
+   "entity_id": 57600073,
    "nombre": "Poo Poo Demon",
    "npc_type": 917,
    "sprite": 42349,
@@ -1578,7 +1113,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600105,
+   "entity_id": 57600074,
    "nombre": "Gold Fly",
    "npc_type": 845,
    "sprite": 42276,
@@ -1593,7 +1128,7 @@
    "nivel": 72
   },
   {
-   "entity_id": 57600106,
+   "entity_id": 57600075,
    "nombre": "Gold Fly",
    "npc_type": 845,
    "sprite": 42276,
@@ -1608,7 +1143,7 @@
    "nivel": 72
   },
   {
-   "entity_id": 57600107,
+   "entity_id": 57600076,
    "nombre": "Gold Fly",
    "npc_type": 845,
    "sprite": 42276,
@@ -1623,7 +1158,7 @@
    "nivel": 72
   },
   {
-   "entity_id": 57600108,
+   "entity_id": 57600077,
    "nombre": "Gold Fly",
    "npc_type": 845,
    "sprite": 42276,
@@ -1638,7 +1173,7 @@
    "nivel": 72
   },
   {
-   "entity_id": 57600109,
+   "entity_id": 57600078,
    "nombre": "Gold Fly",
    "npc_type": 845,
    "sprite": 42276,
@@ -1653,7 +1188,7 @@
    "nivel": 72
   },
   {
-   "entity_id": 57600110,
+   "entity_id": 57600079,
    "nombre": "Gold Fly",
    "npc_type": 845,
    "sprite": 42276,
@@ -1668,7 +1203,7 @@
    "nivel": 72
   },
   {
-   "entity_id": 57600111,
+   "entity_id": 57600080,
    "nombre": "Gold Fly",
    "npc_type": 845,
    "sprite": 42276,
@@ -1683,7 +1218,7 @@
    "nivel": 72
   },
   {
-   "entity_id": 57600112,
+   "entity_id": 57600081,
    "nombre": "Gold Fly",
    "npc_type": 845,
    "sprite": 42276,
@@ -1698,7 +1233,7 @@
    "nivel": 72
   },
   {
-   "entity_id": 57600113,
+   "entity_id": 57600082,
    "nombre": "Gold Fly",
    "npc_type": 845,
    "sprite": 42276,
@@ -1713,7 +1248,7 @@
    "nivel": 72
   },
   {
-   "entity_id": 57600114,
+   "entity_id": 57600083,
    "nombre": "Gold Fly",
    "npc_type": 845,
    "sprite": 42276,
@@ -1728,7 +1263,7 @@
    "nivel": 72
   },
   {
-   "entity_id": 57600115,
+   "entity_id": 57600084,
    "nombre": "Gold Fly",
    "npc_type": 845,
    "sprite": 42276,
@@ -1743,7 +1278,7 @@
    "nivel": 72
   },
   {
-   "entity_id": 57600116,
+   "entity_id": 57600085,
    "nombre": "Gold Fly",
    "npc_type": 845,
    "sprite": 42276,
@@ -1758,7 +1293,7 @@
    "nivel": 72
   },
   {
-   "entity_id": 57600117,
+   "entity_id": 57600086,
    "nombre": "Elite Gold Fly",
    "npc_type": 844,
    "sprite": 42276,
@@ -1773,7 +1308,7 @@
    "nivel": 72
   },
   {
-   "entity_id": 57600118,
+   "entity_id": 57600087,
    "nombre": "Elite Gold Fly",
    "npc_type": 844,
    "sprite": 42276,
@@ -1788,7 +1323,7 @@
    "nivel": 72
   },
   {
-   "entity_id": 57600119,
+   "entity_id": 57600088,
    "nombre": "Elite Gold Fly",
    "npc_type": 844,
    "sprite": 42276,
@@ -1803,7 +1338,7 @@
    "nivel": 72
   },
   {
-   "entity_id": 57600120,
+   "entity_id": 57600089,
    "nombre": "Elite Gold Fly",
    "npc_type": 844,
    "sprite": 42276,
@@ -1818,7 +1353,7 @@
    "nivel": 72
   },
   {
-   "entity_id": 57600121,
+   "entity_id": 57600090,
    "nombre": "Elite Gold Fly",
    "npc_type": 844,
    "sprite": 42276,
@@ -1833,7 +1368,7 @@
    "nivel": 72
   },
   {
-   "entity_id": 57600122,
+   "entity_id": 57600091,
    "nombre": "Elite Gold Fly",
    "npc_type": 844,
    "sprite": 42276,
@@ -1848,7 +1383,7 @@
    "nivel": 72
   },
   {
-   "entity_id": 57600123,
+   "entity_id": 57600092,
    "nombre": "Elite Gold Fly",
    "npc_type": 844,
    "sprite": 42276,
@@ -1863,7 +1398,7 @@
    "nivel": 72
   },
   {
-   "entity_id": 57600124,
+   "entity_id": 57600093,
    "nombre": "Elite Gold Fly",
    "npc_type": 844,
    "sprite": 42276,
@@ -1878,7 +1413,7 @@
    "nivel": 72
   },
   {
-   "entity_id": 57600125,
+   "entity_id": 57600094,
    "nombre": "Elite Gold Fly",
    "npc_type": 844,
    "sprite": 42276,
@@ -1893,7 +1428,7 @@
    "nivel": 72
   },
   {
-   "entity_id": 57600126,
+   "entity_id": 57600095,
    "nombre": "Elite Gold Fly",
    "npc_type": 844,
    "sprite": 42276,
@@ -1908,7 +1443,7 @@
    "nivel": 72
   },
   {
-   "entity_id": 57600127,
+   "entity_id": 57600096,
    "nombre": "Poo Poo Demon",
    "npc_type": 917,
    "sprite": 42349,
@@ -1923,7 +1458,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600128,
+   "entity_id": 57600097,
    "nombre": "Poo Poo Demon",
    "npc_type": 917,
    "sprite": 42349,
@@ -1938,7 +1473,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600129,
+   "entity_id": 57600098,
    "nombre": "Poo Poo Demon",
    "npc_type": 917,
    "sprite": 42349,
@@ -1953,7 +1488,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600130,
+   "entity_id": 57600099,
    "nombre": "Poo Poo Demon",
    "npc_type": 917,
    "sprite": 42349,
@@ -1968,7 +1503,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600131,
+   "entity_id": 57600100,
    "nombre": "Poo Poo Demon",
    "npc_type": 917,
    "sprite": 42349,
@@ -1983,7 +1518,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600132,
+   "entity_id": 57600101,
    "nombre": "Poo Poo Demon",
    "npc_type": 917,
    "sprite": 42349,
@@ -1998,7 +1533,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600133,
+   "entity_id": 57600102,
    "nombre": "Poo Poo Demon",
    "npc_type": 917,
    "sprite": 42349,
@@ -2013,7 +1548,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600134,
+   "entity_id": 57600103,
    "nombre": "Poo Poo Demon",
    "npc_type": 917,
    "sprite": 42349,
@@ -2028,7 +1563,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600135,
+   "entity_id": 57600104,
    "nombre": "Evil Beetle",
    "npc_type": 905,
    "sprite": 42340,
@@ -2043,7 +1578,7 @@
    "nivel": 73
   },
   {
-   "entity_id": 57600136,
+   "entity_id": 57600105,
    "nombre": "Evil Beetle",
    "npc_type": 905,
    "sprite": 42340,
@@ -2058,7 +1593,7 @@
    "nivel": 73
   },
   {
-   "entity_id": 57600137,
+   "entity_id": 57600106,
    "nombre": "Evil Beetle",
    "npc_type": 905,
    "sprite": 42340,
@@ -2073,7 +1608,7 @@
    "nivel": 73
   },
   {
-   "entity_id": 57600138,
+   "entity_id": 57600107,
    "nombre": "Evil Beetle",
    "npc_type": 905,
    "sprite": 42340,
@@ -2088,7 +1623,7 @@
    "nivel": 73
   },
   {
-   "entity_id": 57600139,
+   "entity_id": 57600108,
    "nombre": "Evil Beetle",
    "npc_type": 905,
    "sprite": 42340,
@@ -2103,7 +1638,7 @@
    "nivel": 73
   },
   {
-   "entity_id": 57600140,
+   "entity_id": 57600109,
    "nombre": "Evil Beetle",
    "npc_type": 905,
    "sprite": 42340,
@@ -2118,7 +1653,7 @@
    "nivel": 73
   },
   {
-   "entity_id": 57600141,
+   "entity_id": 57600110,
    "nombre": "Evil Beetle",
    "npc_type": 905,
    "sprite": 42340,
@@ -2133,7 +1668,7 @@
    "nivel": 73
   },
   {
-   "entity_id": 57600142,
+   "entity_id": 57600111,
    "nombre": "Evil Beetle",
    "npc_type": 905,
    "sprite": 42340,
@@ -2148,7 +1683,7 @@
    "nivel": 73
   },
   {
-   "entity_id": 57600143,
+   "entity_id": 57600112,
    "nombre": "Evil Beetle",
    "npc_type": 905,
    "sprite": 42340,
@@ -2163,7 +1698,7 @@
    "nivel": 73
   },
   {
-   "entity_id": 57600144,
+   "entity_id": 57600113,
    "nombre": "Evil Beetle",
    "npc_type": 905,
    "sprite": 42340,
@@ -2178,7 +1713,7 @@
    "nivel": 73
   },
   {
-   "entity_id": 57600145,
+   "entity_id": 57600114,
    "nombre": "Evil Beetle",
    "npc_type": 905,
    "sprite": 42340,
@@ -2193,7 +1728,7 @@
    "nivel": 73
   },
   {
-   "entity_id": 57600146,
+   "entity_id": 57600115,
    "nombre": "Evil Beetle",
    "npc_type": 905,
    "sprite": 42340,
@@ -2208,7 +1743,7 @@
    "nivel": 73
   },
   {
-   "entity_id": 57600147,
+   "entity_id": 57600116,
    "nombre": "Evil Beetle",
    "npc_type": 905,
    "sprite": 42340,
@@ -2223,7 +1758,7 @@
    "nivel": 73
   },
   {
-   "entity_id": 57600148,
+   "entity_id": 57600117,
    "nombre": "Evil Beetle",
    "npc_type": 904,
    "sprite": 42340,
@@ -2238,7 +1773,7 @@
    "nivel": 73
   },
   {
-   "entity_id": 57600149,
+   "entity_id": 57600118,
    "nombre": "Evil Beetle",
    "npc_type": 904,
    "sprite": 42340,
@@ -2253,7 +1788,7 @@
    "nivel": 73
   },
   {
-   "entity_id": 57600150,
+   "entity_id": 57600119,
    "nombre": "Evil Beetle",
    "npc_type": 905,
    "sprite": 42340,
@@ -2268,7 +1803,7 @@
    "nivel": 73
   },
   {
-   "entity_id": 57600151,
+   "entity_id": 57600120,
    "nombre": "Evil Beetle",
    "npc_type": 905,
    "sprite": 42340,
@@ -2283,7 +1818,7 @@
    "nivel": 73
   },
   {
-   "entity_id": 57600152,
+   "entity_id": 57600121,
    "nombre": "Evil Beetle",
    "npc_type": 905,
    "sprite": 42340,
@@ -2298,299 +1833,14 @@
    "nivel": 73
   },
   {
-   "entity_id": 57600153,
+   "entity_id": 57600122,
    "nombre": "Dark Protector",
    "npc_type": 898,
    "sprite": 42334,
    "klass": 1,
    "monstruo": true,
    "tile": [
-    76,
-    6
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600154,
-   "nombre": "Dark Protector",
-   "npc_type": 898,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    86,
-    9
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600155,
-   "nombre": "Dark Protector",
-   "npc_type": 898,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    120,
-    35
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600156,
-   "nombre": "Dark Protector",
-   "npc_type": 898,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    106,
-    30
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600157,
-   "nombre": "Dark Protector",
-   "npc_type": 898,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    101,
-    25
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600158,
-   "nombre": "Dark Protector",
-   "npc_type": 898,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    101,
-    30
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600159,
-   "nombre": "Dark Elite",
-   "npc_type": 897,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    111,
-    30
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600160,
-   "nombre": "Dark Elite",
-   "npc_type": 897,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    156,
-    20
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600161,
-   "nombre": "Dark Protector",
-   "npc_type": 898,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    81,
-    4
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600162,
-   "nombre": "Dark Protector",
-   "npc_type": 898,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    88,
-    14
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600163,
-   "nombre": "Dark Protector",
-   "npc_type": 898,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    115,
-    35
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600164,
-   "nombre": "Dark Elite",
-   "npc_type": 897,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    86,
-    4
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600165,
-   "nombre": "Dark Elite",
-   "npc_type": 897,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    79,
-    19
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600166,
-   "nombre": "Dark Elite",
-   "npc_type": 897,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    71,
-    1
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600167,
-   "nombre": "Dark Elite",
-   "npc_type": 897,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    84,
-    19
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600168,
-   "nombre": "Dark Protector",
-   "npc_type": 898,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    76,
-    1
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600169,
-   "nombre": "Dark Protector",
-   "npc_type": 898,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    89,
-    19
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600170,
-   "nombre": "Dark Protector",
-   "npc_type": 898,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    115,
-    40
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600171,
-   "nombre": "Dark Elite",
-   "npc_type": 897,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    105,
-    10
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600172,
-   "nombre": "Dark Elite",
-   "npc_type": 897,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    100,
+    75,
     5
    ],
    "direccion": 2,
@@ -2598,74 +1848,14 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600173,
+   "entity_id": 57600123,
    "nombre": "Dark Protector",
    "npc_type": 898,
    "sprite": 42334,
    "klass": 1,
    "monstruo": true,
    "tile": [
-    110,
-    8
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600174,
-   "nombre": "Dark Protector",
-   "npc_type": 898,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    105,
-    5
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600175,
-   "nombre": "Dark Protector",
-   "npc_type": 898,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    110,
-    13
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600176,
-   "nombre": "Dark Elite",
-   "npc_type": 897,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    106,
-    35
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600177,
-   "nombre": "Dark Elite",
-   "npc_type": 897,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    151,
+    80,
     15
    ],
    "direccion": 2,
@@ -2673,89 +1863,59 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600178,
+   "entity_id": 57600124,
    "nombre": "Dark Protector",
    "npc_type": 898,
    "sprite": 42334,
    "klass": 1,
    "monstruo": true,
    "tile": [
-    106,
-    25
+    120,
+    35
    ],
    "direccion": 2,
    "visible": 0,
    "nivel": 70
   },
   {
-   "entity_id": 57600179,
+   "entity_id": 57600125,
    "nombre": "Dark Protector",
    "npc_type": 898,
    "sprite": 42334,
    "klass": 1,
    "monstruo": true,
    "tile": [
-    151,
-    20
+    75,
+    10
    ],
    "direccion": 2,
    "visible": 0,
    "nivel": 70
   },
   {
-   "entity_id": 57600180,
+   "entity_id": 57600126,
    "nombre": "Dark Protector",
    "npc_type": 898,
    "sprite": 42334,
    "klass": 1,
    "monstruo": true,
    "tile": [
-    154,
-    25
+    85,
+    17
    ],
    "direccion": 2,
    "visible": 0,
    "nivel": 70
   },
   {
-   "entity_id": 57600181,
+   "entity_id": 57600127,
    "nombre": "Dark Protector",
    "npc_type": 898,
    "sprite": 42334,
    "klass": 1,
    "monstruo": true,
    "tile": [
-    164,
-    28
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600182,
-   "nombre": "Dark Protector",
-   "npc_type": 898,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    159,
-    25
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600183,
-   "nombre": "Dark Protector",
-   "npc_type": 898,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    159,
+    115,
     30
    ],
    "direccion": 2,
@@ -2763,44 +1923,119 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600184,
+   "entity_id": 57600128,
    "nombre": "Dark Elite",
    "npc_type": 897,
    "sprite": 42334,
    "klass": 1,
    "monstruo": true,
    "tile": [
-    165,
-    23
+    75,
+    15
    ],
    "direccion": 2,
    "visible": 0,
    "nivel": 70
   },
   {
-   "entity_id": 57600185,
+   "entity_id": 57600129,
    "nombre": "Dark Elite",
    "npc_type": 897,
    "sprite": 42334,
    "klass": 1,
    "monstruo": true,
    "tile": [
-    161,
-    18
+    85,
+    7
    ],
    "direccion": 2,
    "visible": 0,
    "nivel": 70
   },
   {
-   "entity_id": 57600186,
+   "entity_id": 57600130,
    "nombre": "Dark Elite",
    "npc_type": 897,
    "sprite": 42334,
    "klass": 1,
    "monstruo": true,
    "tile": [
-    91,
+    80,
+    5
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57600131,
+   "nombre": "Dark Elite",
+   "npc_type": 897,
+   "sprite": 42334,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    90,
+    7
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57600132,
+   "nombre": "Dark Protector",
+   "npc_type": 898,
+   "sprite": 42334,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    85,
+    2
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57600133,
+   "nombre": "Dark Protector",
+   "npc_type": 898,
+   "sprite": 42334,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    90,
+    12
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57600134,
+   "nombre": "Dark Protector",
+   "npc_type": 898,
+   "sprite": 42334,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    115,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57600135,
+   "nombre": "Dark Elite",
+   "npc_type": 897,
+   "sprite": 42334,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    70,
     0
    ],
    "direccion": 2,
@@ -2808,44 +2043,29 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600187,
+   "entity_id": 57600136,
    "nombre": "Dark Elite",
    "npc_type": 897,
    "sprite": 42334,
    "klass": 1,
    "monstruo": true,
    "tile": [
-    91,
-    6
+    90,
+    17
    ],
    "direccion": 2,
    "visible": 0,
    "nivel": 70
   },
   {
-   "entity_id": 57600188,
+   "entity_id": 57600137,
    "nombre": "Dark Elite",
    "npc_type": 897,
    "sprite": 42334,
    "klass": 1,
    "monstruo": true,
    "tile": [
-    116,
-    30
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600189,
-   "nombre": "Dark Elite",
-   "npc_type": 897,
-   "sprite": 42334,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    120,
+    115,
     40
    ],
    "direccion": 2,
@@ -2853,7 +2073,22 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600190,
+   "entity_id": 57600138,
+   "nombre": "Dark Elite",
+   "npc_type": 897,
+   "sprite": 42334,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    120,
+    30
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 70
+  },
+  {
+   "entity_id": 57600139,
    "nombre": "Dark Elite",
    "npc_type": 897,
    "sprite": 42334,
@@ -2868,7 +2103,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600191,
+   "entity_id": 57600140,
    "nombre": "Dark Elite",
    "npc_type": 897,
    "sprite": 42334,
@@ -2883,7 +2118,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600192,
+   "entity_id": 57600141,
    "nombre": "Dark Elite",
    "npc_type": 897,
    "sprite": 42334,
@@ -2898,52 +2133,52 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600193,
+   "entity_id": 57600142,
    "nombre": "Dark Elite",
    "npc_type": 897,
    "sprite": 42334,
    "klass": 1,
    "monstruo": true,
    "tile": [
-    68,
-    22
+    70,
+    5
    ],
    "direccion": 2,
    "visible": 0,
    "nivel": 70
   },
   {
-   "entity_id": 57600194,
+   "entity_id": 57600143,
    "nombre": "Dark Elite",
    "npc_type": 897,
    "sprite": 42334,
    "klass": 1,
    "monstruo": true,
    "tile": [
-    93,
-    11
+    77,
+    20
    ],
    "direccion": 2,
    "visible": 0,
    "nivel": 70
   },
   {
-   "entity_id": 57600195,
+   "entity_id": 57600144,
    "nombre": "Dark Elite",
    "npc_type": 897,
    "sprite": 42334,
    "klass": 1,
    "monstruo": true,
    "tile": [
-    121,
-    30
+    120,
+    40
    ],
    "direccion": 2,
    "visible": 0,
    "nivel": 70
   },
   {
-   "entity_id": 57600196,
+   "entity_id": 57600145,
    "nombre": "Powder Pail",
    "npc_type": 828,
    "sprite": 40174,
@@ -2958,7 +2193,7 @@
    "nivel": 75
   },
   {
-   "entity_id": 57600197,
+   "entity_id": 57600146,
    "nombre": "Powder Pail",
    "npc_type": 828,
    "sprite": 40174,
@@ -2973,7 +2208,7 @@
    "nivel": 75
   },
   {
-   "entity_id": 57600198,
+   "entity_id": 57600147,
    "nombre": "Powder Pail",
    "npc_type": 828,
    "sprite": 40174,
@@ -2988,7 +2223,7 @@
    "nivel": 75
   },
   {
-   "entity_id": 57600199,
+   "entity_id": 57600148,
    "nombre": "Powder Pail",
    "npc_type": 828,
    "sprite": 40174,
@@ -3003,7 +2238,7 @@
    "nivel": 75
   },
   {
-   "entity_id": 57600200,
+   "entity_id": 57600149,
    "nombre": "Powder Pail",
    "npc_type": 828,
    "sprite": 40174,
@@ -3018,7 +2253,7 @@
    "nivel": 75
   },
   {
-   "entity_id": 57600201,
+   "entity_id": 57600150,
    "nombre": "Powder Pail",
    "npc_type": 828,
    "sprite": 40174,
@@ -3033,7 +2268,7 @@
    "nivel": 75
   },
   {
-   "entity_id": 57600202,
+   "entity_id": 57600151,
    "nombre": "Powder Pail",
    "npc_type": 828,
    "sprite": 40174,
@@ -3048,7 +2283,7 @@
    "nivel": 75
   },
   {
-   "entity_id": 57600203,
+   "entity_id": 57600152,
    "nombre": "Powder Pail",
    "npc_type": 828,
    "sprite": 40174,
@@ -3063,7 +2298,7 @@
    "nivel": 75
   },
   {
-   "entity_id": 57600204,
+   "entity_id": 57600153,
    "nombre": "Powder Pail",
    "npc_type": 828,
    "sprite": 40174,
@@ -3078,7 +2313,7 @@
    "nivel": 75
   },
   {
-   "entity_id": 57600205,
+   "entity_id": 57600154,
    "nombre": "Powder Pail",
    "npc_type": 828,
    "sprite": 40174,
@@ -3093,7 +2328,7 @@
    "nivel": 75
   },
   {
-   "entity_id": 57600206,
+   "entity_id": 57600155,
    "nombre": "Earl Makice",
    "npc_type": 876,
    "sprite": 42317,
@@ -3108,7 +2343,7 @@
    "nivel": 77
   },
   {
-   "entity_id": 57600207,
+   "entity_id": 57600156,
    "nombre": "Earl Makice",
    "npc_type": 876,
    "sprite": 42317,
@@ -3123,7 +2358,7 @@
    "nivel": 77
   },
   {
-   "entity_id": 57600208,
+   "entity_id": 57600157,
    "nombre": "Earl Makice",
    "npc_type": 876,
    "sprite": 42317,
@@ -3138,7 +2373,7 @@
    "nivel": 77
   },
   {
-   "entity_id": 57600209,
+   "entity_id": 57600158,
    "nombre": "Earl Makice",
    "npc_type": 876,
    "sprite": 42317,
@@ -3153,7 +2388,7 @@
    "nivel": 77
   },
   {
-   "entity_id": 57600210,
+   "entity_id": 57600159,
    "nombre": "Earl Makice",
    "npc_type": 876,
    "sprite": 42317,
@@ -3168,7 +2403,7 @@
    "nivel": 77
   },
   {
-   "entity_id": 57600211,
+   "entity_id": 57600160,
    "nombre": "Earl Makice",
    "npc_type": 876,
    "sprite": 42317,
@@ -3183,7 +2418,7 @@
    "nivel": 77
   },
   {
-   "entity_id": 57600212,
+   "entity_id": 57600161,
    "nombre": "Earl Makice",
    "npc_type": 879,
    "sprite": 42317,
@@ -3198,7 +2433,7 @@
    "nivel": 77
   },
   {
-   "entity_id": 57600213,
+   "entity_id": 57600162,
    "nombre": "Earl Makice",
    "npc_type": 879,
    "sprite": 42317,
@@ -3213,7 +2448,7 @@
    "nivel": 77
   },
   {
-   "entity_id": 57600214,
+   "entity_id": 57600163,
    "nombre": "Earl Makice",
    "npc_type": 879,
    "sprite": 42317,
@@ -3228,7 +2463,7 @@
    "nivel": 77
   },
   {
-   "entity_id": 57600215,
+   "entity_id": 57600164,
    "nombre": "Earl Makice",
    "npc_type": 879,
    "sprite": 42317,
@@ -3243,7 +2478,7 @@
    "nivel": 77
   },
   {
-   "entity_id": 57600216,
+   "entity_id": 57600165,
    "nombre": "Earl Makice",
    "npc_type": 879,
    "sprite": 42317,
@@ -3258,7 +2493,7 @@
    "nivel": 77
   },
   {
-   "entity_id": 57600217,
+   "entity_id": 57600166,
    "nombre": "Earl Makice",
    "npc_type": 879,
    "sprite": 42317,
@@ -3273,7 +2508,7 @@
    "nivel": 77
   },
   {
-   "entity_id": 57600218,
+   "entity_id": 57600167,
    "nombre": "Earl Makice",
    "npc_type": 880,
    "sprite": 42317,
@@ -3288,7 +2523,7 @@
    "nivel": 77
   },
   {
-   "entity_id": 57600219,
+   "entity_id": 57600168,
    "nombre": "Earl Makice",
    "npc_type": 880,
    "sprite": 42317,
@@ -3303,7 +2538,7 @@
    "nivel": 77
   },
   {
-   "entity_id": 57600220,
+   "entity_id": 57600169,
    "nombre": "Earl Makice",
    "npc_type": 880,
    "sprite": 42317,
@@ -3318,7 +2553,7 @@
    "nivel": 77
   },
   {
-   "entity_id": 57600221,
+   "entity_id": 57600170,
    "nombre": "Earl Makice",
    "npc_type": 880,
    "sprite": 42317,
@@ -3333,7 +2568,7 @@
    "nivel": 77
   },
   {
-   "entity_id": 57600222,
+   "entity_id": 57600171,
    "nombre": "Earl Makice",
    "npc_type": 880,
    "sprite": 42317,
@@ -3348,7 +2583,7 @@
    "nivel": 77
   },
   {
-   "entity_id": 57600223,
+   "entity_id": 57600172,
    "nombre": "Earl Makice",
    "npc_type": 880,
    "sprite": 42317,
@@ -3363,7 +2598,7 @@
    "nivel": 77
   },
   {
-   "entity_id": 57600224,
+   "entity_id": 57600173,
    "nombre": "Earl Makice",
    "npc_type": 877,
    "sprite": 42317,
@@ -3378,7 +2613,7 @@
    "nivel": 77
   },
   {
-   "entity_id": 57600225,
+   "entity_id": 57600174,
    "nombre": "Earl Makice",
    "npc_type": 877,
    "sprite": 42317,
@@ -3393,7 +2628,7 @@
    "nivel": 77
   },
   {
-   "entity_id": 57600226,
+   "entity_id": 57600175,
    "nombre": "Earl Makice",
    "npc_type": 877,
    "sprite": 42317,
@@ -3408,7 +2643,7 @@
    "nivel": 77
   },
   {
-   "entity_id": 57600227,
+   "entity_id": 57600176,
    "nombre": "Earl Makice",
    "npc_type": 877,
    "sprite": 42317,
@@ -3423,7 +2658,7 @@
    "nivel": 77
   },
   {
-   "entity_id": 57600228,
+   "entity_id": 57600177,
    "nombre": "Earl Makice",
    "npc_type": 877,
    "sprite": 42317,
@@ -3438,7 +2673,7 @@
    "nivel": 77
   },
   {
-   "entity_id": 57600229,
+   "entity_id": 57600178,
    "nombre": "Earl Makice",
    "npc_type": 877,
    "sprite": 42317,
@@ -3453,7 +2688,7 @@
    "nivel": 77
   },
   {
-   "entity_id": 57600230,
+   "entity_id": 57600179,
    "nombre": "Earl Makice",
    "npc_type": 878,
    "sprite": 42317,
@@ -3468,7 +2703,7 @@
    "nivel": 77
   },
   {
-   "entity_id": 57600231,
+   "entity_id": 57600180,
    "nombre": "Earl Makice",
    "npc_type": 878,
    "sprite": 42317,
@@ -3483,7 +2718,7 @@
    "nivel": 77
   },
   {
-   "entity_id": 57600232,
+   "entity_id": 57600181,
    "nombre": "Earl Makice",
    "npc_type": 878,
    "sprite": 42317,
@@ -3498,7 +2733,7 @@
    "nivel": 77
   },
   {
-   "entity_id": 57600233,
+   "entity_id": 57600182,
    "nombre": "Earl Makice",
    "npc_type": 878,
    "sprite": 42317,
@@ -3513,7 +2748,7 @@
    "nivel": 77
   },
   {
-   "entity_id": 57600234,
+   "entity_id": 57600183,
    "nombre": "Earl Makice",
    "npc_type": 878,
    "sprite": 42317,
@@ -3528,7 +2763,7 @@
    "nivel": 77
   },
   {
-   "entity_id": 57600235,
+   "entity_id": 57600184,
    "nombre": "Earl Makice",
    "npc_type": 878,
    "sprite": 42317,
@@ -3543,187 +2778,7 @@
    "nivel": 77
   },
   {
-   "entity_id": 57600236,
-   "nombre": "Fire Mummy",
-   "npc_type": 893,
-   "sprite": 42330,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    318,
-    173
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600237,
-   "nombre": "Fire Mummy",
-   "npc_type": 893,
-   "sprite": 42330,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    311,
-    179
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600238,
-   "nombre": "Elite Fire Mummy",
-   "npc_type": 892,
-   "sprite": 42330,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    326,
-    177
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600239,
-   "nombre": "Elite Fire Mummy",
-   "npc_type": 892,
-   "sprite": 42330,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    331,
-    175
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600240,
-   "nombre": "Fire Mummy",
-   "npc_type": 893,
-   "sprite": 42330,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    308,
-    174
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600241,
-   "nombre": "Fire Mummy",
-   "npc_type": 893,
-   "sprite": 42330,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    303,
-    169
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600242,
-   "nombre": "Fire Mummy",
-   "npc_type": 893,
-   "sprite": 42330,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    360,
-    167
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600243,
-   "nombre": "Fire Mummy",
-   "npc_type": 893,
-   "sprite": 42330,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    358,
-    178
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600244,
-   "nombre": "Elite Fire Mummy",
-   "npc_type": 892,
-   "sprite": 42330,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    363,
-    174
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600245,
-   "nombre": "Elite Fire Mummy",
-   "npc_type": 892,
-   "sprite": 42330,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    343,
-    161
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600246,
-   "nombre": "Elite Fire Mummy",
-   "npc_type": 892,
-   "sprite": 42330,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    333,
-    157
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600247,
-   "nombre": "Elite Fire Mummy",
-   "npc_type": 892,
-   "sprite": 42330,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    333,
-    162
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57600248,
+   "entity_id": 57600185,
    "nombre": "Dark Servant",
    "npc_type": 1067,
    "sprite": 42370,
@@ -3738,7 +2793,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600249,
+   "entity_id": 57600186,
    "nombre": "Dark Servant",
    "npc_type": 1067,
    "sprite": 42370,
@@ -3753,7 +2808,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600250,
+   "entity_id": 57600187,
    "nombre": "Dark Servant",
    "npc_type": 1067,
    "sprite": 42370,
@@ -3768,7 +2823,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600251,
+   "entity_id": 57600188,
    "nombre": "Dark Servant",
    "npc_type": 1067,
    "sprite": 42370,
@@ -3783,7 +2838,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600252,
+   "entity_id": 57600189,
    "nombre": "Dark Servant",
    "npc_type": 1067,
    "sprite": 42370,
@@ -3798,7 +2853,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600253,
+   "entity_id": 57600190,
    "nombre": "Dark Servant",
    "npc_type": 1067,
    "sprite": 42370,
@@ -3813,7 +2868,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600254,
+   "entity_id": 57600191,
    "nombre": "Dark Servant",
    "npc_type": 1067,
    "sprite": 42370,
@@ -3828,7 +2883,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600255,
+   "entity_id": 57600192,
    "nombre": "Dark Servant",
    "npc_type": 1067,
    "sprite": 42370,
@@ -3843,7 +2898,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600256,
+   "entity_id": 57600193,
    "nombre": "Flower Monster",
    "npc_type": 1065,
    "sprite": 42368,
@@ -3858,7 +2913,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600257,
+   "entity_id": 57600194,
    "nombre": "Flower Monster",
    "npc_type": 1065,
    "sprite": 42368,
@@ -3873,7 +2928,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600258,
+   "entity_id": 57600195,
    "nombre": "Flower Monster",
    "npc_type": 1065,
    "sprite": 42368,
@@ -3888,7 +2943,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600259,
+   "entity_id": 57600196,
    "nombre": "Flower Monster",
    "npc_type": 1065,
    "sprite": 42368,
@@ -3903,7 +2958,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600260,
+   "entity_id": 57600197,
    "nombre": "Flower Monster",
    "npc_type": 1065,
    "sprite": 42368,
@@ -3918,7 +2973,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600261,
+   "entity_id": 57600198,
    "nombre": "Flower Monster",
    "npc_type": 1065,
    "sprite": 42368,
@@ -3933,7 +2988,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600262,
+   "entity_id": 57600199,
    "nombre": "Flower Monster",
    "npc_type": 1065,
    "sprite": 42368,
@@ -3948,7 +3003,7 @@
    "nivel": 70
   },
   {
-   "entity_id": 57600263,
+   "entity_id": 57600200,
    "nombre": "Fire Tree Bud",
    "npc_type": 1066,
    "sprite": 42369,
@@ -3963,7 +3018,7 @@
    "nivel": 72
   },
   {
-   "entity_id": 57600264,
+   "entity_id": 57600201,
    "nombre": "Fire Tree Bud",
    "npc_type": 1066,
    "sprite": 42369,
@@ -3978,7 +3033,7 @@
    "nivel": 72
   },
   {
-   "entity_id": 57600265,
+   "entity_id": 57600202,
    "nombre": "Fire Tree Bud",
    "npc_type": 1066,
    "sprite": 42369,
@@ -3993,7 +3048,7 @@
    "nivel": 72
   },
   {
-   "entity_id": 57600266,
+   "entity_id": 57600203,
    "nombre": "Fire Tree Bud",
    "npc_type": 1066,
    "sprite": 42369,
@@ -4008,7 +3063,7 @@
    "nivel": 72
   },
   {
-   "entity_id": 57600267,
+   "entity_id": 57600204,
    "nombre": "Fire Tree Bud",
    "npc_type": 1066,
    "sprite": 42369,
@@ -4023,7 +3078,7 @@
    "nivel": 72
   },
   {
-   "entity_id": 57600268,
+   "entity_id": 57600205,
    "nombre": "Fire Tree Bud",
    "npc_type": 1066,
    "sprite": 42369,
@@ -4038,7 +3093,7 @@
    "nivel": 72
   },
   {
-   "entity_id": 57600269,
+   "entity_id": 57600206,
    "nombre": "Fire Tree Bud",
    "npc_type": 1066,
    "sprite": 42369,
@@ -4053,7 +3108,7 @@
    "nivel": 72
   },
   {
-   "entity_id": 57600270,
+   "entity_id": 57600207,
    "nombre": "Fire Tree Bud",
    "npc_type": 1066,
    "sprite": 42369,
@@ -4068,7 +3123,7 @@
    "nivel": 72
   },
   {
-   "entity_id": 57600271,
+   "entity_id": 57600208,
    "nombre": "Fire Tree Bud",
    "npc_type": 1066,
    "sprite": 42369,
@@ -4096,8 +3151,10 @@
     328,
     181
    ],
-   "crudo": "807e07040200000011290000b01600000000000027000000000000001a000000dc0687ea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60039"
+   "evento": 36,
+   "crudo": "807e07040200000011290000b01600000000000027000000000000001a000000dc0687ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60039",
+   "puesto_por": "objetos_de_instancia"
   },
   {
    "entity_id": 67600001,
@@ -4111,8 +3168,10 @@
     311,
     173
    ],
-   "crudo": "817e070402000000ef260000b01500000000000027000000000000001a000000dc0689ea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60041"
+   "evento": 33,
+   "crudo": "817e070402000000ef260000b01500000000000027000000000000001a000000dc0689ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60041",
+   "puesto_por": "objetos_de_instancia"
   },
   {
    "entity_id": 67600002,
@@ -4126,8 +3185,10 @@
     319,
     177
    ],
+   "evento": 37,
    "crudo": "827e070402000000f4270000301600000000000027000000000000001a000000dc0691ea00004080140000",
-   "copiado_de": "cuerpo de una captura del objeto 60049"
+   "copiado_de": "cuerpo de una captura del objeto 60049",
+   "puesto_por": "objetos_de_instancia"
   },
   {
    "entity_id": 67600003,
@@ -4141,8 +3202,10 @@
     336,
     185
    ],
-   "crudo": "837e070402000000122a0000301700000000000027000000000000001a000000dc068dea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60045"
+   "evento": 32,
+   "crudo": "837e070402000000122a0000301700000000000027000000000000001a000000dc068dea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60045",
+   "puesto_por": "objetos_de_instancia"
   },
   {
    "entity_id": 67600004,
@@ -4156,8 +3219,10 @@
     345,
     167
    ],
-   "crudo": "847e070400000000312b0000f01400000000000027000000000000001a000000dc0692ea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60050"
+   "evento": 31,
+   "crudo": "847e070400000000312b0000f01400000000000027000000000000001a000000dc0692ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60050",
+   "puesto_por": "objetos_de_instancia"
   },
   {
    "entity_id": 67600005,
@@ -4171,11 +3236,234 @@
     360,
     174
    ],
+   "evento": 35,
    "crudo": "857e070400000000162d0000d01500000000000027000000000000001a000000dc068eea00004080140000",
-   "copiado_de": "cuerpo de una captura del objeto 60046"
+   "copiado_de": "cuerpo de una captura del objeto 60046",
+   "puesto_por": "objetos_de_instancia"
   },
   {
    "entity_id": 67600006,
+   "sprite": 60042,
+   "capa": 0,
+   "px": [
+    10807,
+    5232
+   ],
+   "tile": [
+    337,
+    163
+   ],
+   "evento": 38,
+   "crudo": "867e070400000000372a0000701400000000000027000000000000001a000000dc068aea00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67600007,
+   "sprite": 60040,
+   "capa": 0,
+   "px": [
+    11289,
+    5488
+   ],
+   "tile": [
+    352,
+    171
+   ],
+   "evento": 34,
+   "crudo": "877e070400000000192c0000701500000000000027000000000000001a000000dc0688ea00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67600008,
+   "sprite": 60272,
+   "capa": 0,
+   "px": [
+    7558,
+    2384
+   ],
+   "tile": [
+    236,
+    74
+   ],
+   "evento": 0,
+   "crudo": "887e070400000000861d0000500900000000000027000000000000001a000000dc0670eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67600009,
+   "sprite": 60272,
+   "capa": 0,
+   "px": [
+    5830,
+    1648
+   ],
+   "tile": [
+    182,
+    51
+   ],
+   "evento": 0,
+   "crudo": "897e070400000000c6160000700600000000000027000000000000001a000000dc0670eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67600010,
+   "sprite": 60272,
+   "capa": 0,
+   "px": [
+    5606,
+    1776
+   ],
+   "tile": [
+    175,
+    55
+   ],
+   "evento": 0,
+   "crudo": "8a7e070400000000e6150000f00600000000000027000000000000001a000000dc0670eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67600011,
+   "sprite": 60299,
+   "capa": 2,
+   "px": [
+    7537,
+    2320
+   ],
+   "tile": [
+    235,
+    72
+   ],
+   "evento": 152,
+   "crudo": "8b7e070402000000711d0000100900000000000027000000000000001a000000dc068beb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67600012,
+   "sprite": 60299,
+   "capa": 2,
+   "px": [
+    5809,
+    1584
+   ],
+   "tile": [
+    181,
+    49
+   ],
+   "evento": 157,
+   "crudo": "8c7e070402000000b1160000300600000000000027000000000000001a000000dc068beb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67600013,
+   "sprite": 60307,
+   "capa": 0,
+   "px": [
+    5798,
+    1584
+   ],
+   "tile": [
+    181,
+    49
+   ],
+   "evento": 157,
+   "crudo": "8d7e070400000000a6160000300600000000000027000000000000001a000000dc0693eb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67600014,
+   "sprite": 60272,
+   "capa": 0,
+   "px": [
+    9862,
+    5232
+   ],
+   "tile": [
+    308,
+    163
+   ],
+   "evento": 0,
+   "crudo": "8e7e07040000000086260000701400000000000027000000000000001a000000dc0670eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67600015,
+   "sprite": 60307,
+   "capa": 0,
+   "px": [
+    9828,
+    5168
+   ],
+   "tile": [
+    307,
+    161
+   ],
+   "evento": 151,
+   "crudo": "8f7e07040000000064260000301400000000000027000000000000001a000000dc0693eb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67600016,
+   "sprite": 60299,
+   "capa": 2,
+   "px": [
+    9840,
+    5168
+   ],
+   "tile": [
+    307,
+    161
+   ],
+   "evento": 151,
+   "crudo": "907e07040200000070260000301400000000000027000000000000001a000000dc068beb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67600017,
+   "sprite": 60307,
+   "capa": 0,
+   "px": [
+    7526,
+    2320
+   ],
+   "tile": [
+    235,
+    72
+   ],
+   "evento": 152,
+   "crudo": "917e070400000000661d0000100900000000000027000000000000001a000000dc0693eb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67600018,
+   "sprite": 60306,
+   "capa": 2,
+   "px": [
+    3750,
+    7152
+   ],
+   "tile": [
+    117,
+    223
+   ],
+   "evento": 611,
+   "crudo": "927e070402000000a60e0000f01b00000000000027000000000000001a000000dc0692eb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67600019,
    "sprite": 60097,
    "capa": 0,
    "px": [
@@ -4186,11 +3474,13 @@
     402,
     166
    ],
-   "crudo": "867e07040000000045320000d01400000000000027000000000000001a000000dc06c1ea00004080140000",
-   "copiado_de": "cuerpo de una captura del objeto 60097"
+   "evento": 2,
+   "crudo": "937e07040000000045320000d01400000000000027000000000000001a000000dc06c1ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60097",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67600007,
+   "entity_id": 67600020,
    "sprite": 60097,
    "capa": 2,
    "px": [
@@ -4201,11 +3491,13 @@
     18,
     11
    ],
-   "crudo": "877e0704020000005f020000700100000000000027000000000000001a000000dc06c1ea00004080140000",
-   "copiado_de": "cuerpo de una captura del objeto 60097"
+   "evento": 10,
+   "crudo": "947e0704020000005f020000700100000000000027000000000000001a000000dc06c1ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60097",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67600008,
+   "entity_id": 67600021,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4216,11 +3508,13 @@
     68,
     37
    ],
-   "crudo": "887e07040000000089080000b00400000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 1003,
+   "crudo": "957e07040000000089080000b00400000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67600009,
+   "entity_id": 67600022,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4231,11 +3525,13 @@
     251,
     83
    ],
-   "crudo": "897e070400000000671f0000700a00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 76101,
+   "crudo": "967e070400000000671f0000700a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67600010,
+   "entity_id": 67600023,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4246,11 +3542,13 @@
     252,
     82
    ],
-   "crudo": "8a7e070400000000871f0000500a00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 76101,
+   "crudo": "977e070400000000871f0000500a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67600011,
+   "entity_id": 67600024,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4261,11 +3559,13 @@
     253,
     81
    ],
-   "crudo": "8b7e070400000000a71f0000300a00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 76101,
+   "crudo": "987e070400000000a71f0000300a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67600012,
+   "entity_id": 67600025,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4276,11 +3576,13 @@
     254,
     80
    ],
-   "crudo": "8c7e070400000000c71f0000100a00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 76101,
+   "crudo": "997e070400000000c71f0000100a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67600013,
+   "entity_id": 67600026,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4291,11 +3593,13 @@
     255,
     79
    ],
-   "crudo": "8d7e070400000000e71f0000f00900000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 76101,
+   "crudo": "9a7e070400000000e71f0000f00900000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67600014,
+   "entity_id": 67600027,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4306,11 +3610,13 @@
     256,
     78
    ],
-   "crudo": "8e7e07040000000007200000d00900000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 76101,
+   "crudo": "9b7e07040000000007200000d00900000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67600015,
+   "entity_id": 67600028,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4321,11 +3627,13 @@
     257,
     77
    ],
-   "crudo": "8f7e07040000000027200000b00900000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 76101,
+   "crudo": "9c7e07040000000027200000b00900000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67600016,
+   "entity_id": 67600029,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4336,11 +3644,13 @@
     258,
     76
    ],
-   "crudo": "907e07040000000048200000900900000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 76101,
+   "crudo": "9d7e07040000000048200000900900000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67600017,
+   "entity_id": 67600030,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4351,11 +3661,13 @@
     259,
     75
    ],
-   "crudo": "917e07040000000068200000700900000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 76101,
+   "crudo": "9e7e07040000000068200000700900000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67600018,
+   "entity_id": 67600031,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4366,11 +3678,13 @@
     260,
     74
    ],
-   "crudo": "927e07040000000089200000500900000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 76101,
+   "crudo": "9f7e07040000000089200000500900000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67600019,
+   "entity_id": 67600032,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4381,8 +3695,10 @@
     250,
     84
    ],
-   "crudo": "937e070400000000481f0000900a00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 76101,
+   "crudo": "a07e070400000000481f0000900a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   }
  ]
 }

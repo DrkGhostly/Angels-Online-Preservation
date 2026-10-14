@@ -29,12 +29,17 @@ en ese caso hay que mandar tambien el 0x0042 con los stats. Se comprueba en el
 quinto stat, que el cliente muestra como Dfs: 5 sin la ropa y 15 con ella.
 """
 import json
+import logging
 import pathlib
 import re
 import sqlite3
 import struct
 import mascotas as _ms
 import time
+
+# Faltaba: vaciar_ranura() lo usaba y, al pasarle una casilla fuera del tope,
+# en vez de avisar tiraba un NameError que cortaba el manejador entero.
+log = logging.getLogger('inventario')
 
 PLANTILLA = pathlib.Path(__file__).parent / 'plantillas' / 'inventario.json'
 RANURA_CUERPO = 2           # la unica ranura de equipo MEDIDA en el trafico
@@ -143,7 +148,12 @@ def vaciar_ranura(dueno: int, ranura: int,
     El byte del contenedor se creia fijo en 1. Al guardar algo en el banco el
     servidor real manda 02 y de dueno el 252 en vez de la entidad.
     """
-    if contenedor == CONT_MOCHILA and (ranura < 0 or (ranura > 154 and not (497 <= ranura <= 556))):
+    # Las de Fashion (167..174) y la insignia (175) tambien son casillas
+    # validas: con el tope en 154 se quedaban fuera y, al quitarse una pieza
+    # de fashion, la casilla no se vaciaba en el cliente -- la pieza salia en
+    # la mochila Y seguia en su casilla de la pestana Fashion --.
+    if contenedor == CONT_MOCHILA and (ranura < 0 or (ranura > 154 and not (167 <= ranura <= 175)
+                                                      and not (497 <= ranura <= 556))):
         log.warning(f"Intento de vaciar ranura fuera de limites ({ranura}) en CONT_MOCHILA - omitido para evitar crash")
         return b''
     return struct.pack('<HIBBIH', 0x001B, 1, 2, contenedor, dueno, ranura)
@@ -1129,6 +1139,29 @@ def fila_item(con, columnas: str, item_id: int):
 
 
 _VEL_MONTURA = {}
+_VEL_RECOLECCION = {}
+
+
+def velocidad_recoleccion(item_id: int) -> int:
+    """El % que ese item le quita al tiempo de recoleccion (採集速度).
+
+    Lo traen sobre todo los robots: el Samurai Kappa Robot (69404) lleva 19,
+    que el cliente pinta como "Reduce the time of collection. 19%".
+    """
+    iid = int(item_id or 0)
+    if iid not in _VEL_RECOLECCION:
+        v = 0
+        try:
+            import sqlite3
+            db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
+            if db.exists():
+                fila = fila_item(sqlite3.connect(db), '"採集速度"', iid)
+                if fila and str(fila[0] or '').lstrip('-').isdigit():
+                    v = int(fila[0])
+        except Exception:
+            v = 0
+        _VEL_RECOLECCION[iid] = v
+    return _VEL_RECOLECCION[iid]
 
 
 # Donde va el "+N" de las mejoras dentro de una entrada de equipo.
@@ -1501,7 +1534,12 @@ def ranura_equipo_de(item_id: int):
                         _SLOT_CACHE[iid] = 173
                     elif pet or cat == '座騎':
                         _SLOT_CACHE[iid] = 174
-                elif cat == '座騎':
+                elif cat in ('座騎', '機甲'):
+                    # Los robots (機甲) van en la MISMA ranura que la montura:
+                    # la wiki los da como "Equip Slot: Ride / Robot". Como
+                    # traen marcada la columna 寵物座騎裝備 y ninguna otra,
+                    # caian en la regla de abajo y acababan en la 9, la de
+                    # la mascota.
                     _SLOT_CACHE[iid] = 10
                 elif cat == '寵物' or (pet and not (body or head or hands or feet or back or rhand or lhand)):
                     _SLOT_CACHE[iid] = 9

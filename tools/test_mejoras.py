@@ -307,7 +307,11 @@ def test_la_mascota_no_es_un_accesorio():
     for r in (1, 8, 9, 175):
         assert not _inv.es_ranura_valida(20012, r), r
     assert _inv.es_ranura_valida(20012, 34), 'en la mochila si'
-    assert _inv.es_ranura_valida(5293, 9), 'un accesorio normal sigue entrando'
+    assert _inv.es_ranura_valida(290, 9), 'un accesorio normal sigue entrando'
+    # El 5293 que se usaba aqui como "accesorio" es la Shark Armor, categoria
+    # 機甲: un robot. Va en la ranura de la montura ("Ride / Robot").
+    assert _inv.ranura_equipo_de(5293) == 10
+    assert not _inv.es_ranura_valida(5293, 9)
 
 
 def test_cada_pieza_reparte_lo_suyo():

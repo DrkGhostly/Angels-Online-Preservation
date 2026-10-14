@@ -152,3 +152,46 @@ def lineas_del_nodo(stage, nodo, ctx=None):
             break
         k = str(n['s']) if n.get('s') else None
     return (cara, mensajes) if mensajes else None
+
+
+def raiz_interactiva(stage, retrato):
+    """El nodo de entrada de un NPC cuyo dialogo HACE algo: pregunta (opciones),
+    tiene acciones o ramifica. None si no tiene.
+
+    raiz_del_npc() solo vale para los recordatorios, que exigen ramas; el
+    Annoying Clerk de la sala 2 de la Magic Kichen Path entra por un nodo con
+    tres opciones y sin ramas (10001: "contame el juego" / "acepto" / salir).
+    """
+    arbol = _arbol(stage)
+    if not arbol or not retrato:
+        return None
+    for k in _raices(arbol):
+        n = arbol[k]
+        if n.get('c') == int(retrato) and (n.get('o') or n.get('a') or n.get('r')):
+            return k
+    return None
+
+
+def _acciones_debajo(arbol, k, num, valor, visto=None):
+    """Si desde el nodo k se llega a una accion `num` con primer parametro `valor`."""
+    visto = visto if visto is not None else set()
+    if k in visto or str(k) not in arbol:
+        return False
+    visto.add(k)
+    n = arbol[str(k)]
+    if any(a[0] == num and (a[1] or [None])[0] == valor for a in n.get('a', ())):
+        return True
+    sig = [n.get('s')] + [o[1] for o in n.get('o', ())] + [r.get('ir') for r in n.get('r', ())]
+    return any(_acciones_debajo(arbol, str(x), num, valor, visto) for x in sig if x)
+
+
+def nodo_fin_de_juego(stage):
+    """La raiz que cierra el NPCKILLGAME (63, 0) y no lo empieza: la que el
+    servidor abre cuando se acaba el tiempo. En el stage 74 es la 61102, que
+    mira si ganaste (mas de 50 bajas) y te pasa al 75 o te devuelve."""
+    arbol = _arbol(stage)
+    for k in _raices(arbol):
+        if (_acciones_debajo(arbol, k, 63, 0)
+                and not _acciones_debajo(arbol, k, 63, 1)):
+            return k
+    return None

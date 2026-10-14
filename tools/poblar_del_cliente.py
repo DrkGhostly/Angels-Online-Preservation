@@ -323,11 +323,44 @@ def _anillo(centro, cuantos, ancho, alto):
     return salida
 
 
-def spawns_de(stage):
-    """La lista de spawns del mapa, en el formato de las plantillas."""
+def zonas_de_evento(stage):
+    """Las zonas de generador que el mapa solo saca POR EVENTO.
+
+    Son las que nombra un GENERATE (31) o un ENABLE_GENERATOR (33) de sus
+    disparadores o de sus dialogos: oleadas y jefes de instancia. No van de
+    inicio. En la Magic Kichen Path eran el Guard Fasit y los Mud Lord de la
+    sala 1, las oleadas de Rock Slarm y el Rock God Mendun de la 2, y el
+    Beelzebub de la 3; poblados de inicio, la instancia salia ya resuelta.
+    """
+    import json as _js
+    zonas = set()
+    f = RAIZ / 'server' / 'plantillas' / 'eventos.json'
+    if f.exists():
+        d = _js.loads(f.read_text(encoding='utf-8'))['stages'].get(str(stage), {})
+        for x in d.get('disparadores', []):
+            for n, parms in x['haz']:
+                if n in (31, 33) and parms:
+                    zonas.add(int(parms[0]))
+    f = RAIZ / 'server' / 'plantillas' / 'dialogos_mapa.json'
+    if f.exists():
+        arbol = _js.loads(f.read_text(encoding='utf-8')).get(str(stage), {})
+        for n in arbol.values():
+            for num, parms in n.get('a', ()):
+                if num in (31, 33) and parms:
+                    zonas.add(int(parms[0]))
+    return zonas
+
+
+def spawns_de(stage, con_zonas_de_evento=False):
+    """La lista de spawns del mapa, en el formato de las plantillas.
+
+    Sin las zonas que solo salen por evento (zonas_de_evento), salvo que se
+    pidan.
+    """
     m = cli.mapa(stage)
     if m is None:
         return None, None
+    fuera = set() if con_zonas_de_evento else zonas_de_evento(stage)
     cat = _catalogo()
     salida, sin_catalogo = [], collections.Counter()
     # LAS CASILLAS OCUPADAS SON DE TODO EL MAPA, no de cada generador. Al
@@ -336,6 +369,8 @@ def spawns_de(stage):
     # llegaron a caer 53 en una sola casilla.
     ocupadas = set()
     for k, g in enumerate(m.generadores()):
+        if g['zona'] and g['zona'] in fuera:
+            continue
         info = cat.get(g['tipo'])
         if not info:
             # El +34 no resuelve en ninguna de las dos tablas. No se inventa

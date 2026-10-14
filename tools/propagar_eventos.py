@@ -42,6 +42,7 @@ import eventos_del_cliente as ec
 import mapa_del_cliente as mc
 
 SALIDA = RAIZ / 'server' / 'plantillas' / 'eventos.json'
+TEMPORIZADOR = 60002       # SERV_CLASS_TIMER en server.obd
 
 
 def _del_mapa(stage, ruta):
@@ -102,8 +103,22 @@ def _del_mapa(stage, ruta):
         if o['tipo'] and ev_m:
             monstruos[str(o['tipo'])] = ev_m
 
+    # Los TEMPORIZADORES. Son objetos 60002, que server.obd declara
+    # SERV_CLASS_TIMER: el +21 es su TAG (el que nombran ENABLE_TIMER y
+    # TIMER_COUNTER), el +38 el periodo en segundos, el +42 cuantas veces
+    # salta y el +24 el evento que dispara cada vez. En la sala 3 de la
+    # Magic Kichen Path (stage 75) es el que saca las tres oleadas y al
+    # Beelzebub: tag 240, cada 60 s, 3 veces, evento 61102.
+    temporizadores = {}
+    for o in m.objetos:
+        if o['id'] == TEMPORIZADOR and o['zona']:
+            temporizadores[str(o['zona'])] = {'evento': o['evento'],
+                                              'periodo': o['tiempo'],
+                                              'veces': o['cantidad']}
+
     return {'disparadores': disparadores, 'objetos': objetos, 'tags': tags,
             'generadores': generadores, 'monstruos': monstruos,
+            'temporizadores': temporizadores,
             'ancho': m.ancho, 'alto': m.alto}
 
 
@@ -118,7 +133,7 @@ def propagar(verboso=True):
             fallos.append((stage, '%s: %s' % (type(e).__name__, e)))
             continue
         if (d['disparadores'] or d['objetos'] or d['generadores']
-                or d['monstruos']):
+                or d['monstruos'] or d['temporizadores']):
             stages[str(stage)] = d
 
     datos = {

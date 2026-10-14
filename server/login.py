@@ -708,12 +708,13 @@ PLANTILLAS_POR_STAGE = {
     # 73 <-> 74 se quedo sin enlazar. Ver tools/mapa_del_cliente.py y
     # tools/test_magic_kichen_path.py.
     #
-    # La TERCERA sala (stage 75) no esta aqui y no se puede llegar: el
-    # paso 74 -> 75 es el evento 5 de map074.mpc y ningun objeto del
-    # mapa lo dispara, la puerta se crea en marcha. Sus tres tornados
-    # estan anotados en portales.json para no volver a sacarlos.
+    # La TERCERA sala (stage 75). El paso 74 -> 75 no es un portal: lo da
+    # el Annoying Clerk al ganar su carrera de bajas (nodo 1000020 de su
+    # arbol, CHANGE_MAP(75, 1)). Poblada desde el cliente sin las zonas de
+    # evento: las oleadas y el Beelzebub los saca su temporizador.
     73  : 'magic_kichen_path.json',
     74  : 'magic_kichen_path_2.json',
+    75  : 'magic_kichen_path_3.json',
     # GULP ROOM, los cuatro cuartos de la instancia de Underground Square.
     # Se entra por el tornado de (252,24) del 71, que llevaba meses anotado
     # con destino en null porque "no se cruzo". No habia que cruzarlo.
@@ -1105,8 +1106,19 @@ def poblar(stage: int):
     if stage != 41 or not f.exists():
         return salida
     d = json.loads(f.read_text(encoding='utf-8'))
-    salida += [struct.pack('<H', 0x0008) + bytes.fromhex(e['hex'])
-               for e in d['spawns']]
+    # Las capturadas traen el cuerpo entero en 'hex'. Las que puso
+    # tools/npcs_del_cliente.py (Porter Jade, BattlefieldAngel...) vienen en
+    # el formato de los demas mapas y se arman igual que alli: sin esto el
+    # servidor se caia al entrar en el Lyceum (KeyError 'hex').
+    for e in d['spawns']:
+        if e.get('hex'):
+            salida.append(struct.pack('<H', 0x0008) + bytes.fromhex(e['hex']))
+        else:
+            salida.append(_npc_spawn(e['entity_id'], e['npc_type'], e['nombre'],
+                                     tuple(e['tile']), sprite=e.get('sprite', 0),
+                                     klass=e.get('klass', 199),
+                                     direccion=e.get('direccion'),
+                                     visible=e.get('visible', 1)))
     # Los recursos del mapa: vetas de cobre, arboles, hierbas, madrigueras.
     salida += [struct.pack('<H', 0x000E) + bytes.fromhex(e['hex'])
                for e in d.get('recursos', [])]
@@ -1232,46 +1244,7 @@ def _ficha(p, base):
         crudo[62] = CODIGO_FACCION.get(getattr(p, 'faction', ''), 5)
     if len(crudo) >= 0xd8:
         struct.pack_into('<I', crudo, 0xd4, int(p.char_id or 0))
-    _aspecto_en_ficha(p, crudo)
     return bytes(crudo)
-
-
-# EL ASPECTO DEL PERSONAJE EN LA FICHA. El cliente lee del 0x0002 un bucle de
-# ocho piezas (FUN_005e97f0) y cuelga cada una en su ranura del aspecto con
-# FUN_004a4940(codigo, id_de_objeto): 0 la vacia, otro valor lo busca como
-# objeto. Los codigos salen de la tabla 0x8C0904 del cliente y son justo las
-# ranuras visibles que el servidor ya pinta con 0x001D: 1..7 y la 10.
-#
-# Eso no lo rellenabamos: viajaban las piezas del personaje que se capturo.
-# Al personaje en si no se le notaba -- despues llegan los 0x001D con lo que
-# lleva de verdad --, pero las copias que dibuja el cliente (las imagenes de
-# Vague Form y demas habilidades de clones) salen de ESTA ficha, y por eso
-# aparecian sin el equipo ni el fashion.
-RANURAS_ASPECTO_FICHA = (1, 2, 3, 4, 5, 6, 7, 10)
-OFF_ASPECTO_FICHA = 0x40 + 2      # +0x40 del cuerpo; crudo lleva el opcode
-# El fashion puesto tapa a la pieza de equipo de su sitio, siempre a +166:
-# 167 cabeza, 168 cuerpo, 169 arma, 170 mano izquierda, 171 manos, 172 pies,
-# 173 espalda (inventario.py: la 169 es el arma derecha, la 170 la izquierda,
-# y las prendas 167, 168, 171, 172, 173 van con las armaduras 1, 2, 5, 6, 7).
-FASHION_SOBRE = {1: 167, 2: 168, 3: 169, 4: 170, 5: 171, 6: 172, 7: 173}
-
-
-def _aspecto_en_ficha(p, crudo):
-    inv = getattr(p, 'inventario', None) or {}
-
-    def _item(r):
-        v = inv.get(r, inv.get(str(r)))
-        try:
-            return int(v or 0)
-        except (TypeError, ValueError):
-            return 0
-
-    for i, ranura in enumerate(RANURAS_ASPECTO_FICHA):
-        off = OFF_ASPECTO_FICHA + i * 4
-        if len(crudo) < off + 4:
-            return
-        visto = _item(FASHION_SOBRE[ranura]) if ranura in FASHION_SOBRE else 0
-        struct.pack_into('<I', crudo, off, visto or _item(ranura))
 
 
 def _quests(p, base):

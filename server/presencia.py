@@ -113,6 +113,8 @@ PLANTILLA = bytes.fromhex(
     '0000000000000000000000000000000000000000'
 )
 OFF_ENTIDAD, OFF_X, OFF_Y, OFF_NOMBRE, TAM_NOMBRE = 0, 8, 12, 16, 16
+# El byte +50 de la ficha 0x0002 que se manda a cada jugador (ver _spawn).
+CUERPO_FICHA = 5
 APARECE = 0x0001
 
 
@@ -161,44 +163,56 @@ def _spawn(ses):
     import login as _lg
     b[60] = _lg.CODIGO_FACCION.get(getattr(p, 'faction', ''), 5)
 
-    # Equipo regular (8 slots de tabla 0x8c0904: 1, 2, 3, 4, 5, 6, 7, 10 en offsets 64..92):
+    # Byte +50: una marca que 005e97f0 pasa a FUN_004b1ff0 (byte << 21, se
+    # guarda en +0xe8 del personaje). NO es el cuerpo: en los jugadores
+    # capturados vale 0, 1, 4, 5 o 7 y cambia en el mismo jugador. Va el 5 de
+    # nuestra ficha 0x0002.
+    b[50] = int(getattr(p, 'cuerpo', 0) or CUERPO_FICHA)
+
+    # EL ASPECTO, tal como lo arma el servidor real. Medido en los 0x0001 de
+    # jugadores capturados en el IGG (logs/proxy, 128 B), por ejemplo uno
+    # vestido de enfermera:
+    #   +64..+92  las 8 ranuras de la tabla 0x8c0904 con el FASHION delante
+    #             y, si no hay, el equipo: Kind Nurse Hat, Kind Nurse Uniform
+    #             (en la del CUERPO), las jeringas, guantes, zapatos, la
+    #             mochila y la MONTURA DE FASHION (Koga Nincat)
+    #   +96       el ARMA de verdad (Pan's Rescue, un arco)
+    #   +100      la INSIGNIA (Seashell Badge)
+    #   +106      0
+    # Es la misma regla que la ID Card (lista_personajes.RANURAS_CARD), que si
+    # se veia bien. Antes aqui el cuerpo llevaba la armadura y no el fashion,
+    # en +96 iba el vestido, en +100 la segunda arma de fashion y en +106 la
+    # insignia, y los demas jugadores salian con el cuerpo por defecto.
     bolsa = getattr(ses, 'inventario', None) or {}
-    it_head = int(bolsa.get(167) or bolsa.get(1) or 0)
-    it_body = int(bolsa.get(2) or 0)
-    it_weap = int(bolsa.get(169) or bolsa.get(3) or 0)
-    it_shld = int(bolsa.get(170) or bolsa.get(4) or 0)
-    it_glov = int(bolsa.get(171) or bolsa.get(5) or 0)
-    it_shoe = int(bolsa.get(172) or bolsa.get(6) or 0)
-    it_back = int(bolsa.get(173) or bolsa.get(7) or 0)
-    # Montura (ranura 174 o 10; si no tiene montura equipada, 0 obligatorio para ir a pie)
-    it_mnt  = int(bolsa.get(174) or bolsa.get(10) or 0)
-
-    slots_8 = [it_head, it_body, it_weap, it_shld, it_glov, it_shoe, it_back, it_mnt]
-    for idx, it in enumerate(slots_8):
+    for idx, (r_fash, r_eq) in enumerate(((167, 1), (168, 2), (169, 3), (170, 4),
+                                          (171, 5), (172, 6), (173, 7), (174, 10))):
+        it = int(bolsa.get(r_fash) or bolsa.get(r_eq) or 0)
         struct.pack_into('<I', b, 64 + idx * 4, it)
+    struct.pack_into('<I', b, 96, int(bolsa.get(3) or 0))
+    struct.pack_into('<I', b, 100, int(bolsa.get(175) or 0))
+    struct.pack_into('<I', b, 106, 0)
 
-    # Estado del personaje: 8 montado, 7 sentado, 0 de pie
-    if it_mnt > 0:
-        b[61] = 8
-    elif getattr(ses, 'sentado', False):
-        b[61] = 7
-    else:
-        b[61] = 0
-
-    # Fashion overlays (Angel.exe sub_5E97F0):
-    # Offset 96: Slot 13 (Fashion Suit / Dress, ranura 168)
-    it_suit = int(bolsa.get(168) or 0)
-    struct.pack_into('<I', b, 96, it_suit)
-
-    # Offset 100: Slot 14 (Fashion Hand 2 / Shield, ranura 170)
-    it_fweap = int(bolsa.get(170) or 0)
-    struct.pack_into('<I', b, 100, it_fweap)
-
-    # Offset 106: Slot 15 (Fashion Badge / Aura, ranura 175)
-    it_badge = int(bolsa.get(175) or 0)
-    struct.pack_into('<I', b, 106, it_badge)
+    # Estado del personaje (+61): 7 sentado, 0 de pie. El 8 NO es "montado":
+    # en 316 jugadores capturados el servidor real no lo usa nunca (0 con o
+    # sin montura, 7 sentados), y 005e97f0 lo pasa a FUN_004b4c10(1), que
+    # pone una pose de descanso y le borra la forma al personaje.
+    b[61] = 7 if getattr(ses, 'sentado', False) else 0
 
     return struct.pack('<H', APARECE) + bytes(b)
+
+
+def _vestir(ses):
+    """Lo que se manda DETRAS del 0x0001 para vestir a otro jugador: nada.
+
+    Se probo a mandar los dieciseis 0x001D code=1 (equipar_visual) de cada
+    pieza, como al jugador propio, y no servia. En los jugadores capturados
+    del IGG el servidor real manda el 0x0001 SOLO -- con el fashion en sus
+    ocho ranuras (ver _spawn) -- y el 0x001D de una pieza unicamente cuando
+    la cambia; y detras del 0x0001 esos 0x001D podian volver a meter la
+    armadura en la ranura del cuerpo encima del vestido de fashion. Cada
+    cambio de equipo ya reenvia el 0x0001 entero (notificar_equipo).
+    """
+    return []
 
 
 def _despawn(eid):
@@ -232,21 +246,41 @@ def _mandar(ses, *paquetes):
         log.debug('no se pudo mandar a una sesion', exc_info=True)
 
 
+def clave_de_mapa(ses, stage):
+    """Con quien se comparte pantalla en ese mapa.
+
+    Fuera de las instancias, todo el mapa. Dentro, solo los de la misma
+    corrida (eventos_mundo._CORRIDAS): el grupo, o uno mismo si va solo. Es
+    lo que hacen las copias de instancia del juego (平行空間=15, repartidas
+    por grupo): dos grupos en la Magic Kichen Path no se cruzan.
+    """
+    try:
+        import eventos_mundo as _evm
+        if _evm.grupo_de_instancia(stage):
+            return (int(stage), _evm._clave_corrida(ses))
+    except Exception:
+        log.debug('clave de mapa', exc_info=True)
+    return stage
+
+
 def entrar(ses, stage):
     """El jugador llega a un mapa: se le presenta a los que ya estaban y al
     reves, incluyendo mascotas e invocaciones activas."""
     import combate as _cb
     import login as _lg
     salir(ses, avisar=True)
+    stage = clave_de_mapa(ses, stage)
     yo_spawn = _spawn(ses)
     otros = _vivas(stage)
     ts_yo = transform_sprite_de(ses)
+    # Con que forma le ven los demas (ver notificar_transformacion).
+    ses._forma_publica = int(ts_yo or 0)
 
     for s in otros:
         if s is ses:
             continue
         # Presentar a 'ses' ante 's'
-        _mandar(s, yo_spawn)
+        _mandar(s, yo_spawn, *_vestir(ses))
         if ts_yo:
             _mandar(s, _cb.atributo(entidad_de(ses), ts_yo, _cb.KIND_TRANSFORM))
 
@@ -285,7 +319,7 @@ def entrar(ses, stage):
 
         # Presentar a 's' ante 'ses'
         s_spawn = _spawn(s)
-        _mandar(ses, s_spawn)
+        _mandar(ses, s_spawn, *_vestir(s))
         ts_s = transform_sprite_de(s)
         if ts_s:
             _mandar(ses, _cb.atributo(entidad_de(s), ts_s, _cb.KIND_TRANSFORM))
@@ -326,6 +360,13 @@ def entrar(ses, stage):
     if ses not in _POR_MAPA[stage]:
         _POR_MAPA[stage].append(ses)
     ses._mapa_presencia = stage
+    # La lista del grupo lleva con que entidad se ve a cada miembro: al
+    # cambiar de mapa hay que mandarla de nuevo (equipos._entidad_vista).
+    try:
+        import equipos as _eq
+        _eq.al_cambiar_de_mapa(ses)
+    except Exception:
+        log.debug('lista del grupo al entrar', exc_info=True)
     if otros:
         log.info('%s entra al mapa %s, donde ya hay %d',
                  getattr(ses.personaje, 'nombre', '?'), stage, len(otros))
@@ -339,6 +380,55 @@ def notificar_transformacion(ses, trans_sprite: int):
     import combate as _cb
     eid = entidad_de(ses)
     pkt = _cb.atributo(eid, int(trans_sprite or 0), _cb.KIND_TRANSFORM)
+    # AL DESTRANSFORMARSE, la ropa otra vez. Medido en las sesiones grabadas
+    # del 14/10 (logs/sesiones/*_174146 y *_174156): cada cliente recibia al
+    # otro vestido y transformado, y a los pocos segundos el "fin de
+    # transformacion" (kind 33 = 0). Con eso el cliente le quita la forma al
+    # OTRO jugador pero no le vuelve a poner el equipo, y lo deja con el
+    # cuerpo por defecto (el vestido rosa). Solo se arreglaba cuando ese
+    # jugador cambiaba algo de equipo y le llegaba otra vez su 0x0001.
+    # Y no basta con mandarle otra vez su 0x0001: en la sesion grabada a las
+    # 17:46 le llegaron a Karma los 0x0001 de KarmaV3 enteros tras cada fin
+    # de transformacion y lo seguia dibujando desnudo. El cliente se queda la
+    # "forma" vieja (+0x246/+0x248 del personaje, que solo limpia
+    # FUN_004b4c10). Asi que se le borra (0x0007 sin animacion) y se crea de
+    # nuevo: una entidad recien creada empieza sin forma.
+    #
+    # Tampoco basta con borrarla y crearla con el MISMO id: en la sesion de
+    # las 18:11 Karma recibio "transformarse -> 42455", "fin" y su 0x0001
+    # tras un 0x0007, y siguio en rosa, mientras que a KarmaV3, que nunca se
+    # transformo, se le veia vestido con el mismo aspecto. El cliente deja al
+    # personaje marcado como transformado (FUN_005fa4e0 le pone entonces el
+    # cuerpo por defecto: 0x4e9f/0x4f27/0x4e5a) y, llegando el 0x0007 y el
+    # 0x0001 juntos, vuelve a usar el mismo objeto marcado. Asi que al
+    # destransformarse se le da a los demas un id publico NUEVO: el viejo se
+    # borra y aparece otro personaje, limpio, con su ropa.
+    antes = getattr(ses, '_forma_publica', 0)
+    ses._forma_publica = int(trans_sprite or 0)
+    if not trans_sprite:
+        if not antes:
+            return        # ya se le veia sin transformar: nada que deshacer
+        otros = [s for s in _vivas(stage) if s is not ses]
+        if otros:
+            for s in otros:
+                _mandar(s, _despawn(eid))
+            # El nuevo ANTES de soltar el viejo: entidad_de da el primero
+            # libre, y soltando antes devolveria el mismo.
+            ses._entidad_publica = None
+            entidad_de(ses)
+            _ENTIDADES_ASIGNADAS.discard(eid)
+            sp = _spawn(ses)
+            for s in otros:
+                if sp:
+                    _mandar(s, sp, *_vestir(ses))
+            log.info('%s deja de estar transformado: id publico %s -> %s',
+                     getattr(ses.personaje, 'nombre', '?'), eid, entidad_de(ses))
+            try:
+                import equipos as _eq
+                _eq.al_cambiar_de_mapa(ses)     # el retrato, con el id nuevo
+            except Exception:
+                pass
+        return
     for s in _vivas(stage):
         if s is not ses:
             _mandar(s, pkt)
@@ -355,9 +445,10 @@ def notificar_equipo(ses):
     ts = transform_sprite_de(ses)
     import combate as _cb
     pkt_trans = _cb.atributo(entidad_de(ses), ts, _cb.KIND_TRANSFORM) if ts else None
+    vestir = _vestir(ses)
     for s in _vivas(stage):
         if s is not ses:
-            _mandar(s, yo_spawn)
+            _mandar(s, yo_spawn, *vestir)
             if pkt_trans:
                 _mandar(s, pkt_trans)
 

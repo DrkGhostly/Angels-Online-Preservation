@@ -61,6 +61,8 @@ SABE = frozenset((
     14,     # GENERATOR_ALIVE
     17,     # MONEY
     29,     # MAPVAR
+    30,     # TIMER_ENABLE   (los temporizadores ya corren: app._arrancar_temporizador)
+    31,     # TIMER_COUNTER
     39,     # GROUP
     56,     # IS_LIVE
     3,      # PROPERTY (solo nivel y rango)
@@ -101,6 +103,12 @@ class EstadoDeMapa:
         self.temporizadores = {}     # tag -> [activo, veces]
         self.objetos = {}            # tag -> id de objeto puesto
         self.ya_saltaron = set()     # eventos de disparo 0 que ya se hicieron
+        # Solo en las instancias: los bichos de la sala, COMPARTIDOS por todos
+        # los de la corrida que esten en ella (el mismo dict es su
+        # ses.monstruos), y quienes estan dentro ahora mismo.
+        self.monstruos = None
+        self.sesiones = []
+        self.por_restaurar = False
         self._zonas = None
 
     # -- a que zona de generador pertenece una casilla --------------------
@@ -158,17 +166,127 @@ class EstadoDeMapa:
         return self.temporizadores.setdefault(int(tag), [False, 0])
 
 
+# LAS INSTANCIAS RECUERDAN LO HECHO mientras dure la "corrida": puertas
+# abiertas, antorchas encendidas, bichos muertos que no vuelven, variables.
+# Asi lo describio el usuario, jugando en el oficial:
+#   * solo: mientras sigas dentro de la instancia (pasar de la sala 2 a la 1
+#     de la Magic Kichen Path no la reinicia); al salir de ella, se reinicia;
+#   * en grupo: se mantiene aunque salgas, hasta que el grupo se deshace, y es
+#     la misma para todos los del grupo.
+# Una instancia son todas sus salas: las que comparten nombre en
+# instancias.json (Magic Kichen Path = 73, 74 y 75) mas las que se unen por
+# portales entre salas de instancia.
+_CORRIDAS = {}          # ('solo', char_id) | ('equipo', lider) -> corrida
+_GRUPOS_INSTANCIA = None
+
+
+def grupo_de_instancia(stage):
+    """Las salas (stages) de la instancia a la que pertenece ese mapa, o None."""
+    global _GRUPOS_INSTANCIA
+    if _GRUPOS_INSTANCIA is None:
+        import json
+        import pathlib
+        base = pathlib.Path(__file__).parent / 'plantillas'
+        try:
+            mapas = json.loads((base / 'instancias.json').read_text(encoding='utf-8')).get('mapas') or {}
+        except Exception:
+            mapas = {}
+        dinamicas = {int(k): v.get('nombre') for k, v in mapas.items() if v.get('dinamica')}
+        padre = {s: s for s in dinamicas}
+
+        def raiz(s):
+            while padre[s] != s:
+                padre[s] = padre[padre[s]]
+                s = padre[s]
+            return s
+
+        def unir(a, b):
+            padre[raiz(a)] = raiz(b)
+        por_nombre = {}
+        for s, n in dinamicas.items():
+            if n:
+                if n in por_nombre:
+                    unir(s, por_nombre[n])
+                por_nombre.setdefault(n, s)
+        try:
+            portales = json.loads((base / 'portales.json').read_text(encoding='utf-8')).get('mapas') or {}
+        except Exception:
+            portales = {}
+        for origen, lista in portales.items():
+            for p in lista or []:
+                o, d = int(origen), p.get('destino')
+                if d is not None and o in padre and int(d) in padre and o != int(d):
+                    unir(o, int(d))
+        grupos = {}
+        for s in dinamicas:
+            grupos.setdefault(raiz(s), set()).add(s)
+        _GRUPOS_INSTANCIA = {s: frozenset(g) for g in grupos.values() for s in g}
+    return _GRUPOS_INSTANCIA.get(int(stage or 0))
+
+
+def _clave_corrida(ses):
+    try:
+        import equipos as _eq
+        cid = _eq._char_id(ses)
+        lider = _eq._DE_QUIEN.get(cid)
+        if lider and lider in _eq._GRUPOS:
+            return ('equipo', lider)
+    except Exception:
+        cid = int(getattr(getattr(ses, 'personaje', None), 'char_id', 0) or 0)
+    return ('solo', cid)
+
+
+def _olvidar_corridas_de_grupos_deshechos():
+    try:
+        import equipos as _eq
+    except Exception:
+        return
+    for k in [k for k in _CORRIDAS if k[0] == 'equipo' and k[1] not in _eq._GRUPOS]:
+        _CORRIDAS.pop(k, None)
+
+
+def corrida_de(ses, grupo):
+    """La corrida de esa sesion en esa instancia, creandola si hace falta."""
+    _olvidar_corridas_de_grupos_deshechos()
+    clave = _clave_corrida(ses)
+    c = _CORRIDAS.get(clave)
+    if c is None and clave[0] == 'equipo':
+        # Iba solo y acaba de formar grupo dentro: se lleva lo que llevaba.
+        solo = ('solo', int(getattr(getattr(ses, 'personaje', None), 'char_id', 0) or 0))
+        if _CORRIDAS.get(solo, {}).get('grupo') == grupo:
+            c = _CORRIDAS[clave] = _CORRIDAS.pop(solo)
+    if c is None or c['grupo'] != grupo:
+        c = _CORRIDAS[clave] = {'grupo': grupo, 'estados': {}}
+    return c
+
+
 def estado_de(ses):
     """El estado del mapa en el que esta la sesion, creandolo si hace falta.
 
-    Se rehace al cambiar de stage sin que nadie tenga que acordarse de
-    limpiarlo: la comprobacion es el propio numero de mapa.
+    Fuera de las instancias se rehace al cambiar de stage sin que nadie
+    tenga que acordarse de limpiarlo: la comprobacion es el propio numero de
+    mapa. En una instancia sale de su corrida (ver _CORRIDAS), y la marca
+    `por_restaurar` le dice al 0x0009 que el cliente acaba de recibir el
+    mapa limpio y hay que volver a ponerle lo hecho.
     """
     stage = getattr(getattr(ses, 'personaje', None), 'stage', 0) or 0
     e = getattr(ses, 'estado_mapa', None)
-    if e is None or e.stage != stage:
+    if e is not None and e.stage == stage:
+        return e
+    grupo = grupo_de_instancia(stage)
+    if grupo:
+        c = corrida_de(ses, grupo)
+        e = c['estados'].get(stage)
+        if e is None:
+            e = c['estados'][stage] = EstadoDeMapa(stage)
+        else:
+            e.por_restaurar = True
+    else:
+        clave = _clave_corrida(ses)
+        if clave[0] == 'solo':
+            _CORRIDAS.pop(clave, None)
         e = EstadoDeMapa(stage)
-        ses.estado_mapa = e
+    ses.estado_mapa = e
     return e
 
 
@@ -307,6 +425,31 @@ class ContextoSesion(ev.Contexto):
             return 1
 
 
+# PUERTAS QUE EL SERVIDOR ABRE SIN LA MISION QUE PIDEN. Decision del usuario
+# (14/10/2026): no quiere que la instancia se corte por una mision.
+#   (74, 61101) la puerta de la cara de demonio de la sala 2 de la Magic
+#     Kichen Path (64967 "There is a huge metal gate carved with a cruel
+#     Devil's face..."). El mapa solo la abre con la Main Angel Quest (611)
+#     en el paso 2 con el item 4594, o en el 3-4. Abrirla es
+#     CHANGE_STATICOBJ(153, 60295), lo mismo que hacen esos disparadores.
+# (stage, evento) -> (efectos que se anaden, dialogos que se quitan)
+SIN_MISION = {
+    (74, 61101): ([('objeto_estatico', 153, 60295)], {61100}),
+}
+
+
+def _sin_mision(stage, evento, efectos):
+    extra = SIN_MISION.get((int(stage), int(evento)))
+    if not extra:
+        return efectos
+    poner, quitar = extra
+    efectos = [e for e in efectos if not (e[0] == 'dialogo' and int(e[1]) in quitar)]
+    for e in poner:
+        if e not in efectos:
+            efectos.append(e)
+    return efectos
+
+
 def al_pisar(ses, tile):
     """Los efectos de pisar una casilla. Lista vacia si ahi no hay nada."""
     estado = estado_de(ses)
@@ -316,7 +459,7 @@ def al_pisar(ses, tile):
     ctx = ContextoSesion(ses, estado)
     disparo = ev.DISPAROS_AL_PASAR if not ctx.es_alma else (ev.ALMA_PISA,
                                                            ev.ALMA_CHOCA)
-    return ev.ejecutar(estado.stage, evento, disparo, ctx)
+    return _sin_mision(estado.stage, evento, ev.ejecutar(estado.stage, evento, disparo, ctx))
 
 
 def al_pulsar(ses, tile):
@@ -327,7 +470,7 @@ def al_pulsar(ses, tile):
         return []
     ctx = ContextoSesion(ses, estado)
     disparo = ev.DISPAROS_AL_PULSAR if not ctx.es_alma else (ev.ALMA_PULSA,)
-    return ev.ejecutar(estado.stage, evento, disparo, ctx)
+    return _sin_mision(estado.stage, evento, ev.ejecutar(estado.stage, evento, disparo, ctx))
 
 
 def evento_del_monstruo(stage, npc_type):

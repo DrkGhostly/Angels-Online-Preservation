@@ -1,22 +1,7 @@
 {
- "_nota": "gulp_room_2 (stage 77). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map077.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "_nota": "gulp_room_2 (stage 77). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map077.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py. OLEADAS: fuera 1 bichos de la captura que salen por evento (tools/quitar_oleadas.py).",
  "stage": 77,
  "spawns": [
-  {
-   "entity_id": 57700000,
-   "nombre": "Sleeper Nalica",
-   "npc_type": 1068,
-   "sprite": 42371,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    324,
-    39
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 78
-  },
   {
    "entity_id": 90077000,
    "nombre": "Assoc. Pioneer",
@@ -53,6 +38,1502 @@
  "recursos": [
   {
    "entity_id": 67700000,
+   "sprite": 7590,
+   "capa": 2,
+   "px": [
+    1012,
+    7856
+   ],
+   "tile": [
+    31,
+    245
+   ],
+   "evento": 0,
+   "crudo": "2005090402000000f4030000b01e00000000000027000000000000001a000000dc06a61d00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700001,
+   "sprite": 60272,
+   "capa": 0,
+   "px": [
+    1572,
+    7728
+   ],
+   "tile": [
+    49,
+    241
+   ],
+   "evento": 0,
+   "crudo": "210509040000000024060000301e00000000000027000000000000001a000000dc0670eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700002,
+   "sprite": 60274,
+   "capa": 2,
+   "px": [
+    3750,
+    7792
+   ],
+   "tile": [
+    117,
+    243
+   ],
+   "evento": 0,
+   "crudo": "2205090402000000a60e0000701e00000000000027000000000000001a000000dc0672eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700003,
+   "sprite": 60276,
+   "capa": 2,
+   "px": [
+    6438,
+    7792
+   ],
+   "tile": [
+    201,
+    243
+   ],
+   "evento": 0,
+   "crudo": "230509040200000026190000701e00000000000027000000000000001a000000dc0674eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700004,
+   "sprite": 60276,
+   "capa": 0,
+   "px": [
+    6982,
+    7600
+   ],
+   "tile": [
+    218,
+    237
+   ],
+   "evento": 0,
+   "crudo": "2405090400000000461b0000b01d00000000000027000000000000001a000000dc0674eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700005,
+   "sprite": 60278,
+   "capa": 0,
+   "px": [
+    9681,
+    7600
+   ],
+   "tile": [
+    302,
+    237
+   ],
+   "evento": 0,
+   "crudo": "2505090400000000d1250000b01d00000000000027000000000000001a000000dc0676eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700006,
+   "sprite": 7590,
+   "capa": 2,
+   "px": [
+    9129,
+    7728
+   ],
+   "tile": [
+    285,
+    241
+   ],
+   "evento": 0,
+   "crudo": "2605090402000000a9230000301e00000000000027000000000000001a000000dc06a61d00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700007,
+   "sprite": 60274,
+   "capa": 2,
+   "px": [
+    1221,
+    6000
+   ],
+   "tile": [
+    38,
+    187
+   ],
+   "evento": 0,
+   "crudo": "2705090402000000c5040000701700000000000027000000000000001a000000dc0672eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700008,
+   "sprite": 60274,
+   "capa": 0,
+   "px": [
+    4294,
+    7632
+   ],
+   "tile": [
+    134,
+    238
+   ],
+   "evento": 0,
+   "crudo": "2805090400000000c6100000d01d00000000000027000000000000001a000000dc0672eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700009,
+   "sprite": 60276,
+   "capa": 2,
+   "px": [
+    3942,
+    5872
+   ],
+   "tile": [
+    123,
+    183
+   ],
+   "evento": 0,
+   "crudo": "2905090402000000660f0000f01600000000000027000000000000001a000000dc0674eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700010,
+   "sprite": 60276,
+   "capa": 0,
+   "px": [
+    4518,
+    5712
+   ],
+   "tile": [
+    141,
+    178
+   ],
+   "evento": 0,
+   "crudo": "2a05090400000000a6110000501600000000000027000000000000001a000000dc0674eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700011,
+   "sprite": 60278,
+   "capa": 0,
+   "px": [
+    7186,
+    5616
+   ],
+   "tile": [
+    224,
+    175
+   ],
+   "evento": 0,
+   "crudo": "2b05090400000000121c0000f01500000000000027000000000000001a000000dc0676eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700012,
+   "sprite": 60280,
+   "capa": 2,
+   "px": [
+    9318,
+    5744
+   ],
+   "tile": [
+    291,
+    179
+   ],
+   "evento": 0,
+   "crudo": "2c0509040200000066240000701600000000000027000000000000001a000000dc0678eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700013,
+   "sprite": 60280,
+   "capa": 0,
+   "px": [
+    9862,
+    5584
+   ],
+   "tile": [
+    308,
+    174
+   ],
+   "evento": 0,
+   "crudo": "2d0509040000000086260000d01500000000000027000000000000001a000000dc0678eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700014,
+   "sprite": 60276,
+   "capa": 2,
+   "px": [
+    1286,
+    4176
+   ],
+   "tile": [
+    40,
+    130
+   ],
+   "evento": 0,
+   "crudo": "2e0509040200000006050000501000000000000027000000000000001a000000dc0674eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700015,
+   "sprite": 60276,
+   "capa": 0,
+   "px": [
+    1862,
+    4016
+   ],
+   "tile": [
+    58,
+    125
+   ],
+   "evento": 0,
+   "crudo": "2f0509040000000046070000b00f00000000000027000000000000001a000000dc0674eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700016,
+   "sprite": 60278,
+   "capa": 0,
+   "px": [
+    4550,
+    3952
+   ],
+   "tile": [
+    142,
+    123
+   ],
+   "evento": 0,
+   "crudo": "3005090400000000c6110000700f00000000000027000000000000001a000000dc0676eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700017,
+   "sprite": 60278,
+   "capa": 2,
+   "px": [
+    6694,
+    3792
+   ],
+   "tile": [
+    209,
+    118
+   ],
+   "evento": 0,
+   "crudo": "3105090402000000261a0000d00e00000000000027000000000000001a000000dc0676eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700018,
+   "sprite": 60278,
+   "capa": 0,
+   "px": [
+    7270,
+    3632
+   ],
+   "tile": [
+    227,
+    113
+   ],
+   "evento": 0,
+   "crudo": "3205090400000000661c0000300e00000000000027000000000000001a000000dc0676eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700019,
+   "sprite": 60280,
+   "capa": 0,
+   "px": [
+    9894,
+    3632
+   ],
+   "tile": [
+    309,
+    113
+   ],
+   "evento": 0,
+   "crudo": "3305090400000000a6260000300e00000000000027000000000000001a000000dc0678eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700020,
+   "sprite": 60280,
+   "capa": 2,
+   "px": [
+    1286,
+    2128
+   ],
+   "tile": [
+    40,
+    66
+   ],
+   "evento": 0,
+   "crudo": "340509040200000006050000500800000000000027000000000000001a000000dc0678eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700021,
+   "sprite": 60280,
+   "capa": 0,
+   "px": [
+    1862,
+    1968
+   ],
+   "tile": [
+    58,
+    61
+   ],
+   "evento": 0,
+   "crudo": "350509040000000046070000b00700000000000027000000000000001a000000dc0678eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700022,
+   "sprite": 60280,
+   "capa": 2,
+   "px": [
+    4163,
+    2128
+   ],
+   "tile": [
+    130,
+    66
+   ],
+   "evento": 0,
+   "crudo": "360509040200000043100000500800000000000027000000000000001a000000dc0678eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700023,
+   "sprite": 60280,
+   "capa": 0,
+   "px": [
+    4742,
+    1968
+   ],
+   "tile": [
+    148,
+    61
+   ],
+   "evento": 0,
+   "crudo": "370509040000000086120000b00700000000000027000000000000001a000000dc0678eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700024,
+   "sprite": 60280,
+   "capa": 2,
+   "px": [
+    6854,
+    1488
+   ],
+   "tile": [
+    214,
+    46
+   ],
+   "evento": 0,
+   "crudo": "3805090402000000c61a0000d00500000000000027000000000000001a000000dc0678eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700025,
+   "sprite": 60280,
+   "capa": 0,
+   "px": [
+    7430,
+    1328
+   ],
+   "tile": [
+    232,
+    41
+   ],
+   "evento": 0,
+   "crudo": "3905090400000000061d0000300500000000000027000000000000001a000000dc0678eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700026,
+   "sprite": 7590,
+   "capa": 0,
+   "px": [
+    1553,
+    7696
+   ],
+   "tile": [
+    48,
+    240
+   ],
+   "evento": 0,
+   "crudo": "3a0509040000000011060000101e00000000000027000000000000001a000000dc06a61d00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700027,
+   "sprite": 7590,
+   "capa": 2,
+   "px": [
+    3767,
+    7760
+   ],
+   "tile": [
+    117,
+    242
+   ],
+   "evento": 0,
+   "crudo": "3b05090402000000b70e0000501e00000000000027000000000000001a000000dc06a61d00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700028,
+   "sprite": 7590,
+   "capa": 0,
+   "px": [
+    4277,
+    7600
+   ],
+   "tile": [
+    133,
+    237
+   ],
+   "evento": 0,
+   "crudo": "3c05090400000000b5100000b01d00000000000027000000000000001a000000dc06a61d00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700029,
+   "sprite": 7590,
+   "capa": 2,
+   "px": [
+    6453,
+    7760
+   ],
+   "tile": [
+    201,
+    242
+   ],
+   "evento": 0,
+   "crudo": "3d0509040200000035190000501e00000000000027000000000000001a000000dc06a61d00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700030,
+   "sprite": 60278,
+   "capa": 2,
+   "px": [
+    9109,
+    7760
+   ],
+   "tile": [
+    284,
+    242
+   ],
+   "evento": 0,
+   "crudo": "3e0509040200000095230000501e00000000000027000000000000001a000000dc0676eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700031,
+   "sprite": 7590,
+   "capa": 0,
+   "px": [
+    6965,
+    7568
+   ],
+   "tile": [
+    217,
+    236
+   ],
+   "evento": 0,
+   "crudo": "3f05090400000000351b0000901d00000000000027000000000000001a000000dc06a61d00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700032,
+   "sprite": 7590,
+   "capa": 0,
+   "px": [
+    9665,
+    7568
+   ],
+   "tile": [
+    302,
+    236
+   ],
+   "evento": 0,
+   "crudo": "4005090400000000c1250000901d00000000000027000000000000001a000000dc06a61d00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700033,
+   "sprite": 60274,
+   "capa": 0,
+   "px": [
+    1798,
+    5808
+   ],
+   "tile": [
+    56,
+    181
+   ],
+   "evento": 0,
+   "crudo": "410509040000000006070000b01600000000000027000000000000001a000000dc0672eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700034,
+   "sprite": 60300,
+   "capa": 2,
+   "px": [
+    1012,
+    7856
+   ],
+   "tile": [
+    31,
+    245
+   ],
+   "evento": 1001,
+   "crudo": "4205090402000000f4030000b01e00000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700035,
+   "sprite": 7590,
+   "capa": 2,
+   "px": [
+    1238,
+    5968
+   ],
+   "tile": [
+    38,
+    186
+   ],
+   "evento": 0,
+   "crudo": "4305090402000000d6040000501700000000000027000000000000001a000000dc06a61d00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700036,
+   "sprite": 60300,
+   "capa": 2,
+   "px": [
+    9129,
+    7728
+   ],
+   "tile": [
+    285,
+    241
+   ],
+   "evento": 1019,
+   "crudo": "4405090402000000a9230000301e00000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700037,
+   "sprite": 60278,
+   "capa": 2,
+   "px": [
+    6601,
+    5776
+   ],
+   "tile": [
+    206,
+    180
+   ],
+   "evento": 0,
+   "crudo": "4505090402000000c9190000901600000000000027000000000000001a000000dc0676eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700038,
+   "sprite": 7590,
+   "capa": 2,
+   "px": [
+    6621,
+    5744
+   ],
+   "tile": [
+    206,
+    179
+   ],
+   "evento": 0,
+   "crudo": "4605090402000000dd190000701600000000000027000000000000001a000000dc06a61d00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700039,
+   "sprite": 7590,
+   "capa": 2,
+   "px": [
+    3959,
+    5840
+   ],
+   "tile": [
+    123,
+    182
+   ],
+   "evento": 0,
+   "crudo": "4705090402000000770f0000d01600000000000027000000000000001a000000dc06a61d00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700040,
+   "sprite": 7590,
+   "capa": 2,
+   "px": [
+    9331,
+    5712
+   ],
+   "tile": [
+    291,
+    178
+   ],
+   "evento": 0,
+   "crudo": "480509040200000073240000501600000000000027000000000000001a000000dc06a61d00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700041,
+   "sprite": 60300,
+   "capa": 0,
+   "px": [
+    1553,
+    7696
+   ],
+   "tile": [
+    48,
+    240
+   ],
+   "evento": 1002,
+   "crudo": "490509040000000011060000101e00000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700042,
+   "sprite": 7590,
+   "capa": 2,
+   "px": [
+    1302,
+    4144
+   ],
+   "tile": [
+    40,
+    129
+   ],
+   "evento": 0,
+   "crudo": "4a0509040200000016050000301000000000000027000000000000001a000000dc06a61d00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700043,
+   "sprite": 7590,
+   "capa": 2,
+   "px": [
+    3991,
+    4080
+   ],
+   "tile": [
+    124,
+    127
+   ],
+   "evento": 0,
+   "crudo": "4b05090402000000970f0000f00f00000000000027000000000000001a000000dc06a61d00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700044,
+   "sprite": 60278,
+   "capa": 2,
+   "px": [
+    3975,
+    4112
+   ],
+   "tile": [
+    124,
+    128
+   ],
+   "evento": 0,
+   "crudo": "4c05090402000000870f0000101000000000000027000000000000001a000000dc0676eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700045,
+   "sprite": 7590,
+   "capa": 2,
+   "px": [
+    6702,
+    3760
+   ],
+   "tile": [
+    209,
+    117
+   ],
+   "evento": 0,
+   "crudo": "4d050904020000002e1a0000b00e00000000000027000000000000001a000000dc06a61d00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700046,
+   "sprite": 7590,
+   "capa": 2,
+   "px": [
+    9338,
+    3760
+   ],
+   "tile": [
+    291,
+    117
+   ],
+   "evento": 0,
+   "crudo": "4e050904020000007a240000b00e00000000000027000000000000001a000000dc06a61d00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700047,
+   "sprite": 60300,
+   "capa": 0,
+   "px": [
+    4278,
+    7600
+   ],
+   "tile": [
+    133,
+    237
+   ],
+   "evento": 1006,
+   "crudo": "4f05090400000000b6100000b01d00000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700048,
+   "sprite": 60300,
+   "capa": 2,
+   "px": [
+    1302,
+    4144
+   ],
+   "tile": [
+    40,
+    129
+   ],
+   "evento": 1009,
+   "crudo": "500509040200000016050000301000000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700049,
+   "sprite": 60280,
+   "capa": 2,
+   "px": [
+    9318,
+    3792
+   ],
+   "tile": [
+    291,
+    118
+   ],
+   "evento": 0,
+   "crudo": "510509040200000066240000d00e00000000000027000000000000001a000000dc0678eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700050,
+   "sprite": 60300,
+   "capa": 0,
+   "px": [
+    6965,
+    7568
+   ],
+   "tile": [
+    217,
+    236
+   ],
+   "evento": 1012,
+   "crudo": "5205090400000000351b0000901d00000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700051,
+   "sprite": 60300,
+   "capa": 2,
+   "px": [
+    6871,
+    1424
+   ],
+   "tile": [
+    214,
+    44
+   ],
+   "evento": 1021,
+   "crudo": "5305090402000000d71a0000900500000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700052,
+   "sprite": 7590,
+   "capa": 2,
+   "px": [
+    4180,
+    2096
+   ],
+   "tile": [
+    130,
+    65
+   ],
+   "evento": 0,
+   "crudo": "540509040200000054100000300800000000000027000000000000001a000000dc06a61d00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700053,
+   "sprite": 7590,
+   "capa": 2,
+   "px": [
+    1309,
+    2096
+   ],
+   "tile": [
+    40,
+    65
+   ],
+   "evento": 0,
+   "crudo": "55050904020000001d050000300800000000000027000000000000001a000000dc06a61d00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700054,
+   "sprite": 60272,
+   "capa": 2,
+   "px": [
+    995,
+    7888
+   ],
+   "tile": [
+    31,
+    246
+   ],
+   "evento": 0,
+   "crudo": "5605090402000000e3030000d01e00000000000027000000000000001a000000dc0670eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700055,
+   "sprite": 60299,
+   "capa": 2,
+   "px": [
+    9840,
+    5552
+   ],
+   "tile": [
+    307,
+    173
+   ],
+   "evento": 1028,
+   "crudo": "570509040200000070260000b01500000000000027000000000000001a000000dc068beb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700056,
+   "sprite": 7590,
+   "capa": 0,
+   "px": [
+    7169,
+    5584
+   ],
+   "tile": [
+    224,
+    174
+   ],
+   "evento": 0,
+   "crudo": "5805090400000000011c0000d01500000000000027000000000000001a000000dc06a61d00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700057,
+   "sprite": 7590,
+   "capa": 0,
+   "px": [
+    4501,
+    5680
+   ],
+   "tile": [
+    140,
+    177
+   ],
+   "evento": 0,
+   "crudo": "590509040000000095110000301600000000000027000000000000001a000000dc06a61d00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700058,
+   "sprite": 7590,
+   "capa": 0,
+   "px": [
+    1780,
+    5776
+   ],
+   "tile": [
+    55,
+    180
+   ],
+   "evento": 0,
+   "crudo": "5a05090400000000f4060000901600000000000027000000000000001a000000dc06a61d00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700059,
+   "sprite": 7590,
+   "capa": 0,
+   "px": [
+    1846,
+    3984
+   ],
+   "tile": [
+    57,
+    124
+   ],
+   "evento": 0,
+   "crudo": "5b0509040000000036070000900f00000000000027000000000000001a000000dc06a61d00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700060,
+   "sprite": 7590,
+   "capa": 0,
+   "px": [
+    4538,
+    3920
+   ],
+   "tile": [
+    141,
+    122
+   ],
+   "evento": 0,
+   "crudo": "5c05090400000000ba110000500f00000000000027000000000000001a000000dc06a61d00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700061,
+   "sprite": 7590,
+   "capa": 0,
+   "px": [
+    7245,
+    3600
+   ],
+   "tile": [
+    226,
+    112
+   ],
+   "evento": 0,
+   "crudo": "5d050904000000004d1c0000100e00000000000027000000000000001a000000dc06a61d00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700062,
+   "sprite": 60307,
+   "capa": 0,
+   "px": [
+    9829,
+    5520
+   ],
+   "tile": [
+    307,
+    172
+   ],
+   "evento": 1028,
+   "crudo": "5e0509040000000065260000901500000000000027000000000000001a000000dc0693eb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700063,
+   "sprite": 60299,
+   "capa": 2,
+   "px": [
+    9871,
+    3568
+   ],
+   "tile": [
+    308,
+    111
+   ],
+   "evento": 1030,
+   "crudo": "5f050904020000008f260000f00d00000000000027000000000000001a000000dc068beb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700064,
+   "sprite": 60307,
+   "capa": 0,
+   "px": [
+    9860,
+    3568
+   ],
+   "tile": [
+    308,
+    111
+   ],
+   "evento": 1030,
+   "crudo": "600509040000000084260000f00d00000000000027000000000000001a000000dc0693eb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700065,
+   "sprite": 60299,
+   "capa": 2,
+   "px": [
+    7408,
+    1296
+   ],
+   "tile": [
+    231,
+    40
+   ],
+   "evento": 1022,
+   "crudo": "6105090402000000f01c0000100500000000000027000000000000001a000000dc068beb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700066,
+   "sprite": 60300,
+   "capa": 0,
+   "px": [
+    9665,
+    7568
+   ],
+   "tile": [
+    302,
+    236
+   ],
+   "evento": 1020,
+   "crudo": "6205090400000000c1250000901d00000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700067,
+   "sprite": 60300,
+   "capa": 2,
+   "px": [
+    1238,
+    5968
+   ],
+   "tile": [
+    38,
+    186
+   ],
+   "evento": 1003,
+   "crudo": "6305090402000000d6040000501700000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700068,
+   "sprite": 60300,
+   "capa": 2,
+   "px": [
+    6621,
+    5744
+   ],
+   "tile": [
+    206,
+    179
+   ],
+   "evento": 1017,
+   "crudo": "6405090402000000dd190000701600000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700069,
+   "sprite": 60300,
+   "capa": 0,
+   "px": [
+    4501,
+    5680
+   ],
+   "tile": [
+    140,
+    177
+   ],
+   "evento": 1008,
+   "crudo": "650509040000000095110000301600000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700070,
+   "sprite": 60300,
+   "capa": 0,
+   "px": [
+    1847,
+    3984
+   ],
+   "tile": [
+    57,
+    124
+   ],
+   "evento": 1010,
+   "crudo": "660509040000000037070000900f00000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700071,
+   "sprite": 60300,
+   "capa": 2,
+   "px": [
+    3991,
+    4080
+   ],
+   "tile": [
+    124,
+    127
+   ],
+   "evento": 1013,
+   "crudo": "6705090402000000970f0000f00f00000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700072,
+   "sprite": 60300,
+   "capa": 2,
+   "px": [
+    6702,
+    3760
+   ],
+   "tile": [
+    209,
+    117
+   ],
+   "evento": 1015,
+   "crudo": "68050904020000002e1a0000b00e00000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700073,
+   "sprite": 60300,
+   "capa": 2,
+   "px": [
+    9338,
+    3760
+   ],
+   "tile": [
+    291,
+    117
+   ],
+   "evento": 1029,
+   "crudo": "69050904020000007a240000b00e00000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700074,
+   "sprite": 60300,
+   "capa": 2,
+   "px": [
+    4180,
+    2096
+   ],
+   "tile": [
+    130,
+    65
+   ],
+   "evento": 1025,
+   "crudo": "6a0509040200000054100000300800000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700075,
+   "sprite": 60300,
+   "capa": 2,
+   "px": [
+    1309,
+    2096
+   ],
+   "tile": [
+    40,
+    65
+   ],
+   "evento": 1023,
+   "crudo": "6b050904020000001d050000300800000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700076,
+   "sprite": 60307,
+   "capa": 0,
+   "px": [
+    7398,
+    1264
+   ],
+   "tile": [
+    231,
+    39
+   ],
+   "evento": 1022,
+   "crudo": "6c05090400000000e61c0000f00400000000000027000000000000001a000000dc0693eb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700077,
+   "sprite": 60300,
+   "capa": 0,
+   "px": [
+    7169,
+    5584
+   ],
+   "tile": [
+    224,
+    174
+   ],
+   "evento": 1018,
+   "crudo": "6d05090400000000011c0000d01500000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700078,
+   "sprite": 60300,
+   "capa": 2,
+   "px": [
+    6454,
+    7760
+   ],
+   "tile": [
+    201,
+    242
+   ],
+   "evento": 1011,
+   "crudo": "6e0509040200000036190000501e00000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700079,
+   "sprite": 60300,
+   "capa": 2,
+   "px": [
+    3767,
+    7760
+   ],
+   "tile": [
+    117,
+    242
+   ],
+   "evento": 1005,
+   "crudo": "6f05090402000000b70e0000501e00000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700080,
+   "sprite": 60300,
+   "capa": 2,
+   "px": [
+    3960,
+    5840
+   ],
+   "tile": [
+    123,
+    182
+   ],
+   "evento": 1007,
+   "crudo": "7005090402000000780f0000d01600000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700081,
+   "sprite": 60300,
+   "capa": 0,
+   "px": [
+    4538,
+    3920
+   ],
+   "tile": [
+    141,
+    122
+   ],
+   "evento": 1014,
+   "crudo": "7105090400000000ba110000500f00000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700082,
+   "sprite": 60300,
+   "capa": 0,
+   "px": [
+    7245,
+    3600
+   ],
+   "tile": [
+    226,
+    112
+   ],
+   "evento": 1016,
+   "crudo": "72050904000000004d1c0000100e00000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700083,
+   "sprite": 60299,
+   "capa": 2,
+   "px": [
+    4722,
+    1936
+   ],
+   "tile": [
+    147,
+    60
+   ],
+   "evento": 1026,
+   "crudo": "730509040200000072120000900700000000000027000000000000001a000000dc068beb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700084,
+   "sprite": 60307,
+   "capa": 0,
+   "px": [
+    4711,
+    1904
+   ],
+   "tile": [
+    147,
+    59
+   ],
+   "evento": 1026,
+   "crudo": "740509040000000067120000700700000000000027000000000000001a000000dc0693eb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700085,
+   "sprite": 60299,
+   "capa": 2,
+   "px": [
+    1842,
+    1936
+   ],
+   "tile": [
+    57,
+    60
+   ],
+   "evento": 1024,
+   "crudo": "750509040200000032070000900700000000000027000000000000001a000000dc068beb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700086,
+   "sprite": 60307,
+   "capa": 0,
+   "px": [
+    1830,
+    1904
+   ],
+   "tile": [
+    57,
+    59
+   ],
+   "evento": 1024,
+   "crudo": "760509040000000026070000700700000000000027000000000000001a000000dc0693eb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700087,
+   "sprite": 60300,
+   "capa": 2,
+   "px": [
+    9332,
+    5712
+   ],
+   "tile": [
+    291,
+    178
+   ],
+   "evento": 1027,
+   "crudo": "770509040200000074240000501600000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700088,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -63,11 +1544,13 @@
     61,
     215
    ],
-   "crudo": "2005090400000000b2070000f01a00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "7805090400000000b2070000f01a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67700001,
+   "entity_id": 67700089,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -78,8 +1561,27 @@
     64,
     217
    ],
-   "crudo": "210509040000000004080000301b00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "790509040000000004080000301b00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67700090,
+   "sprite": 60300,
+   "capa": 0,
+   "px": [
+    1780,
+    5776
+   ],
+   "tile": [
+    55,
+    180
+   ],
+   "evento": 1004,
+   "crudo": "7a05090400000000f4060000901600000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
   }
  ]
 }

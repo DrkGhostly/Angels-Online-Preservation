@@ -101,8 +101,47 @@ def cartel_de_invitacion(ses_lider) -> bytes:
     return struct.pack('<H', CARTEL) + bytes(b)
 
 
-def lista_del_grupo(lider_id) -> bytes:
-    """El s2c 0x0024 con los miembros, tal como lo arma el servidor real."""
+def _entidad_vista(s, para):
+    """Con que entidad ve `para` al miembro `s` en su mapa, o 0 si no lo ve.
+
+    Es el u32 del +4 de cada miembro. Leido con REA en el cliente (la lista
+    la guarda 00506fc0, en bloques de 78 bytes) y visto en la captura del
+    Global (detras del id de cada miembro va su entidad, aa00e507): con ella
+    el cliente une el retrato con el personaje del mapa. Iba siempre a 0, y
+    por eso el retrato del companero salia apagado -- como si estuviera en
+    otro mapa -- y sin buffs ni vida al pasar el raton.
+    """
+    if s is para:
+        p = getattr(s, 'personaje', None)
+        return int(getattr(p, 'entity_id', 0) or 0) if p else 0
+    try:
+        import presencia as _pr
+        if (para is not None and getattr(s, '_mapa_presencia', None) is not None
+                and getattr(s, '_mapa_presencia', None) == getattr(para, '_mapa_presencia', None)):
+            return _pr.entidad_de(s)
+    except Exception:
+        pass
+    return 0
+
+
+def _vida_pct(s):
+    p = getattr(s, 'personaje', None)
+    if p is None:
+        return 0
+    try:
+        import app as _app
+        tope = _app._vida_max(p)
+    except Exception:
+        tope = getattr(p, 'hp_max', 100)
+    tope = max(1, int(tope or 1), int(getattr(p, 'hp', 0) or 0))
+    return max(0, min(100, int(round((getattr(p, 'hp', 0) or 0) * 100.0 / tope))))
+
+
+def lista_del_grupo(lider_id, para=None) -> bytes:
+    """El s2c 0x0024 con los miembros, tal como lo arma el servidor real.
+
+    `para` es quien la va a recibir: la entidad de cada miembro (+4) es la
+    que ESE cliente conoce (ver _entidad_vista)."""
     miembros = _GRUPOS.get(lider_id) or []
     b = bytearray(CABECERA + TAM_MIEMBRO * len(miembros))
     struct.pack_into('<I', b, 0, 0x0000006A)
@@ -113,7 +152,7 @@ def lista_del_grupo(lider_id) -> bytes:
         o = CABECERA + i * TAM_MIEMBRO
         p = getattr(s, 'personaje', None)
         struct.pack_into('<I', b, o, _char_id(s))
-        struct.pack_into('<I', b, o + 4, 0)
+        struct.pack_into('<I', b, o + 4, _entidad_vista(s, para))
         n = _nombre(s).encode('ascii', 'replace')[:16]
         b[o + 8:o + 8 + len(n)] = n
         if p is not None:
@@ -121,21 +160,29 @@ def lista_del_grupo(lider_id) -> bytes:
                              min(0xFFFF, int(getattr(p, 'nivel', 1) or 1)))
             struct.pack_into('<H', b, o + 26, 0)
             struct.pack_into('<I', b, o + 28, int(getattr(p, 'class_id', 1) or 1))
-            hp_cur = getattr(p, 'hp', 100) or 100
-            hp_max = max(1, getattr(p, 'hp_max', 100) or 100)
-            hp_pct = max(0, min(100, int(round(hp_cur * 100.0 / hp_max))))
-            struct.pack_into('<H', b, o + 32, hp_pct)
+            # Sobre la vida maxima de verdad (con equipo y pasivas), no la
+            # base guardada: con 600k de vida y 30k de base salia al 100%.
+            struct.pack_into('<H', b, o + 32, _vida_pct(s))
     return struct.pack('<H', LISTA) + bytes(b)
 
 
 def _avisar(lider_id):
-    """Le manda la lista nueva a todos los del grupo."""
-    paquete = lista_del_grupo(lider_id)
+    """Le manda la lista nueva a todos los del grupo, a cada uno la suya."""
     for s in list(_GRUPOS.get(lider_id) or []):
         try:
-            s.enviar(paquete)
+            s.enviar(lista_del_grupo(lider_id, para=s))
+            if hasattr(s, 'volcar'):
+                s.volcar()
         except Exception:
             log.debug('no se pudo mandar la lista', exc_info=True)
+
+
+def al_cambiar_de_mapa(ses):
+    """Al entrar en un mapa, la lista otra vez: cambia quien ve a quien
+    (los del mismo mapa se encienden, los demas se apagan)."""
+    lider = _DE_QUIEN.get(_char_id(ses))
+    if lider and lider in _GRUPOS:
+        _avisar(lider)
 
 
 def invitar(ses, nombre_invitado, buscar_sesion):
@@ -179,12 +226,41 @@ def aceptar(ses):
     return True
 
 
+EVENTO = 0x0025           # s2c, un miembro entra o se va
+SE_VA = 4
+ID_GRUPO = 0x6A           # el mismo que va en la cabecera de lista_del_grupo
+
+
+def aviso_de_salida(s) -> bytes:
+    """s2c 0x0025 tipo 4: "este miembro deja el grupo".
+
+    Medido en las capturas del IGG (mundo_172633 y mundo_172821): tras el
+    c2s 0x0018 04 (Leave Team) el servidor real manda 26 bytes,
+        04 | u32 id del grupo | u32 id del miembro | nombre (17)
+    p. ej. 04 70000000 1e010000 "KarmaV1". Antes se mandaba la lista vacia
+    (0x0024 sin miembros) y el cliente no lo tomaba como una salida: seguia
+    viendose en el grupo y no podia volver a dejarlo.
+    """
+    n = _nombre(s).encode('ascii', 'replace')[:16]
+    return (struct.pack('<HBII', EVENTO, SE_VA, ID_GRUPO, _char_id(s))
+            + n + bytes(17 - len(n)))
+
+
+def _mandar_a(sesiones, *paquetes):
+    for s in sesiones:
+        try:
+            s.enviar(*paquetes)
+            if hasattr(s, 'volcar'):
+                s.volcar()
+        except Exception:
+            log.debug('no se pudo avisar al grupo', exc_info=True)
+
+
 def salir(ses):
     """El jugador deja el grupo, o se desconecta.
 
-    Si se va el lider el grupo se deshace: no se sabe que paquete usa el
-    servidor real para pasar el mando -- grouppromote va por el mismo 0x0018
-    y no se capturo -- y dejar un grupo sin lider es peor que deshacerlo.
+    Si se va el lider, o queda uno solo, el grupo se deshace: a cada uno le
+    llega la salida de todos los demas y la suya.
     """
     yo = _char_id(ses)
     _PENDIENTES.pop(yo, None)
@@ -194,33 +270,86 @@ def salir(ses):
     miembros = _GRUPOS.get(lider) or []
     if ses in miembros:
         miembros.remove(ses)
+    salida_mia = aviso_de_salida(ses)
     if yo == lider or len(miembros) <= 1:
         for s in list(miembros):
             _DE_QUIEN.pop(_char_id(s), None)
         _GRUPOS.pop(lider, None)
-        vacia = struct.pack('<H', LISTA) + bytes(CABECERA)
-        for s in miembros + [ses]:
-            try:
-                s.enviar(vacia)
-            except Exception:
-                pass
+        todos = miembros + [ses]
+        avisos = [aviso_de_salida(s) for s in todos]
+        _mandar_a(todos, *avisos)
         log.info('el grupo de %s se deshace', lider)
     else:
         _GRUPOS[lider] = miembros
+        _mandar_a(miembros + [ses], salida_mia)
         _avisar(lider)
-        try:
-            ses.enviar(struct.pack('<H', LISTA) + bytes(CABECERA))
-        except Exception:
-            pass
+        log.info('%s deja el grupo de %s', _nombre(ses), lider)
     return True
 
 
-def accion(ses, codigo):
-    """El c2s 0x0018. Solo el 1 (aceptar) esta medido."""
+def _miembro(lider, objetivo):
+    """La sesion del grupo con ese id: el char_id (el de la lista) o el id
+    publico con el que se le ve (presencia.entidad_de)."""
+    try:
+        import presencia as _pr
+    except Exception:
+        _pr = None
+    for s in _GRUPOS.get(lider) or []:
+        if _char_id(s) == objetivo or (_pr and _pr.entidad_de(s) == objetivo):
+            return s
+    return None
+
+
+def expulsar(ses, objetivo):
+    """El lider echa a un miembro (0x0018 02 + id)."""
+    lider = _DE_QUIEN.get(_char_id(ses))
+    if lider != _char_id(ses):
+        return False
+    otro = _miembro(lider, objetivo)
+    if otro is None or otro is ses:
+        return False
+    return salir(otro)
+
+
+def ascender(ses, objetivo):
+    """El lider le pasa el mando a otro miembro (0x0018 03 + id)."""
+    lider = _DE_QUIEN.get(_char_id(ses))
+    if lider != _char_id(ses):
+        return False
+    otro = _miembro(lider, objetivo)
+    if otro is None or otro is ses:
+        return False
+    miembros = _GRUPOS.pop(lider, [])
+    nuevo = _char_id(otro)
+    miembros = [otro] + [s for s in miembros if s is not otro]
+    _GRUPOS[nuevo] = miembros
+    for s in miembros:
+        _DE_QUIEN[_char_id(s)] = nuevo
+    _avisar(nuevo)
+    log.info('%s pasa el mando del grupo a %s', _nombre(ses), _nombre(otro))
+    return True
+
+
+EXPULSAR = 2
+ASCENDER = 3
+DEJAR = 4
+
+
+def accion(ses, codigo, cuerpo=b''):
+    """El c2s 0x0018: [u8 accion][u32 id del miembro, si va a alguien].
+
+    Medido en el IGG: 01 aceptar; 04 dejar el grupo (Leave Team); 02 con el
+    id de un miembro, al que luego se vuelve a invitar (expulsar); 03 con el
+    id del lider, mandado por otro miembro (pasar el mando). El 02 y el 03
+    no traen respuesta capturada: son lo que sugiere lo que pasa despues.
+    """
+    objetivo = struct.unpack_from('<I', cuerpo, 1)[0] if len(cuerpo) >= 5 else 0
     if codigo == ACEPTAR:
         return 'aceptar' if aceptar(ses) else 'nada'
-    # Las otras cinco -- deny, disband, kick, leave, promote -- van por el
-    # mismo opcode y no se capturaron. Tratarlas como "salir" es lo seguro.
+    if codigo == EXPULSAR:
+        return 'expulsar' if expulsar(ses, objetivo) else 'nada'
+    if codigo == ASCENDER:
+        return 'ascender' if ascender(ses, objetivo) else 'nada'
     return 'salir' if salir(ses) else 'nada'
 
 

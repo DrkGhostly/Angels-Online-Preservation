@@ -1,5 +1,5 @@
 {
- "_nota": "magic_kichen_path (stage 73). Poblado desde una captura del cliente GLOBAL, cuyo 0x0008 mide 46 bytes y no trae nombre: el nombre y el nivel salen de content.db por npc_type. Sin objetos de mapa: los 0x000E del Global miden 26 bytes y aqui se guardan crudos, asi que reenviarlos romperia nuestro cliente. Ver tools/poblar_instancia_global.py. Los objetos de mapa siguen vacios, pero los TORNADOS ya se dibujan: salen de portales.json, con la casilla sacada de map073.mpc. Ver tools/mapa_del_cliente.py.",
+ "_nota": "magic_kichen_path (stage 73). Poblado desde una captura del cliente GLOBAL, cuyo 0x0008 mide 46 bytes y no trae nombre: el nombre y el nivel salen de content.db por npc_type. Sin objetos de mapa: los 0x000E del Global miden 26 bytes y aqui se guardan crudos, asi que reenviarlos romperia nuestro cliente. Ver tools/poblar_instancia_global.py. Los objetos de mapa siguen vacios, pero los TORNADOS ya se dibujan: salen de portales.json, con la casilla sacada de map073.mpc. Ver tools/mapa_del_cliente.py. EL GUARD FASIT NO VA DE INICIO: es el unico generador de la zona 82, y esa zona la saca el evento 200 (GENERATE 82) cuando las seis salas 210..215 estan en estado 2. Se quito de los spawns el 14/10/2026; las barreras de las salas las pone tools/objetos_de_instancia.py. TAMPOCO LOS MUD LORDS NI EL AZRAEL 2. Los Mud Lord son el generador de la zona 81, que solo sale por evento (el 200 al encender las antorchas, el 300 con ENABLE_GENERATOR al morir el Guard Fasit): los 6 de la captura eran una oleada que el jugador del Global ya habia sacado. El Azrael 2 no esta en ningun generador ni evento de map073.mpc. ANTORCHAS (14/10/2026): fuera los Busy Jackstraw de las zonas 210..216. Son las antorchas ENCENDIDAS: las saca el arbol de dialogo de cada antorcha (GENERATE 21x) si llevas Flint (4673), que gasta, y el evento 200 pide las seis encendidas para sacar al Guard Fasit y los Mud Lord. Los de 217..230 se dejan: de ellos dependen las barreras de las salas (GENERATOR_ALIVE 218.. = 0). OLEADAS: fuera 31 bichos de la captura que salen por evento (tools/quitar_oleadas.py).",
  "stage": 73,
  "spawns": [
   {
@@ -991,96 +991,6 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 53
-  },
-  {
-   "entity_id": 572392194,
-   "nombre": "Busy Jackstraw",
-   "npc_type": 708,
-   "sprite": 42004,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    121,
-    19
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 1
-  },
-  {
-   "entity_id": 572457731,
-   "nombre": "Busy Jackstraw",
-   "npc_type": 708,
-   "sprite": 42004,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    121,
-    18
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 1
-  },
-  {
-   "entity_id": 572523268,
-   "nombre": "Busy Jackstraw",
-   "npc_type": 708,
-   "sprite": 42004,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    119,
-    18
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 1
-  },
-  {
-   "entity_id": 572588805,
-   "nombre": "Busy Jackstraw",
-   "npc_type": 708,
-   "sprite": 42004,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    118,
-    19
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 1
-  },
-  {
-   "entity_id": 572654342,
-   "nombre": "Busy Jackstraw",
-   "npc_type": 708,
-   "sprite": 42004,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    119,
-    21
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 1
-  },
-  {
-   "entity_id": 572719879,
-   "nombre": "Busy Jackstraw",
-   "npc_type": 708,
-   "sprite": 42004,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    121,
-    21
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 1
   },
   {
    "entity_id": 1365573689,
@@ -4833,381 +4743,6 @@
    "nivel": 58
   },
   {
-   "entity_id": 1384645378,
-   "nombre": "Busy Jackstraw",
-   "npc_type": 708,
-   "sprite": 42004,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    121,
-    19
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 1
-  },
-  {
-   "entity_id": 1384710915,
-   "nombre": "Busy Jackstraw",
-   "npc_type": 708,
-   "sprite": 42004,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    121,
-    18
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 1
-  },
-  {
-   "entity_id": 1384776452,
-   "nombre": "Busy Jackstraw",
-   "npc_type": 708,
-   "sprite": 42004,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    119,
-    18
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 1
-  },
-  {
-   "entity_id": 1384841989,
-   "nombre": "Busy Jackstraw",
-   "npc_type": 708,
-   "sprite": 42004,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    118,
-    19
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 1
-  },
-  {
-   "entity_id": 1384907526,
-   "nombre": "Busy Jackstraw",
-   "npc_type": 708,
-   "sprite": 42004,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    119,
-    21
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 1
-  },
-  {
-   "entity_id": 1384973063,
-   "nombre": "Busy Jackstraw",
-   "npc_type": 708,
-   "sprite": 42004,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    121,
-    21
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 1
-  },
-  {
-   "entity_id": 1385038600,
-   "nombre": "Guard Fasit",
-   "npc_type": 888,
-   "sprite": 42326,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    64,
-    93
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 60
-  },
-  {
-   "entity_id": 1385104137,
-   "nombre": "Mud Lord",
-   "npc_type": 871,
-   "sprite": 42313,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    46,
-    79
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 50
-  },
-  {
-   "entity_id": 1385169674,
-   "nombre": "Mud Lord",
-   "npc_type": 871,
-   "sprite": 42313,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    46,
-    79
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 50
-  },
-  {
-   "entity_id": 1385235211,
-   "nombre": "Mud Lord",
-   "npc_type": 871,
-   "sprite": 42313,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    42,
-    80
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 50
-  },
-  {
-   "entity_id": 1385300748,
-   "nombre": "Mud Lord",
-   "npc_type": 871,
-   "sprite": 42313,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    41,
-    83
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 50
-  },
-  {
-   "entity_id": 1385366285,
-   "nombre": "Mud Lord",
-   "npc_type": 871,
-   "sprite": 42313,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    44,
-    81
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 50
-  },
-  {
-   "entity_id": 1385431822,
-   "nombre": "Mud Lord",
-   "npc_type": 871,
-   "sprite": 42313,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    44,
-    78
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 50
-  },
-  {
-   "entity_id": 1385562896,
-   "nombre": "Busy Jackstraw",
-   "npc_type": 708,
-   "sprite": 42004,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    120,
-    24
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 1
-  },
-  {
-   "entity_id": 1386283803,
-   "nombre": "Azrael 2",
-   "npc_type": 227,
-   "sprite": 42145,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    60,
-    164
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 85
-  },
-  {
-   "entity_id": 1386349340,
-   "nombre": "Busy Jackstraw",
-   "npc_type": 708,
-   "sprite": 42004,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    335,
-    69
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 1
-  },
-  {
-   "entity_id": 1386414877,
-   "nombre": "Busy Jackstraw",
-   "npc_type": 708,
-   "sprite": 42004,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    338,
-    68
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 1
-  },
-  {
-   "entity_id": 1386480414,
-   "nombre": "Busy Jackstraw",
-   "npc_type": 708,
-   "sprite": 42004,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    335,
-    65
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 1
-  },
-  {
-   "entity_id": 1386545951,
-   "nombre": "Guard Fire Barft",
-   "npc_type": 890,
-   "sprite": 42328,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    34,
-    168
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 62
-  },
-  {
-   "entity_id": 1386611488,
-   "nombre": "Busy Jackstraw",
-   "npc_type": 708,
-   "sprite": 42004,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    338,
-    65
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 1
-  },
-  {
-   "entity_id": 1386808099,
-   "nombre": "Busy Jackstraw",
-   "npc_type": 708,
-   "sprite": 42004,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    342,
-    64
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 1
-  },
-  {
-   "entity_id": 1386873636,
-   "nombre": "Soul-eating Worm",
-   "npc_type": 814,
-   "sprite": 42300,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    177,
-    190
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 55
-  },
-  {
-   "entity_id": 1386939173,
-   "nombre": "Soul-eating Worm",
-   "npc_type": 814,
-   "sprite": 42300,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    177,
-    190
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 55
-  },
-  {
-   "entity_id": 1387004710,
-   "nombre": "Soul-eating Worm",
-   "npc_type": 814,
-   "sprite": 42300,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    177,
-    190
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 55
-  },
-  {
-   "entity_id": 1387070247,
-   "nombre": "Soul-eating Worm",
-   "npc_type": 814,
-   "sprite": 42300,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    177,
-    190
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 55
-  },
-  {
    "entity_id": 1387135784,
    "nombre": "Tail Rotten Rat",
    "npc_type": 903,
@@ -5283,276 +4818,6 @@
    "nivel": 60
   },
   {
-   "entity_id": 1387725617,
-   "nombre": "Busy Jackstraw",
-   "npc_type": 708,
-   "sprite": 42004,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    342,
-    69
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 1
-  },
-  {
-   "entity_id": 1387791154,
-   "nombre": "Soul-eating Worm",
-   "npc_type": 814,
-   "sprite": 42300,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    249,
-    93
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 55
-  },
-  {
-   "entity_id": 1387856691,
-   "nombre": "Soul-eating Worm",
-   "npc_type": 814,
-   "sprite": 42300,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    249,
-    93
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 55
-  },
-  {
-   "entity_id": 1387922228,
-   "nombre": "Soul-eating Worm",
-   "npc_type": 814,
-   "sprite": 42300,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    248,
-    98
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 55
-  },
-  {
-   "entity_id": 1387987765,
-   "nombre": "Soul-eating Worm",
-   "npc_type": 814,
-   "sprite": 42300,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    243,
-    92
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 55
-  },
-  {
-   "entity_id": 1388118839,
-   "nombre": "Busy Jackstraw",
-   "npc_type": 708,
-   "sprite": 42004,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    342,
-    66
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 1
-  },
-  {
-   "entity_id": 1388184376,
-   "nombre": "Soul-eating Worm",
-   "npc_type": 814,
-   "sprite": 42300,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    322,
-    94
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 55
-  },
-  {
-   "entity_id": 1388249913,
-   "nombre": "Soul-eating Worm",
-   "npc_type": 814,
-   "sprite": 42300,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    319,
-    98
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 55
-  },
-  {
-   "entity_id": 1388315450,
-   "nombre": "Soul-eating Worm",
-   "npc_type": 814,
-   "sprite": 42300,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    319,
-    98
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 55
-  },
-  {
-   "entity_id": 1388380987,
-   "nombre": "Soul-eating Worm",
-   "npc_type": 814,
-   "sprite": 42300,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    322,
-    94
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 55
-  },
-  {
-   "entity_id": 1388446524,
-   "nombre": "Busy Jackstraw",
-   "npc_type": 708,
-   "sprite": 42004,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    342,
-    61
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 1
-  },
-  {
-   "entity_id": 1388512061,
-   "nombre": "Soul-eating Worm",
-   "npc_type": 814,
-   "sprite": 42300,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    259,
-    197
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 55
-  },
-  {
-   "entity_id": 1388577598,
-   "nombre": "Soul-eating Worm",
-   "npc_type": 814,
-   "sprite": 42300,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    253,
-    196
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 55
-  },
-  {
-   "entity_id": 1388643135,
-   "nombre": "Soul-eating Worm",
-   "npc_type": 814,
-   "sprite": 42300,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    259,
-    197
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 55
-  },
-  {
-   "entity_id": 1388708672,
-   "nombre": "Soul-eating Worm",
-   "npc_type": 814,
-   "sprite": 42300,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    259,
-    197
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 55
-  },
-  {
-   "entity_id": 1388774209,
-   "nombre": "Busy Jackstraw",
-   "npc_type": 708,
-   "sprite": 42004,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    342,
-    62
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 1
-  },
-  {
-   "entity_id": 1388839746,
-   "nombre": "Soul-eating Worm",
-   "npc_type": 814,
-   "sprite": 42300,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    212,
-    200
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 55
-  },
-  {
-   "entity_id": 1388905283,
-   "nombre": "Soul-eating Worm",
-   "npc_type": 814,
-   "sprite": 42300,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    212,
-    200
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 55
-  },
-  {
    "entity_id": 1388970820,
    "nombre": "Soul-eating Worm",
    "npc_type": 814,
@@ -5581,52 +4846,3182 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 55
-  },
+  }
+ ],
+ "recursos": [
   {
-   "entity_id": 1389101894,
-   "nombre": "Soul Slalin",
-   "npc_type": 810,
-   "sprite": 42280,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    315,
-    181
+   "entity_id": 67300000,
+   "sprite": 60094,
+   "capa": 0,
+   "px": [
+    3264,
+    336
    ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 65
-  },
-  {
-   "entity_id": 1389167431,
-   "nombre": "Busy Jackstraw",
-   "npc_type": 708,
-   "sprite": 42004,
-   "klass": 1,
-   "monstruo": true,
    "tile": [
-    342,
-    58
+    102,
+    10
    ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 1
+   "evento": 102,
+   "crudo": "a0ea020400000000c00c0000500100000000000027000000000000001a000000dc06beea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60094",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 1389232968,
-   "nombre": "Soul-eating Worm",
-   "npc_type": 814,
-   "sprite": 42300,
-   "klass": 1,
-   "monstruo": true,
+   "entity_id": 67300001,
+   "sprite": 60308,
+   "capa": 0,
+   "px": [
+    480,
+    3280
+   ],
+   "tile": [
+    15,
+    102
+   ],
+   "evento": 0,
+   "crudo": "a1ea020400000000e0010000d00c00000000000027000000000000001a000000dc0694eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60308",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300002,
+   "sprite": 60094,
+   "capa": 0,
+   "px": [
+    3968,
+    5168
+   ],
+   "tile": [
+    124,
+    161
+   ],
+   "evento": 109,
+   "crudo": "a2ea020400000000800f0000301400000000000027000000000000001a000000dc06beea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60094",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300003,
+   "sprite": 60298,
+   "capa": 0,
+   "px": [
+    3234,
+    5232
+   ],
+   "tile": [
+    101,
+    163
+   ],
+   "evento": 0,
+   "crudo": "a3ea020400000000a20c0000701400000000000027000000000000001a000000dc068aeb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60298",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300004,
+   "sprite": 60094,
+   "capa": 0,
+   "px": [
+    192,
+    5584
+   ],
+   "tile": [
+    6,
+    174
+   ],
+   "evento": 115,
+   "crudo": "a4ea020400000000c0000000d01500000000000027000000000000001a000000dc06beea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60094",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300005,
+   "sprite": 60094,
+   "capa": 0,
+   "px": [
+    3809,
+    5680
+   ],
+   "tile": [
+    119,
+    177
+   ],
+   "evento": 110,
+   "crudo": "a5ea020400000000e10e0000301600000000000027000000000000001a000000dc06beea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60094",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300006,
+   "sprite": 60094,
+   "capa": 0,
+   "px": [
+    3584,
+    6512
+   ],
+   "tile": [
+    112,
+    203
+   ],
+   "evento": 111,
+   "crudo": "a6ea020400000000000e0000701900000000000027000000000000001a000000dc06beea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60094",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300007,
+   "sprite": 60094,
+   "capa": 0,
+   "px": [
+    166,
+    4784
+   ],
+   "tile": [
+    5,
+    149
+   ],
+   "evento": 113,
+   "crudo": "a7ea020400000000a6000000b01200000000000027000000000000001a000000dc06beea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60094",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300008,
+   "sprite": 60094,
+   "capa": 0,
+   "px": [
+    1152,
+    5904
+   ],
+   "tile": [
+    36,
+    184
+   ],
+   "evento": 114,
+   "crudo": "a8ea02040000000080040000101700000000000027000000000000001a000000dc06beea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60094",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300009,
+   "sprite": 60038,
+   "capa": 0,
+   "px": [
+    6384,
+    3376
+   ],
+   "tile": [
+    199,
+    105
+   ],
+   "evento": 0,
+   "crudo": "a9ea020400000000f0180000300d00000000000027000000000000001a000000dc0686ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300010,
+   "sprite": 60038,
+   "capa": 0,
+   "px": [
+    6596,
+    3248
+   ],
+   "tile": [
+    206,
+    101
+   ],
+   "evento": 0,
+   "crudo": "aaea020400000000c4190000b00c00000000000027000000000000001a000000dc0686ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300011,
+   "sprite": 60038,
+   "capa": 0,
+   "px": [
+    6627,
+    3440
+   ],
+   "tile": [
+    207,
+    107
+   ],
+   "evento": 0,
+   "crudo": "abea020400000000e3190000700d00000000000027000000000000001a000000dc0686ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300012,
+   "sprite": 60038,
+   "capa": 0,
+   "px": [
+    658,
+    6512
+   ],
+   "tile": [
+    20,
+    203
+   ],
+   "evento": 0,
+   "crudo": "acea02040000000092020000701900000000000027000000000000001a000000dc0686ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300013,
+   "sprite": 60038,
+   "capa": 0,
+   "px": [
+    779,
+    6416
+   ],
+   "tile": [
+    24,
+    200
+   ],
+   "evento": 0,
+   "crudo": "adea0204000000000b030000101900000000000027000000000000001a000000dc0686ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300014,
+   "sprite": 60094,
+   "capa": 0,
+   "px": [
+    2146,
+    5136
+   ],
+   "tile": [
+    67,
+    160
+   ],
+   "evento": 116,
+   "crudo": "aeea02040000000062080000101400000000000027000000000000001a000000dc06beea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60094",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300015,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1423,
+    2800
+   ],
+   "tile": [
+    44,
+    87
+   ],
+   "evento": 200,
+   "crudo": "afea0204000000008f050000f00a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300016,
+   "sprite": 60300,
+   "capa": 2,
+   "px": [
+    3073,
+    5008
+   ],
+   "tile": [
+    96,
+    156
+   ],
+   "evento": 51,
+   "crudo": "b0ea020402000000010c0000901300000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300017,
+   "sprite": 60300,
+   "capa": 0,
+   "px": [
+    9060,
+    1552
+   ],
+   "tile": [
+    283,
+    48
+   ],
+   "evento": 55,
+   "crudo": "b1ea02040000000064230000100600000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300018,
+   "sprite": 60243,
+   "capa": 0,
+   "px": [
+    6311,
+    3632
+   ],
+   "tile": [
+    197,
+    113
+   ],
+   "evento": 999,
+   "material": 153,
+   "nombre_visible": "Flint Ore",
+   "crudo": "b2ea020400000000a7180000300e00000000000027000000000000001a000000dc0653eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60243",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300019,
+   "sprite": 60005,
+   "capa": 0,
+   "px": [
+    1080,
+    432
+   ],
+   "tile": [
+    33,
+    13
+   ],
+   "evento": 0,
+   "crudo": "b3ea02040000000038040000b00100000000000027000000000000001a000000dc0665ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300020,
+   "sprite": 60005,
+   "capa": 0,
+   "px": [
+    1297,
+    464
+   ],
+   "tile": [
+    40,
+    14
+   ],
+   "evento": 0,
+   "crudo": "b4ea02040000000011050000d00100000000000027000000000000001a000000dc0665ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300021,
+   "sprite": 60005,
+   "capa": 0,
+   "px": [
+    1206,
+    272
+   ],
+   "tile": [
+    37,
+    8
+   ],
+   "evento": 0,
+   "crudo": "b5ea020400000000b6040000100100000000000027000000000000001a000000dc0665ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300022,
+   "sprite": 60034,
+   "capa": 0,
+   "px": [
+    10680,
+    6512
+   ],
+   "tile": [
+    333,
+    203
+   ],
+   "evento": 0,
+   "crudo": "b6ea020400000000b8290000701900000000000027000000000000001a000000dc0682ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300023,
+   "sprite": 60034,
+   "capa": 0,
+   "px": [
+    10610,
+    6288
+   ],
+   "tile": [
+    331,
+    196
+   ],
+   "evento": 0,
+   "crudo": "b7ea02040000000072290000901800000000000027000000000000001a000000dc0682ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300024,
+   "sprite": 60034,
+   "capa": 0,
+   "px": [
+    10729,
+    6416
+   ],
+   "tile": [
+    335,
+    200
+   ],
+   "evento": 0,
+   "crudo": "b8ea020400000000e9290000101900000000000027000000000000001a000000dc0682ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300025,
+   "sprite": 60034,
+   "capa": 0,
+   "px": [
+    10722,
+    784
+   ],
+   "tile": [
+    335,
+    24
+   ],
+   "evento": 0,
+   "crudo": "b9ea020400000000e2290000100300000000000027000000000000001a000000dc0682ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300026,
+   "sprite": 60034,
+   "capa": 0,
+   "px": [
+    10674,
+    624
+   ],
+   "tile": [
+    333,
+    19
+   ],
+   "evento": 0,
+   "crudo": "baea020400000000b2290000700200000000000027000000000000001a000000dc0682ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300027,
+   "sprite": 60034,
+   "capa": 0,
+   "px": [
+    10795,
+    688
+   ],
+   "tile": [
+    337,
+    21
+   ],
+   "evento": 0,
+   "crudo": "bbea0204000000002b2a0000b00200000000000027000000000000001a000000dc0682ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300028,
+   "sprite": 60300,
+   "capa": 0,
+   "px": [
+    2522,
+    3088
+   ],
+   "tile": [
+    78,
+    96
+   ],
+   "evento": 50,
+   "crudo": "bcea020400000000da090000100c00000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300029,
+   "sprite": 60300,
+   "capa": 2,
+   "px": [
+    351,
+    5712
+   ],
+   "tile": [
+    10,
+    178
+   ],
+   "evento": 54,
+   "crudo": "bdea0204020000005f010000501600000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300030,
+   "sprite": 60308,
+   "capa": 0,
+   "px": [
+    3264,
+    336
+   ],
+   "tile": [
+    102,
+    10
+   ],
+   "evento": 0,
+   "crudo": "beea020400000000c00c0000500100000000000027000000000000001a000000dc0694eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60308",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300031,
+   "sprite": 60301,
+   "capa": 0,
+   "px": [
+    3255,
+    496
+   ],
+   "tile": [
+    101,
+    15
+   ],
+   "evento": 0,
+   "crudo": "bfea020400000000b70c0000f00100000000000027000000000000001a000000dc068deb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60301",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300032,
+   "sprite": 60301,
+   "capa": 0,
+   "px": [
+    3255,
+    496
+   ],
+   "tile": [
+    101,
+    15
+   ],
+   "evento": 0,
+   "crudo": "c0ea020400000000b70c0000f00100000000000027000000000000001a000000dc068deb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60301",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300033,
+   "sprite": 60282,
+   "capa": 0,
+   "px": [
+    8888,
+    1744
+   ],
+   "tile": [
+    277,
+    54
+   ],
+   "evento": 0,
+   "crudo": "c1ea020400000000b8220000d00600000000000027000000000000001a000000dc067aeb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60282",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300034,
+   "sprite": 60094,
+   "capa": 0,
+   "px": [
+    512,
+    1008
+   ],
+   "tile": [
+    16,
+    31
+   ],
+   "evento": 103,
+   "crudo": "c2ea02040000000000020000f00300000000000027000000000000001a000000dc06beea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60094",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300035,
+   "sprite": 60094,
+   "capa": 0,
+   "px": [
+    3712,
+    1936
+   ],
+   "tile": [
+    116,
+    60
+   ],
+   "evento": 104,
+   "crudo": "c3ea020400000000800e0000900700000000000027000000000000001a000000dc06beea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60094",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300036,
+   "sprite": 60094,
+   "capa": 0,
+   "px": [
+    2816,
+    2416
+   ],
+   "tile": [
+    88,
+    75
+   ],
+   "evento": 105,
+   "crudo": "c4ea020400000000000b0000700900000000000027000000000000001a000000dc06beea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60094",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300037,
+   "sprite": 60308,
+   "capa": 0,
+   "px": [
+    224,
+    1392
+   ],
+   "tile": [
+    7,
+    43
+   ],
+   "evento": 0,
+   "crudo": "c5ea020400000000e0000000700500000000000027000000000000001a000000dc0694eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60308",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300038,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1448,
+    2768
+   ],
+   "tile": [
+    45,
+    86
+   ],
+   "evento": 200,
+   "crudo": "c6ea020400000000a8050000d00a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300039,
+   "sprite": 60282,
+   "capa": 0,
+   "px": [
+    2354,
+    3280
+   ],
+   "tile": [
+    73,
+    102
+   ],
+   "evento": 0,
+   "crudo": "c7ea02040000000032090000d00c00000000000027000000000000001a000000dc067aeb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60282",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300040,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1471,
+    2736
+   ],
+   "tile": [
+    45,
+    85
+   ],
+   "evento": 200,
+   "crudo": "c8ea020400000000bf050000b00a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300041,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1491,
+    2704
+   ],
+   "tile": [
+    46,
+    84
+   ],
+   "evento": 200,
+   "crudo": "c9ea020400000000d3050000900a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300042,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1511,
+    2672
+   ],
+   "tile": [
+    47,
+    83
+   ],
+   "evento": 200,
+   "crudo": "caea020400000000e7050000700a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300043,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1532,
+    2640
+   ],
+   "tile": [
+    47,
+    82
+   ],
+   "evento": 200,
+   "crudo": "cbea020400000000fc050000500a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300044,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1551,
+    2608
+   ],
+   "tile": [
+    48,
+    81
+   ],
+   "evento": 200,
+   "crudo": "ccea0204000000000f060000300a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300045,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1569,
+    2576
+   ],
+   "tile": [
+    49,
+    80
+   ],
+   "evento": 200,
+   "crudo": "cdea02040000000021060000100a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300046,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1585,
+    2544
+   ],
+   "tile": [
+    49,
+    79
+   ],
+   "evento": 200,
+   "crudo": "ceea02040000000031060000f00900000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300047,
+   "sprite": 60157,
+   "capa": 0,
+   "px": [
+    1610,
+    2512
+   ],
+   "tile": [
+    50,
+    78
+   ],
+   "evento": 200,
+   "crudo": "cfea0204000000004a060000d00900000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300048,
+   "sprite": 60035,
+   "capa": 0,
+   "px": [
+    1610,
+    2480
+   ],
+   "tile": [
+    50,
+    77
+   ],
+   "evento": 200,
+   "crudo": "d0ea0204000000004a060000b00900000000000027000000000000001a000000dc0683ea00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300049,
+   "sprite": 60037,
+   "capa": 0,
+   "px": [
+    1874,
+    3024
+   ],
+   "tile": [
+    58,
+    94
+   ],
+   "evento": 0,
+   "crudo": "d1ea02040000000052070000d00b00000000000027000000000000001a000000dc0685ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300050,
+   "sprite": 60301,
+   "capa": 0,
+   "px": [
+    3255,
+    496
+   ],
+   "tile": [
+    101,
+    15
+   ],
+   "evento": 0,
+   "crudo": "d2ea020400000000b70c0000f00100000000000027000000000000001a000000dc068deb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60301",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300051,
+   "sprite": 60301,
+   "capa": 0,
+   "px": [
+    3256,
+    496
+   ],
+   "tile": [
+    101,
+    15
+   ],
+   "evento": 0,
+   "crudo": "d3ea020400000000b80c0000f00100000000000027000000000000001a000000dc068deb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60301",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300052,
+   "sprite": 60037,
+   "capa": 0,
+   "px": [
+    1758,
+    2960
+   ],
+   "tile": [
+    54,
+    92
+   ],
+   "evento": 0,
+   "crudo": "d4ea020400000000de060000900b00000000000027000000000000001a000000dc0685ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300053,
+   "sprite": 60037,
+   "capa": 0,
+   "px": [
+    1854,
+    2864
+   ],
+   "tile": [
+    57,
+    89
+   ],
+   "evento": 0,
+   "crudo": "d5ea0204000000003e070000300b00000000000027000000000000001a000000dc0685ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300054,
+   "sprite": 60037,
+   "capa": 0,
+   "px": [
+    1938,
+    2736
+   ],
+   "tile": [
+    60,
+    85
+   ],
+   "evento": 0,
+   "crudo": "d6ea02040000000092070000b00a00000000000027000000000000001a000000dc0685ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300055,
+   "sprite": 60037,
+   "capa": 0,
+   "px": [
+    2039,
+    2800
+   ],
+   "tile": [
+    63,
+    87
+   ],
+   "evento": 0,
+   "crudo": "d7ea020400000000f7070000f00a00000000000027000000000000001a000000dc0685ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300056,
+   "sprite": 60037,
+   "capa": 0,
+   "px": [
+    1394,
+    2704
+   ],
+   "tile": [
+    43,
+    84
+   ],
+   "evento": 0,
+   "crudo": "d8ea02040000000072050000900a00000000000027000000000000001a000000dc0685ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300057,
+   "sprite": 60037,
+   "capa": 0,
+   "px": [
+    1322,
+    2672
+   ],
+   "tile": [
+    41,
+    83
+   ],
+   "evento": 0,
+   "crudo": "d9ea0204000000002a050000700a00000000000027000000000000001a000000dc0685ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300058,
+   "sprite": 60037,
+   "capa": 0,
+   "px": [
+    1433,
+    2608
+   ],
+   "tile": [
+    44,
+    81
+   ],
+   "evento": 0,
+   "crudo": "daea02040000000099050000300a00000000000027000000000000001a000000dc0685ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300059,
+   "sprite": 60037,
+   "capa": 0,
+   "px": [
+    1498,
+    2544
+   ],
+   "tile": [
+    46,
+    79
+   ],
+   "evento": 0,
+   "crudo": "dbea020400000000da050000f00900000000000027000000000000001a000000dc0685ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300060,
+   "sprite": 60037,
+   "capa": 0,
+   "px": [
+    1351,
+    2576
+   ],
+   "tile": [
+    42,
+    80
+   ],
+   "evento": 0,
+   "crudo": "dcea02040000000047050000100a00000000000027000000000000001a000000dc0685ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300061,
+   "sprite": 60037,
+   "capa": 0,
+   "px": [
+    1410,
+    2512
+   ],
+   "tile": [
+    44,
+    78
+   ],
+   "evento": 0,
+   "crudo": "ddea02040000000082050000d00900000000000027000000000000001a000000dc0685ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300062,
+   "sprite": 60094,
+   "capa": 0,
+   "px": [
+    512,
+    4432
+   ],
+   "tile": [
+    16,
+    138
+   ],
+   "evento": 108,
+   "crudo": "deea02040000000000020000501100000000000027000000000000001a000000dc06beea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60094",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300063,
+   "sprite": 60094,
+   "capa": 0,
+   "px": [
+    1760,
+    6224
+   ],
+   "tile": [
+    55,
+    194
+   ],
+   "evento": 112,
+   "crudo": "dfea020400000000e0060000501800000000000027000000000000001a000000dc06beea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60094",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300064,
+   "sprite": 60282,
+   "capa": 0,
+   "px": [
+    1656,
+    5744
+   ],
+   "tile": [
+    51,
+    179
+   ],
+   "evento": 0,
+   "crudo": "e0ea02040000000078060000701600000000000027000000000000001a000000dc067aeb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60282",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300065,
+   "sprite": 60298,
+   "capa": 0,
+   "px": [
+    511,
+    5904
+   ],
+   "tile": [
+    15,
+    184
+   ],
+   "evento": 0,
+   "crudo": "e1ea020400000000ff010000101700000000000027000000000000001a000000dc068aeb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60298",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300066,
+   "sprite": 60301,
+   "capa": 0,
+   "px": [
+    3253,
+    496
+   ],
+   "tile": [
+    101,
+    15
+   ],
+   "evento": 0,
+   "crudo": "e2ea020400000000b50c0000f00100000000000027000000000000001a000000dc068deb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60301",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300067,
+   "sprite": 60308,
+   "capa": 0,
+   "px": [
+    512,
+    1008
+   ],
+   "tile": [
+    16,
+    31
+   ],
+   "evento": 0,
+   "crudo": "e3ea02040000000000020000f00300000000000027000000000000001a000000dc0694eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60308",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300068,
+   "sprite": 60094,
+   "capa": 0,
+   "px": [
+    224,
+    1392
+   ],
+   "tile": [
+    7,
+    43
+   ],
+   "evento": 106,
+   "crudo": "e4ea020400000000e0000000700500000000000027000000000000001a000000dc06beea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60094",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300069,
+   "sprite": 60308,
+   "capa": 0,
+   "px": [
+    3712,
+    1936
+   ],
+   "tile": [
+    116,
+    60
+   ],
+   "evento": 0,
+   "crudo": "e5ea020400000000800e0000900700000000000027000000000000001a000000dc0694eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60308",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300070,
+   "sprite": 60094,
+   "capa": 0,
+   "px": [
+    480,
+    3280
+   ],
+   "tile": [
+    15,
+    102
+   ],
+   "evento": 107,
+   "crudo": "e6ea020400000000e0010000d00c00000000000027000000000000001a000000dc06beea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60094",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300071,
+   "sprite": 60308,
+   "capa": 0,
+   "px": [
+    512,
+    4432
+   ],
+   "tile": [
+    16,
+    138
+   ],
+   "evento": 0,
+   "crudo": "e7ea02040000000000020000501100000000000027000000000000001a000000dc0694eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60308",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300072,
+   "sprite": 60308,
+   "capa": 0,
+   "px": [
+    3968,
+    5168
+   ],
+   "tile": [
+    124,
+    161
+   ],
+   "evento": 0,
+   "crudo": "e8ea020400000000800f0000301400000000000027000000000000001a000000dc0694eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60308",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300073,
+   "sprite": 60308,
+   "capa": 0,
+   "px": [
+    3808,
+    5680
+   ],
+   "tile": [
+    119,
+    177
+   ],
+   "evento": 0,
+   "crudo": "e9ea020400000000e00e0000301600000000000027000000000000001a000000dc0694eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60308",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300074,
+   "sprite": 60038,
+   "capa": 0,
+   "px": [
+    986,
+    6384
+   ],
+   "tile": [
+    30,
+    199
+   ],
+   "evento": 0,
+   "crudo": "eaea020400000000da030000f01800000000000027000000000000001a000000dc0686ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300075,
+   "sprite": 60308,
+   "capa": 0,
+   "px": [
+    3584,
+    6512
+   ],
+   "tile": [
+    112,
+    203
+   ],
+   "evento": 0,
+   "crudo": "ebea020400000000000e0000701900000000000027000000000000001a000000dc0694eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60308",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300076,
+   "sprite": 60308,
+   "capa": 0,
+   "px": [
+    1760,
+    6224
+   ],
+   "tile": [
+    55,
+    194
+   ],
+   "evento": 0,
+   "crudo": "ecea020400000000e0060000501800000000000027000000000000001a000000dc0694eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60308",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300077,
+   "sprite": 60308,
+   "capa": 0,
+   "px": [
+    1152,
+    5904
+   ],
+   "tile": [
+    36,
+    184
+   ],
+   "evento": 0,
+   "crudo": "edea02040000000080040000101700000000000027000000000000001a000000dc0694eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60308",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300078,
+   "sprite": 60036,
+   "capa": 0,
+   "px": [
+    5514,
+    6000
+   ],
+   "tile": [
+    172,
+    187
+   ],
+   "evento": 0,
+   "crudo": "eeea0204000000008a150000701700000000000027000000000000001a000000dc0684ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300079,
+   "sprite": 60036,
+   "capa": 0,
+   "px": [
+    5673,
+    5936
+   ],
+   "tile": [
+    177,
+    185
+   ],
+   "evento": 0,
+   "crudo": "efea02040000000029160000301700000000000027000000000000001a000000dc0684ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300080,
+   "sprite": 60036,
+   "capa": 0,
+   "px": [
+    5819,
+    6032
+   ],
+   "tile": [
+    181,
+    188
+   ],
+   "evento": 0,
+   "crudo": "f0ea020400000000bb160000901700000000000027000000000000001a000000dc0684ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300081,
+   "sprite": 60308,
+   "capa": 0,
+   "px": [
+    166,
+    4784
+   ],
+   "tile": [
+    5,
+    149
+   ],
+   "evento": 0,
+   "crudo": "f1ea020400000000a6000000b01200000000000027000000000000001a000000dc0694eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60308",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300082,
+   "sprite": 60308,
+   "capa": 0,
+   "px": [
+    2145,
+    5168
+   ],
+   "tile": [
+    67,
+    161
+   ],
+   "evento": 0,
+   "crudo": "f2ea02040000000061080000301400000000000027000000000000001a000000dc0694eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60308",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300083,
+   "sprite": 60308,
+   "capa": 0,
+   "px": [
+    192,
+    5584
+   ],
+   "tile": [
+    6,
+    174
+   ],
+   "evento": 0,
+   "crudo": "f3ea020400000000c0000000d01500000000000027000000000000001a000000dc0694eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60308",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300084,
+   "sprite": 60094,
+   "capa": 0,
+   "px": [
+    7776,
+    3152
+   ],
+   "tile": [
+    243,
+    98
+   ],
+   "evento": 121,
+   "crudo": "f4ea020400000000601e0000500c00000000000027000000000000001a000000dc06beea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60094",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300085,
+   "sprite": 60094,
+   "capa": 0,
+   "px": [
+    10496,
+    3184
+   ],
+   "tile": [
+    328,
+    99
+   ],
+   "evento": 122,
+   "crudo": "f5ea02040000000000290000700c00000000000027000000000000001a000000dc06beea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60094",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300086,
+   "sprite": 60094,
+   "capa": 0,
+   "px": [
+    5696,
+    6128
+   ],
+   "tile": [
+    178,
+    191
+   ],
+   "evento": 123,
+   "crudo": "f6ea02040000000040160000f01700000000000027000000000000001a000000dc06beea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60094",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300087,
+   "sprite": 60094,
+   "capa": 0,
+   "px": [
+    6656,
+    6384
+   ],
+   "tile": [
+    208,
+    199
+   ],
+   "evento": 124,
+   "crudo": "f7ea020400000000001a0000f01800000000000027000000000000001a000000dc06beea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60094",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300088,
+   "sprite": 60094,
+   "capa": 0,
+   "px": [
+    8128,
+    6448
+   ],
+   "tile": [
+    254,
+    201
+   ],
+   "evento": 125,
+   "crudo": "f8ea020400000000c01f0000301900000000000027000000000000001a000000dc06beea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60094",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300089,
+   "sprite": 60094,
+   "capa": 0,
+   "px": [
+    8224,
+    4848
+   ],
+   "tile": [
+    257,
+    151
+   ],
+   "evento": 126,
+   "crudo": "f9ea02040000000020200000f01200000000000027000000000000001a000000dc06beea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60094",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300090,
+   "sprite": 60308,
+   "capa": 0,
+   "px": [
+    8128,
+    6448
+   ],
+   "tile": [
+    254,
+    201
+   ],
+   "evento": 0,
+   "crudo": "faea020400000000c01f0000301900000000000027000000000000001a000000dc0694eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60308",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300091,
+   "sprite": 60300,
+   "capa": 2,
+   "px": [
+    1747,
+    6320
+   ],
+   "tile": [
+    54,
+    197
+   ],
+   "evento": 53,
+   "crudo": "fbea020402000000d3060000b01800000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300092,
+   "sprite": 60036,
+   "capa": 0,
+   "px": [
+    6802,
+    6416
+   ],
+   "tile": [
+    212,
+    200
+   ],
+   "evento": 0,
+   "crudo": "fcea020400000000921a0000101900000000000027000000000000001a000000dc0684ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300093,
+   "sprite": 60036,
+   "capa": 0,
+   "px": [
+    8115,
+    6288
+   ],
+   "tile": [
+    253,
+    196
+   ],
+   "evento": 0,
+   "crudo": "fdea020400000000b31f0000901800000000000027000000000000001a000000dc0684ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300094,
+   "sprite": 60036,
+   "capa": 0,
+   "px": [
+    10348,
+    3280
+   ],
+   "tile": [
+    323,
+    102
+   ],
+   "evento": 0,
+   "crudo": "feea0204000000006c280000d00c00000000000027000000000000001a000000dc0684ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300095,
+   "sprite": 60036,
+   "capa": 0,
+   "px": [
+    6633,
+    6224
+   ],
+   "tile": [
+    207,
+    194
+   ],
+   "evento": 0,
+   "crudo": "ffea020400000000e9190000501800000000000027000000000000001a000000dc0684ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300096,
+   "sprite": 60036,
+   "capa": 0,
+   "px": [
+    6521,
+    6352
+   ],
+   "tile": [
+    203,
+    198
+   ],
+   "evento": 0,
+   "crudo": "00eb02040000000079190000d01800000000000027000000000000001a000000dc0684ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300097,
+   "sprite": 60036,
+   "capa": 0,
+   "px": [
+    8326,
+    6448
+   ],
+   "tile": [
+    260,
+    201
+   ],
+   "evento": 0,
+   "crudo": "01eb02040000000086200000301900000000000027000000000000001a000000dc0684ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300098,
+   "sprite": 60036,
+   "capa": 0,
+   "px": [
+    8303,
+    6320
+   ],
+   "tile": [
+    259,
+    197
+   ],
+   "evento": 0,
+   "crudo": "02eb0204000000006f200000b01800000000000027000000000000001a000000dc0684ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300099,
+   "sprite": 60036,
+   "capa": 0,
+   "px": [
+    8277,
+    5136
+   ],
    "tile": [
     258,
     160
    ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 55
+   "evento": 0,
+   "crudo": "03eb02040000000055200000101400000000000027000000000000001a000000dc0684ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300100,
+   "sprite": 60036,
+   "capa": 0,
+   "px": [
+    8471,
+    5104
+   ],
+   "tile": [
+    264,
+    159
+   ],
+   "evento": 0,
+   "crudo": "04eb02040000000017210000f01300000000000027000000000000001a000000dc0684ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300101,
+   "sprite": 60036,
+   "capa": 0,
+   "px": [
+    8540,
+    4976
+   ],
+   "tile": [
+    266,
+    155
+   ],
+   "evento": 0,
+   "crudo": "05eb0204000000005c210000701300000000000027000000000000001a000000dc0684ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300102,
+   "sprite": 60036,
+   "capa": 0,
+   "px": [
+    10225,
+    3152
+   ],
+   "tile": [
+    319,
+    98
+   ],
+   "evento": 0,
+   "crudo": "06eb020400000000f1270000500c00000000000027000000000000001a000000dc0684ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300103,
+   "sprite": 60036,
+   "capa": 0,
+   "px": [
+    10333,
+    3024
+   ],
+   "tile": [
+    322,
+    94
+   ],
+   "evento": 0,
+   "crudo": "07eb0204000000005d280000d00b00000000000027000000000000001a000000dc0684ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300104,
+   "sprite": 60036,
+   "capa": 0,
+   "px": [
+    7943,
+    3152
+   ],
+   "tile": [
+    248,
+    98
+   ],
+   "evento": 0,
+   "crudo": "08eb020400000000071f0000500c00000000000027000000000000001a000000dc0684ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300105,
+   "sprite": 60036,
+   "capa": 0,
+   "px": [
+    7975,
+    2992
+   ],
+   "tile": [
+    249,
+    93
+   ],
+   "evento": 0,
+   "crudo": "09eb020400000000271f0000b00b00000000000027000000000000001a000000dc0684ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300106,
+   "sprite": 60036,
+   "capa": 0,
+   "px": [
+    7780,
+    2960
+   ],
+   "tile": [
+    243,
+    92
+   ],
+   "evento": 0,
+   "crudo": "0aeb020400000000641e0000900b00000000000027000000000000001a000000dc0684ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300107,
+   "sprite": 60308,
+   "capa": 0,
+   "px": [
+    7776,
+    3152
+   ],
+   "tile": [
+    243,
+    98
+   ],
+   "evento": 0,
+   "crudo": "0beb020400000000601e0000500c00000000000027000000000000001a000000dc0694eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60308",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300108,
+   "sprite": 60308,
+   "capa": 0,
+   "px": [
+    10496,
+    3184
+   ],
+   "tile": [
+    328,
+    99
+   ],
+   "evento": 0,
+   "crudo": "0ceb02040000000000290000700c00000000000027000000000000001a000000dc0694eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60308",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300109,
+   "sprite": 60308,
+   "capa": 0,
+   "px": [
+    5696,
+    6128
+   ],
+   "tile": [
+    178,
+    191
+   ],
+   "evento": 0,
+   "crudo": "0deb02040000000040160000f01700000000000027000000000000001a000000dc0694eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60308",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300110,
+   "sprite": 60308,
+   "capa": 0,
+   "px": [
+    6656,
+    6384
+   ],
+   "tile": [
+    208,
+    199
+   ],
+   "evento": 0,
+   "crudo": "0eeb020400000000001a0000f01800000000000027000000000000001a000000dc0694eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60308",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300111,
+   "sprite": 60308,
+   "capa": 0,
+   "px": [
+    8224,
+    4848
+   ],
+   "tile": [
+    257,
+    151
+   ],
+   "evento": 0,
+   "crudo": "0feb02040000000020200000f01200000000000027000000000000001a000000dc0694eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60308",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300112,
+   "sprite": 60069,
+   "capa": 0,
+   "px": [
+    9888,
+    528
+   ],
+   "tile": [
+    309,
+    16
+   ],
+   "evento": 61501,
+   "crudo": "10eb020400000000a0260000100200000000000027000000000000001a000000dc06a5ea00004080020000",
+   "copiado_de": "cuerpo de una captura del objeto 60069",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300113,
+   "sprite": 60300,
+   "capa": 2,
+   "px": [
+    1002,
+    560
+   ],
+   "tile": [
+    31,
+    17
+   ],
+   "evento": 52,
+   "crudo": "11eb020402000000ea030000300200000000000027000000000000001a000000dc068ceb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60300",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300114,
+   "sprite": 60243,
+   "capa": 0,
+   "px": [
+    998,
+    528
+   ],
+   "tile": [
+    31,
+    16
+   ],
+   "evento": 999,
+   "material": 153,
+   "nombre_visible": "Flint Ore",
+   "crudo": "12eb020400000000e6030000100200000000000027000000000000001a000000dc0653eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60243",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300115,
+   "sprite": 60308,
+   "capa": 0,
+   "px": [
+    2816,
+    2416
+   ],
+   "tile": [
+    88,
+    75
+   ],
+   "evento": 0,
+   "crudo": "13eb020400000000000b0000700900000000000027000000000000001a000000dc0694eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60308",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300116,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4263,
+    4592
+   ],
+   "tile": [
+    133,
+    143
+   ],
+   "evento": 666,
+   "crudo": "14eb020400000000a7100000f01100000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300117,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4274,
+    4496
+   ],
+   "tile": [
+    133,
+    140
+   ],
+   "evento": 666,
+   "crudo": "15eb020400000000b2100000901100000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300118,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4423,
+    4624
+   ],
+   "tile": [
+    138,
+    144
+   ],
+   "evento": 666,
+   "crudo": "16eb02040000000047110000101200000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300119,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4485,
+    4336
+   ],
+   "tile": [
+    140,
+    135
+   ],
+   "evento": 666,
+   "crudo": "17eb02040000000085110000f01000000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300120,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4393,
+    4240
+   ],
+   "tile": [
+    137,
+    132
+   ],
+   "evento": 666,
+   "crudo": "18eb02040000000029110000901000000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300121,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4325,
+    4144
+   ],
+   "tile": [
+    135,
+    129
+   ],
+   "evento": 666,
+   "crudo": "19eb020400000000e5100000301000000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300122,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4245,
+    4080
+   ],
+   "tile": [
+    132,
+    127
+   ],
+   "evento": 666,
+   "crudo": "1aeb02040000000095100000f00f00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300123,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4529,
+    3760
+   ],
+   "tile": [
+    141,
+    117
+   ],
+   "evento": 666,
+   "crudo": "1beb020400000000b1110000b00e00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300124,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4620,
+    3824
+   ],
+   "tile": [
+    144,
+    119
+   ],
+   "evento": 666,
+   "crudo": "1ceb0204000000000c120000f00e00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300125,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4447,
+    3728
+   ],
+   "tile": [
+    138,
+    116
+   ],
+   "evento": 666,
+   "crudo": "1deb0204000000005f110000900e00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300126,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4547,
+    3248
+   ],
+   "tile": [
+    142,
+    101
+   ],
+   "evento": 666,
+   "crudo": "1eeb020400000000c3110000b00c00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300127,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4411,
+    3184
+   ],
+   "tile": [
+    137,
+    99
+   ],
+   "evento": 666,
+   "crudo": "1feb0204000000003b110000700c00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300128,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4272,
+    3152
+   ],
+   "tile": [
+    133,
+    98
+   ],
+   "evento": 666,
+   "crudo": "20eb020400000000b0100000500c00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300129,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4164,
+    3088
+   ],
+   "tile": [
+    130,
+    96
+   ],
+   "evento": 666,
+   "crudo": "21eb02040000000044100000100c00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300130,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4105,
+    3024
+   ],
+   "tile": [
+    128,
+    94
+   ],
+   "evento": 666,
+   "crudo": "22eb02040000000009100000d00b00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300131,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    3965,
+    2992
+   ],
+   "tile": [
+    123,
+    93
+   ],
+   "evento": 666,
+   "crudo": "23eb0204000000007d0f0000b00b00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300132,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4207,
+    2672
+   ],
+   "tile": [
+    131,
+    83
+   ],
+   "evento": 666,
+   "crudo": "24eb0204000000006f100000700a00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300133,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4306,
+    2736
+   ],
+   "tile": [
+    134,
+    85
+   ],
+   "evento": 666,
+   "crudo": "25eb020400000000d2100000b00a00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300134,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4597,
+    2512
+   ],
+   "tile": [
+    143,
+    78
+   ],
+   "evento": 666,
+   "crudo": "26eb020400000000f5110000d00900000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300135,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4708,
+    2576
+   ],
+   "tile": [
+    147,
+    80
+   ],
+   "evento": 666,
+   "crudo": "27eb02040000000064120000100a00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300136,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4742,
+    2640
+   ],
+   "tile": [
+    148,
+    82
+   ],
+   "evento": 666,
+   "crudo": "28eb02040000000086120000500a00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300137,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4736,
+    2768
+   ],
+   "tile": [
+    148,
+    86
+   ],
+   "evento": 666,
+   "crudo": "29eb02040000000080120000d00a00000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300138,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4933,
+    2288
+   ],
+   "tile": [
+    154,
+    71
+   ],
+   "evento": 666,
+   "crudo": "2aeb02040000000045130000f00800000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300139,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5046,
+    2352
+   ],
+   "tile": [
+    157,
+    73
+   ],
+   "evento": 666,
+   "crudo": "2beb020400000000b6130000300900000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300140,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5565,
+    2288
+   ],
+   "tile": [
+    173,
+    71
+   ],
+   "evento": 666,
+   "crudo": "2ceb020400000000bd150000f00800000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300141,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5371,
+    2128
+   ],
+   "tile": [
+    167,
+    66
+   ],
+   "evento": 666,
+   "crudo": "2deb020400000000fb140000500800000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300142,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5504,
+    2032
+   ],
+   "tile": [
+    172,
+    63
+   ],
+   "evento": 666,
+   "crudo": "2eeb02040000000080150000f00700000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300143,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5203,
+    2064
+   ],
+   "tile": [
+    162,
+    64
+   ],
+   "evento": 666,
+   "crudo": "2feb02040000000053140000100800000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300144,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5307,
+    1936
+   ],
+   "tile": [
+    165,
+    60
+   ],
+   "evento": 666,
+   "crudo": "30eb020400000000bb140000900700000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300145,
+   "sprite": 60034,
+   "capa": 0,
+   "px": [
+    7855,
+    1712
+   ],
+   "tile": [
+    245,
+    53
+   ],
+   "evento": 0,
+   "crudo": "31eb020400000000af1e0000b00600000000000027000000000000001a000000dc0682ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300146,
+   "sprite": 60034,
+   "capa": 0,
+   "px": [
+    7385,
+    1776
+   ],
+   "tile": [
+    230,
+    55
+   ],
+   "evento": 0,
+   "crudo": "32eb020400000000d91c0000f00600000000000027000000000000001a000000dc0682ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300147,
+   "sprite": 60034,
+   "capa": 0,
+   "px": [
+    8369,
+    1296
+   ],
+   "tile": [
+    261,
+    40
+   ],
+   "evento": 0,
+   "crudo": "33eb020400000000b1200000100500000000000027000000000000001a000000dc0682ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300148,
+   "sprite": 60034,
+   "capa": 0,
+   "px": [
+    7124,
+    1424
+   ],
+   "tile": [
+    222,
+    44
+   ],
+   "evento": 0,
+   "crudo": "34eb020400000000d41b0000900500000000000027000000000000001a000000dc0682ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300149,
+   "sprite": 60034,
+   "capa": 0,
+   "px": [
+    6754,
+    1488
+   ],
+   "tile": [
+    211,
+    46
+   ],
+   "evento": 0,
+   "crudo": "35eb020400000000621a0000d00500000000000027000000000000001a000000dc0682ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300150,
+   "sprite": 60034,
+   "capa": 0,
+   "px": [
+    7306,
+    880
+   ],
+   "tile": [
+    228,
+    27
+   ],
+   "evento": 0,
+   "crudo": "36eb0204000000008a1c0000700300000000000027000000000000001a000000dc0682ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300151,
+   "sprite": 60034,
+   "capa": 0,
+   "px": [
+    8781,
+    912
+   ],
+   "tile": [
+    274,
+    28
+   ],
+   "evento": 0,
+   "crudo": "37eb0204000000004d220000900300000000000027000000000000001a000000dc0682ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300152,
+   "sprite": 60034,
+   "capa": 0,
+   "px": [
+    8073,
+    1456
+   ],
+   "tile": [
+    252,
+    45
+   ],
+   "evento": 0,
+   "crudo": "38eb020400000000891f0000b00500000000000027000000000000001a000000dc0682ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300153,
+   "sprite": 60034,
+   "capa": 0,
+   "px": [
+    8752,
+    1200
+   ],
+   "tile": [
+    273,
+    37
+   ],
+   "evento": 0,
+   "crudo": "39eb02040000000030220000b00400000000000027000000000000001a000000dc0682ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300154,
+   "sprite": 60034,
+   "capa": 0,
+   "px": [
+    8856,
+    496
+   ],
+   "tile": [
+    276,
+    15
+   ],
+   "evento": 0,
+   "crudo": "3aeb02040000000098220000f00100000000000027000000000000001a000000dc0682ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300155,
+   "sprite": 60034,
+   "capa": 0,
+   "px": [
+    7568,
+    1360
+   ],
+   "tile": [
+    236,
+    42
+   ],
+   "evento": 0,
+   "crudo": "3beb020400000000901d0000500500000000000027000000000000001a000000dc0682ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300156,
+   "sprite": 60034,
+   "capa": 0,
+   "px": [
+    6975,
+    1072
+   ],
+   "tile": [
+    217,
+    33
+   ],
+   "evento": 0,
+   "crudo": "3ceb0204000000003f1b0000300400000000000027000000000000001a000000dc0682ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300157,
+   "sprite": 60034,
+   "capa": 0,
+   "px": [
+    8436,
+    912
+   ],
+   "tile": [
+    263,
+    28
+   ],
+   "evento": 0,
+   "crudo": "3deb020400000000f4200000900300000000000027000000000000001a000000dc0682ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300158,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5416,
+    1808
+   ],
+   "tile": [
+    169,
+    56
+   ],
+   "evento": 666,
+   "crudo": "3eeb02040000000028150000100700000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300159,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5354,
+    2032
+   ],
+   "tile": [
+    167,
+    63
+   ],
+   "evento": 666,
+   "crudo": "3feb020400000000ea140000f00700000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300160,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5870,
+    2032
+   ],
+   "tile": [
+    183,
+    63
+   ],
+   "evento": 666,
+   "crudo": "40eb020400000000ee160000f00700000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300161,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5805,
+    1776
+   ],
+   "tile": [
+    181,
+    55
+   ],
+   "evento": 666,
+   "crudo": "41eb020400000000ad160000f00600000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300162,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5808,
+    1648
+   ],
+   "tile": [
+    181,
+    51
+   ],
+   "evento": 666,
+   "crudo": "42eb020400000000b0160000700600000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300163,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5689,
+    1552
+   ],
+   "tile": [
+    177,
+    48
+   ],
+   "evento": 666,
+   "crudo": "43eb02040000000039160000100600000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300164,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5537,
+    1520
+   ],
+   "tile": [
+    173,
+    47
+   ],
+   "evento": 666,
+   "crudo": "44eb020400000000a1150000f00500000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300165,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5429,
+    1584
+   ],
+   "tile": [
+    169,
+    49
+   ],
+   "evento": 666,
+   "crudo": "45eb02040000000035150000300600000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300166,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5437,
+    1712
+   ],
+   "tile": [
+    169,
+    53
+   ],
+   "evento": 666,
+   "crudo": "46eb0204000000003d150000b00600000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300167,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5661,
+    1808
+   ],
+   "tile": [
+    176,
+    56
+   ],
+   "evento": 666,
+   "crudo": "47eb0204000000001d160000100700000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300168,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5694,
+    1008
+   ],
+   "tile": [
+    177,
+    31
+   ],
+   "evento": 666,
+   "crudo": "48eb0204000000003e160000f00300000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300169,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5605,
+    880
+   ],
+   "tile": [
+    175,
+    27
+   ],
+   "evento": 666,
+   "crudo": "49eb020400000000e5150000700300000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300170,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5548,
+    1040
+   ],
+   "tile": [
+    173,
+    32
+   ],
+   "evento": 666,
+   "crudo": "4aeb020400000000ac150000100400000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300171,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5450,
+    944
+   ],
+   "tile": [
+    170,
+    29
+   ],
+   "evento": 666,
+   "crudo": "4beb0204000000004a150000b00300000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300172,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5301,
+    1008
+   ],
+   "tile": [
+    165,
+    31
+   ],
+   "evento": 666,
+   "crudo": "4ceb020400000000b5140000f00300000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300173,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5463,
+    1136
+   ],
+   "tile": [
+    170,
+    35
+   ],
+   "evento": 666,
+   "crudo": "4deb02040000000057150000700400000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300174,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5293,
+    1200
+   ],
+   "tile": [
+    165,
+    37
+   ],
+   "evento": 666,
+   "crudo": "4eeb020400000000ad140000b00400000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300175,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5152,
+    1232
+   ],
+   "tile": [
+    161,
+    38
+   ],
+   "evento": 666,
+   "crudo": "4feb02040000000020140000d00400000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300176,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4991,
+    848
+   ],
+   "tile": [
+    155,
+    26
+   ],
+   "evento": 666,
+   "crudo": "50eb0204000000007f130000500300000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300177,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4833,
+    944
+   ],
+   "tile": [
+    151,
+    29
+   ],
+   "evento": 666,
+   "crudo": "51eb020400000000e1120000b00300000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300178,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4709,
+    784
+   ],
+   "tile": [
+    147,
+    24
+   ],
+   "evento": 666,
+   "crudo": "52eb02040000000065120000100300000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300179,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4852,
+    688
+   ],
+   "tile": [
+    151,
+    21
+   ],
+   "evento": 666,
+   "crudo": "53eb020400000000f4120000b00200000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300180,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    4999,
+    592
+   ],
+   "tile": [
+    156,
+    18
+   ],
+   "evento": 666,
+   "crudo": "54eb02040000000087130000500200000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300181,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    5158,
+    560
+   ],
+   "tile": [
+    161,
+    17
+   ],
+   "evento": 666,
+   "crudo": "55eb02040000000026140000300200000000000027000000000000001a000000dc0691eb00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60305",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300182,
+   "sprite": 60243,
+   "capa": 2,
+   "px": [
+    1293,
+    2096
+   ],
+   "tile": [
+    40,
+    65
+   ],
+   "evento": 999,
+   "material": 153,
+   "nombre_visible": "Flint Ore",
+   "crudo": "56eb0204020000000d050000300800000000000027000000000000001a000000dc0653eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60243",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300183,
+   "sprite": 60243,
+   "capa": 0,
+   "px": [
+    2602,
+    4944
+   ],
+   "tile": [
+    81,
+    154
+   ],
+   "evento": 999,
+   "material": 153,
+   "nombre_visible": "Flint Ore",
+   "crudo": "57eb0204000000002a0a0000501300000000000027000000000000001a000000dc0653eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60243",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300184,
+   "sprite": 60243,
+   "capa": 0,
+   "px": [
+    2211,
+    6576
+   ],
+   "tile": [
+    69,
+    205
+   ],
+   "evento": 999,
+   "material": 153,
+   "nombre_visible": "Flint Ore",
+   "crudo": "58eb020400000000a3080000b01900000000000027000000000000001a000000dc0653eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60243",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67300185,
+   "sprite": 60243,
+   "capa": 0,
+   "px": [
+    9181,
+    6128
+   ],
+   "tile": [
+    286,
+    191
+   ],
+   "evento": 999,
+   "material": 153,
+   "nombre_visible": "Flint Ore",
+   "crudo": "59eb020400000000dd230000f01700000000000027000000000000001a000000dc0653eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60243",
+   "puesto_por": "objetos_de_instancia"
   }
- ],
- "recursos": []
+ ]
 }

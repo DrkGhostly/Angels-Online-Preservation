@@ -1,5 +1,5 @@
 {
- "_nota": "gulp_room_3 (stage 78). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map078.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "_nota": "gulp_room_3 (stage 78). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map078.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py. OLEADAS: fuera 1 bichos de la captura que salen por evento (tools/quitar_oleadas.py). OLEADAS: fuera 3 bichos de la captura que salen por evento (tools/quitar_oleadas.py).",
  "stage": 78,
  "spawns": [
   {
@@ -454,34 +454,6 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 72
-  },
-  {
-   "entity_id": 57800030,
-   "nombre": "Exit Guide",
-   "npc_type": 2095,
-   "sprite": 40172,
-   "klass": 200,
-   "monstruo": false,
-   "tile": [
-    190,
-    158
-   ],
-   "direccion": 2,
-   "visible": 0
-  },
-  {
-   "entity_id": 57800031,
-   "nombre": "Exit Guide",
-   "npc_type": 2095,
-   "sprite": 40172,
-   "klass": 200,
-   "monstruo": false,
-   "tile": [
-    263,
-    124
-   ],
-   "direccion": 2,
-   "visible": 0
   },
   {
    "entity_id": 57800032,
@@ -1009,21 +981,6 @@
    "nivel": 78
   },
   {
-   "entity_id": 57800067,
-   "nombre": "Overlord Legte",
-   "npc_type": 818,
-   "sprite": 42301,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    274,
-    274
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
    "entity_id": 57800068,
    "nombre": "Hell Miner",
    "npc_type": 829,
@@ -1084,20 +1041,6 @@
    "nivel": 83
   },
   {
-   "entity_id": 57800072,
-   "nombre": "Exit Guide",
-   "npc_type": 2095,
-   "sprite": 40172,
-   "klass": 200,
-   "monstruo": false,
-   "tile": [
-    299,
-    107
-   ],
-   "direccion": 2,
-   "visible": 0
-  },
-  {
    "entity_id": 57800073,
    "nombre": "Loster",
    "nombre_completo": "Loster",
@@ -1149,6 +1092,40 @@
  "recursos": [
   {
    "entity_id": 67800000,
+   "sprite": 60299,
+   "capa": 2,
+   "px": [
+    6537,
+    9520
+   ],
+   "tile": [
+    204,
+    297
+   ],
+   "evento": 4,
+   "crudo": "c08b0a040200000089190000302500000000000027000000000000001a000000dc068beb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67800001,
+   "sprite": 60307,
+   "capa": 0,
+   "px": [
+    6526,
+    9520
+   ],
+   "tile": [
+    203,
+    297
+   ],
+   "evento": 4,
+   "crudo": "c18b0a04000000007e190000302500000000000027000000000000001a000000dc0693eb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67800002,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1159,11 +1136,13 @@
     66,
     246
    ],
-   "crudo": "c08b0a040000000059080000d01e00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 502,
+   "crudo": "c28b0a040000000059080000d01e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800001,
+   "entity_id": 67800003,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1174,11 +1153,13 @@
     70,
     250
    ],
-   "crudo": "c18b0a0400000000dd080000501f00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 502,
+   "crudo": "c38b0a0400000000dd080000501f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800002,
+   "entity_id": 67800004,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1189,11 +1170,13 @@
     76,
     249
    ],
-   "crudo": "c28b0a04000000008f090000301f00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 502,
+   "crudo": "c48b0a04000000008f090000301f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800003,
+   "entity_id": 67800005,
    "sprite": 60097,
    "capa": 0,
    "px": [
@@ -1204,11 +1187,13 @@
     282,
     277
    ],
-   "crudo": "c38b0a040000000040230000b02200000000000027000000000000001a000000dc06c1ea00004080140000",
-   "copiado_de": "cuerpo de una captura del objeto 60097"
+   "evento": 3,
+   "crudo": "c58b0a040000000040230000b02200000000000027000000000000001a000000dc06c1ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60097",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800004,
+   "entity_id": 67800006,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1219,11 +1204,13 @@
     67,
     90
    ],
-   "crudo": "c48b0a04000000007d080000500b00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "c68b0a04000000007d080000500b00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800005,
+   "entity_id": 67800007,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1234,11 +1221,13 @@
     66,
     89
    ],
-   "crudo": "c58b0a040000000040080000300b00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "c78b0a040000000040080000300b00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800006,
+   "entity_id": 67800008,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1249,11 +1238,13 @@
     85,
     82
    ],
-   "crudo": "c68b0a0400000000bc0a0000500a00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "c88b0a0400000000bc0a0000500a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800007,
+   "entity_id": 67800009,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1264,11 +1255,13 @@
     84,
     81
    ],
-   "crudo": "c78b0a0400000000850a0000300a00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "c98b0a0400000000850a0000300a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800008,
+   "entity_id": 67800010,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1279,11 +1272,13 @@
     104,
     73
    ],
-   "crudo": "c88b0a0400000000090d0000300900000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "ca8b0a0400000000090d0000300900000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800009,
+   "entity_id": 67800011,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1294,11 +1289,13 @@
     102,
     72
    ],
-   "crudo": "c98b0a0400000000cb0c0000100900000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "cb8b0a0400000000cb0c0000100900000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800010,
+   "entity_id": 67800012,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1309,11 +1306,13 @@
     122,
     65
    ],
-   "crudo": "ca8b0a0400000000550f0000300800000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "cc8b0a0400000000550f0000300800000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800011,
+   "entity_id": 67800013,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1324,11 +1323,13 @@
     120,
     63
    ],
-   "crudo": "cb8b0a04000000001b0f0000f00700000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "cd8b0a04000000001b0f0000f00700000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800012,
+   "entity_id": 67800014,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1339,11 +1340,13 @@
     140,
     58
    ],
-   "crudo": "cc8b0a040000000093110000500700000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "ce8b0a040000000093110000500700000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800013,
+   "entity_id": 67800015,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1354,11 +1357,30 @@
     138,
     57
    ],
-   "crudo": "cd8b0a040000000053110000300700000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "cf8b0a040000000053110000300700000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800014,
+   "entity_id": 67800016,
+   "sprite": 60278,
+   "capa": 0,
+   "px": [
+    6560,
+    9584
+   ],
+   "tile": [
+    205,
+    299
+   ],
+   "evento": 0,
+   "crudo": "d08b0a0400000000a0190000702500000000000027000000000000001a000000dc0676eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67800017,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1369,11 +1391,13 @@
     172,
     157
    ],
-   "crudo": "ce8b0a040000000082150000b01300000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "d18b0a040000000082150000b01300000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800015,
+   "entity_id": 67800018,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1384,11 +1408,13 @@
     174,
     158
    ],
-   "crudo": "cf8b0a0400000000c0150000d01300000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "d28b0a0400000000c0150000d01300000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800016,
+   "entity_id": 67800019,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1399,11 +1425,13 @@
     154,
     147
    ],
-   "crudo": "d08b0a040000000041130000701200000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "d38b0a040000000041130000701200000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800017,
+   "entity_id": 67800020,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1414,11 +1442,13 @@
     156,
     149
    ],
-   "crudo": "d18b0a040000000080130000b01200000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "d48b0a040000000080130000b01200000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800018,
+   "entity_id": 67800021,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1429,11 +1459,13 @@
     139,
     141
    ],
-   "crudo": "d28b0a040000000060110000b01100000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "d58b0a040000000060110000b01100000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800019,
+   "entity_id": 67800022,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1444,11 +1476,13 @@
     137,
     139
    ],
-   "crudo": "d38b0a040000000020110000701100000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "d68b0a040000000020110000701100000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800020,
+   "entity_id": 67800023,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1459,11 +1493,13 @@
     119,
     131
    ],
-   "crudo": "d48b0a0400000000e10e0000701000000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "d78b0a0400000000e10e0000701000000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800021,
+   "entity_id": 67800024,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1474,11 +1510,13 @@
     121,
     132
    ],
-   "crudo": "d58b0a0400000000200f0000901000000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "d88b0a0400000000200f0000901000000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800022,
+   "entity_id": 67800025,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1489,11 +1527,13 @@
     101,
     122
    ],
-   "crudo": "d68b0a0400000000a00c0000500f00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "d98b0a0400000000a00c0000500f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800023,
+   "entity_id": 67800026,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1504,11 +1544,13 @@
     103,
     124
    ],
-   "crudo": "d78b0a0400000000e00c0000900f00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "da8b0a0400000000e00c0000900f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800024,
+   "entity_id": 67800027,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1519,11 +1561,13 @@
     83,
     114
    ],
-   "crudo": "d88b0a04000000007f0a0000500e00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "db8b0a04000000007f0a0000500e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800025,
+   "entity_id": 67800028,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1534,11 +1578,13 @@
     85,
     115
    ],
-   "crudo": "d98b0a0400000000bf0a0000700e00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "dc8b0a0400000000bf0a0000700e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800026,
+   "entity_id": 67800029,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1549,11 +1595,13 @@
     69,
     108
    ],
-   "crudo": "da8b0a0400000000a0080000900d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "dd8b0a0400000000a0080000900d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800027,
+   "entity_id": 67800030,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1564,11 +1612,13 @@
     66,
     105
    ],
-   "crudo": "db8b0a04000000005f080000300d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "de8b0a04000000005f080000300d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800028,
+   "entity_id": 67800031,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1579,11 +1629,13 @@
     64,
     104
    ],
-   "crudo": "dc8b0a04000000001f080000100d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "df8b0a04000000001f080000100d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800029,
+   "entity_id": 67800032,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1594,11 +1646,13 @@
     64,
     98
    ],
-   "crudo": "dd8b0a04000000001f080000500c00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "e08b0a04000000001f080000500c00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800030,
+   "entity_id": 67800033,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1609,11 +1663,13 @@
     67,
     96
    ],
-   "crudo": "de8b0a040000000060080000100c00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "e18b0a040000000060080000100c00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800031,
+   "entity_id": 67800034,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1624,11 +1680,13 @@
     83,
     90
    ],
-   "crudo": "df8b0a0400000000600a0000500b00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "e28b0a0400000000600a0000500b00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800032,
+   "entity_id": 67800035,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1639,11 +1697,13 @@
     85,
     89
    ],
-   "crudo": "e08b0a0400000000a00a0000300b00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "e38b0a0400000000a00a0000300b00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800033,
+   "entity_id": 67800036,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1654,11 +1714,13 @@
     101,
     82
    ],
-   "crudo": "e18b0a0400000000a00c0000500a00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "e48b0a0400000000a00c0000500a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800034,
+   "entity_id": 67800037,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1669,11 +1731,13 @@
     103,
     80
    ],
-   "crudo": "e28b0a0400000000e00c0000100a00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "e58b0a0400000000e00c0000100a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800035,
+   "entity_id": 67800038,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1684,11 +1748,13 @@
     119,
     74
    ],
-   "crudo": "e38b0a0400000000fe0e0000500900000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "e68b0a0400000000fe0e0000500900000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800036,
+   "entity_id": 67800039,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1699,11 +1765,13 @@
     122,
     71
    ],
-   "crudo": "e48b0a0400000000400f0000f00800000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "e78b0a0400000000400f0000f00800000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800037,
+   "entity_id": 67800040,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1714,11 +1782,13 @@
     137,
     65
    ],
-   "crudo": "e58b0a04000000003e110000300800000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "e88b0a04000000003e110000300800000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800038,
+   "entity_id": 67800041,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1729,11 +1799,13 @@
     140,
     63
    ],
-   "crudo": "e68b0a040000000080110000f00700000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "e98b0a040000000080110000f00700000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800039,
+   "entity_id": 67800042,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1744,11 +1816,13 @@
     156,
     57
    ],
-   "crudo": "e78b0a040000000081130000300700000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "ea8b0a040000000081130000300700000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800040,
+   "entity_id": 67800043,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1759,11 +1833,13 @@
     158,
     55
    ],
-   "crudo": "e88b0a0400000000c1130000f00600000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "eb8b0a0400000000c1130000f00600000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800041,
+   "entity_id": 67800044,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1774,11 +1850,13 @@
     174,
     49
    ],
-   "crudo": "e98b0a0400000000c3150000300600000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "ec8b0a0400000000c3150000300600000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800042,
+   "entity_id": 67800045,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1789,11 +1867,13 @@
     176,
     47
    ],
-   "crudo": "ea8b0a040000000003160000f00500000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "ed8b0a040000000003160000f00500000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800043,
+   "entity_id": 67800046,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1804,11 +1884,13 @@
     195,
     49
    ],
-   "crudo": "eb8b0a04000000007c180000300600000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "ee8b0a04000000007c180000300600000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800044,
+   "entity_id": 67800047,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1819,11 +1901,13 @@
     193,
     48
    ],
-   "crudo": "ec8b0a040000000030180000100600000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "ef8b0a040000000030180000100600000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800045,
+   "entity_id": 67800048,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1834,11 +1918,13 @@
     214,
     58
    ],
-   "crudo": "ed8b0a0400000000c41a0000500700000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "f08b0a0400000000c41a0000500700000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800046,
+   "entity_id": 67800049,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1849,11 +1935,13 @@
     211,
     55
    ],
-   "crudo": "ee8b0a04000000007e1a0000f00600000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "f18b0a04000000007e1a0000f00600000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800047,
+   "entity_id": 67800050,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1864,11 +1952,13 @@
     232,
     66
    ],
-   "crudo": "ef8b0a0400000000061d0000500800000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "f28b0a0400000000061d0000500800000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800048,
+   "entity_id": 67800051,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1879,11 +1969,13 @@
     229,
     64
    ],
-   "crudo": "f08b0a0400000000bf1c0000100800000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "f38b0a0400000000bf1c0000100800000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800049,
+   "entity_id": 67800052,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1894,11 +1986,13 @@
     250,
     74
    ],
-   "crudo": "f18b0a0400000000491f0000500900000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "f48b0a0400000000491f0000500900000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800050,
+   "entity_id": 67800053,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1909,11 +2003,13 @@
     248,
     72
    ],
-   "crudo": "f28b0a04000000000b1f0000100900000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "f58b0a04000000000b1f0000100900000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800051,
+   "entity_id": 67800054,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1924,11 +2020,13 @@
     266,
     84
    ],
-   "crudo": "f38b0a04000000005c210000900a00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "f68b0a04000000005c210000900a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800052,
+   "entity_id": 67800055,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1939,11 +2037,13 @@
     265,
     82
    ],
-   "crudo": "f48b0a040000000020210000500a00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "f78b0a040000000020210000500a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800053,
+   "entity_id": 67800056,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1954,11 +2054,13 @@
     285,
     91
    ],
-   "crudo": "f58b0a0400000000a0230000700b00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "f88b0a0400000000a0230000700b00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800054,
+   "entity_id": 67800057,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1969,11 +2071,13 @@
     282,
     89
    ],
-   "crudo": "f68b0a04000000005f230000300b00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "f98b0a04000000005f230000300b00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800055,
+   "entity_id": 67800058,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1984,11 +2088,13 @@
     303,
     99
    ],
-   "crudo": "f78b0a0400000000f0250000700c00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "fa8b0a0400000000f0250000700c00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800056,
+   "entity_id": 67800059,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1999,11 +2105,13 @@
     300,
     97
    ],
-   "crudo": "f88b0a04000000009f250000300c00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "fb8b0a04000000009f250000300c00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800057,
+   "entity_id": 67800060,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2014,11 +2122,13 @@
     299,
     107
    ],
-   "crudo": "f98b0a040000000068250000700d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 109,
+   "crudo": "fc8b0a040000000068250000700d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800058,
+   "entity_id": 67800061,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2029,11 +2139,13 @@
     301,
     106
    ],
-   "crudo": "fa8b0a0400000000af250000500d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 109,
+   "crudo": "fd8b0a0400000000af250000500d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800059,
+   "entity_id": 67800062,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2044,11 +2156,13 @@
     281,
     115
    ],
-   "crudo": "fb8b0a040000000024230000700e00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "fe8b0a040000000024230000700e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800060,
+   "entity_id": 67800063,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2059,11 +2173,13 @@
     283,
     114
    ],
-   "crudo": "fc8b0a04000000006e230000500e00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "ff8b0a04000000006e230000500e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800061,
+   "entity_id": 67800064,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2074,11 +2190,13 @@
     262,
     124
    ],
-   "crudo": "fd8b0a0400000000df200000900f00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 108,
+   "crudo": "008c0a0400000000df200000900f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800062,
+   "entity_id": 67800065,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2089,11 +2207,13 @@
     265,
     122
    ],
-   "crudo": "fe8b0a040000000024210000500f00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 108,
+   "crudo": "018c0a040000000024210000500f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800063,
+   "entity_id": 67800066,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2104,11 +2224,13 @@
     244,
     132
    ],
-   "crudo": "ff8b0a04000000008f1e0000901000000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "028c0a04000000008f1e0000901000000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800064,
+   "entity_id": 67800067,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2119,11 +2241,13 @@
     247,
     131
    ],
-   "crudo": "008c0a0400000000e01e0000701000000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "038c0a0400000000e01e0000701000000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800065,
+   "entity_id": 67800068,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2134,11 +2258,13 @@
     225,
     140
    ],
-   "crudo": "018c0a04000000003a1c0000901100000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "048c0a04000000003a1c0000901100000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800066,
+   "entity_id": 67800069,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2149,11 +2275,13 @@
     227,
     138
    ],
-   "crudo": "028c0a04000000007f1c0000501100000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "058c0a04000000007f1c0000501100000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800067,
+   "entity_id": 67800070,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2164,11 +2292,13 @@
     207,
     149
    ],
-   "crudo": "038c0a0400000000ff190000b01200000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "068c0a0400000000ff190000b01200000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800068,
+   "entity_id": 67800071,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2179,11 +2309,13 @@
     210,
     148
    ],
-   "crudo": "048c0a0400000000501a0000901200000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "078c0a0400000000501a0000901200000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800069,
+   "entity_id": 67800072,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2194,11 +2326,13 @@
     189,
     159
    ],
-   "crudo": "058c0a0400000000a0170000f01300000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 110,
+   "crudo": "088c0a0400000000a0170000f01300000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800070,
+   "entity_id": 67800073,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2209,11 +2343,13 @@
     191,
     157
    ],
-   "crudo": "068c0a0400000000ee170000b01300000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 110,
+   "crudo": "098c0a0400000000ee170000b01300000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800071,
+   "entity_id": 67800074,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2224,11 +2360,13 @@
     171,
     148
    ],
-   "crudo": "078c0a04000000006f150000901200000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 103,
+   "crudo": "0a8c0a04000000006f150000901200000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800072,
+   "entity_id": 67800075,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2239,11 +2377,13 @@
     173,
     147
    ],
-   "crudo": "088c0a0400000000be150000701200000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 103,
+   "crudo": "0b8c0a0400000000be150000701200000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800073,
+   "entity_id": 67800076,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2254,11 +2394,13 @@
     193,
     148
    ],
-   "crudo": "098c0a040000000020180000901200000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 103,
+   "crudo": "0c8c0a040000000020180000901200000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800074,
+   "entity_id": 67800077,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2269,11 +2411,13 @@
     190,
     146
    ],
-   "crudo": "0a8c0a0400000000de170000501200000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 103,
+   "crudo": "0d8c0a0400000000de170000501200000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800075,
+   "entity_id": 67800078,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2284,11 +2428,13 @@
     154,
     139
    ],
-   "crudo": "0b8c0a040000000040130000701100000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 106,
+   "crudo": "0e8c0a040000000040130000701100000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800076,
+   "entity_id": 67800079,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2299,11 +2445,13 @@
     156,
     138
    ],
-   "crudo": "0c8c0a040000000082130000501100000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 106,
+   "crudo": "0f8c0a040000000082130000501100000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800077,
+   "entity_id": 67800080,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2314,11 +2462,13 @@
     175,
     140
    ],
-   "crudo": "0d8c0a0400000000f9150000901100000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "108c0a0400000000f9150000901100000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800078,
+   "entity_id": 67800081,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2329,11 +2479,13 @@
     174,
     138
    ],
-   "crudo": "0e8c0a0400000000c0150000501100000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "118c0a0400000000c0150000501100000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800079,
+   "entity_id": 67800082,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2344,11 +2496,13 @@
     136,
     131
    ],
-   "crudo": "0f8c0a040000000001110000701000000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "128c0a040000000001110000701000000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800080,
+   "entity_id": 67800083,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2359,11 +2513,13 @@
     138,
     130
    ],
-   "crudo": "108c0a04000000004f110000501000000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "138c0a04000000004f110000501000000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800081,
+   "entity_id": 67800084,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2374,11 +2530,13 @@
     118,
     123
    ],
-   "crudo": "118c0a0400000000ce0e0000700f00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "148c0a0400000000ce0e0000700f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800082,
+   "entity_id": 67800085,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2389,11 +2547,13 @@
     120,
     122
    ],
-   "crudo": "128c0a04000000001d0f0000500f00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "158c0a04000000001d0f0000500f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800083,
+   "entity_id": 67800086,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2404,11 +2564,13 @@
     139,
     123
    ],
-   "crudo": "138c0a04000000007f110000700f00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "168c0a04000000007f110000700f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800084,
+   "entity_id": 67800087,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2419,11 +2581,13 @@
     137,
     122
    ],
-   "crudo": "148c0a040000000039110000500f00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "178c0a040000000039110000500f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800085,
+   "entity_id": 67800088,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2434,11 +2598,13 @@
     100,
     115
    ],
-   "crudo": "158c0a0400000000930c0000700e00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 106,
+   "crudo": "188c0a0400000000930c0000700e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800086,
+   "entity_id": 67800089,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2449,11 +2615,13 @@
     102,
     113
    ],
-   "crudo": "168c0a0400000000d80c0000300e00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 106,
+   "crudo": "198c0a0400000000d80c0000300e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800087,
+   "entity_id": 67800090,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2464,11 +2632,13 @@
     122,
     115
    ],
-   "crudo": "178c0a0400000000430f0000700e00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 106,
+   "crudo": "1a8c0a0400000000430f0000700e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800088,
+   "entity_id": 67800091,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2479,11 +2649,13 @@
     119,
     113
    ],
-   "crudo": "188c0a0400000000fe0e0000300e00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 106,
+   "crudo": "1b8c0a0400000000fe0e0000300e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800089,
+   "entity_id": 67800092,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2494,11 +2666,13 @@
     82,
     106
    ],
-   "crudo": "198c0a04000000004f0a0000500d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 105,
+   "crudo": "1c8c0a04000000004f0a0000500d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800090,
+   "entity_id": 67800093,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2509,11 +2683,13 @@
     84,
     105
    ],
-   "crudo": "1a8c0a04000000009c0a0000300d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 105,
+   "crudo": "1d8c0a04000000009c0a0000300d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800091,
+   "entity_id": 67800094,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2524,11 +2700,13 @@
     104,
     107
    ],
-   "crudo": "1b8c0a0400000000020d0000700d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 107,
+   "crudo": "1e8c0a0400000000020d0000700d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800092,
+   "entity_id": 67800095,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2539,11 +2717,13 @@
     101,
     105
    ],
-   "crudo": "1c8c0a0400000000bd0c0000300d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 107,
+   "crudo": "1f8c0a0400000000bd0c0000300d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800093,
+   "entity_id": 67800096,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2554,11 +2734,13 @@
     190,
     139
    ],
-   "crudo": "1d8c0a0400000000c0170000701100000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 105,
+   "crudo": "208c0a0400000000c0170000701100000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800094,
+   "entity_id": 67800097,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2569,11 +2751,13 @@
     192,
     138
    ],
-   "crudo": "1e8c0a04000000000e180000501100000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 105,
+   "crudo": "218c0a04000000000e180000501100000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800095,
+   "entity_id": 67800098,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2584,11 +2768,13 @@
     212,
     140
    ],
-   "crudo": "1f8c0a0400000000801a0000901100000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "228c0a0400000000801a0000901100000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800096,
+   "entity_id": 67800099,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2599,11 +2785,13 @@
     209,
     139
    ],
-   "crudo": "208c0a0400000000301a0000701100000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "238c0a0400000000301a0000701100000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800097,
+   "entity_id": 67800100,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2614,11 +2802,13 @@
     173,
     132
    ],
-   "crudo": "218c0a0400000000af150000901000000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "248c0a0400000000af150000901000000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800098,
+   "entity_id": 67800101,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2629,11 +2819,13 @@
     175,
     130
    ],
-   "crudo": "228c0a0400000000e0150000501000000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "258c0a0400000000e0150000501000000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800099,
+   "entity_id": 67800102,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2644,11 +2836,13 @@
     193,
     131
    ],
-   "crudo": "238c0a04000000003f180000701000000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 106,
+   "crudo": "268c0a04000000003f180000701000000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800100,
+   "entity_id": 67800103,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2659,11 +2853,13 @@
     191,
     130
    ],
-   "crudo": "248c0a0400000000f0170000501000000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 106,
+   "crudo": "278c0a0400000000f0170000501000000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800101,
+   "entity_id": 67800104,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2674,11 +2870,13 @@
     154,
     123
    ],
-   "crudo": "258c0a04000000004f130000700f00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 103,
+   "crudo": "288c0a04000000004f130000700f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800102,
+   "entity_id": 67800105,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2689,11 +2887,13 @@
     156,
     122
    ],
-   "crudo": "268c0a04000000009d130000500f00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 103,
+   "crudo": "298c0a04000000009d130000500f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800103,
+   "entity_id": 67800106,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2704,11 +2904,13 @@
     176,
     123
    ],
-   "crudo": "278c0a04000000000f160000700f00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "2a8c0a04000000000f160000700f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800104,
+   "entity_id": 67800107,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2719,11 +2921,13 @@
     173,
     122
    ],
-   "crudo": "288c0a0400000000bf150000500f00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "2b8c0a0400000000bf150000500f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800105,
+   "entity_id": 67800108,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2734,11 +2938,13 @@
     136,
     115
    ],
-   "crudo": "298c0a04000000001d110000700e00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "2c8c0a04000000001d110000700e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800106,
+   "entity_id": 67800109,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2749,11 +2955,13 @@
     139,
     113
    ],
-   "crudo": "2a8c0a040000000061110000300e00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "2d8c0a040000000061110000300e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800107,
+   "entity_id": 67800110,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2764,11 +2972,13 @@
     118,
     106
    ],
-   "crudo": "2b8c0a0400000000df0e0000500d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "2e8c0a0400000000df0e0000500d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800108,
+   "entity_id": 67800111,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2779,11 +2989,13 @@
     121,
     105
    ],
-   "crudo": "2c8c0a0400000000230f0000300d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "2f8c0a0400000000230f0000300d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800109,
+   "entity_id": 67800112,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2794,11 +3006,13 @@
     140,
     107
    ],
-   "crudo": "2d8c0a04000000009f110000700d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 105,
+   "crudo": "308c0a04000000009f110000700d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800110,
+   "entity_id": 67800113,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2809,11 +3023,13 @@
     138,
     105
    ],
-   "crudo": "2e8c0a040000000051110000300d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 105,
+   "crudo": "318c0a040000000051110000300d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800111,
+   "entity_id": 67800114,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2824,11 +3040,13 @@
     100,
     98
    ],
-   "crudo": "2f8c0a04000000009f0c0000500c00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "328c0a04000000009f0c0000500c00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800112,
+   "entity_id": 67800115,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2839,11 +3057,13 @@
     103,
     97
    ],
-   "crudo": "308c0a0400000000ea0c0000300c00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "338c0a0400000000ea0c0000300c00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800113,
+   "entity_id": 67800116,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2854,11 +3074,13 @@
     122,
     98
    ],
-   "crudo": "318c0a0400000000510f0000500c00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "348c0a0400000000510f0000500c00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800114,
+   "entity_id": 67800117,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2869,11 +3091,13 @@
     120,
     97
    ],
-   "crudo": "328c0a0400000000060f0000300c00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "358c0a0400000000060f0000300c00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800115,
+   "entity_id": 67800118,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2884,11 +3108,13 @@
     86,
     99
    ],
-   "crudo": "338c0a0400000000c70a0000700c00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 105,
+   "crudo": "368c0a0400000000c70a0000700c00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800116,
+   "entity_id": 67800119,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2899,11 +3125,13 @@
     84,
     97
    ],
-   "crudo": "348c0a0400000000800a0000300c00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 105,
+   "crudo": "378c0a0400000000800a0000300c00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800117,
+   "entity_id": 67800120,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2914,11 +3142,13 @@
     228,
     133
    ],
-   "crudo": "358c0a0400000000921c0000b01000000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "388c0a0400000000921c0000b01000000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800118,
+   "entity_id": 67800121,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2929,11 +3159,13 @@
     226,
     131
    ],
-   "crudo": "368c0a04000000005f1c0000701000000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "398c0a04000000005f1c0000701000000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800119,
+   "entity_id": 67800122,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2944,11 +3176,13 @@
     208,
     131
    ],
-   "crudo": "378c0a04000000000f1a0000701000000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "3a8c0a04000000000f1a0000701000000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800120,
+   "entity_id": 67800123,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2959,11 +3193,13 @@
     210,
     130
    ],
-   "crudo": "388c0a04000000005c1a0000501000000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "3b8c0a04000000005c1a0000501000000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800121,
+   "entity_id": 67800124,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2974,11 +3210,13 @@
     190,
     123
    ],
-   "crudo": "398c0a0400000000cf170000700f00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "3c8c0a0400000000cf170000700f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800122,
+   "entity_id": 67800125,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -2989,11 +3227,13 @@
     193,
     122
    ],
-   "crudo": "3a8c0a040000000020180000500f00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "3d8c0a040000000020180000500f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800123,
+   "entity_id": 67800126,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3004,11 +3244,13 @@
     211,
     123
    ],
-   "crudo": "3b8c0a04000000007f1a0000700f00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 106,
+   "crudo": "3e8c0a04000000007f1a0000700f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800124,
+   "entity_id": 67800127,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3019,11 +3261,13 @@
     209,
     122
    ],
-   "crudo": "3c8c0a0400000000301a0000500f00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 106,
+   "crudo": "3f8c0a0400000000301a0000500f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800125,
+   "entity_id": 67800128,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3034,11 +3278,13 @@
     173,
     115
    ],
-   "crudo": "3d8c0a0400000000a0150000700e00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "408c0a0400000000a0150000700e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800126,
+   "entity_id": 67800129,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3049,11 +3295,13 @@
     175,
     114
    ],
-   "crudo": "3e8c0a0400000000ef150000500e00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "418c0a0400000000ef150000500e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800127,
+   "entity_id": 67800130,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3064,11 +3312,13 @@
     194,
     115
    ],
-   "crudo": "3f8c0a040000000046180000700e00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "428c0a040000000046180000700e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800128,
+   "entity_id": 67800131,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3079,11 +3329,13 @@
     191,
     113
    ],
-   "crudo": "408c0a0400000000ff170000300e00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "438c0a0400000000ff170000300e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800129,
+   "entity_id": 67800132,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3094,11 +3346,13 @@
     176,
     107
    ],
-   "crudo": "418c0a04000000000f160000700d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "448c0a04000000000f160000700d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800130,
+   "entity_id": 67800133,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3109,11 +3363,13 @@
     174,
     106
    ],
-   "crudo": "428c0a0400000000d0150000500d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "458c0a0400000000d0150000500d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800131,
+   "entity_id": 67800134,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3124,11 +3380,13 @@
     154,
     107
    ],
-   "crudo": "438c0a04000000005d130000700d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 105,
+   "crudo": "468c0a04000000005d130000700d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800132,
+   "entity_id": 67800135,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3139,11 +3397,13 @@
     137,
     98
    ],
-   "crudo": "448c0a040000000025110000500c00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "478c0a040000000025110000500c00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800133,
+   "entity_id": 67800136,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3154,11 +3414,13 @@
     139,
     97
    ],
-   "crudo": "458c0a04000000006f110000300c00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "488c0a04000000006f110000300c00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800134,
+   "entity_id": 67800137,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3169,11 +3431,13 @@
     158,
     98
    ],
-   "crudo": "468c0a0400000000cf130000500c00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "498c0a0400000000cf130000500c00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800135,
+   "entity_id": 67800138,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3184,11 +3448,13 @@
     156,
     96
    ],
-   "crudo": "478c0a040000000090130000100c00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "4a8c0a040000000090130000100c00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800136,
+   "entity_id": 67800139,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3199,11 +3465,13 @@
     138,
     89
    ],
-   "crudo": "488c0a040000000050110000300b00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 105,
+   "crudo": "4b8c0a040000000050110000300b00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800137,
+   "entity_id": 67800140,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3214,11 +3482,13 @@
     140,
     90
    ],
-   "crudo": "498c0a040000000098110000500b00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 105,
+   "crudo": "4c8c0a040000000098110000500b00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800138,
+   "entity_id": 67800141,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3229,11 +3499,13 @@
     141,
     73
    ],
-   "crudo": "4a8c0a0400000000a0110000300900000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "4d8c0a0400000000a0110000300900000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800139,
+   "entity_id": 67800142,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3244,11 +3516,13 @@
     138,
     72
    ],
-   "crudo": "4b8c0a040000000058110000100900000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "4e8c0a040000000058110000100900000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800140,
+   "entity_id": 67800143,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3259,11 +3533,13 @@
     227,
     123
    ],
-   "crudo": "4c8c0a0400000000601c0000700f00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "4f8c0a0400000000601c0000700f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800141,
+   "entity_id": 67800144,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3274,11 +3550,13 @@
     228,
     121
    ],
-   "crudo": "4d8c0a04000000009f1c0000300f00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "508c0a04000000009f1c0000300f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800142,
+   "entity_id": 67800145,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3289,11 +3567,13 @@
     248,
     123
    ],
-   "crudo": "4e8c0a04000000000f1f0000700f00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "518c0a04000000000f1f0000700f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800143,
+   "entity_id": 67800146,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3304,11 +3584,13 @@
     245,
     122
    ],
-   "crudo": "4f8c0a0400000000be1e0000500f00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "528c0a0400000000be1e0000500f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800144,
+   "entity_id": 67800147,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3319,11 +3601,13 @@
     209,
     115
    ],
-   "crudo": "508c0a0400000000201a0000700e00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 105,
+   "crudo": "538c0a0400000000201a0000700e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800145,
+   "entity_id": 67800148,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3334,11 +3618,13 @@
     211,
     113
    ],
-   "crudo": "518c0a0400000000611a0000300e00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 105,
+   "crudo": "548c0a0400000000611a0000300e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800146,
+   "entity_id": 67800149,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3349,11 +3635,13 @@
     231,
     115
    ],
-   "crudo": "528c0a0400000000e01c0000700e00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "558c0a0400000000e01c0000700e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800147,
+   "entity_id": 67800150,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3364,11 +3652,13 @@
     228,
     114
    ],
-   "crudo": "538c0a0400000000811c0000500e00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "568c0a0400000000811c0000500e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800148,
+   "entity_id": 67800151,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3379,11 +3669,13 @@
     191,
     106
    ],
-   "crudo": "548c0a0400000000e0170000500d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "578c0a0400000000e0170000500d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800149,
+   "entity_id": 67800152,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3394,11 +3686,13 @@
     193,
     105
    ],
-   "crudo": "558c0a04000000003f180000300d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "588c0a04000000003f180000300d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800150,
+   "entity_id": 67800153,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3409,11 +3703,13 @@
     212,
     107
    ],
-   "crudo": "568c0a04000000009e1a0000700d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 103,
+   "crudo": "598c0a04000000009e1a0000700d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800151,
+   "entity_id": 67800154,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3424,11 +3720,13 @@
     210,
     106
    ],
-   "crudo": "578c0a0400000000501a0000500d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 103,
+   "crudo": "5a8c0a0400000000501a0000500d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800152,
+   "entity_id": 67800155,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3439,11 +3737,13 @@
     173,
     98
    ],
-   "crudo": "588c0a0400000000a2150000500c00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "5b8c0a0400000000a2150000500c00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800153,
+   "entity_id": 67800156,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3454,11 +3754,13 @@
     175,
     96
    ],
-   "crudo": "598c0a0400000000f0150000100c00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "5c8c0a0400000000f0150000100c00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800154,
+   "entity_id": 67800157,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3469,11 +3771,13 @@
     192,
     97
    ],
-   "crudo": "5a8c0a04000000000e180000300c00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "5d8c0a04000000000e180000300c00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800155,
+   "entity_id": 67800158,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3484,11 +3788,13 @@
     195,
     98
    ],
-   "crudo": "5b8c0a040000000060180000500c00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "5e8c0a040000000060180000500c00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800156,
+   "entity_id": 67800159,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3499,11 +3805,13 @@
     155,
     90
    ],
-   "crudo": "5c8c0a04000000006e130000500b00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 107,
+   "crudo": "5f8c0a04000000006e130000500b00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800157,
+   "entity_id": 67800160,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3514,11 +3822,13 @@
     157,
     89
    ],
-   "crudo": "5d8c0a0400000000bf130000300b00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 107,
+   "crudo": "608c0a0400000000bf130000300b00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800158,
+   "entity_id": 67800161,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3529,11 +3839,13 @@
     177,
     90
    ],
-   "crudo": "5e8c0a04000000002f160000500b00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "618c0a04000000002f160000500b00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800159,
+   "entity_id": 67800162,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3544,11 +3856,13 @@
     175,
     89
    ],
-   "crudo": "5f8c0a0400000000e0150000300b00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "628c0a0400000000e0150000300b00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800160,
+   "entity_id": 67800163,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3559,11 +3873,13 @@
     137,
     81
    ],
-   "crudo": "608c0a04000000002f110000300a00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "638c0a04000000002f110000300a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800161,
+   "entity_id": 67800164,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3574,11 +3890,13 @@
     139,
     80
    ],
-   "crudo": "618c0a040000000071110000100a00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "648c0a040000000071110000100a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800162,
+   "entity_id": 67800165,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3589,11 +3907,13 @@
     159,
     82
    ],
-   "crudo": "628c0a0400000000e1130000500a00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 103,
+   "crudo": "658c0a0400000000e1130000500a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800163,
+   "entity_id": 67800166,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3604,11 +3924,13 @@
     156,
     80
    ],
-   "crudo": "638c0a04000000009f130000100a00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 103,
+   "crudo": "668c0a04000000009f130000100a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800164,
+   "entity_id": 67800167,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3619,11 +3941,13 @@
     122,
     82
    ],
-   "crudo": "648c0a0400000000510f0000500a00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "678c0a0400000000510f0000500a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800165,
+   "entity_id": 67800168,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3634,11 +3958,13 @@
     120,
     80
    ],
-   "crudo": "658c0a0400000000010f0000100a00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "688c0a0400000000010f0000100a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800166,
+   "entity_id": 67800169,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3649,11 +3975,13 @@
     245,
     115
    ],
-   "crudo": "668c0a0400000000ae1e0000700e00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "698c0a0400000000ae1e0000700e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800167,
+   "entity_id": 67800170,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3664,11 +3992,13 @@
     247,
     113
    ],
-   "crudo": "678c0a0400000000f01e0000300e00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "6a8c0a0400000000f01e0000300e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800168,
+   "entity_id": 67800171,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3679,11 +4009,13 @@
     266,
     115
    ],
-   "crudo": "688c0a04000000004f210000700e00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "6b8c0a04000000004f210000700e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800169,
+   "entity_id": 67800172,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3694,11 +4026,13 @@
     263,
     114
    ],
-   "crudo": "698c0a0400000000ff200000500e00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "6c8c0a0400000000ff200000500e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800170,
+   "entity_id": 67800173,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3709,11 +4043,13 @@
     227,
     107
    ],
-   "crudo": "6a8c0a04000000006f1c0000700d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 106,
+   "crudo": "6d8c0a04000000006f1c0000700d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800171,
+   "entity_id": 67800174,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3724,11 +4060,13 @@
     229,
     105
    ],
-   "crudo": "6b8c0a0400000000bf1c0000300d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 106,
+   "crudo": "6e8c0a0400000000bf1c0000300d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800172,
+   "entity_id": 67800175,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3739,11 +4077,13 @@
     248,
     107
    ],
-   "crudo": "6c8c0a04000000000f1f0000700d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 105,
+   "crudo": "6f8c0a04000000000f1f0000700d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800173,
+   "entity_id": 67800176,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3754,11 +4094,13 @@
     246,
     106
    ],
-   "crudo": "6d8c0a0400000000ce1e0000500d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 105,
+   "crudo": "708c0a0400000000ce1e0000500d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800174,
+   "entity_id": 67800177,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3769,11 +4111,13 @@
     209,
     98
    ],
-   "crudo": "6e8c0a0400000000301a0000500c00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 107,
+   "crudo": "718c0a0400000000301a0000500c00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800175,
+   "entity_id": 67800178,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3784,11 +4128,13 @@
     211,
     97
    ],
-   "crudo": "6f8c0a04000000007f1a0000300c00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 107,
+   "crudo": "728c0a04000000007f1a0000300c00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800176,
+   "entity_id": 67800179,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3799,11 +4145,13 @@
     228,
     98
    ],
-   "crudo": "708c0a04000000008f1c0000500c00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "738c0a04000000008f1c0000500c00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800177,
+   "entity_id": 67800180,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3814,11 +4162,13 @@
     230,
     99
    ],
-   "crudo": "718c0a0400000000d01c0000700c00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "748c0a0400000000d01c0000700c00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800178,
+   "entity_id": 67800181,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3829,11 +4179,13 @@
     191,
     90
    ],
-   "crudo": "728c0a0400000000ef170000500b00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 103,
+   "crudo": "758c0a0400000000ef170000500b00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800179,
+   "entity_id": 67800182,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3844,11 +4196,13 @@
     194,
     89
    ],
-   "crudo": "738c0a040000000040180000300b00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 103,
+   "crudo": "768c0a040000000040180000300b00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800180,
+   "entity_id": 67800183,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3859,11 +4213,13 @@
     173,
     82
    ],
-   "crudo": "748c0a0400000000b2150000500a00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "778c0a0400000000b2150000500a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800181,
+   "entity_id": 67800184,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3874,11 +4230,13 @@
     176,
     81
    ],
-   "crudo": "758c0a040000000003160000300a00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "788c0a040000000003160000300a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800182,
+   "entity_id": 67800185,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3889,11 +4247,13 @@
     195,
     82
    ],
-   "crudo": "768c0a04000000006f180000500a00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 103,
+   "crudo": "798c0a04000000006f180000500a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800183,
+   "entity_id": 67800186,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3904,11 +4264,13 @@
     193,
     81
    ],
-   "crudo": "778c0a040000000020180000300a00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 103,
+   "crudo": "7a8c0a040000000020180000300a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800184,
+   "entity_id": 67800187,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3919,11 +4281,13 @@
     174,
     73
    ],
-   "crudo": "788c0a0400000000df150000300900000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "7b8c0a0400000000df150000300900000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800185,
+   "entity_id": 67800188,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3934,11 +4298,13 @@
     177,
     74
    ],
-   "crudo": "798c0a040000000021160000500900000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "7c8c0a040000000021160000500900000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800186,
+   "entity_id": 67800189,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3949,11 +4315,13 @@
     156,
     64
    ],
-   "crudo": "7a8c0a04000000009d130000100800000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 105,
+   "crudo": "7d8c0a04000000009d130000100800000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800187,
+   "entity_id": 67800190,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3964,11 +4332,13 @@
     159,
     65
    ],
-   "crudo": "7b8c0a0400000000ee130000300800000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 105,
+   "crudo": "7e8c0a0400000000ee130000300800000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800188,
+   "entity_id": 67800191,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3979,11 +4349,13 @@
     263,
     108
    ],
-   "crudo": "7c8c0a0400000000ef200000900d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "7f8c0a0400000000ef200000900d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800189,
+   "entity_id": 67800192,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -3994,11 +4366,13 @@
     265,
     107
    ],
-   "crudo": "7d8c0a04000000002f210000700d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "808c0a04000000002f210000700d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800190,
+   "entity_id": 67800193,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4009,11 +4383,13 @@
     284,
     107
    ],
-   "crudo": "7e8c0a04000000008f230000700d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "818c0a04000000008f230000700d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800191,
+   "entity_id": 67800194,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4024,11 +4400,13 @@
     282,
     106
    ],
-   "crudo": "7f8c0a04000000004e230000500d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "828c0a04000000004e230000500d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800192,
+   "entity_id": 67800195,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4039,11 +4417,13 @@
     245,
     98
    ],
-   "crudo": "808c0a0400000000ae1e0000500c00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 106,
+   "crudo": "838c0a0400000000ae1e0000500c00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800193,
+   "entity_id": 67800196,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4054,11 +4434,13 @@
     247,
     97
    ],
-   "crudo": "818c0a0400000000fa1e0000300c00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 106,
+   "crudo": "848c0a0400000000fa1e0000300c00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800194,
+   "entity_id": 67800197,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4069,11 +4451,13 @@
     267,
     99
    ],
-   "crudo": "828c0a040000000061210000700c00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "858c0a040000000061210000700c00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800195,
+   "entity_id": 67800198,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4084,11 +4468,13 @@
     264,
     98
    ],
-   "crudo": "838c0a040000000010210000500c00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "868c0a040000000010210000500c00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800196,
+   "entity_id": 67800199,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4099,11 +4485,13 @@
     228,
     90
    ],
-   "crudo": "848c0a0400000000801c0000500b00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "878c0a0400000000801c0000500b00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800197,
+   "entity_id": 67800200,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4114,11 +4502,13 @@
     230,
     89
    ],
-   "crudo": "858c0a0400000000d11c0000300b00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "888c0a0400000000d11c0000300b00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800198,
+   "entity_id": 67800201,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4129,11 +4519,13 @@
     249,
     91
    ],
-   "crudo": "868c0a0400000000311f0000700b00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 105,
+   "crudo": "898c0a0400000000311f0000700b00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800199,
+   "entity_id": 67800202,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4144,11 +4536,13 @@
     247,
     89
    ],
-   "crudo": "878c0a0400000000e81e0000300b00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 105,
+   "crudo": "8a8c0a0400000000e81e0000300b00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800200,
+   "entity_id": 67800203,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4159,11 +4553,13 @@
     210,
     82
    ],
-   "crudo": "888c0a0400000000411a0000500a00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "8b8c0a0400000000411a0000500a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800201,
+   "entity_id": 67800204,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4174,11 +4570,13 @@
     212,
     81
    ],
-   "crudo": "898c0a0400000000841a0000300a00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "8c8c0a0400000000841a0000300a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800202,
+   "entity_id": 67800205,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4189,11 +4587,13 @@
     231,
     82
    ],
-   "crudo": "8a8c0a0400000000ff1c0000500a00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 103,
+   "crudo": "8d8c0a0400000000ff1c0000500a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800203,
+   "entity_id": 67800206,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4204,11 +4604,13 @@
     229,
     81
    ],
-   "crudo": "8b8c0a0400000000ae1c0000300a00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 103,
+   "crudo": "8e8c0a0400000000ae1c0000300a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800204,
+   "entity_id": 67800207,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4219,11 +4621,13 @@
     191,
     74
    ],
-   "crudo": "8c8c0a0400000000ff170000500900000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 106,
+   "crudo": "8f8c0a0400000000ff170000500900000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800205,
+   "entity_id": 67800208,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4234,11 +4638,13 @@
     194,
     72
    ],
-   "crudo": "8d8c0a040000000048180000100900000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 106,
+   "crudo": "908c0a040000000048180000100900000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800206,
+   "entity_id": 67800209,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4249,11 +4655,13 @@
     213,
     74
    ],
-   "crudo": "8e8c0a0400000000b11a0000500900000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 107,
+   "crudo": "918c0a0400000000b11a0000500900000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800207,
+   "entity_id": 67800210,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4264,11 +4672,13 @@
     211,
     72
    ],
-   "crudo": "8f8c0a04000000006b1a0000100900000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 107,
+   "crudo": "928c0a04000000006b1a0000100900000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800208,
+   "entity_id": 67800211,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4279,11 +4689,13 @@
     173,
     65
    ],
-   "crudo": "908c0a0400000000af150000300800000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 105,
+   "crudo": "938c0a0400000000af150000300800000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800209,
+   "entity_id": 67800212,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4294,11 +4706,13 @@
     175,
     64
    ],
-   "crudo": "918c0a0400000000fd150000100800000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 105,
+   "crudo": "948c0a0400000000fd150000100800000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800210,
+   "entity_id": 67800213,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4309,11 +4723,13 @@
     193,
     65
    ],
-   "crudo": "928c0a04000000002f180000300800000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "958c0a04000000002f180000300800000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800211,
+   "entity_id": 67800214,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4324,11 +4740,13 @@
     196,
     66
    ],
-   "crudo": "938c0a040000000081180000500800000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "968c0a040000000081180000500800000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800212,
+   "entity_id": 67800215,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4339,11 +4757,13 @@
     177,
     57
    ],
-   "crudo": "948c0a04000000003e160000300700000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "978c0a04000000003e160000300700000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800213,
+   "entity_id": 67800216,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4354,11 +4774,13 @@
     175,
     56
    ],
-   "crudo": "958c0a0400000000f0150000100700000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "988c0a0400000000f0150000100700000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800214,
+   "entity_id": 67800217,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4369,11 +4791,13 @@
     281,
     99
    ],
-   "crudo": "968c0a04000000002f230000700c00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "998c0a04000000002f230000700c00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800215,
+   "entity_id": 67800218,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4384,11 +4808,13 @@
     283,
     97
    ],
-   "crudo": "978c0a040000000070230000300c00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "9a8c0a040000000070230000300c00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800216,
+   "entity_id": 67800219,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4399,11 +4825,13 @@
     263,
     90
    ],
-   "crudo": "988c0a0400000000ee200000500b00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 107,
+   "crudo": "9b8c0a0400000000ee200000500b00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800217,
+   "entity_id": 67800220,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4414,11 +4842,13 @@
     266,
     89
    ],
-   "crudo": "998c0a040000000040210000300b00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 107,
+   "crudo": "9c8c0a040000000040210000300b00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800218,
+   "entity_id": 67800221,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4429,11 +4859,13 @@
     246,
     82
    ],
-   "crudo": "9a8c0a0400000000ce1e0000500a00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 106,
+   "crudo": "9d8c0a0400000000ce1e0000500a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800219,
+   "entity_id": 67800222,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4444,11 +4876,13 @@
     249,
     81
    ],
-   "crudo": "9b8c0a0400000000201f0000300a00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 106,
+   "crudo": "9e8c0a0400000000201f0000300a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800220,
+   "entity_id": 67800223,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4459,11 +4893,13 @@
     228,
     74
    ],
-   "crudo": "9c8c0a04000000008f1c0000500900000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "9f8c0a04000000008f1c0000500900000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800221,
+   "entity_id": 67800224,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4474,11 +4910,13 @@
     230,
     72
    ],
-   "crudo": "9d8c0a0400000000dd1c0000100900000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "a08c0a0400000000dd1c0000100900000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800222,
+   "entity_id": 67800225,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4489,11 +4927,13 @@
     210,
     65
    ],
-   "crudo": "9e8c0a0400000000421a0000300800000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "a18c0a0400000000421a0000300800000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800223,
+   "entity_id": 67800226,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4504,11 +4944,13 @@
     212,
     64
    ],
-   "crudo": "9f8c0a04000000008f1a0000100800000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "a28c0a04000000008f1a0000100800000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800224,
+   "entity_id": 67800227,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4519,11 +4961,13 @@
     192,
     57
    ],
-   "crudo": "a08c0a040000000011180000300700000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "a38c0a040000000011180000300700000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800225,
+   "entity_id": 67800228,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4534,11 +4978,13 @@
     194,
     56
    ],
-   "crudo": "a18c0a04000000004f180000100700000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "a48c0a04000000004f180000100700000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800226,
+   "entity_id": 67800229,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4549,11 +4995,13 @@
     156,
     48
    ],
-   "crudo": "a28c0a040000000093130000100600000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "a58c0a040000000093130000100600000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800227,
+   "entity_id": 67800230,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4564,11 +5012,13 @@
     158,
     49
    ],
-   "crudo": "a38c0a0400000000ce130000300600000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "a68c0a0400000000ce130000300600000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800228,
+   "entity_id": 67800231,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4579,11 +5029,13 @@
     174,
     41
    ],
-   "crudo": "a48c0a0400000000d5150000300500000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "a78c0a0400000000d5150000300500000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800229,
+   "entity_id": 67800232,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4594,11 +5046,13 @@
     176,
     41
    ],
-   "crudo": "a58c0a040000000014160000300500000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "a88c0a040000000014160000300500000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800230,
+   "entity_id": 67800233,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4609,11 +5063,13 @@
     193,
     41
    ],
-   "crudo": "a68c0a040000000025180000300500000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "a98c0a040000000025180000300500000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800231,
+   "entity_id": 67800234,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4624,11 +5080,13 @@
     194,
     40
    ],
-   "crudo": "a78c0a040000000059180000100500000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "aa8c0a040000000059180000100500000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800232,
+   "entity_id": 67800235,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4639,11 +5097,13 @@
     211,
     49
    ],
-   "crudo": "a88c0a04000000006b1a0000300600000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "ab8c0a04000000006b1a0000300600000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800233,
+   "entity_id": 67800236,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4654,11 +5114,13 @@
     213,
     48
    ],
-   "crudo": "a98c0a0400000000aa1a0000100600000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "ac8c0a0400000000aa1a0000100600000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800234,
+   "entity_id": 67800237,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4669,11 +5131,13 @@
     229,
     58
    ],
-   "crudo": "aa8c0a0400000000ab1c0000500700000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "ad8c0a0400000000ab1c0000500700000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800235,
+   "entity_id": 67800238,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4684,11 +5148,13 @@
     231,
     57
    ],
-   "crudo": "ab8c0a0400000000f01c0000300700000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "ae8c0a0400000000f01c0000300700000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800236,
+   "entity_id": 67800239,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4699,11 +5165,13 @@
     248,
     65
    ],
-   "crudo": "ac8c0a0400000000121f0000300800000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "af8c0a0400000000121f0000300800000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800237,
+   "entity_id": 67800240,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4714,11 +5182,13 @@
     247,
     66
    ],
-   "crudo": "ad8c0a0400000000e01e0000500800000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "b08c0a0400000000e01e0000500800000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800238,
+   "entity_id": 67800241,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4729,11 +5199,13 @@
     265,
     74
    ],
-   "crudo": "ae8c0a040000000029210000500900000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "b18c0a040000000029210000500900000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800239,
+   "entity_id": 67800242,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4744,11 +5216,13 @@
     267,
     73
    ],
-   "crudo": "af8c0a040000000062210000300900000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "b28c0a040000000062210000300900000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800240,
+   "entity_id": 67800243,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4759,11 +5233,13 @@
     285,
     83
    ],
-   "crudo": "b08c0a0400000000a9230000700a00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "b38c0a0400000000a9230000700a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800241,
+   "entity_id": 67800244,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4774,11 +5250,13 @@
     301,
     92
    ],
-   "crudo": "b18c0a0400000000b1250000900b00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "b48c0a0400000000b1250000900b00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800242,
+   "entity_id": 67800245,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4789,11 +5267,13 @@
     303,
     91
    ],
-   "crudo": "b28c0a0400000000ee250000700b00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "b58c0a0400000000ee250000700b00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800243,
+   "entity_id": 67800246,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4804,11 +5284,13 @@
     318,
     99
    ],
-   "crudo": "b38c0a0400000000ce270000700c00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "b68c0a0400000000ce270000700c00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800244,
+   "entity_id": 67800247,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4819,11 +5301,13 @@
     320,
     98
    ],
-   "crudo": "b48c0a040000000008280000500c00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "b78c0a040000000008280000500c00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800245,
+   "entity_id": 67800248,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4834,11 +5318,13 @@
     316,
     108
    ],
-   "crudo": "b58c0a040000000097270000900d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "b88c0a040000000097270000900d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800246,
+   "entity_id": 67800249,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4849,11 +5335,13 @@
     302,
     116
    ],
-   "crudo": "b68c0a0400000000cd250000900e00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "b98c0a0400000000cd250000900e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800247,
+   "entity_id": 67800250,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4864,11 +5352,13 @@
     300,
     114
    ],
-   "crudo": "b78c0a040000000094250000500e00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "ba8c0a040000000094250000500e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800248,
+   "entity_id": 67800251,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4879,11 +5369,13 @@
     283,
     123
    ],
-   "crudo": "b88c0a040000000077230000700f00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "bb8c0a040000000077230000700f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800249,
+   "entity_id": 67800252,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4894,11 +5386,13 @@
     282,
     122
    ],
-   "crudo": "b98c0a040000000047230000500f00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "bc8c0a040000000047230000500f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800250,
+   "entity_id": 67800253,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4909,11 +5403,13 @@
     265,
     131
    ],
-   "crudo": "ba8c0a040000000029210000701000000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "bd8c0a040000000029210000701000000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800251,
+   "entity_id": 67800254,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4924,11 +5420,13 @@
     263,
     131
    ],
-   "crudo": "bb8c0a0400000000ec200000701000000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "be8c0a0400000000ec200000701000000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800252,
+   "entity_id": 67800255,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4939,11 +5437,13 @@
     244,
     140
    ],
-   "crudo": "bc8c0a0400000000921e0000901100000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "bf8c0a0400000000921e0000901100000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800253,
+   "entity_id": 67800256,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4954,11 +5454,13 @@
     243,
     139
    ],
-   "crudo": "bd8c0a04000000006b1e0000701100000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "c08c0a04000000006b1e0000701100000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800254,
+   "entity_id": 67800257,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4969,11 +5471,13 @@
     227,
     151
    ],
-   "crudo": "be8c0a04000000006f1c0000f01200000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "c18c0a04000000006f1c0000f01200000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800255,
+   "entity_id": 67800258,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4984,11 +5488,13 @@
     225,
     150
    ],
-   "crudo": "bf8c0a0400000000391c0000d01200000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "c28c0a0400000000391c0000d01200000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800256,
+   "entity_id": 67800259,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4999,11 +5505,13 @@
     209,
     156
    ],
-   "crudo": "c08c0a04000000003c1a0000901300000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "c38c0a04000000003c1a0000901300000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800257,
+   "entity_id": 67800260,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -5014,11 +5522,13 @@
     208,
     154
    ],
-   "crudo": "c18c0a0400000000071a0000501300000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "c48c0a0400000000071a0000501300000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800258,
+   "entity_id": 67800261,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -5029,11 +5539,13 @@
     191,
     166
    ],
-   "crudo": "c28c0a0400000000f4170000d01400000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "c58c0a0400000000f4170000d01400000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800259,
+   "entity_id": 67800262,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -5044,11 +5556,13 @@
     189,
     166
    ],
-   "crudo": "c38c0a0400000000b3170000d01400000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "c68c0a0400000000b3170000d01400000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800260,
+   "entity_id": 67800263,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -5059,11 +5573,13 @@
     173,
     166
    ],
-   "crudo": "c48c0a0400000000b9150000d01400000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "c78c0a0400000000b9150000d01400000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800261,
+   "entity_id": 67800264,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -5074,11 +5590,13 @@
     171,
     166
    ],
-   "crudo": "c58c0a04000000006b150000d01400000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "c88c0a04000000006b150000d01400000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800262,
+   "entity_id": 67800265,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -5089,11 +5607,13 @@
     173,
     167
    ],
-   "crudo": "c68c0a0400000000a2150000f01400000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "c98c0a0400000000a2150000f01400000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800263,
+   "entity_id": 67800266,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -5104,11 +5624,13 @@
     156,
     157
    ],
-   "crudo": "c78c0a04000000008a130000b01300000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "ca8c0a04000000008a130000b01300000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800264,
+   "entity_id": 67800267,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -5119,11 +5641,13 @@
     154,
     158
    ],
-   "crudo": "c88c0a04000000004c130000d01300000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "cb8c0a04000000004c130000d01300000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800265,
+   "entity_id": 67800268,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -5134,11 +5658,13 @@
     138,
     148
    ],
-   "crudo": "c98c0a040000000052110000901200000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "cc8c0a040000000052110000901200000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800266,
+   "entity_id": 67800269,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -5149,11 +5675,13 @@
     136,
     149
    ],
-   "crudo": "ca8c0a040000000012110000b01200000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "cd8c0a040000000012110000b01200000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800267,
+   "entity_id": 67800270,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -5164,11 +5692,13 @@
     119,
     140
    ],
-   "crudo": "cb8c0a0400000000e90e0000901100000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "ce8c0a0400000000e90e0000901100000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800268,
+   "entity_id": 67800271,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -5179,11 +5709,13 @@
     120,
     138
    ],
-   "crudo": "cc8c0a04000000001d0f0000501100000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "cf8c0a04000000001d0f0000501100000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800269,
+   "entity_id": 67800272,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -5194,11 +5726,13 @@
     103,
     131
    ],
-   "crudo": "cd8c0a0400000000ed0c0000701000000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "d08c0a0400000000ed0c0000701000000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800270,
+   "entity_id": 67800273,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -5209,11 +5743,13 @@
     101,
     132
    ],
-   "crudo": "ce8c0a0400000000b20c0000901000000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "d18c0a0400000000b20c0000901000000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800271,
+   "entity_id": 67800274,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -5224,11 +5760,13 @@
     83,
     123
    ],
-   "crudo": "cf8c0a04000000006e0a0000700f00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "d28c0a04000000006e0a0000700f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800272,
+   "entity_id": 67800275,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -5239,11 +5777,13 @@
     86,
     122
    ],
-   "crudo": "d08c0a0400000000c20a0000500f00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "d38c0a0400000000c20a0000500f00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800273,
+   "entity_id": 67800276,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -5254,11 +5794,13 @@
     65,
     115
    ],
-   "crudo": "d18c0a040000000035080000700e00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "d48c0a040000000035080000700e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800274,
+   "entity_id": 67800277,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -5269,11 +5811,13 @@
     67,
     114
    ],
-   "crudo": "d28c0a040000000066080000500e00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "d58c0a040000000066080000500e00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800275,
+   "entity_id": 67800278,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -5284,11 +5828,13 @@
     47,
     107
    ],
-   "crudo": "d38c0a0400000000ed050000700d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "d68c0a0400000000ed050000700d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800276,
+   "entity_id": 67800279,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -5299,11 +5845,13 @@
     49,
     105
    ],
-   "crudo": "d48c0a040000000036060000300d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "d78c0a040000000036060000300d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67800277,
+   "entity_id": 67800280,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -5314,8 +5862,10 @@
     49,
     108
    ],
-   "crudo": "d58c0a04000000002b060000900d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "d88c0a04000000002b060000900d00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   }
  ]
 }

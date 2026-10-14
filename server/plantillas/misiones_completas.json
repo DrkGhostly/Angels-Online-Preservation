@@ -19766,7 +19766,7 @@
       "faccion": "Steel",
       "intro": "IronCastle Angel asks you to go to Cactus Plain and ask the Spy Angel about the Evil Lyceum.\\n",
       "repetible": false,
-      "npc_inicio": "Lvl 20, Rank 2 -",
+      "npc_inicio": "Lvl 20, Rank 2 - IronCastle Angel",
       "mapa_inicio": "Iron Castle",
       "stage_id": 38,
       "borrar_items": [],
@@ -93762,7 +93762,7 @@
     "pioneer ocadon": [
       455
     ],
-    "lvl 20, rank 2 -": [
+    "lvl 20, rank 2 - ironcastle angel": [
       459
     ],
     "ebon": [

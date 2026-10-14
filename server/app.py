@@ -30,6 +30,7 @@ from codec import Msg
 import messages  # noqa
 import gm
 import struct
+import transitable as _transitable
 
 log = logging.getLogger('app')
 
@@ -1743,6 +1744,45 @@ def _recuperar_al_matar(ses, yo, mag, addr=''):
     return fuera
 
 
+def _grupo_en_sala(ses):
+    """Los del grupo de ese jugador que estan en su misma sala (el incluido)."""
+    try:
+        import equipos as _eq_g
+        presentes = [ses] + _companeros(ses)
+        return [s for s in _eq_g.grupo_de(ses) if s in presentes] or [ses]
+    except Exception:
+        return [ses]
+
+
+def _repartir_muerte(ses, m):
+    """Quien se lleva que cuando muere un bicho: [(sesion, fraccion, botin)].
+
+    Como lo describio el usuario, jugando en el oficial:
+      * en GRUPO, la exp y el oro se dividen entre los del grupo que esten en
+        la sala, y el botin le toca a uno al azar;
+      * SIN grupo, si pegaron varios, la exp y el oro van segun el dano que
+        hizo cada uno y el botin se lo lleva el que mas pego.
+    El dano por jugador lo apunta Monstruo.registrar_dano (dano_por, por
+    char_id) con combate.ATACANTE, que es la sesion que se esta atendiendo.
+    """
+    presentes = [ses] + _companeros(ses)
+    por_cid = {int(s.personaje.char_id): s for s in presentes if getattr(s, 'personaje', None)}
+    dano = {int(c): int(d) for c, d in (getattr(m, 'dano_por', None) or {}).items()
+            if int(c) in por_cid and int(d) > 0}
+    m.dano_por = {}
+    grupo = _grupo_en_sala(ses)
+    if len(grupo) > 1:
+        quien = random.choice(grupo)
+        return [(s, 1.0 / len(grupo), s is quien) for s in grupo]
+    if ses.personaje and int(ses.personaje.char_id) not in dano:
+        dano[int(ses.personaje.char_id)] = 1
+    if len(dano) > 1:
+        total = float(sum(dano.values()))
+        mejor = max(dano, key=dano.get)
+        return [(por_cid[c], d / total, c == mejor) for c, d in dano.items()]
+    return [(ses, 1.0, True)]
+
+
 def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
     """Procesa respawn, EXP, subida de nivel, oro y drops cuando un monstruo es derrotado."""
     import combate as _cb
@@ -1751,6 +1791,7 @@ def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
     import struct
     import asyncio
     objetivo = m.entity_id
+    yo_muerte = yo
 
     if ses.personaje and ses.personaje.stage == 57 and m.npc_type == 224:
         ses.slarm_kills = getattr(ses, 'slarm_kills', 0) + 1
@@ -1759,7 +1800,25 @@ def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
     if ses.personaje:
         import misiones as _mis_muerte
         _mis_muerte.registrar_baja_monstruo(ses, m.npc_type, getattr(m, 'nombre', None))
+        # La baja cuenta para las misiones de todo el grupo que este en la sala.
+        for _s_gb in _grupo_en_sala(ses):
+            if _s_gb is not ses:
+                try:
+                    _mis_muerte.registrar_baja_monstruo(_s_gb, m.npc_type, getattr(m, 'nombre', None))
+                    _s_gb.volcar()
+                except Exception:
+                    log.exception('baja de mision de un companero')
         _eventos_al_morir(ses, m, addr)
+        # La carrera de bajas (NPCKILLGAME): cada baja cuenta en la variable 8.
+        import eventos_mundo as _evm_k
+        _est_k = _evm_k.estado_de(ses)
+        _jk = getattr(_est_k, 'juego_matar', None)
+        if _jk and time.time() < _jk.get('fin', 0) and _est_k.stage == ses.personaje.stage:
+            _est_k.sumar_variable(0, 8, 1)
+            _n_k = _est_k.variable(0, 8)
+            if _n_k % 10 == 0:
+                log.info(f"[{addr}] NPCKILLGAME: {_n_k} bajas")
+            _marcador_carrera(ses, _est_k)
         ses.volcar()
 
     if getattr(m, 'encantado', False):
@@ -1791,12 +1850,33 @@ def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
         ses.enviar(*_muerte)
 
     def _respawn():
-        # En una instancia lo que matas se queda muerto.
+        # ENABLE_GENERATOR: mientras la zona siga encendida, cada baja se
+        # repone con uno nuevo de esa zona. Es lo que hace las oleadas de la
+        # sala 2 de la Magic Kichen Path: los Rock Slarm de las zonas 75, 90
+        # y 91 salen sin parar hasta las 45 bajas (evento 102), que las apaga
+        # y saca al Rock God Mendun.
+        _zona = getattr(m, 'zona_generador', None)
+        if getattr(m, 'generado', False) and _zona is not None and ses.personaje:
+            import eventos_mundo as _evm_r
+            _est = _evm_r.estado_de(ses)
+            if (_est.stage == ses.personaje.stage
+                    and _zona in getattr(_est, 'generadores_activos', set())):
+                _generar_zona(ses, addr, _est.stage, _zona, cuantos=1)
+            return
+        # En una instancia lo que matas se queda muerto. Salvo durante la
+        # carrera del Annoying Clerk: el pasillo se repone mientras dura.
         if es_instancia(getattr(ses.personaje, 'stage', 0) if ses.personaje
                         else 0):
-            return
+            import eventos_mundo as _evm_rc
+            _jrc = getattr(_evm_rc.estado_de(ses), 'juego_matar', None)
+            if not (_jrc and time.time() < _jrc.get('fin', 0)):
+                return
         if getattr(m, 'generado', False):
             return            # lo saco un evento (GENERATE): no vuelve solo
+        # Bichos compartidos: si quien lo mato ya no esta en ese mapa, que lo
+        # reviva el bucle de quien siga alli (el aviso le llega a todos).
+        if (ses.monstruos or {}).get(objetivo) is not m:
+            return
         if not getattr(m, 'vivo', False):
             m.revivir()
             import login as _lg
@@ -1810,236 +1890,254 @@ def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
     except Exception:
         pass
 
-    buffs = ses.personaje.buffs if ses.personaje else {}
-    exp_ganada = _cb.calcular_exp(m.npc_type, buffs)
-    sk_exp_ganada = _cb.calcular_skill_exp(buffs)
+    def _premiar(ses, fraccion=1.0, con_botin=True):
+        """La exp, el oro y el botin de UN jugador por esta muerte.
 
-    # El oro depende del BICHO: su tabla de serv_drop.xml si la tiene, y si
-    # no la mediana de su tramo de nivel. Antes se llamaba sin argumentos y
-    # por eso todos soltaban lo mismo.
-    oro = _cb.botin(getattr(m, 'nivel', 0) or 0, getattr(m, 'npc_type', 0) or 0)
-    ses.oro = getattr(ses, 'oro', 0) + oro
-    if ses.personaje:
-        ses.personaje.oro = ses.oro
+        `fraccion` es su parte de la exp y del oro; `con_botin`, si le toca
+        el botin del bicho (el de mision lo saca cada uno). Lo reparte
+        _repartir_muerte entre quienes pelearon."""
+        yo = ses.personaje.entity_id if ses.personaje else yo_muerte
+        buffs = ses.personaje.buffs if ses.personaje else {}
+        exp_ganada = _cb.calcular_exp(m.npc_type, buffs)
+        if fraccion < 1.0:
+            exp_ganada = max(1, int(round(exp_ganada * fraccion)))
+        sk_exp_ganada = _cb.calcular_skill_exp(buffs)
 
-    salida_combate = []
-    cid = ses.personaje.char_id if ses.personaje else 4980
+        # El oro depende del BICHO: su tabla de serv_drop.xml si la tiene, y si
+        # no la mediana de su tramo de nivel. Antes se llamaba sin argumentos y
+        # por eso todos soltaban lo mismo.
+        oro = _cb.botin(getattr(m, 'nivel', 0) or 0, getattr(m, 'npc_type', 0) or 0)
+        if fraccion < 1.0:
+            oro = int(oro * fraccion)
+        ses.oro = getattr(ses, 'oro', 0) + oro
+        if ses.personaje:
+            ses.personaje.oro = ses.oro
 
-    if ses.personaje:
-        p = ses.personaje
-        f_pet = getattr(p, 'mascota', None)
-        pet_fuera = bool(f_pet and f_pet.get('fuera'))
+        salida_combate = []
+        cid = ses.personaje.char_id if ses.personaje else 4980
 
-        # Reparto proporcional de EXP segun el % de dano hecho por cada bando:
-        #   - Bando del jugador (dano_jugador): Jugador + Invocaciones + Monstruos encantados (Earth) + sangrados/reflejos
-        #   - Bando de la mascota (dano_pet): Mascota (solo si esta invocada y ataco)
-        dano_jug = max(0, int(getattr(m, 'dano_jugador', 0) or 0))
-        dano_pet = max(0, int(getattr(m, 'dano_pet', 0) or 0)) if pet_fuera else 0
-        m.dano_jugador = 0
-        m.dano_pet = 0
+        if ses.personaje:
+            p = ses.personaje
+            f_pet = getattr(p, 'mascota', None)
+            pet_fuera = bool(f_pet and f_pet.get('fuera'))
 
-        dano_tot = dano_jug + dano_pet
-        if dano_tot > 0:
-            pct_jug = dano_jug / float(dano_tot)
-            pct_pet = dano_pet / float(dano_tot)
-        else:
-            pct_jug = 1.0
-            pct_pet = 0.0
+            # Reparto proporcional de EXP segun el % de dano hecho por cada bando:
+            #   - Bando del jugador (dano_jugador): Jugador + Invocaciones + Monstruos encantados (Earth) + sangrados/reflejos
+            #   - Bando de la mascota (dano_pet): Mascota (solo si esta invocada y ataco)
+            dano_jug = max(0, int(getattr(m, 'dano_jugador', 0) or 0))
+            dano_pet = max(0, int(getattr(m, 'dano_pet', 0) or 0)) if pet_fuera else 0
+            m.dano_jugador = 0
+            m.dano_pet = 0
 
-        exp_jug = max(1, int(round(exp_ganada * pct_jug))) if pct_jug > 0 else 0
-        exp_pet = max(1, int(round(exp_ganada * pct_pet))) if (pct_pet > 0 and pet_fuera) else 0
+            dano_tot = dano_jug + dano_pet
+            if dano_tot > 0:
+                pct_jug = dano_jug / float(dano_tot)
+                pct_pet = dano_pet / float(dano_tot)
+            else:
+                pct_jug = 1.0
+                pct_pet = 0.0
 
-        _u64 = lambda v: max(0, min(int(v or 0), 0xFFFFFFFFFFFFFFFF))
-        if exp_jug > 0:
-            p.exp = max(int(p.exp or 0), _cb.exp_para_nivel(p.nivel)) + exp_jug
-            subio_nivel = False
-            # ESTE BUCLE COLGABA EL SERVIDOR. exp_para_nivel() recortaba a
-            # 0xFFFFFFFF, asi que del nivel 299 en adelante devolvia siempre el
-            # mismo numero; con la experiencia por encima de ese tope la
-            # condicion no dejaba de cumplirse nunca y subia de nivel para
-            # siempre. Ahora la curva va sin recortar, hay tope de nivel, y
-            # ademas un limite de vueltas por si algun dia la curva llega rota.
-            _tope_nivel = _cb.nivel_maximo()
-            for _ in range(1000):
-                if p.nivel >= _tope_nivel:
-                    break
-                exp_siguiente = _cb.exp_para_nivel(p.nivel + 1)
-                if exp_siguiente > 0 and p.exp >= exp_siguiente:
-                    p.nivel += 1
-                    p.hp_max += 25
-                    p.mp_max += 15
-                    subio_nivel = True
-                else:
-                    break
-            exp_actual_ui, exp_siguiente_ui = _cb.exp_para_barra(p.nivel, p.exp)
-            if subio_nivel:
-                p.hp = _vida_max(p)
-                p.mp = _mana_max(p, ses.inventario)
-                salida_combate.append(_cl.aviso(f"Level Up! Reached Level {p.nivel}!", tipo=0, msg_id=_cl.MSG_ITEM))
-                salida_combate.append(_cb.atributo(yo, p.hp, _cb.KIND_HP))
-                salida_combate.append(_cb.atributo(yo, p.mp, _cb.KIND_MP))
-                salida_combate.append(
-                    struct.pack('<HIB', 0x001D, yo, 4) +
-                    struct.pack('<BQ', 29, _u64(p.nivel)) +
-                    struct.pack('<BQ', 30, max(0, int(_cb.exp_para_nivel(p.nivel)))) +
-                    struct.pack('<BQ', 31, _u64(exp_siguiente_ui)) +
-                    struct.pack('<BQ', 32, _u64(exp_actual_ui))
-                )
-                salida_combate.append(_cb.efecto_level_up(yo, es_skill=False))
-                salida_combate.append(_stats_ses(ses))
-                # Las tres ranuras de rama extra se abren por NIVEL (301,
-                # 351 y 401), sin Supreme Level ni mision. Aqui solo se
-                # avisa: la ranura ya esta disponible, se llena eligiendo
-                # una rama.
-                import skills as _sk_rn
-                _nueva_ranura = _sk_rn.ranura_que_se_abre(p.nivel)
-                if (_nueva_ranura
-                        and len(p.habilidades or []) >= _sk_rn.RANURAS_BASE
-                        and len(p.habilidades or []) < _nueva_ranura):
-                    # Se rellena sola con una rama de OFICIO, que no cambia
-                    # la clase, para que la ranura se vea y se pueda ir a
-                    # cambiarla con el Skill Angel. El comando /rama sigue
-                    # valiendo para ponerle otra cosa directamente.
-                    _relleno = _sk_rn.rama_de_relleno(p.habilidades)
-                    if _relleno:
-                        if not getattr(p, 'banco_habilidades', None):
-                            p.banco_habilidades = {}
-                        _nv_rl, _xp_rl = p.banco_habilidades.get(_relleno, (1, 0))
-                        p.habilidades = list(p.habilidades or []) + [(_relleno, _nv_rl, _xp_rl)]
-                        p.class_id = _sk_rn.calcular_class_id([h[0] for h in p.habilidades])
+            exp_jug = max(1, int(round(exp_ganada * pct_jug))) if pct_jug > 0 else 0
+            exp_pet = max(1, int(round(exp_ganada * pct_pet))) if (pct_pet > 0 and pet_fuera) else 0
+
+            _u64 = lambda v: max(0, min(int(v or 0), 0xFFFFFFFFFFFFFFFF))
+            if exp_jug > 0:
+                p.exp = max(int(p.exp or 0), _cb.exp_para_nivel(p.nivel)) + exp_jug
+                subio_nivel = False
+                # ESTE BUCLE COLGABA EL SERVIDOR. exp_para_nivel() recortaba a
+                # 0xFFFFFFFF, asi que del nivel 299 en adelante devolvia siempre el
+                # mismo numero; con la experiencia por encima de ese tope la
+                # condicion no dejaba de cumplirse nunca y subia de nivel para
+                # siempre. Ahora la curva va sin recortar, hay tope de nivel, y
+                # ademas un limite de vueltas por si algun dia la curva llega rota.
+                _tope_nivel = _cb.nivel_maximo()
+                for _ in range(1000):
+                    if p.nivel >= _tope_nivel:
+                        break
+                    exp_siguiente = _cb.exp_para_nivel(p.nivel + 1)
+                    if exp_siguiente > 0 and p.exp >= exp_siguiente:
+                        p.nivel += 1
+                        p.hp_max += 25
+                        p.mp_max += 15
+                        subio_nivel = True
+                    else:
+                        break
+                exp_actual_ui, exp_siguiente_ui = _cb.exp_para_barra(p.nivel, p.exp)
+                if subio_nivel:
+                    p.hp = _vida_max(p)
+                    p.mp = _mana_max(p, ses.inventario)
+                    salida_combate.append(_cl.aviso(f"Level Up! Reached Level {p.nivel}!", tipo=0, msg_id=_cl.MSG_ITEM))
+                    salida_combate.append(_cb.atributo(yo, p.hp, _cb.KIND_HP))
+                    salida_combate.append(_cb.atributo(yo, p.mp, _cb.KIND_MP))
+                    salida_combate.append(
+                        struct.pack('<HIB', 0x001D, yo, 4) +
+                        struct.pack('<BQ', 29, _u64(p.nivel)) +
+                        struct.pack('<BQ', 30, max(0, int(_cb.exp_para_nivel(p.nivel)))) +
+                        struct.pack('<BQ', 31, _u64(exp_siguiente_ui)) +
+                        struct.pack('<BQ', 32, _u64(exp_actual_ui))
+                    )
+                    salida_combate.append(_cb.efecto_level_up(yo, es_skill=False))
+                    salida_combate.append(_stats_ses(ses))
+                    # Las tres ranuras de rama extra se abren por NIVEL (301,
+                    # 351 y 401), sin Supreme Level ni mision. Aqui solo se
+                    # avisa: la ranura ya esta disponible, se llena eligiendo
+                    # una rama.
+                    import skills as _sk_rn
+                    _nueva_ranura = _sk_rn.ranura_que_se_abre(p.nivel)
+                    if (_nueva_ranura
+                            and len(p.habilidades or []) >= _sk_rn.RANURAS_BASE
+                            and len(p.habilidades or []) < _nueva_ranura):
+                        # Se rellena sola con una rama de OFICIO, que no cambia
+                        # la clase, para que la ranura se vea y se pueda ir a
+                        # cambiarla con el Skill Angel. El comando /rama sigue
+                        # valiendo para ponerle otra cosa directamente.
+                        _relleno = _sk_rn.rama_de_relleno(p.habilidades)
+                        if _relleno:
+                            if not getattr(p, 'banco_habilidades', None):
+                                p.banco_habilidades = {}
+                            _nv_rl, _xp_rl = p.banco_habilidades.get(_relleno, (1, 0))
+                            p.habilidades = list(p.habilidades or []) + [(_relleno, _nv_rl, _xp_rl)]
+                            p.class_id = _sk_rn.calcular_class_id([h[0] for h in p.habilidades])
+                            salida_combate.append(_cl.aviso(
+                                _sk_rn.nombre_rama(_relleno), tipo=7, msg_id=424))
+                            salida_combate.append(
+                                _cl.arbol(p.habilidades, banco=p.banco_habilidades))
+                            for _nid, _nom in (_sk_rn.hechizos_de_rama(_relleno) or []):
+                                salida_combate.append(
+                                    struct.pack('<HIB', 0x001D, yo, 1)
+                                    + struct.pack('<BII', _cl.KIND_HECHIZO, _nid, 1))
+                                salida_combate.append(
+                                    _cl.aviso(_nom, tipo=7, msg_id=_cl.MSG_HECHIZO))
+                            if getattr(ses, 'usuario', None):
+                                cuentas.guardar_clase(ses.usuario, p.char_id, p.class_id)
+                                cuentas.guardar_banco_habilidades(
+                                    ses.usuario, p.char_id, p.banco_habilidades)
                         salida_combate.append(_cl.aviso(
-                            _sk_rn.nombre_rama(_relleno), tipo=7, msg_id=424))
-                        salida_combate.append(
-                            _cl.arbol(p.habilidades, banco=p.banco_habilidades))
-                        for _nid, _nom in (_sk_rn.hechizos_de_rama(_relleno) or []):
-                            salida_combate.append(
-                                struct.pack('<HIB', 0x001D, yo, 1)
-                                + struct.pack('<BII', _cl.KIND_HECHIZO, _nid, 1))
-                            salida_combate.append(
-                                _cl.aviso(_nom, tipo=7, msg_id=_cl.MSG_HECHIZO))
-                        if getattr(ses, 'usuario', None):
-                            cuentas.guardar_clase(ses.usuario, p.char_id, p.class_id)
-                            cuentas.guardar_banco_habilidades(
-                                ses.usuario, p.char_id, p.banco_habilidades)
-                    salida_combate.append(_cl.aviso(
-                        'Skill slot %d unlocked (%s). Change it at the Skill Angel.'
-                        % (_nueva_ranura, _sk_rn.nombre_rama(_relleno) if _relleno else '-'),
-                        tipo=0, msg_id=_cl.MSG_ITEM))
-                    log.info('[%s] %s abre la ranura de rama %d al nivel %d, '
-                             'rellenada con %s'
-                             % (addr, p.nombre, _nueva_ranura, p.nivel,
-                                _sk_rn.nombre_rama(_relleno) if _relleno else 'nada'))
-                log.info(f"[{addr}] {p.nombre} SUBIO A NIVEL {p.nivel} (enviado 0x001D y efecto 0x0020 red banner)!")
+                            'Skill slot %d unlocked (%s). Change it at the Skill Angel.'
+                            % (_nueva_ranura, _sk_rn.nombre_rama(_relleno) if _relleno else '-'),
+                            tipo=0, msg_id=_cl.MSG_ITEM))
+                        log.info('[%s] %s abre la ranura de rama %d al nivel %d, '
+                                 'rellenada con %s'
+                                 % (addr, p.nombre, _nueva_ranura, p.nivel,
+                                    _sk_rn.nombre_rama(_relleno) if _relleno else 'nada'))
+                    log.info(f"[{addr}] {p.nombre} SUBIO A NIVEL {p.nivel} (enviado 0x001D y efecto 0x0020 red banner)!")
 
-            salida_combate.append(_cl.aviso_doble(_cl.MSG_EXP,
-                                                  str(exp_jug),
-                                                  str(exp_jug), tipo=0))
-            salida_combate.append(
-                struct.pack('<HIBBQ', 0x001D, yo, 1, 32, _u64(exp_actual_ui)))
+                salida_combate.append(_cl.aviso_doble(_cl.MSG_EXP,
+                                                      str(exp_jug),
+                                                      str(exp_jug), tipo=0))
+                salida_combate.append(
+                    struct.pack('<HIBBQ', 0x001D, yo, 1, 32, _u64(exp_actual_ui)))
 
-        if getattr(ses, 'usuario', None):
-            cuentas.guardar_progreso(ses.usuario, p.char_id, p.nivel, p.exp,
-                                     p.hp, p.mp, p.habilidades,
-                                     hp_max=p.hp_max, mp_max=p.mp_max, sp=getattr(ses, "sp", None), buffs=getattr(ses.personaje, "buffs", None) if ses.personaje else None)
-            cuentas.guardar_oro(ses.usuario, p.char_id, ses.oro)
-
-        # La mascota solo gana EXP si participo en el combate (exp_pet > 0, proporcional a su % de dano)
-        if pet_fuera and exp_pet > 0:
-            import mascotas as _ms
-            _sp_antes = f_pet.get('sprite')
-            _sub_p = _ms.dar_exp(f_pet, exp_pet)
-            _r_pet = f_pet.get('ranura')
-            if _r_pet is not None and getattr(p, 'mascotas', None) is not None:
-                p.mascotas[str(_r_pet)] = f_pet
             if getattr(ses, 'usuario', None):
-                cuentas.guardar_mascota(ses.usuario, p.char_id, f_pet, getattr(p, 'mascotas', None))
-            salida_combate.append(_ms.armar(f_pet))
-            if _sub_p > 0:
-                if _r_pet is not None:
-                    salida_combate.extend(_refrescar(ses, [_r_pet]))
-                pet_eid = getattr(ses, 'pet_entity_id', None) or f_pet.get('entidad')
-                if pet_eid and f_pet.get('sprite') != _sp_antes:
-                    old_eid = int(pet_eid)
-                    salida_combate.extend([
-                        _ms.quitar(old_eid),
-                        _ms.enlazar(yo, 0),
-                    ])
-                    pet_eid = _pet_siguiente_entidad(ses)
-                    f_pet['entidad'] = pet_eid
-                    ses.pet_entity_id = pet_eid
-                    _est_p = dict(f_pet)
-                    _est_p.update({
-                        'entidad': pet_eid,
-                        'x': f_pet.get('x', p.tile_x + 1),
-                        'y': f_pet.get('y', p.tile_y),
-                        'dueno': yo,
-                        'dueno_nombre': p.nombre,
-                        'tipo': f_pet.get('tipo', 0),
-                    })
-                    salida_combate.extend([
-                        _ms.entidad_mundo(_pet_plantilla(), _est_p),
-                        _ms.enlazar(yo, pet_eid),
-                        _ms.armar(f_pet),
-                    ])
-                if pet_eid:
-                    salida_combate.append(_cb.atributo(int(pet_eid), _ms.hp_eff(f_pet), _cb.KIND_HP))
-                    if int(f_pet.get('saciedad', 0)) > 100:
-                        salida_combate.append(struct.pack('<HIBBII', 0x001D, int(pet_eid), 1, 4, 3796, max(60000, (int(f_pet['saciedad']) - 100) * 60000)))
+                cuentas.guardar_progreso(ses.usuario, p.char_id, p.nivel, p.exp,
+                                         p.hp, p.mp, p.habilidades,
+                                         hp_max=p.hp_max, mp_max=p.mp_max, sp=getattr(ses, "sp", None), buffs=getattr(ses.personaje, "buffs", None) if ses.personaje else None)
+                cuentas.guardar_oro(ses.usuario, p.char_id, ses.oro)
 
-    salida_combate.append(_cl.aviso(f'{oro} Gold', tipo=0, msg_id=_cl.MSG_ITEM))
+            # La mascota solo gana EXP si participo en el combate (exp_pet > 0, proporcional a su % de dano)
+            if pet_fuera and exp_pet > 0:
+                import mascotas as _ms
+                _sp_antes = f_pet.get('sprite')
+                _sub_p = _ms.dar_exp(f_pet, exp_pet)
+                _r_pet = f_pet.get('ranura')
+                if _r_pet is not None and getattr(p, 'mascotas', None) is not None:
+                    p.mascotas[str(_r_pet)] = f_pet
+                if getattr(ses, 'usuario', None):
+                    cuentas.guardar_mascota(ses.usuario, p.char_id, f_pet, getattr(p, 'mascotas', None))
+                salida_combate.append(_ms.armar(f_pet))
+                if _sub_p > 0:
+                    if _r_pet is not None:
+                        salida_combate.extend(_refrescar(ses, [_r_pet]))
+                    pet_eid = getattr(ses, 'pet_entity_id', None) or f_pet.get('entidad')
+                    if pet_eid and f_pet.get('sprite') != _sp_antes:
+                        old_eid = int(pet_eid)
+                        salida_combate.extend([
+                            _ms.quitar(old_eid),
+                            _ms.enlazar(yo, 0),
+                        ])
+                        pet_eid = _pet_siguiente_entidad(ses)
+                        f_pet['entidad'] = pet_eid
+                        ses.pet_entity_id = pet_eid
+                        _est_p = dict(f_pet)
+                        _est_p.update({
+                            'entidad': pet_eid,
+                            'x': f_pet.get('x', p.tile_x + 1),
+                            'y': f_pet.get('y', p.tile_y),
+                            'dueno': yo,
+                            'dueno_nombre': p.nombre,
+                            'tipo': f_pet.get('tipo', 0),
+                        })
+                        salida_combate.extend([
+                            _ms.entidad_mundo(_pet_plantilla(), _est_p),
+                            _ms.enlazar(yo, pet_eid),
+                            _ms.armar(f_pet),
+                        ])
+                    if pet_eid:
+                        salida_combate.append(_cb.atributo(int(pet_eid), _ms.hp_eff(f_pet), _cb.KIND_HP))
+                        if int(f_pet.get('saciedad', 0)) > 100:
+                            salida_combate.append(struct.pack('<HIBBII', 0x001D, int(pet_eid), 1, 4, 3796, max(60000, (int(f_pet['saciedad']) - 100) * 60000)))
 
-    drops = _cb.botin_items(m.npc_type, nombre=getattr(m, 'nombre', ''), nivel=getattr(m, 'nivel', 0))
-    if ses.personaje:
-        import misiones as _mis_drop
-        drops_mis = _mis_drop.verificar_botin_mision(ses, m.npc_type, getattr(m, 'nombre', ''))
-        if drops_mis:
-            drops = list(drops) + list(drops_mis)
-    bolsa = getattr(ses, 'inventario', {})
-    max_ranura = _tope_bolsa(bolsa)
+        salida_combate.append(_cl.aviso(f'{oro} Gold', tipo=0, msg_id=_cl.MSG_ITEM))
 
-    tocadas_botin = []
-    for item_drop, cant in drops:
-        cant = max(1, int(cant))
-        if _iv.es_item_oculto(item_drop):
-            import misiones as _mis_sl
-            slot_oc = _mis_sl.slot_oculto_para_item(ses, item_drop)
-            bolsa[slot_oc] = item_drop
-            _instancias(ses)[slot_oc] = _iv.instancia_nueva()
-            _cant_actual = int(_cantidades(ses).get(int(slot_oc), 0))
-            _cantidades(ses)[slot_oc] = _cant_actual + cant
-            _cantidades(ses)[str(slot_oc)] = _cant_actual + cant
-            tocadas_botin.append(slot_oc)
+        drops = (_cb.botin_items(m.npc_type, nombre=getattr(m, 'nombre', ''), nivel=getattr(m, 'nivel', 0))
+                 if con_botin else [])
+        if ses.personaje:
+            import misiones as _mis_drop
+            drops_mis = _mis_drop.verificar_botin_mision(ses, m.npc_type, getattr(m, 'nombre', ''))
+            if drops_mis:
+                drops = list(drops) + list(drops_mis)
+        bolsa = getattr(ses, 'inventario', {})
+        max_ranura = _tope_bolsa(bolsa)
+
+        tocadas_botin = []
+        for item_drop, cant in drops:
+            cant = max(1, int(cant))
+            if _iv.es_item_oculto(item_drop):
+                import misiones as _mis_sl
+                slot_oc = _mis_sl.slot_oculto_para_item(ses, item_drop)
+                bolsa[slot_oc] = item_drop
+                _instancias(ses)[slot_oc] = _iv.instancia_nueva()
+                _cant_actual = int(_cantidades(ses).get(int(slot_oc), 0))
+                _cantidades(ses)[slot_oc] = _cant_actual + cant
+                _cantidades(ses)[str(slot_oc)] = _cant_actual + cant
+                tocadas_botin.append(slot_oc)
+                salida_combate.append(_cl.aviso(_nombre_item(item_drop), tipo=0, msg_id=_cl.MSG_ITEM))
+                continue
+
+            apila = None
+            if _iv.es_apilable(item_drop):
+                for s_r, it_id in bolsa.items():
+                    if 20 <= s_r <= max_ranura and it_id == item_drop:
+                        apila = s_r
+                        break
+            if apila is None and not any(r not in bolsa for r in range(20, max_ranura + 1)):
+                log.info(f"[{addr}] inventario lleno (limite={max_ranura}), drop {item_drop} ignorado silenciosamente")
+                continue
+
+            tocadas_botin.append(_meter(ses, item_drop, cant))
             salida_combate.append(_cl.aviso(_nombre_item(item_drop), tipo=0, msg_id=_cl.MSG_ITEM))
-            continue
 
-        apila = None
-        if _iv.es_apilable(item_drop):
-            for s_r, it_id in bolsa.items():
-                if 20 <= s_r <= max_ranura and it_id == item_drop:
-                    apila = s_r
-                    break
-        if apila is None and not any(r not in bolsa for r in range(20, max_ranura + 1)):
-            log.info(f"[{addr}] inventario lleno (limite={max_ranura}), drop {item_drop} ignorado silenciosamente")
-            continue
+        salida_combate.extend(_refrescar(ses, tocadas_botin, con_oro=True))
+        if ses.personaje and tocadas_botin:
+            import misiones as _mis_col
+            pkgs_rec = _mis_col.verificar_progreso_recoleccion(ses, [d[0] for d in drops])
+            salida_combate.extend(pkgs_rec)
+        try:
+            asyncio.get_event_loop().call_later(
+                _espera_muerte,
+                lambda p=tuple(salida_combate): ses.enviar_inmediato(*p))
+        except Exception:
+            ses.enviar(*salida_combate)
+        if ses.personaje and getattr(ses, 'usuario', None):
+            cuentas.guardar_inventario(ses.usuario, cid, bolsa, _cantidades(ses))
 
-        tocadas_botin.append(_meter(ses, item_drop, cant))
-        salida_combate.append(_cl.aviso(_nombre_item(item_drop), tipo=0, msg_id=_cl.MSG_ITEM))
+        log.info(f"[{addr}] mato un {m.nombre} (entidad {objetivo}); +{exp_ganada} exp, +{oro} oro, {len(drops)} items")
 
-    salida_combate.extend(_refrescar(ses, tocadas_botin, con_oro=True))
-    if ses.personaje and tocadas_botin:
-        import misiones as _mis_col
-        pkgs_rec = _mis_col.verificar_progreso_recoleccion(ses, [d[0] for d in drops])
-        salida_combate.extend(pkgs_rec)
-    try:
-        asyncio.get_event_loop().call_later(
-            _espera_muerte,
-            lambda p=tuple(salida_combate): ses.enviar_inmediato(*p))
-    except Exception:
-        ses.enviar(*salida_combate)
-    if ses.personaje and getattr(ses, 'usuario', None):
-        cuentas.guardar_inventario(ses.usuario, cid, bolsa, _cantidades(ses))
-
-    log.info(f"[{addr}] mato un {m.nombre} (entidad {objetivo}); +{exp_ganada} exp, +{oro} oro, {len(drops)} items")
+    for _s_pr, _fr_pr, _bot_pr in _repartir_muerte(ses, m):
+        try:
+            _premiar(_s_pr, _fr_pr, _bot_pr)
+        except Exception:
+            log.exception('[%s] no se pudo premiar a un participante', addr)
 
 
 
@@ -2229,10 +2327,12 @@ def _apariencia(ses):
     # 1. Ranuras de equipo regular (1..7, 10)
     for r in RANURAS_VISIBLES:
         out.append(_cb.equipar_visual(ent, r, int(bolsa.get(r, 0) or 0)))
-    # 2. Ranuras de Fashion (167..174) si estan equipadas
+    # 2. Ranuras de Fashion (167..174): TODAS, con 0 las vacias. Mandando
+    # solo las ocupadas, al quitarse una pieza nadie le decia al cliente que
+    # esa ranura habia quedado vacia, y la seguia pintando encima del
+    # personaje y en su casilla de la ventana (salia repetida).
     for r in range(167, 175):
-        if r in bolsa:
-            out.append(_cb.equipar_visual(ent, r, int(bolsa.get(r, 0) or 0)))
+        out.append(_cb.equipar_visual(ent, r, int(bolsa.get(r, 0) or 0)))
     return out
 
 
@@ -2518,8 +2618,29 @@ def _aplicar_efectos(ses, addr, efectos, motivo=''):
                 import clases as _cl
                 textos = ef[1] if que == 'chat_npc' else (
                     ef[2] if que == 'chat' else [ef[1]])
-                for msg in (textos if isinstance(textos, list) else [textos]):
-                    ses.enviar(_cl.aviso('', tipo=0, msg_id=int(msg)))
+                # Los textos de los eventos de mapa son de msg.xml (el 64958
+                # de la lava es "Too hot!"), y el 0x000D solo entiende los
+                # numeros de string.xml: mandado tal cual no salia nada. Se
+                # resuelve aqui y va como texto libre.
+                import dialogos as _dlg_t
+                _msgs_t = _dlg_t._cargar_msg_dict()
+                textos = [int(x) for x in (textos if isinstance(textos, list) else [textos]) if x]
+                if que == 'chat' and textos and p:
+                    # CHAT(tipo, msg1..msg5): el JUGADOR lo dice, con su
+                    # bocadillo -- asi sale en el oficial el "Too hot!" de la
+                    # lava y el "Terrible! Too many Monsters..." de la sala 1
+                    # (en la Global llegan como 0x0017 con su entidad). De
+                    # varios mensajes se dice uno al azar.
+                    _txt = _msgs_t.get(random.choice(textos))
+                    if _txt:
+                        _hablar_jugador(ses, _txt)
+                    textos = []
+                for msg in textos:
+                    _txt = _msgs_t.get(int(msg))
+                    if _txt:
+                        ses.enviar(_cl.aviso(_txt, tipo=0, msg_id=_cl.MSG_TEXTO))
+                    else:
+                        ses.enviar(_cl.aviso('', tipo=0, msg_id=int(msg)))
             elif que == 'variable':
                 modo, mapa, var, valor = ef[1], ef[2], ef[3], ef[4]
                 if modo == 'poner':
@@ -2529,9 +2650,12 @@ def _aplicar_efectos(ses, addr, efectos, motivo=''):
                 else:
                     estado.sumar_variable(mapa, var, -valor)
             elif que == 'temporizador':
-                t = estado.temporizador(ef[1])
-                t[0] = bool(ef[2])
-                t[1] += 1
+                # ENABLE_TIMER(tag, 1/0). El temporizador es un objeto del mapa
+                # (60002, SERV_CLASS_TIMER) con su periodo y sus veces: cada
+                # periodo suma una vez y dispara su evento, que mira
+                # TIMER_COUNTER. En la sala 3 de la Magic Kichen Path son las
+                # tres oleadas cada 60 s y el Beelzebub en la tercera.
+                _arrancar_temporizador(ses, addr, estado, int(ef[1]), bool(int(ef[2] or 0)))
             elif que == 'viajar':
                 # CHANGE_MAP(mapa, tag): la llegada es la primera casilla del
                 # TAG en el mapa de destino. Asi llevan los objetos de mision a
@@ -2549,14 +2673,106 @@ def _aplicar_efectos(ses, addr, efectos, motivo=''):
             elif que == 'dialogo':
                 _dialogo_del_mapa(ses, addr, estado.stage, int(ef[1]))
             elif que == 'generar':
-                _generar_zona(ses, addr, estado.stage, int(ef[1]))
+                # UNO por GENERATE. Los mapas repiten la accion para sacar
+                # varios: en 201 disparadores aparece el mismo GENERATE(tag)
+                # repetido y solo en 5 las repeticiones coinciden con la
+                # cantidad de la zona; la sala 3 de la Magic Kichen Path pide
+                # diez GENERATE(75) por oleada. Sacando la zona entera en cada
+                # uno salian 300 monstruos donde el mapa pide 10.
+                _generar_zona(ses, addr, estado.stage, int(ef[1]), cuantos=1)
+            elif que == 'juego_matar':
+                # NPCKILLGAME. La carrera de la sala 2 de la Magic Kichen Path:
+                # "limpia mas enemigos que los del Evil Lyceum en 10 minutos".
+                # Ningun evento cuenta las bajas ni corta el tiempo: lo hacia
+                # el servidor. Aqui cada baja del jugador suma a la variable 8
+                # del mapa (la que mira el nodo 1000003: mas de 50 gana) y a
+                # los 10 minutos se abre la raiz que cierra el juego (61102),
+                # que decide si pasas al mapa 75 o vuelves.
+                if int(ef[1] or 0):
+                    fin = time.time() + DURACION_JUEGO_MATAR
+                    estado.juego_matar = {'fin': fin, 'rivales': [], 'ultimo_marcador': 0}
+                    try:
+                        import asyncio as _aio_tc
+                        _aio_tc.get_event_loop().call_later(
+                            TIC_CARRERA, lambda _f=fin, _e=estado: _tic_carrera(ses, addr, _e, _f))
+                    except Exception:
+                        log.exception('no se pudo arrancar la carrera')
+
+                    def _fin_juego(_ses=ses, _st=estado.stage, _fin=fin):
+                        import dialogos_mapa as _dm_j
+                        import eventos_mundo as _evm_j
+                        _e = _evm_j.estado_de(_ses)
+                        _j = getattr(_e, 'juego_matar', None)
+                        if (not _ses.personaje or _e.stage != _st or not _j
+                                or _j.get('fin') != _fin):
+                            return
+                        _nodo = _dm_j.nodo_fin_de_juego(_st)
+                        log.info('[%s] fin del NPCKILLGAME en %s: %d bajas, nodo %s',
+                                 addr, _st, _e.variable(0, 8), _nodo)
+                        if _nodo:
+                            _recorrer_dialogo_mapa(_ses, addr, _st, _nodo)
+                    try:
+                        import asyncio as _aio_j
+                        _aio_j.get_event_loop().call_later(DURACION_JUEGO_MATAR, _fin_juego)
+                    except Exception:
+                        log.exception('no se pudo programar el fin del NPCKILLGAME')
+                else:
+                    estado.juego_matar = None
+                log.info('[%s] evento%s: NPCKILLGAME %s', addr, motivo, ef[1])
+            elif que == 'npc':
+                # MAKE_NPC(tipo, ?, ?, segundos, tag): pone un NPC en el TAG un
+                # rato. Son los Hell Rival del Evil Lyceum de la carrera.
+                _rv = _hacer_npc(ses, addr, estado.stage, int(ef[1]), int(ef[4]), int(ef[5]))
+                _jr = getattr(estado, 'juego_matar', None)
+                if _rv and _jr and time.time() < _jr.get('fin', 0):
+                    _jr.setdefault('rivales', []).append(_rv)
+            elif que == 'generador':
+                # ENABLE_GENERATOR(zona, 1 enciende / 0 apaga). Al encender
+                # salen los de la zona y, mientras siga encendida, se reponen
+                # al morir (ver _respawn en _procesar_muerte_monstruo).
+                zona, encender = int(ef[1]), bool(int(ef[2] or 0))
+                activos = estado.__dict__.setdefault('generadores_activos', set())
+                if encender and zona not in activos:
+                    activos.add(zona)
+                    _generar_zona(ses, addr, estado.stage, zona)
+                elif not encender:
+                    activos.discard(zona)
+                log.info('[%s] evento%s: generador %d %s', addr, motivo, zona,
+                         'encendido' if encender else 'apagado')
+            elif que == 'propiedad' and p:
+                # ADD_PROPERTY / SET_PROPERTY sobre HP (0) o MP (2). La lava de
+                # la Magic Kichen Path es esto: evento 666 al pisarla,
+                # ADD_PROPERTY(0, -150) y el aviso 64958. No baja de 1: morir
+                # por un evento de mapa no esta hecho y dejaria al personaje a
+                # 0 sin la secuencia de muerte.
+                import eventos as _ev_p
+                import combate as _cb_p
+                modo, atr, val = ef[1], int(ef[2]), int(ef[3])
+                if atr in (_ev_p.ATR_HP, _ev_p.ATR_MP):
+                    campo, tope = (('hp', 'hp_max') if atr == _ev_p.ATR_HP
+                                   else ('mp', 'mp_max'))
+                    act = int(getattr(p, campo, 0) or 0)
+                    nuevo = act + val if modo == 'sumar' else val
+                    # El tope es el que ensena el cliente (con equipo y
+                    # pasivas), no el p.hp_max guardado: con ese, a quien
+                    # tenia 585k de vida la lava lo dejaba en su vida base.
+                    maximo = (_vida_max(p) if atr == _ev_p.ATR_HP else _mana_max(p)) \
+                        or int(getattr(p, tope, 0) or 0) or nuevo
+                    nuevo = max(1 if atr == _ev_p.ATR_HP else 0, min(maximo, nuevo))
+                    setattr(p, campo, nuevo)
+                    kind = _cb_p.KIND_HP if atr == _ev_p.ATR_HP else _cb_p.KIND_MP
+                    ses.enviar(_cb_p.atributo(p.entity_id, nuevo, kind))
+                    # El numero flotando encima, como un golpe: con 700k de
+                    # vida, 150 no mueven la barra y la regeneracion los
+                    # repone en un segundo, asi que sin esto "no hacia dano".
+                    if atr == _ev_p.ATR_HP and nuevo < act:
+                        ses.enviar(_cb_p.numero_flotante(p.entity_id, act - nuevo))
+                    log.info('[%s] evento%s: %s %d -> %d', addr, motivo, campo, act, nuevo)
+                else:
+                    sin_hacer.append('propiedad %d' % atr)
             elif que == 'objeto_estatico':
-                # Se apunta para que la condicion que lo mire lo vea, pero no
-                # se manda nada: ver el comentario de arriba.
                 estado.objetos[int(ef[1])] = int(ef[2])
-                log.info('[%s] evento%s: puerta/objeto %s en el tag %s '
-                         '(anotado, falta la captura para mandarlo)',
-                         addr, motivo, ef[2], ef[1])
+                _cambiar_objeto_de_mapa(ses, addr, estado, int(ef[1]), int(ef[2]))
             else:
                 sin_hacer.append(que)
         except Exception:
@@ -2588,6 +2804,490 @@ def _romper_sigilo(ses, addr, motivo=''):
 
 
 _RECURSOS_POR_STAGE = {}
+
+
+DURACION_JUEGO_MATAR = 600        # "in 10 minutes", msg 64941
+_SIG_NPC_EVENTO = [111_000_000]
+
+
+def _hacer_npc(ses, addr, stage, npc_type, segundos, tag):
+    """MAKE_NPC: un NPC de evento en el TAG, que se va solo pasado el rato."""
+    import eventos as _ev_n
+    import login as _lg_n
+    cas = _ev_n.casillas_de_tag(stage, tag)
+    if not cas or not ses.personaje:
+        return
+    nombre = 'NPC'
+    try:
+        import sqlite3 as _sq
+        con = _sq.connect(pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db')
+        r = con.execute('select name from npc where id=?', (int(npc_type),)).fetchone()
+        con.close()
+        nombre = r[0] if r else nombre
+    except Exception:
+        pass
+    _SIG_NPC_EVENTO[0] += 1
+    eid = _SIG_NPC_EVENTO[0]
+    ses.enviar(_lg_n._npc_spawn(eid, npc_type, nombre, tuple(cas[0]), klass=199))
+    log.info('[%s] MAKE_NPC %s (%d) en el tag %d %s, %ds', addr, nombre, npc_type,
+             tag, tuple(cas[0]), segundos)
+    if segundos > 0:
+        try:
+            import asyncio as _aio_n
+            import combate as _cb_n
+            _aio_n.get_event_loop().call_later(
+                segundos, lambda: ses.enviar_inmediato(_cb_n.despawn_monstruo(eid)))
+        except Exception:
+            pass
+    return {'eid': eid, 'tile': list(cas[0]), 'nombre': nombre,
+            'hasta': time.time() + segundos if segundos > 0 else None}
+
+
+# LOS RIVALES DE LA CARRERA. Los Hell Rival (NPC 2135) que saca el Annoying
+# Clerk son alumnos del Evil Lyceum que compiten por las mismas bajas: cada
+# uno va a por el bicho mas cercano y lo mata, y su cuenta va en la variable 9
+# del mapa (la 8 es la del jugador; las dos se ponen a cero al empezar). El
+# ritmo no esta medido -- no hay ninguna captura de la carrera --: uno cada
+# RITMO_RIVAL segundos de media por rival, que con cinco da unas 15 por minuto.
+RITMO_RIVAL = 20.0
+RADIO_RIVAL = 14
+TIC_CARRERA = 3.0
+
+
+def _tic_carrera(ses, addr, estado, fin):
+    """Un tic de la carrera: los rivales matan, y cada 30 s el marcador."""
+    import combate as _cb_c
+    j = getattr(estado, 'juego_matar', None)
+    if (not ses.personaje or not j or j.get('fin') != fin or time.time() >= fin):
+        return
+    import eventos_mundo as _evm_c
+    if _evm_c.estado_de(ses) is estado:
+        MOVE = Msg.registry[(0x0005, 's2c', '*')]
+        vivos = [m for m in (ses.monstruos or {}).values()
+                 if getattr(m, 'vivo', False) and not getattr(m, 'generado', False)
+                 and getattr(m, 'en_combate_con', None) is None]
+        for r in j.get('rivales') or []:
+            if r.get('hasta') and time.time() >= r['hasta']:
+                continue
+            if random.random() > TIC_CARRERA / RITMO_RIVAL:
+                continue
+            cerca = [m for m in vivos
+                     if max(abs(m.tile_x - r['tile'][0]), abs(m.tile_y - r['tile'][1])) <= RADIO_RIVAL]
+            if not cerca:
+                continue
+            m = min(cerca, key=lambda mm: max(abs(mm.tile_x - r['tile'][0]), abs(mm.tile_y - r['tile'][1])))
+            vivos.remove(m)
+            # Se planta al lado y lo tumba.
+            ses.enviar(MOVE.build(entity_id=r['eid'], cur_x=r['tile'][0] * 32, cur_y=r['tile'][1] * 32,
+                                  dst_x=(m.tile_x + 1) * 32, dst_y=m.tile_y * 32, speed=110))
+            r['tile'] = [m.tile_x + 1, m.tile_y]
+            m.hp = 0
+            m.muerto_en = time.time()
+            ses.enviar(_cb_c.ataque(r['eid'], m.entity_id, 0),
+                       _cb_c.atributo(m.entity_id, 0, _cb_c.VIDA),
+                       _cb_c.muerte_monstruo(m.entity_id, r['eid']))
+            estado.sumar_variable(0, 9, 1)
+            _eid_m = m.entity_id
+            try:
+                import asyncio as _aio_c
+                _aio_c.get_event_loop().call_later(
+                    2.5, lambda e=_eid_m: ses.enviar_inmediato(_cb_c.despawn_monstruo(e)))
+                _aio_c.get_event_loop().call_later(
+                    _cb_c.SEGUNDOS_REAPARICION, lambda mm=m: _revivir_en_carrera(ses, estado, fin, mm))
+            except Exception:
+                pass
+        if time.time() - j.get('ultimo_marcador', 0) >= 30:
+            _marcador_carrera(ses, estado)
+        ses.volcar()
+    try:
+        import asyncio as _aio_c
+        _aio_c.get_event_loop().call_later(TIC_CARRERA, lambda: _tic_carrera(ses, addr, estado, fin))
+    except Exception:
+        pass
+
+
+def _revivir_en_carrera(ses, estado, fin, m):
+    """Durante la carrera los bichos del pasillo vuelven (en una instancia, si
+    no, lo muerto se queda muerto y no habria cincuenta que matar)."""
+    j = getattr(estado, 'juego_matar', None)
+    if not j or j.get('fin') != fin or time.time() >= fin or getattr(m, 'vivo', False):
+        return
+    if (ses.monstruos or {}).get(m.entity_id) is not m:
+        return
+    import login as _lg_c
+    m.revivir()
+    ses.enviar_inmediato(_lg_c._npc_spawn(m.entity_id, m.npc_type, m.nombre, (m.tile_x, m.tile_y),
+                                          sprite=getattr(m, 'sprite', 0), klass=1))
+
+
+def _marcador_carrera(ses, estado):
+    """El marcador: tus bajas, las del Evil Lyceum y lo que queda."""
+    import clases as _cl_m
+    j = getattr(estado, 'juego_matar', None)
+    if not j:
+        return
+    j['ultimo_marcador'] = time.time()
+    queda = max(0, int(j['fin'] - time.time()))
+    ses.enviar(_cl_m.aviso('Race: you %d - Evil Lyceum %d (more than 50 to win) - %d:%02d left'
+                           % (estado.variable(0, 8), estado.variable(0, 9), queda // 60, queda % 60),
+                           tipo=0, msg_id=_cl_m.MSG_TEXTO))
+
+
+def _arrancar_temporizador(ses, addr, estado, tag, encender):
+    import asyncio as _aio_t
+    import eventos as _ev_t
+    import eventos_mundo as _evm_t
+    t = estado.temporizador(tag)
+    if not encender:
+        t[0] = False
+        return
+    cfg = ((_ev_t.del_stage(estado.stage) or {}).get('temporizadores') or {}).get(str(tag))
+    t[0], t[1] = True, 0
+    if not cfg:
+        log.info('[%s] ENABLE_TIMER %s en %s: no hay objeto temporizador', addr, tag, estado.stage)
+        return
+    periodo, veces, evento = max(1, int(cfg['periodo'] or 1)), int(cfg['veces'] or 0), int(cfg['evento'])
+    # Un token por arranque: si el evento lo vuelve a encender, el tic del
+    # arranque anterior ve que ya no es el suyo y se para.
+    token = object()
+    del t[2:]
+    t.append(token)
+    log.info('[%s] temporizador %s en %s: cada %ds, %d veces, evento %s',
+             addr, tag, estado.stage, periodo, veces, evento)
+
+    def _tic():
+        if not ses.personaje:
+            return
+        _e = _evm_t.estado_de(ses)
+        if _e is not estado:
+            # Fuera de la sala. Si es una instancia que sigue viva (ver
+            # eventos_mundo._CORRIDAS) el temporizador espera a que vuelva;
+            # si no, se acabo.
+            _t0 = estado.temporizadores.get(int(tag))
+            _viva = any(estado in c['estados'].values()
+                        for c in _evm_t._CORRIDAS.values())
+            if _viva and _t0 and _t0[0] and len(_t0) >= 3 and _t0[2] is token:
+                _aio_t.get_event_loop().call_later(periodo, _tic)
+            return
+        _t = _e.temporizadores.get(int(tag))
+        if not _t or not _t[0] or len(_t) < 3 or _t[2] is not token:
+            return
+        _t[1] += 1
+        efs = _ev_t.ejecutar(estado.stage, evento, _ev_t.NINGUNO, _evm_t.ContextoSesion(ses))
+        log.info('[%s] temporizador %s: vez %d -> %s', addr, tag, _t[1], [x[0] for x in efs])
+        if efs:
+            _aplicar_efectos(ses, addr, efs, ' (temporizador %s)' % tag)
+        if not veces or _t[1] < veces:
+            _aio_t.get_event_loop().call_later(periodo, _tic)
+        else:
+            _t[0] = False
+    try:
+        _aio_t.get_event_loop().call_later(periodo, _tic)
+    except Exception:
+        log.exception('no se pudo programar el temporizador')
+
+
+_MATERIALES = None
+
+
+def _material(mid):
+    global _MATERIALES
+    if _MATERIALES is None:
+        try:
+            import json as _js
+            _MATERIALES = _js.loads((pathlib.Path(__file__).parent / 'plantillas'
+                                     / 'materiales.json').read_text(encoding='utf-8'))['materiales']
+        except Exception:
+            _MATERIALES = {}
+    return _MATERIALES.get(str(int(mid)))
+
+
+_VETAS_POR_STAGE = None
+# Lo que dura la recoleccion de los recursos del mundo, compartido entre todos
+# los jugadores como en el juego: {(stage, entidad): [sacadas, agotada_en]}.
+# Las de instancia van en el estado de la sesion (cada uno tiene la suya).
+_VETAS_MUNDO = {}
+# Los textos del cliente (setting/eng/string.xml) para recolectar.
+MSG_EMPIEZA_RECOLECCION = 345   # "Begin collecting."
+MSG_SIN_MATERIAL = 347          # "There is no material for collection. Please wait..."
+MSG_SIN_HERRAMIENTA = 359       # "Unable to collect without proper equipment."
+MSG_RECOLECTAR_MONTADO = 573    # "Unable to collect when you are riding."
+MSG_RECOLECTAR_LEJOS = 574      # "Unable to collect because the distance is too far."
+ACCION_RECOLECTAR = 9           # tipo del 0x000A, medido en la Global
+# Ranuras de la herramienta de cada 裝備限制 de material.xml. La wiki, en las
+# cuatro habilidades: Collect "a pair of gloves or a robot", Dig "a mine pick
+# or a robot", Lumber "an axe or a robot", Fishing "a rod or a robot".
+RANURAS_HERRAMIENTA = {'手套': (5, 171), '鐵鍬': (3, 4), '斧': (3, 4), '釣竿': (3, 4)}
+DISTANCIA_RECOLECCION = 6       # casillas
+
+
+def _veta_de(stage, ent):
+    """(material, px) de la veta con esa entidad, o (None, None).
+
+    En las instancias el material va en el propio recurso
+    (objetos_de_instancia.py); en el resto de mapas, en la tabla 'vetas' de
+    materiales.json, que casa cada veta de la plantilla con su objeto del .mpc.
+    """
+    global _VETAS_POR_STAGE
+    r = next((x for x in _recursos_de_plantilla(stage)
+              if int(x.get('entity_id', 0)) == int(ent)), None)
+    if r is None:
+        return None, None
+    if isinstance(r.get('material'), int):
+        return r['material'], r.get('px')
+    if _VETAS_POR_STAGE is None:
+        _material(0)
+        try:
+            import json as _js
+            _VETAS_POR_STAGE = _js.loads((pathlib.Path(__file__).parent / 'plantillas'
+                                          / 'materiales.json').read_text(encoding='utf-8')).get('vetas') or {}
+        except Exception:
+            _VETAS_POR_STAGE = {}
+    mid = (_VETAS_POR_STAGE.get(str(int(stage))) or {}).get(str(int(ent)))
+    return (int(mid), r.get('px')) if mid else (None, None)
+
+
+def _herramienta_para(ses, herramienta):
+    """(puede, msg_id si no puede, % de velocidad de recoleccion)."""
+    import inventario as _iv_h
+    bolsa = ses.inventario or {}
+    montura = int(bolsa.get(10) or bolsa.get(174) or 0)
+    cat_m = _iv_h.categoria_item(montura) if montura else ''
+    if cat_m == '座騎':
+        return False, MSG_RECOLECTAR_MONTADO, 0
+    velocidad = sum(_iv_h.velocidad_recoleccion(int(bolsa.get(r) or 0))
+                    for r in range(1, 11) if bolsa.get(r))
+    if cat_m == '機甲':
+        return True, None, velocidad
+    ranuras = RANURAS_HERRAMIENTA.get(herramienta)
+    if not ranuras:
+        return True, None, velocidad
+    if any(_iv_h.categoria_item(int(bolsa.get(r) or 0)) == herramienta for r in ranuras):
+        return True, None, velocidad
+    return False, MSG_SIN_HERRAMIENTA, 0
+
+
+def _cuenta_de_veta(ses, stage, ent, mat):
+    """La lista [sacadas, agotada_en] de esa veta, ya repuesta si toca."""
+    if es_instancia(stage):
+        import eventos_mundo as _evm_r
+        vetas = _evm_r.estado_de(ses).__dict__.setdefault('vetas', {})
+        clave = int(ent)
+    else:
+        vetas, clave = _VETAS_MUNDO, (int(stage), int(ent))
+    c = vetas.setdefault(clave, [0, 0.0])
+    if not isinstance(c, list):
+        c = vetas[clave] = [int(c), 0.0]
+    # 重置時間: lo que tarda en reponerse una vez agotada (720 s el Flint Ore).
+    if (mat['limite'] and c[0] >= mat['limite'] and c[1]
+            and time.time() - c[1] >= int(mat.get('reponer') or 0)):
+        c[0], c[1] = 0, 0.0
+    return c
+
+
+def _parar_recoleccion(ses, avisar_cliente=True):
+    rc = getattr(ses, 'recoleccion', None)
+    ses.recoleccion = None
+    if rc and avisar_cliente and ses.personaje:
+        ses.enviar(struct.pack('<HIII', 0x000A, ses.personaje.entity_id, 0, 0))
+
+
+def _recolectar(ses, addr, stage, ent):
+    """Pulsar una veta, arbol, hierba, madriguera o banco de peces.
+
+    COMO LO HACE EL SERVIDOR REAL, medido en la Global sobre el mismo Flint
+    Ore de la Magic Kichen Path (material 153, 採集時間 30):
+
+        C 0x0005  [veta]                         el clic
+        S 0x000D  345 "Begin collecting."
+        S 0x000A  [yo][veta] 9 [ms]              la accion y la barra
+        ... a los ms ...
+        S 0x001B  el Flint a la bolsa (el monton sube 5 -> 6 -> 7)
+        S 0x001D  [yo] 01 05 [veta] [ms]         la barra otra vez
+        ... y asi cada ms hasta que se mueve o se agota.
+
+    Alli fueron 13500 ms para los 30 s del material: el tiempo baja con la
+    velocidad de recoleccion del equipo (採集速度; el Samurai Kappa Robot
+    trae 19). Si va montado: 573. Sin la herramienta de su 裝備限制 (guantes
+    para hierbas y madrigueras -- la carne y las pieles --, pala para vetas,
+    hacha para arboles, cana para peces) ni robot: 359.
+    """
+    mid, px = _veta_de(stage, ent)
+    if not mid or not ses.personaje:
+        return False
+    mat = _material(mid)
+    if not mat:
+        return False
+    import clases as _cl_r
+    p = ses.personaje
+    puede, msg, velocidad = _herramienta_para(ses, mat.get('herramienta'))
+    if not puede:
+        ses.enviar(_cl_r.aviso('', tipo=7, msg_id=msg))
+        log.info('[%s] veta %s (%s): no puede recolectar (msg %s)', addr, ent, mat['nombre'], msg)
+        return True
+    if px and max(abs(int(px[0]) // 32 - int(getattr(p, 'tile_x', 0) or 0)),
+                  abs(int(px[1]) // 32 - int(getattr(p, 'tile_y', 0) or 0))) > DISTANCIA_RECOLECCION:
+        ses.enviar(_cl_r.aviso('', tipo=7, msg_id=MSG_RECOLECTAR_LEJOS))
+        return True
+    cuenta = _cuenta_de_veta(ses, stage, ent, mat)
+    if mat['limite'] and cuenta[0] >= mat['limite']:
+        ses.enviar(_cl_r.aviso('', tipo=7, msg_id=MSG_SIN_MATERIAL))
+        return True
+    ms = int(max(1, int(mat.get('tiempo') or 1)) * 1000 * max(10, 100 - velocidad) / 100)
+    ms = max(1000, min(ms, 0xFFFF))
+    token = object()
+    ses.recoleccion = {'ent': int(ent), 'stage': stage, 'token': token}
+    ses.enviar(_cl_r.aviso('', tipo=7, msg_id=MSG_EMPIEZA_RECOLECCION),
+               struct.pack('<HIIHH', 0x000A, p.entity_id, int(ent), ACCION_RECOLECTAR, ms))
+    log.info('[%s] recolectando %s (%s, material %s) en %s: %d ms, velocidad %d%%',
+             addr, ent, mat['nombre'], mid, stage, ms, velocidad)
+
+    def _tic():
+        rc = getattr(ses, 'recoleccion', None)
+        if not rc or rc.get('token') is not token or not ses.personaje:
+            return
+        if ses.personaje.stage != stage:
+            ses.recoleccion = None
+            return
+        try:
+            seguir = _sacar_de_veta(ses, addr, stage, ent, mat, mid)
+            if seguir:
+                ses.enviar(struct.pack('<HIBBII', 0x001D, ses.personaje.entity_id, 1, 5,
+                                       int(ent), ms))
+                import asyncio as _aio_r
+                _aio_r.get_event_loop().call_later(ms / 1000.0, _tic)
+            else:
+                _parar_recoleccion(ses)
+            ses.volcar()
+        except Exception:
+            ses.recoleccion = None
+            log.exception('recoleccion')
+    try:
+        import asyncio as _aio_r
+        _aio_r.get_event_loop().call_later(ms / 1000.0, _tic)
+    except Exception:
+        log.exception('no se pudo programar la recoleccion')
+    return True
+
+
+def _sacar_de_veta(ses, addr, stage, ent, mat, mid):
+    """Una vuelta de la barra: tira el dado y mete lo que salga. Devuelve si
+    se puede seguir (queda material y cabe en la bolsa)."""
+    import clases as _cl_r
+    cuenta = _cuenta_de_veta(ses, stage, ent, mat)
+    if mat['limite'] and cuenta[0] >= mat['limite']:
+        ses.enviar(_cl_r.aviso('', tipo=7, msg_id=MSG_SIN_MATERIAL))
+        return False
+    cuenta[0] += 1
+    if mat['limite'] and cuenta[0] >= mat['limite']:
+        cuenta[1] = time.time()
+    total = sum(pr for _it, pr in mat['items']) + int(mat.get('no_produce') or 0)
+    tirada = random.randint(1, max(1, total))
+    dado = None
+    for it, pr in mat['items']:
+        tirada -= pr
+        if tirada <= 0:
+            dado = it
+            break
+    if dado is not None:
+        r = _meter(ses, int(dado), 1)
+        if r is None:
+            ses.enviar(_cl_r.aviso('Your backpack is full.', tipo=0))
+            cuenta[0] -= 1
+            return False
+        ses.enviar(*_refrescar(ses, [r]))
+        ses.enviar(_cl_r.aviso(_nombre_item(int(dado)), tipo=0, msg_id=_cl_r.MSG_ITEM))
+        try:
+            import misiones as _mis_col
+            pkgs = _mis_col.verificar_progreso_recoleccion(ses, [ses.inventario.get(r)])
+            if pkgs:
+                ses.enviar(*pkgs)
+        except Exception:
+            log.exception('progreso de recoleccion')
+        _guardar_bolsa(ses, ses.personaje.char_id)
+    log.info('[%s] veta %s (%s) en %s: %s, %d/%d', addr, ent, mat['nombre'], stage,
+             dado, cuenta[0], mat['limite'])
+    return not (mat['limite'] and cuenta[0] >= mat['limite'])
+
+
+_RECURSOS_COMPLETOS = {}
+# Ids de los objetos que se cambian en vivo. Banda propia: 50M monstruos,
+# 60M+stage*100k objetos de mapa (llega a 99M con el stage 399), 80M
+# presencia, 96M monstruos generados. Por encima de todo eso.
+_SIG_OBJETO_CAMBIADO = [110_000_000]
+
+
+def _recursos_de_plantilla(stage):
+    """Los recursos de la plantilla del mapa, tal cual (con 'crudo')."""
+    import login as _lg_r
+    if stage not in _RECURSOS_COMPLETOS:
+        rec = []
+        f = _lg_r.PLANTILLAS_POR_STAGE.get(stage)
+        if f:
+            try:
+                import json as _js
+                rec = _js.loads((pathlib.Path(__file__).parent / 'plantillas' / f)
+                                .read_text(encoding='utf-8')).get('recursos') or []
+            except Exception:
+                rec = []
+        _RECURSOS_COMPLETOS[stage] = rec
+    return _RECURSOS_COMPLETOS[stage]
+
+
+def _cambiar_objeto_de_mapa(ses, addr, estado, tag, sprite):
+    """CHANGE_STATICOBJ(tag, sprite): el objeto de esa casilla pasa a ser otro.
+
+    COMO LO HACE EL SERVIDOR REAL, medido en las capturas Global de la Magic
+    Kichen Path y leido en el cliente con REA: el cliente solo mira el sprite
+    al CREAR un objeto (005b85d0 busca por id y, si ya existe, lo devuelve
+    tal cual), asi que no se puede "cambiar" uno. Se quita con 0x0007 (lo
+    atiende 005eca40: busca la entidad y la borra) y se manda otro 0x000E con
+    un id nuevo y el sprite nuevo. En la Global, en la casilla (102,10), la
+    barrera llega como 60308 en una sesion y como 60302 en otra, cada vez con
+    su propio id.
+
+    De los objetos que hay en las casillas del TAG se cambia el que NO lleva
+    evento: en esas casillas comparten sitio la barrera (sin evento) y un
+    60094 con su evento 110..112, y en la Global el 60094 se queda.
+    """
+    import eventos as _ev
+    import combate as _cb
+    cas = {tuple(c) for c in (_ev.casillas_de_tag(estado.stage, tag) or [])}
+    recs = [r for r in _recursos_de_plantilla(estado.stage)
+            if r.get('crudo') and tuple(r.get('tile') or ()) in cas]
+    if not recs:
+        log.info('[%s] CHANGE_STATICOBJ(%d, %d) en el mapa %d: no hay objeto '
+                 'de mapa en ese tag', addr, tag, sprite, estado.stage)
+        return
+    cambiar = [r for r in recs if not r.get('evento')] or recs
+    puestos = estado.__dict__.setdefault('puestos', {})   # eid original -> (eid, sprite)
+    salida = []
+    for r in cambiar:
+        orig = int(r['entity_id'])
+        eid_act, spr_act = puestos.get(orig, (orig, int(r['sprite'])))
+        if spr_act == sprite:
+            continue
+        _SIG_OBJETO_CAMBIADO[0] += 1
+        nuevo = _SIG_OBJETO_CAMBIADO[0]
+        b = bytearray(bytes.fromhex(r['crudo'])[:43])
+        struct.pack_into('<I', b, 0, nuevo)
+        struct.pack_into('<H', b, 34, sprite)
+        salida.append(_cb.despawn_monstruo(eid_act))
+        salida.append(struct.pack('<H', 0x000E) + bytes(b))
+        puestos[orig] = (nuevo, sprite)
+        log.info('[%s] mapa %d, tag %d: objeto %d (%d) -> %d (%d)', addr,
+                 estado.stage, tag, eid_act, spr_act, nuevo, sprite)
+    if salida:
+        ses.enviar(*salida)
+        # La puerta se abre para todos los que esten en la sala, no solo
+        # para quien la abre (al restaurar, _espejando: solo para el que entra).
+        if not getattr(ses, '_espejando', False):
+            for s in _companeros(ses):
+                try:
+                    s.enviar_sin_espejo(*salida)
+                    s.volcar()
+                except Exception:
+                    pass
 
 
 def _recurso_con_entidad(stage, ent):
@@ -2637,7 +3337,7 @@ def _monstruo_bd(npc_type):
     return _MONSTRUOS_BD.get(int(npc_type), ('?', 0))
 
 
-def _generar_zona(ses, addr, stage, tag):
+def _generar_zona(ses, addr, stage, tag, cuantos=None):
     """GENERATE(tag): saca los monstruos de esa zona de generador.
 
     Es lo que hacen los objetos de mision: en la 262, acercarse a la estatua
@@ -2647,46 +3347,386 @@ def _generar_zona(ses, addr, stage, tag):
     pedir.
     """
     import eventos as _ev_g
-    import combate as _cb_g
-    import login as _lg_g
     g = ((_ev_g.del_stage(stage) or {}).get('generadores') or {}).get(str(tag))
     if not g or not g.get('tipos') or not g.get('puntos') or not ses.personaje:
         log.debug('[%s] GENERATE %s en %s: la zona no esta en la plantilla', addr, tag, stage)
         return
     if ses.monstruos is None:
         ses.monstruos = {}
-    n = max(1, min(TOPE_GENERADOS, int(g.get('cuantos') or 1)))
+    n = max(1, min(TOPE_GENERADOS, int(cuantos or g.get('cuantos') or 1)))
     for i in range(n):
         npc_type = int(g['tipos'][i % len(g['tipos'])])
         tile = list(g['puntos'][i % len(g['puntos'])])
-        nombre, sprite = _monstruo_bd(npc_type)
         eid = _SIG_GENERADO[0]
         _SIG_GENERADO[0] += 1
-        m = _cb_g.Monstruo(eid, npc_type, nombre, tile, sprite)
-        m.generado = True
-        ses.monstruos[eid] = m
-        ses.enviar(_lg_g._npc_spawn(eid, npc_type, nombre, tuple(tile), sprite=sprite, klass=1))
+        _poner_generado(ses, eid, npc_type, tile, int(tag))
     log.info('[%s] GENERATE zona %s en %s: %d x %s', addr, tag, stage, n, g['tipos'])
 
 
+def _decir(eid, nombre, texto):
+    """s2c 0x0017: alguien DICE algo, con su bocadillo encima.
+
+    Leido en el cliente con REA (005f1590, la entrada 0x17 de la tabla de
+    005e5350): [u32 entidad][nombre, 17 bytes][texto ASCIIZ]. Escribe la
+    linea en el chat (00632f20 con el nombre) y, si la entidad esta en
+    pantalla, le abre el bocadillo. En la Global, el CHAT de la lava de la
+    Magic Kichen Path ("Too hot!", 64958) llega justo asi, como 0x0017 con la
+    entidad y el nombre del propio jugador.
+    """
+    n = (nombre or '').encode('latin-1', 'replace')[:16]
+    return (struct.pack('<HI', 0x0017, int(eid)) + n + bytes(17 - len(n))
+            + (texto or '').encode('latin-1', 'replace')[:200] + b'\x00')
+
+
+def _hablar_jugador(ses, texto):
+    """El jugador dice algo: el y los que lo ven (con su id publico)."""
+    p = ses.personaje
+    ses.enviar(_decir(p.entity_id, p.nombre, texto))
+    try:
+        import presencia as _pr_h
+        clave = getattr(ses, '_mapa_presencia', None)
+        if clave is not None:
+            pkt = _decir(_pr_h.entidad_de(ses), p.nombre, texto)
+            for s in _pr_h._vivas(clave):
+                if s is not ses:
+                    _pr_h._mandar(s, pkt)
+    except Exception:
+        log.debug('chat a los demas', exc_info=True)
+
+
+def _hablar_monstruo(ses, m, texto):
+    """Un bicho dice algo (le llega a todos los de la sala por _espejar)."""
+    ses.enviar(_decir(m.entity_id, getattr(m, 'nombre', '') or '', texto))
+
+
+# Lo que dicen los jefes al aparecer. Son frases del string.xml del cliente
+# (1890-1899, las de los jefes de instancia) que ningun evento del mapa
+# nombra: las suelta el servidor. Solo se ponen las que se pueden atribuir:
+#   888 Guard Fasit      1891 "You are impolite. Let me show you my power!"
+#                        (captura del oficial, sala 1 de la Magic Kichen Path)
+#   817 Rock God Mendun  1894 "...unless there are no air holes to provide me
+#                        with sufficient energy!!" (los Air Holes son de su sala)
+FRASE_AL_SALIR = {888: 1891, 817: 1894}
+_STRINGS = None
+
+
+def _texto_string(sid):
+    """Un texto de setting/eng/string.xml por numero."""
+    global _STRINGS
+    if _STRINGS is None:
+        _STRINGS = {}
+        try:
+            import re as _re_s
+            ruta = (pathlib.Path(__file__).parent.parent / 'extracted_paks' / 'update26'
+                    / 'setting' / 'eng' / 'string.xml')
+            for k, v in _re_s.findall(r'編號="(\d+)" 文字="([^"]*)"',
+                                       ruta.read_text(encoding='utf-8', errors='replace')):
+                _STRINGS[int(k)] = v
+        except Exception:
+            log.debug('string.xml', exc_info=True)
+    return _STRINGS.get(int(sid), '')
+
+
+def _poner_generado(ses, eid, npc_type, tile, zona):
+    """Crea y manda un bicho generado por evento (las antorchas encendidas de
+    la sala 1 de la Magic Kichen Path son bichos asi)."""
+    import combate as _cb_g
+    import login as _lg_g
+    nombre, sprite = _monstruo_bd(npc_type)
+    m = _cb_g.Monstruo(eid, npc_type, nombre, list(tile), sprite)
+    m.generado = True
+    m.zona_generador = int(zona)
+    if ses.monstruos is None:
+        ses.monstruos = {}
+    ses.monstruos[eid] = m
+    ses.enviar(_lg_g._npc_spawn(eid, npc_type, nombre, tuple(tile), sprite=sprite, klass=1))
+    frase = _texto_string(FRASE_AL_SALIR.get(int(npc_type), 0)) if int(npc_type) in FRASE_AL_SALIR else ''
+    if frase:
+        _hablar_monstruo(ses, m, frase)
+    return m
+
+
+# --------------------------------------------------------------------------
+# SALAS DE INSTANCIA COMPARTIDAS
+#
+# En una instancia los bichos no son de la sesion sino de la SALA: cuelgan
+# del estado de la sala en su corrida (eventos_mundo._CORRIDAS), que es la
+# misma para todo el grupo. Todos los del grupo que entran en la sala usan
+# ese mismo dict como ses.monstruos, asi que lo que uno mata esta muerto para
+# todos y lo que se queda a medias se queda a medias aunque se salga y se
+# vuelva.
+#
+# Lo que el servidor manda sobre esos bichos (moverse, golpes, vida, muerte,
+# aparecer) sale por ses.enviar de quien lo provoca; Session.enviar se lo
+# pasa a _espejar, que se lo reenvia a los demas de la sala. Lo que lleve el
+# id propio del jugador se cambia por su id publico (presencia.entidad_de),
+# que es con el que los demas lo ven.
+# --------------------------------------------------------------------------
+
+# opcode -> desplazamientos de las entidades dentro del cuerpo
+_ENTIDADES_DEL_PAQUETE = {
+    0x0005: (0,), 0x0007: (0,), 0x0008: (0,), 0x000B: (0,), 0x0013: (0,),
+    0x001D: (0,), 0x000A: (0, 4), 0x0011: (2, 6), 0x0017: (0,),
+}
+
+
+class _SalaDelMundo:
+    """Los bichos de un mapa abierto, los mismos para todos los que esten en
+    el (en las instancias la sala es el EstadoDeMapa de la corrida)."""
+
+    def __init__(self, stage):
+        self.stage = stage
+        self.monstruos = None
+        self.sesiones = []
+
+
+_SALAS_DEL_MUNDO = {}
+
+
+def _sala_para(ses):
+    """La sala que le toca al entrar en su mapa actual."""
+    st = int(ses.personaje.stage)
+    if es_instancia(st):
+        import eventos_mundo as _evm_s
+        return _evm_s.estado_de(ses)
+    return _SALAS_DEL_MUNDO.setdefault(st, _SalaDelMundo(st))
+
+
+def _sala_de(ses):
+    """La sala COMPARTIDA en la que esta ahora, o None."""
+    e = getattr(ses, '_sala', None)
+    p = getattr(ses, 'personaje', None)
+    if (e is None or p is None or e.monstruos is None or e.stage != p.stage
+            or ses.monstruos is not e.monstruos):
+        return None
+    return e
+
+
+def _companeros(ses):
+    """Los OTROS jugadores que estan ahora en la misma sala compartida."""
+    e = _sala_de(ses)
+    if e is None:
+        return []
+    vivos = [s for s in e.sesiones
+             if s is not ses and not getattr(s, 'cerrada', False)
+             and getattr(s, 'personaje', None) is not None
+             and getattr(s, '_sala', None) is e
+             and s.monstruos is e.monstruos]
+    return vivos
+
+
+def _entidades_propias(ses):
+    """Las entidades que son de ese jugador: el, su mascota y sus invocaciones."""
+    p = getattr(ses, 'personaje', None)
+    ids = {int(p.entity_id)} if p else set()
+    if getattr(ses, 'pet_entity_id', None):
+        ids.add(int(ses.pet_entity_id))
+    for k in ('invocacion', 'invocacion2'):
+        inv = getattr(ses, k, None)
+        if inv and inv.get('entity_id'):
+            ids.add(int(inv['entity_id']))
+    enc = getattr(ses, 'monstruo_encantado', None)
+    if enc is not None:
+        ids.add(int(enc.entity_id))
+    return ids
+
+
+def _espejar(ses, submsgs):
+    """Reenvia a los demas de la sala lo que se acaba de mandar sobre sus bichos."""
+    if getattr(ses, '_espejando', False):
+        return
+    # LA TRANSFORMACION PROPIA, a quien te ve. Hay media docena de sitios que
+    # se mandan el 0x0013 KIND_TRANSFORM (al lanzarla, al caducar, al cambiar
+    # de mapa, al reconectar...) y no todos avisaban a presencia: los demas te
+    # seguian viendo sin transformar. Aqui se cogen todos.
+    try:
+        import combate as _cb_tf
+        _yo_tf = int(getattr(ses.personaje, 'entity_id', 0) or 0)
+        for sm in submsgs:
+            if (isinstance(sm, (bytes, bytearray)) and len(sm) >= 12
+                    and sm[:2] == b'\x13\x00'
+                    and struct.unpack_from('<I', sm, 2)[0] == _yo_tf
+                    and sm[7] == _cb_tf.KIND_TRANSFORM):
+                import presencia as _pr_tf
+                _pr_tf.notificar_transformacion(ses, struct.unpack_from('<I', sm, 8)[0])
+    except Exception:
+        log.debug('transformacion a presencia', exc_info=True)
+    otros = _companeros(ses)
+    if not otros:
+        return
+    bichos = ses.monstruos or {}
+    yo = int(getattr(ses.personaje, 'entity_id', 0) or 0)
+    import presencia as _pr_e
+    publico = _pr_e.entidad_de(ses)
+    salen = []
+    for sm in submsgs:
+        if not isinstance(sm, (bytes, bytearray)) or len(sm) < 6:
+            continue
+        offs = _ENTIDADES_DEL_PAQUETE.get(struct.unpack_from('<H', sm, 0)[0])
+        if not offs:
+            continue
+        ents = [struct.unpack_from('<I', sm, 2 + o)[0] for o in offs if len(sm) >= 6 + o]
+        if not any(x in bichos for x in ents):
+            continue
+        b = bytearray(sm)
+        for o in offs:
+            if len(b) >= 6 + o and struct.unpack_from('<I', b, 2 + o)[0] == yo:
+                struct.pack_into('<I', b, 2 + o, publico)
+        salen.append(bytes(b))
+    if not salen:
+        return
+    for s in otros:
+        try:
+            s.enviar_sin_espejo(*salen)
+            s.volcar()
+        except Exception:
+            log.debug('no se pudo reenviar a un companero', exc_info=True)
+
+
+def _entrar_en_sala(ses, addr):
+    """En el 0x0009 de una sala de instancia: se engancha a los bichos de la
+    sala (los crea la primera vez) y, si la sala ya tenia historia, le pone al
+    cliente al dia: lo muerto fuera, lo generado dentro, cada bicho en su
+    sitio y con su vida, y los objetos cambiados (puertas, barreras)."""
+    import eventos_mundo as _evm_r
+    import combate as _cb_r
+    import login as _lg_r
+    p = ses.personaje
+    e = _sala_para(ses)
+    e.sesiones = [s for s in e.sesiones
+                  if s is not ses and getattr(s, '_sala', None) is e
+                  and not getattr(s, 'cerrada', False)
+                  and getattr(getattr(s, 'personaje', None), 'stage', None) == e.stage]
+    e.sesiones.append(ses)
+    ses._sala = e
+    ses.espejo = _espejar
+    if e.monstruos is None:
+        e.monstruos = ses.monstruos if ses.monstruos is not None else _monstruos_de(p.stage)
+        ses.monstruos = e.monstruos
+        e.por_restaurar = False
+        return
+    ses.monstruos = e.monstruos
+    e.por_restaurar = False
+    MOVE = Msg.registry[(0x0005, 's2c', '*')]
+    vivos_en_sala = set()
+    for s in e.sesiones:
+        vivos_en_sala |= _entidades_propias(s)
+    fuera, dentro = [], []
+    for eid, m in list(e.monstruos.items()):
+        if not getattr(m, 'vivo', False):
+            if not getattr(m, 'generado', False):
+                fuera.append(_cb_r.despawn_monstruo(eid))
+            continue
+        if getattr(m, 'en_combate_con', None) not in vivos_en_sala:
+            m.en_combate_con = None
+        if getattr(m, 'generado', False):
+            dentro.append(_lg_r._npc_spawn(eid, m.npc_type, m.nombre, (m.tile_x, m.tile_y),
+                                           sprite=getattr(m, 'sprite', 0), klass=1))
+        else:
+            st = tuple(getattr(m, 'spawn_tile', None) or (m.tile_x, m.tile_y))
+            if (m.tile_x, m.tile_y) != st:
+                dentro.append(MOVE.build(entity_id=eid, cur_x=st[0] * 32, cur_y=st[1] * 32,
+                                         dst_x=m.tile_x * 32, dst_y=m.tile_y * 32, speed=200))
+        if 0 < getattr(m, 'porcentaje', 100) < 100:
+            dentro.append(_cb_r.atributo(eid, m.porcentaje))
+    ses._espejando = True
+    try:
+        if fuera:
+            ses.enviar(*fuera)
+        if dentro:
+            ses.enviar(*dentro)
+        if hasattr(e, 'objetos'):
+            e.__dict__['puestos'] = {}
+            for tag, sprite in list(e.objetos.items()):
+                _cambiar_objeto_de_mapa(ses, addr, e, int(tag), int(sprite))
+    finally:
+        ses._espejando = False
+    log.info('[%s] sala %d: %d bichos muertos, %d al dia, %d objetos, '
+             '%d jugador(es) dentro', addr, e.stage, len(fuera), len(dentro),
+             len(getattr(e, 'objetos', None) or {}), len(e.sesiones))
+
+
 def _dialogo_del_mapa(ses, addr, stage, nodo):
-    """BEGIN_MESSAGE(nodo): muestra el dialogo del arbol del mapa."""
+    """BEGIN_MESSAGE(nodo): abre el dialogo del arbol del mapa en ese nodo."""
+    _recorrer_dialogo_mapa(ses, addr, stage, nodo)
+
+
+def _recorrer_dialogo_mapa(ses, addr, stage, nodo):
+    """Recorre el arbol de dialogo del mapa desde `nodo` y lo muestra.
+
+    En cada nodo: si alguna de sus ramas se cumple se salta a ella sin
+    mostrarlo (es lo que hace el cliente con las ramas: el nodo es solo la
+    pregunta); si no, se muestra su mensaje, se apuntan sus acciones y se
+    sigue por "siguiente". Se para en el primer nodo con OPCIONES: el cuadro
+    sale con ellas y la eleccion la atiende el 0x000B (ses.dlg_mapa).
+
+    Las acciones se ejecutan DESPUES de mandar el texto, porque entre ellas
+    hay viajes (CHANGE_MAP, GOTO_TAG) y el cuadro se perderia.
+
+    POR QUE. El Annoying Clerk de la sala 2 de la Magic Kichen Path es la
+    unica forma de llegar a la sala 3: su dialogo pregunta, y al aceptar
+    empieza la carrera de bajas contra el Evil Lyceum. Antes solo se sabia
+    mostrar la cadena de mensajes de un nodo sin opciones, y el cuadro salia
+    con NULL.
+    """
     import dialogos as _dl
     import dialogos_mapa as _dm
+    import eventos as _ev_d
     import eventos_mundo as _evm_d
     p = ses.personaje
     if not p:
-        return
-    r = _dm.lineas_del_nodo(stage, nodo, _evm_d.ContextoSesion(ses))
-    if not r:
-        log.debug('[%s] BEGIN_MESSAGE %s en %s: no esta en el arbol del mapa', addr, nodo, stage)
-        return
-    cara, msgs = r
-    cara = cara or 3
-    g = [_dl.armar_linea(mid, cara, [])[2:] for mid in msgs]
+        return False
+    arbol = _dm._arbol(stage)
+    ctx = _evm_d.ContextoSesion(ses)
+    k, visto = str(int(nodo)), set()
+    mensajes, efectos, opciones, cara = [], [], None, None
+    while k and k != '0' and k not in visto and len(mensajes) < 8:
+        visto.add(k)
+        n = arbol.get(k)
+        if n is None:
+            break
+        salto = None
+        for rama in n.get('r', ()):
+            if _dm._cumple(rama, ctx):
+                salto = rama.get('ir')
+                break
+        if salto:
+            k = str(salto)
+            continue
+        if n.get('m'):
+            mensajes.append(int(n['m']))
+            cara = cara or n.get('c')
+        for num, parms in n.get('a', ()):
+            ef = _ev_d.traducir(num, parms)
+            if ef is None:
+                log.debug('[%s] dialogo %s/%s: accion %s sin traducir',
+                          addr, stage, k, _ev_d.nombre_accion(num))
+            elif ef[0] != 'parar':
+                efectos.append(ef)
+        if n.get('o'):
+            opciones = [(int(o[0]), int(o[1])) for o in n['o']]
+            break
+        k = str(n['s']) if n.get('s') else None
+    if not mensajes:
+        log.debug('[%s] dialogo del mapa %s/%s: sin mensajes', addr, stage, nodo)
+        if efectos:
+            _aplicar_efectos(ses, addr, efectos, ' (dialogo %s)' % nodo)
+        return bool(efectos)
+    # Sin retrato si el nodo no trae uno (la antorcha, las tablillas): en el
+    # oficial esos cuadros salen sin personaje. Con 3 salia una chica.
+    cara = cara or 0
+    g = [_dl.armar_linea(mid, cara, [])[2:] for mid in mensajes[:-1]]
+    g.append(_dl.armar_linea(mensajes[-1], cara,
+                             [o[0] for o in opciones] if opciones else [])[2:])
     ses.dlg_ent, ses.dlg_guion, ses.dlg_paso, ses.dlg_val = p.entity_id, g, 1, cara
+    ses.dlg_mapa = ({'stage': stage, 'opciones': opciones, 'guion': g}
+                    if opciones else None)
     ses.enviar(_dl.linea_de(g, 0, p.nombre))
-    log.info('[%s] dialogo del mapa %s: %s', addr, nodo, msgs)
+    log.info('[%s] dialogo del mapa %s/%s: %s%s', addr, stage, nodo, mensajes,
+             ' opciones %s' % [o[0] for o in opciones] if opciones else '')
+    if efectos:
+        _aplicar_efectos(ses, addr, efectos, ' (dialogo %s)' % nodo)
+    return True
 
 
 OCULTA_PRIMERA, OCULTA_ULTIMA = 497, 556
@@ -2752,6 +3792,256 @@ def _quitar_token_oculto(ses, addr, item_id, cant=1):
         (p.cantidades or {}).pop(r, None)
         ses.enviar(_inv.vaciar_ranura(dueno, r))
     _guardar_bolsa(ses, p.char_id)
+
+
+def _mapa_de_paso(m, stage):
+    """El stage con el que se mira por donde anda ese bicho, o 0 = sin limites.
+
+    Uno de cada doce bichos aparece en una casilla que NO se pisa: los del
+    agua, los de la lava y los que vuelan. A esos no se les aplica: si no,
+    se quedarian clavados o saldrian a tierra y no volverian."""
+    v = getattr(m, '_anda_por_tierra', None)
+    if v is None:
+        sx, sy = getattr(m, 'spawn_x', m.tile_x), getattr(m, 'spawn_y', m.tile_y)
+        v = m._anda_por_tierra = _transitable.se_pisa(stage, sx, sy)
+    return stage if v else 0
+
+
+_OBJETO_MAGIA = {}
+
+
+def _objeto_de_magia(magic_id):
+    """El 對象 de magic.xml: 自己 (uno mismo), 角色 (un personaje que se
+    elige), 隊伍 (el grupo, en un radio de 範圍 casillas), 地面, 屍體."""
+    mid = int(magic_id or 0)
+    if mid not in _OBJETO_MAGIA:
+        v = ''
+        try:
+            import sqlite3 as _sq_o
+            con = _sq_o.connect(pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db')
+            r = con.execute('select "對象" from magic where id=?', (str(mid),)).fetchone()
+            con.close()
+            v = (r[0] or '') if r else ''
+        except Exception:
+            pass
+        _OBJETO_MAGIA[mid] = v
+    return _OBJETO_MAGIA[mid]
+
+
+def _receptores_de_buff(ses, magic_id, objetivo, area):
+    """A QUIEN MAS le llega un buff, ademas de (o en vez de) quien lo lanza.
+
+    Devuelve (otras_sesiones, tambien_a_mi). Antes un buff iba siempre al que
+    lo lanzaba o a su mascota: pinchar a otro jugador y lanzarle un buff te
+    lo ponia a ti, y los de grupo (Sweeping Attack V: 對象 隊伍, 範圍 12) solo
+    te llegaban a ti.
+      隊伍  -> tu y los de tu grupo que esten en tu mapa a `area` casillas;
+      角色  -> si el objetivo es otro jugador (su id publico), solo el.
+    """
+    import presencia as _pr_b
+    clave = getattr(ses, '_mapa_presencia', None)
+    otros = [s for s in (_pr_b._vivas(clave) if clave is not None else [])
+             if s is not ses and getattr(s, 'personaje', None)]
+    obj = _objeto_de_magia(magic_id)
+    p = ses.personaje
+    # 自己 CON RADIO: se lanza sobre uno mismo y alcanza a los jugadores de
+    # alrededor, esten o no en el grupo (Glorify V: 自己, 範圍 8, "Enshrouds
+    # nearby allies"). Lo del grupo es solo para 隊伍 y las auras.
+    if obj == '自己' and int(area or 0) > 0:
+        r = int(area)
+        return [s for s in otros
+                if max(abs(s.personaje.tile_x - p.tile_x), abs(s.personaje.tile_y - p.tile_y)) <= r], True
+    if obj == '隊伍':
+        import equipos as _eq_b
+        grupo = [s for s in _eq_b.grupo_de(ses) if s in otros]
+        r = int(area or 0) or 12
+        return [s for s in grupo
+                if max(abs(s.personaje.tile_x - p.tile_x), abs(s.personaje.tile_y - p.tile_y)) <= r], True
+    if obj in ('角色', '') and objetivo:
+        for s in otros:
+            if _pr_b.entidad_de(s) == int(objetivo):
+                return [s], False
+    return [], True
+
+
+_MAPEO_BUFF = (('matk_pct', 'matk_pct'), ('mdef_pct', 'mdef_pct'), ('atk_pct', 'atk_pct'),
+               ('def_pct', 'def_pct'), ('hp_pct', 'hp_pct'), ('mp_pct', 'mp_pct'),
+               ('mp_to_hp_pct', 'mp_to_hp_pct'), ('move_speed_bonus', 'move_speed_bonus'),
+               ('atk_speed_bonus', 'atk_speed'), ('crit_rate', 'crit'), ('phys_mit', 'mit'),
+               ('mag_mit', 'mag_mit'), ('def_bonus', 'def'), ('atk_bonus', 'atk'),
+               ('matk_bonus', 'matk'), ('mdef_bonus', 'mdef'), ('hit_bonus', 'hit'),
+               ('eva_bonus', 'eva'), ('mag_dmg_pct', 'mag_dmg_pct'),
+               ('phys_dmg_pct', 'phys_dmg_pct'), ('hp_bonus', 'hp_bonus'),
+               ('mp_bonus', 'mp_bonus'), ('cast_redux', 'cast_redux'))
+
+
+def _entrada_de_buff(mag, dur_s):
+    """La entrada de p.buffs para un hechizo, igual que la arma el lanzamiento
+    normal (los bonos con los nombres que leen los stats)."""
+    e = dict(mag)
+    e.pop('mp', None)
+    e.pop('hp', None)
+    e['fin'] = time.time() + dur_s
+    e['mag'] = mag
+    e['es_transform'] = False
+    for de, a in _MAPEO_BUFF:
+        if mag.get(de):
+            e[a] = mag.get(de)
+    return e
+
+
+_AURAS = {}
+
+
+def _hijo_de_aura(magic_id):
+    """Si es un AURA (範圍效果光環), el hechizo de grupo que reparte (動態參數1)."""
+    mid = int(magic_id or 0)
+    if mid not in _AURAS:
+        hijo = None
+        try:
+            import sqlite3 as _sq_a
+            con = _sq_a.connect(pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db')
+            r = con.execute('select "範圍效果光環", "動態參數1" from magic where id=?', (str(mid),)).fetchone()
+            con.close()
+            if r and r[0] == '是' and str(r[1] or '').isdigit():
+                hijo = int(r[1])
+        except Exception:
+            pass
+        _AURAS[mid] = hijo
+    return _AURAS[mid]
+
+
+PULSO_AURA = 5.0
+
+
+def _pulso_aura(ses, aura_id, hijo_id, fin):
+    """LAS AURAS DE GRUPO. Sweeping Attack V (5655) es un aura de 300 s sobre
+    quien la lanza, y reparte su hechizo de grupo, Sweeping Attack V (4891:
+    隊伍, 範圍 12, 10 s), a los del grupo que esten a su alcance; es el segundo
+    icono que sale. Mientras dure el aura se renueva cada PULSO_AURA s, asi
+    que al alejarse o deshacer el grupo se acaba solo ("Effect vanishes when
+    you wander out of range or if the team is disbanded")."""
+    import combate as _cb_a
+    import equipos as _eq_a
+    p = getattr(ses, 'personaje', None)
+    act = (getattr(p, 'buffs', None) or {}).get(int(aura_id)) if p else None
+    if not act or act.get('fin') != fin or time.time() >= fin:
+        return
+    grupo = _eq_a.grupo_de(ses)
+    if len(grupo) > 1:
+        mag_h = _cb_a.datos_magia(hijo_id) or {}
+        r = int(mag_h.get('area') or 12)
+        dur_ms = int(mag_h.get('dur_ms') or 10000)
+        clave = getattr(ses, '_mapa_presencia', None)
+        for s in grupo:
+            q = getattr(s, 'personaje', None)
+            if (q is None or getattr(s, '_mapa_presencia', None) != clave
+                    or max(abs(q.tile_x - p.tile_x), abs(q.tile_y - p.tile_y)) > r):
+                continue
+            try:
+                _buff_a_otro(s, hijo_id, _entrada_de_buff(mag_h, dur_ms / 1000.0), dur_ms, mag_h)
+            except Exception:
+                log.exception('pulso de aura')
+    try:
+        asyncio.get_event_loop().call_later(PULSO_AURA, lambda: _pulso_aura(ses, aura_id, hijo_id, fin))
+    except Exception:
+        pass
+
+
+def _buff_a_otro(s, tipo, entrada, dur_ms, mag, lanzador=None, ef=0):
+    """Pone el buff a otro jugador: su icono, su ficha y su caducidad.
+
+    En SU pantalla el que hace la animacion de lanzar es `lanzador` (con su
+    id publico) y a el solo le cae el efecto, como el Sage Blessing del
+    oficial. Antes se le mandaba como si lo lanzara el mismo."""
+    import combate as _cb_o
+    p2 = s.personaje
+    if p2 is None:
+        return
+    if lanzador is not None and ef:
+        try:
+            import presencia as _pr_o
+            pub = _pr_o.entidad_de(lanzador)
+            s.enviar_inmediato(
+                _cb_o.efecto_magia_self_inicio(pub, ef, tipo, objetivo=p2.entity_id),
+                _cb_o.efecto_magia_self_fin(pub, ef, tipo, objetivo=p2.entity_id))
+        except Exception:
+            log.debug('efecto del buff ajeno', exc_info=True)
+    if not getattr(p2, 'buffs', None):
+        p2.buffs = {}
+    e = dict(entrada)
+    e['fin'] = time.time() + (dur_ms / 1000.0 if dur_ms > 0 else 300.0)
+    p2.buffs[int(tipo)] = e
+    yo2 = p2.entity_id
+    if mag.get('hp_bonus') or mag.get('hp_pct'):
+        p2.hp = _vida_max(p2, s.inventario)
+    if mag.get('mp_bonus') or mag.get('mp_pct'):
+        p2.mp = _mana_max(p2, s.inventario)
+    s.enviar_inmediato(struct.pack('<HIBBII', 0x001D, yo2, 1, 4, int(tipo), max(0, int(dur_ms))),
+                       _cb_o.atributo(yo2, p2.hp, _cb_o.KIND_HP),
+                       _cb_o.atributo(yo2, p2.mp, _cb_o.KIND_MP),
+                       _stats_ses(s))
+
+    def _caduca(fin=e['fin']):
+        if not s.personaje:
+            return
+        act = (getattr(s.personaje, 'buffs', None) or {}).get(int(tipo))
+        if not act or act.get('fin') != fin:
+            return
+        s.personaje.buffs.pop(int(tipo), None)
+        s.personaje.hp = min(s.personaje.hp, _vida_max(s.personaje, s.inventario))
+        s.personaje.mp = min(s.personaje.mp, _mana_max(s.personaje, s.inventario))
+        s.enviar_inmediato(struct.pack('<HIBBII', 0x001D, s.personaje.entity_id, 1, 4, int(tipo), 0),
+                           _cb_o.atributo(s.personaje.entity_id, s.personaje.hp, _cb_o.KIND_HP),
+                           _cb_o.atributo(s.personaje.entity_id, s.personaje.mp, _cb_o.KIND_MP),
+                           _stats_ses(s))
+    if dur_ms > 0:
+        try:
+            asyncio.get_event_loop().call_later(dur_ms / 1000.0, _caduca)
+        except Exception:
+            pass
+
+
+def _se_ve_paso(stage, desde, hasta):
+    """Si un monstruo tiene paso recto hasta el jugador: no se tira a por
+    quien esta al otro lado de una pared (ver transitable.py)."""
+    return _transitable.linea_libre(stage, tuple(desde), tuple(hasta))
+
+
+def _casillas_del_tramo(desde, hasta):
+    """Las casillas de la recta desde -> hasta, sin la de salida (esa ya se
+    piso al llegar a ella) y con la de llegada.
+
+    En cada paso en diagonal entran tambien las dos esquinas: las lineas de
+    disparo suelen ir en diagonal (la del evento 151 de la sala 2 de la Magic
+    Kichen Path es x+y = 399) y andando en la otra diagonal se pasa de 398 a
+    400 sin tocar ninguna de sus casillas.
+    """
+    (x0, y0), (x1, y1) = desde, hasta
+    n = max(abs(x1 - x0), abs(y1 - y0))
+    if n == 0:
+        return [(x1, y1)]
+    salida, prev = [], (x0, y0)
+    for k in range(1, n + 1):
+        c = (x0 + round((x1 - x0) * k / n), y0 + round((y1 - y0) * k / n))
+        if c == prev:
+            continue
+        if c[0] != prev[0] and c[1] != prev[1]:
+            for esq in ((c[0], prev[1]), (prev[0], c[1])):
+                if esq not in salida:
+                    salida.append(esq)
+        if c not in salida:
+            salida.append(c)
+        prev = c
+    return salida
+
+
+def _evento_de_casilla(stage, tile):
+    try:
+        import eventos as _ev_c
+        return _ev_c.evento_en(stage, tile[0], tile[1])
+    except Exception:
+        return None
 
 
 def _eventos_al_pisar(ses, addr, tile):
@@ -3486,6 +4776,8 @@ class Servidor:
                     # el dispatcher corre igual: un opcode sin esquema puede
                     # necesitar respuesta (la autenticacion es el caso tipico)
                     try:
+                        import combate as _cb_at
+                        _cb_at.ATACANTE[0] = ses
                         self.manejar(ses, opcode, m, d, addr, cuerpo)
                     except Exception:
                         log.exception(f"[{addr}] error procesando opcode 0x{opcode:04X}")
@@ -3510,6 +4802,14 @@ class Servidor:
                 _eq.salir(ses)
             except Exception:
                 log.exception('equipos: fallo al salir del grupo')
+            try:
+                # Quien va solo y se desconecta pierde su instancia; la de un
+                # grupo sigue mientras el grupo exista.
+                import eventos_mundo as _evm_x
+                _evm_x._CORRIDAS.pop(('solo', int(getattr(ses.personaje, 'char_id', 0) or 0)), None)
+                _evm_x._olvidar_corridas_de_grupos_deshechos()
+            except Exception:
+                pass
             if getattr(ses, 'patrulla_task', None):
                 ses.patrulla_task.cancel()
             if getattr(ses, 'regen_task', None):
@@ -3550,6 +4850,18 @@ class Servidor:
         # en ese caso se consume el paquete. Si no lo es, sigue su camino.
         if (ses.rol == 'mundo' and getattr(ses, 'personaje', None)
                 and _probar_gm(ses, cuerpo, addr)):
+            return
+        # EL CHAT. Lo que se escribe sin barra llega como c2s 0x000E: el
+        # texto y un NUL, nada mas (medido el 14/10: "holaaa", "hiii"). Con
+        # barra va por el 0x0001 y sin la barra ("item 82275", "levelall
+        # 410"), que son los comandos. No lo atendia nadie, asi que no salia
+        # ni en tu pantalla ni en la de los demas. Se contesta con el 0x0017
+        # "decir" (ver _decir), el mismo con el que hablan los jefes.
+        if opcode == 0x000E and ses.rol == 'mundo' and getattr(ses, 'personaje', None) and cuerpo:
+            _txt_chat = cuerpo.split(b'\x00', 1)[0].decode('latin-1', 'replace').strip()
+            if _txt_chat:
+                _hablar_jugador(ses, _txt_chat)
+                log.info('[%s] %s dice: %s', addr, ses.personaje.nombre, _txt_chat[:120])
             return
         if opcode == 0x0002 and ses.rol == 'login':
             usuario = login_server.usuario_de_auth(cuerpo)
@@ -3719,6 +5031,10 @@ class Servidor:
             ses.cantidades = p.cantidades
             ses.oro = p.oro
             ses.monstruos = _monstruos_de(p.stage)
+            try:
+                _entrar_en_sala(ses, addr)
+            except Exception:
+                log.exception('no se pudo entrar en la sala del mapa al conectar')
             bars, max_pts = _max_sp_info(p)
             # Ver arriba: empieza a cero, no al maximo.
             # El SP viene del personaje guardado. Empieza a cero solo la
@@ -3835,6 +5151,7 @@ class Servidor:
                         p = getattr(ses, 'personaje', None)
                         if not p:
                             continue
+                        _cb.ATACANTE[0] = ses
                         ahora = time.time()
                         yo = p.entity_id
                         f_pet = getattr(p, 'mascota', None) if ses.personaje else None
@@ -4017,9 +5334,31 @@ class Servidor:
                         # persigue te sigue persiguiendo aunque te alejes.
                         _px = getattr(ses.personaje, 'tile_x', 0) if ses.personaje else 0
                         _py = getattr(ses.personaje, 'tile_y', 0) if ses.personaje else 0
+                        # SALA DE INSTANCIA COMPARTIDA (ver _espejar): los
+                        # bichos son los mismos para todo el grupo. El que
+                        # pelea con un companero lo lleva el bucle de ese
+                        # companero, y los paseos y el sangrado de los que
+                        # estan sueltos, uno solo (el "conductor"); si no,
+                        # se moverian y sangrarian dos veces.
+                        _comp_ia = _companeros(ses)
+                        _ajenos_ia = set()
+                        for _s_c in _comp_ia:
+                            _ajenos_ia |= _entidades_propias(_s_c)
+                        # Cada bicho suelto lo conduce el de id mas bajo que
+                        # lo tenga a la vista (RADIO_IA): en un mapa abierto
+                        # el "primero" puede estar en la otra punta.
+                        _menores_ia = [(_s_c.personaje.tile_x, _s_c.personaje.tile_y)
+                                       for _s_c in _comp_ia if id(_s_c) < id(ses)]
+
+                        def _conduce_ia_de(mm, _men=_menores_ia):
+                            return not any(max(abs(mm.tile_x - _x), abs(mm.tile_y - _y)) <= RADIO_IA
+                                           for _x, _y in _men)
                         for m in list((ses.monstruos or {}).values()):
 
                             if not getattr(m, 'vivo', True):
+                                continue
+                            if _ajenos_ia and (getattr(m, 'en_combate_con', None) in _ajenos_ia
+                                               or m.entity_id in _ajenos_ia):
                                 continue
 
                             if (not getattr(m, 'en_combate_con', None)
@@ -4083,8 +5422,10 @@ class Servidor:
                                                 dy = ch_targ.tile_y - m.tile_y
                                                 dist_t = max(abs(dx), abs(dy))
                                                 pasos_dar = min(max(1, dist_t - r_m), 3)
-                                                stx = (1 if dx > 0 else (-1 if dx < 0 else 0)) * pasos_dar
-                                                sty = (1 if dy > 0 else (-1 if dy < 0 else 0)) * pasos_dar
+                                                _nx, _ny = _transitable.avanzar(
+                                                    _mapa_de_paso(m, p.stage), (m.tile_x, m.tile_y),
+                                                    (ch_targ.tile_x, ch_targ.tile_y), pasos_dar, parar_a=r_m)
+                                                stx, sty = _nx - m.tile_x, _ny - m.tile_y
                                                 cur_x, cur_y = m.tile_x * 32, m.tile_y * 32
                                                 m.tile_x += stx
                                                 m.tile_y += sty
@@ -4103,8 +5444,10 @@ class Servidor:
                                         p_dist = max(abs(p_dx), abs(p_dy))
                                         if p_dist > 2 and ahora >= getattr(m, 'proximo_paso', 0):
                                             pasos_dar = min(p_dist - 2, 3)
-                                            stx = (1 if p_dx > 0 else (-1 if p_dx < 0 else 0)) * pasos_dar
-                                            sty = (1 if p_dy > 0 else (-1 if p_dy < 0 else 0)) * pasos_dar
+                                            _nx, _ny = _transitable.avanzar(
+                                                _mapa_de_paso(m, p.stage), (m.tile_x, m.tile_y),
+                                                (p.tile_x, p.tile_y), pasos_dar, parar_a=2)
+                                            stx, sty = _nx - m.tile_x, _ny - m.tile_y
                                             cur_x, cur_y = m.tile_x * 32, m.tile_y * 32
                                             m.tile_x += stx
                                             m.tile_y += sty
@@ -4121,7 +5464,9 @@ class Servidor:
 
                             # El sangrado / veneno le resta vida aunque nadie lo toque,
                             # y un monstruo aturdido no se mueve ni ataca.
-                            _sang = m.tick_sangrado()
+                            _sang = (m.tick_sangrado()
+                                     if getattr(m, 'en_combate_con', None) is not None or _conduce_ia_de(m)
+                                     else 0)
                             if _sang:
                                 ses.enviar(_cb.numero_flotante(m.entity_id, _sang, tipo=_cb.TIPO_DANO),
                                            _cb.atributo(m.entity_id, m.porcentaje))
@@ -4144,6 +5489,9 @@ class Servidor:
                                         dir_y = 1 if p_dy > 0 else (-1 if p_dy < 0 else random.choice([-1, 1]))
                                         new_x = max(0, m.tile_x + dir_x * stride)
                                         new_y = max(0, m.tile_y + dir_y * stride)
+                                        # Huyendo tampoco cruza paredes.
+                                        new_x, new_y = _transitable.avanzar(
+                                            _mapa_de_paso(m, p.stage), (m.tile_x, m.tile_y), (new_x, new_y), stride)
                                         cur_x, cur_y = m.tile_x * 32, m.tile_y * 32
                                         _pasos = max(abs(new_x - m.tile_x), abs(new_y - m.tile_y)) or 1
                                         m.tile_x = new_x
@@ -4162,10 +5510,22 @@ class Servidor:
                             dist_y = abs(m.tile_y - p.tile_y)
                             dist = max(dist_x, dist_y)
 
-                            # Los monstruos son PASIVOS: no atacan hasta que
-                            # el jugador les pega. Se probo agro por cercania
-                            # y esta mal: en el juego real se puede caminar
-                            # entre ellos sin que reaccionen.
+                            # AGRO. Cada monstruo trae en monster.xml su 主動:
+                            # el radio en casillas al que se te tira encima
+                            # sin que le pegues. La mayoria de los de mapa
+                            # abierto lo tienen vacio y son PASIVOS -- por eso
+                            # el agro "por cercania" para todos salio mal: en
+                            # el Lyceum se camina entre ellos sin que
+                            # reaccionen --, pero los de las instancias casi
+                            # todos lo llevan (Fire Mummy 5, Earl Makice 12).
+                            if (getattr(m, 'en_combate_con', None) is None
+                                    and getattr(m, 'agro', 0) > 0
+                                    and dist <= m.agro
+                                    and not getattr(ses, 'muerto', False)
+                                    and not _sigilo_activo(ses, ahora)
+                                    and _se_ve_paso(_mapa_de_paso(m, ses.personaje.stage), (m.tile_x, m.tile_y),
+                                                    (p.tile_x, p.tile_y))):
+                                m.en_combate_con = yo
 
                             # 1. Monstruo en combate (jugador, mascota, invocacion o charmed)
                             targ_eid = getattr(m, 'en_combate_con', None)
@@ -4379,8 +5739,17 @@ class Servidor:
                                             dy = targ_y - m.tile_y
                                             dist_t = max(abs(dx), abs(dy))
                                             pasos_dar = min(max(1, dist_t - r_atk), 3)
-                                            step_x = (1 if dx > 0 else (-1 if dx < 0 else 0)) * pasos_dar
-                                            step_y = (1 if dy > 0 else (-1 if dy < 0 else 0)) * pasos_dar
+                                            # Bordeando paredes (transitable.py):
+                                            # antes iba en linea recta y las
+                                            # cruzaba. Si no hay por donde, se
+                                            # queda quieto en su lado.
+                                            _nx, _ny = _transitable.avanzar(
+                                                _mapa_de_paso(m, ses.personaje.stage), (m.tile_x, m.tile_y),
+                                                (targ_x, targ_y), pasos_dar, parar_a=r_atk)
+                                            step_x, step_y = _nx - m.tile_x, _ny - m.tile_y
+                                            if not step_x and not step_y:
+                                                m.proximo_paso = ahora + 0.5
+                                                continue
                                             cur_x, cur_y = m.tile_x * 32, m.tile_y * 32
                                             m.tile_x += step_x
                                             m.tile_y += step_y
@@ -4399,7 +5768,7 @@ class Servidor:
                                                                   speed=spd))
                                     continue
                             # 2. Monstruo libre: pasear, salvo los estaticos
-                            if getattr(m, 'es_estatico', False):
+                            if getattr(m, 'es_estatico', False) or not _conduce_ia_de(m):
                                 continue
                             if ahora < getattr(m, 'proximo_paso', 0):
                                 continue
@@ -4416,6 +5785,13 @@ class Servidor:
                                 new_y = m.spawn_y + random.randint(-_rango, _rango)
                             new_x = max(0, new_x)
                             new_y = max(0, new_y)
+                            # Solo a donde se llega andando en linea recta
+                            # sin pisar pared; si no, este paseo se salta.
+                            if not _transitable.linea_libre(_mapa_de_paso(m, ses.personaje.stage),
+                                                            (m.tile_x, m.tile_y), (new_x, new_y)):
+                                m.proximo_paso = ahora + random.uniform(_cb.PAUSA_PASEO_MIN,
+                                                                        _cb.PAUSA_PASEO_MAX)
+                                continue
                             _pasos = max(abs(new_x - m.tile_x), abs(new_y - m.tile_y)) or 1
                             m.proximo_paso = (ahora + _pasos * _cb.SEGUNDOS_POR_CASILLA
                                               + random.uniform(_cb.PAUSA_PASEO_MIN, _cb.PAUSA_PASEO_MAX))
@@ -4804,7 +6180,7 @@ class Servidor:
             import equipos as _eq
             cod = cuerpo[0] if cuerpo else 0
             log.info('[%s] grupo, accion %d: %s', addr, cod,
-                     _eq.accion(ses, cod))
+                     _eq.accion(ses, cod, cuerpo))
             return
 
         if opcode == 0x0002 and ses.entity_id:
@@ -5796,6 +7172,37 @@ class Servidor:
                     # 2. Habilidad de curacion real (Cure Spell de mago, Holy Light, etc.)
                     if mag.get('es_cura') and ses.personaje and not _tic:
                         cura = max(10, abs(mag.get('hp', 0)))
+                        # A otro jugador (角色 con el pinchado) o en area a los
+                        # del grupo (自己/隊伍 con radio), como los buffs.
+                        _otros_c, _a_mi_c = (([], True) if es_target_pet
+                                             else _receptores_de_buff(ses, tipo, objetivo, mag.get('area')))
+                        for _s_c in _otros_c:
+                            try:
+                                _p_c = _s_c.personaje
+                                _p_c.hp = min(_vida_max(_p_c, _s_c.inventario), _p_c.hp + cura)
+                                import presencia as _pr_cu
+                                _pub_c = _pr_cu.entidad_de(ses)
+                                _s_c.enviar_inmediato(
+                                    _cb.efecto_curacion_inicio(_pub_c, _p_c.entity_id, cura, efecto=ef),
+                                    _cb.efecto_curacion_fin(_pub_c, _p_c.entity_id, efecto=ef),
+                                    _cb.numero_flotante(_p_c.entity_id, cura, _cb.TIPO_CURA_HP),
+                                    _cb.atributo(_p_c.entity_id, _p_c.hp, _cb.KIND_HP))
+                            except Exception:
+                                log.exception('curar a otro jugador')
+                        if not _a_mi_c and _otros_c:
+                            import presencia as _pr_cv
+                            _vis_c = _pr_cv.entidad_de(_otros_c[0])
+                            ses.enviar(_cb.efecto_curacion_inicio(yo, _vis_c, cura, efecto=ef),
+                                       _cb.efecto_curacion_fin(yo, _vis_c, efecto=ef),
+                                       _cb.atributo(yo, ses.personaje.mp, _cb.KIND_MP), _cb.gcd_paquete())
+                            if cd_ms > 0:
+                                ses.enviar(struct.pack('<HIBBII', 0x001D, yo, 1, 3, tipo, cd_ms))
+                                asyncio.get_event_loop().call_later(
+                                    cd_ms / 1000.0,
+                                    lambda: ses.enviar_inmediato(struct.pack('<HIBBII', 0x001D, yo, 1, 3, tipo, 0)))
+                            log.info(f"[{addr}] {mag.get('nombre')} cura {cura} a "
+                                     f"{[s.personaje.nombre for s in _otros_c]}")
+                            return
                         if es_target_pet:
                             f_pet_cast['hp'] = min(int(f_pet_cast.get('hp_max') or 100), int(f_pet_cast.get('hp') or 100) + cura)
                             targ_cura_vis = int(pet_eid_cast)
@@ -5842,13 +7249,22 @@ class Servidor:
                     else:
                         # 2. Buff activo / habilidad sobre el objetivo elegido (el propio jugador O la mascota por separado)
                         targ_confirm = int(pet_eid_cast) if es_target_pet else yo
+                        # A otro jugador o a todo el grupo (ver _receptores_de_buff).
+                        _otros_b, _a_mi_b = (([], True) if (es_target_pet or mag.get('es_transformacion')
+                                                            or not mag.get('es_buff'))
+                                             else _receptores_de_buff(ses, tipo, objetivo, mag.get('area')))
+                        if not _a_mi_b and _otros_b:
+                            import presencia as _pr_tc
+                            targ_confirm = _pr_tc.entidad_de(_otros_b[0])
                         tx_conf = f_pet_cast.get('x', ses.personaje.tile_x) if es_target_pet else ses.personaje.tile_x
                         ty_conf = f_pet_cast.get('y', ses.personaje.tile_y) if es_target_pet else ses.personaje.tile_y
                         atk_confirm = _cb.confirmar_cast(targ_confirm, tx_conf, ty_conf)
                         ses.enviar(
                             _cb.atributo(yo, ses.personaje.mp, _cb.KIND_MP),
                             atk_confirm,
-                            _cb.efecto_magia_self_inicio(targ_confirm, ef, tipo, cast_time=cast_time),
+                            # Lanza el que lo lanza (yo); le cae a targ_confirm.
+                            _cb.efecto_magia_self_inicio(yo, ef, tipo, cast_time=cast_time,
+                                                         objetivo=targ_confirm),
                         )
 
                         # Si es transformacion y ya la tenia activa, re-castear reinstaura su forma humana
@@ -5966,14 +7382,32 @@ class Servidor:
                                 buff_entry['cast_redux'] = mag.get('cast_redux')
                             if es_target_pet and isinstance(f_pet_cast, dict):
                                 f_pet_cast.setdefault('buffs', {})[tipo] = dict(buff_entry)
-                            else:
+                            elif _a_mi_b:
                                 ses.personaje.buffs[tipo] = buff_entry
+                            for _s_b in _otros_b:
+                                try:
+                                    _buff_a_otro(_s_b, tipo, buff_entry, dur_ms, mag,
+                                                 lanzador=ses, ef=ef)
+                                except Exception:
+                                    log.exception('buff a otro jugador')
+                            if _otros_b:
+                                log.info('[%s] %s tambien a %s', addr, mag.get('nombre'),
+                                         [s.personaje.nombre for s in _otros_b])
+                            # Aura de grupo: reparte su hechizo hijo (ver _pulso_aura).
+                            _hijo_a = None if es_target_pet else _hijo_de_aura(tipo)
+                            if _hijo_a and _a_mi_b:
+                                _fin_a = buff_entry['fin']
+                                asyncio.get_event_loop().call_later(
+                                    max(0.2, cast_time / 1000.0),
+                                    lambda _h=_hijo_a, _f=_fin_a: _pulso_aura(ses, tipo, _h, _f))
+                                log.info('[%s] aura %s: reparte %s al grupo', addr,
+                                         mag.get('nombre'), _hijo_a)
 
                         def _fin_buff():
                             if not ses.personaje or getattr(ses, 'muerto', False):
                                 return
                             pkgs_buff = [
-                                _cb.efecto_magia_self_fin(targ_confirm, ef, tipo),
+                                _cb.efecto_magia_self_fin(yo, ef, tipo, objetivo=targ_confirm),
                             ]
                             if cd_ms > 0:
                                 pkgs_buff.append(struct.pack('<HIBBII', 0x001D, yo, 1, 3, tipo, cd_ms))
@@ -5990,6 +7424,8 @@ class Servidor:
                                         _cb.atributo(int(pet_eid_cast), _ms.hp_eff(f_pet_cast), _cb.KIND_HP),
                                         _ms.armar(f_pet_cast),
                                     ])
+                                elif not _a_mi_b:
+                                    pass          # era para otro jugador: ya lo tiene
                                 else:
                                     pkgs_buff.append(struct.pack('<HIBBII', 0x001D, yo, 1, 4, tipo, dur_ms))
                                     if mag.get('es_transformacion') or mag.get('hp_bonus') or mag.get('hp_pct'):
@@ -7087,6 +8523,10 @@ class Servidor:
             # Cargar la secuencia completa oficial del nuevo mapa (aparicion, capas, barra, stats, spawns y atributos)
             for sub in _lg2.secuencia(p):
                 ses.enviar(sub)
+            try:
+                _entrar_en_sala(ses, addr)
+            except Exception:
+                log.exception('no se pudo entrar en la sala del mapa')
             ses.enviar(_stats_ses(ses))
             if p.habilidades:
                 _ids = [h[0] for h in p.habilidades]
@@ -9275,6 +10715,11 @@ class Servidor:
                 # mision --, pero al pulsarlos solo miraba si eran NPC o
                 # portal, asi que no pasaba nada.
                 _tile_obj = _recurso_con_entidad(ses.personaje.stage, ent)
+                # VETA (objeto MATOBJ con su material de material.xml). No se
+                # pide la casilla: las vetas de los mapas abiertos vienen de
+                # capturas y en la plantilla solo traen el px.
+                if _recolectar(ses, addr, ses.personaje.stage, ent):
+                    return
                 if _tile_obj is not None:
                     try:
                         import eventos_mundo as _evm_p
@@ -9515,8 +10960,15 @@ class Servidor:
                     stg_act = _st_ent or (getattr(ses.personaje, 'stage', 0) if ses.personaje else 0)
                     disponibles = _mis.misiones_disponibles_npc(ses.personaje, _nom_ent, stage=stg_act, entidad=ent)
                     if disponibles:
-                        qid_ofrecer = disponibles[0]
                         nom2 = ses.personaje.nombre if ses.personaje else 'Jugador'
+                        # La primera que tenga guion de oferta: las del registro
+                        # del BreezeWood Angel (130, 136, 140) no lo tienen, y
+                        # quedandose con ellas el NPC nunca llegaba a la 558.
+                        qid_ofrecer = next(
+                            (q for q in disponibles
+                             if dialogos.guion_de_mision(q, _nom_ent, jugador=nom2,
+                                                         entidad=ent, completada=False)),
+                            disponibles[0])
                         flujo = dialogos.info_flujo_mision(qid_ofrecer)
                         # Comprobar nivel requerido
                         req_lvl = _mis.info_mision(qid_ofrecer).get('nivel')
@@ -9555,6 +11007,22 @@ class Servidor:
                         stage=getattr(ses.personaje, 'stage', 0) if ses.personaje else 0,
                         registrado=_ya_registrado(ses),
                         entidad=ent)
+
+                # El dialogo del ARBOL DEL MAPA cuando el NPC tiene uno que
+                # hace algo (opciones, acciones, ramas). Solo en instancias,
+                # donde los NPC van guionados por el mapa, o si no hay otro:
+                # en las ciudades manda dialogos.propio(), que ya funciona.
+                if ses.personaje:
+                    try:
+                        import dialogos_mapa as _dm_c
+                        _st_c = getattr(ses.personaje, 'stage', 0)
+                        if es_instancia(_st_c) or not g2:
+                            _raiz_c = _dm_c.raiz_interactiva(_st_c, dialogos.val_por_entidad(ent))
+                            if _raiz_c and _recorrer_dialogo_mapa(ses, addr, _st_c, _raiz_c):
+                                log.info(f"[{addr}] {_nom_ent}: dialogo del arbol del mapa ({_raiz_c})")
+                                return
+                    except Exception:
+                        log.exception('dialogo del arbol del mapa')
 
                 if g2:
                     nom2 = ses.personaje.nombre if ses.personaje else 'Jugador'
@@ -9606,6 +11074,26 @@ class Servidor:
             log.info(f"[{addr}] dialogo con la entidad {ent} (etapa {etapa}): "
                      f"linea 1 de {len(g)}")
             return
+
+        # La eleccion en un dialogo del arbol del mapa (_recorrer_dialogo_mapa).
+        # Solo si el cuadro abierto sigue siendo ese: si despues se abrio
+        # otro, dlg_guion ya no es el mismo y lo atiende quien lo abrio.
+        _dlm = getattr(ses, 'dlg_mapa', None)
+        if (opcode == 0x000B and ses.rol == 'mundo' and _dlm
+                and getattr(ses, 'dlg_guion', None) is _dlm.get('guion')):
+            import dialogos as _dlg_m
+            _v = d.get('valor', 1) if d else 1
+            if _dlg_m.es_opcion(_v):
+                ses.dlg_mapa = None
+                _i = _dlg_m.indice_opcion(_v)
+                _ops = _dlm.get('opciones') or []
+                _sig = _ops[_i][1] if 0 <= _i < len(_ops) else 0
+                ses.dlg_ent = None
+                ses.enviar(struct.pack('<H', 0x0012) + _dlg_m.FIN)
+                log.info(f"[{addr}] dialogo del mapa: opcion {_i} -> nodo {_sig}")
+                if _sig and ses.personaje:
+                    _recorrer_dialogo_mapa(ses, addr, _dlm['stage'], _sig)
+                return
 
         if opcode == 0x000B and ses.rol == 'mundo' and getattr(ses, 'dlg_estatua', None):
             import dialogos as _dlg_e
@@ -10404,6 +11892,9 @@ class Servidor:
 
         if opcode == 0x0004 and d:
             ses.ultimo_movimiento = time.time()
+            # Moverse corta la recoleccion, igual que levanta al sentado.
+            if getattr(ses, 'recoleccion', None) and d.get('path'):
+                _parar_recoleccion(ses)
             if getattr(ses, 'sentado', False):
                 ses.sentado = False
                 if ses.personaje:
@@ -10482,8 +11973,25 @@ class Servidor:
                 # Y el evento del mapa de esa casilla, si lo hay. Va DESPUES
                 # del portal y no en su lugar: los portales siguen saliendo
                 # de portales.json, que esta medido uno a uno.
-                _eventos_al_pisar(
-                    ses, addr, (ses.personaje.tile_x, ses.personaje.tile_y))
+                # Todas las casillas del tramo, no solo la de llegada: los
+                # disparadores suelen ser una LINEA que se cruza (el evento
+                # 200 de la Magic Kichen Path, que saca a Guard Fasit y los
+                # Mud Lords con las antorchas encendidas), y si el tramo la
+                # atravesaba sin pararse encima no saltaba. Un mismo evento
+                # salta una sola vez por tramo: la lava de la sala 1 son
+                # varias casillas seguidas y quita 150 al pasar, no por cada
+                # una.
+                _st_paso = ses.personaje.stage
+                _vistos = set()
+                for _cas in _casillas_del_tramo((_ox, _oy),
+                                                (ses.personaje.tile_x, ses.personaje.tile_y)):
+                    if not ses.personaje or ses.personaje.stage != _st_paso:
+                        break
+                    _evc = _evento_de_casilla(_st_paso, _cas)
+                    if _evc is None or _evc in _vistos:
+                        continue
+                    _vistos.add(_evc)
+                    _eventos_al_pisar(ses, addr, _cas)
 
                 # Si el movimiento termina LEJOS del objetivo, se lo suelta:
                 # atacabas, te ibas, y al pararte el personaje seguia pegandole

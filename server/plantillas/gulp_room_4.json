@@ -1,5 +1,5 @@
 {
- "_nota": "gulp_room_4 (stage 79). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map079.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "_nota": "gulp_room_4 (stage 79). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map079.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py. OLEADAS: fuera 64 bichos de la captura que salen por evento (tools/quitar_oleadas.py). OLEADAS: fuera 6 bichos de la captura que salen por evento (tools/quitar_oleadas.py).",
  "stage": 79,
  "spawns": [
   {
@@ -4143,876 +4143,6 @@
    "nivel": 85
   },
   {
-   "entity_id": 57900276,
-   "nombre": "Demon Kidace",
-   "npc_type": 896,
-   "sprite": 42333,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    364,
-    245
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 86
-  },
-  {
-   "entity_id": 57900277,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 916,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    246,
-    252
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57900278,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 916,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    241,
-    247
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57900279,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 916,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    248,
-    236
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57900280,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 916,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    243,
-    231
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57900281,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 916,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    225,
-    246
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57900282,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 916,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    220,
-    241
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57900283,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 916,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    220,
-    246
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57900284,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 916,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    201,
-    248
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57900285,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 916,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    261,
-    188
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57900286,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 916,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    184,
-    241
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57900287,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 916,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    179,
-    236
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57900288,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 916,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    39,
-    253
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57900289,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 916,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    61,
-    255
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57900290,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 916,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    56,
-    250
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57900291,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 916,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    88,
-    241
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57900292,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 916,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    83,
-    236
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57900293,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 916,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    83,
-    241
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57900294,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 916,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    109,
-    224
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57900295,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 916,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    104,
-    219
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57900296,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 916,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    104,
-    224
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57900297,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 916,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    196,
-    243
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57900298,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 916,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    251,
-    179
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57900299,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 916,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    246,
-    174
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57900300,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 917,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    225,
-    193
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57900301,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 917,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    220,
-    188
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57900302,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 917,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    220,
-    193
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57900303,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 917,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    211,
-    183
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57900304,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 917,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    206,
-    178
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57900305,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 917,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    182,
-    191
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57900306,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 917,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    177,
-    186
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57900307,
-   "nombre": "Elite Gold Fly",
-   "npc_type": 844,
-   "sprite": 42276,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    177,
-    191
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 72
-  },
-  {
-   "entity_id": 57900308,
-   "nombre": "Elite Gold Fly",
-   "npc_type": 844,
-   "sprite": 42276,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    187,
-    191
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 72
-  },
-  {
-   "entity_id": 57900309,
-   "nombre": "Elite Gold Fly",
-   "npc_type": 844,
-   "sprite": 42276,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    176,
-    197
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 72
-  },
-  {
-   "entity_id": 57900310,
-   "nombre": "Gold Fly",
-   "npc_type": 845,
-   "sprite": 42276,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    206,
-    183
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 72
-  },
-  {
-   "entity_id": 57900311,
-   "nombre": "Gold Fly",
-   "npc_type": 845,
-   "sprite": 42276,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    211,
-    178
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 72
-  },
-  {
-   "entity_id": 57900312,
-   "nombre": "Gold Fly",
-   "npc_type": 845,
-   "sprite": 42276,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    201,
-    183
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 72
-  },
-  {
-   "entity_id": 57900313,
-   "nombre": "Gold Fly",
-   "npc_type": 845,
-   "sprite": 42276,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    225,
-    188
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 72
-  },
-  {
-   "entity_id": 57900314,
-   "nombre": "Gold Fly",
-   "npc_type": 845,
-   "sprite": 42276,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    230,
-    188
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 72
-  },
-  {
-   "entity_id": 57900315,
-   "nombre": "Gold Fly",
-   "npc_type": 845,
-   "sprite": 42276,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    246,
-    179
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 72
-  },
-  {
-   "entity_id": 57900316,
-   "nombre": "Gold Fly",
-   "npc_type": 845,
-   "sprite": 42276,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    243,
-    184
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 72
-  },
-  {
-   "entity_id": 57900317,
-   "nombre": "Elite Gold Fly",
-   "npc_type": 844,
-   "sprite": 42276,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    256,
-    183
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 72
-  },
-  {
-   "entity_id": 57900318,
-   "nombre": "Elite Gold Fly",
-   "npc_type": 844,
-   "sprite": 42276,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    254,
-    188
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 72
-  },
-  {
-   "entity_id": 57900319,
-   "nombre": "Gold Fly",
-   "npc_type": 845,
-   "sprite": 42276,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    241,
-    252
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 72
-  },
-  {
-   "entity_id": 57900320,
-   "nombre": "Gold Fly",
-   "npc_type": 845,
-   "sprite": 42276,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    246,
-    247
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 72
-  },
-  {
-   "entity_id": 57900321,
-   "nombre": "Gold Fly",
-   "npc_type": 845,
-   "sprite": 42276,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    243,
-    236
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 72
-  },
-  {
-   "entity_id": 57900322,
-   "nombre": "Gold Fly",
-   "npc_type": 845,
-   "sprite": 42276,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    253,
-    236
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 72
-  },
-  {
-   "entity_id": 57900323,
-   "nombre": "Elite Gold Fly",
-   "npc_type": 844,
-   "sprite": 42276,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    81,
-    246
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 72
-  },
-  {
-   "entity_id": 57900324,
-   "nombre": "Elite Gold Fly",
-   "npc_type": 844,
-   "sprite": 42276,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    86,
-    246
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 72
-  },
-  {
-   "entity_id": 57900325,
-   "nombre": "Elite Gold Fly",
-   "npc_type": 844,
-   "sprite": 42276,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    78,
-    239
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 72
-  },
-  {
-   "entity_id": 57900326,
-   "nombre": "Elite Gold Fly",
-   "npc_type": 844,
-   "sprite": 42276,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    56,
-    255
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 72
-  },
-  {
-   "entity_id": 57900327,
-   "nombre": "Elite Gold Fly",
-   "npc_type": 844,
-   "sprite": 42276,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    51,
-    253
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 72
-  },
-  {
-   "entity_id": 57900328,
-   "nombre": "Elite Gold Fly",
-   "npc_type": 844,
-   "sprite": 42276,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    34,
-    252
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 72
-  },
-  {
-   "entity_id": 57900329,
-   "nombre": "Elite Gold Fly",
-   "npc_type": 844,
-   "sprite": 42276,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    33,
-    257
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 72
-  },
-  {
-   "entity_id": 57900330,
-   "nombre": "Gold Fly",
-   "npc_type": 845,
-   "sprite": 42276,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    218,
-    251
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 72
-  },
-  {
-   "entity_id": 57900331,
-   "nombre": "Gold Fly",
-   "npc_type": 845,
-   "sprite": 42276,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    214,
-    256
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 72
-  },
-  {
-   "entity_id": 57900332,
-   "nombre": "Elite Gold Fly",
-   "npc_type": 844,
-   "sprite": 42276,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    196,
-    248
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 72
-  },
-  {
-   "entity_id": 57900333,
-   "nombre": "Elite Gold Fly",
-   "npc_type": 844,
-   "sprite": 42276,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    199,
-    253
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 72
-  },
-  {
    "entity_id": 57900334,
    "nombre": "GluttonBeelzebub",
    "npc_type": 853,
@@ -5041,51 +4171,6 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 100
-  },
-  {
-   "entity_id": 57900336,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 917,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    189,
-    240
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57900337,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 917,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    189,
-    246
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
-  },
-  {
-   "entity_id": 57900338,
-   "nombre": "Poo Poo Demon",
-   "npc_type": 917,
-   "sprite": 42349,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    184,
-    236
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 70
   },
   {
    "entity_id": 57900339,
@@ -6588,51 +5673,6 @@
    "nivel": 53
   },
   {
-   "entity_id": 57900439,
-   "nombre": "Brute Demon",
-   "npc_type": 811,
-   "sprite": 42297,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    359,
-    249
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 79
-  },
-  {
-   "entity_id": 57900440,
-   "nombre": "Brute Demon",
-   "npc_type": 811,
-   "sprite": 42297,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    354,
-    244
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 79
-  },
-  {
-   "entity_id": 57900441,
-   "nombre": "Brute Demon",
-   "npc_type": 811,
-   "sprite": 42297,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    354,
-    249
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 79
-  },
-  {
    "entity_id": 57900442,
    "nombre": "Fetor Slarm",
    "npc_type": 836,
@@ -6856,90 +5896,6 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 80
-  },
-  {
-   "entity_id": 57900457,
-   "nombre": "Energy Pillar",
-   "npc_type": 2094,
-   "sprite": 40173,
-   "klass": 200,
-   "monstruo": false,
-   "tile": [
-    364,
-    152
-   ],
-   "direccion": 2,
-   "visible": 0
-  },
-  {
-   "entity_id": 57900458,
-   "nombre": "Energy Pillar",
-   "npc_type": 2094,
-   "sprite": 40173,
-   "klass": 200,
-   "monstruo": false,
-   "tile": [
-    368,
-    145
-   ],
-   "direccion": 2,
-   "visible": 0
-  },
-  {
-   "entity_id": 57900459,
-   "nombre": "Energy Pillar",
-   "npc_type": 2094,
-   "sprite": 40173,
-   "klass": 200,
-   "monstruo": false,
-   "tile": [
-    381,
-    144
-   ],
-   "direccion": 2,
-   "visible": 0
-  },
-  {
-   "entity_id": 57900460,
-   "nombre": "Energy Pillar",
-   "npc_type": 2094,
-   "sprite": 40173,
-   "klass": 200,
-   "monstruo": false,
-   "tile": [
-    372,
-    156
-   ],
-   "direccion": 2,
-   "visible": 0
-  },
-  {
-   "entity_id": 57900461,
-   "nombre": "Energy Pillar",
-   "npc_type": 2094,
-   "sprite": 40173,
-   "klass": 200,
-   "monstruo": false,
-   "tile": [
-    387,
-    155
-   ],
-   "direccion": 2,
-   "visible": 0
-  },
-  {
-   "entity_id": 57900462,
-   "nombre": "Energy Pillar",
-   "npc_type": 2094,
-   "sprite": 40173,
-   "klass": 200,
-   "monstruo": false,
-   "tile": [
-    389,
-    147
-   ],
-   "direccion": 2,
-   "visible": 0
   },
   {
    "entity_id": 57900463,
@@ -7886,8 +6842,10 @@
     15,
     144
    ],
+   "evento": 5,
    "crudo": "60120c0400000000ea010000101200000000000027000000000000001a000000dc06c2ea00004080140000",
-   "copiado_de": "cuerpo de una captura del objeto 60098"
+   "copiado_de": "cuerpo de una captura del objeto 60098",
+   "puesto_por": "objetos_de_instancia"
   },
   {
    "entity_id": 67900001,
@@ -7901,8 +6859,10 @@
     308,
     110
    ],
+   "evento": 10,
    "crudo": "61120c040000000095260000d00d00000000000027000000000000001a000000dc06c2ea00004080140000",
-   "copiado_de": "cuerpo de una captura del objeto 60098"
+   "copiado_de": "cuerpo de una captura del objeto 60098",
+   "puesto_por": "objetos_de_instancia"
   },
   {
    "entity_id": 67900002,
@@ -7916,8 +6876,10 @@
     61,
     20
    ],
-   "crudo": "62120c0400000000be070000900200000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 1,
+   "crudo": "62120c0400000000be070000900200000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
    "entity_id": 67900003,
@@ -7931,8 +6893,10 @@
     64,
     19
    ],
-   "crudo": "63120c040000000007080000700200000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 1,
+   "crudo": "63120c040000000007080000700200000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
    "entity_id": 67900004,
@@ -7946,8 +6910,10 @@
     65,
     17
    ],
-   "crudo": "64120c040000000029080000300200000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 1,
+   "crudo": "64120c040000000029080000300200000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
    "entity_id": 67900005,
@@ -7961,8 +6927,10 @@
     136,
     182
    ],
+   "evento": 0,
    "crudo": "65120c040000000017110000d01600000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
    "entity_id": 67900006,
@@ -7976,11 +6944,115 @@
     141,
     185
    ],
+   "evento": 0,
    "crudo": "66120c0400000000a7110000301700000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
    "entity_id": 67900007,
+   "sprite": 60303,
+   "capa": 0,
+   "px": [
+    12394,
+    4976
+   ],
+   "tile": [
+    387,
+    155
+   ],
+   "evento": 27,
+   "crudo": "67120c04000000006a300000701300000000000027000000000000001a000000dc068feb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67900008,
+   "sprite": 60303,
+   "capa": 0,
+   "px": [
+    12451,
+    4720
+   ],
+   "tile": [
+    389,
+    147
+   ],
+   "evento": 26,
+   "crudo": "68120c0400000000a3300000701200000000000027000000000000001a000000dc068feb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67900009,
+   "sprite": 60303,
+   "capa": 0,
+   "px": [
+    12205,
+    4592
+   ],
+   "tile": [
+    381,
+    143
+   ],
+   "evento": 25,
+   "crudo": "69120c0400000000ad2f0000f01100000000000027000000000000001a000000dc068feb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67900010,
+   "sprite": 60303,
+   "capa": 0,
+   "px": [
+    11788,
+    4656
+   ],
+   "tile": [
+    368,
+    145
+   ],
+   "evento": 24,
+   "crudo": "6a120c04000000000c2e0000301200000000000027000000000000001a000000dc068feb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67900011,
+   "sprite": 60303,
+   "capa": 0,
+   "px": [
+    11673,
+    4880
+   ],
+   "tile": [
+    364,
+    152
+   ],
+   "evento": 12,
+   "crudo": "6b120c0400000000992d0000101300000000000027000000000000001a000000dc068feb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67900012,
+   "sprite": 60303,
+   "capa": 0,
+   "px": [
+    11928,
+    5008
+   ],
+   "tile": [
+    372,
+    156
+   ],
+   "evento": 28,
+   "crudo": "6c120c0400000000982e0000901300000000000027000000000000001a000000dc068feb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67900013,
    "sprite": 60049,
    "capa": 0,
    "px": [
@@ -7991,11 +7063,13 @@
     261,
     267
    ],
-   "crudo": "67120c0400000000a9200000702100000000000027000000000000001a000000dc0691ea00004080140000",
-   "copiado_de": "cuerpo de una captura del objeto 60049"
+   "evento": 16,
+   "crudo": "6d120c0400000000a9200000702100000000000027000000000000001a000000dc0691ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60049",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67900008,
+   "entity_id": 67900014,
    "sprite": 60049,
    "capa": 2,
    "px": [
@@ -8006,11 +7080,13 @@
     36,
     223
    ],
-   "crudo": "68120c040200000084040000f01b00000000000027000000000000001a000000dc0691ea00004080140000",
-   "copiado_de": "cuerpo de una captura del objeto 60049"
+   "evento": 19,
+   "crudo": "6e120c040200000084040000f01b00000000000027000000000000001a000000dc0691ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60049",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67900009,
+   "entity_id": 67900015,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -8021,11 +7097,13 @@
     138,
     184
    ],
-   "crudo": "69120c040000000059110000101700000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 0,
+   "crudo": "6f120c040000000059110000101700000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67900010,
+   "entity_id": 67900016,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -8036,11 +7114,13 @@
     143,
     184
    ],
-   "crudo": "6a120c0400000000ea110000101700000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 0,
+   "crudo": "70120c0400000000ea110000101700000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67900011,
+   "entity_id": 67900017,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -8051,11 +7131,13 @@
     61,
     18
    ],
-   "crudo": "6b120c0400000000ae070000500200000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 1,
+   "crudo": "71120c0400000000ae070000500200000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67900012,
+   "entity_id": 67900018,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -8066,11 +7148,13 @@
     63,
     17
    ],
-   "crudo": "6c120c0400000000e5070000300200000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 1,
+   "crudo": "72120c0400000000e5070000300200000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67900013,
+   "entity_id": 67900019,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -8081,11 +7165,13 @@
     145,
     182
    ],
-   "crudo": "6d120c040000000024120000d01600000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 0,
+   "crudo": "73120c040000000024120000d01600000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67900014,
+   "entity_id": 67900020,
    "sprite": 60047,
    "capa": 0,
    "px": [
@@ -8096,11 +7182,13 @@
     272,
     203
    ],
-   "crudo": "6e120c04000000001a220000701900000000000027000000000000001a000000dc068fea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60047"
+   "evento": 18,
+   "crudo": "74120c04000000001a220000701900000000000027000000000000001a000000dc068fea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60047",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67900015,
+   "entity_id": 67900021,
    "sprite": 60047,
    "capa": 0,
    "px": [
@@ -8111,11 +7199,13 @@
     130,
     263
    ],
-   "crudo": "6f120c040000000054100000f02000000000000027000000000000001a000000dc068fea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60047"
+   "evento": 29,
+   "crudo": "75120c040000000054100000f02000000000000027000000000000001a000000dc068fea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60047",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67900016,
+   "entity_id": 67900022,
    "sprite": 60041,
    "capa": 2,
    "px": [
@@ -8126,11 +7216,30 @@
     22,
     257
    ],
-   "crudo": "70120c0402000000c9020000302000000000000027000000000000001a000000dc0689ea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60041"
+   "evento": 17,
+   "crudo": "76120c0402000000c9020000302000000000000027000000000000001a000000dc0689ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60041",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 67900017,
+   "entity_id": 67900023,
+   "sprite": 60042,
+   "capa": 2,
+   "px": [
+    2693,
+    5808
+   ],
+   "tile": [
+    84,
+    181
+   ],
+   "evento": 20,
+   "crudo": "77120c0402000000850a0000b01600000000000027000000000000001a000000dc068aea00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67900024,
    "sprite": 60050,
    "capa": 2,
    "px": [
@@ -8141,8 +7250,129 @@
     331,
     131
    ],
-   "crudo": "71120c040200000061290000701000000000000027000000000000001a000000dc0692ea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60050"
+   "evento": 21,
+   "crudo": "78120c040200000061290000701000000000000027000000000000001a000000dc0692ea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60050",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67900025,
+   "sprite": 60042,
+   "capa": 2,
+   "px": [
+    10001,
+    8528
+   ],
+   "tile": [
+    312,
+    266
+   ],
+   "evento": 22,
+   "crudo": "79120c040200000011270000502100000000000027000000000000001a000000dc068aea00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67900026,
+   "sprite": 60304,
+   "capa": 0,
+   "px": [
+    11394,
+    7920
+   ],
+   "tile": [
+    356,
+    247
+   ],
+   "evento": 23,
+   "crudo": "7a120c0400000000822c0000f01e00000000000027000000000000001a000000dc0690eb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67900027,
+   "sprite": 60304,
+   "capa": 0,
+   "px": [
+    12141,
+    8112
+   ],
+   "tile": [
+    379,
+    253
+   ],
+   "evento": 23,
+   "crudo": "7b120c04000000006d2f0000b01f00000000000027000000000000001a000000dc0690eb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67900028,
+   "sprite": 60304,
+   "capa": 0,
+   "px": [
+    12212,
+    7728
+   ],
+   "tile": [
+    381,
+    241
+   ],
+   "evento": 23,
+   "crudo": "7c120c0400000000b42f0000301e00000000000027000000000000001a000000dc0690eb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67900029,
+   "sprite": 60304,
+   "capa": 0,
+   "px": [
+    11524,
+    7280
+   ],
+   "tile": [
+    360,
+    227
+   ],
+   "evento": 23,
+   "crudo": "7d120c0400000000042d0000701c00000000000027000000000000001a000000dc0690eb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67900030,
+   "sprite": 60304,
+   "capa": 0,
+   "px": [
+    10890,
+    7664
+   ],
+   "tile": [
+    340,
+    239
+   ],
+   "evento": 23,
+   "crudo": "7e120c04000000008a2a0000f01d00000000000027000000000000001a000000dc0690eb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 67900031,
+   "sprite": 60306,
+   "capa": 0,
+   "px": [
+    12815,
+    5136
+   ],
+   "tile": [
+    400,
+    160
+   ],
+   "evento": 758,
+   "crudo": "7f120c04000000000f320000101400000000000027000000000000001a000000dc0692eb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
   }
  ]
 }

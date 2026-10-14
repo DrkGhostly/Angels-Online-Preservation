@@ -31,7 +31,37 @@ ARCHIVO = BASE / 'cuentas.json'
 MUESTRAS = pathlib.Path(__file__).parent.parent / 'logs' / 'auth_muestras'
 
 _LOCK = threading.RLock()
-GUARDAR_AUTH_CRUDO = os.environ.get('AO_GUARDAR_AUTH_CRUDO', '0') == '1'
+
+# LOS INTERRUPTORES DEL LOGIN viven en la tabla `configuracion` de cuentas.db.
+# Antes eran variables de entorno (AO_VALIDAR_PASSWORD, AO_REGISTRAR_PRIMER_HASH,
+# AO_GUARDAR_AUTH_CRUDO); el commit 5efe06d las quito del codigo y dejo la
+# validacion siempre puesta. Ahora se cambian en la base:
+#     UPDATE configuracion SET valor='0' WHERE clave='validar_password';
+# y valen en el siguiente login, sin reiniciar el servidor.
+CONFIGURACION_POR_DEFECTO = {
+    'validar_password': ('1', 'Comprobar la contrasena al entrar (0 = entra cualquiera).'),
+    'registrar_primer_hash': ('1', 'Una cuenta sin contrasena guardada se queda con la del '
+                                   'primer ingreso (0 = se rechaza).'),
+    'guardar_auth_crudo': ('0', 'Guardar el AUTH entero en logs/auth_muestras (para analizarlo).'),
+    'reemplazar_contrasena': ('0', 'Si la contrasena no coincide, se queda la nueva en vez de '
+                                   'rechazar. Para cambiarlas: encender, entrar con la nueva en '
+                                   'cada cuenta, apagar.'),
+}
+
+
+def flag(clave: str) -> bool:
+    """Lee un interruptor de la tabla configuracion ('1' = encendido)."""
+    try:
+        con = _get_conn()
+        try:
+            row = con.execute('SELECT valor FROM configuracion WHERE clave = ?', (clave,)).fetchone()
+        finally:
+            con.close()
+        if row is not None:
+            return str(row[0]).strip() == '1'
+    except Exception:
+        log.debug('configuracion %s', clave, exc_info=True)
+    return CONFIGURACION_POR_DEFECTO.get(clave, ('0', ''))[0] == '1'
 # La contrasena viaja al final del AUTH (73 B para un usuario de hasta 7
 # letras): [usuario][13 B que cambian en cada ingreso][52 B que dependen solo
 # de la contrasena escrita]. Se guarda y se compara tal cual, sin descifrar.
@@ -79,6 +109,18 @@ def _init_db():
             );
             ''')
             con.execute('CREATE INDEX IF NOT EXISTS idx_pj_char_id ON personajes(usuario, char_id);')
+            # Los interruptores del login, en la base y no en variables de
+            # entorno (ver CONFIGURACION_POR_DEFECTO).
+            con.execute('''
+            CREATE TABLE IF NOT EXISTS configuracion (
+                clave TEXT PRIMARY KEY,
+                valor TEXT NOT NULL,
+                nota TEXT NOT NULL DEFAULT ''
+            );
+            ''')
+            for clave, (valor, nota) in CONFIGURACION_POR_DEFECTO.items():
+                con.execute('INSERT OR IGNORE INTO configuracion (clave, valor, nota) VALUES (?, ?, ?)',
+                            (clave, valor, nota))
             con.commit()
 
             cur = con.cursor()
@@ -382,7 +424,8 @@ def validar(usuario: str, cuerpo_auth: bytes = b'') -> tuple:
     """Valida la contrasena. Una cuenta sin contrasena guardada (nueva, o
     creada antes de esta validacion) se queda con la de este ingreso."""
     h = hash_de_auth(cuerpo_auth)
-    if not h:
+    validar_pw = flag('validar_password')
+    if not h and validar_pw:
         return None, "contrasena vacia"
     with _LOCK:
         con = _get_conn()
@@ -391,11 +434,27 @@ def validar(usuario: str, cuerpo_auth: bytes = b'') -> tuple:
             cur.execute("SELECT password FROM cuentas WHERE usuario = ?", (usuario,))
             row = cur.fetchone()
             guardado = row[0] if row else ''
-            if '$' in guardado:
-                sal, firma = guardado.split('$', 1)
-                if not hmac.compare_digest(_firmar(h, sal), firma):
+            if not validar_pw:
+                # Sin validar: entra cualquiera, y la cuenta se crea si no esta.
+                if row is None:
+                    con.execute("INSERT INTO cuentas (usuario, password) VALUES (?, '')", (usuario,))
+                    con.commit()
+                    _notificar_cambio(inmediato=True)
+                return {'personajes': _personajes(con, usuario)}, "ok (sin validar contrasena)"
+            if '$' in guardado and not hmac.compare_digest(
+                    _firmar(h, guardado.split('$', 1)[0]), guardado.split('$', 1)[1]):
+                if not flag('reemplazar_contrasena'):
                     return None, "contrasena incorrecta"
+                sal = os.urandom(16).hex()
+                con.execute("UPDATE cuentas SET password = ? WHERE usuario = ?",
+                            (f"{sal}${_firmar(h, sal)}", usuario))
+                con.commit()
+                _notificar_cambio(inmediato=True)
+                return {'personajes': _personajes(con, usuario)}, "contrasena reemplazada"
+            if '$' in guardado:
                 motivo = "ok"
+            elif not flag('registrar_primer_hash'):
+                return None, "la cuenta no tiene contrasena registrada"
             else:
                 sal = os.urandom(16).hex()
                 registro = f"{sal}${_firmar(h, sal)}"
@@ -419,7 +478,7 @@ def guardar_muestra_auth(bloque: bytes, nota: str = ""):
     marca = datetime.datetime.now().strftime('%Y%m%d_%H%M%S_%f')
     digest = hashlib.sha256(bloque).hexdigest()
     (MUESTRAS / f"auth_{marca}.sha256").write_text(digest, encoding='ascii')
-    if GUARDAR_AUTH_CRUDO:
+    if flag('guardar_auth_crudo'):
         (MUESTRAS / f"auth_{marca}.bin").write_bytes(bloque)
     if nota:
         (MUESTRAS / f"auth_{marca}.txt").write_text(nota, encoding='utf-8')

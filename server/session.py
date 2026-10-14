@@ -90,6 +90,20 @@ class Session:
             except Exception:
                 pass
         self.salida.append(build_frame(pack_submessages(submsgs), self._next_seq()))
+        # SALA DE INSTANCIA COMPARTIDA: lo que le pasa a un bicho de la sala
+        # se lo ven todos los del grupo que esten en ella (app._espejar).
+        espejo = getattr(self, 'espejo', None)
+        if espejo is not None:
+            try:
+                espejo(self, submsgs)
+            except Exception:
+                log.debug('no se pudo reenviar al grupo', exc_info=True)
+
+    def enviar_sin_espejo(self, *submsgs):
+        """Como enviar, pero sin reenviarlo al grupo: es lo que se usa para
+        entregar lo que llega reenviado de otro, para que no rebote."""
+        if submsgs:
+            self.salida.append(build_frame(pack_submessages(submsgs), self._next_seq()))
 
     def enviar_crudo(self, payload):
         """Envia un payload ya armado como cadena de sub-mensajes.

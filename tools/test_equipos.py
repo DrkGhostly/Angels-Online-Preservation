@@ -77,16 +77,20 @@ def test_el_cartel_lleva_el_id_y_el_nombre_del_lider():
 
 
 def test_la_lista_crece_de_98_en_98_como_en_la_captura():
+    """De 78 en 78 en NUESTRO cliente. Los 98 eran del Global; el cliente
+    IGG guarda cada miembro en bloques de 0x4e = 78 bytes (00506fc0, leido
+    con REA el 14/10/2026), que es lo que ya mandaba equipos.TAM_MIEMBRO."""
     a, b, c = _trio()
     buscar = _mundo(a, b, c)
     equipos.invitar(a, 'KarmaSilk', buscar)
     equipos.aceptar(b)
-    assert len(a.enviados[-1]) - 2 == 206, len(a.enviados[-1]) - 2
+    listas = [m for m in a.enviados if m[:2] == struct.pack('<H', equipos.LISTA)]
+    assert len(listas[-1]) - 2 == 10 + 2 * 78, len(listas[-1]) - 2
     equipos.invitar(a, 'KarmaWeapon', buscar)
     equipos.aceptar(c)
-    assert len(a.enviados[-1]) - 2 == 304, len(a.enviados[-1]) - 2
-    # y la de un solo miembro
-    assert len(equipos.lista_del_grupo(YUKI)) - 2 == 304
+    listas = [m for m in a.enviados if m[:2] == struct.pack('<H', equipos.LISTA)]
+    assert len(listas[-1]) - 2 == 10 + 3 * 78, len(listas[-1]) - 2
+    assert len(equipos.lista_del_grupo(YUKI)) - 2 == 10 + 3 * 78
 
 
 def test_la_lista_trae_a_los_tres_con_su_id_y_su_nombre():
