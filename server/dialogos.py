@@ -372,7 +372,8 @@ CUPID_POR_ENTIDAD = {
 
 def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
            visto_michael: bool = False, stage: int = 0,
-           registrado: bool = False, entidad: int = 0, val: int = 0):
+           registrado: bool = None, entidad: int = 0, val: int = 0,
+           en_progreso: bool = False):
     """Una linea de dialogo para ese NPC, o None si no se le conoce ninguna."""
     npc_val = val or (val_por_entidad(entidad, 0) if entidad else 0)
 
@@ -557,10 +558,14 @@ def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
         return [armar_linea(5229, npc_val or 38, [5227, 5191])[2:]]
 
     if nombre == 'Director Wolay':
-        if faccion in ("Heaven", "Neutral", "Neutrally", "Graduated"):
-            return [armar_linea(10004, 49, [])[2:]]
-        else:
+        if faccion not in ("Heaven", "Neutral", "Neutrally", "Graduated"):
             return [armar_linea(5079, 49, [5080, 5081])[2:]]
+        if en_progreso:
+            return [armar_linea(10003, 49, [])[2:]]
+        if registrado is False:
+            return [armar_linea(10001, 49, [], ['1', jugador or '?'])[2:],
+                    armar_linea(10002, 49, [])[2:]]
+        return [armar_linea(10004, 49, [])[2:]]
     if 'Repair Angel' in nombre:
         return [armar_linea(5100, 4, [5101, 12105])[2:]]
     if 'Cupid' in nombre:
@@ -613,25 +618,57 @@ def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
                                 _cad, list(_acc))[2:]]
         return [armar_linea(10242, _retrato, [], ['1', jugador or '?'])[2:]]
     if nombre == 'Michael':
-        # Cinco lineas seguidas. La primera y la ultima llevan el nombre.
-        return [armar_linea(10130, 1, [], ['1', jugador or '?'])[2:],
-                armar_linea(10131, 1, [])[2:],
-                armar_linea(10132, 1, [])[2:],
-                armar_linea(10133, 1, [])[2:],
-                armar_linea(10134, 1, [], ['1', jugador or '?'])[2:]]
+        if stage == 58:
+            # Cinco lineas seguidas. La primera y la ultima llevan el nombre.
+            return [armar_linea(10130, 1, [], ['1', jugador or '?'])[2:],
+                    armar_linea(10131, 1, [])[2:],
+                    armar_linea(10132, 1, [])[2:],
+                    armar_linea(10133, 1, [])[2:],
+                    armar_linea(10134, 1, [], ['1', jugador or '?'])[2:]]
+        else:
+            # Angel Lyceum (stage 41): intro y opcion a Top Student Training (Quest 123)
+            return [armar_linea(12301, 1, [12302, 12303, 12304], ['1', jugador or '?'])[2:]]
 
-    if "Angels' Tutor" in nombre:
-        # Dos lineas seguidas, copiadas de la captura:
-        #   10101  val 2, dos cadenas ("1" y el nombre), sin opciones
-        #   10102  val 2, opciones 10135 y 10110 + una accion por opcion
-        # Van las DOS opciones con sus dos acciones, exactamente como el
-        # servidor real. Se probo recortarlo a la de salir y fue un error:
-        # el cliente elige por INDICE, y con una sola opcion "Quit" pasaba a
-        # ser la 0 mientras el cliente manda la 1. La otra opcion (10135) no
-        # lleva a ningun lado aqui, asi que cierra el cuadro.
-        return [armar_linea(10101, 2, [], ['1', jugador or '?'])[2:],
-                armar_linea(10102, 2, [10135, 10110],
-                            acciones=[0x0f4272, 0x0f4391])[2:]]
+    if "Angels' Tutor" in nombre or "Angel Tutor" in nombre or "Angels Tutor" in nombre:
+        if en_progreso:
+            return [armar_linea(10103, 2, [])[2:]]
+        if registrado:
+            return [armar_linea(10105, 2, [10107, 10108, 10109, 10110])[2:]]
+        else:
+            # Dos lineas seguidas, copiadas de la captura:
+            #   10101  val 2, dos cadenas ("1" y el nombre), sin opciones
+            #   10102  val 2, opciones 10135 y 10110 + una accion por opcion
+            return [armar_linea(10101, 2, [], ['1', jugador or '?'])[2:],
+                    armar_linea(10102, 2, [10135, 10110],
+                                acciones=[0x0f4272, 0x0f4391])[2:]]
+
+    # Profesores y Lecturers de Angel Lyceum (Stage 41)
+    if 'Battle Professor' in nombre:
+        if faccion not in ("Heaven", "Neutral", "Neutrally", "Graduated"):
+            return [armar_linea(11512, 4, [])[2:]]
+        if registrado is False:
+            return [armar_linea(11511, 4, [])[2:]]
+        return [armar_linea(11501, 4, [11503, 11504])[2:]]
+    if 'Magic Professor' in nombre:
+        if faccion not in ("Heaven", "Neutral", "Neutrally", "Graduated"):
+            return [armar_linea(11812, 4, [])[2:]]
+        if registrado is False:
+            return [armar_linea(11811, 4, [])[2:]]
+        return [armar_linea(11801, 4, [11803, 11804])[2:]]
+    if 'Mine Professor' in nombre:
+        if registrado is False:
+            return [armar_linea(10637, 4, [])[2:]]
+        return [armar_linea(10601, 4, [10603, 10604])[2:]]
+    if 'Weapon Lecturer' in nombre:
+        return [armar_linea(11001, 4, [11002, 11003])[2:]]
+    if 'Armor Lecturer' in nombre:
+        return [armar_linea(11101, 4, [11102, 11103])[2:]]
+    if 'Sewing Lecturer' in nombre:
+        return [armar_linea(11201, 4, [11202, 11203])[2:]]
+    if 'Art Lecturer' in nombre:
+        return [armar_linea(11301, 4, [11302, 11303])[2:]]
+    if 'Cooking Lecturer' in nombre:
+        return [armar_linea(11401, 4, [11402, 11403])[2:]]
     if 'Jack' in nombre:
         return [armar_linea(5801, npc_val or 4, [5802])[2:]]
     if 'Shiva' in nombre:
@@ -2435,10 +2472,43 @@ def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
                 armar_linea(10124, 2, [10125, 10126],
                             acciones=[0x0f4393, 0x0f4271]))
 
-    # Opcion 10109: "Graduation" con Angels' Tutor
+    # Opciones de Angels' Tutor
+    if opcion_id == 10107:
+        return (armar_linea(10112, 2, []),
+                armar_linea(10113, 2, []),
+                armar_linea(10114, 2, []))
+    if opcion_id == 10108:
+        return (armar_linea(10115, 2, []),)
     if opcion_id == 10109:
-        pkg_pregunta = armar_linea(10118, val, [10119, 10120])
+        pkg_pregunta = armar_linea(10118, 2, [10119, 10120])
         return (pkg_pregunta,)
+
+    # Opciones de Profesores de Angel Lyceum
+    if opcion_id == 11503:
+        return (armar_linea(11513, val, [11514, 11515, 11516, 11517]),)
+    if opcion_id == 11803:
+        return (armar_linea(11813, val, [11814, 11815, 11816, 11817]),)
+    if opcion_id == 10603:
+        return (armar_linea(10617, val, [10618, 10619, 10620, 10621]),)
+
+    # Opciones de Lecturers
+    if opcion_id == 11002:
+        return (armar_linea(11004, val, []),)
+    if opcion_id == 11102:
+        return (armar_linea(11104, val, []),)
+    if opcion_id == 11202:
+        return (armar_linea(11204, val, []),)
+    if opcion_id == 11302:
+        return (armar_linea(11304, val, []),)
+    if opcion_id == 11402:
+        return (armar_linea(11404, val, []),)
+
+    # Opciones de Michael en Angel Lyceum
+    if opcion_id == 12302:
+        return (armar_linea(12305, val, []),
+                armar_linea(12306, val, []))
+    if opcion_id == 12303:
+        return (armar_linea(12307, val, [12308, 12309]),)
 
     # Opcion 10205: "I decided to be an Angel Protector".
     #
@@ -3043,6 +3113,36 @@ def info_flujo_mision(qid: int) -> dict:
     is_lvl = lambda t: bool(re.search(r'level.*?\d+|等級|haven\'t|hasn\'t', t, re.I)) and len(t) > 15
 
     # Casos especificos medidos exactamente en msg.xml:
+    if qid == 100:  # Registration at Angels' Tutor (Director Wolay)
+        return {
+            'tipo': '100',
+            'intro': [10001],
+            'rechazo_nivel': None,
+            'pregunta': 10002,
+            'ops_preg': [],
+            'historia': [],
+            'propuesta': 10002,
+            'ops_prop': [],
+            'exito': 10003,
+            'progreso': 10003,
+            'completada': [10101, 10102],
+        }
+
+    if qid == 101:  # Freshman's signing for taking courses (Angels' Tutor)
+        return {
+            'tipo': '101',
+            'intro': [10101],
+            'rechazo_nivel': None,
+            'pregunta': 10102,
+            'ops_preg': [10135, 10110],
+            'historia': [],
+            'propuesta': 10102,
+            'ops_prop': [10135, 10110],
+            'exito': 10103,
+            'progreso': 10103,
+            'completada': [10104, 10105],
+        }
+
     if qid == 852:  # Nark Paul (Desert Racetrack / Crescent Valley)
         return {
             'tipo': '852',
@@ -3275,6 +3375,119 @@ DIALOGOS_PASOS_ESPECIALES = {
         'completada': [157208],
         'idle': [157209],
     },
+
+    # Misiones troncales y cursos de Angel Lyceum (Stage 41)
+    (100, 'director wolay'): {
+        'ofrecer': [10001, 10002],
+        1: [10001, 10002],
+        (1, 'progreso'): [10003],
+        'progreso': [10003],
+        'idle': [10004],
+    },
+    (100, "angels' tutor"): {
+        1: [10101, 10102],
+        (1, 'completada'): [10101, 10102],
+        'completada': [10101, 10102],
+    },
+    (101, 'battle professor'): {
+        1: [11508],
+        (1, 'avanzada'): [11511],
+    },
+    (101, 'magic professor'): {
+        2: [11808],
+        (2, 'avanzada'): [11811],
+    },
+    (101, 'mine professor'): {
+        3: [10634],
+        (3, 'avanzada'): [10637],
+    },
+    (101, "angels' tutor"): {
+        1: [10103],
+        2: [10103],
+        3: [10103],
+        (1, 'progreso'): [10103],
+        (2, 'progreso'): [10103],
+        (3, 'progreso'): [10103],
+        'progreso': [10103],
+        4: [10102],
+        (4, 'avanzada'): [10103],
+        5: [10103],
+        (5, 'completada'): [10104, 10105],
+        'completada': [10104, 10105],
+    },
+    (101, "angel tutor"): {
+        1: [10103],
+        2: [10103],
+        3: [10103],
+        (1, 'progreso'): [10103],
+        (2, 'progreso'): [10103],
+        (3, 'progreso'): [10103],
+        'progreso': [10103],
+        4: [10102],
+        (4, 'avanzada'): [10103],
+        5: [10103],
+        (5, 'completada'): [10104, 10105],
+        'completada': [10104, 10105],
+    },
+    (102, "angels' tutor"): {
+        1: [10105],
+        (1, 'progreso'): [10106],
+        'completada': [10118],
+    },
+    (102, "angel tutor"): {
+        1: [10105],
+        (1, 'progreso'): [10106],
+        'completada': [10118],
+    },
+    (115, 'battle professor'): {
+        1: [11513],
+        (1, 'progreso'): [11513],
+        2: [11501],
+        (2, 'completada'): [11501],
+        'completada': [11501],
+    },
+    (116, 'battle professor'): {
+        1: [11513],
+        (1, 'progreso'): [11513],
+        2: [11501],
+        (2, 'completada'): [11501],
+        'completada': [11501],
+    },
+    (117, 'battle professor'): {
+        1: [11513],
+        (1, 'progreso'): [11513],
+        2: [11501],
+        (2, 'completada'): [11501],
+        'completada': [11501],
+    },
+    (118, 'magic professor'): {
+        1: [11813],
+        (1, 'progreso'): [11813],
+        2: [11801],
+        (2, 'completada'): [11801],
+        'completada': [11801],
+    },
+    (119, 'magic professor'): {
+        1: [11813],
+        (1, 'progreso'): [11813],
+        2: [11801],
+        (2, 'completada'): [11801],
+        'completada': [11801],
+    },
+    (120, 'magic professor'): {
+        1: [11813],
+        (1, 'progreso'): [11813],
+        2: [11801],
+        (2, 'completada'): [11801],
+        'completada': [11801],
+    },
+    (123, 'michael'): {
+        1: [12311, 12312, 12313, 12314, 12315],
+        (1, 'progreso'): [12315],
+        2: [12315],
+        (2, 'completada'): [12315],
+        'completada': [12315],
+    },
 }
 
 
@@ -3310,7 +3523,17 @@ def guion_de_mision(qid: int, npc_nombre: str = '', jugador: str = '', npc_val: 
             mids = mapa_esp[paso]
 
         if mids:
-            return [armar_linea(m, val_final, [], strings=cadenas)[2:] for m in mids]
+            lineas_m = []
+            for m in mids:
+                ops_m = []
+                acc_m = []
+                if m == 10102:
+                    ops_m = [10135, 10110]
+                    acc_m = [0x0f4272, 0x0f4391]
+                elif m == 10105:
+                    ops_m = [10107, 10108, 10109, 10110]
+                lineas_m.append(armar_linea(m, val_final, ops_m, strings=cadenas, acciones=acc_m)[2:])
+            return lineas_m
 
     flujo = info_flujo_mision(qid)
     if not flujo or not flujo.get('pregunta'):

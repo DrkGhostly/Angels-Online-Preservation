@@ -32,10 +32,14 @@ MUESTRAS = pathlib.Path(__file__).parent.parent / 'logs' / 'auth_muestras'
 
 _LOCK = threading.RLock()
 GUARDAR_AUTH_CRUDO = os.environ.get('AO_GUARDAR_AUTH_CRUDO', '0') == '1'
-# La contrasena viaja al final del AUTH (73 B para un usuario de hasta 7
-# letras): [usuario][13 B que cambian en cada ingreso][52 B que dependen solo
-# de la contrasena escrita]. Se guarda y se compara tal cual, sin descifrar.
-LARGO_HASH = 52
+# Estructura del paquete AUTH (73 B):
+#   [0:21]  char usuario[21] (texto plano terminado en nulo, con basura de pila al final)
+#   [21:53] hash de 32 B (256 bits) de la contrasena (determinista)
+#   [53:70] GUID / token de hardware del cliente (17 B)
+#   [70:73] 3 B de residuo no inicializado de la pila (00 00 00, bb 00 00, 60 00 00, etc.)
+OFF_HASH = 21
+LARGO_HASH = 32
+
 
 _CAMBIOS_DESDE_BACKUP = 0
 _ULTIMO_BACKUP = time.time()
@@ -351,7 +355,12 @@ def _actualizar_personaje(usuario: str, char_id: int, mutador_fn):
 
 
 def hash_de_auth(cuerpo: bytes) -> str:
-    return cuerpo[-LARGO_HASH:].hex() if len(cuerpo) > LARGO_HASH else ''
+    """Extrae el hash de contrasena del AUTH (32 bytes = 256 bits desde offset 21)."""
+    if len(cuerpo) >= OFF_HASH + LARGO_HASH:
+        return cuerpo[OFF_HASH:OFF_HASH + LARGO_HASH].hex()
+    elif len(cuerpo) >= LARGO_HASH:
+        return cuerpo[-LARGO_HASH:].hex()
+    return cuerpo.hex() if cuerpo else ''
 
 
 def _firmar(h: str, sal: str) -> str:
@@ -393,7 +402,25 @@ def validar(usuario: str, cuerpo_auth: bytes = b'') -> tuple:
             guardado = row[0] if row else ''
             if '$' in guardado:
                 sal, firma = guardado.split('$', 1)
-                if not hmac.compare_digest(_firmar(h, sal), firma):
+                coincide = hmac.compare_digest(_firmar(h, sal), firma)
+                if not coincide:
+                    # Compatibilidad con cuentas registradas con el hash legacy de 52 B:
+                    # En 52 B se incluian 3 B de residuo de pila (cuerpo[70:73]) que
+                    # variaban en cambio de personaje (ej. 60 00 00 o bb 00 00 en vez de 00 00 00).
+                    # Se prueba con el padding de ceros o el slice directo de 52 B.
+                    h52_cero = (cuerpo_auth[21:70] + b'\x00\x00\x00').hex() if len(cuerpo_auth) >= 70 else ''
+                    h52_crudo = cuerpo_auth[-52:].hex() if len(cuerpo_auth) >= 52 else ''
+                    if (h52_cero and hmac.compare_digest(_firmar(h52_cero, sal), firma)) or \
+                       (h52_crudo and hmac.compare_digest(_firmar(h52_crudo, sal), firma)):
+                        coincide = True
+                        # Migrar transparentemente la cuenta al hash limpio de 32 B
+                        sal_nueva = os.urandom(16).hex()
+                        reg_nuevo = f"{sal_nueva}${_firmar(h, sal_nueva)}"
+                        con.execute("UPDATE cuentas SET password = ? WHERE usuario = ?",
+                                    (reg_nuevo, usuario))
+                        con.commit()
+                        _notificar_cambio(inmediato=True)
+                if not coincide:
                     return None, "contrasena incorrecta"
                 motivo = "ok"
             else:
@@ -556,19 +583,27 @@ def borrar_personaje(usuario: str, ranura: int):
             con.close()
 
 
+def _slot_sort_key(item):
+    k = item[0] if isinstance(item, (tuple, list)) else item
+    try:
+        return (0, int(k))
+    except (ValueError, TypeError):
+        return (1, str(k))
+
+
 def guardar_inventario(usuario: str, char_id: int, bolsa: dict,
                        cantidades=None, mejoras=None):
     def _mut(p):
-        p['inventario'] = {str(k): v for k, v in sorted(bolsa.items())}
+        p['inventario'] = {str(k): v for k, v in sorted(bolsa.items(), key=_slot_sort_key)}
         if mejoras is not None:
             p['mejoras'] = {str(k): v
-                            for k, v in sorted(mejoras.items())
+                            for k, v in sorted(mejoras.items(), key=_slot_sort_key)
                             if v and (v.get('veces') or v.get('gemas')
                                       or v.get('extra') or v.get('vinculacion'))}
         if cantidades is not None:
             p['cantidades'] = {str(k): int(v)
-                               for k, v in sorted(cantidades.items())
-                               if int(v) > 1 and int(k) in bolsa}
+                               for k, v in sorted(cantidades.items(), key=_slot_sort_key)
+                               if (int(v) > 1 or 497 <= int(k) <= 556) and (int(k) in bolsa or str(k) in bolsa)}
     _actualizar_personaje(usuario, char_id, _mut)
 
 
@@ -576,7 +611,7 @@ def guardar_mejoras(usuario: str, char_id: int, mejoras: dict):
     if not usuario:
         return
     def _mut(p):
-        p['mejoras'] = {str(k): v for k, v in sorted((mejoras or {}).items())
+        p['mejoras'] = {str(k): v for k, v in sorted((mejoras or {}).items(), key=_slot_sort_key)
                         if v and (v.get('veces') or v.get('gemas')
                                   or v.get('extra') or v.get('vinculacion'))}
     _actualizar_personaje(usuario, char_id, _mut)
@@ -712,7 +747,7 @@ def guardar_sistemas(usuario: str, char_id: int, p):
 
 def guardar_banco(usuario: str, char_id: int, banco: dict):
     def _mut(p):
-        p['banco'] = {str(k): v for k, v in sorted(banco.items())}
+        p['banco'] = {str(k): v for k, v in sorted(banco.items(), key=_slot_sort_key)}
     _actualizar_personaje(usuario, char_id, _mut)
 
 

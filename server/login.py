@@ -507,6 +507,8 @@ def _totem_objeto(entity_id: int, nombre: str, tile) -> bytes:
         if f.exists():
             porsprite = {v: k for k, v in SPRITE_TOTEM.items()}
             for e in json.loads(f.read_text(encoding='utf-8')).get('recursos', []):
+                if 'hex' not in e:
+                    continue
                 b = bytes.fromhex(e['hex'])
                 if len(b) < 36:
                     continue
@@ -575,7 +577,7 @@ def _totem_de_lyceum(entity_id: int, nombre: str, tile) -> bytes:
         f = PLANTILLAS / 'lyceum.json'
         if f.exists():
             for e in json.loads(f.read_text(encoding='utf-8'))['spawns']:
-                if 'Totem' in e['nombre']:
+                if 'Totem' in e.get('nombre', '') and 'hex' in e:
                     _TOTEM_BASE[e['nombre']] = bytes.fromhex(e['hex'])
     base = _TOTEM_BASE.get(nombre)
     if base is None:
@@ -1105,11 +1107,22 @@ def poblar(stage: int):
     if stage != 41 or not f.exists():
         return salida
     d = json.loads(f.read_text(encoding='utf-8'))
-    salida += [struct.pack('<H', 0x0008) + bytes.fromhex(e['hex'])
-               for e in d['spawns']]
+    for e in d.get('spawns', []):
+        if 'hex' in e:
+            salida.append(struct.pack('<H', 0x0008) + bytes.fromhex(e['hex']))
+        else:
+            salida.append(_npc_spawn(e['entity_id'], e['npc_type'],
+                                     e['nombre'], tuple(e['tile']),
+                                     sprite=e.get('sprite', 0),
+                                     klass=e.get('klass', 200),
+                                     direccion=e.get('direccion'),
+                                     visible=e.get('visible', 1)))
     # Los recursos del mapa: vetas de cobre, arboles, hierbas, madrigueras.
-    salida += [struct.pack('<H', 0x000E) + bytes.fromhex(e['hex'])
-               for e in d.get('recursos', [])]
+    for e in d.get('recursos', []):
+        if 'hex' in e:
+            salida.append(struct.pack('<H', 0x000E) + bytes.fromhex(e['hex']))
+        else:
+            salida.append(objeto_de_mapa(e))
     return salida
 
 
