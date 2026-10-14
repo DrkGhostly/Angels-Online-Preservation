@@ -125,7 +125,7 @@ def _linea(nombre: str) -> str:
 
 def hechizos_de_ramas_activas(skill_ids, solo_maximo: bool = True, max_rank: int | None = 5,
                               nivel_tope: int | None = None, incluir_comunes: bool = False,
-                              todos_los_rangos: bool = False) -> list:
+                              todos_los_rangos: bool = False, solo_rango: int | None = None) -> list:
     """[(magic_id, nombre, rango)] de las ramas equipadas, leidos de content.db.
 
     No hay una lista fija: cada llamada mira la tabla magic actual, asi que
@@ -138,6 +138,7 @@ def hechizos_de_ramas_activas(skill_ids, solo_maximo: bool = True, max_rank: int
     Sin solo_maximo se queda, de cada linea que se aprende (trae 技能等限),
     solo el rango mas alto que cabe en nivel_tope. Sin tope, el rango mas
     alto de la linea. todos_los_rangos devuelve cada rango que cabe.
+    solo_rango, si viene, deja solo ese numero de rango (5 es Chain Lightning V).
     incluir_comunes anade el bloque 1000-1199 del lado melee o mago.
     """
     sids = set()
@@ -226,6 +227,8 @@ def hechizos_de_ramas_activas(skill_ids, solo_maximo: bool = True, max_rank: int
         if req_i is None or not nom.strip():
             continue
         if nivel_tope is not None and req_i > int(nivel_tope):
+            continue
+        if solo_rango is not None and rk != int(solo_rango):
             continue
         es_clase = rama in chinos
         es_comun = False

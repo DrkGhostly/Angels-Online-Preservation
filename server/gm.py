@@ -29,12 +29,14 @@ _CMDS_LEVEL = ('level', 'lvl', 'lv')
 _CMDS_LEVELALL = ('levelall', 'lvlall')
 _CMDS_SKILLS = ('skills', 'spells')
 _CMDS_SKILLSALL = ('skillsall', 'learnall', 'skillall')
+_CMDS_SKILLS5 = ('skills5', 'skill5')
 _CMDS_PET = ('pet', 'mascota')
 _CMDS = frozenset(('help',) + _CMDS_ITEM + _CMDS_LEVEL + _CMDS_LEVELALL
-                  + _CMDS_SKILLS + _CMDS_SKILLSALL + _CMDS_PET)
+                  + _CMDS_SKILLS + _CMDS_SKILLSALL + _CMDS_SKILLS5 + _CMDS_PET)
 
 AYUDA = ("GM: /item <id> [qty]  /level <n>  /levelall <n>  "
-         "/skills [lv]  /skillsall [lv]  /pet level|exp|path|evolve  "
+         "/skills [lv]  /skillsall [lv]  /skills5  "
+         "/pet level|exp|path|evolve  "
          "/rango [1..20]  /estacion <normal|navidad|halloween|sakura|verano>")
 
 
@@ -188,15 +190,17 @@ def poner_skills(ses, n: int) -> str:
     return f"skills {n} ({len(p.habilidades)} current)"
 
 
-def dar_hechizos_ramas(ses, nivel_tope: int | None = None, todos: bool = False) -> str:
+def dar_hechizos_ramas(ses, nivel_tope: int | None = None, todos: bool = False,
+                       solo_rango: int | None = None) -> str:
     """Grant equipped class skills and the matching common skills.
 
     By default each line keeps only the highest rank whose skill requirement
     is within nivel_tope. Chain Lightning is rank I at 145 and rank V at 177.
-    todos grants every rank that fits the cap. Warriors (sword, axe, spear,
-    bow, shadowblade, shield) also get the fighter common set: every common
-    stance, plus Panther Killing, Bloody Storm and Crazy Roar. Mages get the
-    caster common set and not those three.
+    todos grants every rank that fits the cap. solo_rango grants only that
+    rank, so 5 is Chain Lightning V and not I-IV. Warriors (sword, axe,
+    spear, bow, shadowblade, shield) also get the fighter common set: every
+    common stance, plus Panther Killing, Bloody Storm and Crazy Roar. Mages
+    get the caster common set and not those three.
     """
     import clases as _cl
     p = getattr(ses, 'personaje', None)
@@ -208,7 +212,7 @@ def dar_hechizos_ramas(ses, nivel_tope: int | None = None, todos: bool = False) 
     hech = _cl.hechizos_de_ramas_activas(
         ids, solo_maximo=False, max_rank=None,
         nivel_tope=nivel_tope, incluir_comunes=True,
-        todos_los_rangos=todos,
+        todos_los_rangos=todos, solo_rango=solo_rango,
     )
     if not hech:
         return "no learnable spells on the equipped skill sets"
@@ -218,7 +222,9 @@ def dar_hechizos_ramas(ses, nivel_tope: int | None = None, todos: bool = False) 
         p.hechizos_aprendidos.add(mid)
     nombres = [_cl.nombre_de_rama(sid) for sid in ids]
     yo = p.entity_id
-    if nivel_tope is None:
+    if solo_rango is not None:
+        texto = f"Learned {len(hech)} rank-{solo_rango} spells from {', '.join(nombres)}."
+    elif nivel_tope is None:
         texto = f"Learned {len(hech)} spells from {', '.join(nombres)}."
     elif todos:
         texto = (f"Learned {len(hech)} spells, every rank up to skill level "
@@ -370,8 +376,13 @@ def parsear(texto: str):
         if n < NIVEL_MIN or n > _nivel_max():
             return ('err', f'level must be {NIVEL_MIN}-{_nivel_max()}')
         return (kind, n)
-    if cmd in _CMDS_SKILLS + _CMDS_SKILLSALL:
-        kind = 'skillsall' if cmd in _CMDS_SKILLSALL else 'skills'
+    if cmd in _CMDS_SKILLS + _CMDS_SKILLSALL + _CMDS_SKILLS5:
+        if cmd in _CMDS_SKILLSALL:
+            kind = 'skillsall'
+        elif cmd in _CMDS_SKILLS5:
+            kind = 'skills5'
+        else:
+            kind = 'skills'
         if len(parts) >= 2:
             try:
                 n = int(parts[1], 0)
@@ -414,9 +425,12 @@ def aplicar(ses, parsed) -> str:
         a = poner_nivel(ses, n)
         b = poner_skills(ses, n)
         return f"{a}; {b}"
-    if kind in ('skills', 'skillsall'):
+    if kind in ('skills', 'skillsall', 'skills5'):
         tope = parsed[1] if len(parsed) > 1 else None
-        return dar_hechizos_ramas(ses, tope, todos=(kind == 'skillsall'))
+        return dar_hechizos_ramas(
+            ses, tope, todos=(kind == 'skillsall'),
+            solo_rango=(5 if kind == 'skills5' else None),
+        )
     if kind == 'skilllevel':
         return poner_skills(ses, parsed[1])
     if kind == 'pet':
