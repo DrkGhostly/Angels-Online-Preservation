@@ -98,7 +98,7 @@ def _portales():
 # que se tratan aparte. Estaba escrito a mano en tres sitios distintos y ya
 # se pago caro una vez: cada copia que se olvidaba dejaba un mapa entero sin
 # IA. Aqui esta una sola vez.
-MAPAS_APARTE = {41: 'lyceum.json', 57: 'fighting_palace.json'}
+MAPAS_APARTE = {41: 'lyceum.json'}
 # Hasta donde piensa un monstruo. Mas alla de esto el jugador no lo ve -- su
 # radio de vision son 38 casillas, medido -- asi que gastarle IA no sirve de
 # nada. Ver el bucle de IA, que corre diez veces por segundo.
@@ -328,20 +328,21 @@ def _monstruos_de(stage: int):
     # Lyceum: pasean, persiguen, pegan y reaparecen.
     por_stage = mapas_poblados()
     nombre = por_stage.get(stage)
-    if not nombre:
-        # Los mapas que aun no tienen plantilla usan la lista escrita a mano.
-        if stage in _lg.PLAYGROUND_MONSTERS:
-            return {eid: combate.Monstruo(eid, ntype, nom, tile)
-                    for eid, ntype, nom, tile in _lg.PLAYGROUND_MONSTERS[stage]}
-        return {}
-    f = plantillas / nombre
-    if not f.exists():
-        return {}
-    d = json.loads(f.read_text(encoding='utf-8'))
-    return {e['entity_id']: combate.Monstruo(e['entity_id'], e['npc_type'],
-                                             e['nombre'], e['tile'],
-                                             e.get('sprite', 0))
-            for e in d['spawns'] if e.get('monstruo')}
+    bichos = {}
+    if nombre:
+        f = plantillas / nombre
+        if f.exists():
+            d = json.loads(f.read_text(encoding='utf-8'))
+            bichos = {e['entity_id']: combate.Monstruo(e['entity_id'], e['npc_type'],
+                                                     e['nombre'], e['tile'],
+                                                     e.get('sprite', 0))
+                    for e in d.get('spawns', []) if e.get('monstruo')}
+    # Los mapas sin plantilla o cuya plantilla no traiga monstruos usan la lista escrita a mano
+    if not bichos and stage in _lg.PLAYGROUND_MONSTERS:
+        bichos = {eid: combate.Monstruo(eid, ntype, nom, tile,
+                                       sprite=_lg.sprite_de(ntype, 42107) if ntype == 224 else _lg.sprite_de(ntype, 0))
+                for eid, ntype, nom, tile in _lg.PLAYGROUND_MONSTERS[stage]}
+    return bichos
 
 
 _PRECIOS = None
@@ -2189,17 +2190,25 @@ CIUDAD_DE_FACCION = {
 
 
 def _ya_registrado(ses) -> bool:
-    """Si el personaje ya se registro con el Angel de su ciudad.
+    """Si el personaje ya se registro con el Angel de su ciudad o el Angel Tutor.
 
     Se sabe porque la mision de registro (130 en Breeze Woods) ya no esta
     pendiente: al registrarse se marca completada y se dan las dos
-    siguientes.
+    siguientes. En el Angel Lyceum (41, 141, 241), se considera registrado si
+    ya completo Quest 101 o tiene activa/completa Quest 102.
     """
     import dialogos as _dlg
+    import misiones as _mis
     p = getattr(ses, 'personaje', None)
     if not p:
         return False
-    cfg = _dlg.ANGEL_DE_CIUDAD.get(getattr(p, 'stage', 0))
+    st = getattr(p, 'stage', 0)
+    if st in (41, 141, 241):
+        fac = getattr(p, 'faction', 'Heaven') or 'Heaven'
+        return bool(_mis.mision_completada(p, 101) or _mis.tiene_mision(p, 102)
+                    or _mis.mision_completada(p, 102)
+                    or fac in ('Aurora', 'Dark', 'Iron', 'Shadow', 'Steel', 'Beasts', 'Graduated'))
+    cfg = _dlg.ANGEL_DE_CIUDAD.get(st)
     if not cfg:
         return False
     q = cfg['mision_registro']
@@ -2207,6 +2216,16 @@ def _ya_registrado(ses) -> bool:
         if qid == q:
             return paso > 0
     return True
+
+
+def _tutor_en_progreso(ses) -> bool:
+    """Si el personaje esta cursando la firma de profesores (Quest 101) con el Angel Tutor."""
+    p = getattr(ses, 'personaje', None)
+    if not p:
+        return False
+    import misiones as _mis
+    st, pa, comp = _mis.estado_mision(p, 101)
+    return bool(st and not comp and pa < 4)
 
 
 # Las ranuras de equipo cuyo contenido se le anuncia al cliente para que
@@ -9511,9 +9530,20 @@ class Servidor:
                                 return
                             return
 
-                    # 2. Si no habia mision activa con este NPC, comprobar si ofrece misiones disponibles
+                    # 2. Si no habia mision activa con este NPC, comprobar si ofrece misiones disponibles.
+                    # Los profesores y docentes de Angel Lyceum no auto-asignan disponibles[0],
+                    # sino que presentan su propio menu interactivo para que el jugador elija el curso.
+                    _nom_lower = (_nom_ent or '').strip().lower()
+                    _npcs_con_menu_cursos = (
+                        'battle professor', 'magic professor', 'mine professor',
+                        'weapon lecturer', 'armor lecturer', 'sewing lecturer',
+                        'art lecturer', 'cooking lecturer', 'michael'
+                    )
                     stg_act = _st_ent or (getattr(ses.personaje, 'stage', 0) if ses.personaje else 0)
-                    disponibles = _mis.misiones_disponibles_npc(ses.personaje, _nom_ent, stage=stg_act, entidad=ent)
+                    if _nom_lower in _npcs_con_menu_cursos:
+                        disponibles = []
+                    else:
+                        disponibles = _mis.misiones_disponibles_npc(ses.personaje, _nom_ent, stage=stg_act, entidad=ent)
                     if disponibles:
                         qid_ofrecer = disponibles[0]
                         nom2 = ses.personaje.nombre if ses.personaje else 'Jugador'
@@ -9540,21 +9570,41 @@ class Servidor:
 
                         g_ofrecer = dialogos.guion_de_mision(qid_ofrecer, _nom_ent, jugador=nom2, entidad=ent, completada=False)
                         if g_ofrecer:
-                            ses.dlg_ent, ses.dlg_guion, ses.dlg_paso = ent, g_ofrecer, 1
-                            ses.dlg_val = dialogos.val_por_entidad(ent)
-                            ses.dlg_quest_ofrecida = qid_ofrecer
-                            ses.dlg_quest_fase = 'interes'
-                            ses.enviar(dialogos.linea_de(g_ofrecer, 0, nom2))
-                            log.info(f"[{addr}] {_nom_ent} ofrece mision {qid_ofrecer} a {nom2}")
-                            return
+                            tiene_opciones = any(dialogos.opciones_de(l) for l in g_ofrecer) or bool(flujo.get('ops_prop') or flujo.get('ops_preg'))
+                            if not tiene_opciones:
+                                # Misión sin opciones interactivas de aceptación (ej: Quest 100 con Director Wolay):
+                                # Asignación directa. Se acepta de inmediato para que el cliente reciba 0x0022 y 0x000D (Alt+Q).
+                                _mis.aceptar_mision(ses, qid_ofrecer)
+                                ses.dlg_ent, ses.dlg_guion, ses.dlg_paso = ent, g_ofrecer, 1
+                                ses.dlg_val = dialogos.val_por_entidad(ent)
+                                ses.dlg_quest_ofrecida = None
+                                ses.dlg_quest_fase = None
+                                ses.enviar(dialogos.linea_de(g_ofrecer, 0, nom2))
+                                log.info(f"[{addr}] {_nom_ent} asigno directamente mision {qid_ofrecer} a {nom2}")
+                                return
+                            else:
+                                ses.dlg_ent, ses.dlg_guion, ses.dlg_paso = ent, g_ofrecer, 1
+                                ses.dlg_val = dialogos.val_por_entidad(ent)
+                                ses.dlg_quest_ofrecida = qid_ofrecer
+                                ses.dlg_quest_fase = 'interes'
+                                ses.enviar(dialogos.linea_de(g_ofrecer, 0, nom2))
+                                log.info(f"[{addr}] {_nom_ent} ofrece mision {qid_ofrecer} a {nom2}")
+                                return
+                _en_prog = _tutor_en_progreso(ses)
+                _reg = _ya_registrado(ses)
+                if _nom_ent == 'Director Wolay' and ses.personaje:
+                    _en_prog = bool(_mis.tiene_mision(ses.personaje, 100) and not _mis.mision_completada(ses.personaje, 100))
+                    _reg = bool(_mis.mision_completada(ses.personaje, 100) or _mis.tiene_mision(ses.personaje, 101) or _reg)
+
                 g2 = dialogos.propio(
                         _nom_ent, faccion=faccion,
                         jugador=getattr(ses.personaje, 'nombre', '') if ses.personaje else '',
                         visto_michael=bool(getattr(ses.personaje, 'hablo_michael', False)
                                            if ses.personaje else False),
                         stage=getattr(ses.personaje, 'stage', 0) if ses.personaje else 0,
-                        registrado=_ya_registrado(ses),
-                        entidad=ent)
+                        registrado=_reg,
+                        entidad=ent,
+                        en_progreso=_en_prog)
 
                 if g2:
                     nom2 = ses.personaje.nombre if ses.personaje else 'Jugador'
@@ -9750,6 +9800,99 @@ class Servidor:
                     log.info(f"[{addr}] Raphael: abandono tutorial -> enviado a Angel Lyceum (41)")
                     return
 
+                # Opciones especiales de Angel Lyceum (firmas, cursos y graduacion):
+                if _el in (11509, 11809, 10635):
+                    nom = ses.personaje.nombre if ses.personaje else 'Jugador'
+                    import misiones as _mis_sig
+                    if _el == 11509:
+                        _mis_sig.avanzar_paso(ses, 101, 2)
+                        sub_msg = dialogos.armar_linea(11511, 4, [])
+                    elif _el == 11809:
+                        _mis_sig.avanzar_paso(ses, 101, 3)
+                        sub_msg = dialogos.armar_linea(11811, 4, [])
+                    else:
+                        _mis_sig.avanzar_paso(ses, 101, 4)
+                        sub_msg = dialogos.armar_linea(10637, 4, [])
+                    sub_fin = struct.pack('<H', 0x0012) + dialogos.FIN
+                    ses.enviar(sub_msg, sub_fin)
+                    ses.dlg_ent = None
+                    log.info(f"[{addr}] Firma de profesor ({_el}) para Quest 101 entregada a {nom}")
+                    return
+
+                # Aceptacion directa de lecciones y cursos desde los menus de los profesores
+                _mapa_lecciones = {
+                    11514: 115, 11515: 116, 11516: 117,
+                    11814: 118, 11815: 119, 11816: 120,
+                    10618: 106, 10619: 107, 10620: 108, 10621: 109,
+                    11003: 110, 11103: 111, 11203: 112, 11303: 113, 11403: 114,
+                }
+                if _el in _mapa_lecciones:
+                    q_leccion = _mapa_lecciones[_el]
+                    import misiones as _mis_lec
+                    _mis_lec.aceptar_mision(ses, q_leccion)
+                    ses.dlg_ent = None
+                    ses.enviar(struct.pack('<H', 0x0012) + dialogos.FIN)
+                    log.info(f"[{addr}] Leccion {q_leccion} aceptada mediante opcion {_el}")
+                    return
+
+                # Evaluacion de Michael para Top Student Training (Quest 123)
+                if _el == 12308:
+                    import misiones as _mis_mich
+                    nom = ses.personaje.nombre if ses.personaje else 'Jugador'
+                    puntos = _mis_mich.obtener_token_mision(ses, 1394)
+                    if puntos < 15:
+                        sub_msg = dialogos.armar_linea(12310, 1, [], strings=[nom])
+                        ses.enviar(sub_msg, struct.pack('<H', 0x0012) + dialogos.FIN)
+                        ses.dlg_ent = None
+                    else:
+                        _mis_mich.aceptar_mision(ses, 123)
+                        lineas_m = [
+                            dialogos.armar_linea(12311, 1, [])[2:],
+                            dialogos.armar_linea(12312, 1, [])[2:],
+                            dialogos.armar_linea(12313, 1, [])[2:],
+                            dialogos.armar_linea(12314, 1, [])[2:],
+                            dialogos.armar_linea(12315, 1, [])[2:],
+                        ]
+                        ses.dlg_ent = ent
+                        ses.dlg_guion = lineas_m
+                        ses.dlg_paso = 1
+                        ses.dlg_val = 1
+                        ses.enviar(dialogos.linea_de(lineas_m, 0, nom))
+                    log.info(f"[{addr}] Solicitud de Top Student Training (puntos={puntos})")
+                    return
+
+                # Confirmacion de graduacion con Angels' Tutor
+                if _el == 10119:
+                    import misiones as _mis_grad
+                    puntos = _mis_grad.obtener_token_mision(ses, 1394)
+                    if puntos >= 5:
+                        _mis_grad.completar_mision(ses, 102)
+                        ses.enviar(struct.pack('<H', 0x0012) + dialogos.FIN)
+                        ses.dlg_ent = None
+                        _sincronizar_cambio_mapa(ses, 58, 104, 187)
+                        log.info(f"[{addr}] Graduacion completada (puntos={puntos}) -> enviado a Graduation Palace (58)")
+                    else:
+                        sub_msg = dialogos.armar_linea(10122, 2, [])
+                        ses.enviar(sub_msg, struct.pack('<H', 0x0012) + dialogos.FIN)
+                        ses.dlg_ent = None
+                        log.info(f"[{addr}] Intento de graduacion rechazado por falta de creditos ({puntos}/5)")
+                    return
+
+                # Aceptacion de inscripcion de novato con Angels' Tutor (Quest 101)
+                if _el == 10135 and ses.personaje:
+                    import misiones as _mis_tut
+                    nom = ses.personaje.nombre if ses.personaje else 'Jugador'
+                    if not _mis_tut.tiene_mision(ses.personaje, 101) and not _mis_tut.mision_completada(ses.personaje, 101):
+                        _mis_tut.aceptar_mision(ses, 101)
+                        if _mis_tut.tiene_mision(ses.personaje, 100):
+                            _mis_tut.completar_mision(ses, 100)
+                    sub_msg = dialogos.armar_linea(10103, 2, [])
+                    sub_fin = struct.pack('<H', 0x0012) + dialogos.FIN
+                    ses.enviar(sub_msg, sub_fin)
+                    ses.dlg_ent = None
+                    log.info(f"[{addr}] Angels' Tutor: {nom} acepto Quest 101 (Freshman signing)")
+                    return
+
                 if 121600 <= ent <= 121699: _st_ent = 3     # Aurora City
                 elif 121700 <= ent <= 121799: _st_ent = 5   # Cherry Village
                 elif 121800 <= ent <= 121849: _st_ent = 22  # Mysterious Garden
@@ -9854,6 +9997,13 @@ class Servidor:
                     # RECIEN ENTONCES el cambio de mapa. Mandandolo en este
                     # momento el traslado caia en mitad del dialogo y el
                     # cuadro se quedaba colgado.
+                    import misiones as _mis_quit
+                    if _mis_quit.tiene_mision(ses.personaje, 102):
+                        _mis_quit.completar_mision(ses, 102)
+                    elif _mis_quit.tiene_mision(ses.personaje, 101):
+                        _mis_quit.completar_mision(ses, 101)
+                        if _mis_quit.tiene_mision(ses.personaje, 102):
+                            _mis_quit.completar_mision(ses, 102)
                     ses.viaje_pendiente = (STAGE_GRADUACION, TILE_GRADUACION,
                                            'Graduation Palace')
                     ses.personaje.faction = "Graduated"
@@ -10201,6 +10351,12 @@ class Servidor:
                 log.debug(f"[{addr}] dialogo {ent}: linea {paso + 1}")
             else:
                 ses.dlg_ent = None
+                if getattr(ses, 'dlg_quest_ofrecida', None):
+                    _q_auto = ses.dlg_quest_ofrecida
+                    ses.dlg_quest_ofrecida = None
+                    ses.dlg_quest_fase = None
+                    import misiones as _mis_auto
+                    _mis_auto.aceptar_mision(ses, _q_auto)
                 # Viaje aplazado: el traslado que dejo pedido una opcion del
                 # dialogo se hace AHORA, cuando el cuadro se cierra. Es el
                 # orden del servidor real: 10127, cierre, y despues el
