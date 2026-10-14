@@ -110,8 +110,22 @@ def _entero(valor):
         return None
 
 
+_SUFIJOS_RANGO = ('VIII', 'VII', 'III', 'II', 'IX', 'IV', 'VI', 'V', 'X', 'I')
+
+
+def _linea(nombre: str) -> str:
+    """El nombre de la linea, sin el rango romano del final."""
+    n = nombre.strip()
+    for sufijo in _SUFIJOS_RANGO:
+        cola = ' ' + sufijo
+        if n.endswith(cola):
+            return n[:-len(cola)].casefold()
+    return n.casefold()
+
+
 def hechizos_de_ramas_activas(skill_ids, solo_maximo: bool = True, max_rank: int | None = 5,
-                              nivel_tope: int | None = None, incluir_comunes: bool = False) -> list:
+                              nivel_tope: int | None = None, incluir_comunes: bool = False,
+                              todos_los_rangos: bool = False, solo_rango: int | None = None) -> list:
     """[(magic_id, nombre, rango)] de las ramas equipadas, leidos de content.db.
 
     No hay una lista fija: cada llamada mira la tabla magic actual, asi que
@@ -121,8 +135,10 @@ def hechizos_de_ramas_activas(skill_ids, solo_maximo: bool = True, max_rank: int
     Si los elementos de skill_ids son (sid, nivel, ...), se filtra por
     el nivel requerido de la habilidad (技能等限 <= nivel).
 
-    Sin solo_maximo se devuelven todos los rangos que de verdad se aprenden
-    (traen 技能等限). nivel_tope, si viene, deja fuera los que piden mas.
+    Sin solo_maximo se queda, de cada linea que se aprende (trae 技能等限),
+    solo el rango mas alto que cabe en nivel_tope. Sin tope, el rango mas
+    alto de la linea. todos_los_rangos devuelve cada rango que cabe.
+    solo_rango, si viene, deja solo ese numero de rango (5 es Chain Lightning V).
     incluir_comunes anade el bloque 1000-1199 del lado melee o mago.
     """
     sids = set()
@@ -212,6 +228,8 @@ def hechizos_de_ramas_activas(skill_ids, solo_maximo: bool = True, max_rank: int
             continue
         if nivel_tope is not None and req_i > int(nivel_tope):
             continue
+        if solo_rango is not None and rk != int(solo_rango):
+            continue
         es_clase = rama in chinos
         es_comun = False
         if lados:
@@ -231,7 +249,16 @@ def hechizos_de_ramas_activas(skill_ids, solo_maximo: bool = True, max_rank: int
                     es_comun = True
         if not es_clase and not es_comun:
             continue
-        mejor[mid_i] = (rk, mid_i, nom)
+        if todos_los_rangos:
+            mejor[mid_i] = (rk, mid_i, nom)
+            continue
+        if grupo and str(grupo).strip() not in ('', '0'):
+            clave = (rama, str(grupo).strip(), _linea(nom))
+        else:
+            clave = ('id', mid_i)
+        prev = mejor.get(clave)
+        if prev is None or rk > prev[0] or (rk == prev[0] and mid_i > prev[1]):
+            mejor[clave] = (rk, mid_i, nom)
     return sorted((mid, nom, rk) for rk, mid, nom in mejor.values())
 
 
