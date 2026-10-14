@@ -30,12 +30,14 @@ _CMDS_LEVELALL = ('levelall', 'lvlall')
 _CMDS_SKILLS = ('skills', 'spells')
 _CMDS_SKILLSALL = ('skillsall', 'learnall', 'skillall')
 _CMDS_SKILLS5 = ('skills5', 'skill5')
+_CMDS_CLEARSKILLS = ('clearskills', 'clearskill')
 _CMDS_PET = ('pet', 'mascota')
 _CMDS = frozenset(('help',) + _CMDS_ITEM + _CMDS_LEVEL + _CMDS_LEVELALL
-                  + _CMDS_SKILLS + _CMDS_SKILLSALL + _CMDS_SKILLS5 + _CMDS_PET)
+                  + _CMDS_SKILLS + _CMDS_SKILLSALL + _CMDS_SKILLS5
+                  + _CMDS_CLEARSKILLS + _CMDS_PET)
 
 AYUDA = ("GM: /item <id> [qty]  /level <n>  /levelall <n>  "
-         "/skills [lv]  /skillsall [lv]  /skills5  "
+         "/skills [lv]  /skillsall [lv]  /skills5  /clearskills  "
          "/pet level|exp|path|evolve  "
          "/rango [1..20]  /estacion <normal|navidad|halloween|sakura|verano>")
 
@@ -242,6 +244,39 @@ def dar_hechizos_ramas(ses, nivel_tope: int | None = None, todos: bool = False,
     return f"granted {len(hech)} spells for {', '.join(nombres)}"
 
 
+def limpiar_hechizos(ses) -> str:
+    """Drop every spell /skills granted and the spell slots on the hotbar.
+
+    Equipped class branches stay. The three starter spells of each branch
+    are not in this list; the client puts them back the next time it enters
+    the world. Icons already on screen stay until that login, because the
+    client only has a grant packet.
+    """
+    import login as _lg
+    p = getattr(ses, 'personaje', None)
+    if p is None:
+        return "no character in world yet"
+    previos = set(getattr(p, 'hechizos_aprendidos', None) or [])
+    p.hechizos_aprendidos = set()
+    barra = []
+    for x in list(getattr(p, 'barra', None) or [])[:24]:
+        tipo, _mid = _lg.entrada_barra(x)
+        barra.append(0 if tipo == 1 else x)
+    p.barra = barra
+    if getattr(ses, 'usuario', None):
+        cuentas.guardar_hechizos(ses.usuario, p.char_id, [])
+        cuentas.guardar_barra(ses.usuario, p.char_id, p.barra)
+    import clases as _cl
+    texto = (f"Cleared {len(previos)} learned spells. "
+             "Log in again to drop the old icons.")
+    aviso = _cl.aviso(texto, tipo=0, msg_id=_cl.MSG_ITEM)
+    if p.barra:
+        ses.enviar(aviso, _lg._barra(p, b''))
+    else:
+        ses.enviar(aviso)
+    return f"cleared {len(previos)} learned spells"
+
+
 def _ficha_pet(ses):
     """Summoned pet, else the egg in slot 9, else the first egg in the bag."""
     a = _app()
@@ -392,6 +427,8 @@ def parsear(texto: str):
                 return ('err', f'skill level must be {NIVEL_MIN}-{_nivel_max()}')
             return (kind, n)
         return (kind, None)
+    if cmd in _CMDS_CLEARSKILLS:
+        return ('clearskills',)
     if cmd in _CMDS_PET:
         return ('pet', parts[1:])
     return None
@@ -431,6 +468,8 @@ def aplicar(ses, parsed) -> str:
             ses, tope, todos=(kind == 'skillsall'),
             solo_rango=(5 if kind == 'skills5' else None),
         )
+    if kind == 'clearskills':
+        return limpiar_hechizos(ses)
     if kind == 'skilllevel':
         return poner_skills(ses, parsed[1])
     if kind == 'pet':
