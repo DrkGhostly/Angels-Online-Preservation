@@ -92,6 +92,68 @@ OBJETIVOS_CACERIA = {
         'nombre_objetivo': 'Dog Fighter',
         'aviso_fin': 'Quest [The Final Line]: Report to Guerrilla Leader Mola.',
     },
+    (115, 1): {
+        'monstruos': ('slarm',),
+        'monstruo_ids': (19,),
+        'cantidad': 10,
+        'token_id': 1400,
+        'siguiente_paso': 2,
+        'nombre_objetivo': 'Slarm',
+        'aviso_fin': 'Quest [Junior Lesson]: Report to Battle Professor.',
+    },
+    (116, 1): {
+        'monstruos': ('water elf',),
+        'monstruo_ids': (3,),
+        'cantidad': 15,
+        'token_id': 1401,
+        'siguiente_paso': 2,
+        'nombre_objetivo': 'Water Elf',
+        'aviso_fin': 'Quest [Mid-Level Lesson]: Report to Battle Professor.',
+    },
+    (117, 1): {
+        'monstruos': ('earth elf',),
+        'monstruo_ids': (4,),
+        'cantidad': 15,
+        'token_id': 1402,
+        'siguiente_paso': 2,
+        'nombre_objetivo': 'Earth Elf',
+        'aviso_fin': 'Quest [High-level Lesson]: Report to Battle Professor.',
+    },
+    (118, 1): {
+        'monstruos': ('lily',),
+        'monstruo_ids': (7,),
+        'cantidad': 10,
+        'token_id': 1403,
+        'siguiente_paso': 2,
+        'nombre_objetivo': 'Lily',
+        'aviso_fin': 'Quest [Junior Lesson]: Report to Magic Professor.',
+    },
+    (119, 1): {
+        'monstruos': ('wind elf',),
+        'monstruo_ids': (1,),
+        'cantidad': 15,
+        'token_id': 1404,
+        'siguiente_paso': 2,
+        'nombre_objetivo': 'Wind Elf',
+        'aviso_fin': 'Quest [Mid-Level Lesson]: Report to Magic Professor.',
+    },
+    (120, 1): {
+        'monstruos': ('fire elf',),
+        'monstruo_ids': (2,),
+        'cantidad': 15,
+        'token_id': 1405,
+        'siguiente_paso': 2,
+        'nombre_objetivo': 'Fire Elf',
+        'aviso_fin': 'Quest [High-level Lesson]: Report to Magic Professor.',
+    },
+}
+
+# Creditos otorgados por cada curso del Angel Lyceum (acumulan en token 1394)
+CREDIT_HOURS_PER_QUEST = {
+    106: 1, 107: 1, 108: 1, 109: 1,
+    110: 2, 111: 2, 112: 2, 113: 2, 114: 2,
+    115: 1, 116: 2, 117: 3,
+    118: 1, 119: 2, 120: 3,
 }
 
 # Mapas de instancia/quest especiales conocidos
@@ -152,6 +214,8 @@ def normalizar_nombre_npc(nom: str) -> str:
         if n.startswith(prefix):
             n = n[len(prefix):].strip()
             break
+    if n in ("angel tutor", "angels tutor", "angels' tutor"):
+        return "angels' tutor"
     return n
 
 _NPC_STAGE_MAP = None
@@ -395,6 +459,10 @@ def misiones_disponibles_npc(p, npc_nombre: str, stage: int = 0, entidad: int = 
             if normalizar_nombre_npc(k_npc).endswith(' ' + norm_l):
                 qids += [q for q in v_qids if info_mision(q).get('stage_id') == stage]
 
+    # Angels' Tutor gestiona sus dialogos y misiones por su propio arbol dedicado
+    if nom_l in ("angels' tutor", "angel tutor") or norm_l in ("angels' tutor", "angel tutor"):
+        return []
+
     disponibles = []
 
     # Si el personaje ya tiene UNA misión activa de este NPC, no se ofrece otra
@@ -423,10 +491,19 @@ def misiones_disponibles_npc(p, npc_nombre: str, stage: int = 0, entidad: int = 
 
     for qid in qids:
         info = info_mision(qid)
+        # 0. Descartar misiones de prueba internas
+        if qid in (1, 2) or info.get('tipo') == 'Test':
+            continue
         # 1. Filtro por mapa / stage
         q_stage = info.get('stage_id')
         if q_stage and stage and q_stage != stage:
             if stage in (3, 26, 29, 38) and normalizar_nombre_npc(info.get('npc_inicio')) == norm_l:
+                pass
+            elif stage in (41, 141, 241) and q_stage in (41, 141, 241):
+                pass
+            elif stage in (42, 142, 242) and q_stage in (42, 142, 242):
+                pass
+            elif stage in (43, 143, 243) and q_stage in (43, 143, 243):
                 pass
             else:
                 continue
@@ -508,6 +585,13 @@ def aceptar_mision(ses, qid: int) -> bool:
     # 0x000D: cartel amarillo "You accept the quest [X]"
     pkg_av = _cl.aviso(nom, tipo=0, msg_id=_cl.MSG_QUEST)
 
+    # Limpiar contadores y tokens si la mision tiene token de caceria (ej. cursos del Lyceum)
+    c_token = OBJETIVOS_CACERIA.get((qid, 1), {}).get('token_id')
+    if c_token:
+        fijar_token_mision(ses, c_token, 0)
+    if hasattr(ses, 'quest_kills') and (qid, 1) in ses.quest_kills:
+        del ses.quest_kills[(qid, 1)]
+
     ses.enviar(pkg_m, pkg_av)
     if getattr(ses, 'usuario', None):
         cuentas.guardar_quests(ses.usuario, char_id, p.quests)
@@ -538,6 +622,15 @@ def avanzar_paso(ses, qid: int, nuevo_paso: int) -> bool:
     char_id = p.char_id
     nom = nombre_mision(qid)
 
+    # Actualizar tokens de firmas en Quest 101
+    if qid == 101:
+        if nuevo_paso == 2:
+            fijar_token_mision(ses, 1391, 1)  # Battle Professor signature
+        elif nuevo_paso == 3:
+            fijar_token_mision(ses, 1392, 1)  # Magic Professor signature
+        elif nuevo_paso == 4:
+            fijar_token_mision(ses, 1393, 1)  # Mine Professor signature
+
     # En red el paso activo es 0-indexed: paso 1 = 0, paso 2 = 1, etc.
     paso_red = max(0, nuevo_paso - 1)
     pkg_m = _cl.mision(char_id, qid, paso_red, 0)
@@ -560,6 +653,8 @@ def completar_mision(ses, qid: int, exp: int = 0, oro: int = 0,
 
     import combate as _cb
     info = info_mision(qid)
+    if mision_completada(p, qid) and not info.get('repetible', False):
+        return False
     pasos = info.get('pasos', [])
     total_pasos = len(pasos) if pasos else 1
     paso_completado = total_pasos + 1
@@ -699,6 +794,34 @@ def completar_mision(ses, qid: int, exp: int = 0, oro: int = 0,
                 log.info(f"Entregado item de recompensa {item_id} en casilla {ranura_libre}")
         if getattr(ses, 'usuario', None):
             cuentas.guardar_inventario(ses.usuario, char_id, ses.inventario, ses.cantidades)
+
+    # Limpieza de tokens de caceria de cursos del Lyceum
+    c_token = OBJETIVOS_CACERIA.get((qid, 1), {}).get('token_id')
+    if c_token:
+        fijar_token_mision(ses, c_token, 0)
+
+    # Otorgar horas de credito si la mision es un curso del Lyceum
+    credito = CREDIT_HOURS_PER_QUEST.get(qid, 0)
+    if credito > 0:
+        tot_cred = incrementar_token_mision(ses, 1394, credito)
+        envios.append(_cl.aviso(f"Lyceum Credit Hours +{credito} (Total: {tot_cred})", tipo=0, msg_id=_cl.MSG_TEXTO))
+
+    # Casos especiales de la cadena troncal del Lyceum
+    if qid == 100:
+        # Completar registro ofrece inmediatamente Quest 101
+        aceptar_mision(ses, 101)
+    elif qid == 101:
+        # Retirar las 3 firmas de los profesores
+        fijar_token_mision(ses, 1391, 0)
+        fijar_token_mision(ses, 1392, 0)
+        fijar_token_mision(ses, 1393, 0)
+        # Iniciar registro de notas (Quest 102) con 0 horas de credito
+        fijar_token_mision(ses, 1394, 0)
+        aceptar_mision(ses, 102)
+    elif qid == 102:
+        # Limpiar token de notas y pasar a eleccion de faccion (Quest 103)
+        fijar_token_mision(ses, 1394, 0)
+        aceptar_mision(ses, 103)
 
     ses.enviar(*envios)
 
@@ -871,6 +994,10 @@ def registrar_baja_monstruo(ses, npc_type: int, monster_name: str = None) -> boo
             ses.quest_kills[clave_tupla] = cnt
             actualizado = True
 
+            # Si la mision tiene un token de seguimiento (ej. 1400..1405), actualizarlo en el cliente
+            if token:
+                fijar_token_mision(ses, token, cnt)
+
             # 1. Notificar en pantalla/chat EN CADA BAJA para que el jugador sepa de inmediato que cuenta
             ses.enviar(_cl.aviso(f"Defeated {nom_obj} ({cnt}/{req})", tipo=0, msg_id=_cl.MSG_TEXTO))
 
@@ -938,6 +1065,65 @@ def slot_oculto_para_item(ses, item_id: int, qid: int = 0) -> int:
         if r not in inv and str(r) not in inv:
             return r
     return 497
+
+
+def obtener_token_mision(ses, token_id: int) -> int:
+    """Devuelve la cantidad del token de mision alojado en el rango 497..556."""
+    inv = getattr(ses, 'inventario', {}) or {}
+    cants = getattr(ses, 'cantidades', {}) or {}
+    for r in range(497, 557):
+        if inv.get(r) == token_id or inv.get(str(r)) == token_id:
+            return int(cants.get(r, cants.get(str(r), 1)) or 0)
+    return 0
+
+
+def fijar_token_mision(ses, token_id: int, cant: int = 1):
+    """Establece o retira un token de mision en las ranuras ocultas 497..556 y sincroniza con cliente."""
+    import inventario as _inv
+    inv = getattr(ses, 'inventario', {}) or {}
+    cants = getattr(ses, 'cantidades', {}) or {}
+    p = getattr(ses, 'personaje', None)
+    char_id = getattr(p, 'char_id', 0)
+    dueno = getattr(ses, 'entity_id', char_id)
+
+    target_slot = None
+    for r in range(497, 557):
+        if inv.get(r) == token_id or inv.get(str(r)) == token_id:
+            target_slot = r
+            break
+
+    if cant <= 0:
+        if target_slot is not None:
+            inv[target_slot] = 0
+            cants.pop(target_slot, None)
+            cants.pop(str(target_slot), None)
+            ses.inventario = inv
+            ses.cantidades = cants
+            ses.enviar(_inv.vaciar_ranura(dueno, target_slot))
+            if getattr(ses, 'usuario', None):
+                cuentas.guardar_inventario(ses.usuario, char_id, inv, cants)
+        return
+
+    if target_slot is None:
+        target_slot = slot_oculto_para_item(ses, token_id)
+
+    inv[target_slot] = token_id
+    inv.pop(str(target_slot), None)
+    cants[target_slot] = cant
+    cants.pop(str(target_slot), None)
+    ses.inventario = inv
+    ses.cantidades = cants
+    ses.enviar(_inv.actualizar_ranura(char_id, target_slot, token_id, cant, dueno=dueno))
+    if getattr(ses, 'usuario', None):
+        cuentas.guardar_inventario(ses.usuario, char_id, inv, cants)
+
+
+def incrementar_token_mision(ses, token_id: int, delta: int = 1) -> int:
+    """Incrementa la cantidad de un token de mision y devuelve el nuevo total."""
+    actual = obtener_token_mision(ses, token_id)
+    nuevo = max(0, actual + delta)
+    fijar_token_mision(ses, token_id, nuevo)
+    return nuevo
 
 
 def verificar_botin_mision(ses, npc_type: int, monster_name: str = None) -> list:
@@ -1104,7 +1290,8 @@ _PALABRAS_COMUNES = {
     'salesman', 'expert', 'clerk', 'bank', 'banker', 'little', 'young', 'old',
     'great', 'lady', 'lord', 'king', 'queen', 'general', 'soldier', 'militia',
     'officer', 'priest', 'doctor', 'level', 'from', 'with', 'town', 'forest',
-    'green', 'scholar', 'admin', 'guild', 'staff', 'head', 'lyceum', 'mage'}
+    'green', 'scholar', 'admin', 'guild', 'staff', 'head', 'lyceum', 'mage',
+    'professor', 'lecturer', 'teacher'}
 _NOMBRES_NPC = None
 
 
@@ -1183,9 +1370,9 @@ def interactuar_npc(ses, npc_nombre: str, entidad: int = 0) -> tuple:
     # 0. Proteger tutorial de Guide Palace (51), Fighting Palace (57) y eleccion de faccion
     stage = getattr(p, 'stage', 0)
     if stage in (51, 57) or nom_clean in (
-        'angel raphael', "angels' tutor", 'director wolay', 'michael',
+        'angel raphael', 'director wolay',
         'angel of aurora', 'angel of beast', 'angel of iron', 'angel of shadow',
-        'battle professor', 'magic professor', 'mine professor', 'guardian angel',
+        'guardian angel',
         'aurora angel', 'dark city angel', 'ironcastle angel', 'breezewood angel',
     ):
         return (False, 'tutorial', {})
@@ -1193,6 +1380,11 @@ def interactuar_npc(ses, npc_nombre: str, entidad: int = 0) -> tuple:
     # 1. Comprobar si el jugador tiene una misión activa que requiera hablar con este NPC
     for q, pa in list(p.quests or []):
         if mision_completada(p, q):
+            continue
+        # Quest 102 (Accumulation schedule of students' grades) se completa unicamente
+        # mediante graduacion con Angel Tutor cuando los creditos son >= 5.
+        # Quest 103 (Choosing country) se completa al elegir faccion en Graduation Palace.
+        if q in (102, 103):
             continue
         info = info_mision(q)
         pasos = info.get('pasos', [])

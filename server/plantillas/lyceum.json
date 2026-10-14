@@ -1696,7 +1696,8 @@
    ],
    "direccion": 6,
    "visible": 1,
-   "puesto_por": "npcs_del_cliente"
+   "puesto_por": "npcs_del_cliente",
+   "hex": "9701000001000000f600000018000000506f72746572204a616465000000000000066c9c00000000c700000000750700000000000000000000000000000000"
   },
   {
    "entity_id": 408,
@@ -1712,7 +1713,8 @@
    ],
    "direccion": 6,
    "visible": 1,
-   "puesto_por": "npcs_del_cliente"
+   "puesto_por": "npcs_del_cliente",
+   "hex": "9801000001000000240000000e000000426174746c656669656c64416e67656c0006759c00000000c7000000007d0900000000000000000000000000000000"
   },
   {
    "entity_id": 409,
@@ -1728,7 +1730,8 @@
    ],
    "direccion": 6,
    "visible": 1,
-   "puesto_por": "npcs_del_cliente"
+   "puesto_por": "npcs_del_cliente",
+   "hex": "990100000100000099000000640000005469636b657420416e67656c0000000000066c9c00000000c700000000d80700000000000000000000000000000000"
   },
   {
    "entity_id": 410,
@@ -1744,7 +1747,8 @@
    ],
    "direccion": 6,
    "visible": 1,
-   "puesto_por": "npcs_del_cliente"
+   "puesto_por": "npcs_del_cliente",
+   "hex": "9a010000010000003600000015000000426c657373696e6720416e67656c00000006739c00000000c700000000642200000000000000000000000000000000"
   },
   {
    "entity_id": 411,
@@ -1760,7 +1764,8 @@
    ],
    "direccion": 6,
    "visible": 1,
-   "puesto_por": "npcs_del_cliente"
+   "puesto_por": "npcs_del_cliente",
+   "hex": "9b01000001000000cd000000540000004c6974746c652045787020416e67656c0006f39c00000000c7000000007e0a00000000000000000000000000000000"
   }
  ],
  "recursos": [
