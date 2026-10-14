@@ -2211,6 +2211,22 @@
    "visible": 0,
    "nivel": 420,
    "nombre_original": "青藍迷影龍"
+  },
+  {
+   "entity_id": 90419000,
+   "nombre": "Dyren",
+   "nombre_completo": "Dyren",
+   "npc_type": 24813,
+   "sprite": 40211,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    69,
+    30
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

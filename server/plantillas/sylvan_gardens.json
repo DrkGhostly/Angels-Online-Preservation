@@ -3505,6 +3505,54 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 254
+  },
+  {
+   "entity_id": 123531,
+   "nombre": "Huge Lily",
+   "nombre_completo": "Huge Lily",
+   "npc_type": 14259,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    274,
+    154
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 123532,
+   "nombre": "Huge Sunflower",
+   "nombre_completo": "Huge Sunflower",
+   "npc_type": 14260,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    115,
+    23
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 123533,
+   "nombre": "Huge Narcissus",
+   "nombre_completo": "Huge Narcissus",
+   "npc_type": 14261,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    81,
+    118
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

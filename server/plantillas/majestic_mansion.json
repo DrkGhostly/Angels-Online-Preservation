@@ -1791,6 +1791,22 @@
    "visible": 0,
    "nivel": 390,
    "nombre_original": "時之守門人"
+  },
+  {
+   "entity_id": 90399000,
+   "nombre": "Miner Aman",
+   "nombre_completo": "Miner Aman",
+   "npc_type": 24716,
+   "sprite": 40499,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    74,
+    132
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

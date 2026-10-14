@@ -1866,6 +1866,22 @@
    "visible": 0,
    "nivel": 427,
    "nombre_original": "綠藻小貝"
+  },
+  {
+   "entity_id": 90402000,
+   "nombre": "Lead Yamaguchi",
+   "nombre_completo": "Lead Yamaguchi",
+   "npc_type": 24731,
+   "sprite": 40590,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    103,
+    152
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [
@@ -3498,6 +3514,51 @@
    "sprite": 60005,
    "cola": "00000000000000",
    "crudo": "8f040c34000000004f1b0000b00f000000000000160000000000000000000000000665ea00000000000000"
+  },
+  {
+   "entity_id": 100290000,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    6615,
+    4336
+   ],
+   "tile": [
+    206,
+    135
+   ],
+   "crudo": "d04dfa0500000000d7190000f01000000000000027000000000000001a000000dc0691eb00004080140000",
+   "puesto_por": "objetos_de_mision"
+  },
+  {
+   "entity_id": 100290001,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    6880,
+    4208
+   ],
+   "tile": [
+    215,
+    131
+   ],
+   "crudo": "d14dfa0500000000e01a0000701000000000000027000000000000001a000000dc0691eb00004080140000",
+   "puesto_por": "objetos_de_mision"
+  },
+  {
+   "entity_id": 100290002,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    7164,
+    4048
+   ],
+   "tile": [
+    223,
+    126
+   ],
+   "crudo": "d24dfa0500000000fc1b0000d00f00000000000027000000000000001a000000dc0691eb00004080140000",
+   "puesto_por": "objetos_de_mision"
   }
  ]
 }

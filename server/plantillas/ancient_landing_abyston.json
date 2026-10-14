@@ -3191,6 +3191,22 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 294
+  },
+  {
+   "entity_id": 123820,
+   "nombre": "Power Conduit",
+   "nombre_completo": "Power Conduit",
+   "npc_type": 14725,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    154,
+    88
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

@@ -1632,6 +1632,38 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 99
+  },
+  {
+   "entity_id": 122561,
+   "nombre": "Sunken Cargo",
+   "nombre_completo": "Sunken Cargo",
+   "npc_type": 2229,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    75,
+    14
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 122562,
+   "nombre": "Suspicious Pack",
+   "nombre_completo": "Suspicious Pack",
+   "npc_type": 2224,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    191,
+    162
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

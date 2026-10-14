@@ -3627,6 +3627,22 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 224
+  },
+  {
+   "entity_id": 123530,
+   "nombre": "Kingdom Supplies",
+   "nombre_completo": "Kingdom Supplies",
+   "npc_type": 14254,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    10,
+    121
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

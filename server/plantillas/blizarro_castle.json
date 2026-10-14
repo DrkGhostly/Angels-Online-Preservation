@@ -5596,6 +5596,38 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 215
+  },
+  {
+   "entity_id": 90216000,
+   "nombre": "Kind Snowman",
+   "nombre_completo": "Kind Snowman",
+   "npc_type": 11023,
+   "sprite": 42564,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    259,
+    40
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90216001,
+   "nombre": "Playful Deer",
+   "nombre_completo": "Playful Deer",
+   "npc_type": 11025,
+   "sprite": 40389,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    149,
+    102
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

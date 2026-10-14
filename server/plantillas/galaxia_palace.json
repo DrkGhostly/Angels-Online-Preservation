@@ -2298,6 +2298,54 @@
    "visible": 0,
    "nivel": 7,
    "apagado": true
+  },
+  {
+   "entity_id": 90360000,
+   "nombre": "Servant Agnise",
+   "nombre_completo": "Servant Agnise",
+   "npc_type": 14953,
+   "sprite": 40636,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    20,
+    17
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90360001,
+   "nombre": "Cyclone",
+   "nombre_completo": "Cyclone",
+   "npc_type": 14954,
+   "sprite": 40679,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    135,
+    91
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90360002,
+   "nombre": "Cyclone",
+   "nombre_completo": "Cyclone",
+   "npc_type": 14954,
+   "sprite": 40679,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    164,
+    60
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

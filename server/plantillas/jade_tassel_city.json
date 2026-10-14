@@ -5596,6 +5596,38 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 209
+  },
+  {
+   "entity_id": 90238000,
+   "nombre": "Patrol Leader",
+   "nombre_completo": "Patrol Leader",
+   "npc_type": 2427,
+   "sprite": 40052,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    285,
+    20
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90238001,
+   "nombre": "Yuko",
+   "nombre_completo": "Yuko",
+   "npc_type": 11265,
+   "sprite": 40015,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    291,
+    109
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

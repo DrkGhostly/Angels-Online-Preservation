@@ -2277,6 +2277,22 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 79
+  },
+  {
+   "entity_id": 122330,
+   "nombre": "Bone Remains",
+   "nombre_completo": "Bone Remains",
+   "npc_type": 2125,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    176,
+    109
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

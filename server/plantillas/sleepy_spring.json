@@ -3655,6 +3655,22 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 284
+  },
+  {
+   "entity_id": 123604,
+   "nombre": "Crystal Water",
+   "nombre_completo": "Crystal Water",
+   "npc_type": 14381,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    150,
+    120
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

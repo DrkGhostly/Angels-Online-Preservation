@@ -2440,6 +2440,86 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 94
+  },
+  {
+   "entity_id": 122444,
+   "nombre": "See Junk",
+   "nombre_completo": "See Junk",
+   "npc_type": 2222,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    269,
+    121
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 122445,
+   "nombre": "South Junk",
+   "nombre_completo": "South Junk",
+   "npc_type": 2225,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    118,
+    12
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 122446,
+   "nombre": "Southeast Junk",
+   "nombre_completo": "Southeast Junk",
+   "npc_type": 2226,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    281,
+    18
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 122447,
+   "nombre": "Northeast Junk",
+   "nombre_completo": "Northeast Junk",
+   "npc_type": 2227,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    278,
+    133
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 122448,
+   "nombre": "North Junk",
+   "nombre_completo": "North Junk",
+   "npc_type": 2228,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    140,
+    166
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

@@ -4066,6 +4066,102 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 120
+  },
+  {
+   "entity_id": 90110000,
+   "nombre": "Plinking Bird",
+   "nombre_completo": "Plinking Bird",
+   "npc_type": 2444,
+   "sprite": 40212,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    166,
+    71
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90110001,
+   "nombre": "Plinking Bird",
+   "nombre_completo": "Plinking Bird",
+   "npc_type": 2444,
+   "sprite": 40212,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    168,
+    131
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90110002,
+   "nombre": "Limitless Tower ",
+   "nombre_completo": "Limitless Tower Guard",
+   "npc_type": 2437,
+   "sprite": 40017,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    121,
+    54
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90110003,
+   "nombre": "Talking Statue",
+   "nombre_completo": "Talking Statue",
+   "npc_type": 2438,
+   "sprite": 40230,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    271,
+    206
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90110004,
+   "nombre": "Mage Linn",
+   "nombre_completo": "Mage Linn",
+   "npc_type": 2422,
+   "sprite": 40028,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    74,
+    209
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90110005,
+   "nombre": "Limitless Tower ",
+   "nombre_completo": "Limitless Tower Guard",
+   "npc_type": 2437,
+   "sprite": 40017,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    16,
+    32
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

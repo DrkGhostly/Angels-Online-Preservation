@@ -263,6 +263,7 @@ def cargar() -> dict:
                 if cta is not None:
                     try:
                         p_dict = json.loads(datos_json)
+                        p_dict['ranura'] = ranura       # la de la base manda
                         cta['personajes'].append(p_dict)
                     except Exception:
                         pass
@@ -357,6 +358,26 @@ def _firmar(h: str, sal: str) -> str:
     return hashlib.sha256((sal + h).encode('ascii')).hexdigest()
 
 
+def _personajes(con, usuario: str) -> list:
+    """Personajes de la cuenta, cada uno con la ranura que tiene en la base."""
+    pjs = []
+    for r, d in con.execute("SELECT ranura, datos FROM personajes WHERE usuario = ? "
+                            "ORDER BY ranura ASC", (usuario,)):
+        p = json.loads(d)
+        p['ranura'] = r
+        pjs.append(p)
+    return pjs
+
+
+def lista_de_personajes(usuario: str) -> list:
+    with _LOCK:
+        con = _get_conn()
+        try:
+            return _personajes(con, usuario)
+        finally:
+            con.close()
+
+
 def validar(usuario: str, cuerpo_auth: bytes = b'') -> tuple:
     """Valida la contrasena. Una cuenta sin contrasena guardada (nueva, o
     creada antes de esta validacion) se queda con la de este ingreso."""
@@ -388,9 +409,7 @@ def validar(usuario: str, cuerpo_auth: bytes = b'') -> tuple:
                     motivo = "contrasena registrada"
                 con.commit()
                 _notificar_cambio(inmediato=True)
-            cur.execute("SELECT datos FROM personajes WHERE usuario = ? ORDER BY ranura ASC", (usuario,))
-            pjs = [json.loads(d[0]) for d in cur.fetchall()]
-            return {'personajes': pjs}, motivo
+            return {'personajes': _personajes(con, usuario)}, motivo
         finally:
             con.close()
 
@@ -410,11 +429,13 @@ def _ahora():
     return time.time()
 
 
-def personaje_de(cuenta, indice=0):
+def personaje_de(cuenta, ranura=0):
+    """El personaje que esta en esa ranura (no en esa posicion de la lista)."""
     from login import Personaje
-    if not cuenta or indice >= len(cuenta.get('personajes', [])):
+    p = next((x for x in (cuenta or {}).get('personajes', [])
+              if x.get('ranura') == ranura), None)
+    if p is None:
         return None
-    p = cuenta['personajes'][indice]
     # REPARACION AL CARGAR. El banco guarda cada casilla como (objeto,
     # cantidad); en memoria es tupla pero de la base vuelve como LISTA, y el
     # codigo del banco solo miraba la tupla. Al sacar algo, la lista entera

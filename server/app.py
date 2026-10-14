@@ -1797,6 +1797,8 @@ def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
         if es_instancia(getattr(ses.personaje, 'stage', 0) if ses.personaje
                         else 0):
             return
+        if getattr(m, 'generado', False):
+            return            # lo saco un evento (GENERATE): no vuelve solo
         if not getattr(m, 'vivo', False):
             m.revivir()
             import login as _lg
@@ -2433,8 +2435,13 @@ def _aplicar_efectos(ses, addr, efectos, motivo=''):
                 import inventario as _iv_ef
                 for item, cant in ef[1]:
                     iid = int(item)
-                    if _iv_ef.es_item_oculto(iid):
-                        log.info(f"[{addr}] efecto dar: item {iid} es token oculto de mision, ignorado para la mochila visible")
+                    # Los tokens de mision NO van a la mochila, pero tampoco
+                    # se tiran: van a las ranuras ocultas 497..556. Ahi los
+                    # lee la condicion QUESTITEM para saber si ya van 30 y
+                    # ahi los lee el HUD para el "X/30". Descartandolos, la
+                    # 901 se quedaba en 0/30 por muchos dragones que cayeran.
+                    if _iv_ef.es_item_oculto(iid) or _ev.es_objeto_de_mision(iid):
+                        _dar_token_oculto(ses, addr, iid, int(cant))
                         continue
                     r = _meter(ses, iid, int(cant))
                     if r is not None:
@@ -2453,6 +2460,9 @@ def _aplicar_efectos(ses, addr, efectos, motivo=''):
             elif que == 'quitar':
                 tocadas = []
                 for item, cant in ef[1]:
+                    if _ev.es_objeto_de_mision(int(item)):
+                        _quitar_token_oculto(ses, addr, int(item), int(cant))
+                        continue
                     r = _ranura_de_item(ses, int(item))
                     if r is not None:
                         _sacar(ses, r, int(cant))
@@ -2478,13 +2488,34 @@ def _aplicar_efectos(ses, addr, efectos, motivo=''):
                     _mis.avanzar_paso(ses, qid, paso_servidor)
             elif que == 'matar_para_avanzar':
                 # KILLTO_NEXTSTEP(mision, paso, objeto oculto, por baja,
-                # probabilidad, cuantos para completar). El contador de
-                # cacerias ya existe en misiones.py; aqui solo se le dice
-                # cual es, que es lo que antes habia que escribir a mano.
+                # probabilidad, cuantos para completar), tal como lo firma el
+                # eventdef. Lo hace entero aqui, con los datos del mapa:
+                #
+                #   si la mision va por ese paso, con esa probabilidad, suma
+                #   'por baja' del objeto oculto (a las ranuras 497..556, que
+                #   es de donde el HUD saca el "X/N"); y al llegar al total,
+                #   pasa al paso siguiente.
+                #
+                # Antes se lo pasaba al contador viejo de misiones.py con el
+                # bicho en 0, y como esas entradas salieron rotas del
+                # compilador, no contaba nada: 97 cacerias atascadas en 0.
+                # Los 531 usos del juego llevan objeto oculto y dan 1 por baja.
                 import misiones as _mis
-                qid = int(ef[1])
-                if _mis.obtener_paso_actual(p, qid) == int(ef[2]) + 1:
-                    _mis.registrar_baja_monstruo(ses, 0, None)
+                qid, paso_c, item, por, prob, total = (int(x) for x in ef[1:7])
+                if p and _mis.obtener_paso_actual(p, qid) == paso_c + 1:
+                    ahora = 0
+                    _r = _ranura_oculta_de(ses, item)
+                    if _r is not None:
+                        ahora = int((p.cantidades or {}).get(_r, 1))
+                    if ahora < total and (prob >= 100 or random.randint(1, 100) <= prob):
+                        _dar_token_oculto(ses, addr, item, max(1, por))
+                        ahora += max(1, por)
+                    if ahora >= total:
+                        # paso_c es el del CLIENTE (empieza en 0); el servidor
+                        # cuenta desde 1, asi que el siguiente es paso_c + 2.
+                        _mis.avanzar_paso(ses, qid, paso_c + 2)
+                        log.info('[%s] mision %d: %d/%d, pasa al paso %d'
+                                 % (addr, qid, ahora, total, paso_c + 2))
             elif que in ('nota', 'chat', 'chat_npc'):
                 import clases as _cl
                 textos = ef[1] if que == 'chat_npc' else (
@@ -2503,6 +2534,24 @@ def _aplicar_efectos(ses, addr, efectos, motivo=''):
                 t = estado.temporizador(ef[1])
                 t[0] = bool(ef[2])
                 t[1] += 1
+            elif que == 'viajar':
+                # CHANGE_MAP(mapa, tag): la llegada es la primera casilla del
+                # TAG en el mapa de destino. Asi llevan los objetos de mision a
+                # otro mapa para seguirla.
+                dst, tag = int(ef[1]), int(ef[2])
+                cas = _ev.casillas_de_tag(dst, tag)
+                if cas and p:
+                    _viajar_por_portal(ses, addr, {'destino': dst, 'llegada': tuple(cas[0])},
+                                       motivo='por un evento del mapa%s' % motivo)
+            elif que == 'ir_a_tag':
+                cas = _ev.casillas_de_tag(estado.stage, int(ef[1]))
+                if cas and p:
+                    _viajar_dentro_del_mapa(ses, addr, {'llegada': tuple(cas[0])},
+                                            motivo='por un evento del mapa%s' % motivo)
+            elif que == 'dialogo':
+                _dialogo_del_mapa(ses, addr, estado.stage, int(ef[1]))
+            elif que == 'generar':
+                _generar_zona(ses, addr, estado.stage, int(ef[1]))
             elif que == 'objeto_estatico':
                 # Se apunta para que la condicion que lo mire lo vea, pero no
                 # se manda nada: ver el comentario de arriba.
@@ -2519,6 +2568,194 @@ def _aplicar_efectos(ses, addr, efectos, motivo=''):
                   addr, motivo, sorted(set(sin_hacer)))
 
 
+def _sigilo_activo(ses, ahora=None):
+    """Si el jugador sigue en sigilo (Sneak). Caduca solo por tiempo."""
+    return (ahora or time.time()) < float(getattr(ses, 'sigilo_hasta', 0) or 0)
+
+
+def _romper_sigilo(ses, addr, motivo=''):
+    """Saca al jugador del sigilo y le quita el icono y la animacion.
+
+    Es el mismo 0x001D de fin de estado que se manda al caducar un buff
+    (tipo 4 con duracion 0), con el id del Sneak que lo puso.
+    """
+    if not _sigilo_activo(ses):
+        return
+    ses.sigilo_hasta = 0
+    mid = int(getattr(ses, 'sigilo_mid', 0) or 0)
+    p = getattr(ses, 'personaje', None)
+    if mid and p:
+        ses.enviar(struct.pack('<HIBBII', 0x001D, p.entity_id, 1, 4, mid, 0))
+    log.info('[%s] sale del sigilo %s', addr, motivo)
+
+
+_RECURSOS_POR_STAGE = {}
+
+
+def _recurso_con_entidad(stage, ent):
+    """La casilla del objeto de mapa con ese id de entidad, o None.
+
+    Los objetos de mapa ("recursos") los manda el servidor desde la plantilla
+    del mapa con su entity_id y su casilla; con la casilla se sabe que evento
+    tiene en el .mpc.
+    """
+    import login as _lg_r
+    if stage not in _RECURSOS_POR_STAGE:
+        idx = {}
+        f = _lg_r.PLANTILLAS_POR_STAGE.get(stage)
+        if f:
+            try:
+                import json as _js
+                d = _js.loads((pathlib.Path(__file__).parent / 'plantillas' / f)
+                              .read_text(encoding='utf-8'))
+                for r in d.get('recursos') or []:
+                    if r.get('entity_id') and r.get('tile'):
+                        idx[int(r['entity_id'])] = tuple(r['tile'])
+            except Exception:
+                pass
+        _RECURSOS_POR_STAGE[stage] = idx
+    return _RECURSOS_POR_STAGE[stage].get(int(ent))
+
+
+_MONSTRUOS_BD = None
+_SIG_GENERADO = [96_000_000]
+TOPE_GENERADOS = 30
+
+
+def _monstruo_bd(npc_type):
+    """(nombre, sprite) de monster.xml, via corpus/content.db."""
+    global _MONSTRUOS_BD
+    if _MONSTRUOS_BD is None:
+        import sqlite3
+        _MONSTRUOS_BD = {}
+        try:
+            con = sqlite3.connect(str(pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'))
+            for i, spr, nom in con.execute('select id, sprite_id, name from monster'):
+                if str(i).isdigit():
+                    _MONSTRUOS_BD[int(i)] = (nom or '?', int(spr) if str(spr or '').isdigit() else 0)
+            con.close()
+        except Exception:
+            log.exception('no pude leer monster de content.db')
+    return _MONSTRUOS_BD.get(int(npc_type), ('?', 0))
+
+
+def _generar_zona(ses, addr, stage, tag):
+    """GENERATE(tag): saca los monstruos de esa zona de generador.
+
+    Es lo que hacen los objetos de mision: en la 262, acercarse a la estatua
+    del mono con la mision en curso genera el bicho de la zona 66, y al
+    matarlo cae el objeto y avanza el paso. Se marcan como generados para que
+    no reaparezcan solos al morir: solo vuelven si el evento los vuelve a
+    pedir.
+    """
+    import eventos as _ev_g
+    import combate as _cb_g
+    import login as _lg_g
+    g = ((_ev_g.del_stage(stage) or {}).get('generadores') or {}).get(str(tag))
+    if not g or not g.get('tipos') or not g.get('puntos') or not ses.personaje:
+        log.debug('[%s] GENERATE %s en %s: la zona no esta en la plantilla', addr, tag, stage)
+        return
+    if ses.monstruos is None:
+        ses.monstruos = {}
+    n = max(1, min(TOPE_GENERADOS, int(g.get('cuantos') or 1)))
+    for i in range(n):
+        npc_type = int(g['tipos'][i % len(g['tipos'])])
+        tile = list(g['puntos'][i % len(g['puntos'])])
+        nombre, sprite = _monstruo_bd(npc_type)
+        eid = _SIG_GENERADO[0]
+        _SIG_GENERADO[0] += 1
+        m = _cb_g.Monstruo(eid, npc_type, nombre, tile, sprite)
+        m.generado = True
+        ses.monstruos[eid] = m
+        ses.enviar(_lg_g._npc_spawn(eid, npc_type, nombre, tuple(tile), sprite=sprite, klass=1))
+    log.info('[%s] GENERATE zona %s en %s: %d x %s', addr, tag, stage, n, g['tipos'])
+
+
+def _dialogo_del_mapa(ses, addr, stage, nodo):
+    """BEGIN_MESSAGE(nodo): muestra el dialogo del arbol del mapa."""
+    import dialogos as _dl
+    import dialogos_mapa as _dm
+    import eventos_mundo as _evm_d
+    p = ses.personaje
+    if not p:
+        return
+    r = _dm.lineas_del_nodo(stage, nodo, _evm_d.ContextoSesion(ses))
+    if not r:
+        log.debug('[%s] BEGIN_MESSAGE %s en %s: no esta en el arbol del mapa', addr, nodo, stage)
+        return
+    cara, msgs = r
+    cara = cara or 3
+    g = [_dl.armar_linea(mid, cara, [])[2:] for mid in msgs]
+    ses.dlg_ent, ses.dlg_guion, ses.dlg_paso, ses.dlg_val = p.entity_id, g, 1, cara
+    ses.enviar(_dl.linea_de(g, 0, p.nombre))
+    log.info('[%s] dialogo del mapa %s: %s', addr, nodo, msgs)
+
+
+OCULTA_PRIMERA, OCULTA_ULTIMA = 497, 556
+
+
+def _ranura_oculta_de(ses, item_id):
+    inv = ses.personaje.inventario
+    for r in range(OCULTA_PRIMERA, OCULTA_ULTIMA + 1):
+        if inv.get(r) == item_id:
+            return r
+    return None
+
+
+def _dar_token_oculto(ses, addr, item_id, cant=1):
+    """Suma un token de mision en las ranuras ocultas y lo pinta en el HUD.
+
+    Si ya hay una ranura con ese token se suma ahi; si no, la primera libre.
+    Se evitan las que misiones.py reserva para sus cacerias (497 + quest % 60)
+    de las misiones que lleva el personaje, para no pisarse con ellas.
+    """
+    import inventario as _inv
+    p = ses.personaje
+    if not p:
+        return
+    cant_de = p.cantidades if p.cantidades is not None else {}
+    p.cantidades = cant_de
+    r = _ranura_oculta_de(ses, item_id)
+    if r is None:
+        reservadas = {OCULTA_PRIMERA + (int(q) % 60) for q, _pa in (p.quests or [])}
+        libres = [x for x in range(OCULTA_PRIMERA, OCULTA_ULTIMA + 1)
+                  if not p.inventario.get(x)]
+        r = next((x for x in libres if x not in reservadas),
+                 libres[0] if libres else None)
+        if r is None:
+            log.warning('[%s] no queda ranura oculta para el token %s', addr, item_id)
+            return
+        p.inventario[r] = item_id
+        cant_de[r] = 0
+    cant_de[r] = int(cant_de.get(r, 0)) + max(1, cant)
+    dueno = getattr(ses, 'entity_id', p.char_id)
+    entrada = _inv.entrada_recuperada(p.char_id, r, item_id, cant=cant_de[r], dueno=dueno)
+    ses.enviar(struct.pack('<HI', 0x001B, 1) + entrada)
+    _guardar_bolsa(ses, p.char_id)
+    log.info('[%s] token de mision %s -> ranura oculta %d (ahora %d)',
+             addr, item_id, r, cant_de[r])
+
+
+def _quitar_token_oculto(ses, addr, item_id, cant=1):
+    """Resta un token de las ranuras ocultas; si llega a 0, vacia la ranura."""
+    import inventario as _inv
+    p = ses.personaje
+    r = _ranura_oculta_de(ses, item_id) if p else None
+    if r is None:
+        return
+    queda = int((p.cantidades or {}).get(r, 1)) - max(1, cant)
+    dueno = getattr(ses, 'entity_id', p.char_id)
+    if queda > 0:
+        p.cantidades[r] = queda
+        ses.enviar(struct.pack('<HI', 0x001B, 1)
+                   + _inv.entrada_recuperada(p.char_id, r, item_id, cant=queda, dueno=dueno))
+    else:
+        p.inventario.pop(r, None)
+        (p.cantidades or {}).pop(r, None)
+        ses.enviar(_inv.vaciar_ranura(dueno, r))
+    _guardar_bolsa(ses, p.char_id)
+
+
 def _eventos_al_pisar(ses, addr, tile):
     """Dispara el evento del mapa de la casilla en la que se acaba de parar.
 
@@ -2532,7 +2769,11 @@ def _eventos_al_pisar(ses, addr, tile):
     try:
         import eventos_mundo as _evm
         efectos = _evm.al_pisar(ses, tile)
-        efectos = [e for e in efectos if e[0] not in ('viajar', 'ir_a_tag')]
+        # Si esta casilla ya es un portal de portales.json, el viaje lo hace el
+        # portal (medido uno a uno). Si no lo es, el viaje es de un objeto de
+        # mision -- de los que te llevan a otro mapa para seguirla -- y se hace.
+        if _portal_en(ses.personaje.stage, *tile):
+            efectos = [e for e in efectos if e[0] not in ('viajar', 'ir_a_tag')]
         if efectos:
             _aplicar_efectos(ses, addr, efectos, ' al pisar %s' % (tuple(tile),))
     except Exception:
@@ -3413,14 +3654,16 @@ class Servidor:
             ranura = cuerpo[0] if cuerpo else 0
             char_id = cuentas.borrar_personaje(ses.usuario, ranura)
             if char_id is None:
+                # Se contesta igual con la lista: sin respuesta el cliente
+                # se queda esperando con la pantalla en negro.
                 log.warning(f"[{addr}] BORRAR: no hay personaje en la ranura {ranura}")
-                return
-            ses.enviar(struct.pack('<HHI', 0x0002, 0, char_id))
-            cta = cuentas.cargar()['cuentas'].get(ses.usuario) or {'personajes': []}
-            ses.enviar_crudo(_ls.respuesta_login(cta.get('personajes', []),
-                                                 cuenta=ses.usuario))
-            log.info(f"[{addr}] PERSONAJE BORRADO: ranura {ranura} "
-                     f"char_id {char_id} (sin espera)")
+            else:
+                ses.enviar(struct.pack('<HHI', 0x0002, 0, char_id))
+            ses.enviar_crudo(_ls.respuesta_login(
+                cuentas.lista_de_personajes(ses.usuario)[:3], cuenta=ses.usuario))
+            if char_id is not None:
+                log.info(f"[{addr}] PERSONAJE BORRADO: ranura {ranura} "
+                         f"char_id {char_id} (sin espera)")
             return
 
         if opcode == 0x0006 and ses.rol == 'login':
@@ -3431,8 +3674,8 @@ class Servidor:
             ranura = cuerpo[0] if cuerpo else 0
             txt = bytes(c if 32 <= c < 127 else 46 for c in cuerpo[:40]).decode()
             cta = cuentas.cargar()['cuentas'].get(ses.usuario) or {}
-            elegidos = list(cta.get('personajes', []))
-            nombre = elegidos[ranura]['nombre'] if ranura < len(elegidos) else '?'
+            nombre = next((x['nombre'] for x in cta.get('personajes', [])
+                           if x.get('ranura') == ranura), '?')
             self.pendientes[addr[0]] = (ses.usuario, ranura)
             log.info(f"[{addr}] ENTRAR AL MUNDO ranura={ranura} -> '{nombre}'")
             log.info(f"[{addr}] 0x0006 sprite: {txt}")
@@ -3974,7 +4217,14 @@ class Servidor:
                                             else:
                                                 def_targ = 100
                                             suyo = _cb.dano_recibido(m.pegar(), def_targ)
-                                            if targ_eid == yo:
+                                            # En sigilo se esquiva: Sneak V da
+                                            # un 75% (物理迴避). Un golpe esquivado
+                                            # hace 0; no hay paquete de "Miss"
+                                            # medido y no se inventa uno.
+                                            if (targ_eid == yo and _sigilo_activo(ses, ahora)
+                                                    and random.randint(1, 100) <= int(getattr(ses, 'sigilo_esquiva', 0) or 0)):
+                                                suyo = 0
+                                            if targ_eid == yo and suyo:
                                                 bolsa_yo = getattr(ses, 'inventario', None)
                                                 if bolsa_yo:
                                                     mods_eq = _iv.modificadores_porcentuales_equipo(bolsa_yo)
@@ -4795,6 +5045,28 @@ class Servidor:
                     ses.ultimo_golpe = 0
 
             _ahora_atk = time.time()
+
+            # SIGILO. Las tecnicas de asesino (暗殺型) solo se usan en sigilo, y
+            # en sigilo SOLO se usan ellas: es lo que dice Sneak ("Only
+            # assassination techniques may be used in stealth mode") y lo que
+            # dice Assassination ("Only usable in stealth mode"). Por eso
+            # Assassination tiene 1 s de enfriamiento: se encadena DENTRO del
+            # sigilo, no lo rompe. Cualquier otra cosa -- un golpe normal u
+            # otra habilidad -- te saca de el.
+            _en_sigilo = _sigilo_activo(ses, _ahora_atk)
+            if mag.get('asesino') and not _en_sigilo:
+                log.info(f"[{addr}] {mag.get('nombre')} RECHAZADA: es tecnica de "
+                         f"asesino y no estas en sigilo")
+                return
+            # Solo lo rompe ATACAR: un golpe normal o una habilidad ofensiva que
+            # no sea de asesino. Los buffs sobre uno mismo no: el cliente deja
+            # lanzarlos en sigilo, y rompiendolo con ellos pasaba esto --
+            # Sneak, a los 2 s Energy Accumulation (un buff de SP), sigilo roto
+            # y Assassination rechazada.
+            _ofensiva = (tipo == _cb.ATAQUE_NORMAL) or bool(mag.get('es_ataque'))
+            if _en_sigilo and _ofensiva and not mag.get('asesino'):
+                _romper_sigilo(ses, addr, f"por atacar con {mag.get('nombre') or 'un golpe normal'}")
+
             if tipo != _cb.ATAQUE_NORMAL:
                 _cd = max(0.0, mag.get('cd_ms', 0) / 1000.0)
                 _usos = getattr(ses, 'ultimo_uso', None)
@@ -5085,6 +5357,22 @@ class Servidor:
                     tile_ef_y = cy
 
                 area = max(1, mag.get('area', 1))
+                # Si es de "varios golpes individuales en el area", lo que se ve
+                # caer sobre cada objetivo es su hechizo hijo: Spear Shower V
+                # marca la zona con el 511 y las lanzas son el 493 del 13374.
+                # Sin esto solo salian los numeros de dano, sin las lanzas.
+                _hijo_area = int(mag.get('hijo_area') or 0)
+                _ef_hijo_id = _cb.efecto_de_ataque(_hijo_area) if _hijo_area else 0
+
+                def _ef_hijo(eid):
+                    if not _hijo_area or not _ef_hijo_id:
+                        return ()
+                    return (_cb.numero_de_dano(yo, eid, dano=0, ataque=_hijo_area,
+                                               efecto=_ef_hijo_id, cast_time=0,
+                                               es_magia=is_magic_skill),
+                            _cb.cierre_de_dano(yo, eid, ataque=_hijo_area,
+                                               efecto=_ef_hijo_id,
+                                               es_magia=is_magic_skill))
                 _ef2 = _cb.efecto_secundario(tipo)
 
                 def _fin_aoe(enviar_cierre=True):
@@ -5209,7 +5497,7 @@ class Servidor:
                                     _tipo_num_k = _cb.TIPO_DANO_CRITICO if _c_k else _cb.TIPO_DANO
                                     ses.enviar_inmediato(
                                         _cb.atributo(tgt.entity_id, tgt.porcentaje),
-                                        _cb.numero_flotante(tgt.entity_id, _d_k, _tipo_num_k),
+                                        _cb.numero_flotante(tgt.entity_id, _d_k, _tipo_num_k), *_ef_hijo(tgt.entity_id),
                                     )
                                     if not tgt.vivo:
                                         _procesar_muerte_monstruo(ses, tgt, yo, addr, espera=0.0)
@@ -5238,7 +5526,7 @@ class Servidor:
                                 _tipo_num = _cb.TIPO_DANO_CRITICO if es_crit else _cb.TIPO_DANO
                                 ses.enviar_inmediato(
                                     _cb.atributo(b.entity_id, b.porcentaje),
-                                    _cb.numero_flotante(b.entity_id, dano, _tipo_num),
+                                    _cb.numero_flotante(b.entity_id, dano, _tipo_num), *_ef_hijo(b.entity_id),
                                     *pkg_debuff
                                 )
                                 if not b.vivo:
@@ -5264,7 +5552,7 @@ class Servidor:
                                     _tipo_num_k = _cb.TIPO_DANO_CRITICO if _c_k else _cb.TIPO_DANO
                                     ses.enviar_inmediato(
                                         _cb.atributo(tgt.entity_id, tgt.porcentaje),
-                                        _cb.numero_flotante(tgt.entity_id, _d_k, _tipo_num_k),
+                                        _cb.numero_flotante(tgt.entity_id, _d_k, _tipo_num_k), *_ef_hijo(tgt.entity_id),
                                     )
                                     if not tgt.vivo:
                                         _procesar_muerte_monstruo(ses, tgt, yo, addr, espera=0.0)
@@ -5292,7 +5580,7 @@ class Servidor:
                                 _tipo_num = _cb.TIPO_DANO_CRITICO if es_crit else _cb.TIPO_DANO
                                 ses.enviar_inmediato(
                                     _cb.atributo(b.entity_id, b.porcentaje),
-                                    _cb.numero_flotante(b.entity_id, dano, _tipo_num),
+                                    _cb.numero_flotante(b.entity_id, dano, _tipo_num), *_ef_hijo(b.entity_id),
                                     *pkg_debuff
                                 )
                                 if not b.vivo:
@@ -5319,7 +5607,7 @@ class Servidor:
                                             _tipo_num_k = _cb.TIPO_DANO_CRITICO if _c_k else _cb.TIPO_DANO
                                             ses.enviar_inmediato(
                                                 _cb.atributo(tgt.entity_id, tgt.porcentaje),
-                                                _cb.numero_flotante(tgt.entity_id, _d_k, _tipo_num_k),
+                                                _cb.numero_flotante(tgt.entity_id, _d_k, _tipo_num_k), *_ef_hijo(tgt.entity_id),
                                             )
                                             if not tgt.vivo:
                                                 _procesar_muerte_monstruo(ses, tgt, yo, addr, espera=0.0)
@@ -5804,6 +6092,13 @@ class Servidor:
                                                      ses.personaje.habilidades,
                                                      hp_max=ses.personaje.hp_max, mp_max=ses.personaje.mp_max, sp=getattr(ses, "sp", None), buffs=getattr(ses.personaje, "buffs", None) if ses.personaje else None)
                         log.info(f"[{addr}] buff {tipo} ({mag.get('nombre')}) ejecutado (efecto {ef}, dur={dur_ms}ms, cd={cd_ms}ms)")
+                        # Sneak: entra en sigilo lo que dure el buff, con su esquiva.
+                        if mag.get('sigilo') and dur_ms > 0:
+                            ses.sigilo_hasta = time.time() + dur_ms / 1000.0
+                            ses.sigilo_mid = tipo
+                            ses.sigilo_esquiva = int(mag.get('esquiva_fis') or 0)
+                            log.info(f"[{addr}] entra en sigilo {dur_ms // 1000}s "
+                                     f"(esquiva {ses.sigilo_esquiva}%)")
                     return
                 log.debug(f"[{addr}] ataque a la entidad {objetivo}: no es un monstruo conocido")
                 return
@@ -8975,6 +9270,25 @@ class Servidor:
                              f"{_est.get('llegada')}")
                     return
 
+                # OBJETO DE MISION QUE SE PULSA: la estela, la tumba, el nido...
+                # Es un objeto de mapa con su evento, y el evento dice que pasa
+                # (dar la mision, avanzarla, mostrar un dialogo, llevarte a
+                # otro mapa). El servidor ya los mandaba -- 81 de los 83 de
+                # mision --, pero al pulsarlos solo miraba si eran NPC o
+                # portal, asi que no pasaba nada.
+                _tile_obj = _recurso_con_entidad(ses.personaje.stage, ent)
+                if _tile_obj is not None:
+                    try:
+                        import eventos_mundo as _evm_p
+                        _ef_obj = _evm_p.al_pulsar(ses, _tile_obj)
+                        if _portal_en(ses.personaje.stage, *_tile_obj):
+                            _ef_obj = [e for e in _ef_obj if e[0] not in ('viajar', 'ir_a_tag')]
+                        if _ef_obj:
+                            _aplicar_efectos(ses, addr, _ef_obj, ' al pulsar el objeto %s' % ent)
+                            return
+                    except Exception:
+                        log.exception('evento del objeto pulsado')
+
                 # PORTAL / TORNADO QUE TELETRANSPORTA (objeto de mapa, clic directo)
                 stg = str(ses.personaje.stage)
                 cfg_p = _portales()
@@ -9166,13 +9480,34 @@ class Servidor:
                             qid_proc = datos_proc.get('qid')
                             paso_proc = datos_proc.get('paso', 1)
                             nom2 = ses.personaje.nombre if ses.personaje else 'Jugador'
-                            g_prog = dialogos.guion_de_mision(
-                                qid_proc, _nom_ent, jugador=nom2, entidad=ent,
-                                en_progreso=True, paso=paso_proc, tipo_evento=tipo_proc
-                            )
+                            # Primero el arbol de dialogo del MAPA, que dice la
+                            # linea exacta de este NPC en este paso; si no la
+                            # tiene, la que se deduce del bloque de la mision.
+                            # Asi Bella Bulu dice "consigue 20 Microcoins..." y
+                            # no la frase de Matia mandandote a buscarla.
+                            g_prog = None
+                            _cara_m = dialogos.val_por_entidad(ent)
+                            try:
+                                import dialogos_mapa as _dm
+                                import eventos_mundo as _evm_d
+                                _lm = _dm.lineas_sin_accion(
+                                    getattr(ses.personaje, 'stage', 0), _cara_m,
+                                    _evm_d.ContextoSesion(ses))
+                                if _lm:
+                                    _cara_m, _msgs_m = _lm
+                                    g_prog = [dialogos.armar_linea(mid, _cara_m, [])[2:]
+                                              for mid in _msgs_m]
+                                    log.info(f"[{addr}] {_nom_ent}: linea del arbol del mapa {_msgs_m}")
+                            except Exception:
+                                log.exception('arbol de dialogo del mapa')
+                            if not g_prog:
+                                g_prog = dialogos.guion_de_mision(
+                                    qid_proc, _nom_ent, jugador=nom2, entidad=ent,
+                                    en_progreso=True, paso=paso_proc, tipo_evento=tipo_proc
+                                )
                             if g_prog:
                                 ses.dlg_ent, ses.dlg_guion, ses.dlg_paso = ent, g_prog, 1
-                                ses.dlg_val = dialogos.val_por_entidad(ent)
+                                ses.dlg_val = _cara_m
                                 ses.enviar(dialogos.linea_de(g_prog, 0, nom2))
                                 log.info(f"[{addr}] {_nom_ent}: recordatorio de mision {qid_proc} en curso a {nom2}")
                                 return

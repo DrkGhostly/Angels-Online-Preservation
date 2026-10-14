@@ -6956,6 +6956,502 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 288
+  },
+  {
+   "entity_id": 90281000,
+   "nombre": "Angel Inspector",
+   "nombre_completo": "Angel Inspector",
+   "npc_type": 1918,
+   "sprite": 40049,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    35,
+    165
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90281001,
+   "nombre": "Warrior Leford",
+   "nombre_completo": "Warrior Leford",
+   "npc_type": 14268,
+   "sprite": 40406,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    27,
+    153
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90281002,
+   "nombre": "Floral Garden's ",
+   "nombre_completo": "Floral Garden's Central Parterre",
+   "npc_type": 14277,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    152,
+    96
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90281003,
+   "nombre": "Floral Garden's ",
+   "nombre_completo": "Floral Garden's North Parterre",
+   "npc_type": 14278,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    205,
+    122
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90281004,
+   "nombre": "Floral Garden's ",
+   "nombre_completo": "Floral Garden's East Parterre",
+   "npc_type": 14279,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    205,
+    70
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90281005,
+   "nombre": "Floral Garden's ",
+   "nombre_completo": "Floral Garden's South Parterre",
+   "npc_type": 14280,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    101,
+    71
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90281006,
+   "nombre": "Wounded Scout",
+   "nombre_completo": "Wounded Scout",
+   "npc_type": 14264,
+   "sprite": 40498,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    95,
+    161
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90281007,
+   "nombre": "Lost Traveler",
+   "nombre_completo": "Lost Traveler",
+   "npc_type": 14271,
+   "sprite": 40058,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    75,
+    107
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90281008,
+   "nombre": "Lost Traveler",
+   "nombre_completo": "Lost Traveler",
+   "npc_type": 14271,
+   "sprite": 40058,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    126,
+    112
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90281009,
+   "nombre": "Lost Traveler",
+   "nombre_completo": "Lost Traveler",
+   "npc_type": 14271,
+   "sprite": 40058,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    205,
+    99
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90281010,
+   "nombre": "Lost Gardener",
+   "nombre_completo": "Lost Gardener",
+   "npc_type": 14272,
+   "sprite": 40099,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    177,
+    108
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90281011,
+   "nombre": "Lost Gardener",
+   "nombre_completo": "Lost Gardener",
+   "npc_type": 14272,
+   "sprite": 40099,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    99,
+    126
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90281012,
+   "nombre": "Lost Gardener",
+   "nombre_completo": "Lost Gardener",
+   "npc_type": 14272,
+   "sprite": 40099,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    231,
+    87
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90281013,
+   "nombre": "Lost Poet",
+   "nombre_completo": "Lost Poet",
+   "npc_type": 14273,
+   "sprite": 40090,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    178,
+    60
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90281014,
+   "nombre": "Lost Poet",
+   "nombre_completo": "Lost Poet",
+   "npc_type": 14273,
+   "sprite": 40090,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    153,
+    145
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90281015,
+   "nombre": "Lost Poet",
+   "nombre_completo": "Lost Poet",
+   "npc_type": 14273,
+   "sprite": 40090,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    259,
+    92
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90281016,
+   "nombre": "Lost Poet",
+   "nombre_completo": "Lost Poet",
+   "npc_type": 14273,
+   "sprite": 40090,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    205,
+    74
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90281017,
+   "nombre": "Lost Poet",
+   "nombre_completo": "Lost Poet",
+   "npc_type": 14273,
+   "sprite": 40090,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    151,
+    47
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90281018,
+   "nombre": "Lost Elderly",
+   "nombre_completo": "Lost Elderly",
+   "npc_type": 14274,
+   "sprite": 40064,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    76,
+    78
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90281019,
+   "nombre": "Lost Elderly",
+   "nombre_completo": "Lost Elderly",
+   "npc_type": 14274,
+   "sprite": 40064,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    232,
+    105
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90281020,
+   "nombre": "Lost Elderly",
+   "nombre_completo": "Lost Elderly",
+   "npc_type": 14274,
+   "sprite": 40064,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    126,
+    58
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90281021,
+   "nombre": "Lost Servant",
+   "nombre_completo": "Lost Servant",
+   "npc_type": 14275,
+   "sprite": 40134,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    151,
+    69
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90281022,
+   "nombre": "Lost Servant",
+   "nombre_completo": "Lost Servant",
+   "npc_type": 14275,
+   "sprite": 40134,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    126,
+    131
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90281023,
+   "nombre": "Lost Servant",
+   "nombre_completo": "Lost Servant",
+   "npc_type": 14275,
+   "sprite": 40134,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    125,
+    82
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90281024,
+   "nombre": "Lost Poet",
+   "nombre_completo": "Lost Poet",
+   "npc_type": 14273,
+   "sprite": 40090,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    150,
+    100
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90281025,
+   "nombre": "Lost Poet",
+   "nombre_completo": "Lost Poet",
+   "npc_type": 14273,
+   "sprite": 40090,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    99,
+    97
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90281026,
+   "nombre": "Lost Gardener",
+   "nombre_completo": "Lost Gardener",
+   "npc_type": 14272,
+   "sprite": 40099,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    179,
+    87
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90281027,
+   "nombre": "Lost Poet",
+   "nombre_completo": "Lost Poet",
+   "npc_type": 14273,
+   "sprite": 40090,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    101,
+    75
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90281028,
+   "nombre": "Lost Elderly",
+   "nombre_completo": "Lost Elderly",
+   "npc_type": 14274,
+   "sprite": 40064,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    151,
+    123
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90281029,
+   "nombre": "Lost Servant",
+   "nombre_completo": "Lost Servant",
+   "npc_type": 14275,
+   "sprite": 40134,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    41,
+    94
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90281030,
+   "nombre": "Lost Elderly",
+   "nombre_completo": "Lost Elderly",
+   "npc_type": 14274,
+   "sprite": 40064,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    179,
+    130
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

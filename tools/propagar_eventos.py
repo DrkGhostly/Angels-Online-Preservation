@@ -56,7 +56,8 @@ def _del_mapa(stage, ruta):
             'ev': d['evento'],
             'd': d['disparo'],
             'n': d['veces'],
-            'si': [[n, list(p)] for n, p in d['condiciones']],
+            'si': [[n, list(p)] + ([1] if neg else [])
+                   for (n, p), neg in zip(d['condiciones'], d['negadas'])],
             'haz': [[n, list(p)] for n, p in d['acciones']]})
 
     # casilla -> evento. Solo los objetos que disparan algo; los demas son
@@ -163,8 +164,9 @@ def ver(stage):
     print('mapa %d: %d disparadores, %d objetos que disparan, %d tags'
           % (stage, len(d['disparadores']), len(d['objetos']), len(d['tags'])))
     for x in d['disparadores'][:40]:
-        si = ', '.join('%s%s' % (condiciones.get(n, '?%d' % n), tuple(p))
-                       for n, p in x['si'])
+        si = ', '.join('%s%s%s' % ('NO ' if len(c) > 2 and c[2] else '',
+                                     condiciones.get(c[0], '?%d' % c[0]), tuple(c[1]))
+                       for c in x['si'])
         haz = '; '.join('%s%s' % (acciones.get(n, '?%d' % n), tuple(p))
                         for n, p in x['haz'])
         print('   ev %-6d disparo %-3d %s' % (x['ev'], x['d'],

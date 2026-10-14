@@ -1681,6 +1681,86 @@
    "msgid": 505823,
    "hex": "9601000001000000aa0000005d0000004765617220436c65726b00000000000000056e9c00000000c800000000ef3700800c00000000000000000000000000",
    "sprite": 40046
+  },
+  {
+   "entity_id": 407,
+   "nombre": "Porter Jade",
+   "nombre_completo": "Porter Jade",
+   "npc_type": 1909,
+   "sprite": 40044,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    246,
+    24
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 408,
+   "nombre": "BattlefieldAngel",
+   "nombre_completo": "BattlefieldAngel",
+   "npc_type": 2429,
+   "sprite": 40053,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    36,
+    14
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 409,
+   "nombre": "Ticket Angel",
+   "nombre_completo": "Ticket Angel",
+   "npc_type": 2008,
+   "sprite": 40044,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    153,
+    100
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 410,
+   "nombre": "Blessing Angel",
+   "nombre_completo": "Blessing Angel",
+   "npc_type": 8804,
+   "sprite": 40051,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    54,
+    21
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 411,
+   "nombre": "Little Exp Angel",
+   "nombre_completo": "Little Exp Angel",
+   "npc_type": 2686,
+   "sprite": 40179,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    205,
+    84
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

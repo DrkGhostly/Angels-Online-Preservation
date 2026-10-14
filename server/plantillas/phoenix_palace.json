@@ -4726,6 +4726,38 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 1
+  },
+  {
+   "entity_id": 90199000,
+   "nombre": "Old Man Gert",
+   "nombre_completo": "Old Man Gert",
+   "npc_type": 8987,
+   "sprite": 40183,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    283,
+    83
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90199001,
+   "nombre": "Patrol Leader",
+   "nombre_completo": "Patrol Leader",
+   "npc_type": 2427,
+   "sprite": 40052,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    24,
+    17
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

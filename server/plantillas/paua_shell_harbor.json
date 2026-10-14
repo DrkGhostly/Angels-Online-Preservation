@@ -3013,6 +3013,22 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 269
+  },
+  {
+   "entity_id": 123534,
+   "nombre": "Glowing Lakeside",
+   "nombre_completo": "Glowing Lakeside",
+   "npc_type": 14304,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    183,
+    109
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

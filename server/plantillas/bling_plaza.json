@@ -2393,6 +2393,102 @@
    "visible": 0,
    "nivel": 445,
    "nombre_original": "翠綠星光莉莉芙"
+  },
+  {
+   "entity_id": 90420000,
+   "nombre": "Manager Gable",
+   "nombre_completo": "Manager Gable",
+   "npc_type": 24831,
+   "sprite": 40783,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    111,
+    55
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90420001,
+   "nombre": "Nash",
+   "nombre_completo": "Nash",
+   "npc_type": 24817,
+   "sprite": 40210,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    127,
+    25
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90420002,
+   "nombre": "Tasha",
+   "nombre_completo": "Tasha",
+   "npc_type": 24818,
+   "sprite": 40475,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    189,
+    69
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90420003,
+   "nombre": "Gerd",
+   "nombre_completo": "Gerd",
+   "npc_type": 24819,
+   "sprite": 40568,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    13,
+    92
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90420004,
+   "nombre": "Vera",
+   "nombre_completo": "Vera",
+   "npc_type": 24821,
+   "sprite": 40015,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    234,
+    165
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90420005,
+   "nombre": "Jade",
+   "nombre_completo": "Jade",
+   "npc_type": 24822,
+   "sprite": 40023,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    241,
+    161
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

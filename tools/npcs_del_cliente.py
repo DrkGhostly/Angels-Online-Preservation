@@ -172,23 +172,58 @@ def revisar(solo=None):
     return faltan, movidos
 
 
+def _klass_conocidos():
+    """nombre -> klass de los NPC capturados: el mismo NPC lleva el mismo
+    klass en todos los mapas, y es el dato bueno (sale del servidor real)."""
+    k = {}
+    for f in PLANTILLAS.glob('*.json'):
+        try:
+            d = json.loads(f.read_text(encoding='utf-8'))
+        except Exception:
+            continue
+        for s in (d.get('spawns') or []) if isinstance(d, dict) else []:
+            if (isinstance(s, dict) and not s.get('monstruo') and s.get('nombre')
+                    and s.get('puesto_por') != 'npcs_del_cliente'):
+                k.setdefault(_corto(s['nombre']), s.get('klass'))
+    return k
+
+
+# klass por defecto: el de los NPC con dialogo, que son 1976 de los 2418
+# capturados (docs/guia_analisis_dialogos_npcs.md).
+KLASS_NPC = 199
+
+
 def poner(solo=None):
+    """Anade los NPC que faltan siguiendo las convenciones del proyecto:
+
+      * id de entidad A CONTINUACION de los NPC que ya tiene ese mapa, que es
+        el rango que usa el servidor para saber de que mapa es cada uno; solo
+        si el mapa no tiene ninguno se usa la base propia, 90.000.000;
+      * klass el de un NPC capturado con el mismo nombre, o 199;
+      * nombre cortado a 16, como viaja en el mensaje.
+    """
     faltan, _mov = revisar(solo)
     if not faltan:
         print('no falta ningun NPC')
         return True
     porstage = _plantillas_por_stage()
     usadas = _entidades_usadas()
+    klass_de = _klass_conocidos()
     total = 0
     for stage, lista in sorted(faltan.items()):
         fichero, datos = porstage[stage][0]     # la principal del mapa
         copia = fichero.with_suffix('.json.antes_npcs.bak')
         if not copia.exists():
             shutil.copy2(fichero, copia)
-        for i, n in enumerate(lista):
-            eid = BASE_ENTIDAD + stage * 1000 + i
-            while eid in usadas:
-                eid += 1
+        ids_npc = [int(s['entity_id']) for _f, d in porstage[stage]
+                   for s in d.get('spawns') or []
+                   if not s.get('monstruo') and s.get('entity_id')
+                   and int(s['entity_id']) < BASE_ENTIDAD]
+        siguiente = (max(ids_npc) + 1) if ids_npc else BASE_ENTIDAD + stage * 1000
+        for n in lista:
+            while siguiente in usadas:
+                siguiente += 1
+            eid = siguiente
             usadas.add(eid)
             datos['spawns'].append({
                 'entity_id': eid,
@@ -198,7 +233,7 @@ def poner(solo=None):
                 'nombre_completo': n['nombre'],
                 'npc_type': n['npc_type'],
                 'sprite': n['sprite'],
-                'klass': 400,
+                'klass': klass_de.get(_corto(n['nombre']), KLASS_NPC) or KLASS_NPC,
                 'monstruo': False,
                 'tile': n['tile'],
                 'direccion': 6,
@@ -206,11 +241,9 @@ def poner(solo=None):
                 'puesto_por': 'npcs_del_cliente',
             })
             total += 1
-            print('   %-5d %-22s %-12s -> %s' % (stage, n['nombre'],
-                                                 tuple(n['tile']), fichero.name))
-        fichero.write_text(json.dumps(datos, ensure_ascii=False, indent=2),
+        fichero.write_text(json.dumps(datos, ensure_ascii=False, indent=1),
                            encoding='utf-8')
-    print('anadidos %d NPC' % total)
+    print('anadidos %d NPC en %d mapas' % (total, len(faltan)))
     return True
 
 

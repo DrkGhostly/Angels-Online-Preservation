@@ -3134,6 +3134,22 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 364
+  },
+  {
+   "entity_id": 124019,
+   "nombre": "Little Mia",
+   "nombre_completo": "Little Mia",
+   "npc_type": 24583,
+   "sprite": 110079,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    32,
+    58
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

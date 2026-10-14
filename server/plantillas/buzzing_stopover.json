@@ -3669,6 +3669,22 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 224
+  },
+  {
+   "entity_id": 123477,
+   "nombre": "Sequoia's Core",
+   "nombre_completo": "Sequoia's Core",
+   "npc_type": 11333,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    266,
+    35
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

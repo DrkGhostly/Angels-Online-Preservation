@@ -3907,6 +3907,38 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 169
+  },
+  {
+   "entity_id": 123413,
+   "nombre": "Barrier Control",
+   "nombre_completo": "Barrier Control",
+   "npc_type": 11319,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    220,
+    117
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 123414,
+   "nombre": "Citrus River",
+   "nombre_completo": "Citrus River",
+   "npc_type": 11387,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    281,
+    124
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [
@@ -5210,6 +5242,36 @@
    "orient": 6,
    "sprite": 60005,
    "cola": "00004080140000"
+  },
+  {
+   "entity_id": 84690000,
+   "sprite": 60305,
+   "capa": 0,
+   "px": [
+    7031,
+    3728
+   ],
+   "tile": [
+    219,
+    116
+   ],
+   "crudo": "50440c0500000000771b0000900e00000000000027000000000000001a000000dc0691eb00004080140000",
+   "puesto_por": "objetos_de_mision"
+  },
+  {
+   "entity_id": 84690001,
+   "sprite": 60305,
+   "capa": 2,
+   "px": [
+    8975,
+    3952
+   ],
+   "tile": [
+    280,
+    123
+   ],
+   "crudo": "51440c05020000000f230000700f00000000000027000000000000001a000000dc0691eb00004080140000",
+   "puesto_por": "objetos_de_mision"
   }
  ]
 }

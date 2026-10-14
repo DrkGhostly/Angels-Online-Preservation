@@ -3355,6 +3355,22 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 304
+  },
+  {
+   "entity_id": 123821,
+   "nombre": "Crack",
+   "nombre_completo": "Crack",
+   "npc_type": 14709,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    194,
+    97
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

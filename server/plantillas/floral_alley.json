@@ -1573,6 +1573,54 @@
    "visible": 0,
    "nivel": 380,
    "nombre_original": "黑尾狐面"
+  },
+  {
+   "entity_id": 90398000,
+   "nombre": "Otohime",
+   "nombre_completo": "Otohime",
+   "npc_type": 24682,
+   "sprite": 40738,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    273,
+    138
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90398001,
+   "nombre": "Sir Chokei",
+   "nombre_completo": "Sir Chokei",
+   "npc_type": 24714,
+   "sprite": 40592,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    91,
+    38
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90398002,
+   "nombre": "Sleuth Goro",
+   "nombre_completo": "Sleuth Goro",
+   "npc_type": 24728,
+   "sprite": 40400,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    93,
+    134
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

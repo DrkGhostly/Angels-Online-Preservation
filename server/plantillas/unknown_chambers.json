@@ -6586,6 +6586,38 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 170
+  },
+  {
+   "entity_id": 90176000,
+   "nombre": "Archeology Profe",
+   "nombre_completo": "Archeology Professor Harrison",
+   "npc_type": 8903,
+   "sprite": 40332,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    26,
+    13
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90176001,
+   "nombre": "The Pharaoh's Bo",
+   "nombre_completo": "The Pharaoh's Book",
+   "npc_type": 8904,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    68,
+    29
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

@@ -3823,6 +3823,38 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 274
+  },
+  {
+   "entity_id": 123602,
+   "nombre": "Miyo's Home",
+   "nombre_completo": "Miyo's Home",
+   "npc_type": 14379,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    132,
+    111
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 123603,
+   "nombre": "Chiwa's Home",
+   "nombre_completo": "Chiwa's Home",
+   "npc_type": 14378,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    262,
+    97
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

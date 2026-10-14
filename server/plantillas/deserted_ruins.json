@@ -3425,6 +3425,22 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 234
+  },
+  {
+   "entity_id": 123528,
+   "nombre": "Ancient Spring",
+   "nombre_completo": "Ancient Spring",
+   "npc_type": 11491,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    203,
+    158
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

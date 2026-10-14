@@ -3655,6 +3655,38 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 264
+  },
+  {
+   "entity_id": 123600,
+   "nombre": "Magnificent Stat",
+   "nombre_completo": "Magnificent Statue",
+   "npc_type": 14377,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    188,
+    121
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 123601,
+   "nombre": "Ruined Shrine",
+   "nombre_completo": "Ruined Shrine",
+   "npc_type": 14380,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    235,
+    122
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

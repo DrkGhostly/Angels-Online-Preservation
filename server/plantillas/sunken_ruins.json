@@ -2723,6 +2723,22 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 99
+  },
+  {
+   "entity_id": 122554,
+   "nombre": "Controller Dado",
+   "nombre_completo": "Controller Dado",
+   "npc_type": 2218,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    16,
+    79
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

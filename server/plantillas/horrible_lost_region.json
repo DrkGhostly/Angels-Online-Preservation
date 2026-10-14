@@ -5281,6 +5281,54 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 100
+  },
+  {
+   "entity_id": 90101000,
+   "nombre": "Yatis Researcher",
+   "nombre_completo": "Yatis Researcher",
+   "npc_type": 2338,
+   "sprite": 40115,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    38,
+    158
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90101001,
+   "nombre": "Alchemist Maya",
+   "nombre_completo": "Alchemist Maya",
+   "npc_type": 2339,
+   "sprite": 40109,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    23,
+    53
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90101002,
+   "nombre": "Yatis  Mechanic",
+   "nombre_completo": "Yatis  Mechanic",
+   "npc_type": 2340,
+   "sprite": 40040,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    234,
+    154
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

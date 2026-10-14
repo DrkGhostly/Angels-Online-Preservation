@@ -2491,6 +2491,54 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 420
+  },
+  {
+   "entity_id": 90395000,
+   "nombre": "Kajus",
+   "nombre_completo": "Kajus",
+   "npc_type": 24666,
+   "sprite": 60005,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    125,
+    43
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90395001,
+   "nombre": "Kajus",
+   "nombre_completo": "Kajus",
+   "npc_type": 24666,
+   "sprite": 40440,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    74,
+    27
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90395002,
+   "nombre": "Athena's Servant",
+   "nombre_completo": "Athena's Servant",
+   "npc_type": 24667,
+   "sprite": 40113,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    269,
+    21
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

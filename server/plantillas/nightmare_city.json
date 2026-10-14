@@ -4156,6 +4156,22 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 379
+  },
+  {
+   "entity_id": 90351000,
+   "nombre": "Baux",
+   "nombre_completo": "Baux",
+   "npc_type": 14866,
+   "sprite": 40611,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    287,
+    22
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

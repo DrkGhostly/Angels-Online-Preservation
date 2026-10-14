@@ -3477,6 +3477,22 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 188
+  },
+  {
+   "entity_id": 123320,
+   "nombre": "Hot Spring Pools",
+   "nombre_completo": "Hot Spring Poolside",
+   "npc_type": 11280,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    169,
+    67
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

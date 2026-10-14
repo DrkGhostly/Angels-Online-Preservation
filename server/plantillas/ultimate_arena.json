@@ -1696,6 +1696,38 @@
    "visible": 0,
    "nivel": 443,
    "nombre_original": "兔子挑戰者"
+  },
+  {
+   "entity_id": 90421000,
+   "nombre": "Coach Keke",
+   "nombre_completo": "Coach Keke",
+   "npc_type": 24832,
+   "sprite": 40784,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    48,
+    31
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90421001,
+   "nombre": "Droo",
+   "nombre_completo": "Droo",
+   "npc_type": 24825,
+   "sprite": 40781,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    246,
+    51
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

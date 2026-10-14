@@ -3697,6 +3697,38 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 334
+  },
+  {
+   "entity_id": 123694,
+   "nombre": "Ancient Ruins",
+   "nombre_completo": "Ancient Ruins",
+   "npc_type": 14539,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    32,
+    155
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 123695,
+   "nombre": "Hidden Altar",
+   "nombre_completo": "Hidden Altar",
+   "npc_type": 14540,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    195,
+    112
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

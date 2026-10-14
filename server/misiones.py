@@ -126,21 +126,32 @@ _CADENAS_CIUDAD = {
 
 
 def normalizar_nombre_npc(nom: str) -> str:
-    """Normaliza el nombre de un NPC quitando prefijos de nivel, titulo y mapeando nombres truncados."""
-    n = (nom or '').strip().lower()
+    """Normaliza el nombre de un NPC para comparar el del mapa con el de la mision.
+
+    EL ORDEN IMPORTA. Los NPC de las plantillas llevan el nombre como viaja en
+    el mensaje, CORTADO A 16 caracteres, y las misiones lo llevan entero y a
+    veces con prefijos. Para que los dos lados se corten en el mismo sitio:
+
+      1. se quita el prefijo de nivel/rango, que nunca va en el nombre del NPC
+         ("Level 90 - ", "Lvl 20, Rank 2 - ");
+      2. se corta a 16, como en el mensaje;
+      3. y SOLO ENTONCES se quita el titulo (Mr., Dr., Master...).
+
+    Al reves no casaban: el mapa trae "Master Hunter Do" (cortado antes de
+    quitar el titulo) y quitando el titulo primero la mision daba "hunter
+    domma" contra "hunter do". Y sin cortar, Camp Leader Messi (en el mapa
+    "Camp Leader Mess") no casaba con su mision 902 y no la ofrecia.
+    """
     import re
-    n = re.sub(r'^(?:level|lvl)\s*\d+\s*[-–:]\s*', '', n).strip()
+    n = (nom or '').strip().lower()
+    # tambien las variantes que trae quest.xml: "Leve 85 - Bandor", "Level 80 Phobe"
+    n = re.sub(r'^(?:level|leve|lvl)\s*\d+(?:\s*,\s*rank\s*\d+)?\s*[-–:]?\s*', '', n).strip()
+    n = n[:16].strip()
     for prefix in ('mr. ', 'mr ', 'dr. ', 'dr ', 'mrs. ', 'ms. ', 'sage ', 'elder ', 'master '):
         if n.startswith(prefix):
             n = n[len(prefix):].strip()
             break
-    ALIASES = {
-        'green forest sch': 'green forest scholar',
-        'bassil archeolog': 'bassil archeologist',
-        'adventure guild': 'adventure guild admin',
-        'adventure guild ': 'adventure guild admin',
-    }
-    return ALIASES.get(n, n)
+    return n
 
 _NPC_STAGE_MAP = None
 _ITEM_NAMES_CACHE = None
@@ -316,6 +327,23 @@ def obtener_paso_actual(p, qid: int) -> int:
     return 0
 
 
+_REQUISITOS = None
+
+
+def requisitos_de(qid):
+    """Lo que pide la mision para ofrecerse: caminos de misiones previas
+    (basta cumplir uno) y si la faccion es libre. Sale de
+    tools/requisitos_misiones.py, que lo lee de los mapas y de quest.xml."""
+    global _REQUISITOS
+    if _REQUISITOS is None:
+        f = pathlib.Path(__file__).parent / 'plantillas' / 'requisitos_misiones.json'
+        try:
+            _REQUISITOS = json.loads(f.read_text(encoding='utf-8')).get('misiones', {})
+        except Exception:
+            _REQUISITOS = {}
+    return _REQUISITOS.get(str(int(qid)))
+
+
 def misiones_disponibles_npc(p, npc_nombre: str, stage: int = 0, entidad: int = 0) -> list:
     """Devuelve la lista de IDs de misiones que este NPC puede ofrecer al personaje."""
     _cargar_db()
@@ -345,6 +373,13 @@ def misiones_disponibles_npc(p, npc_nombre: str, stage: int = 0, entidad: int = 
             if normalizar_nombre_npc(k_npc) == norm_l:
                 qids = list(v_qids)
                 break
+    # Ultimo intento: el NPC es el FINAL del nombre de la mision ("Explorer
+    # Nel" en la mision, "Nel" en el mapa). Solo con misiones de ESTE mapa,
+    # para no ofrecer las de un NPC del mismo nombre en otro sitio.
+    if not qids and stage and len(norm_l) >= 3:
+        for k_npc, v_qids in _NPC_INICIO.items():
+            if normalizar_nombre_npc(k_npc).endswith(' ' + norm_l):
+                qids += [q for q in v_qids if info_mision(q).get('stage_id') == stage]
 
     disponibles = []
 
@@ -390,8 +425,26 @@ def misiones_disponibles_npc(p, npc_nombre: str, stage: int = 0, entidad: int = 
         if comp and not es_repetible(qid):
             continue
 
+        # 3b. REQUISITO PREVIO, de los datos del cliente (requisitos_misiones
+        # .json). Sin esto no habia orden: Camp Leader Messi ofrecia la 905 y
+        # la 910 a quien acababa de terminar la 901. El dialogo de Messi en el
+        # mapa dice que la 902 se ofrece al que termino la 901, la 905 al que
+        # termino la 904 y la 910 al que termino la 908 (o, en otro mapa, la
+        # 909): con cumplir UN camino basta.
+        _rq = requisitos_de(qid)
+        if _rq and _rq.get('caminos'):
+            if not any(all(mision_completada(p, int(pr)) for pr in cam)
+                       for cam in _rq['caminos']):
+                continue
+
         # 4. Comprobar faccion de la mision
         q_fac = info.get('faccion')
+        # La faccion de misiones_completas.json la puso el compilador, porque
+        # quest.xml no la trae. Cuando la oferta esta en el dialogo de un mapa
+        # y ese dialogo NO pide faccion, la mision es para todas: asi la 902
+        # "The Return Plan", que salio como solo-Beasts y la hace cualquiera.
+        if _rq and _rq.get('faccion_libre'):
+            q_fac = None
         if q_fac:
             q_fac_l = q_fac.strip().lower()
             q_norm = 'aurora' if 'aurora' in q_fac_l else ('shadow' if ('shadow' in q_fac_l or 'dark' in q_fac_l) else ('steel' if ('steel' in q_fac_l or 'iron' in q_fac_l) else ('beasts' if ('beast' in q_fac_l or 'breeze' in q_fac_l) else '')))
@@ -727,6 +780,24 @@ def registrar_baja_monstruo(ses, npc_type: int, monster_name: str = None) -> boo
         if clave_tupla in OBJETIVOS_CACERIA:
             c_data = OBJETIVOS_CACERIA[clave_tupla]
         elif k_cac in _CACERIAS:
+            # Las entradas COMPILADAS se apartan cuando el mapa del cliente ya
+            # define este paso: alli esta exacto que bicho da que token y
+            # cuando se avanza, y lo ejecuta server/eventos.py. El compilador
+            # rompia justo estos casos -- en la 901 tomo "the following
+            # monsters away" por nombre de monstruo y sumaba las cuatro
+            # cacerias en un solo contador, con ese texto en el chat. Las de
+            # OBJETIVOS_CACERIA, puestas a mano, no se tocan.
+            #
+            # Y solo las ROTAS, las que el compilador dejo sin ids de
+            # monstruo (481 de 880): las que si tienen ids ya contaban y se
+            # dejan como estaban, para no cambiar misiones que funcionan.
+            try:
+                import eventos as _ev_m
+                if (not _CACERIAS[k_cac].get('monstruo_ids')
+                        and _ev_m.paso_definido_por_muertes(q, max(0, int(pa) - 1))):
+                    continue
+            except Exception:
+                pass
             c_data = _CACERIAS[k_cac]
 
         if not c_data:
@@ -1005,6 +1076,77 @@ def verificar_entrega_items(ses, qid: int, paso: int) -> bool:
     return True
 
 
+# Palabras que no distinguen a un NPC de otro: cargos, lugares, oficios.
+_PALABRAS_COMUNES = {
+    'the', 'camp', 'leader', 'angel', 'chief', 'captain', 'elder', 'master',
+    'sage', 'guard', 'guardian', 'city', 'village', 'director', 'seller',
+    'salesman', 'expert', 'clerk', 'bank', 'banker', 'little', 'young', 'old',
+    'great', 'lady', 'lord', 'king', 'queen', 'general', 'soldier', 'militia',
+    'officer', 'priest', 'doctor', 'level', 'from', 'with', 'town', 'forest',
+    'green', 'scholar', 'admin', 'guild', 'staff', 'head', 'lyceum', 'mage'}
+_NOMBRES_NPC = None
+
+
+def _palabras(nombre):
+    import re as _re
+    return [w for w in _re.findall(r"[a-z][a-z'-]+", (nombre or '').lower())]
+
+
+def npc_segun_texto(texto, npc_clicado):
+    """Si el texto del paso apunta al NPC que se ha clicado.
+
+    True  el texto lo nombra
+    False el texto nombra a OTRO NPC
+    None  el texto no nombra a ninguno: que decida el NPC compilado
+
+    POR QUE. El compilador asigno mal el NPC de 236 pasos de "hablar con": la
+    902 dice "1. Talk to Sharker in the Breeze Woods" y le puso Camp Leader
+    Messi, y la 152 dice "dale los caramelos a Lloyd" y le puso Item Angel.
+    Clicando a Sharker salia su dialogo de siempre y la mision no avanzaba.
+    El texto es del cliente y es el que dice a quien ir.
+
+    Se compara por palabras DISTINTIVAS del NPC clicado, no por el nombre
+    entero, porque los textos usan nombres cortos ("Talk to Messi in the
+    Waterfall Camp") y el NPC llega cortado a 16 ("Camp Leader Mess"): basta
+    con que una palabra suya sin cargo ni lugar empiece una palabra del texto.
+    """
+    import re as _re
+    global _NOMBRES_NPC
+    t = _re.sub(r'/c[$#][0-9a-fA-F]*|/c\*|\n', ' ', texto or '').lower()
+    pal_t = set(_re.findall(r"[a-z][a-z'-]+", t))
+    if not pal_t:
+        return None
+    mias = [w for w in _palabras(npc_clicado) if len(w) >= 4 and w not in _PALABRAS_COMUNES]
+    if any(any(x.startswith(w) for x in pal_t) for w in mias):
+        return True
+    # No me nombra a mi: nombra a algun otro NPC conocido?
+    if _NOMBRES_NPC is None:
+        _NOMBRES_NPC = set()
+        try:
+            import sqlite3
+            db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
+            con = sqlite3.connect(str(db))
+            for (n,) in con.execute('select name from npc'):
+                for w in _palabras(n):
+                    if len(w) >= 4 and w not in _PALABRAS_COMUNES:
+                        _NOMBRES_NPC.add(w)
+            con.close()
+        except Exception:
+            pass
+    # Solo cuenta si el nombre va DETRAS de "to / with / ask / tell / visit"
+    # ("Talk to Sharker", "hand it to Lloyd", "talk to the Leader Alonso"),
+    # saltando articulos y cargos. Una palabra suelta no basta: "find a Wind
+    # Pinecone" no manda a ningun NPC, pero "wind" es de Wind Elf y Wind Gate.
+    for m in _re.finditer(r"\b(?:to|with|ask|tell|visit)\s+((?:[a-z'-]+\s+){0,3}[a-z'-]+)", t):
+        for w in m.group(1).split():
+            if w in ('the', 'a', 'an') or w in _PALABRAS_COMUNES:
+                continue
+            if w in _NOMBRES_NPC:
+                return False
+            break
+    return None
+
+
 def interactuar_npc(ses, npc_nombre: str, entidad: int = 0) -> tuple:
     """
     Gestiona la conversacion o entrega de misiones con un NPC.
@@ -1044,8 +1186,14 @@ def interactuar_npc(ses, npc_nombre: str, entidad: int = 0) -> tuple:
             target_norm = normalizar_nombre_npc(npc_target)
             nom_norm = normalizar_nombre_npc(nom_clean)
 
-            if npc_target and (npc_target == nom_clean or nom_clean in npc_target or npc_target in nom_clean
-                               or target_norm == nom_norm or (target_norm and target_norm in nom_norm) or (nom_norm and nom_norm in target_norm)):
+            _coincide_compilado = bool(npc_target) and (
+                npc_target == nom_clean or nom_clean in npc_target or npc_target in nom_clean
+                or target_norm == nom_norm or (target_norm and target_norm in nom_norm)
+                or (nom_norm and nom_norm in target_norm))
+            # El texto del paso manda sobre el NPC compilado (ver
+            # npc_segun_texto): None si el texto no nombra a nadie.
+            _por_texto = npc_segun_texto(paso_actual.get('texto'), nom_clean)
+            if (_por_texto is True) or (_por_texto is None and _coincide_compilado):
                 tipo_obj = paso_actual.get('tipo', 'hablar')
                 
                 # Objetivo de recoleccion

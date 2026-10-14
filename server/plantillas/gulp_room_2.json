@@ -16,6 +16,38 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 78
+  },
+  {
+   "entity_id": 90077000,
+   "nombre": "Assoc. Pioneer",
+   "nombre_completo": "Assoc. Pioneer",
+   "npc_type": 2091,
+   "sprite": 40068,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    37,
+    241
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90077001,
+   "nombre": "Researcher Polo",
+   "nombre_completo": "Researcher Polo",
+   "npc_type": 2092,
+   "sprite": 40126,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    312,
+    45
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

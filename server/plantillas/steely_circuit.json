@@ -2158,6 +2158,38 @@
    "nombre_original": "鐵輪堡圖騰",
    "anadido_a_mano": true,
    "_motivo": "El servidor NO lo manda en este mapa. Se busco en los 28.768 mensajes de la sesion completa con el jugador parado al lado, y el unico Aurora Totem que llega esta en el stage 407, en (132,74). Aqui los otros tres si llegan. El usuario confirma por captura de pantalla que existe, asi que se anade a mano. LA CASILLA (189,132) LA DIO EL USUARIO leyendola en el juego. Antes se habia puesto (189,128), deducida de una captura de pantalla, y estaba cuatro casillas arriba."
+  },
+  {
+   "entity_id": 41000002,
+   "nombre": "Linnie",
+   "nombre_completo": "Linnie",
+   "npc_type": 24784,
+   "sprite": 40262,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    198,
+    75
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 41000003,
+   "nombre": "Guardian",
+   "nombre_completo": "Guardian",
+   "npc_type": 24770,
+   "sprite": 40498,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    41,
+    25
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

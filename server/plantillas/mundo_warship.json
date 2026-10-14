@@ -7691,6 +7691,38 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 208
+  },
+  {
+   "entity_id": 90229000,
+   "nombre": "Adventurer Vanso",
+   "nombre_completo": "Adventurer Vanson",
+   "npc_type": 11183,
+   "sprite": 40029,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    292,
+    14
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90229001,
+   "nombre": "Patrol Leader",
+   "nombre_completo": "Patrol Leader",
+   "npc_type": 2427,
+   "sprite": 40052,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    277,
+    11
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

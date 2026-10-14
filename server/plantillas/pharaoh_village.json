@@ -3387,6 +3387,22 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 109
+  },
+  {
+   "entity_id": 123097,
+   "nombre": "Crop Field",
+   "nombre_completo": "Crop Field",
+   "npc_type": 8902,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    226,
+    111
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

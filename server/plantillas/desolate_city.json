@@ -2640,6 +2640,54 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 364
+  },
+  {
+   "entity_id": 124013,
+   "nombre": "Gem Stele II",
+   "nombre_completo": "Gem Stele II",
+   "npc_type": 14996,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    170,
+    158
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 124014,
+   "nombre": "Gem Stele III",
+   "nombre_completo": "Gem Stele III",
+   "npc_type": 14997,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    191,
+    162
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 124015,
+   "nombre": "Gem Stele I",
+   "nombre_completo": "Gem Stele I",
+   "npc_type": 14995,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    147,
+    163
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

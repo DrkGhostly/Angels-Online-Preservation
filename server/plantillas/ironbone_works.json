@@ -1743,6 +1743,22 @@
    "visible": 0,
    "nivel": 413,
    "nombre_original": "暴徒機甲"
+  },
+  {
+   "entity_id": 90408000,
+   "nombre": "Mechanic Valanqi",
+   "nombre_completo": "Mechanic Valanqi",
+   "npc_type": 24787,
+   "sprite": 40587,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    35,
+    71
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

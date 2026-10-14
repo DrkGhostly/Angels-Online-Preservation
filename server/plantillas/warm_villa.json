@@ -2255,6 +2255,38 @@
    "visible": 0,
    "nivel": 401,
    "nombre_original": "白沫煙怪"
+  },
+  {
+   "entity_id": 90400000,
+   "nombre": "Sir Imadoki",
+   "nombre_completo": "Sir Imadoki",
+   "npc_type": 24685,
+   "sprite": 40740,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    183,
+    107
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90400001,
+   "nombre": "Alchemist Bloom",
+   "nombre_completo": "Alchemist Bloom",
+   "npc_type": 24717,
+   "sprite": 40524,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    285,
+    38
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

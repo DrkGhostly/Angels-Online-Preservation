@@ -3560,6 +3560,86 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 114
+  },
+  {
+   "entity_id": 122778,
+   "nombre": "Broken Tool",
+   "nombre_completo": "Broken Tool",
+   "npc_type": 6868,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    224,
+    34
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 122779,
+   "nombre": "Broken Tool",
+   "nombre_completo": "Broken Tool",
+   "npc_type": 6868,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    234,
+    90
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 122780,
+   "nombre": "Broken Tool",
+   "nombre_completo": "Broken Tool",
+   "npc_type": 6868,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    176,
+    113
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 122850,
+   "nombre": "Broken Tool",
+   "nombre_completo": "Broken Tool",
+   "npc_type": 6868,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    243,
+    168
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 123039,
+   "nombre": "Broken Tool",
+   "nombre_completo": "Broken Tool",
+   "npc_type": 6868,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    263,
+    123
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

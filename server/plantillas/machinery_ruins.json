@@ -1806,6 +1806,86 @@
    "visible": 0,
    "nivel": 421,
    "nombre_original": "鐵渣掠奪者"
+  },
+  {
+   "entity_id": 90409000,
+   "nombre": "Seth",
+   "nombre_completo": "Seth",
+   "npc_type": 24765,
+   "sprite": 40758,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    213,
+    147
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90409001,
+   "nombre": "Reus",
+   "nombre_completo": "Reus",
+   "npc_type": 24766,
+   "sprite": 40760,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    93,
+    85
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90409002,
+   "nombre": "Bass",
+   "nombre_completo": "Bass",
+   "npc_type": 24768,
+   "sprite": 40759,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    191,
+    75
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90409003,
+   "nombre": "Cass",
+   "nombre_completo": "Cass",
+   "npc_type": 24767,
+   "sprite": 40029,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    140,
+    91
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90409004,
+   "nombre": "Chief Reise",
+   "nombre_completo": "Chief Reise",
+   "npc_type": 24788,
+   "sprite": 40595,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    117,
+    71
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

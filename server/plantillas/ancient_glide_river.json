@@ -3164,6 +3164,70 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 109
+  },
+  {
+   "entity_id": 122565,
+   "nombre": "Doubtful Air 1",
+   "nombre_completo": "Doubtful Air 1",
+   "npc_type": 2461,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    149,
+    154
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 122566,
+   "nombre": "Doubtful Air 2",
+   "nombre_completo": "Doubtful Air 2",
+   "npc_type": 2462,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    269,
+    114
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 122567,
+   "nombre": "Doubtful Air 3",
+   "nombre_completo": "Doubtful Air 3",
+   "npc_type": 2463,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    286,
+    12
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 122568,
+   "nombre": "Doubtful Air 4",
+   "nombre_completo": "Doubtful Air 4",
+   "npc_type": 2464,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    83,
+    10
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

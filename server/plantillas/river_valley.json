@@ -3025,6 +3025,22 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 84
+  },
+  {
+   "entity_id": 122563,
+   "nombre": "Cotton Wood",
+   "nombre_completo": "Cotton Wood",
+   "npc_type": 2472,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    199,
+    67
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [
@@ -6369,6 +6385,21 @@
    "orient": 6,
    "sprite": 60157,
    "cola": "00004080000000"
+  },
+  {
+   "entity_id": 70290000,
+   "sprite": 60378,
+   "capa": 0,
+   "px": [
+    6376,
+    2160
+   ],
+   "tile": [
+    199,
+    67
+   ],
+   "crudo": "508a300400000000e8180000700800000000000027000000000000001a000000dc06daeb00004080140000",
+   "puesto_por": "objetos_de_mision"
   }
  ]
 }

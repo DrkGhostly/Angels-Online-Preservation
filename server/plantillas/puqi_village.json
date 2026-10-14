@@ -155,6 +155,22 @@
    ],
    "direccion": 6,
    "visible": 1
+  },
+  {
+   "entity_id": 122551,
+   "nombre": "Profiteer Manny",
+   "nombre_completo": "Profiteer Manny",
+   "npc_type": 2281,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    159,
+    103
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

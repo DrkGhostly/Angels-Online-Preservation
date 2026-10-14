@@ -3177,6 +3177,22 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 339
+  },
+  {
+   "entity_id": 123824,
+   "nombre": "Crystal Vein",
+   "nombre_completo": "Crystal Vein",
+   "npc_type": 14736,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    129,
+    62
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

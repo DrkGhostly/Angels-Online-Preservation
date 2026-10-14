@@ -1758,6 +1758,38 @@
    "visible": 0,
    "nivel": 413,
    "nombre_original": "雙斧戰士"
+  },
+  {
+   "entity_id": 90401000,
+   "nombre": "Rich Kaneshiro",
+   "nombre_completo": "Rich Kaneshiro",
+   "npc_type": 24719,
+   "sprite": 40573,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    163,
+    11
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90401001,
+   "nombre": "Offering Chest",
+   "nombre_completo": "Offering Chest",
+   "npc_type": 24720,
+   "sprite": 40747,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    284,
+    104
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

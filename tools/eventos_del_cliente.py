@@ -118,6 +118,10 @@ def disparadores_del_mapa(ruta):
                 'disparo': int(tr.get('觸發') or 0),
                 'veces': int(tr.get('次數') or 0),
                 'condiciones': [_cod(c) for c in tr.findall('條件')],
+                # 反向="1": la condicion va NEGADA ("si NO llevas la mision").
+                # Se perdia al extraer y el interprete evaluaba al reves las
+                # 566 condiciones negadas de los mapas.
+                'negadas': [c.get('反向') == '1' for c in tr.findall('條件')],
                 'acciones': [_cod(a) for a in tr.findall('動作')]})
     return salida
 

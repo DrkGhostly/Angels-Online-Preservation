@@ -2185,6 +2185,38 @@
    "direccion": 0,
    "visible": 0,
    "nivel": 74
+  },
+  {
+   "entity_id": 122328,
+   "nombre": "Stainless Drill",
+   "nombre_completo": "Stainless Drill",
+   "npc_type": 2122,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    280,
+    114
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 122329,
+   "nombre": "Knight Statue",
+   "nombre_completo": "Knight Statue",
+   "npc_type": 2124,
+   "sprite": 60241,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    275,
+    58
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

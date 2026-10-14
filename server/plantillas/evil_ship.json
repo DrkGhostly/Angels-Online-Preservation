@@ -1846,6 +1846,22 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 90
+  },
+  {
+   "entity_id": 90097000,
+   "nombre": "Kateman",
+   "nombre_completo": "Kateman",
+   "npc_type": 2203,
+   "sprite": 40007,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    101,
+    26
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

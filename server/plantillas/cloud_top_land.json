@@ -2761,6 +2761,86 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 110
+  },
+  {
+   "entity_id": 90111000,
+   "nombre": "Patrol Leader",
+   "nombre_completo": "Patrol Leader",
+   "npc_type": 2427,
+   "sprite": 40052,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    36,
+    35
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90111001,
+   "nombre": "Angel Pickets",
+   "nombre_completo": "Angel Pickets",
+   "npc_type": 1990,
+   "sprite": 40053,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    80,
+    91
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90111002,
+   "nombre": "Angel Pickets",
+   "nombre_completo": "Angel Pickets",
+   "npc_type": 1990,
+   "sprite": 40053,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    197,
+    82
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90111003,
+   "nombre": "Patrol Leader",
+   "nombre_completo": "Patrol Leader",
+   "npc_type": 2427,
+   "sprite": 40053,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    155,
+    150
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90111004,
+   "nombre": "Front Leader Har",
+   "nombre_completo": "Front Leader Harson",
+   "npc_type": 2645,
+   "sprite": 40216,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    9,
+    49
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

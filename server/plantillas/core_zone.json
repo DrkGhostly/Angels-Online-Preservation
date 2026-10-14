@@ -3046,6 +3046,22 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 460
+  },
+  {
+   "entity_id": 90411000,
+   "nombre": "Guardian Kathy",
+   "nombre_completo": "Guardian Kathy",
+   "npc_type": 24790,
+   "sprite": 40497,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    288,
+    67
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

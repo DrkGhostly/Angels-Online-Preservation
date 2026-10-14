@@ -7126,6 +7126,70 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 127
+  },
+  {
+   "entity_id": 90145000,
+   "nombre": "Survival Maid",
+   "nombre_completo": "Survival Maid",
+   "npc_type": 6820,
+   "sprite": 40274,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    91,
+    126
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90145001,
+   "nombre": "Gerardus",
+   "nombre_completo": "Gerardus",
+   "npc_type": 6813,
+   "sprite": 40294,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    14,
+    17
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90145002,
+   "nombre": "Follower Drachma",
+   "nombre_completo": "Follower Drachma",
+   "npc_type": 6821,
+   "sprite": 40009,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    241,
+    229
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90145003,
+   "nombre": "Angel Commission",
+   "nombre_completo": "Angel Commissioner",
+   "npc_type": 6816,
+   "sprite": 40002,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    29,
+    28
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [

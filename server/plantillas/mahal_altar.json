@@ -5051,6 +5051,70 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 249
+  },
+  {
+   "entity_id": 90263000,
+   "nombre": "Mahal Festival",
+   "nombre_completo": "Mahal Festival",
+   "npc_type": 11450,
+   "sprite": 40483,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    23,
+    25
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90263001,
+   "nombre": "Icy Cask",
+   "nombre_completo": "Icy Cask",
+   "npc_type": 11479,
+   "sprite": 40489,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    152,
+    108
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90263002,
+   "nombre": "Fiery Cask",
+   "nombre_completo": "Fiery Cask",
+   "npc_type": 11480,
+   "sprite": 40489,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    159,
+    112
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
+  },
+  {
+   "entity_id": 90263003,
+   "nombre": "Haka",
+   "nombre_completo": "Haka",
+   "npc_type": 11449,
+   "sprite": 40480,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    142,
+    73
+   ],
+   "direccion": 6,
+   "visible": 1,
+   "puesto_por": "npcs_del_cliente"
   }
  ],
  "recursos": [
