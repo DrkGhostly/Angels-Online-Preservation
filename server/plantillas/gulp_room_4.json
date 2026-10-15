@@ -1,5 +1,5 @@
 {
- "_nota": "gulp_room_4 (stage 79). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map079.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py. OLEADAS: fuera 64 bichos de la captura que salen por evento (tools/quitar_oleadas.py). OLEADAS: fuera 6 bichos de la captura que salen por evento (tools/quitar_oleadas.py).",
+ "_nota": "gulp_room_4 (stage 79). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map079.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py. OLEADAS: fuera 64 bichos de la captura que salen por evento (tools/quitar_oleadas.py). OLEADAS: fuera 6 bichos de la captura que salen por evento (tools/quitar_oleadas.py). SUELO (15/10/2026): los monstruos que caian fuera del suelo transitable o en el borde (el reparto en anillo de poblar_del_cliente no miraba el suelo) se mueven a la casilla interior mas cercana, hasta 8 casillas. CRISTALES (15/10/2026): las zonas 204..208 (Crystal 1/2, Big Crystal 1/2/7) declaran 30 cada una sobre UN solo punto y ningun evento las genera: salian 150 cristales amontonados alrededor del Evil Eye. Se dejan 3 de cada una, en suelo transitable junto a su punto. El usuario: \"exceso de cristales donde deberia estar Evil Eye\".",
  "stage": 79,
  "spawns": [
   {
@@ -10,8 +10,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    96,
-    97
+    99,
+    100
    ],
    "direccion": 2,
    "visible": 0,
@@ -55,8 +55,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    91,
-    102
+    90,
+    97
    ],
    "direccion": 2,
    "visible": 0,
@@ -250,7 +250,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    132,
+    134,
     239
    ],
    "direccion": 2,
@@ -265,8 +265,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    132,
-    244
+    134,
+    243
    ],
    "direccion": 2,
    "visible": 0,
@@ -295,8 +295,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    137,
-    244
+    135,
+    242
    ],
    "direccion": 2,
    "visible": 0,
@@ -325,8 +325,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    142,
-    244
+    144,
+    241
    ],
    "direccion": 2,
    "visible": 0,
@@ -355,8 +355,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    147,
-    244
+    144,
+    241
    ],
    "direccion": 2,
    "visible": 0,
@@ -371,7 +371,7 @@
    "monstruo": true,
    "tile": [
     96,
-    92
+    94
    ],
    "direccion": 2,
    "visible": 0,
@@ -385,7 +385,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    143,
+    139,
     125
    ],
    "direccion": 2,
@@ -415,8 +415,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    96,
-    102
+    98,
+    100
    ],
    "direccion": 2,
    "visible": 0,
@@ -430,8 +430,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    101,
-    92
+    98,
+    95
    ],
    "direccion": 2,
    "visible": 0,
@@ -445,7 +445,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    138,
+    137,
     120
    ],
    "direccion": 2,
@@ -490,7 +490,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    101,
+    100,
     97
    ],
    "direccion": 2,
@@ -550,8 +550,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    208,
-    84
+    206,
+    86
    ],
    "direccion": 2,
    "visible": 0,
@@ -566,7 +566,7 @@
    "monstruo": true,
    "tile": [
     86,
-    87
+    89
    ],
    "direccion": 2,
    "visible": 0,
@@ -580,8 +580,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    138,
-    130
+    140,
+    127
    ],
    "direccion": 2,
    "visible": 0,
@@ -610,8 +610,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    143,
-    120
+    142,
+    122
    ],
    "direccion": 2,
    "visible": 0,
@@ -625,8 +625,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    133,
-    45
+    131,
+    44
    ],
    "direccion": 2,
    "visible": 0,
@@ -656,7 +656,7 @@
    "monstruo": true,
    "tile": [
     86,
-    97
+    95
    ],
    "direccion": 2,
    "visible": 0,
@@ -670,8 +670,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    143,
-    130
+    144,
+    129
    ],
    "direccion": 2,
    "visible": 0,
@@ -685,8 +685,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    86,
-    102
+    90,
+    97
    ],
    "direccion": 2,
    "visible": 0,
@@ -700,8 +700,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    148,
-    120
+    146,
+    124
    ],
    "direccion": 2,
    "visible": 0,
@@ -745,8 +745,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    91,
-    87
+    88,
+    90
    ],
    "direccion": 2,
    "visible": 0,
@@ -775,8 +775,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    91,
-    107
+    98,
+    100
    ],
    "direccion": 2,
    "visible": 0,
@@ -790,8 +790,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    96,
-    87
+    93,
+    92
    ],
    "direccion": 2,
    "visible": 0,
@@ -821,7 +821,7 @@
    "monstruo": true,
    "tile": [
     138,
-    45
+    42
    ],
    "direccion": 2,
    "visible": 0,
@@ -850,8 +850,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    96,
-    107
+    100,
+    102
    ],
    "direccion": 2,
    "visible": 0,
@@ -880,8 +880,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    101,
-    87
+    94,
+    93
    ],
    "direccion": 2,
    "visible": 0,
@@ -925,8 +925,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    101,
-    107
+    103,
+    105
    ],
    "direccion": 2,
    "visible": 0,
@@ -940,8 +940,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    106,
-    87
+    98,
+    95
    ],
    "direccion": 2,
    "visible": 0,
@@ -955,8 +955,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    133,
-    125
+    134,
+    124
    ],
    "direccion": 2,
    "visible": 0,
@@ -985,8 +985,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    106,
-    92
+    101,
+    98
    ],
    "direccion": 2,
    "visible": 0,
@@ -1000,8 +1000,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    106,
-    97
+    101,
+    99
    ],
    "direccion": 2,
    "visible": 0,
@@ -1015,8 +1015,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    133,
-    130
+    136,
+    125
    ],
    "direccion": 2,
    "visible": 0,
@@ -1031,7 +1031,7 @@
    "monstruo": true,
    "tile": [
     106,
-    102
+    104
    ],
    "direccion": 2,
    "visible": 0,
@@ -1045,8 +1045,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    133,
-    135
+    141,
+    127
    ],
    "direccion": 2,
    "visible": 0,
@@ -1060,8 +1060,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    143,
-    45
+    141,
+    42
    ],
    "direccion": 2,
    "visible": 0,
@@ -1090,7 +1090,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    138,
+    135,
     115
    ],
    "direccion": 2,
@@ -1105,8 +1105,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    128,
-    30
+    125,
+    33
    ],
    "direccion": 2,
    "visible": 0,
@@ -1120,8 +1120,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    81,
-    82
+    78,
+    84
    ],
    "direccion": 2,
    "visible": 0,
@@ -1135,7 +1135,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    81,
+    80,
     87
    ],
    "direccion": 2,
@@ -1150,8 +1150,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    138,
-    135
+    144,
+    129
    ],
    "direccion": 2,
    "visible": 0,
@@ -1195,8 +1195,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    143,
-    115
+    140,
+    121
    ],
    "direccion": 2,
    "visible": 0,
@@ -1210,8 +1210,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    81,
-    97
+    82,
+    93
    ],
    "direccion": 2,
    "visible": 0,
@@ -1225,8 +1225,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    143,
-    135
+    147,
+    130
    ],
    "direccion": 2,
    "visible": 0,
@@ -1255,8 +1255,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    81,
-    102
+    87,
+    95
    ],
    "direccion": 2,
    "visible": 0,
@@ -1270,8 +1270,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    148,
-    115
+    141,
+    122
    ],
    "direccion": 2,
    "visible": 0,
@@ -1300,8 +1300,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    148,
-    135
+    150,
+    132
    ],
    "direccion": 2,
    "visible": 0,
@@ -1315,7 +1315,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    128,
+    127,
     45
    ],
    "direccion": 2,
@@ -1330,8 +1330,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    213,
-    84
+    209,
+    87
    ],
    "direccion": 2,
    "visible": 0,
@@ -1360,8 +1360,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    153,
-    115
+    159,
+    122
    ],
    "direccion": 2,
    "visible": 0,
@@ -1375,8 +1375,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    86,
-    82
+    84,
+    88
    ],
    "direccion": 2,
    "visible": 0,
@@ -1390,8 +1390,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    153,
-    120
+    156,
+    124
    ],
    "direccion": 2,
    "visible": 0,
@@ -1405,8 +1405,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    128,
-    50
+    126,
+    45
    ],
    "direccion": 2,
    "visible": 0,
@@ -1465,8 +1465,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    91,
-    82
+    85,
+    89
    ],
    "direccion": 2,
    "visible": 0,
@@ -1510,8 +1510,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    133,
-    30
+    135,
+    33
    ],
    "direccion": 2,
    "visible": 0,
@@ -1525,8 +1525,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    96,
-    82
+    88,
+    90
    ],
    "direccion": 2,
    "visible": 0,
@@ -1555,8 +1555,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    259,
-    135
+    262,
+    140
    ],
    "direccion": 2,
    "visible": 0,
@@ -1570,413 +1570,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    259,
+    263,
     140
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900105,
-   "nombre": "Crystal 1",
-   "npc_type": 857,
-   "sprite": 42352,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    259,
-    145
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900106,
-   "nombre": "Crystal 1",
-   "npc_type": 857,
-   "sprite": 42352,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    264,
-    135
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900107,
-   "nombre": "Crystal 1",
-   "npc_type": 857,
-   "sprite": 42352,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    264,
-    145
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900108,
-   "nombre": "Crystal 1",
-   "npc_type": 857,
-   "sprite": 42352,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    269,
-    135
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900109,
-   "nombre": "Crystal 1",
-   "npc_type": 857,
-   "sprite": 42352,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    269,
-    140
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900110,
-   "nombre": "Crystal 1",
-   "npc_type": 857,
-   "sprite": 42352,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    269,
-    145
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900111,
-   "nombre": "Crystal 1",
-   "npc_type": 857,
-   "sprite": 42352,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    254,
-    130
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900112,
-   "nombre": "Crystal 1",
-   "npc_type": 857,
-   "sprite": 42352,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    254,
-    135
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900113,
-   "nombre": "Crystal 1",
-   "npc_type": 857,
-   "sprite": 42352,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    254,
-    140
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900114,
-   "nombre": "Crystal 1",
-   "npc_type": 857,
-   "sprite": 42352,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    254,
-    145
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900115,
-   "nombre": "Crystal 1",
-   "npc_type": 857,
-   "sprite": 42352,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    254,
-    150
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900116,
-   "nombre": "Crystal 1",
-   "npc_type": 857,
-   "sprite": 42352,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    259,
-    130
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900117,
-   "nombre": "Crystal 1",
-   "npc_type": 857,
-   "sprite": 42352,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    259,
-    150
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900118,
-   "nombre": "Crystal 1",
-   "npc_type": 857,
-   "sprite": 42352,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    264,
-    130
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900119,
-   "nombre": "Crystal 1",
-   "npc_type": 857,
-   "sprite": 42352,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    264,
-    150
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900120,
-   "nombre": "Crystal 1",
-   "npc_type": 857,
-   "sprite": 42352,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    269,
-    130
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900121,
-   "nombre": "Crystal 1",
-   "npc_type": 857,
-   "sprite": 42352,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    269,
-    150
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900122,
-   "nombre": "Crystal 1",
-   "npc_type": 857,
-   "sprite": 42352,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    274,
-    130
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900123,
-   "nombre": "Crystal 1",
-   "npc_type": 857,
-   "sprite": 42352,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    274,
-    135
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900124,
-   "nombre": "Crystal 1",
-   "npc_type": 857,
-   "sprite": 42352,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    274,
-    140
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900125,
-   "nombre": "Crystal 1",
-   "npc_type": 857,
-   "sprite": 42352,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    274,
-    145
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900126,
-   "nombre": "Crystal 1",
-   "npc_type": 857,
-   "sprite": 42352,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    274,
-    150
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900127,
-   "nombre": "Crystal 1",
-   "npc_type": 857,
-   "sprite": 42352,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    249,
-    125
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900128,
-   "nombre": "Crystal 1",
-   "npc_type": 857,
-   "sprite": 42352,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    249,
-    130
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900129,
-   "nombre": "Crystal 1",
-   "npc_type": 857,
-   "sprite": 42352,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    249,
-    135
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900130,
-   "nombre": "Crystal 1",
-   "npc_type": 857,
-   "sprite": 42352,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    249,
-    140
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900131,
-   "nombre": "Crystal 1",
-   "npc_type": 857,
-   "sprite": 42352,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    249,
-    145
    ],
    "direccion": 2,
    "visible": 0,
@@ -2021,7 +1616,7 @@
    "monstruo": true,
    "tile": [
     152,
-    238
+    237
    ],
    "direccion": 2,
    "visible": 0,
@@ -2035,8 +1630,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    152,
-    243
+    148,
+    239
    ],
    "direccion": 2,
    "visible": 0,
@@ -2110,8 +1705,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    157,
-    238
+    156,
+    235
    ],
    "direccion": 2,
    "visible": 0,
@@ -2125,8 +1720,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    157,
-    243
+    151,
+    237
    ],
    "direccion": 2,
    "visible": 0,
@@ -2140,8 +1735,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    152,
-    248
+    146,
+    240
    ],
    "direccion": 2,
    "visible": 0,
@@ -2185,8 +1780,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    131,
-    249
+    129,
+    248
    ],
    "direccion": 2,
    "visible": 0,
@@ -2215,8 +1810,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    136,
-    249
+    130,
+    247
    ],
    "direccion": 2,
    "visible": 0,
@@ -2245,8 +1840,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    141,
-    249
+    134,
+    242
    ],
    "direccion": 2,
    "visible": 0,
@@ -2275,8 +1870,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    146,
-    249
+    144,
+    241
    ],
    "direccion": 2,
    "visible": 0,
@@ -2290,8 +1885,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    96,
-    112
+    101,
+    111
    ],
    "direccion": 2,
    "visible": 0,
@@ -2306,7 +1901,7 @@
    "monstruo": true,
    "tile": [
     153,
-    135
+    132
    ],
    "direccion": 2,
    "visible": 0,
@@ -2320,8 +1915,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    133,
-    50
+    130,
+    44
    ],
    "direccion": 2,
    "visible": 0,
@@ -2335,8 +1930,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    254,
-    125
+    265,
+    140
    ],
    "direccion": 2,
    "visible": 0,
@@ -2351,7 +1946,7 @@
    "monstruo": true,
    "tile": [
     259,
-    125
+    137
    ],
    "direccion": 2,
    "visible": 0,
@@ -2365,413 +1960,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    264,
-    125
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900158,
-   "nombre": "Crystal 2",
-   "npc_type": 859,
-   "sprite": 42354,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    269,
-    125
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900159,
-   "nombre": "Crystal 2",
-   "npc_type": 859,
-   "sprite": 42354,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    274,
-    125
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900160,
-   "nombre": "Crystal 2",
-   "npc_type": 859,
-   "sprite": 42354,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    249,
-    150
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900161,
-   "nombre": "Crystal 2",
-   "npc_type": 859,
-   "sprite": 42354,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    279,
-    122
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900162,
-   "nombre": "Crystal 2",
-   "npc_type": 859,
-   "sprite": 42354,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    279,
-    127
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900163,
-   "nombre": "Crystal 2",
-   "npc_type": 859,
-   "sprite": 42354,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    279,
-    132
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900164,
-   "nombre": "Crystal 2",
-   "npc_type": 859,
-   "sprite": 42354,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    279,
-    137
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900165,
-   "nombre": "Crystal 2",
-   "npc_type": 859,
-   "sprite": 42354,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    279,
-    142
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900166,
-   "nombre": "Crystal 2",
-   "npc_type": 859,
-   "sprite": 42354,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    279,
-    147
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900167,
-   "nombre": "Crystal 2",
-   "npc_type": 859,
-   "sprite": 42354,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    279,
-    152
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900168,
-   "nombre": "Crystal 2",
-   "npc_type": 859,
-   "sprite": 42354,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    247,
-    120
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900169,
-   "nombre": "Crystal 2",
-   "npc_type": 859,
-   "sprite": 42354,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    252,
-    120
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900170,
-   "nombre": "Crystal 2",
-   "npc_type": 859,
-   "sprite": 42354,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    257,
-    120
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900171,
-   "nombre": "Crystal 2",
-   "npc_type": 859,
-   "sprite": 42354,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    262,
-    120
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900172,
-   "nombre": "Crystal 2",
-   "npc_type": 859,
-   "sprite": 42354,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    267,
-    120
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900173,
-   "nombre": "Crystal 2",
-   "npc_type": 859,
-   "sprite": 42354,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    272,
-    120
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900174,
-   "nombre": "Crystal 2",
-   "npc_type": 859,
-   "sprite": 42354,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    246,
-    155
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900175,
-   "nombre": "Crystal 2",
-   "npc_type": 859,
-   "sprite": 42354,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    251,
-    155
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900176,
-   "nombre": "Crystal 2",
-   "npc_type": 859,
-   "sprite": 42354,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    256,
-    155
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900177,
-   "nombre": "Crystal 2",
-   "npc_type": 859,
-   "sprite": 42354,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    261,
-    155
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900178,
-   "nombre": "Crystal 2",
-   "npc_type": 859,
-   "sprite": 42354,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
     266,
-    155
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900179,
-   "nombre": "Crystal 2",
-   "npc_type": 859,
-   "sprite": 42354,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    271,
-    155
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900180,
-   "nombre": "Crystal 2",
-   "npc_type": 859,
-   "sprite": 42354,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    244,
-    125
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900181,
-   "nombre": "Crystal 2",
-   "npc_type": 859,
-   "sprite": 42354,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    244,
-    130
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900182,
-   "nombre": "Crystal 2",
-   "npc_type": 859,
-   "sprite": 42354,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    244,
-    135
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900183,
-   "nombre": "Crystal 2",
-   "npc_type": 859,
-   "sprite": 42354,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    244,
     140
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 75
-  },
-  {
-   "entity_id": 57900184,
-   "nombre": "Crystal 2",
-   "npc_type": 859,
-   "sprite": 42354,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    244,
-    145
    ],
    "direccion": 2,
    "visible": 0,
@@ -2785,8 +1975,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    277,
-    117
+    264,
+    134
    ],
    "direccion": 2,
    "visible": 0,
@@ -2800,8 +1990,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    282,
-    117
+    262,
+    135
    ],
    "direccion": 2,
    "visible": 0,
@@ -2815,412 +2005,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    244,
-    115
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 85
-  },
-  {
-   "entity_id": 57900188,
-   "nombre": "Big Crystal 7",
-   "npc_type": 869,
-   "sprite": 42364,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    244,
-    150
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 85
-  },
-  {
-   "entity_id": 57900189,
-   "nombre": "Big Crystal 7",
-   "npc_type": 869,
-   "sprite": 42364,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    249,
-    115
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 85
-  },
-  {
-   "entity_id": 57900190,
-   "nombre": "Big Crystal 7",
-   "npc_type": 869,
-   "sprite": 42364,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    254,
-    115
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 85
-  },
-  {
-   "entity_id": 57900191,
-   "nombre": "Big Crystal 7",
-   "npc_type": 869,
-   "sprite": 42364,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    259,
-    115
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 85
-  },
-  {
-   "entity_id": 57900192,
-   "nombre": "Big Crystal 7",
-   "npc_type": 869,
-   "sprite": 42364,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    264,
-    115
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 85
-  },
-  {
-   "entity_id": 57900193,
-   "nombre": "Big Crystal 7",
-   "npc_type": 869,
-   "sprite": 42364,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    269,
-    115
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 85
-  },
-  {
-   "entity_id": 57900194,
-   "nombre": "Big Crystal 7",
-   "npc_type": 869,
-   "sprite": 42364,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    284,
-    122
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 85
-  },
-  {
-   "entity_id": 57900195,
-   "nombre": "Big Crystal 7",
-   "npc_type": 869,
-   "sprite": 42364,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    284,
-    127
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 85
-  },
-  {
-   "entity_id": 57900196,
-   "nombre": "Big Crystal 7",
-   "npc_type": 869,
-   "sprite": 42364,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    284,
-    132
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 85
-  },
-  {
-   "entity_id": 57900197,
-   "nombre": "Big Crystal 7",
-   "npc_type": 869,
-   "sprite": 42364,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    284,
-    137
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 85
-  },
-  {
-   "entity_id": 57900198,
-   "nombre": "Big Crystal 7",
-   "npc_type": 869,
-   "sprite": 42364,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    284,
-    142
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 85
-  },
-  {
-   "entity_id": 57900199,
-   "nombre": "Big Crystal 7",
-   "npc_type": 869,
-   "sprite": 42364,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    284,
-    147
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 85
-  },
-  {
-   "entity_id": 57900200,
-   "nombre": "Big Crystal 7",
-   "npc_type": 869,
-   "sprite": 42364,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    284,
-    152
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 85
-  },
-  {
-   "entity_id": 57900201,
-   "nombre": "Big Crystal 7",
-   "npc_type": 869,
-   "sprite": 42364,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    242,
-    120
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 85
-  },
-  {
-   "entity_id": 57900202,
-   "nombre": "Big Crystal 7",
-   "npc_type": 869,
-   "sprite": 42364,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    276,
-    157
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 85
-  },
-  {
-   "entity_id": 57900203,
-   "nombre": "Big Crystal 7",
-   "npc_type": 869,
-   "sprite": 42364,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    281,
-    157
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 85
-  },
-  {
-   "entity_id": 57900204,
-   "nombre": "Big Crystal 7",
-   "npc_type": 869,
-   "sprite": 42364,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    286,
-    157
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 85
-  },
-  {
-   "entity_id": 57900205,
-   "nombre": "Big Crystal 7",
-   "npc_type": 869,
-   "sprite": 42364,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    241,
-    155
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 85
-  },
-  {
-   "entity_id": 57900206,
-   "nombre": "Big Crystal 7",
-   "npc_type": 869,
-   "sprite": 42364,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    274,
-    112
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 85
-  },
-  {
-   "entity_id": 57900207,
-   "nombre": "Big Crystal 7",
-   "npc_type": 869,
-   "sprite": 42364,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    279,
-    112
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 85
-  },
-  {
-   "entity_id": 57900208,
-   "nombre": "Big Crystal 7",
-   "npc_type": 869,
-   "sprite": 42364,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    284,
-    112
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 85
-  },
-  {
-   "entity_id": 57900209,
-   "nombre": "Big Crystal 7",
-   "npc_type": 869,
-   "sprite": 42364,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    287,
-    117
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 85
-  },
-  {
-   "entity_id": 57900210,
-   "nombre": "Big Crystal 7",
-   "npc_type": 869,
-   "sprite": 42364,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    239,
-    110
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 85
-  },
-  {
-   "entity_id": 57900211,
-   "nombre": "Big Crystal 7",
-   "npc_type": 869,
-   "sprite": 42364,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    239,
-    115
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 85
-  },
-  {
-   "entity_id": 57900212,
-   "nombre": "Big Crystal 7",
-   "npc_type": 869,
-   "sprite": 42364,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    239,
-    125
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 85
-  },
-  {
-   "entity_id": 57900213,
-   "nombre": "Big Crystal 7",
-   "npc_type": 869,
-   "sprite": 42364,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    239,
-    130
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 85
-  },
-  {
-   "entity_id": 57900214,
-   "nombre": "Big Crystal 7",
-   "npc_type": 869,
-   "sprite": 42364,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    239,
+    266,
     135
    ],
    "direccion": 2,
@@ -3235,8 +2020,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    244,
-    110
+    264,
+    132
    ],
    "direccion": 2,
    "visible": 0,
@@ -3250,8 +2035,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    249,
-    110
+    262,
+    133
    ],
    "direccion": 2,
    "visible": 0,
@@ -3265,413 +2050,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    254,
-    110
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900218,
-   "nombre": "Big Crystal 1",
-   "npc_type": 858,
-   "sprite": 42353,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    259,
-    110
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900219,
-   "nombre": "Big Crystal 1",
-   "npc_type": 858,
-   "sprite": 42353,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    264,
-    110
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900220,
-   "nombre": "Big Crystal 1",
-   "npc_type": 858,
-   "sprite": 42353,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    269,
-    110
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900221,
-   "nombre": "Big Crystal 1",
-   "npc_type": 858,
-   "sprite": 42353,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    239,
-    140
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900222,
-   "nombre": "Big Crystal 1",
-   "npc_type": 858,
-   "sprite": 42353,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    239,
-    145
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900223,
-   "nombre": "Big Crystal 1",
-   "npc_type": 858,
-   "sprite": 42353,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    239,
-    150
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900224,
-   "nombre": "Big Crystal 1",
-   "npc_type": 858,
-   "sprite": 42353,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    289,
-    108
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900225,
-   "nombre": "Big Crystal 1",
-   "npc_type": 858,
-   "sprite": 42353,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    289,
-    122
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900226,
-   "nombre": "Big Crystal 1",
-   "npc_type": 858,
-   "sprite": 42353,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    289,
-    127
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900227,
-   "nombre": "Big Crystal 1",
-   "npc_type": 858,
-   "sprite": 42353,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    289,
-    132
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900228,
-   "nombre": "Big Crystal 1",
-   "npc_type": 858,
-   "sprite": 42353,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    289,
-    137
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900229,
-   "nombre": "Big Crystal 1",
-   "npc_type": 858,
-   "sprite": 42353,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    289,
-    142
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900230,
-   "nombre": "Big Crystal 1",
-   "npc_type": 858,
-   "sprite": 42353,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    289,
-    147
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900231,
-   "nombre": "Big Crystal 1",
-   "npc_type": 858,
-   "sprite": 42353,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    289,
-    152
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900232,
-   "nombre": "Big Crystal 1",
-   "npc_type": 858,
-   "sprite": 42353,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    274,
-    107
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900233,
-   "nombre": "Big Crystal 1",
-   "npc_type": 858,
-   "sprite": 42353,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    279,
-    107
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900234,
-   "nombre": "Big Crystal 1",
-   "npc_type": 858,
-   "sprite": 42353,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    284,
-    107
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900235,
-   "nombre": "Big Crystal 1",
-   "npc_type": 858,
-   "sprite": 42353,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    237,
-    120
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900236,
-   "nombre": "Big Crystal 1",
-   "npc_type": 858,
-   "sprite": 42353,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    237,
-    160
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900237,
-   "nombre": "Big Crystal 1",
-   "npc_type": 858,
-   "sprite": 42353,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    242,
-    160
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900238,
-   "nombre": "Big Crystal 1",
-   "npc_type": 858,
-   "sprite": 42353,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    247,
-    160
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900239,
-   "nombre": "Big Crystal 1",
-   "npc_type": 858,
-   "sprite": 42353,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    252,
-    160
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900240,
-   "nombre": "Big Crystal 1",
-   "npc_type": 858,
-   "sprite": 42353,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    257,
-    160
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900241,
-   "nombre": "Big Crystal 1",
-   "npc_type": 858,
-   "sprite": 42353,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    262,
-    160
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900242,
-   "nombre": "Big Crystal 1",
-   "npc_type": 858,
-   "sprite": 42353,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    267,
-    160
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900243,
-   "nombre": "Big Crystal 1",
-   "npc_type": 858,
-   "sprite": 42353,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    291,
-    157
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900244,
-   "nombre": "Big Crystal 1",
-   "npc_type": 858,
-   "sprite": 42353,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    236,
-    105
+    266,
+    133
    ],
    "direccion": 2,
    "visible": 0,
@@ -3685,8 +2065,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    241,
-    105
+    264,
+    130
    ],
    "direccion": 2,
    "visible": 0,
@@ -3700,8 +2080,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    246,
-    105
+    262,
+    131
    ],
    "direccion": 2,
    "visible": 0,
@@ -3715,413 +2095,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    251,
-    105
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900248,
-   "nombre": "Big Crystal 2",
-   "npc_type": 860,
-   "sprite": 42355,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    256,
-    105
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900249,
-   "nombre": "Big Crystal 2",
-   "npc_type": 860,
-   "sprite": 42355,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    261,
-    105
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900250,
-   "nombre": "Big Crystal 2",
-   "npc_type": 860,
-   "sprite": 42355,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
     266,
-    105
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900251,
-   "nombre": "Big Crystal 2",
-   "npc_type": 860,
-   "sprite": 42355,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    236,
-    155
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900252,
-   "nombre": "Big Crystal 2",
-   "npc_type": 860,
-   "sprite": 42355,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    289,
-    103
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900253,
-   "nombre": "Big Crystal 2",
-   "npc_type": 860,
-   "sprite": 42355,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    292,
-    113
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900254,
-   "nombre": "Big Crystal 2",
-   "npc_type": 860,
-   "sprite": 42355,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    271,
-    102
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900255,
-   "nombre": "Big Crystal 2",
-   "npc_type": 860,
-   "sprite": 42355,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    276,
-    102
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900256,
-   "nombre": "Big Crystal 2",
-   "npc_type": 860,
-   "sprite": 42355,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    281,
-    102
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900257,
-   "nombre": "Big Crystal 2",
-   "npc_type": 860,
-   "sprite": 42355,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    234,
-    110
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900258,
-   "nombre": "Big Crystal 2",
-   "npc_type": 860,
-   "sprite": 42355,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    234,
-    115
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900259,
-   "nombre": "Big Crystal 2",
-   "npc_type": 860,
-   "sprite": 42355,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    234,
-    125
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900260,
-   "nombre": "Big Crystal 2",
-   "npc_type": 860,
-   "sprite": 42355,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    234,
-    130
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900261,
-   "nombre": "Big Crystal 2",
-   "npc_type": 860,
-   "sprite": 42355,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    234,
-    135
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900262,
-   "nombre": "Big Crystal 2",
-   "npc_type": 860,
-   "sprite": 42355,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    234,
-    140
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900263,
-   "nombre": "Big Crystal 2",
-   "npc_type": 860,
-   "sprite": 42355,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    234,
-    145
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900264,
-   "nombre": "Big Crystal 2",
-   "npc_type": 860,
-   "sprite": 42355,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    234,
-    150
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900265,
-   "nombre": "Big Crystal 2",
-   "npc_type": 860,
-   "sprite": 42355,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    294,
-    101
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900266,
-   "nombre": "Big Crystal 2",
-   "npc_type": 860,
-   "sprite": 42355,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    294,
-    106
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900267,
-   "nombre": "Big Crystal 2",
-   "npc_type": 860,
-   "sprite": 42355,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    294,
-    118
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900268,
-   "nombre": "Big Crystal 2",
-   "npc_type": 860,
-   "sprite": 42355,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    294,
-    123
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900269,
-   "nombre": "Big Crystal 2",
-   "npc_type": 860,
-   "sprite": 42355,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    294,
-    128
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900270,
-   "nombre": "Big Crystal 2",
-   "npc_type": 860,
-   "sprite": 42355,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    294,
-    133
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900271,
-   "nombre": "Big Crystal 2",
-   "npc_type": 860,
-   "sprite": 42355,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    294,
-    138
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900272,
-   "nombre": "Big Crystal 2",
-   "npc_type": 860,
-   "sprite": 42355,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    294,
-    143
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900273,
-   "nombre": "Big Crystal 2",
-   "npc_type": 860,
-   "sprite": 42355,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    294,
-    148
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 80
-  },
-  {
-   "entity_id": 57900274,
-   "nombre": "Big Crystal 2",
-   "npc_type": 860,
-   "sprite": 42355,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    233,
-    100
+    131
    ],
    "direccion": 2,
    "visible": 0,
@@ -4241,7 +2216,7 @@
    "monstruo": true,
    "tile": [
     143,
-    214
+    216
    ],
    "direccion": 2,
    "visible": 0,
@@ -4315,8 +2290,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    127,
-    239
+    125,
+    236
    ],
    "direccion": 2,
    "visible": 0,
@@ -4330,7 +2305,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    148,
+    149,
     213
    ],
    "direccion": 2,
@@ -4360,8 +2335,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    126,
-    244
+    128,
+    248
    ],
    "direccion": 2,
    "visible": 0,
@@ -4451,7 +2426,7 @@
    "monstruo": true,
    "tile": [
     143,
-    209
+    208
    ],
    "direccion": 2,
    "visible": 0,
@@ -4480,8 +2455,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    124,
-    249
+    126,
+    251
    ],
    "direccion": 2,
    "visible": 0,
@@ -4571,7 +2546,7 @@
    "monstruo": true,
    "tile": [
     122,
-    239
+    236
    ],
    "direccion": 2,
    "visible": 0,
@@ -4601,7 +2576,7 @@
    "monstruo": true,
    "tile": [
     162,
-    227
+    226
    ],
    "direccion": 2,
    "visible": 0,
@@ -4615,7 +2590,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    162,
+    157,
     232
    ],
    "direccion": 2,
@@ -4630,8 +2605,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    162,
-    237
+    157,
+    234
    ],
    "direccion": 2,
    "visible": 0,
@@ -4645,8 +2620,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    162,
-    242
+    155,
+    235
    ],
    "direccion": 2,
    "visible": 0,
@@ -4690,8 +2665,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    121,
-    244
+    127,
+    249
    ],
    "direccion": 2,
    "visible": 0,
@@ -4751,7 +2726,7 @@
    "monstruo": true,
    "tile": [
     119,
-    249
+    252
    ],
    "direccion": 2,
    "visible": 0,
@@ -4840,8 +2815,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    167,
-    232
+    170,
+    229
    ],
    "direccion": 2,
    "visible": 0,
@@ -4855,8 +2830,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    167,
-    237
+    174,
+    234
    ],
    "direccion": 2,
    "visible": 0,
@@ -4870,8 +2845,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    167,
-    242
+    175,
+    235
    ],
    "direccion": 2,
    "visible": 0,
@@ -4931,7 +2906,7 @@
    "monstruo": true,
    "tile": [
     129,
-    254
+    256
    ],
    "direccion": 2,
    "visible": 0,
@@ -4945,8 +2920,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    134,
-    254
+    131,
+    257
    ],
    "direccion": 2,
    "visible": 0,
@@ -4960,8 +2935,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    139,
-    254
+    135,
+    259
    ],
    "direccion": 2,
    "visible": 0,
@@ -4975,8 +2950,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    144,
-    254
+    139,
+    261
    ],
    "direccion": 2,
    "visible": 0,
@@ -5170,7 +3145,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    172,
+    171,
     222
    ],
    "direccion": 2,
@@ -5185,7 +3160,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    172,
+    171,
     227
    ],
    "direccion": 2,
@@ -5200,8 +3175,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    172,
-    232
+    171,
+    230
    ],
    "direccion": 2,
    "visible": 0,
@@ -5215,8 +3190,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    172,
-    237
+    175,
+    234
    ],
    "direccion": 2,
    "visible": 0,
@@ -5230,8 +3205,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    172,
-    242
+    177,
+    239
    ],
    "direccion": 2,
    "visible": 0,
@@ -5245,8 +3220,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    172,
-    247
+    178,
+    240
    ],
    "direccion": 2,
    "visible": 0,
@@ -5636,7 +3611,7 @@
    "monstruo": true,
    "tile": [
     117,
-    234
+    233
    ],
    "direccion": 2,
    "visible": 0,
@@ -5650,8 +3625,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    117,
-    239
+    121,
+    235
    ],
    "direccion": 2,
    "visible": 0,
@@ -5755,8 +3730,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    351,
-    254
+    352,
+    253
    ],
    "direccion": 2,
    "visible": 0,
@@ -5950,7 +3925,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    397,
+    396,
     159
    ],
    "direccion": 2,
@@ -6041,7 +4016,7 @@
    "monstruo": true,
    "tile": [
     392,
-    164
+    162
    ],
    "direccion": 2,
    "visible": 0,
@@ -6070,7 +4045,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    397,
+    399,
     164
    ],
    "direccion": 2,
@@ -6085,7 +4060,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    402,
+    400,
     164
    ],
    "direccion": 2,
@@ -6205,7 +4180,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    404,
+    402,
     148
    ],
    "direccion": 2,
@@ -6235,8 +4210,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    407,
-    158
+    405,
+    156
    ],
    "direccion": 2,
    "visible": 0,
@@ -6250,8 +4225,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    407,
-    163
+    403,
+    161
    ],
    "direccion": 2,
    "visible": 0,
@@ -6265,8 +4240,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    407,
-    168
+    402,
+    161
    ],
    "direccion": 2,
    "visible": 0,
@@ -6296,7 +4271,7 @@
    "monstruo": true,
    "tile": [
     378,
-    169
+    165
    ],
    "direccion": 2,
    "visible": 0,
@@ -6325,8 +4300,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    392,
-    169
+    389,
+    164
    ],
    "direccion": 2,
    "visible": 0,
@@ -6340,8 +4315,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    397,
-    169
+    399,
+    164
    ],
    "direccion": 2,
    "visible": 0,
@@ -6386,7 +4361,7 @@
    "monstruo": true,
    "tile": [
     409,
-    146
+    144
    ],
    "direccion": 2,
    "visible": 0,
@@ -6400,8 +4375,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    402,
-    169
+    400,
+    164
    ],
    "direccion": 2,
    "visible": 0,
@@ -6416,7 +4391,7 @@
    "monstruo": true,
    "tile": [
     383,
-    170
+    165
    ],
    "direccion": 2,
    "visible": 0,
@@ -6460,8 +4435,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    412,
-    158
+    409,
+    154
    ],
    "direccion": 2,
    "visible": 0,
@@ -6475,8 +4450,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    412,
-    163
+    405,
+    156
    ],
    "direccion": 2,
    "visible": 0,
@@ -6520,7 +4495,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    413,
+    411,
     151
    ],
    "direccion": 2,
@@ -6536,7 +4511,7 @@
    "monstruo": true,
    "tile": [
     406,
-    136
+    139
    ],
    "direccion": 2,
    "visible": 0,
@@ -6550,8 +4525,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    411,
-    136
+    407,
+    140
    ],
    "direccion": 2,
    "visible": 0,
@@ -6565,7 +4540,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    414,
+    411,
     141
    ],
    "direccion": 2,
@@ -6700,8 +4675,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    111,
-    97
+    105,
+    104
    ],
    "direccion": 2,
    "visible": 0,
@@ -6715,8 +4690,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    111,
-    102
+    108,
+    105
    ],
    "direccion": 2,
    "visible": 0,
@@ -6761,7 +4736,7 @@
    "monstruo": true,
    "tile": [
     76,
-    77
+    81
    ],
    "direccion": 2,
    "visible": 0,
@@ -6805,8 +4780,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    76,
-    92
+    77,
+    90
    ],
    "direccion": 2,
    "visible": 0,
@@ -7374,5 +5349,12 @@
    "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
    "puesto_por": "objetos_de_instancia"
   }
- ]
+ ],
+ "recortados": {
+  "Crystal 1": 3,
+  "Crystal 2": 3,
+  "Big Crystal 7": 3,
+  "Big Crystal 1": 3,
+  "Big Crystal 2": 3
+ }
 }

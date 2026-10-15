@@ -1,5 +1,5 @@
 {
- "_nota": "limitless_tower (stage 110). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map110.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "_nota": "limitless_tower (stage 110). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map110.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py. SUELO (15/10/2026): los monstruos que caian fuera del suelo transitable o en el borde (el reparto en anillo de poblar_del_cliente no miraba el suelo) se mueven a la casilla interior mas cercana, hasta 8 casillas. OLEADAS: fuera 4 bichos de la captura que salen por evento (tools/quitar_oleadas.py).",
  "stage": 110,
  "spawns": [
   {
@@ -100,8 +100,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    158,
-    48
+    159,
+    50
    ],
    "direccion": 2,
    "visible": 0,
@@ -160,7 +160,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    148,
+    147,
     76
    ],
    "direccion": 2,
@@ -176,7 +176,7 @@
    "monstruo": true,
    "tile": [
     133,
-    69
+    71
    ],
    "direccion": 2,
    "visible": 0,
@@ -206,7 +206,7 @@
    "monstruo": true,
    "tile": [
     170,
-    62
+    64
    ],
    "direccion": 2,
    "visible": 0,
@@ -281,7 +281,7 @@
    "monstruo": true,
    "tile": [
     153,
-    76
+    74
    ],
    "direccion": 2,
    "visible": 0,
@@ -371,7 +371,7 @@
    "monstruo": true,
    "tile": [
     158,
-    71
+    70
    ],
    "direccion": 2,
    "visible": 0,
@@ -461,7 +461,7 @@
    "monstruo": true,
    "tile": [
     143,
-    74
+    76
    ],
    "direccion": 2,
    "visible": 0,
@@ -475,7 +475,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    128,
+    127,
     54
    ],
    "direccion": 2,
@@ -490,7 +490,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    168,
+    166,
     48
    ],
    "direccion": 2,
@@ -550,8 +550,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    153,
-    43
+    149,
+    48
    ],
    "direccion": 2,
    "visible": 0,
@@ -566,7 +566,7 @@
    "monstruo": true,
    "tile": [
     180,
-    62
+    60
    ],
    "direccion": 2,
    "visible": 0,
@@ -640,8 +640,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    178,
-    150
+    177,
+    151
    ],
    "direccion": 2,
    "visible": 0,
@@ -685,8 +685,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    183,
-    150
+    185,
+    149
    ],
    "direccion": 2,
    "visible": 0,
@@ -745,7 +745,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    208,
+    209,
     134
    ],
    "direccion": 2,
@@ -761,7 +761,7 @@
    "monstruo": true,
    "tile": [
     213,
-    129
+    131
    ],
    "direccion": 2,
    "visible": 0,
@@ -820,7 +820,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    188,
+    187,
     118
    ],
    "direccion": 2,
@@ -836,7 +836,7 @@
    "monstruo": true,
    "tile": [
     188,
-    123
+    122
    ],
    "direccion": 2,
    "visible": 0,
@@ -850,8 +850,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    188,
-    128
+    192,
+    124
    ],
    "direccion": 2,
    "visible": 0,
@@ -865,8 +865,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    193,
-    118
+    191,
+    120
    ],
    "direccion": 2,
    "visible": 0,
@@ -896,7 +896,7 @@
    "monstruo": true,
    "tile": [
     171,
-    116
+    117
    ],
    "direccion": 2,
    "visible": 0,
@@ -925,7 +925,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    171,
+    170,
     126
    ],
    "direccion": 2,
@@ -955,8 +955,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    166,
-    118
+    167,
+    119
    ],
    "direccion": 2,
    "visible": 0,
@@ -1000,8 +1000,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    137,
-    131
+    139,
+    133
    ],
    "direccion": 2,
    "visible": 0,
@@ -1046,7 +1046,7 @@
    "monstruo": true,
    "tile": [
     142,
-    131
+    132
    ],
    "direccion": 2,
    "visible": 0,
@@ -1165,7 +1165,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    265,
+    264,
     196
    ],
    "direccion": 2,
@@ -1255,8 +1255,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    256,
-    191
+    257,
+    192
    ],
    "direccion": 2,
    "visible": 0,
@@ -1270,8 +1270,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    291,
-    207
+    290,
+    206
    ],
    "direccion": 2,
    "visible": 0,
@@ -1316,7 +1316,7 @@
    "monstruo": true,
    "tile": [
     135,
-    211
+    210
    ],
    "direccion": 2,
    "visible": 0,
@@ -1451,7 +1451,7 @@
    "monstruo": true,
    "tile": [
     159,
-    188
+    190
    ],
    "direccion": 2,
    "visible": 0,
@@ -1481,7 +1481,7 @@
    "monstruo": true,
    "tile": [
     165,
-    188
+    190
    ],
    "direccion": 2,
    "visible": 0,
@@ -1675,8 +1675,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    31,
-    193
+    32,
+    194
    ],
    "direccion": 2,
    "visible": 0,
@@ -1691,7 +1691,7 @@
    "monstruo": true,
    "tile": [
     33,
-    203
+    202
    ],
    "direccion": 2,
    "visible": 0,
@@ -1795,8 +1795,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    282,
-    37
+    284,
+    34
    ],
    "direccion": 2,
    "visible": 0,
@@ -1811,7 +1811,7 @@
    "monstruo": true,
    "tile": [
     287,
-    37
+    35
    ],
    "direccion": 2,
    "visible": 0,
@@ -1871,7 +1871,7 @@
    "monstruo": true,
    "tile": [
     273,
-    20
+    23
    ],
    "direccion": 2,
    "visible": 0,
@@ -1885,8 +1885,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    278,
-    18
+    277,
+    23
    ],
    "direccion": 2,
    "visible": 0,
@@ -1901,7 +1901,7 @@
    "monstruo": true,
    "tile": [
     283,
-    18
+    23
    ],
    "direccion": 2,
    "visible": 0,
@@ -1946,7 +1946,7 @@
    "monstruo": true,
    "tile": [
     258,
-    22
+    23
    ],
    "direccion": 2,
    "visible": 0,
@@ -1961,7 +1961,7 @@
    "monstruo": true,
    "tile": [
     263,
-    22
+    23
    ],
    "direccion": 2,
    "visible": 0,
@@ -1991,7 +1991,7 @@
    "monstruo": true,
    "tile": [
     268,
-    19
+    23
    ],
    "direccion": 2,
    "visible": 0,
@@ -2006,7 +2006,7 @@
    "monstruo": true,
    "tile": [
     268,
-    30
+    29
    ],
    "direccion": 2,
    "visible": 0,
@@ -2066,7 +2066,7 @@
    "monstruo": true,
    "tile": [
     243,
-    277
+    274
    ],
    "direccion": 2,
    "visible": 0,
@@ -2321,7 +2321,7 @@
    "monstruo": true,
    "tile": [
     187,
-    259
+    261
    ],
    "direccion": 2,
    "visible": 0,
@@ -2396,7 +2396,7 @@
    "monstruo": true,
    "tile": [
     164,
-    261
+    263
    ],
    "direccion": 2,
    "visible": 0,
@@ -2441,7 +2441,7 @@
    "monstruo": true,
    "tile": [
     133,
-    259
+    261
    ],
    "direccion": 2,
    "visible": 0,
@@ -2471,7 +2471,7 @@
    "monstruo": true,
    "tile": [
     134,
-    269
+    270
    ],
    "direccion": 2,
    "visible": 0,
@@ -2590,8 +2590,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    60,
-    7
+    61,
+    8
    ],
    "direccion": 2,
    "visible": 0,
@@ -2636,7 +2636,7 @@
    "monstruo": true,
    "tile": [
     65,
-    7
+    9
    ],
    "direccion": 2,
    "visible": 0,
@@ -2680,8 +2680,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    40,
-    8
+    41,
+    9
    ],
    "direccion": 2,
    "visible": 0,
@@ -2740,8 +2740,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    35,
-    6
+    39,
+    10
    ],
    "direccion": 2,
    "visible": 0,
@@ -2801,7 +2801,7 @@
    "monstruo": true,
    "tile": [
     41,
-    30
+    28
    ],
    "direccion": 2,
    "visible": 0,
@@ -2860,8 +2860,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    18,
-    19
+    19,
+    20
    ],
    "direccion": 2,
    "visible": 0,
@@ -2950,8 +2950,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    14,
-    44
+    17,
+    47
    ],
    "direccion": 2,
    "visible": 0,
@@ -2995,8 +2995,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    19,
-    44
+    20,
+    45
    ],
    "direccion": 2,
    "visible": 0,
@@ -3010,8 +3010,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    19,
-    54
+    20,
+    53
    ],
    "direccion": 2,
    "visible": 0,
@@ -3055,7 +3055,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    50,
+    49,
     8
    ],
    "direccion": 2,
@@ -3071,7 +3071,7 @@
    "monstruo": true,
    "tile": [
     53,
-    18
+    17
    ],
    "direccion": 2,
    "visible": 0,
@@ -3130,7 +3130,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    180,
+    179,
     67
    ],
    "direccion": 2,
@@ -3160,8 +3160,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    173,
-    45
+    175,
+    48
    ],
    "direccion": 2,
    "visible": 0,
@@ -3190,8 +3190,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    133,
-    54
+    134,
+    52
    ],
    "direccion": 2,
    "visible": 0,
@@ -3206,7 +3206,7 @@
    "monstruo": true,
    "tile": [
     145,
-    52
+    53
    ],
    "direccion": 2,
    "visible": 0,
@@ -3220,8 +3220,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    174,
-    165
+    175,
+    161
    ],
    "direccion": 2,
    "visible": 0,
@@ -3235,8 +3235,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    173,
-    146
+    177,
+    151
    ],
    "direccion": 2,
    "visible": 0,
@@ -3250,8 +3250,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    203,
-    135
+    205,
+    137
    ],
    "direccion": 2,
    "visible": 0,
@@ -3311,7 +3311,7 @@
    "monstruo": true,
    "tile": [
     264,
-    210
+    209
    ],
    "direccion": 2,
    "visible": 0,
@@ -3325,7 +3325,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    276,
+    275,
     204
    ],
    "direccion": 2,
@@ -3385,7 +3385,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    149,
+    148,
     211
    ],
    "direccion": 2,
@@ -3521,7 +3521,7 @@
    "monstruo": true,
    "tile": [
     259,
-    32
+    29
    ],
    "direccion": 2,
    "visible": 0,
@@ -3535,8 +3535,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    273,
-    33
+    274,
+    31
    ],
    "direccion": 2,
    "visible": 0,
@@ -3550,8 +3550,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    277,
-    38
+    278,
+    32
    ],
    "direccion": 2,
    "visible": 0,
@@ -3581,7 +3581,7 @@
    "monstruo": true,
    "tile": [
     288,
-    22
+    23
    ],
    "direccion": 2,
    "visible": 0,
@@ -3655,8 +3655,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    253,
-    253
+    255,
+    254
    ],
    "direccion": 2,
    "visible": 0,
@@ -3701,7 +3701,7 @@
    "monstruo": true,
    "tile": [
     149,
-    254
+    257
    ],
    "direccion": 2,
    "visible": 0,
@@ -3850,7 +3850,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    58,
+    56,
     22
    ],
    "direccion": 2,
@@ -3880,7 +3880,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    28,
+    29,
     29
    ],
    "direccion": 2,
@@ -3903,21 +3903,6 @@
    "nivel": 115
   },
   {
-   "entity_id": 61000260,
-   "nombre": "Door Statue",
-   "npc_type": 3911,
-   "sprite": 42500,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    30,
-    266
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 115
-  },
-  {
    "entity_id": 61000261,
    "nombre": "Sealed Goodness Crystal",
    "npc_type": 3654,
@@ -3926,7 +3911,7 @@
    "monstruo": true,
    "tile": [
     13,
-    23
+    24
    ],
    "direccion": 2,
    "visible": 0,
@@ -3940,57 +3925,12 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    40,
-    3
+    43,
+    8
    ],
    "direccion": 2,
    "visible": 0,
    "nivel": 115
-  },
-  {
-   "entity_id": 61000263,
-   "nombre": "Frenzy Statue",
-   "npc_type": 3910,
-   "sprite": 42499,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    52,
-    202
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 105
-  },
-  {
-   "entity_id": 61000264,
-   "nombre": "Frenzy Statue",
-   "npc_type": 3910,
-   "sprite": 42499,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    61,
-    205
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 105
-  },
-  {
-   "entity_id": 61000265,
-   "nombre": "Frenzy Statue",
-   "npc_type": 3910,
-   "sprite": 42499,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    52,
-    196
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 105
   },
   {
    "entity_id": 61000266,
@@ -4060,8 +4000,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    293,
-    120
+    288,
+    114
    ],
    "direccion": 2,
    "visible": 0,
@@ -4167,6 +4107,40 @@
  "recursos": [
   {
    "entity_id": 71000000,
+   "sprite": 60394,
+   "capa": 0,
+   "px": [
+    2047,
+    6704
+   ],
+   "tile": [
+    63,
+    209
+   ],
+   "evento": 0,
+   "crudo": "c05f3b0400000000ff070000301a00000000000027000000000000001a000000dc06eaeb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 71000001,
+   "sprite": 60369,
+   "capa": 0,
+   "px": [
+    1729,
+    6224
+   ],
+   "tile": [
+    54,
+    194
+   ],
+   "evento": 0,
+   "crudo": "c15f3b0400000000c1060000501800000000000027000000000000001a000000dc06d1eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 71000002,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4177,11 +4151,13 @@
     173,
     78
    ],
-   "crudo": "c05f3b0400000000a8150000d00900000000000027000000000000001a000000dc06fdea00004080000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 101,
+   "crudo": "c25f3b0400000000a8150000d00900000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 71000001,
+   "entity_id": 71000003,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4192,11 +4168,13 @@
     199,
     153
    ],
-   "crudo": "c15f3b0400000000ee180000301300000000000027000000000000001a000000dc06fdea00004080000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 105,
+   "crudo": "c35f3b0400000000ee180000301300000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 71000002,
+   "entity_id": 71000004,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4207,11 +4185,13 @@
     185,
     148
    ],
-   "crudo": "c25f3b04000000002d170000901200000000000027000000000000001a000000dc06fdea00004080000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 103,
+   "crudo": "c45f3b04000000002d170000901200000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 71000003,
+   "entity_id": 71000005,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4222,11 +4202,13 @@
     262,
     215
    ],
-   "crudo": "c35f3b0400000000c7200000f01a00000000000027000000000000001a000000dc06fdea00004080000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 104,
+   "crudo": "c55f3b0400000000c7200000f01a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 71000004,
+   "entity_id": 71000006,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4237,11 +4219,30 @@
     316,
     56
    ],
-   "crudo": "c45f3b040000000080270000100700000000000027000000000000001a000000dc06fdea00004080000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 102,
+   "crudo": "c65f3b040000000080270000100700000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 71000005,
+   "entity_id": 71000007,
+   "sprite": 60372,
+   "capa": 2,
+   "px": [
+    948,
+    8560
+   ],
+   "tile": [
+    29,
+    267
+   ],
+   "evento": 0,
+   "crudo": "c75f3b0402000000b4030000702100000000000027000000000000001a000000dc06d4eb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 71000008,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4252,11 +4253,13 @@
     31,
     266
    ],
-   "crudo": "c55f3b0400000000e1030000502100000000000027000000000000001a000000dc06fdea00004080000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 107,
+   "crudo": "c85f3b0400000000e1030000502100000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 71000006,
+   "entity_id": 71000009,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4267,11 +4270,13 @@
     44,
     208
    ],
-   "crudo": "c65f3b040000000093050000101a00000000000027000000000000001a000000dc06fdea00004080140000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 201,
+   "crudo": "c95f3b040000000093050000101a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 71000007,
+   "entity_id": 71000010,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4282,11 +4287,13 @@
     63,
     208
    ],
-   "crudo": "c75f3b0400000000ef070000101a00000000000027000000000000001a000000dc06fdea00004080140000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 203,
+   "crudo": "ca5f3b0400000000ef070000101a00000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 71000008,
+   "entity_id": 71000011,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4297,11 +4304,30 @@
     53,
     194
    ],
-   "crudo": "c85f3b0400000000bf060000501800000000000027000000000000001a000000dc06fdea00004080140000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 202,
+   "crudo": "cb5f3b0400000000bf060000501800000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 71000009,
+   "entity_id": 71000012,
+   "sprite": 60394,
+   "capa": 2,
+   "px": [
+    1413,
+    6704
+   ],
+   "tile": [
+    44,
+    209
+   ],
+   "evento": 0,
+   "crudo": "cc5f3b040200000085050000301a00000000000027000000000000001a000000dc06eaeb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 71000013,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4312,11 +4338,13 @@
     56,
     136
    ],
-   "crudo": "c95f3b040000000011070000101100000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 0,
+   "crudo": "cd5f3b040000000011070000101100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 71000010,
+   "entity_id": 71000014,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4327,11 +4355,13 @@
     42,
     135
    ],
-   "crudo": "ca5f3b040000000040050000f01000000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 0,
+   "crudo": "ce5f3b040000000040050000f01000000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 71000011,
+   "entity_id": 71000015,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4342,11 +4372,13 @@
     63,
     136
    ],
-   "crudo": "cb5f3b0400000000ee070000101100000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 0,
+   "crudo": "cf5f3b0400000000ee070000101100000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 71000012,
+   "entity_id": 71000016,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4357,11 +4389,13 @@
     33,
     119
    ],
-   "crudo": "cc5f3b040000000033040000f00e00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 0,
+   "crudo": "d05f3b040000000033040000f00e00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 71000013,
+   "entity_id": 71000017,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4372,11 +4406,13 @@
     52,
     108
    ],
-   "crudo": "cd5f3b04000000008e060000900d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 0,
+   "crudo": "d15f3b04000000008e060000900d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 71000014,
+   "entity_id": 71000018,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4387,11 +4423,13 @@
     72,
     110
    ],
-   "crudo": "ce5f3b04000000000d090000d00d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 0,
+   "crudo": "d25f3b04000000000d090000d00d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 71000015,
+   "entity_id": 71000019,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4402,11 +4440,13 @@
     61,
     107
    ],
-   "crudo": "cf5f3b0400000000af070000700d00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 0,
+   "crudo": "d35f3b0400000000af070000700d00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 71000016,
+   "entity_id": 71000020,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4417,11 +4457,13 @@
     22,
     124
    ],
-   "crudo": "d05f3b0400000000d4020000900f00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 0,
+   "crudo": "d45f3b0400000000d4020000900f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 71000017,
+   "entity_id": 71000021,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -4432,8 +4474,10 @@
     74,
     121
    ],
-   "crudo": "d15f3b040000000050090000300f00000000000027000000000000001a000000dc06fdea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 0,
+   "crudo": "d55f3b040000000050090000300f00000000000027000000000000001a000000dc06fdea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   }
  ]
 }

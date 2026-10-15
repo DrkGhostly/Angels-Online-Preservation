@@ -1,5 +1,5 @@
 {
- "_nota": "lost_region (stage 98). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map098.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "_nota": "lost_region (stage 98). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map098.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py. SUELO (15/10/2026): los monstruos que caian fuera del suelo transitable o en el borde (el reparto en anillo de poblar_del_cliente no miraba el suelo) se mueven a la casilla interior mas cercana, hasta 8 casillas. OLEADAS: fuera 3 bichos de la captura que salen por evento (tools/quitar_oleadas.py).",
  "stage": 98,
  "spawns": [
   {
@@ -25,8 +25,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    36,
-    144
+    37,
+    147
    ],
    "direccion": 2,
    "visible": 0,
@@ -70,7 +70,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    41,
+    44,
     144
    ],
    "direccion": 2,
@@ -116,7 +116,7 @@
    "monstruo": true,
    "tile": [
     60,
-    132
+    134
    ],
    "direccion": 2,
    "visible": 0,
@@ -565,7 +565,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    93,
+    94,
     68
    ],
    "direccion": 2,
@@ -1008,21 +1008,6 @@
    "nivel": 87
   },
   {
-   "entity_id": 59800067,
-   "nombre": "Hicalu Machine",
-   "npc_type": 1391,
-   "sprite": 42450,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    20,
-    52
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 85
-  },
-  {
    "entity_id": 59800068,
    "nombre": "Fishguard Leader",
    "npc_type": 1253,
@@ -1210,7 +1195,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    169,
+    168,
     99
    ],
    "direccion": 2,
@@ -1225,8 +1210,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    169,
-    109
+    168,
+    108
    ],
    "direccion": 2,
    "visible": 0,
@@ -1285,8 +1270,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    190,
-    94
+    194,
+    98
    ],
    "direccion": 2,
    "visible": 0,
@@ -1330,8 +1315,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    195,
-    94
+    197,
+    96
    ],
    "direccion": 2,
    "visible": 0,
@@ -1345,7 +1330,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    195,
+    194,
     104
    ],
    "direccion": 2,
@@ -1375,8 +1360,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    200,
-    87
+    201,
+    85
    ],
    "direccion": 2,
    "visible": 0,
@@ -1736,7 +1721,7 @@
    "monstruo": true,
    "tile": [
     176,
-    62
+    60
    ],
    "direccion": 2,
    "visible": 0,
@@ -1765,7 +1750,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    140,
+    143,
     24
    ],
    "direccion": 2,
@@ -1855,7 +1840,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    155,
+    154,
     31
    ],
    "direccion": 2,
@@ -1886,7 +1871,7 @@
    "monstruo": true,
    "tile": [
     177,
-    2
+    4
    ],
    "direccion": 2,
    "visible": 0,
@@ -2245,8 +2230,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    244,
-    22
+    248,
+    27
    ],
    "direccion": 2,
    "visible": 0,
@@ -2546,7 +2531,7 @@
    "monstruo": true,
    "tile": [
     260,
-    42
+    40
    ],
    "direccion": 2,
    "visible": 0,
@@ -2665,8 +2650,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    289,
-    88
+    290,
+    89
    ],
    "direccion": 2,
    "visible": 0,
@@ -2801,7 +2786,7 @@
    "monstruo": true,
    "tile": [
     272,
-    95
+    96
    ],
    "direccion": 2,
    "visible": 0,
@@ -3056,7 +3041,7 @@
    "monstruo": true,
    "tile": [
     207,
-    123
+    125
    ],
    "direccion": 2,
    "visible": 0,
@@ -3341,7 +3326,7 @@
    "monstruo": true,
    "tile": [
     227,
-    151
+    149
    ],
    "direccion": 2,
    "visible": 0,
@@ -3355,7 +3340,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    227,
+    232,
     156
    ],
    "direccion": 2,
@@ -3460,8 +3445,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    197,
-    123
+    201,
+    127
    ],
    "direccion": 2,
    "visible": 0,
@@ -3670,8 +3655,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    140,
-    140
+    141,
+    141
    ],
    "direccion": 2,
    "visible": 0,
@@ -4090,8 +4075,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    100,
-    167
+    99,
+    169
    ],
    "direccion": 2,
    "visible": 0,
@@ -4141,37 +4126,59 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 77
-  },
-  {
-   "entity_id": 59800276,
-   "nombre": "Hicalu Machine",
-   "npc_type": 1257,
-   "sprite": 42447,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    109,
-    177
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 95
-  },
-  {
-   "entity_id": 59800277,
-   "nombre": "Hicalu 1",
-   "npc_type": 1228,
-   "sprite": 42411,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    292,
-    172
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 100
   }
  ],
- "recursos": []
+ "recursos": [
+  {
+   "entity_id": 69800000,
+   "sprite": 60335,
+   "capa": 2,
+   "px": [
+    1988,
+    1232
+   ],
+   "tile": [
+    62,
+    38
+   ],
+   "evento": 100,
+   "crudo": "4010290402000000c4070000d00400000000000027000000000000001a000000dc06afeb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 69800001,
+   "sprite": 60334,
+   "capa": 0,
+   "px": [
+    3794,
+    5648
+   ],
+   "tile": [
+    118,
+    176
+   ],
+   "evento": 101,
+   "crudo": "4110290400000000d20e0000101600000000000027000000000000001a000000dc06aeeb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 69800002,
+   "sprite": 60334,
+   "capa": 2,
+   "px": [
+    9295,
+    5520
+   ],
+   "tile": [
+    290,
+    172
+   ],
+   "evento": 102,
+   "crudo": "42102904020000004f240000901500000000000027000000000000001a000000dc06aeeb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  }
+ ]
 }

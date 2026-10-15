@@ -1,412 +1,7 @@
 {
- "_nota": "poker_castle (stage 158). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map158.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "_nota": "poker_castle (stage 158). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map158.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py. SUELO (15/10/2026): los monstruos que caian fuera del suelo transitable o en el borde (el reparto en anillo de poblar_del_cliente no miraba el suelo) se mueven a la casilla interior mas cercana, hasta 8 casillas. OLEADAS: fuera 80 bichos de la captura que salen por evento (tools/quitar_oleadas.py). CENSO (15/10/2026): cuadrado con lo que declara el cliente (tools/cuadrar_censo.py).",
  "stage": 158,
  "spawns": [
-  {
-   "entity_id": 65800000,
-   "nombre": "Cheese Guardian",
-   "npc_type": 7266,
-   "sprite": 43010,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    172,
-    21
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 144
-  },
-  {
-   "entity_id": 65800001,
-   "nombre": "Cheese Guardian",
-   "npc_type": 7266,
-   "sprite": 43010,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    167,
-    16
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 144
-  },
-  {
-   "entity_id": 65800002,
-   "nombre": "Cheese Guardian",
-   "npc_type": 7266,
-   "sprite": 43010,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    167,
-    21
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 144
-  },
-  {
-   "entity_id": 65800003,
-   "nombre": "Cheese Guardian",
-   "npc_type": 7266,
-   "sprite": 43010,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    177,
-    18
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 144
-  },
-  {
-   "entity_id": 65800004,
-   "nombre": "Cheese Guardian",
-   "npc_type": 7266,
-   "sprite": 43010,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    172,
-    13
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 144
-  },
-  {
-   "entity_id": 65800005,
-   "nombre": "Cheese Guardian",
-   "npc_type": 7266,
-   "sprite": 43010,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    177,
-    13
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 144
-  },
-  {
-   "entity_id": 65800006,
-   "nombre": "Cheese Guardian",
-   "npc_type": 7266,
-   "sprite": 43010,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    182,
-    15
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 144
-  },
-  {
-   "entity_id": 65800007,
-   "nombre": "Cheese Guardian",
-   "npc_type": 7266,
-   "sprite": 43010,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    182,
-    20
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 144
-  },
-  {
-   "entity_id": 65800008,
-   "nombre": "Cheese Guardian",
-   "npc_type": 7266,
-   "sprite": 43010,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    182,
-    10
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 144
-  },
-  {
-   "entity_id": 65800009,
-   "nombre": "Cheese Guardian",
-   "npc_type": 7266,
-   "sprite": 43010,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    187,
-    13
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 144
-  },
-  {
-   "entity_id": 65800010,
-   "nombre": "Cheese Guardian",
-   "npc_type": 7266,
-   "sprite": 43010,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    187,
-    18
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 144
-  },
-  {
-   "entity_id": 65800011,
-   "nombre": "Cheese Guardian",
-   "npc_type": 7266,
-   "sprite": 43010,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    187,
-    8
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 144
-  },
-  {
-   "entity_id": 65800012,
-   "nombre": "Fruit Blocker Dich",
-   "npc_type": 7278,
-   "sprite": 43018,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    106,
-    58
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 155
-  },
-  {
-   "entity_id": 65800013,
-   "nombre": "Diamond Poker Spearman",
-   "npc_type": 7262,
-   "sprite": 42948,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    101,
-    58
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800014,
-   "nombre": "Diamond Poker Spearman",
-   "npc_type": 7262,
-   "sprite": 42948,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    111,
-    54
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800015,
-   "nombre": "Cheese Guardian",
-   "npc_type": 7266,
-   "sprite": 43010,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    195,
-    19
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 144
-  },
-  {
-   "entity_id": 65800016,
-   "nombre": "Cheese Guardian",
-   "npc_type": 7266,
-   "sprite": 43010,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    190,
-    23
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 144
-  },
-  {
-   "entity_id": 65800017,
-   "nombre": "Cheese Guardian",
-   "npc_type": 7266,
-   "sprite": 43010,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    192,
-    14
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 144
-  },
-  {
-   "entity_id": 65800018,
-   "nombre": "Cheese Guardian",
-   "npc_type": 7266,
-   "sprite": 43010,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    200,
-    19
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 144
-  },
-  {
-   "entity_id": 65800019,
-   "nombre": "Cheese Guardian",
-   "npc_type": 7266,
-   "sprite": 43010,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    195,
-    24
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 144
-  },
-  {
-   "entity_id": 65800020,
-   "nombre": "Cheese Guardian",
-   "npc_type": 7266,
-   "sprite": 43010,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    200,
-    24
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 144
-  },
-  {
-   "entity_id": 65800021,
-   "nombre": "Cheese Guardian",
-   "npc_type": 7266,
-   "sprite": 43010,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    205,
-    19
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 144
-  },
-  {
-   "entity_id": 65800022,
-   "nombre": "Cheese Guardian",
-   "npc_type": 7266,
-   "sprite": 43010,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    205,
-    24
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 144
-  },
-  {
-   "entity_id": 65800023,
-   "nombre": "Cheese Guardian",
-   "npc_type": 7266,
-   "sprite": 43010,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    195,
-    29
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 144
-  },
-  {
-   "entity_id": 65800024,
-   "nombre": "Cheese Guardian",
-   "npc_type": 7266,
-   "sprite": 43010,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    200,
-    29
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 144
-  },
-  {
-   "entity_id": 65800025,
-   "nombre": "Cheese Guardian",
-   "npc_type": 7266,
-   "sprite": 43010,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    205,
-    29
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 144
-  },
-  {
-   "entity_id": 65800026,
-   "nombre": "Cheese Guardian",
-   "npc_type": 7266,
-   "sprite": 43010,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    210,
-    19
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 144
-  },
   {
    "entity_id": 65800027,
    "nombre": "Club Poker Spearman",
@@ -476,7 +71,7 @@
    "monstruo": true,
    "tile": [
     141,
-    71
+    69
    ],
    "direccion": 2,
    "visible": 0,
@@ -490,8 +85,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    123,
-    75
+    126,
+    74
    ],
    "direccion": 2,
    "visible": 0,
@@ -505,8 +100,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    92,
-    77
+    94,
+    75
    ],
    "direccion": 2,
    "visible": 0,
@@ -522,21 +117,6 @@
    "tile": [
     141,
     76
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 138
-  },
-  {
-   "entity_id": 65800035,
-   "nombre": "Club Poker Spearman",
-   "npc_type": 7261,
-   "sprite": 42949,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    123,
-    80
    ],
    "direccion": 2,
    "visible": 0,
@@ -573,21 +153,6 @@
    "nivel": 138
   },
   {
-   "entity_id": 65800038,
-   "nombre": "Club Poker Spearman",
-   "npc_type": 7261,
-   "sprite": 42949,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    123,
-    85
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 138
-  },
-  {
    "entity_id": 65800039,
    "nombre": "Club Poker Spearman",
    "npc_type": 7261,
@@ -611,7 +176,7 @@
    "monstruo": true,
    "tile": [
     146,
-    71
+    70
    ],
    "direccion": 2,
    "visible": 0,
@@ -631,96 +196,6 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 138
-  },
-  {
-   "entity_id": 65800042,
-   "nombre": "Diamond Poker Spearman",
-   "npc_type": 7262,
-   "sprite": 42948,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    87,
-    67
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800043,
-   "nombre": "Diamond Poker Spearman",
-   "npc_type": 7262,
-   "sprite": 42948,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    87,
-    72
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800044,
-   "nombre": "Diamond Poker Spearman",
-   "npc_type": 7262,
-   "sprite": 42948,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    92,
-    67
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800045,
-   "nombre": "Diamond Poker Spearman",
-   "npc_type": 7262,
-   "sprite": 42948,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    97,
-    82
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800046,
-   "nombre": "Diamond Poker Spearman",
-   "npc_type": 7262,
-   "sprite": 42948,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    146,
-    81
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800047,
-   "nombre": "Diamond Poker Spearman",
-   "npc_type": 7262,
-   "sprite": 42948,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    128,
-    85
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
   },
   {
    "entity_id": 65800048,
@@ -753,171 +228,6 @@
    "nivel": 140
   },
   {
-   "entity_id": 65800050,
-   "nombre": "Diamond Poker Spearman",
-   "npc_type": 7262,
-   "sprite": 42948,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    133,
-    75
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800051,
-   "nombre": "Diamond Poker Spearman",
-   "npc_type": 7262,
-   "sprite": 42948,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    95,
-    87
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800052,
-   "nombre": "Diamond Poker Spearman",
-   "npc_type": 7262,
-   "sprite": 42948,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    90,
-    87
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800053,
-   "nombre": "Diamond Poker Spearman",
-   "npc_type": 7262,
-   "sprite": 42948,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    90,
-    92
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800054,
-   "nombre": "Diamond Poker Spearman",
-   "npc_type": 7262,
-   "sprite": 42948,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    134,
-    80
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800055,
-   "nombre": "Diamond Poker Spearman",
-   "npc_type": 7262,
-   "sprite": 42948,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    130,
-    70
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800056,
-   "nombre": "Diamond Poker Spearman",
-   "npc_type": 7262,
-   "sprite": 42948,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    135,
-    70
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800057,
-   "nombre": "Heart Poker Spearman",
-   "npc_type": 7263,
-   "sprite": 42947,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    104,
-    49
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800058,
-   "nombre": "Heart Poker Spearman",
-   "npc_type": 7263,
-   "sprite": 42947,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    99,
-    44
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800059,
-   "nombre": "Heart Poker Spearman",
-   "npc_type": 7263,
-   "sprite": 42947,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    99,
-    49
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800060,
-   "nombre": "Diamond Poker Spearman",
-   "npc_type": 7262,
-   "sprite": 42948,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    102,
-    77
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
    "entity_id": 65800061,
    "nombre": "Diamond Poker Spearman",
    "npc_type": 7262,
@@ -927,426 +237,6 @@
    "tile": [
     151,
     76
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800062,
-   "nombre": "Diamond Poker Spearman",
-   "npc_type": 7262,
-   "sprite": 42948,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    133,
-    85
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800063,
-   "nombre": "Heart Poker Spearman",
-   "npc_type": 7263,
-   "sprite": 42947,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    97,
-    67
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800064,
-   "nombre": "Heart Poker Spearman",
-   "npc_type": 7263,
-   "sprite": 42947,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    102,
-    67
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800065,
-   "nombre": "Heart Poker Spearman",
-   "npc_type": 7263,
-   "sprite": 42947,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    87,
-    62
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800066,
-   "nombre": "Heart Poker Spearman",
-   "npc_type": 7263,
-   "sprite": 42947,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    81,
-    82
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800067,
-   "nombre": "Heart Poker Spearman",
-   "npc_type": 7263,
-   "sprite": 42947,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    76,
-    77
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800068,
-   "nombre": "Heart Poker Spearman",
-   "npc_type": 7263,
-   "sprite": 42947,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    76,
-    82
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800069,
-   "nombre": "Heart Poker Spearman",
-   "npc_type": 7263,
-   "sprite": 42947,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    110,
-    92
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800070,
-   "nombre": "Heart Poker Spearman",
-   "npc_type": 7263,
-   "sprite": 42947,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    105,
-    87
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800071,
-   "nombre": "Heart Poker Spearman",
-   "npc_type": 7263,
-   "sprite": 42947,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    105,
-    92
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800072,
-   "nombre": "Heart Poker Spearman",
-   "npc_type": 7263,
-   "sprite": 42947,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    125,
-    69
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800073,
-   "nombre": "Heart Poker Spearman",
-   "npc_type": 7263,
-   "sprite": 42947,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    138,
-    86
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800074,
-   "nombre": "Heart Poker Spearman",
-   "npc_type": 7263,
-   "sprite": 42947,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    140,
-    66
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800075,
-   "nombre": "Heart Poker Spearman",
-   "npc_type": 7263,
-   "sprite": 42947,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    131,
-    58
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800076,
-   "nombre": "Heart Poker Spearman",
-   "npc_type": 7263,
-   "sprite": 42947,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    126,
-    53
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800077,
-   "nombre": "Heart Poker Spearman",
-   "npc_type": 7263,
-   "sprite": 42947,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    126,
-    58
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800078,
-   "nombre": "Heart Poker Spearman",
-   "npc_type": 7263,
-   "sprite": 42947,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    135,
-    64
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800079,
-   "nombre": "Heart Poker Spearman",
-   "npc_type": 7263,
-   "sprite": 42947,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    140,
-    61
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800080,
-   "nombre": "Heart Poker Spearman",
-   "npc_type": 7263,
-   "sprite": 42947,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    130,
-    63
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800081,
-   "nombre": "Club Poker Spearman",
-   "npc_type": 7261,
-   "sprite": 42949,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    114,
-    59
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 138
-  },
-  {
-   "entity_id": 65800082,
-   "nombre": "Diamond Poker Spearman",
-   "npc_type": 7262,
-   "sprite": 42948,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    112,
-    64
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800083,
-   "nombre": "Diamond Poker Spearman",
-   "npc_type": 7262,
-   "sprite": 42948,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    118,
-    89
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800084,
-   "nombre": "Heart Poker Spearman",
-   "npc_type": 7263,
-   "sprite": 42947,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    112,
-    87
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800085,
-   "nombre": "Heart Poker Spearman",
-   "npc_type": 7263,
-   "sprite": 42947,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    119,
-    57
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800086,
-   "nombre": "Club Poker Spearman",
-   "npc_type": 7261,
-   "sprite": 42949,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    117,
-    84
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 138
-  },
-  {
-   "entity_id": 65800087,
-   "nombre": "Diamond Poker Spearman",
-   "npc_type": 7262,
-   "sprite": 42948,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    123,
-    46
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800088,
-   "nombre": "Diamond Poker Spearman",
-   "npc_type": 7262,
-   "sprite": 42948,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    118,
-    41
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
-  },
-  {
-   "entity_id": 65800089,
-   "nombre": "Diamond Poker Spearman",
-   "npc_type": 7262,
-   "sprite": 42948,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    118,
-    46
    ],
    "direccion": 2,
    "visible": 0,
@@ -1405,7 +295,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    54,
+    55,
     39
    ],
    "direccion": 2,
@@ -1435,7 +325,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    54,
+    53,
     44
    ],
    "direccion": 2,
@@ -1450,8 +340,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    44,
-    44
+    45,
+    46
    ],
    "direccion": 2,
    "visible": 0,
@@ -1480,8 +370,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    49,
-    34
+    48,
+    36
    ],
    "direccion": 2,
    "visible": 0,
@@ -1510,8 +400,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    54,
-    34
+    52,
+    38
    ],
    "direccion": 2,
    "visible": 0,
@@ -1555,8 +445,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    59,
-    34
+    60,
+    37
    ],
    "direccion": 2,
    "visible": 0,
@@ -1600,8 +490,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    39,
-    39
+    40,
+    38
    ],
    "direccion": 2,
    "visible": 0,
@@ -1630,8 +520,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    39,
-    44
+    41,
+    48
    ],
    "direccion": 2,
    "visible": 0,
@@ -1676,7 +566,7 @@
    "monstruo": true,
    "tile": [
     39,
-    54
+    53
    ],
    "direccion": 2,
    "visible": 0,
@@ -1690,8 +580,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    44,
-    29
+    43,
+    28
    ],
    "direccion": 2,
    "visible": 0,
@@ -1706,7 +596,7 @@
    "monstruo": true,
    "tile": [
     44,
-    54
+    52
    ],
    "direccion": 2,
    "visible": 0,
@@ -1720,8 +610,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    49,
-    29
+    47,
+    26
    ],
    "direccion": 2,
    "visible": 0,
@@ -1736,7 +626,7 @@
    "monstruo": true,
    "tile": [
     49,
-    54
+    53
    ],
    "direccion": 2,
    "visible": 0,
@@ -1750,8 +640,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    54,
-    29
+    51,
+    24
    ],
    "direccion": 2,
    "visible": 0,
@@ -1765,7 +655,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    54,
+    53,
     54
    ],
    "direccion": 2,
@@ -1780,8 +670,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    59,
-    29
+    61,
+    25
    ],
    "direccion": 2,
    "visible": 0,
@@ -1795,8 +685,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    59,
-    54
+    57,
+    52
    ],
    "direccion": 2,
    "visible": 0,
@@ -1825,8 +715,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    64,
-    29
+    65,
+    27
    ],
    "direccion": 2,
    "visible": 0,
@@ -1856,7 +746,7 @@
    "monstruo": true,
    "tile": [
     64,
-    34
+    35
    ],
    "direccion": 2,
    "visible": 0,
@@ -1900,8 +790,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    34,
-    39
+    36,
+    36
    ],
    "direccion": 2,
    "visible": 0,
@@ -1930,8 +820,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    34,
-    44
+    39,
+    49
    ],
    "direccion": 2,
    "visible": 0,
@@ -1945,8 +835,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    64,
-    49
+    63,
+    48
    ],
    "direccion": 2,
    "visible": 0,
@@ -1960,8 +850,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    34,
-    49
+    35,
+    51
    ],
    "direccion": 2,
    "visible": 0,
@@ -1975,8 +865,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    64,
-    54
+    61,
+    50
    ],
    "direccion": 2,
    "visible": 0,
@@ -2005,7 +895,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    34,
+    31,
     59
    ],
    "direccion": 2,
@@ -2035,8 +925,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    39,
-    59
+    37,
+    54
    ],
    "direccion": 2,
    "visible": 0,
@@ -2065,8 +955,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    44,
-    59
+    50,
+    54
    ],
    "direccion": 2,
    "visible": 0,
@@ -2095,27 +985,12 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    49,
-    59
+    51,
+    55
    ],
    "direccion": 2,
    "visible": 0,
    "nivel": 136
-  },
-  {
-   "entity_id": 65800140,
-   "nombre": "Heart Poker Spearman",
-   "npc_type": 7263,
-   "sprite": 42947,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    107,
-    63
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
   },
   {
    "entity_id": 65800141,
@@ -2155,42 +1030,12 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    151,
+    154,
     81
    ],
    "direccion": 2,
    "visible": 0,
    "nivel": 138
-  },
-  {
-   "entity_id": 65800144,
-   "nombre": "Club Poker Spearman",
-   "npc_type": 7261,
-   "sprite": 42949,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    118,
-    70
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 138
-  },
-  {
-   "entity_id": 65800145,
-   "nombre": "Fat Lantern Demon Anglia",
-   "npc_type": 7277,
-   "sprite": 43017,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    169,
-    40
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 151
   },
   {
    "entity_id": 65800146,
@@ -2230,8 +1075,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    163,
-    48
+    165,
+    50
    ],
    "direccion": 2,
    "visible": 0,
@@ -2276,7 +1121,7 @@
    "monstruo": true,
    "tile": [
     173,
-    45
+    43
    ],
    "direccion": 2,
    "visible": 0,
@@ -2321,7 +1166,7 @@
    "monstruo": true,
    "tile": [
     168,
-    58
+    57
    ],
    "direccion": 2,
    "visible": 0,
@@ -2351,7 +1196,7 @@
    "monstruo": true,
    "tile": [
     173,
-    60
+    57
    ],
    "direccion": 2,
    "visible": 0,
@@ -2365,7 +1210,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    174,
+    175,
     40
    ],
    "direccion": 2,
@@ -2380,8 +1225,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    158,
-    43
+    159,
+    42
    ],
    "direccion": 2,
    "visible": 0,
@@ -2410,7 +1255,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    158,
+    157,
     48
    ],
    "direccion": 2,
@@ -2441,7 +1286,7 @@
    "monstruo": true,
    "tile": [
     158,
-    58
+    57
    ],
    "direccion": 2,
    "visible": 0,
@@ -2471,7 +1316,7 @@
    "monstruo": true,
    "tile": [
     158,
-    63
+    65
    ],
    "direccion": 2,
    "visible": 0,
@@ -2500,8 +1345,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    163,
-    63
+    161,
+    60
    ],
    "direccion": 2,
    "visible": 0,
@@ -2530,8 +1375,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    168,
-    63
+    165,
+    58
    ],
    "direccion": 2,
    "visible": 0,
@@ -2561,7 +1406,7 @@
    "monstruo": true,
    "tile": [
     178,
-    60
+    57
    ],
    "direccion": 2,
    "visible": 0,
@@ -2576,7 +1421,7 @@
    "monstruo": true,
    "tile": [
     179,
-    37
+    36
    ],
    "direccion": 2,
    "visible": 0,
@@ -2590,8 +1435,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    173,
-    65
+    179,
+    71
    ],
    "direccion": 2,
    "visible": 0,
@@ -2620,8 +1465,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    178,
-    65
+    182,
+    69
    ],
    "direccion": 2,
    "visible": 0,
@@ -2680,8 +1525,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    153,
-    43
+    152,
+    46
    ],
    "direccion": 2,
    "visible": 0,
@@ -2725,8 +1570,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    153,
-    58
+    154,
+    56
    ],
    "direccion": 2,
    "visible": 0,
@@ -2740,7 +1585,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    153,
+    152,
     63
    ],
    "direccion": 2,
@@ -2816,7 +1661,7 @@
    "monstruo": true,
    "tile": [
     183,
-    42
+    44
    ],
    "direccion": 2,
    "visible": 0,
@@ -2830,8 +1675,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    166,
-    68
+    163,
+    69
    ],
    "direccion": 2,
    "visible": 0,
@@ -2920,7 +1765,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    46,
+    49,
     148
    ],
    "direccion": 2,
@@ -2965,8 +1810,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    46,
-    153
+    49,
+    150
    ],
    "direccion": 2,
    "visible": 0,
@@ -3011,7 +1856,7 @@
    "monstruo": true,
    "tile": [
     51,
-    153
+    152
    ],
    "direccion": 2,
    "visible": 0,
@@ -3040,8 +1885,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    41,
-    148
+    40,
+    145
    ],
    "direccion": 2,
    "visible": 0,
@@ -3055,8 +1900,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    56,
-    155
+    57,
+    153
    ],
    "direccion": 2,
    "visible": 0,
@@ -3070,8 +1915,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    41,
-    153
+    37,
+    159
    ],
    "direccion": 2,
    "visible": 0,
@@ -3145,8 +1990,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    41,
-    158
+    39,
+    160
    ],
    "direccion": 2,
    "visible": 0,
@@ -3175,8 +2020,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    46,
-    158
+    43,
+    162
    ],
    "direccion": 2,
    "visible": 0,
@@ -3220,8 +2065,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    51,
-    158
+    50,
+    152
    ],
    "direccion": 2,
    "visible": 0,
@@ -3280,8 +2125,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    61,
-    155
+    62,
+    154
    ],
    "direccion": 2,
    "visible": 0,
@@ -3310,8 +2155,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    56,
-    160
+    50,
+    166
    ],
    "direccion": 2,
    "visible": 0,
@@ -3326,7 +2171,7 @@
    "monstruo": true,
    "tile": [
     36,
-    149
+    147
    ],
    "direccion": 2,
    "visible": 0,
@@ -3355,8 +2200,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    61,
-    160
+    66,
+    155
    ],
    "direccion": 2,
    "visible": 0,
@@ -3370,8 +2215,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    36,
-    154
+    34,
+    158
    ],
    "direccion": 2,
    "visible": 0,
@@ -3445,7 +2290,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    65,
+    63,
     134
    ],
    "direccion": 2,
@@ -3550,8 +2395,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    50,
-    163
+    48,
+    165
    ],
    "direccion": 2,
    "visible": 0,
@@ -3640,8 +2485,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    66,
-    159
+    67,
+    156
    ],
    "direccion": 2,
    "visible": 0,
@@ -3700,8 +2545,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    31,
-    154
+    29,
+    156
    ],
    "direccion": 2,
    "visible": 0,
@@ -3730,8 +2575,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    66,
-    164
+    70,
+    158
    ],
    "direccion": 2,
    "visible": 0,
@@ -3775,8 +2620,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    55,
-    165
+    52,
+    168
    ],
    "direccion": 2,
    "visible": 0,
@@ -3820,8 +2665,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    60,
-    165
+    52,
+    169
    ],
    "direccion": 2,
    "visible": 0,
@@ -3850,8 +2695,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    61,
-    124
+    60,
+    126
    ],
    "direccion": 2,
    "visible": 0,
@@ -3866,7 +2711,7 @@
    "monstruo": true,
    "tile": [
     70,
-    129
+    128
    ],
    "direccion": 2,
    "visible": 0,
@@ -3881,7 +2726,7 @@
    "monstruo": true,
    "tile": [
     30,
-    164
+    163
    ],
    "direccion": 2,
    "visible": 0,
@@ -3911,7 +2756,7 @@
    "monstruo": true,
    "tile": [
     70,
-    134
+    138
    ],
    "direccion": 2,
    "visible": 0,
@@ -4076,7 +2921,7 @@
    "monstruo": true,
    "tile": [
     248,
-    39
+    40
    ],
    "direccion": 2,
    "visible": 0,
@@ -4105,8 +2950,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    248,
-    49
+    250,
+    47
    ],
    "direccion": 2,
    "visible": 0,
@@ -4195,8 +3040,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    258,
-    59
+    257,
+    58
    ],
    "direccion": 2,
    "visible": 0,
@@ -4210,8 +3055,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    263,
-    59
+    259,
+    57
    ],
    "direccion": 2,
    "visible": 0,
@@ -4285,8 +3130,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    268,
-    59
+    269,
+    57
    ],
    "direccion": 2,
    "visible": 0,
@@ -4300,7 +3145,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    243,
+    242,
     34
    ],
    "direccion": 2,
@@ -4331,7 +3176,7 @@
    "monstruo": true,
    "tile": [
     243,
-    44
+    43
    ],
    "direccion": 2,
    "visible": 0,
@@ -4346,7 +3191,7 @@
    "monstruo": true,
    "tile": [
     243,
-    49
+    52
    ],
    "direccion": 2,
    "visible": 0,
@@ -4375,8 +3220,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    243,
-    59
+    244,
+    60
    ],
    "direccion": 2,
    "visible": 0,
@@ -4405,8 +3250,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    12,
-    98
+    14,
+    100
    ],
    "direccion": 2,
    "visible": 0,
@@ -4421,7 +3266,7 @@
    "monstruo": true,
    "tile": [
     12,
-    103
+    104
    ],
    "direccion": 2,
    "visible": 0,
@@ -4495,8 +3340,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    141,
-    115
+    144,
+    114
    ],
    "direccion": 2,
    "visible": 0,
@@ -4510,8 +3355,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    141,
-    120
+    145,
+    117
    ],
    "direccion": 2,
    "visible": 0,
@@ -4526,7 +3371,7 @@
    "monstruo": true,
    "tile": [
     146,
-    120
+    118
    ],
    "direccion": 2,
    "visible": 0,
@@ -4540,7 +3385,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    151,
+    153,
     110
    ],
    "direccion": 2,
@@ -4600,7 +3445,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    136,
+    135,
     110
    ],
    "direccion": 2,
@@ -4615,8 +3460,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    136,
-    115
+    135,
+    113
    ],
    "direccion": 2,
    "visible": 0,
@@ -4630,7 +3475,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    136,
+    131,
     120
    ],
    "direccion": 2,
@@ -4645,8 +3490,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    136,
-    125
+    131,
+    120
    ],
    "direccion": 2,
    "visible": 0,
@@ -4661,7 +3506,7 @@
    "monstruo": true,
    "tile": [
     141,
-    105
+    103
    ],
    "direccion": 2,
    "visible": 0,
@@ -4675,8 +3520,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    141,
-    125
+    147,
+    118
    ],
    "direccion": 2,
    "visible": 0,
@@ -4690,8 +3535,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    146,
-    125
+    150,
+    120
    ],
    "direccion": 2,
    "visible": 0,
@@ -4720,8 +3565,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    151,
-    125
+    154,
+    124
    ],
    "direccion": 2,
    "visible": 0,
@@ -4751,7 +3596,7 @@
    "monstruo": true,
    "tile": [
     156,
-    110
+    109
    ],
    "direccion": 2,
    "visible": 0,
@@ -4825,8 +3670,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    196,
-    151
+    197,
+    150
    ],
    "direccion": 2,
    "visible": 0,
@@ -4960,7 +3805,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    191,
+    189,
     151
    ],
    "direccion": 2,
@@ -4975,8 +3820,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    191,
-    156
+    188,
+    152
    ],
    "direccion": 2,
    "visible": 0,
@@ -5005,8 +3850,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    196,
-    156
+    200,
+    153
    ],
    "direccion": 2,
    "visible": 0,
@@ -5035,8 +3880,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    201,
-    156
+    202,
+    154
    ],
    "direccion": 2,
    "visible": 0,
@@ -5050,8 +3895,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    206,
-    136
+    205,
+    137
    ],
    "direccion": 2,
    "visible": 0,
@@ -5080,7 +3925,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    211,
+    212,
     136
    ],
    "direccion": 2,
@@ -5111,7 +3956,7 @@
    "monstruo": true,
    "tile": [
     211,
-    146
+    144
    ],
    "direccion": 2,
    "visible": 0,
@@ -5146,921 +3991,6 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 148
-  },
-  {
-   "entity_id": 65800343,
-   "nombre": "Fruit Guardian",
-   "npc_type": 7274,
-   "sprite": 43014,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    188,
-    131
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800344,
-   "nombre": "Fruit Guardian",
-   "npc_type": 7274,
-   "sprite": 43014,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    193,
-    131
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800345,
-   "nombre": "Fruit Guardian",
-   "npc_type": 7274,
-   "sprite": 43014,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    198,
-    131
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800346,
-   "nombre": "Fruit Guardian",
-   "npc_type": 7274,
-   "sprite": 43014,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    203,
-    131
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800347,
-   "nombre": "Fruit Guardian",
-   "npc_type": 7274,
-   "sprite": 43014,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    208,
-    131
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800348,
-   "nombre": "Fruit Guardian",
-   "npc_type": 7274,
-   "sprite": 43014,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    213,
-    130
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800349,
-   "nombre": "Fruit Guardian",
-   "npc_type": 7274,
-   "sprite": 43014,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    186,
-    136
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800350,
-   "nombre": "Fruit Guardian",
-   "npc_type": 7274,
-   "sprite": 43014,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    186,
-    141
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800351,
-   "nombre": "Fruit Guardian",
-   "npc_type": 7274,
-   "sprite": 43014,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    186,
-    146
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800352,
-   "nombre": "Fruit Guardian",
-   "npc_type": 7274,
-   "sprite": 43014,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    186,
-    151
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800353,
-   "nombre": "Fruit Guardian",
-   "npc_type": 7274,
-   "sprite": 43014,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    186,
-    156
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800354,
-   "nombre": "Fruit Guardian",
-   "npc_type": 7274,
-   "sprite": 43014,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    216,
-    135
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800355,
-   "nombre": "Fruit Guardian",
-   "npc_type": 7274,
-   "sprite": 43014,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    216,
-    140
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800356,
-   "nombre": "Fruit Guardian",
-   "npc_type": 7274,
-   "sprite": 43014,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    216,
-    145
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800357,
-   "nombre": "Fruit Guardian",
-   "npc_type": 7274,
-   "sprite": 43014,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    216,
-    150
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800358,
-   "nombre": "Fruit Guardian",
-   "npc_type": 7274,
-   "sprite": 43014,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    216,
-    155
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800359,
-   "nombre": "Fruit Guardian",
-   "npc_type": 7274,
-   "sprite": 43014,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    183,
-    126
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800360,
-   "nombre": "Fruit Guardian",
-   "npc_type": 7274,
-   "sprite": 43014,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    183,
-    131
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800361,
-   "nombre": "Fruit Guardian",
-   "npc_type": 7274,
-   "sprite": 43014,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    188,
-    126
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800362,
-   "nombre": "Fruit Guardian",
-   "npc_type": 7274,
-   "sprite": 43014,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    193,
-    126
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800363,
-   "nombre": "Fruit Guardian",
-   "npc_type": 7274,
-   "sprite": 43014,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    198,
-    126
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800364,
-   "nombre": "Fruit Guardian",
-   "npc_type": 7274,
-   "sprite": 43014,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    203,
-    126
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800365,
-   "nombre": "Fruit Guardian",
-   "npc_type": 7274,
-   "sprite": 43014,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    208,
-    126
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800366,
-   "nombre": "Fruit Guardian",
-   "npc_type": 7274,
-   "sprite": 43014,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    216,
-    160
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800367,
-   "nombre": "Fruit Guardian",
-   "npc_type": 7274,
-   "sprite": 43014,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    182,
-    161
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800368,
-   "nombre": "Fruit Guardian",
-   "npc_type": 7274,
-   "sprite": 43014,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    187,
-    161
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800369,
-   "nombre": "Fruit Guardian",
-   "npc_type": 7274,
-   "sprite": 43014,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    192,
-    161
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800370,
-   "nombre": "Fruit Guardian",
-   "npc_type": 7274,
-   "sprite": 43014,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    197,
-    161
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800371,
-   "nombre": "Fruit Guardian",
-   "npc_type": 7274,
-   "sprite": 43014,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    202,
-    161
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800372,
-   "nombre": "Fruit Guardian",
-   "npc_type": 7274,
-   "sprite": 43014,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    207,
-    161
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800373,
-   "nombre": "Cursed Berry Killer",
-   "npc_type": 7275,
-   "sprite": 43015,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    181,
-    136
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800374,
-   "nombre": "Cursed Berry Killer",
-   "npc_type": 7275,
-   "sprite": 43015,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    181,
-    141
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800375,
-   "nombre": "Cursed Berry Killer",
-   "npc_type": 7275,
-   "sprite": 43015,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    181,
-    146
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800376,
-   "nombre": "Cursed Berry Killer",
-   "npc_type": 7275,
-   "sprite": 43015,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    181,
-    151
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800377,
-   "nombre": "Cursed Berry Killer",
-   "npc_type": 7275,
-   "sprite": 43015,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    181,
-    156
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800378,
-   "nombre": "Cursed Berry Killer",
-   "npc_type": 7275,
-   "sprite": 43015,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    213,
-    125
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800379,
-   "nombre": "Cursed Berry Killer",
-   "npc_type": 7275,
-   "sprite": 43015,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    178,
-    124
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800380,
-   "nombre": "Cursed Berry Killer",
-   "npc_type": 7275,
-   "sprite": 43015,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    178,
-    129
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800381,
-   "nombre": "Cursed Berry Killer",
-   "npc_type": 7275,
-   "sprite": 43015,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    177,
-    161
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800382,
-   "nombre": "Cursed Berry Killer",
-   "npc_type": 7275,
-   "sprite": 43015,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    176,
-    134
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800383,
-   "nombre": "Cursed Berry Killer",
-   "npc_type": 7275,
-   "sprite": 43015,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    176,
-    139
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800384,
-   "nombre": "Cursed Berry Killer",
-   "npc_type": 7275,
-   "sprite": 43015,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    176,
-    144
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800385,
-   "nombre": "Cursed Berry Killer",
-   "npc_type": 7275,
-   "sprite": 43015,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    176,
-    149
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800386,
-   "nombre": "Cursed Berry Killer",
-   "npc_type": 7275,
-   "sprite": 43015,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    176,
-    154
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800387,
-   "nombre": "Cursed Berry Killer",
-   "npc_type": 7275,
-   "sprite": 43015,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    218,
-    122
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800388,
-   "nombre": "Cursed Berry Killer",
-   "npc_type": 7275,
-   "sprite": 43015,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    218,
-    127
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800389,
-   "nombre": "Cursed Berry Killer",
-   "npc_type": 7275,
-   "sprite": 43015,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    183,
-    121
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800390,
-   "nombre": "Cursed Berry Killer",
-   "npc_type": 7275,
-   "sprite": 43015,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    188,
-    121
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800391,
-   "nombre": "Cursed Berry Killer",
-   "npc_type": 7275,
-   "sprite": 43015,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    193,
-    121
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800392,
-   "nombre": "Cursed Berry Killer",
-   "npc_type": 7275,
-   "sprite": 43015,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    198,
-    121
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800393,
-   "nombre": "Cursed Berry Killer",
-   "npc_type": 7275,
-   "sprite": 43015,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    203,
-    121
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800394,
-   "nombre": "Cursed Berry Killer",
-   "npc_type": 7275,
-   "sprite": 43015,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    208,
-    121
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800395,
-   "nombre": "Cursed Berry Killer",
-   "npc_type": 7275,
-   "sprite": 43015,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    212,
-    165
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800396,
-   "nombre": "Cursed Berry Killer",
-   "npc_type": 7275,
-   "sprite": 43015,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    217,
-    165
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800397,
-   "nombre": "Cursed Berry Killer",
-   "npc_type": 7275,
-   "sprite": 43015,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    174,
-    166
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800398,
-   "nombre": "Cursed Berry Killer",
-   "npc_type": 7275,
-   "sprite": 43015,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    179,
-    166
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800399,
-   "nombre": "Cursed Berry Killer",
-   "npc_type": 7275,
-   "sprite": 43015,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    184,
-    166
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800400,
-   "nombre": "Cursed Berry Killer",
-   "npc_type": 7275,
-   "sprite": 43015,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    189,
-    166
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800401,
-   "nombre": "Cursed Berry Killer",
-   "npc_type": 7275,
-   "sprite": 43015,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    194,
-    166
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800402,
-   "nombre": "Cursed Berry Killer",
-   "npc_type": 7275,
-   "sprite": 43015,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    199,
-    166
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 150
-  },
-  {
-   "entity_id": 65800403,
-   "nombre": "Heart Poker Spearman",
-   "npc_type": 7263,
-   "sprite": 42947,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    96,
-    54
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 140
   },
   {
    "entity_id": 65800404,
@@ -6176,7 +4106,7 @@
    "monstruo": true,
    "tile": [
     123,
-    141
+    142
    ],
    "direccion": 2,
    "visible": 0,
@@ -6226,6 +4156,141 @@
    "direccion": 2,
    "visible": 0,
    "nivel": 1
+  },
+  {
+   "entity_id": 65800415,
+   "nombre": "Club Poker Spearman",
+   "npc_type": 7261,
+   "sprite": 42949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    95,
+    77
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800416,
+   "nombre": "Club Poker Spearman",
+   "npc_type": 7261,
+   "sprite": 42949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    144,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800417,
+   "nombre": "Club Poker Spearman",
+   "npc_type": 7261,
+   "sprite": 42949,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    126,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 138
+  },
+  {
+   "entity_id": 65800418,
+   "nombre": "Diamond Poker Spearman",
+   "npc_type": 7262,
+   "sprite": 42948,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    95,
+    79
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800419,
+   "nombre": "Diamond Poker Spearman",
+   "npc_type": 7262,
+   "sprite": 42948,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    144,
+    78
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800420,
+   "nombre": "Diamond Poker Spearman",
+   "npc_type": 7262,
+   "sprite": 42948,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    126,
+    81
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800421,
+   "nombre": "Diamond Poker Spearman",
+   "npc_type": 7262,
+   "sprite": 42948,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    98,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800422,
+   "nombre": "Diamond Poker Spearman",
+   "npc_type": 7262,
+   "sprite": 42948,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    123,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
+  },
+  {
+   "entity_id": 65800423,
+   "nombre": "Diamond Poker Spearman",
+   "npc_type": 7262,
+   "sprite": 42948,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    125,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 140
   }
  ],
  "recursos": [
@@ -6241,8 +4306,10 @@
     135,
     44
    ],
+   "evento": 107,
    "crudo": "c09d840400000000f1100000900500000000000023000000000000000000000000062dec00000480000000",
-   "copiado_de": "cuerpo de una captura del objeto 60461"
+   "copiado_de": "cuerpo de una captura del objeto 60461",
+   "puesto_por": "objetos_de_instancia"
   },
   {
    "entity_id": 75800001,
@@ -6256,11 +4323,166 @@
     95,
     96
    ],
+   "evento": 118,
    "crudo": "c19d840402000000ec0b0000100c00000000000023000000000000000000000000062dec00000480000000",
-   "copiado_de": "cuerpo de una captura del objeto 60461"
+   "copiado_de": "cuerpo de una captura del objeto 60461",
+   "puesto_por": "objetos_de_instancia"
   },
   {
    "entity_id": 75800002,
+   "sprite": 60457,
+   "capa": 0,
+   "px": [
+    5423,
+    656
+   ],
+   "tile": [
+    169,
+    20
+   ],
+   "evento": 108,
+   "crudo": "c29d8404000000002f150000900200000000000027000000000000001a000000dc0629ec00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800003,
+   "sprite": 60457,
+   "capa": 0,
+   "px": [
+    5563,
+    560
+   ],
+   "tile": [
+    173,
+    17
+   ],
+   "evento": 109,
+   "crudo": "c39d840400000000bb150000300200000000000027000000000000001a000000dc0629ec00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800004,
+   "sprite": 60457,
+   "capa": 0,
+   "px": [
+    5715,
+    496
+   ],
+   "tile": [
+    178,
+    15
+   ],
+   "evento": 110,
+   "crudo": "c49d84040000000053160000f00100000000000027000000000000001a000000dc0629ec00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800005,
+   "sprite": 60457,
+   "capa": 0,
+   "px": [
+    5857,
+    400
+   ],
+   "tile": [
+    183,
+    12
+   ],
+   "evento": 111,
+   "crudo": "c59d840400000000e1160000900100000000000027000000000000001a000000dc0629ec00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800006,
+   "sprite": 60457,
+   "capa": 2,
+   "px": [
+    6326,
+    592
+   ],
+   "tile": [
+    197,
+    18
+   ],
+   "evento": 112,
+   "crudo": "c69d840402000000b6180000500200000000000027000000000000001a000000dc0629ec00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800007,
+   "sprite": 60457,
+   "capa": 2,
+   "px": [
+    6440,
+    656
+   ],
+   "tile": [
+    201,
+    20
+   ],
+   "evento": 113,
+   "crudo": "c79d84040200000028190000900200000000000027000000000000001a000000dc0629ec00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800008,
+   "sprite": 60457,
+   "capa": 2,
+   "px": [
+    6553,
+    688
+   ],
+   "tile": [
+    204,
+    21
+   ],
+   "evento": 114,
+   "crudo": "c89d84040200000099190000b00200000000000027000000000000001a000000dc0629ec00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800009,
+   "sprite": 60457,
+   "capa": 2,
+   "px": [
+    6654,
+    752
+   ],
+   "tile": [
+    207,
+    23
+   ],
+   "evento": 115,
+   "crudo": "c99d840402000000fe190000f00200000000000027000000000000001a000000dc0629ec00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800010,
+   "sprite": 60462,
+   "capa": 0,
+   "px": [
+    8658,
+    1488
+   ],
+   "tile": [
+    270,
+    46
+   ],
+   "evento": 0,
+   "crudo": "ca9d840400000000d2210000d00500000000000027000000000000001a000000dc062eec00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800011,
    "sprite": 60461,
    "capa": 0,
    "px": [
@@ -6271,11 +4493,13 @@
     229,
     55
    ],
-   "crudo": "c29d840400000000a01c0000f00600000000000023000000000000000000000000062dec00000480000000",
-   "copiado_de": "cuerpo de una captura del objeto 60461"
+   "evento": 123,
+   "crudo": "cb9d840400000000a01c0000f00600000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 75800003,
+   "entity_id": 75800012,
    "sprite": 60461,
    "capa": 0,
    "px": [
@@ -6286,11 +4510,13 @@
     235,
     60
    ],
-   "crudo": "c39d840400000000661d0000900700000000000023000000000000000000000000062dec00000480000000",
-   "copiado_de": "cuerpo de una captura del objeto 60461"
+   "evento": 125,
+   "crudo": "cc9d840400000000661d0000900700000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 75800004,
+   "entity_id": 75800013,
    "sprite": 60461,
    "capa": 0,
    "px": [
@@ -6301,11 +4527,13 @@
     28,
     114
    ],
-   "crudo": "c49d84040000000089030000500e00000000000023000000000000000000000000062dec00000480000000",
-   "copiado_de": "cuerpo de una captura del objeto 60461"
+   "evento": 128,
+   "crudo": "cd9d84040000000089030000500e00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 75800005,
+   "entity_id": 75800014,
    "sprite": 60461,
    "capa": 0,
    "px": [
@@ -6316,11 +4544,30 @@
     30,
     120
    ],
-   "crudo": "c59d840400000000dc030000100f00000000000023000000000000000000000000062dec00000480000000",
-   "copiado_de": "cuerpo de una captura del objeto 60461"
+   "evento": 126,
+   "crudo": "ce9d840400000000dc030000100f00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 75800006,
+   "entity_id": 75800015,
+   "sprite": 60415,
+   "capa": 0,
+   "px": [
+    866,
+    3152
+   ],
+   "tile": [
+    27,
+    98
+   ],
+   "evento": 0,
+   "crudo": "cf9d84040000000062030000500c00000000000027000000000000001a000000dc06ffeb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800016,
    "sprite": 60461,
    "capa": 0,
    "px": [
@@ -6331,11 +4578,13 @@
     155,
     75
    ],
-   "crudo": "c69d84040000000060130000700900000000000023000000000000000000000000062dec00000480000000",
-   "copiado_de": "cuerpo de una captura del objeto 60461"
+   "evento": 136,
+   "crudo": "d09d84040000000060130000700900000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 75800007,
+   "entity_id": 75800017,
    "sprite": 60461,
    "capa": 0,
    "px": [
@@ -6346,11 +4595,13 @@
     158,
     81
    ],
-   "crudo": "c79d840400000000ce130000300a00000000000023000000000000000000000000062dec00000480000000",
-   "copiado_de": "cuerpo de una captura del objeto 60461"
+   "evento": 137,
+   "crudo": "d19d840400000000ce130000300a00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 75800008,
+   "entity_id": 75800018,
    "sprite": 60461,
    "capa": 0,
    "px": [
@@ -6361,11 +4612,13 @@
     158,
     120
    ],
-   "crudo": "c89d840400000000c5130000100f00000000000023000000000000000000000000062dec00000480000000",
-   "copiado_de": "cuerpo de una captura del objeto 60461"
+   "evento": 138,
+   "crudo": "d29d840400000000c5130000100f00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 75800009,
+   "entity_id": 75800019,
    "sprite": 60461,
    "capa": 2,
    "px": [
@@ -6376,11 +4629,13 @@
     226,
     98
    ],
-   "crudo": "c99d840402000000431c0000500c00000000000023000000000000000000000000062dec00000480000000",
-   "copiado_de": "cuerpo de una captura del objeto 60461"
+   "evento": 138,
+   "crudo": "d39d840402000000431c0000500c00000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 75800010,
+   "entity_id": 75800020,
    "sprite": 60461,
    "capa": 2,
    "px": [
@@ -6391,11 +4646,13 @@
     183,
     151
    ],
-   "crudo": "ca9d840402000000f3160000f01200000000000023000000000000000000000000062dec00000480000000",
-   "copiado_de": "cuerpo de una captura del objeto 60461"
+   "evento": 144,
+   "crudo": "d49d840402000000f3160000f01200000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 75800011,
+   "entity_id": 75800021,
    "sprite": 60461,
    "capa": 2,
    "px": [
@@ -6406,11 +4663,13 @@
     190,
     147
    ],
-   "crudo": "cb9d840402000000dc170000701200000000000023000000000000000000000000062dec00000480000000",
-   "copiado_de": "cuerpo de una captura del objeto 60461"
+   "evento": 142,
+   "crudo": "d59d840402000000dc170000701200000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 75800012,
+   "entity_id": 75800022,
    "sprite": 60461,
    "capa": 2,
    "px": [
@@ -6421,11 +4680,489 @@
     175,
     23
    ],
-   "crudo": "cc9d840402000000e5150000f00200000000000023000000000000000000000000062dec00000480000000",
-   "copiado_de": "cuerpo de una captura del objeto 60461"
+   "evento": 158,
+   "crudo": "d69d840402000000e5150000f00200000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 75800013,
+   "entity_id": 75800023,
+   "sprite": 60384,
+   "capa": 0,
+   "px": [
+    4948,
+    3344
+   ],
+   "tile": [
+    154,
+    104
+   ],
+   "evento": 159,
+   "crudo": "d79d84040000000054130000100d00000000000027000000000000001a000000dc06e0eb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800024,
+   "sprite": 60384,
+   "capa": 0,
+   "px": [
+    5783,
+    3248
+   ],
+   "tile": [
+    180,
+    101
+   ],
+   "evento": 159,
+   "crudo": "d89d84040000000097160000b00c00000000000027000000000000001a000000dc06e0eb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800025,
+   "sprite": 60384,
+   "capa": 0,
+   "px": [
+    5719,
+    2960
+   ],
+   "tile": [
+    178,
+    92
+   ],
+   "evento": 159,
+   "crudo": "d99d84040000000057160000900b00000000000027000000000000001a000000dc06e0eb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800026,
+   "sprite": 60384,
+   "capa": 0,
+   "px": [
+    5078,
+    2832
+   ],
+   "tile": [
+    158,
+    88
+   ],
+   "evento": 159,
+   "crudo": "da9d840400000000d6130000100b00000000000027000000000000001a000000dc06e0eb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800027,
+   "sprite": 60384,
+   "capa": 0,
+   "px": [
+    4761,
+    2992
+   ],
+   "tile": [
+    148,
+    93
+   ],
+   "evento": 159,
+   "crudo": "db9d84040000000099120000b00b00000000000027000000000000001a000000dc06e0eb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800028,
+   "sprite": 60384,
+   "capa": 0,
+   "px": [
+    5956,
+    1776
+   ],
+   "tile": [
+    186,
+    55
+   ],
+   "evento": 154,
+   "crudo": "dc9d84040000000044170000f00600000000000027000000000000001a000000dc06e0eb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800029,
+   "sprite": 60462,
+   "capa": 0,
+   "px": [
+    1362,
+    5424
+   ],
+   "tile": [
+    42,
+    169
+   ],
+   "evento": 0,
+   "crudo": "dd9d84040000000052050000301500000000000027000000000000001a000000dc062eec00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800030,
+   "sprite": 60462,
+   "capa": 0,
+   "px": [
+    5956,
+    1776
+   ],
+   "tile": [
+    186,
+    55
+   ],
+   "evento": 0,
+   "crudo": "de9d84040000000044170000f00600000000000027000000000000001a000000dc062eec00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800031,
+   "sprite": 60462,
+   "capa": 0,
+   "px": [
+    1306,
+    3152
+   ],
+   "tile": [
+    40,
+    98
+   ],
+   "evento": 0,
+   "crudo": "df9d8404000000001a050000500c00000000000027000000000000001a000000dc062eec00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800032,
+   "sprite": 60458,
+   "capa": 0,
+   "px": [
+    2676,
+    2704
+   ],
+   "tile": [
+    83,
+    84
+   ],
+   "evento": 135,
+   "crudo": "e09d840400000000740a0000900a00000000000027000000000000001a000000dc062aec00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800033,
+   "sprite": 60458,
+   "capa": 0,
+   "px": [
+    4637,
+    2128
+   ],
+   "tile": [
+    144,
+    66
+   ],
+   "evento": 133,
+   "crudo": "e19d8404000000001d120000500800000000000027000000000000001a000000dc062aec00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800034,
+   "sprite": 60455,
+   "capa": 0,
+   "px": [
+    2401,
+    1424
+   ],
+   "tile": [
+    75,
+    44
+   ],
+   "evento": 0,
+   "crudo": "e29d84040000000061090000900500000000000027000000000000001a000000dc0627ec00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800035,
+   "sprite": 60455,
+   "capa": 0,
+   "px": [
+    4379,
+    1456
+   ],
+   "tile": [
+    136,
+    45
+   ],
+   "evento": 0,
+   "crudo": "e39d8404000000001b110000b00500000000000027000000000000001a000000dc0627ec00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800036,
+   "sprite": 60456,
+   "capa": 0,
+   "px": [
+    7662,
+    1744
+   ],
+   "tile": [
+    239,
+    54
+   ],
+   "evento": 0,
+   "crudo": "e49d840400000000ee1d0000d00600000000000027000000000000001a000000dc0628ec00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800037,
+   "sprite": 60456,
+   "capa": 0,
+   "px": [
+    7363,
+    1904
+   ],
+   "tile": [
+    230,
+    59
+   ],
+   "evento": 0,
+   "crudo": "e59d840400000000c31c0000700700000000000027000000000000001a000000dc0628ec00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800038,
+   "sprite": 60455,
+   "capa": 2,
+   "px": [
+    3060,
+    3152
+   ],
+   "tile": [
+    95,
+    98
+   ],
+   "evento": 0,
+   "crudo": "e69d840402000000f40b0000500c00000000000027000000000000001a000000dc0627ec00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800039,
+   "sprite": 60456,
+   "capa": 0,
+   "px": [
+    956,
+    3792
+   ],
+   "tile": [
+    29,
+    118
+   ],
+   "evento": 0,
+   "crudo": "e79d840400000000bc030000d00e00000000000027000000000000001a000000dc0628ec00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800040,
+   "sprite": 60456,
+   "capa": 0,
+   "px": [
+    4993,
+    2544
+   ],
+   "tile": [
+    156,
+    79
+   ],
+   "evento": 0,
+   "crudo": "e89d84040000000081130000f00900000000000027000000000000001a000000dc0628ec00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800041,
+   "sprite": 60455,
+   "capa": 2,
+   "px": [
+    7258,
+    3216
+   ],
+   "tile": [
+    226,
+    100
+   ],
+   "evento": 0,
+   "crudo": "e99d8404020000005a1c0000900c00000000000027000000000000001a000000dc0627ec00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800042,
+   "sprite": 60455,
+   "capa": 0,
+   "px": [
+    5055,
+    3920
+   ],
+   "tile": [
+    157,
+    122
+   ],
+   "evento": 0,
+   "crudo": "ea9d840400000000bf130000500f00000000000027000000000000001a000000dc0627ec00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800043,
+   "sprite": 60456,
+   "capa": 2,
+   "px": [
+    6005,
+    4816
+   ],
+   "tile": [
+    187,
+    150
+   ],
+   "evento": 0,
+   "crudo": "eb9d84040200000075170000d01200000000000027000000000000001a000000dc0628ec00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800044,
+   "sprite": 60458,
+   "capa": 0,
+   "px": [
+    4949,
+    3344
+   ],
+   "tile": [
+    154,
+    104
+   ],
+   "evento": 145,
+   "crudo": "ec9d84040000000055130000100d00000000000027000000000000001a000000dc062aec00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800045,
+   "sprite": 60038,
+   "capa": 0,
+   "px": [
+    866,
+    3152
+   ],
+   "tile": [
+    27,
+    98
+   ],
+   "evento": 0,
+   "crudo": "ed9d84040000000062030000500c00000000000027000000000000001a000000dc0686ea00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800046,
+   "sprite": 60458,
+   "capa": 0,
+   "px": [
+    5465,
+    3376
+   ],
+   "tile": [
+    170,
+    105
+   ],
+   "evento": 146,
+   "crudo": "ee9d84040000000059150000300d00000000000027000000000000001a000000dc062aec00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800047,
+   "sprite": 60458,
+   "capa": 0,
+   "px": [
+    5782,
+    3248
+   ],
+   "tile": [
+    180,
+    101
+   ],
+   "evento": 147,
+   "crudo": "ef9d84040000000096160000b00c00000000000027000000000000001a000000dc062aec00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800048,
+   "sprite": 60458,
+   "capa": 0,
+   "px": [
+    5721,
+    2960
+   ],
+   "tile": [
+    178,
+    92
+   ],
+   "evento": 148,
+   "crudo": "f09d84040000000059160000900b00000000000027000000000000001a000000dc062aec00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800049,
+   "sprite": 60458,
+   "capa": 0,
+   "px": [
+    5080,
+    2832
+   ],
+   "tile": [
+    158,
+    88
+   ],
+   "evento": 149,
+   "crudo": "f19d840400000000d8130000100b00000000000027000000000000001a000000dc062aec00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800050,
+   "sprite": 60458,
+   "capa": 0,
+   "px": [
+    4761,
+    2992
+   ],
+   "tile": [
+    148,
+    93
+   ],
+   "evento": 150,
+   "crudo": "f29d84040000000099120000b00b00000000000027000000000000001a000000dc062aec00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 75800051,
    "sprite": 60068,
    "capa": 2,
    "px": [
@@ -6436,11 +5173,13 @@
     93,
     166
    ],
-   "crudo": "cd9d840402000000b70b0000d01400000000000027000000000000001a000000dc06a4ea00004080020000",
-   "copiado_de": "cuerpo de una captura del objeto 60068"
+   "evento": 151,
+   "crudo": "f39d840402000000b70b0000d01400000000000027000000000000001a000000dc06a4ea00004080020000",
+   "copiado_de": "cuerpo de una captura del objeto 60068",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 75800014,
+   "entity_id": 75800052,
    "sprite": 60461,
    "capa": 0,
    "px": [
@@ -6451,8 +5190,10 @@
     75,
     42
    ],
-   "crudo": "ce9d8404000000006e090000500500000000000023000000000000000000000000062dec00000480000000",
-   "copiado_de": "cuerpo de una captura del objeto 60461"
+   "evento": 101,
+   "crudo": "f49d8404000000006e090000500500000000000023000000000000000000000000062dec00000480000000",
+   "copiado_de": "cuerpo de una captura del objeto 60461",
+   "puesto_por": "objetos_de_instancia"
   }
  ]
 }

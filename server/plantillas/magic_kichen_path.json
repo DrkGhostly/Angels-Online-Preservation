@@ -1,5 +1,5 @@
 {
- "_nota": "magic_kichen_path (stage 73). Poblado desde una captura del cliente GLOBAL, cuyo 0x0008 mide 46 bytes y no trae nombre: el nombre y el nivel salen de content.db por npc_type. Sin objetos de mapa: los 0x000E del Global miden 26 bytes y aqui se guardan crudos, asi que reenviarlos romperia nuestro cliente. Ver tools/poblar_instancia_global.py. Los objetos de mapa siguen vacios, pero los TORNADOS ya se dibujan: salen de portales.json, con la casilla sacada de map073.mpc. Ver tools/mapa_del_cliente.py. EL GUARD FASIT NO VA DE INICIO: es el unico generador de la zona 82, y esa zona la saca el evento 200 (GENERATE 82) cuando las seis salas 210..215 estan en estado 2. Se quito de los spawns el 14/10/2026; las barreras de las salas las pone tools/objetos_de_instancia.py. TAMPOCO LOS MUD LORDS NI EL AZRAEL 2. Los Mud Lord son el generador de la zona 81, que solo sale por evento (el 200 al encender las antorchas, el 300 con ENABLE_GENERATOR al morir el Guard Fasit): los 6 de la captura eran una oleada que el jugador del Global ya habia sacado. El Azrael 2 no esta en ningun generador ni evento de map073.mpc. ANTORCHAS (14/10/2026): fuera los Busy Jackstraw de las zonas 210..216. Son las antorchas ENCENDIDAS: las saca el arbol de dialogo de cada antorcha (GENERATE 21x) si llevas Flint (4673), que gasta, y el evento 200 pide las seis encendidas para sacar al Guard Fasit y los Mud Lord. Los de 217..230 se dejan: de ellos dependen las barreras de las salas (GENERATOR_ALIVE 218.. = 0). OLEADAS: fuera 31 bichos de la captura que salen por evento (tools/quitar_oleadas.py). ANTORCHAS DOBLES (14/10/2026): cada antorcha (60094, la que se pulsa) llevaba encima su sprite de ENCENDIDA (60308) de una captura en la que ya estaban encendidas. El 60308 lo pone el propio evento (accion 52) al encenderla; los duplicados se quitan.",
+ "_nota": "magic_kichen_path (stage 73). Poblado desde una captura del cliente GLOBAL, cuyo 0x0008 mide 46 bytes y no trae nombre: el nombre y el nivel salen de content.db por npc_type. Sin objetos de mapa: los 0x000E del Global miden 26 bytes y aqui se guardan crudos, asi que reenviarlos romperia nuestro cliente. Ver tools/poblar_instancia_global.py. Los objetos de mapa siguen vacios, pero los TORNADOS ya se dibujan: salen de portales.json, con la casilla sacada de map073.mpc. Ver tools/mapa_del_cliente.py. EL GUARD FASIT NO VA DE INICIO: es el unico generador de la zona 82, y esa zona la saca el evento 200 (GENERATE 82) cuando las seis salas 210..215 estan en estado 2. Se quito de los spawns el 14/10/2026; las barreras de las salas las pone tools/objetos_de_instancia.py. TAMPOCO LOS MUD LORDS NI EL AZRAEL 2. Los Mud Lord son el generador de la zona 81, que solo sale por evento (el 200 al encender las antorchas, el 300 con ENABLE_GENERATOR al morir el Guard Fasit): los 6 de la captura eran una oleada que el jugador del Global ya habia sacado. El Azrael 2 no esta en ningun generador ni evento de map073.mpc. ANTORCHAS (14/10/2026): fuera los Busy Jackstraw de las zonas 210..216. Son las antorchas ENCENDIDAS: las saca el arbol de dialogo de cada antorcha (GENERATE 21x) si llevas Flint (4673), que gasta, y el evento 200 pide las seis encendidas para sacar al Guard Fasit y los Mud Lord. Los de 217..230 se dejan: de ellos dependen las barreras de las salas (GENERATOR_ALIVE 218.. = 0). OLEADAS: fuera 31 bichos de la captura que salen por evento (tools/quitar_oleadas.py). ANTORCHAS DOBLES (14/10/2026): cada antorcha (60094, la que se pulsa) llevaba encima su sprite de ENCENDIDA (60308) de una captura en la que ya estaban encendidas. El 60308 lo pone el propio evento (accion 52) al encenderla; los duplicados se quitan. SUELO (15/10/2026): los monstruos que caian fuera del suelo transitable o en el borde (el reparto en anillo de poblar_del_cliente no miraba el suelo) se mueven a la casilla interior mas cercana, hasta 8 casillas.",
  "stage": 73,
  "spawns": [
   {
@@ -41,7 +41,7 @@
    "monstruo": true,
    "tile": [
     76,
-    8
+    9
    ],
    "direccion": 2,
    "visible": 0,
@@ -86,7 +86,7 @@
    "monstruo": true,
    "tile": [
     94,
-    16
+    15
    ],
    "direccion": 2,
    "visible": 0,
@@ -100,7 +100,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    87,
+    88,
     15
    ],
    "direccion": 2,
@@ -131,7 +131,7 @@
    "monstruo": true,
    "tile": [
     141,
-    27
+    26
    ],
    "direccion": 2,
    "visible": 0,
@@ -190,7 +190,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    37,
+    36,
     35
    ],
    "direccion": 2,
@@ -236,7 +236,7 @@
    "monstruo": true,
    "tile": [
     12,
-    44
+    45
    ],
    "direccion": 2,
    "visible": 0,
@@ -250,7 +250,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    18,
+    17,
     52
    ],
    "direccion": 2,
@@ -310,7 +310,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    106,
+    105,
     44
    ],
    "direccion": 2,
@@ -325,7 +325,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    15,
+    14,
     50
    ],
    "direccion": 2,
@@ -341,7 +341,7 @@
    "monstruo": true,
    "tile": [
     10,
-    57
+    56
    ],
    "direccion": 2,
    "visible": 0,
@@ -355,7 +355,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    17,
+    16,
     57
    ],
    "direccion": 2,
@@ -416,7 +416,7 @@
    "monstruo": true,
    "tile": [
     104,
-    58
+    57
    ],
    "direccion": 2,
    "visible": 0,
@@ -611,7 +611,7 @@
    "monstruo": true,
    "tile": [
     30,
-    78
+    77
    ],
    "direccion": 2,
    "visible": 0,
@@ -640,7 +640,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    91,
+    90,
     74
    ],
    "direccion": 2,
@@ -715,7 +715,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    35,
+    34,
     98
    ],
    "direccion": 2,
@@ -761,7 +761,7 @@
    "monstruo": true,
    "tile": [
     122,
-    85
+    86
    ],
    "direccion": 2,
    "visible": 0,
@@ -895,7 +895,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    32,
+    33,
     127
    ],
    "direccion": 2,
@@ -940,8 +940,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    82,
-    122
+    83,
+    121
    ],
    "direccion": 2,
    "visible": 0,
@@ -1016,7 +1016,7 @@
    "monstruo": true,
    "tile": [
     80,
-    14
+    13
    ],
    "direccion": 2,
    "visible": 0,
@@ -1031,7 +1031,7 @@
    "monstruo": true,
    "tile": [
     74,
-    13
+    12
    ],
    "direccion": 2,
    "visible": 0,
@@ -1075,7 +1075,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    157,
+    156,
     9
    ],
    "direccion": 2,
@@ -1091,7 +1091,7 @@
    "monstruo": true,
    "tile": [
     187,
-    14
+    13
    ],
    "direccion": 2,
    "visible": 0,
@@ -1105,8 +1105,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    179,
-    4
+    180,
+    5
    ],
    "direccion": 2,
    "visible": 0,
@@ -1181,7 +1181,7 @@
    "monstruo": true,
    "tile": [
     143,
-    29
+    28
    ],
    "direccion": 2,
    "visible": 0,
@@ -1241,7 +1241,7 @@
    "monstruo": true,
    "tile": [
     187,
-    7
+    8
    ],
    "direccion": 2,
    "visible": 0,
@@ -1345,8 +1345,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    141,
-    28
+    142,
+    27
    ],
    "direccion": 2,
    "visible": 0,
@@ -1570,8 +1570,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    12,
-    44
+    11,
+    45
    ],
    "direccion": 2,
    "visible": 0,
@@ -1646,7 +1646,7 @@
    "monstruo": true,
    "tile": [
     106,
-    44
+    45
    ],
    "direccion": 2,
    "visible": 0,
@@ -1765,8 +1765,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    233,
-    60
+    232,
+    59
    ],
    "direccion": 2,
    "visible": 0,
@@ -1975,7 +1975,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    119,
+    118,
     58
    ],
    "direccion": 2,
@@ -2111,7 +2111,7 @@
    "monstruo": true,
    "tile": [
     231,
-    60
+    59
    ],
    "direccion": 2,
    "visible": 0,
@@ -2141,7 +2141,7 @@
    "monstruo": true,
    "tile": [
     230,
-    60
+    59
    ],
    "direccion": 2,
    "visible": 0,
@@ -2230,8 +2230,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    65,
-    58
+    64,
+    59
    ],
    "direccion": 2,
    "visible": 0,
@@ -2245,8 +2245,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    63,
-    70
+    64,
+    69
    ],
    "direccion": 2,
    "visible": 0,
@@ -2515,8 +2515,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    112,
-    89
+    113,
+    90
    ],
    "direccion": 2,
    "visible": 0,
@@ -2590,7 +2590,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    296,
+    295,
     89
    ],
    "direccion": 2,
@@ -2846,7 +2846,7 @@
    "monstruo": true,
    "tile": [
     330,
-    196
+    195
    ],
    "direccion": 2,
    "visible": 0,
@@ -2920,7 +2920,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    34,
+    35,
     125
    ],
    "direccion": 2,
@@ -2995,7 +2995,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    145,
+    144,
     128
    ],
    "direccion": 2,
@@ -3011,7 +3011,7 @@
    "monstruo": true,
    "tile": [
     217,
-    128
+    127
    ],
    "direccion": 2,
    "visible": 0,
@@ -3071,7 +3071,7 @@
    "monstruo": true,
    "tile": [
     290,
-    127
+    126
    ],
    "direccion": 2,
    "visible": 0,
@@ -3085,7 +3085,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    282,
+    281,
     127
    ],
    "direccion": 2,
@@ -3160,7 +3160,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    327,
+    328,
     127
    ],
    "direccion": 2,
@@ -3460,7 +3460,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    308,
+    309,
     134
    ],
    "direccion": 2,
@@ -3745,7 +3745,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    335,
+    334,
     155
    ],
    "direccion": 2,
@@ -3880,7 +3880,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    255,
+    256,
     164
    ],
    "direccion": 2,
@@ -3940,7 +3940,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    341,
+    340,
     167
    ],
    "direccion": 2,
@@ -4061,7 +4061,7 @@
    "monstruo": true,
    "tile": [
     71,
-    173
+    174
    ],
    "direccion": 2,
    "visible": 0,
@@ -4450,7 +4450,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    214,
+    213,
     177
    ],
    "direccion": 2,
@@ -4601,7 +4601,7 @@
    "monstruo": true,
    "tile": [
     56,
-    189
+    190
    ],
    "direccion": 2,
    "visible": 0,
@@ -4660,7 +4660,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    119,
+    118,
     203
    ],
    "direccion": 2,

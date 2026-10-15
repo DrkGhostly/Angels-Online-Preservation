@@ -1,5 +1,5 @@
 {
- "_nota": "magic_kichen_path_2 (stage 74). Poblado desde una captura del cliente GLOBAL, cuyo 0x0008 mide 46 bytes y no trae nombre: el nombre y el nivel salen de content.db por npc_type. Sin objetos de mapa: los 0x000E del Global miden 26 bytes y aqui se guardan crudos, asi que reenviarlos romperia nuestro cliente. Ver tools/poblar_instancia_global.py. Los objetos de mapa siguen vacios, pero los TORNADOS ya se dibujan: salen de portales.json, con la casilla sacada de map074.mpc. Ver tools/mapa_del_cliente.py. OLEADAS (14/10/2026): fuera el Rock God Mendun y los Rock Slarm de la captura. El Mendun es la zona 76, que solo sale con GENERATE(76) a las 45 bajas (evento 102); los Rock Slarm de las zonas 75, 90 y 91 salen con ENABLE_GENERATOR al pisar la cocina (evento 151), y los que trajo la captura eran restos de esas oleadas. Se dejan los 14 Rock Slarm fijos que declara map074.mpc fuera de esas zonas. REPOBLADO (14/10/2026) desde los generadores del cliente (poblar_del_cliente.spawns_de, sin las zonas de evento): la captura Global no traia el pasillo de la carrera del Annoying Clerk (zonas 81-83: Terra Miner, Charming Flower, Hungry Eater). Se conservan los NPC. OLEADAS ya fuera. POSICIONES (14/10/2026): los Terra Miner, Charming Flower, Hungry Eater y Air Hole estaban en una rejilla de 5 en 5 inventada y la mitad caia en la lava; ahora van en los puntos de sus zonas de generador del cliente (81, 82, 83 y 77), que traen justo esa cantidad.",
+ "_nota": "magic_kichen_path_2 (stage 74). Poblado desde una captura del cliente GLOBAL, cuyo 0x0008 mide 46 bytes y no trae nombre: el nombre y el nivel salen de content.db por npc_type. Sin objetos de mapa: los 0x000E del Global miden 26 bytes y aqui se guardan crudos, asi que reenviarlos romperia nuestro cliente. Ver tools/poblar_instancia_global.py. Los objetos de mapa siguen vacios, pero los TORNADOS ya se dibujan: salen de portales.json, con la casilla sacada de map074.mpc. Ver tools/mapa_del_cliente.py. OLEADAS (14/10/2026): fuera el Rock God Mendun y los Rock Slarm de la captura. El Mendun es la zona 76, que solo sale con GENERATE(76) a las 45 bajas (evento 102); los Rock Slarm de las zonas 75, 90 y 91 salen con ENABLE_GENERATOR al pisar la cocina (evento 151), y los que trajo la captura eran restos de esas oleadas. Se dejan los 14 Rock Slarm fijos que declara map074.mpc fuera de esas zonas. REPOBLADO (14/10/2026) desde los generadores del cliente (poblar_del_cliente.spawns_de, sin las zonas de evento): la captura Global no traia el pasillo de la carrera del Annoying Clerk (zonas 81-83: Terra Miner, Charming Flower, Hungry Eater). Se conservan los NPC. OLEADAS ya fuera. POSICIONES (14/10/2026): los Terra Miner, Charming Flower, Hungry Eater y Air Hole estaban en una rejilla de 5 en 5 inventada y la mitad caia en la lava; ahora van en los puntos de sus zonas de generador del cliente (81, 82, 83 y 77), que traen justo esa cantidad. SUELO (15/10/2026): los monstruos que caian fuera del suelo transitable o en el borde (el reparto en anillo de poblar_del_cliente no miraba el suelo) se mueven a la casilla interior mas cercana, hasta 8 casillas.",
  "stage": 74,
  "spawns": [
   {
@@ -266,7 +266,7 @@
    "monstruo": true,
    "tile": [
     73,
-    167
+    168
    ],
    "direccion": 2,
    "visible": 0,
@@ -416,7 +416,7 @@
    "monstruo": true,
    "tile": [
     208,
-    185
+    186
    ],
    "direccion": 2,
    "visible": 0,
@@ -521,7 +521,7 @@
    "monstruo": true,
    "tile": [
     96,
-    220
+    221
    ],
    "direccion": 2,
    "visible": 0,
@@ -581,7 +581,7 @@
    "monstruo": true,
    "tile": [
     218,
-    183
+    184
    ],
    "direccion": 2,
    "visible": 0,
@@ -595,7 +595,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    178,
+    179,
     209
    ],
    "direccion": 2,
@@ -610,7 +610,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    380,
+    379,
     189
    ],
    "direccion": 2,
@@ -716,7 +716,7 @@
    "monstruo": true,
    "tile": [
     329,
-    179
+    180
    ],
    "direccion": 2,
    "visible": 0,
@@ -805,8 +805,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    260,
-    210
+    259,
+    211
    ],
    "direccion": 2,
    "visible": 0,
@@ -866,7 +866,7 @@
    "monstruo": true,
    "tile": [
     324,
-    238
+    237
    ],
    "direccion": 2,
    "visible": 0,
@@ -1136,7 +1136,7 @@
    "monstruo": true,
    "tile": [
     126,
-    100
+    101
    ],
    "direccion": 2,
    "visible": 0,
@@ -1331,7 +1331,7 @@
    "monstruo": true,
    "tile": [
     50,
-    71
+    70
    ],
    "direccion": 2,
    "visible": 0,
@@ -1361,7 +1361,7 @@
    "monstruo": true,
    "tile": [
     56,
-    88
+    89
    ],
    "direccion": 2,
    "visible": 0,
@@ -1480,8 +1480,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    177,
-    76
+    178,
+    77
    ],
    "direccion": 2,
    "visible": 0,
@@ -1511,7 +1511,7 @@
    "monstruo": true,
    "tile": [
     158,
-    78
+    79
    ],
    "direccion": 2,
    "visible": 0,
@@ -1555,7 +1555,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    52,
+    53,
     65
    ],
    "direccion": 2,
@@ -1600,7 +1600,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    63,
+    62,
     65
    ],
    "direccion": 2,
@@ -1646,7 +1646,7 @@
    "monstruo": true,
    "tile": [
     183,
-    81
+    82
    ],
    "direccion": 2,
    "visible": 0,
@@ -2366,7 +2366,7 @@
    "monstruo": true,
    "tile": [
     139,
-    44
+    45
    ],
    "direccion": 2,
    "visible": 0,
@@ -2396,7 +2396,7 @@
    "monstruo": true,
    "tile": [
     117,
-    55
+    56
    ],
    "direccion": 2,
    "visible": 0,
@@ -2680,8 +2680,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    289,
-    204
+    290,
+    206
    ],
    "direccion": 2,
    "visible": 0,

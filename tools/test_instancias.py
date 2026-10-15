@@ -127,6 +127,13 @@ def test_el_censo_de_cada_cuarto_es_el_del_cliente():
         # pero de otro campo (el +22 del objeto, no los generadores), asi que
         # no entran en este recuento de generadores. Lo que se vigila aqui
         # -- ni un monstruo inventado -- sigue igual de estricto.
+        # RECORTES PEDIDOS: la plantilla puede bajar a mano lo que el cliente
+        # declara, y lo dice en 'recortados' con su motivo en la nota. Los
+        # cristales del Evil Eye (79) declaran 30 por zona sobre un solo
+        # punto y el usuario los vio amontonados. Solo se puede BAJAR.
+        for nombre, n in (d.get('recortados') or {}).items():
+            assert n <= delcliente.get(nombre, 0), (st, nombre, n)
+            delcliente[nombre] = n
         dela = collections.Counter(e['nombre'] for e in d['spawns']
                                    if e.get('puesto_por') != 'npcs_del_cliente')
         assert dela == delcliente, (st, dela - delcliente, delcliente - dela)

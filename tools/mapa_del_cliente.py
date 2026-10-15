@@ -185,8 +185,14 @@ class Mapa:
                            # en el +50, y cada tipo de monstruo lleva uno
                            # solo y siempre el mismo: 112->501, 113->505,
                            # 114->502, 116->542, 117->503.
+                           #
+                           # Es u32, NO u16: leido en 16 bits los eventos por
+                           # encima de 65535 salian truncados. El de los Stab
+                           # Jellyfish de Wave Harbor es el 70501 y se leia
+                           # 4965, un evento que no existe: matarlos no sumaba
+                           # a la mision 976 ("Nature is Crying for Help").
                            'evento_monstruo':
-                               struct.unpack_from('<H', b, o + 50)[0],
+                               struct.unpack_from('<I', b, o + 50)[0],
                            'tiempo': struct.unpack_from('<H', b, o + 38)[0],
                            'cantidad': struct.unpack_from('<H', b, o + 42)[0]})
         return salida

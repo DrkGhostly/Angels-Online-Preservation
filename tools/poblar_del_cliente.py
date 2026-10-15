@@ -280,6 +280,30 @@ def _repartir(puntos, cuantos, ancho, alto, ocupadas=None):
     return salida
 
 
+# SUELO. Si el servidor tiene el suelo transitable del mapa (transitable.bin),
+# solo valen casillas que se pisan y cuyas ocho vecinas tambien: el anillo no
+# miraba el suelo y en Gulp Room 4, Leviathan's Bedroom, Botti Palace o Poker
+# Castle la mitad de los monstruos caian fuera de la plataforma o en su borde.
+_PISABLE = None
+
+
+def _suelo_de(stage):
+    # El de server/, no el tools/transitable.py que lo construye: se llaman
+    # igual y desde aqui el import normal cogeria el de tools.
+    try:
+        import importlib.util as _iu
+        _sp = _iu.spec_from_file_location('transitable_servidor',
+                                          RAIZ / 'server' / 'transitable.py')
+        _tr = _iu.module_from_spec(_sp)
+        _sp.loader.exec_module(_tr)
+    except Exception:
+        return None
+    if not _tr.conocido(stage):
+        return None
+    return lambda t: all(_tr.se_pisa(stage, t[0] + dx, t[1] + dy)
+                         for dx in (-1, 0, 1) for dy in (-1, 0, 1))
+
+
 def _libre_cerca(centro, usadas, ancho, alto):
     """La casilla libre mas cercana al centro, en cuadrados concentricos.
 
@@ -297,6 +321,8 @@ def _libre_cerca(centro, usadas, ancho, alto):
                 if not (0 <= t[0] < ancho and 0 <= t[1] < alto):
                     continue
                 if t in usadas:
+                    continue
+                if _PISABLE is not None and not _PISABLE(t):
                     continue
                 if any((t[0] + ex, t[1] + ey) in usadas
                        for ex in range(-SEPARACION + 1, SEPARACION)
@@ -368,6 +394,8 @@ def spawns_de(stage, con_zonas_de_evento=False):
     m = cli.mapa(stage)
     if m is None:
         return None, None
+    global _PISABLE
+    _PISABLE = _suelo_de(stage)
     fuera = set() if con_zonas_de_evento else zonas_de_evento(stage)
     cat = _catalogo()
     salida, sin_catalogo = [], collections.Counter()

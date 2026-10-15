@@ -1,5 +1,5 @@
 {
- "_nota": "horrible_lost_region (stage 101). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map101.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "_nota": "horrible_lost_region (stage 101). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map101.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py. SUELO (15/10/2026): los monstruos que caian fuera del suelo transitable o en el borde (el reparto en anillo de poblar_del_cliente no miraba el suelo) se mueven a la casilla interior mas cercana, hasta 8 casillas. OLEADAS: fuera 3 bichos de la captura que salen por evento (tools/quitar_oleadas.py).",
  "stage": 101,
  "spawns": [
   {
@@ -25,8 +25,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    49,
-    137
+    51,
+    140
    ],
    "direccion": 2,
    "visible": 0,
@@ -70,7 +70,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    65,
+    66,
     129
    ],
    "direccion": 2,
@@ -266,7 +266,7 @@
    "monstruo": true,
    "tile": [
     39,
-    98
+    99
    ],
    "direccion": 2,
    "visible": 0,
@@ -310,8 +310,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    62,
-    88
+    64,
+    89
    ],
    "direccion": 2,
    "visible": 0,
@@ -341,7 +341,7 @@
    "monstruo": true,
    "tile": [
     59,
-    95
+    96
    ],
    "direccion": 2,
    "visible": 0,
@@ -520,8 +520,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    63,
-    71
+    68,
+    76
    ],
    "direccion": 2,
    "visible": 0,
@@ -565,8 +565,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    73,
-    73
+    74,
+    75
    ],
    "direccion": 2,
    "visible": 0,
@@ -625,7 +625,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    96,
+    95,
     66
    ],
    "direccion": 2,
@@ -1315,8 +1315,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    47,
-    25
+    51,
+    30
    ],
    "direccion": 2,
    "visible": 0,
@@ -1586,7 +1586,7 @@
    "monstruo": true,
    "tile": [
     184,
-    100
+    101
    ],
    "direccion": 2,
    "visible": 0,
@@ -1600,8 +1600,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    184,
-    110
+    183,
+    109
    ],
    "direccion": 2,
    "visible": 0,
@@ -1691,7 +1691,7 @@
    "monstruo": true,
    "tile": [
     214,
-    94
+    93
    ],
    "direccion": 2,
    "visible": 0,
@@ -1811,7 +1811,7 @@
    "monstruo": true,
    "tile": [
     216,
-    56
+    57
    ],
    "direccion": 2,
    "visible": 0,
@@ -1840,8 +1840,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    190,
-    94
+    194,
+    98
    ],
    "direccion": 2,
    "visible": 0,
@@ -1870,8 +1870,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    195,
-    94
+    197,
+    96
    ],
    "direccion": 2,
    "visible": 0,
@@ -1968,21 +1968,6 @@
    "nivel": 90
   },
   {
-   "entity_id": 60100131,
-   "nombre": "Hicalu Machine",
-   "npc_type": 3521,
-   "sprite": 42450,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    67,
-    36
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 85
-  },
-  {
    "entity_id": 60100132,
    "nombre": "Forgetful Angel Fish",
    "npc_type": 3510,
@@ -2036,7 +2021,7 @@
    "monstruo": true,
    "tile": [
     234,
-    68
+    69
    ],
    "direccion": 2,
    "visible": 0,
@@ -2066,7 +2051,7 @@
    "monstruo": true,
    "tile": [
     175,
-    51
+    52
    ],
    "direccion": 2,
    "visible": 0,
@@ -2096,7 +2081,7 @@
    "monstruo": true,
    "tile": [
     175,
-    61
+    60
    ],
    "direccion": 2,
    "visible": 0,
@@ -2125,8 +2110,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    180,
-    48
+    181,
+    50
    ],
    "direccion": 2,
    "visible": 0,
@@ -2170,8 +2155,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    145,
-    43
+    146,
+    41
    ],
    "direccion": 2,
    "visible": 0,
@@ -2185,7 +2170,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    145,
+    146,
     48
    ],
    "direccion": 2,
@@ -2320,8 +2305,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    160,
-    65
+    162,
+    62
    ],
    "direccion": 2,
    "visible": 0,
@@ -2350,8 +2335,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    139,
-    23
+    141,
+    21
    ],
    "direccion": 2,
    "visible": 0,
@@ -2620,8 +2605,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    162,
-    11
+    164,
+    14
    ],
    "direccion": 2,
    "visible": 0,
@@ -2680,8 +2665,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    199,
-    27
+    201,
+    25
    ],
    "direccion": 2,
    "visible": 0,
@@ -2710,8 +2695,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    204,
-    14
+    202,
+    15
    ],
    "direccion": 2,
    "visible": 0,
@@ -2815,8 +2800,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    222,
-    39
+    223,
+    37
    ],
    "direccion": 2,
    "visible": 0,
@@ -2965,8 +2950,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    253,
-    19
+    254,
+    20
    ],
    "direccion": 2,
    "visible": 0,
@@ -3250,8 +3235,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    292,
-    36
+    290,
+    35
    ],
    "direccion": 2,
    "visible": 0,
@@ -3565,8 +3550,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    258,
-    92
+    259,
+    94
    ],
    "direccion": 2,
    "visible": 0,
@@ -3685,8 +3670,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    278,
-    90
+    281,
+    93
    ],
    "direccion": 2,
    "visible": 0,
@@ -3745,8 +3730,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    283,
-    87
+    286,
+    91
    ],
    "direccion": 2,
    "visible": 0,
@@ -3865,8 +3850,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    227,
-    114
+    229,
+    117
    ],
    "direccion": 2,
    "visible": 0,
@@ -3940,7 +3925,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    242,
+    241,
     126
    ],
    "direccion": 2,
@@ -4105,8 +4090,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    203,
-    123
+    205,
+    126
    ],
    "direccion": 2,
    "visible": 0,
@@ -4271,7 +4256,7 @@
    "monstruo": true,
    "tile": [
     212,
-    123
+    124
    ],
    "direccion": 2,
    "visible": 0,
@@ -4375,8 +4360,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    207,
-    118
+    209,
+    124
    ],
    "direccion": 2,
    "visible": 0,
@@ -4405,8 +4390,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    207,
-    148
+    204,
+    145
    ],
    "direccion": 2,
    "visible": 0,
@@ -4826,7 +4811,7 @@
    "monstruo": true,
    "tile": [
     118,
-    160
+    159
    ],
    "direccion": 2,
    "visible": 0,
@@ -5216,7 +5201,7 @@
    "monstruo": true,
    "tile": [
     99,
-    167
+    169
    ],
    "direccion": 2,
    "visible": 0,
@@ -5246,41 +5231,11 @@
    "monstruo": true,
    "tile": [
     99,
-    177
+    176
    ],
    "direccion": 2,
    "visible": 0,
    "nivel": 88
-  },
-  {
-   "entity_id": 60100350,
-   "nombre": "Hicalu Machine",
-   "npc_type": 3522,
-   "sprite": 42447,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    110,
-    179
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 95
-  },
-  {
-   "entity_id": 60100351,
-   "nombre": "Hicalu 1",
-   "npc_type": 3523,
-   "sprite": 42411,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    292,
-    172
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 100
   },
   {
    "entity_id": 90101000,
@@ -5334,6 +5289,40 @@
  "recursos": [
   {
    "entity_id": 70100000,
+   "sprite": 60334,
+   "capa": 0,
+   "px": [
+    3797,
+    5680
+   ],
+   "tile": [
+    118,
+    177
+   ],
+   "evento": 101,
+   "crudo": "20a42d0400000000d50e0000301600000000000027000000000000001a000000dc06aeeb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 70100001,
+   "sprite": 60335,
+   "capa": 2,
+   "px": [
+    1988,
+    1232
+   ],
+   "tile": [
+    62,
+    38
+   ],
+   "evento": 100,
+   "crudo": "21a42d0402000000c4070000d00400000000000027000000000000001a000000dc06afeb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 70100002,
    "sprite": 60009,
    "capa": 0,
    "px": [
@@ -5344,11 +5333,15 @@
     30,
     57
    ],
-   "crudo": "20a42d0400000000db030000300700000000000027000000000000001a000000dc0669ea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60009"
+   "evento": 0,
+   "material": 203,
+   "nombre_visible": "Tropic Fish",
+   "crudo": "22a42d0400000000db030000300700000000000027000000000000001a000000dc0669ea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60009",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100001,
+   "entity_id": 70100003,
    "sprite": 60008,
    "capa": 0,
    "px": [
@@ -5359,11 +5352,15 @@
     32,
     56
    ],
-   "crudo": "21a42d04000000000a040000100700000000000027000000000000001a000000dc0668ea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60008"
+   "evento": 0,
+   "material": 203,
+   "nombre_visible": "Tropic Fish",
+   "crudo": "23a42d04000000000a040000100700000000000027000000000000001a000000dc0668ea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60008",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100002,
+   "entity_id": 70100004,
    "sprite": 60007,
    "capa": 0,
    "px": [
@@ -5374,11 +5371,15 @@
     30,
     56
    ],
-   "crudo": "22a42d0400000000d2030000100700000000000027000000000000001a000000dc0667ea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60007"
+   "evento": 0,
+   "material": 203,
+   "nombre_visible": "Tropic Fish",
+   "crudo": "24a42d0400000000d2030000100700000000000027000000000000001a000000dc0667ea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60007",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100003,
+   "entity_id": 70100005,
    "sprite": 60340,
    "capa": 0,
    "px": [
@@ -5389,11 +5390,15 @@
     29,
     57
    ],
-   "crudo": "23a42d0400000000b8030000300700000000000027000000000000001a000000dc06b4eb00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60340"
+   "evento": 0,
+   "material": 203,
+   "nombre_visible": "Tropic Fish",
+   "crudo": "25a42d0400000000b8030000300700000000000027000000000000001a000000dc06b4eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60340",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100004,
+   "entity_id": 70100006,
    "sprite": 60340,
    "capa": 2,
    "px": [
@@ -5404,11 +5409,15 @@
     32,
     56
    ],
-   "crudo": "24a42d040200000003040000100700000000000027000000000000001a000000dc06b4eb00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60340"
+   "evento": 0,
+   "material": 203,
+   "nombre_visible": "Tropic Fish",
+   "crudo": "26a42d040200000003040000100700000000000027000000000000001a000000dc06b4eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60340",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100005,
+   "entity_id": 70100007,
    "sprite": 60339,
    "capa": 0,
    "px": [
@@ -5419,11 +5428,15 @@
     35,
     55
    ],
-   "crudo": "25a42d040000000067040000f00600000000000027000000000000001a000000dc06b3eb00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60339"
+   "evento": 0,
+   "material": 201,
+   "nombre_visible": "Thyme Bush",
+   "crudo": "27a42d040000000067040000f00600000000000027000000000000001a000000dc06b3eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60339",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100006,
+   "entity_id": 70100008,
    "sprite": 60337,
    "capa": 0,
    "px": [
@@ -5434,11 +5447,15 @@
     19,
     57
    ],
-   "crudo": "26a42d040000000066020000300700000000000027000000000000001a000000dc06b1eb00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60337"
+   "evento": 0,
+   "material": 200,
+   "nombre_visible": "Mutant Beech",
+   "crudo": "28a42d040000000066020000300700000000000027000000000000001a000000dc06b1eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60337",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100007,
+   "entity_id": 70100009,
    "sprite": 60336,
    "capa": 0,
    "px": [
@@ -5449,11 +5466,15 @@
     11,
     52
    ],
-   "crudo": "27a42d04000000007b010000900600000000000027000000000000001a000000dc06b0eb00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60336"
+   "evento": 0,
+   "material": 199,
+   "nombre_visible": "MutantAerolite",
+   "crudo": "29a42d04000000007b010000900600000000000027000000000000001a000000dc06b0eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60336",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100008,
+   "entity_id": 70100010,
    "sprite": 60338,
    "capa": 0,
    "px": [
@@ -5464,11 +5485,15 @@
     19,
     48
    ],
-   "crudo": "28a42d040000000070020000100600000000000027000000000000001a000000dc06b2eb00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60338"
+   "evento": 0,
+   "material": 202,
+   "nombre_visible": "Mutant BoneDen",
+   "crudo": "2aa42d040000000070020000100600000000000027000000000000001a000000dc06b2eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60338",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100009,
+   "entity_id": 70100011,
    "sprite": 60340,
    "capa": 0,
    "px": [
@@ -5479,11 +5504,15 @@
     89,
     165
    ],
-   "crudo": "29a42d04000000003d0b0000b01400000000000027000000000000001a000000dc06b4eb00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60340"
+   "evento": 0,
+   "material": 203,
+   "nombre_visible": "Tropic Fish",
+   "crudo": "2ba42d04000000003d0b0000b01400000000000027000000000000001a000000dc06b4eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60340",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100010,
+   "entity_id": 70100012,
    "sprite": 60340,
    "capa": 0,
    "px": [
@@ -5494,11 +5523,15 @@
     86,
     163
    ],
-   "crudo": "2aa42d0400000000c30a0000701400000000000027000000000000001a000000dc06b4eb00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60340"
+   "evento": 0,
+   "material": 203,
+   "nombre_visible": "Tropic Fish",
+   "crudo": "2ca42d0400000000c30a0000701400000000000027000000000000001a000000dc06b4eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60340",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100011,
+   "entity_id": 70100013,
    "sprite": 60340,
    "capa": 2,
    "px": [
@@ -5509,11 +5542,15 @@
     88,
     163
    ],
-   "crudo": "2ba42d04020000000d0b0000701400000000000027000000000000001a000000dc06b4eb00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60340"
+   "evento": 0,
+   "material": 203,
+   "nombre_visible": "Tropic Fish",
+   "crudo": "2da42d04020000000d0b0000701400000000000027000000000000001a000000dc06b4eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60340",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100012,
+   "entity_id": 70100014,
    "sprite": 60008,
    "capa": 0,
    "px": [
@@ -5524,11 +5561,32 @@
     88,
     164
    ],
-   "crudo": "2ca42d04000000001d0b0000901400000000000027000000000000001a000000dc0668ea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60008"
+   "evento": 0,
+   "material": 203,
+   "nombre_visible": "Tropic Fish",
+   "crudo": "2ea42d04000000001d0b0000901400000000000027000000000000001a000000dc0668ea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60008",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100013,
+   "entity_id": 70100015,
+   "sprite": 60334,
+   "capa": 2,
+   "px": [
+    9295,
+    5520
+   ],
+   "tile": [
+    290,
+    172
+   ],
+   "evento": 102,
+   "crudo": "2fa42d04020000004f240000901500000000000027000000000000001a000000dc06aeeb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 70100016,
    "sprite": 60009,
    "capa": 0,
    "px": [
@@ -5539,11 +5597,15 @@
     91,
     166
    ],
-   "crudo": "2da42d0400000000650b0000d01400000000000027000000000000001a000000dc0669ea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60009"
+   "evento": 0,
+   "material": 203,
+   "nombre_visible": "Tropic Fish",
+   "crudo": "30a42d0400000000650b0000d01400000000000027000000000000001a000000dc0669ea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60009",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100014,
+   "entity_id": 70100017,
    "sprite": 60007,
    "capa": 0,
    "px": [
@@ -5554,11 +5616,15 @@
     86,
     162
    ],
-   "crudo": "2ea42d0400000000dd0a0000501400000000000027000000000000001a000000dc0667ea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60007"
+   "evento": 0,
+   "material": 203,
+   "nombre_visible": "Tropic Fish",
+   "crudo": "31a42d0400000000dd0a0000501400000000000027000000000000001a000000dc0667ea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60007",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100015,
+   "entity_id": 70100018,
    "sprite": 60007,
    "capa": 2,
    "px": [
@@ -5569,11 +5635,15 @@
     86,
     164
    ],
-   "crudo": "2fa42d0402000000df0a0000901400000000000027000000000000001a000000dc0667ea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60007"
+   "evento": 0,
+   "material": 203,
+   "nombre_visible": "Tropic Fish",
+   "crudo": "32a42d0402000000df0a0000901400000000000027000000000000001a000000dc0667ea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60007",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100016,
+   "entity_id": 70100019,
    "sprite": 60338,
    "capa": 0,
    "px": [
@@ -5584,11 +5654,15 @@
     91,
     171
    ],
-   "crudo": "30a42d04000000006a0b0000701500000000000027000000000000001a000000dc06b2eb00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60338"
+   "evento": 0,
+   "material": 202,
+   "nombre_visible": "Mutant BoneDen",
+   "crudo": "33a42d04000000006a0b0000701500000000000027000000000000001a000000dc06b2eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60338",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100017,
+   "entity_id": 70100020,
    "sprite": 60337,
    "capa": 0,
    "px": [
@@ -5599,11 +5673,15 @@
     128,
     186
    ],
-   "crudo": "31a42d040000000019100000501700000000000027000000000000001a000000dc06b1eb00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60337"
+   "evento": 0,
+   "material": 200,
+   "nombre_visible": "Mutant Beech",
+   "crudo": "34a42d040000000019100000501700000000000027000000000000001a000000dc06b1eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60337",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100018,
+   "entity_id": 70100021,
    "sprite": 60336,
    "capa": 2,
    "px": [
@@ -5614,11 +5692,15 @@
     112,
     188
    ],
-   "crudo": "32a42d0402000000190e0000901700000000000027000000000000001a000000dc06b0eb00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60336"
+   "evento": 0,
+   "material": 199,
+   "nombre_visible": "MutantAerolite",
+   "crudo": "35a42d0402000000190e0000901700000000000027000000000000001a000000dc06b0eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60336",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100019,
+   "entity_id": 70100022,
    "sprite": 60339,
    "capa": 0,
    "px": [
@@ -5629,11 +5711,15 @@
     100,
     179
    ],
-   "crudo": "33a42d0400000000830c0000701600000000000027000000000000001a000000dc06b3eb00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60339"
+   "evento": 0,
+   "material": 201,
+   "nombre_visible": "Thyme Bush",
+   "crudo": "36a42d0400000000830c0000701600000000000027000000000000001a000000dc06b3eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60339",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100020,
+   "entity_id": 70100023,
    "sprite": 60337,
    "capa": 0,
    "px": [
@@ -5644,11 +5730,15 @@
     258,
     189
    ],
-   "crudo": "34a42d040000000053200000b01700000000000027000000000000001a000000dc06b1eb00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60337"
+   "evento": 0,
+   "material": 200,
+   "nombre_visible": "Mutant Beech",
+   "crudo": "37a42d040000000053200000b01700000000000027000000000000001a000000dc06b1eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60337",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100021,
+   "entity_id": 70100024,
    "sprite": 60337,
    "capa": 0,
    "px": [
@@ -5659,11 +5749,15 @@
     240,
     182
    ],
-   "crudo": "35a42d0400000000021e0000d01600000000000027000000000000001a000000dc06b1eb00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60337"
+   "evento": 0,
+   "material": 200,
+   "nombre_visible": "Mutant Beech",
+   "crudo": "38a42d0400000000021e0000d01600000000000027000000000000001a000000dc06b1eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60337",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100022,
+   "entity_id": 70100025,
    "sprite": 60340,
    "capa": 0,
    "px": [
@@ -5674,11 +5768,15 @@
     293,
     189
    ],
-   "crudo": "36a42d0400000000b4240000b01700000000000027000000000000001a000000dc06b4eb00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60340"
+   "evento": 0,
+   "material": 203,
+   "nombre_visible": "Tropic Fish",
+   "crudo": "39a42d0400000000b4240000b01700000000000027000000000000001a000000dc06b4eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60340",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100023,
+   "entity_id": 70100026,
    "sprite": 60340,
    "capa": 2,
    "px": [
@@ -5689,11 +5787,15 @@
     297,
     189
    ],
-   "crudo": "37a42d04020000003d250000b01700000000000027000000000000001a000000dc06b4eb00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60340"
+   "evento": 0,
+   "material": 203,
+   "nombre_visible": "Tropic Fish",
+   "crudo": "3aa42d04020000003d250000b01700000000000027000000000000001a000000dc06b4eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60340",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100024,
+   "entity_id": 70100027,
    "sprite": 60340,
    "capa": 0,
    "px": [
@@ -5704,11 +5806,15 @@
     299,
     186
    ],
-   "crudo": "38a42d040000000079250000501700000000000027000000000000001a000000dc06b4eb00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60340"
+   "evento": 0,
+   "material": 203,
+   "nombre_visible": "Tropic Fish",
+   "crudo": "3ba42d040000000079250000501700000000000027000000000000001a000000dc06b4eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60340",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100025,
+   "entity_id": 70100028,
    "sprite": 60340,
    "capa": 0,
    "px": [
@@ -5719,11 +5825,15 @@
     303,
     188
    ],
-   "crudo": "39a42d0400000000e8250000901700000000000027000000000000001a000000dc06b4eb00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60340"
+   "evento": 0,
+   "material": 203,
+   "nombre_visible": "Tropic Fish",
+   "crudo": "3ca42d0400000000e8250000901700000000000027000000000000001a000000dc06b4eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60340",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100026,
+   "entity_id": 70100029,
    "sprite": 60340,
    "capa": 2,
    "px": [
@@ -5734,11 +5844,15 @@
     301,
     184
    ],
-   "crudo": "3aa42d0402000000b5250000101700000000000027000000000000001a000000dc06b4eb00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60340"
+   "evento": 0,
+   "material": 203,
+   "nombre_visible": "Tropic Fish",
+   "crudo": "3da42d0402000000b5250000101700000000000027000000000000001a000000dc06b4eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60340",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100027,
+   "entity_id": 70100030,
    "sprite": 60009,
    "capa": 0,
    "px": [
@@ -5749,11 +5863,15 @@
     295,
     188
    ],
-   "crudo": "3ba42d0400000000e9240000901700000000000027000000000000001a000000dc0669ea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60009"
+   "evento": 0,
+   "material": 203,
+   "nombre_visible": "Tropic Fish",
+   "crudo": "3ea42d0400000000e9240000901700000000000027000000000000001a000000dc0669ea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60009",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100028,
+   "entity_id": 70100031,
    "sprite": 60009,
    "capa": 0,
    "px": [
@@ -5764,11 +5882,15 @@
     299,
     188
    ],
-   "crudo": "3ca42d04000000007e250000901700000000000027000000000000001a000000dc0669ea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60009"
+   "evento": 0,
+   "material": 203,
+   "nombre_visible": "Tropic Fish",
+   "crudo": "3fa42d04000000007e250000901700000000000027000000000000001a000000dc0669ea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60009",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100029,
+   "entity_id": 70100032,
    "sprite": 60008,
    "capa": 0,
    "px": [
@@ -5779,11 +5901,15 @@
     301,
     187
    ],
-   "crudo": "3da42d0400000000a8250000701700000000000027000000000000001a000000dc0668ea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60008"
+   "evento": 0,
+   "material": 203,
+   "nombre_visible": "Tropic Fish",
+   "crudo": "40a42d0400000000a8250000701700000000000027000000000000001a000000dc0668ea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60008",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100030,
+   "entity_id": 70100033,
    "sprite": 60008,
    "capa": 2,
    "px": [
@@ -5794,11 +5920,15 @@
     295,
     187
    ],
-   "crudo": "3ea42d0402000000f5240000701700000000000027000000000000001a000000dc0668ea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60008"
+   "evento": 0,
+   "material": 203,
+   "nombre_visible": "Tropic Fish",
+   "crudo": "41a42d0402000000f5240000701700000000000027000000000000001a000000dc0668ea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60008",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100031,
+   "entity_id": 70100034,
    "sprite": 60007,
    "capa": 0,
    "px": [
@@ -5809,11 +5939,15 @@
     299,
     185
    ],
-   "crudo": "3fa42d040000000078250000301700000000000027000000000000001a000000dc0667ea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60007"
+   "evento": 0,
+   "material": 203,
+   "nombre_visible": "Tropic Fish",
+   "crudo": "42a42d040000000078250000301700000000000027000000000000001a000000dc0667ea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60007",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100032,
+   "entity_id": 70100035,
    "sprite": 60008,
    "capa": 0,
    "px": [
@@ -5824,11 +5958,15 @@
     298,
     187
    ],
-   "crudo": "40a42d040000000044250000701700000000000027000000000000001a000000dc0668ea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60008"
+   "evento": 0,
+   "material": 203,
+   "nombre_visible": "Tropic Fish",
+   "crudo": "43a42d040000000044250000701700000000000027000000000000001a000000dc0668ea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60008",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100033,
+   "entity_id": 70100036,
    "sprite": 60008,
    "capa": 0,
    "px": [
@@ -5839,11 +5977,15 @@
     301,
     185
    ],
-   "crudo": "41a42d0400000000b7250000301700000000000027000000000000001a000000dc0668ea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60008"
+   "evento": 0,
+   "material": 203,
+   "nombre_visible": "Tropic Fish",
+   "crudo": "44a42d0400000000b7250000301700000000000027000000000000001a000000dc0668ea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60008",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100034,
+   "entity_id": 70100037,
    "sprite": 60009,
    "capa": 2,
    "px": [
@@ -5854,11 +5996,15 @@
     301,
     188
    ],
-   "crudo": "42a42d0402000000b5250000901700000000000027000000000000001a000000dc0669ea00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60009"
+   "evento": 0,
+   "material": 203,
+   "nombre_visible": "Tropic Fish",
+   "crudo": "45a42d0402000000b5250000901700000000000027000000000000001a000000dc0669ea00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60009",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100035,
+   "entity_id": 70100038,
    "sprite": 60339,
    "capa": 0,
    "px": [
@@ -5869,11 +6015,15 @@
     310,
     164
    ],
-   "crudo": "43a42d0400000000cf260000901400000000000027000000000000001a000000dc06b3eb00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60339"
+   "evento": 0,
+   "material": 201,
+   "nombre_visible": "Thyme Bush",
+   "crudo": "46a42d0400000000cf260000901400000000000027000000000000001a000000dc06b3eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60339",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100036,
+   "entity_id": 70100039,
    "sprite": 60339,
    "capa": 2,
    "px": [
@@ -5884,11 +6034,15 @@
     314,
     159
    ],
-   "crudo": "44a42d040200000049270000f01300000000000027000000000000001a000000dc06b3eb00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60339"
+   "evento": 0,
+   "material": 201,
+   "nombre_visible": "Thyme Bush",
+   "crudo": "47a42d040200000049270000f01300000000000027000000000000001a000000dc06b3eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60339",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100037,
+   "entity_id": 70100040,
    "sprite": 60336,
    "capa": 0,
    "px": [
@@ -5899,11 +6053,15 @@
     315,
     145
    ],
-   "crudo": "45a42d04000000007f270000301200000000000027000000000000001a000000dc06b0eb00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60336"
+   "evento": 0,
+   "material": 199,
+   "nombre_visible": "MutantAerolite",
+   "crudo": "48a42d04000000007f270000301200000000000027000000000000001a000000dc06b0eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60336",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100038,
+   "entity_id": 70100041,
    "sprite": 60336,
    "capa": 2,
    "px": [
@@ -5914,11 +6072,15 @@
     323,
     150
    ],
-   "crudo": "46a42d040200000069280000d01200000000000027000000000000001a000000dc06b0eb00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60336"
+   "evento": 0,
+   "material": 199,
+   "nombre_visible": "MutantAerolite",
+   "crudo": "49a42d040200000069280000d01200000000000027000000000000001a000000dc06b0eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60336",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100039,
+   "entity_id": 70100042,
    "sprite": 60338,
    "capa": 2,
    "px": [
@@ -5929,11 +6091,15 @@
     233,
     179
    ],
-   "crudo": "47a42d04020000003e1d0000701600000000000027000000000000001a000000dc06b2eb00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60338"
+   "evento": 0,
+   "material": 202,
+   "nombre_visible": "Mutant BoneDen",
+   "crudo": "4aa42d04020000003e1d0000701600000000000027000000000000001a000000dc06b2eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60338",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 70100040,
+   "entity_id": 70100043,
    "sprite": 60338,
    "capa": 0,
    "px": [
@@ -5944,8 +6110,12 @@
     240,
     174
    ],
-   "crudo": "48a42d0400000000141e0000d01500000000000027000000000000001a000000dc06b2eb00000000000000",
-   "copiado_de": "cuerpo de una captura del objeto 60338"
+   "evento": 0,
+   "material": 202,
+   "nombre_visible": "Mutant BoneDen",
+   "crudo": "4ba42d0400000000141e0000d01500000000000027000000000000001a000000dc06b2eb00000000000000",
+   "copiado_de": "cuerpo de una captura del objeto 60338",
+   "puesto_por": "objetos_de_instancia"
   }
  ]
 }

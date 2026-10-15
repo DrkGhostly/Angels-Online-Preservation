@@ -1,5 +1,5 @@
 {
- "_nota": "evil_ship (stage 97). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map097.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "_nota": "evil_ship (stage 97). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map097.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py. SUELO (15/10/2026): los monstruos que caian fuera del suelo transitable o en el borde (el reparto en anillo de poblar_del_cliente no miraba el suelo) se mueven a la casilla interior mas cercana, hasta 8 casillas. OLEADAS: fuera 2 bichos de la captura que salen por evento (tools/quitar_oleadas.py).",
  "stage": 97,
  "spawns": [
   {
@@ -25,8 +25,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    297,
-    37
+    295,
+    35
    ],
    "direccion": 2,
    "visible": 0,
@@ -71,7 +71,7 @@
    "monstruo": true,
    "tile": [
     292,
-    36
+    35
    ],
    "direccion": 2,
    "visible": 0,
@@ -85,8 +85,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    292,
-    41
+    293,
+    36
    ],
    "direccion": 2,
    "visible": 0,
@@ -130,8 +130,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    297,
-    42
+    293,
+    36
    ],
    "direccion": 2,
    "visible": 0,
@@ -190,8 +190,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    302,
-    37
+    299,
+    33
    ],
    "direccion": 2,
    "visible": 0,
@@ -205,8 +205,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    302,
-    42
+    295,
+    35
    ],
    "direccion": 2,
    "visible": 0,
@@ -250,8 +250,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    304,
-    30
+    301,
+    32
    ],
    "direccion": 2,
    "visible": 0,
@@ -370,8 +370,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    152,
-    48
+    153,
+    49
    ],
    "direccion": 2,
    "visible": 0,
@@ -385,8 +385,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    154,
-    25
+    157,
+    27
    ],
    "direccion": 2,
    "visible": 0,
@@ -401,7 +401,7 @@
    "monstruo": true,
    "tile": [
     129,
-    18
+    19
    ],
    "direccion": 2,
    "visible": 0,
@@ -461,7 +461,7 @@
    "monstruo": true,
    "tile": [
     159,
-    25
+    27
    ],
    "direccion": 2,
    "visible": 0,
@@ -535,8 +535,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    142,
-    30
+    141,
+    31
    ],
    "direccion": 2,
    "visible": 0,
@@ -918,36 +918,6 @@
    "nivel": 100
   },
   {
-   "entity_id": 59700061,
-   "nombre": "Asharl",
-   "npc_type": 1389,
-   "sprite": 42412,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    261,
-    110
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 100
-  },
-  {
-   "entity_id": 59700062,
-   "nombre": "Asharl",
-   "npc_type": 1230,
-   "sprite": 42412,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    256,
-    108
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 100
-  },
-  {
    "entity_id": 59700063,
    "nombre": "Blade Octopus",
    "npc_type": 1214,
@@ -1121,7 +1091,7 @@
    "monstruo": true,
    "tile": [
     81,
-    79
+    80
    ],
    "direccion": 2,
    "visible": 0,
@@ -1150,7 +1120,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    89,
+    88,
     72
    ],
    "direccion": 2,
@@ -1196,7 +1166,7 @@
    "monstruo": true,
    "tile": [
     49,
-    89
+    87
    ],
    "direccion": 2,
    "visible": 0,
@@ -1226,7 +1196,7 @@
    "monstruo": true,
    "tile": [
     54,
-    89
+    88
    ],
    "direccion": 2,
    "visible": 0,
@@ -1540,8 +1510,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    194,
-    86
+    197,
+    89
    ],
    "direccion": 2,
    "visible": 0,
@@ -1600,7 +1570,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    217,
+    215,
     105
    ],
    "direccion": 2,
@@ -1616,7 +1586,7 @@
    "monstruo": true,
    "tile": [
     199,
-    86
+    88
    ],
    "direccion": 2,
    "visible": 0,
@@ -1720,8 +1690,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    196,
-    81
+    201,
+    87
    ],
    "direccion": 2,
    "visible": 0,
@@ -1735,8 +1705,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    201,
-    81
+    205,
+    85
    ],
    "direccion": 2,
    "visible": 0,
@@ -1750,8 +1720,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    206,
-    81
+    208,
+    83
    ],
    "direccion": 2,
    "visible": 0,
@@ -1766,7 +1736,7 @@
    "monstruo": true,
    "tile": [
     211,
-    80
+    82
    ],
    "direccion": 2,
    "visible": 0,
@@ -1867,6 +1837,40 @@
  "recursos": [
   {
    "entity_id": 69700000,
+   "sprite": 60331,
+   "capa": 0,
+   "px": [
+    6430,
+    3856
+   ],
+   "tile": [
+    200,
+    120
+   ],
+   "evento": 0,
+   "crudo": "a0892704000000001e190000100f00000000000027000000000000001a000000dc06abeb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 69700001,
+   "sprite": 60331,
+   "capa": 2,
+   "px": [
+    1408,
+    2864
+   ],
+   "tile": [
+    44,
+    89
+   ],
+   "evento": 0,
+   "crudo": "a18927040200000080050000300b00000000000027000000000000001a000000dc06abeb00000000000000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 69700002,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1877,11 +1881,13 @@
     272,
     157
    ],
-   "crudo": "a0892704000000000e220000b01300000000000027000000000000001a000000dc06fdea00004080000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 100,
+   "crudo": "a2892704000000000e220000b01300000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 69700001,
+   "entity_id": 69700003,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1892,11 +1898,13 @@
     275,
     154
    ],
-   "crudo": "a1892704000000006d220000501300000000000027000000000000001a000000dc06fdea00004080000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 100,
+   "crudo": "a3892704000000006d220000501300000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
   },
   {
-   "entity_id": 69700002,
+   "entity_id": 69700004,
    "sprite": 60157,
    "capa": 0,
    "px": [
@@ -1907,8 +1915,44 @@
     279,
     151
    ],
-   "crudo": "a289270400000000e8220000f01200000000000027000000000000001a000000dc06fdea00004080000000",
-   "copiado_de": "cuerpo de una captura del objeto 60157"
+   "evento": 100,
+   "crudo": "a489270400000000e8220000f01200000000000027000000000000001a000000dc06fdea00004080140000",
+   "copiado_de": "cuerpo de una captura del objeto 60157",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 69700005,
+   "sprite": 60299,
+   "capa": 2,
+   "px": [
+    6282,
+    3792
+   ],
+   "tile": [
+    196,
+    118
+   ],
+   "evento": 104,
+   "crudo": "a5892704020000008a180000d00e00000000000027000000000000001a000000dc068beb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
+  },
+  {
+   "entity_id": 69700006,
+   "sprite": 60299,
+   "capa": 0,
+   "px": [
+    1315,
+    2640
+   ],
+   "tile": [
+    41,
+    82
+   ],
+   "evento": 51,
+   "crudo": "a68927040000000023050000500a00000000000027000000000000001a000000dc068beb00004080140000",
+   "copiado_de": "cuerpo de otro objeto con el sprite cambiado",
+   "puesto_por": "objetos_de_instancia"
   }
  ]
 }

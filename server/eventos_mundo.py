@@ -473,7 +473,49 @@ class ContextoSesion(ev.Contexto):
 # (stage, evento) -> (efectos que se anaden, dialogos que se quitan)
 SIN_MISION = {
     (74, 61101): ([('objeto_estatico', 153, 60295)], {61100}),
+    # El TRONO de Sunshine Palace (286,168) a Mystic Space (132). En el
+    # cliente pide la mision 988 en el paso 2 o 3, o hecha; si no, dice
+    # "It seems that it has been sealed by some unknown magic" (98801).
+    # Pedido del usuario (15/10/2026): que deje pasar. Restaurar con la otra.
+    (131, 2): ([('viajar', 132, 1)], {98801}),
 }
+
+
+# PUERTAS QUE SE ABREN PARA SIEMPRE. En el oficial la mision se pide SOLO la
+# primera vez: cuando el personaje pasa con ella, la puerta le queda abierta y
+# despues entra y sale sin la mision (lo conto el usuario, que lo tiene hecho
+# en otra cuenta). Por puerta: (efecto de pasar, dialogos de "cerrado").
+PERMISO_UNA_VEZ = {
+    (74, 61101): (('objeto_estatico', 153, 60295), {61100}),
+    (131, 2): (('viajar', 132, 1), {98801}),
+}
+
+
+def _permiso_una_vez(ses, stage, evento, efectos):
+    clave = (int(stage), int(evento))
+    puerta = PERMISO_UNA_VEZ.get(clave)
+    p = getattr(ses, 'personaje', None)
+    if not puerta or p is None:
+        return efectos
+    pasar, cerrado = puerta
+    marca = '%d:%d' % clave
+    permisos = getattr(p, 'permisos', None)
+    if permisos is None:
+        permisos = p.permisos = []
+    if pasar in efectos:
+        # Pasa con la mision: se le apunta la puerta para siempre.
+        if marca not in permisos:
+            permisos.append(marca)
+            try:
+                import cuentas
+                cuentas.guardar_sistemas(getattr(ses, 'usuario', None), p.char_id, p)
+            except Exception:
+                log.exception('no se pudo guardar el permiso %s', marca)
+        return efectos
+    if marca in permisos:
+        efectos = [e for e in efectos if not (e[0] == 'dialogo' and int(e[1]) in cerrado)]
+        efectos.append(pasar)
+    return efectos
 
 
 def _sin_mision(stage, evento, efectos):
@@ -502,7 +544,8 @@ def al_pisar(ses, tile, solo_chocar=False):
                                                            ev.ALMA_CHOCA)
     if solo_chocar:
         disparo = (ev.CHOCAR,) if not ctx.es_alma else (ev.ALMA_CHOCA,)
-    return _sin_mision(estado.stage, evento, ev.ejecutar(estado.stage, evento, disparo, ctx))
+    return _sin_mision(estado.stage, evento, _permiso_una_vez(
+        ses, estado.stage, evento, ev.ejecutar(estado.stage, evento, disparo, ctx)))
 
 
 def al_pulsar(ses, tile):
@@ -513,7 +556,8 @@ def al_pulsar(ses, tile):
         return []
     ctx = ContextoSesion(ses, estado)
     disparo = ev.DISPAROS_AL_PULSAR if not ctx.es_alma else (ev.ALMA_PULSA,)
-    return _sin_mision(estado.stage, evento, ev.ejecutar(estado.stage, evento, disparo, ctx))
+    return _sin_mision(estado.stage, evento, _permiso_una_vez(
+        ses, estado.stage, evento, ev.ejecutar(estado.stage, evento, disparo, ctx)))
 
 
 def evento_del_monstruo(stage, npc_type):

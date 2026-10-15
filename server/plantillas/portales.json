@@ -17725,6 +17725,23 @@
     "dibujar": true,
     "nota": "Training Palace: tornado del propio map044.mpc. Solo se DIBUJA: al pisarlo o pulsarlo salta el evento del mapa, que abre el menu del cliente (5802) y la opcion lleva a West Playground A1-A5."
    }
+  ],
+  "132": [
+   {
+    "entity": 804,
+    "tile": [
+     22,
+     14
+    ],
+    "destino": 131,
+    "llegada": [
+     277,
+     165
+    ],
+    "preguntar": false,
+    "dibujar": true,
+    "nota": "Mystic Space -> Sunshine Palace. Tornado del propio map132.mpc (evento 1: CHANGE_MAP(131, 2)); la llegada es el TAG 2 de map131.mpc."
+   }
   ]
  },
  "sprite": 60001,

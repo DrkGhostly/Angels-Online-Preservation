@@ -1,5 +1,5 @@
 {
- "_nota": "magic_kichen_path_3 (stage 75). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map075.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "_nota": "magic_kichen_path_3 (stage 75). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map075.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py. SUELO (15/10/2026): los monstruos que caian fuera del suelo transitable o en el borde (el reparto en anillo de poblar_del_cliente no miraba el suelo) se mueven a la casilla interior mas cercana, hasta 8 casillas.",
  "stage": 75,
  "spawns": [
   {
@@ -55,8 +55,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    32,
-    44
+    35,
+    41
    ],
    "direccion": 2,
    "visible": 0,
@@ -85,8 +85,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    37,
-    44
+    39,
+    43
    ],
    "direccion": 2,
    "visible": 0,
@@ -176,7 +176,7 @@
    "monstruo": true,
    "tile": [
     27,
-    39
+    38
    ],
    "direccion": 2,
    "visible": 0,
@@ -190,8 +190,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    27,
-    44
+    28,
+    39
    ],
    "direccion": 2,
    "visible": 0,
@@ -205,8 +205,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    27,
-    49
+    35,
+    41
    ],
    "direccion": 2,
    "visible": 0,
@@ -235,8 +235,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    32,
-    49
+    39,
+    42
    ],
    "direccion": 2,
    "visible": 0,
@@ -251,7 +251,7 @@
    "monstruo": true,
    "tile": [
     37,
-    29
+    30
    ],
    "direccion": 2,
    "visible": 0,
@@ -265,8 +265,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    37,
-    49
+    41,
+    44
    ],
    "direccion": 2,
    "visible": 0,
@@ -281,7 +281,7 @@
    "monstruo": true,
    "tile": [
     42,
-    29
+    30
    ],
    "direccion": 2,
    "visible": 0,
@@ -296,7 +296,7 @@
    "monstruo": true,
    "tile": [
     42,
-    49
+    45
    ],
    "direccion": 2,
    "visible": 0,
@@ -310,8 +310,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    47,
-    29
+    45,
+    31
    ],
    "direccion": 2,
    "visible": 0,
@@ -386,7 +386,7 @@
    "monstruo": true,
    "tile": [
     47,
-    39
+    37
    ],
    "direccion": 2,
    "visible": 0,
@@ -400,8 +400,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    47,
-    44
+    42,
+    43
    ],
    "direccion": 2,
    "visible": 0,
@@ -415,7 +415,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    47,
+    46,
     49
    ],
    "direccion": 2,
@@ -565,7 +565,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    224,
+    225,
     150
    ],
    "direccion": 2,

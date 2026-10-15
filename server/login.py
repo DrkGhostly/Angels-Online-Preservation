@@ -97,6 +97,7 @@ class Personaje:
     album: dict = field(default_factory=dict)        # {categoria: valor}
     logros: list = field(default_factory=list)       # ids conseguidos
     cartas: list = field(default_factory=list)       # ids de carta
+    permisos: list = field(default_factory=list)     # puertas abiertas para siempre ('stage:evento')
     estrellas: list = field(default_factory=list)    # [(nombre, nivel)]
     casa: dict = field(default_factory=dict)         # {'muebles': [ids]}
     apariencia: list = field(default_factory=lambda: [0, 0, 0, 8, 8])
@@ -1055,6 +1056,9 @@ PLANTILLAS_POR_STAGE = {
     # por los tornados de (168,103) y (259,79). De la captura de Celestia
     # del 14/10/2026: Cupid en la primera y el tornado de vuelta en las dos.
     370 : 'angel_house_area.json',
+    # Mystic Space: se entra por el trono de Sunshine Palace (286,168) con la
+    # mision 988 en el paso 2 o 3, o hecha. Poblado desde map132.mpc.
+    132 : 'mystic_space.json',
     # Training Palace (Training Hall A1/A2/A3 del menu de los Playground):
     # poblado desde los generadores del propio map044.mpc. Los tres
     # canales comparten mapa.
@@ -1124,6 +1128,12 @@ def poblar(stage: int):
     if f43 is not None and f43.exists():
         d43 = json.loads(f43.read_text(encoding='utf-8'))
         for e in d43['spawns']:
+            # 'apagado': generador que el cliente declara con cantidad 0 (lo
+            # saca otra cosa o no sale). Se deja en la plantilla para el censo
+            # pero no se manda: en el Training Palace salian Field Mouse y
+            # Tree Spirit donde no tocaba.
+            if e.get('apagado'):
+                continue
             # El sprite va TAL COMO SE CAPTURO. Antes no se pasaba, asi que
             # los NPC salian con el generico: Cupid aparecia dibujado como
             # Angel Michael y los totems igual. El suyo es 40006 para Cupid y
@@ -1351,5 +1361,6 @@ def _barra(p, base):
     album: dict = field(default_factory=dict)        # {categoria: valor}
     logros: list = field(default_factory=list)       # ids conseguidos
     cartas: list = field(default_factory=list)       # ids de carta
+    permisos: list = field(default_factory=list)     # puertas abiertas para siempre ('stage:evento')
     estrellas: list = field(default_factory=list)    # [(nombre, nivel)]
     casa: dict = field(default_factory=dict)         # {'muebles': [ids]}

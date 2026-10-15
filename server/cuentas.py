@@ -572,6 +572,7 @@ def personaje_de(cuenta, ranura=0):
         album={str(k): int(v) for k, v in (p.get('album') or {}).items()},
         logros=[int(x) for x in (p.get('logros') or [])],
         cartas=[int(x) for x in (p.get('cartas') or [])],
+        permisos=[str(x) for x in (p.get('permisos') or [])],
         estrellas=[tuple(x) for x in (p.get('estrellas') or [])
                    if isinstance(x, (list, tuple)) and len(x) >= 2],
         casa={'muebles': [int(x) for x in
@@ -801,6 +802,7 @@ def guardar_sistemas(usuario: str, char_id: int, p):
                          for k, v in (getattr(p, 'album', None) or {}).items()}
         fila['logros'] = sorted({int(x) for x in (getattr(p, 'logros', None) or [])})
         fila['cartas'] = sorted({int(x) for x in (getattr(p, 'cartas', None) or [])})
+        fila['permisos'] = sorted({str(x) for x in (getattr(p, 'permisos', None) or [])})
         fila['estrellas'] = [list(x) for x in (getattr(p, 'estrellas', None) or [])]
         fila['casa'] = {'muebles': [int(x) for x in
                                     ((getattr(p, 'casa', None) or {}).get('muebles') or [])]}

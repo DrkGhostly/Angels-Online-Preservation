@@ -1,5 +1,5 @@
 {
- "_nota": "gulp_room_3 (stage 78). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map078.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py. OLEADAS: fuera 1 bichos de la captura que salen por evento (tools/quitar_oleadas.py). OLEADAS: fuera 3 bichos de la captura que salen por evento (tools/quitar_oleadas.py).",
+ "_nota": "gulp_room_3 (stage 78). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map078.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py. OLEADAS: fuera 1 bichos de la captura que salen por evento (tools/quitar_oleadas.py). OLEADAS: fuera 3 bichos de la captura que salen por evento (tools/quitar_oleadas.py). SUELO (15/10/2026): los monstruos que caian fuera del suelo transitable o en el borde (el reparto en anillo de poblar_del_cliente no miraba el suelo) se mueven a la casilla interior mas cercana, hasta 8 casillas.",
  "stage": 78,
  "spawns": [
   {
@@ -178,7 +178,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    64,
+    63,
     271
    ],
    "direccion": 2,
@@ -194,7 +194,7 @@
    "monstruo": true,
    "tile": [
     49,
-    256
+    258
    ],
    "direccion": 2,
    "visible": 0,
@@ -253,8 +253,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    49,
-    276
+    50,
+    273
    ],
    "direccion": 2,
    "visible": 0,
@@ -269,7 +269,7 @@
    "monstruo": true,
    "tile": [
     54,
-    256
+    258
    ],
    "direccion": 2,
    "visible": 0,
@@ -283,8 +283,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    54,
-    276
+    51,
+    273
    ],
    "direccion": 2,
    "visible": 0,
@@ -313,8 +313,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    59,
-    276
+    55,
+    272
    ],
    "direccion": 2,
    "visible": 0,
@@ -478,8 +478,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    64,
-    276
+    62,
+    271
    ],
    "direccion": 2,
    "visible": 0,
@@ -553,8 +553,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    69,
-    277
+    73,
+    273
    ],
    "direccion": 2,
    "visible": 0,
@@ -569,7 +569,7 @@
    "monstruo": true,
    "tile": [
     44,
-    251
+    257
    ],
    "direccion": 2,
    "visible": 0,
@@ -598,8 +598,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    44,
-    256
+    43,
+    257
    ],
    "direccion": 2,
    "visible": 0,
@@ -643,8 +643,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    44,
-    266
+    46,
+    265
    ],
    "direccion": 2,
    "visible": 0,
@@ -658,8 +658,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    44,
-    271
+    47,
+    270
    ],
    "direccion": 2,
    "visible": 0,
@@ -688,8 +688,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    44,
-    276
+    49,
+    271
    ],
    "direccion": 2,
    "visible": 0,
@@ -703,8 +703,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    44,
-    281
+    50,
+    273
    ],
    "direccion": 2,
    "visible": 0,
@@ -733,7 +733,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    49,
+    53,
     251
    ],
    "direccion": 2,
@@ -748,8 +748,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    49,
-    281
+    51,
+    273
    ],
    "direccion": 2,
    "visible": 0,
@@ -793,8 +793,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    54,
-    281
+    51,
+    273
    ],
    "direccion": 2,
    "visible": 0,
@@ -853,8 +853,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    67,
-    282
+    74,
+    276
    ],
    "direccion": 2,
    "visible": 0,
@@ -868,8 +868,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    82,
-    287
+    83,
+    286
    ],
    "direccion": 2,
    "visible": 0,
@@ -988,8 +988,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    59,
-    281
+    51,
+    273
    ],
    "direccion": 2,
    "visible": 0,
@@ -1003,8 +1003,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    72,
-    282
+    75,
+    277
    ],
    "direccion": 2,
    "visible": 0,

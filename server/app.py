@@ -338,7 +338,7 @@ def _monstruos_de(stage: int):
             bichos = {e['entity_id']: combate.Monstruo(e['entity_id'], e['npc_type'],
                                                      e['nombre'], e['tile'],
                                                      e.get('sprite', 0))
-                    for e in d.get('spawns', []) if e.get('monstruo')}
+                    for e in d.get('spawns', []) if e.get('monstruo') and not e.get('apagado')}
     # Los mapas sin plantilla o cuya plantilla no traiga monstruos usan la lista escrita a mano
     if not bichos and stage in _lg.PLAYGROUND_MONSTERS:
         bichos = {eid: combate.Monstruo(eid, ntype, nom, tile,
@@ -3190,6 +3190,12 @@ def _veta_de(stage, ent):
         return None, None
     if isinstance(r.get('material'), int):
         return r['material'], r.get('px')
+    # Un objeto con evento propio (estatua, altar, palanca) no es una veta. La
+    # tabla 'vetas' casa por id de entidad, y al rehacer los objetos de una
+    # instancia las estatuas de Lost Region heredaron ids que antes eran
+    # vetas: al pulsarlas salia "Unable to collect when you are riding".
+    if r.get('evento'):
+        return None, None
     if _VETAS_POR_STAGE is None:
         _material(0)
         try:
@@ -3501,6 +3507,16 @@ def _monstruo_bd(npc_type):
     return _MONSTRUOS_BD.get(int(npc_type), ('?', 0))
 
 
+# PUNTOS DE ZONA CORREGIDOS. El primer Hicalu Machine de Lost Region (zona
+# 150, lo saca la estatua de (62,38)) trae en el map098.mpc el punto (20,52),
+# a 45 casillas de su estatua, y salia lejos. En Horrible Lost Region la misma
+# zona esta en (63,40), junto a la estatua; aqui se le pone ese mismo sitio.
+# Las otras dos estatuas de los dos mapas ya caen al lado de su jefe.
+PUNTOS_DE_ZONA = {
+    (98, 150): [[63, 40]],
+}
+
+
 def _generar_zona(ses, addr, stage, tag, cuantos=None):
     """GENERATE(tag): saca los monstruos de esa zona de generador.
 
@@ -3512,6 +3528,8 @@ def _generar_zona(ses, addr, stage, tag, cuantos=None):
     """
     import eventos as _ev_g
     g = ((_ev_g.del_stage(stage) or {}).get('generadores') or {}).get(str(tag))
+    if g and (int(stage), int(tag)) in PUNTOS_DE_ZONA:
+        g = dict(g, puntos=PUNTOS_DE_ZONA[(int(stage), int(tag))])
     if not g or not g.get('tipos') or not g.get('puntos') or not ses.personaje:
         log.debug('[%s] GENERATE %s en %s: la zona no esta en la plantilla', addr, tag, stage)
         return

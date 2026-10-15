@@ -1,0 +1,1214 @@
+{
+ "_nota": "mystic_space (stage 132). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map132.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py.",
+ "stage": 132,
+ "spawns": [
+  {
+   "entity_id": 63200000,
+   "nombre": "Burning Witch",
+   "npc_type": 5542,
+   "sprite": 42883,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    21
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200001,
+   "nombre": "Burning Witch",
+   "npc_type": 5542,
+   "sprite": 42883,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    35,
+    16
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200002,
+   "nombre": "Ice Witch",
+   "npc_type": 5543,
+   "sprite": 42882,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    45,
+    19
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200003,
+   "nombre": "Ice Witch",
+   "npc_type": 5543,
+   "sprite": 42882,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    40,
+    16
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200004,
+   "nombre": "Dark Witch",
+   "npc_type": 5544,
+   "sprite": 42884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    50,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200005,
+   "nombre": "Dark Witch",
+   "npc_type": 5544,
+   "sprite": 42884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    50,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200006,
+   "nombre": "Swampy Witch",
+   "npc_type": 5545,
+   "sprite": 42885,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    45,
+    11
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200007,
+   "nombre": "Swampy Witch",
+   "npc_type": 5545,
+   "sprite": 42885,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    55,
+    14
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200008,
+   "nombre": "Burning Witch",
+   "npc_type": 5542,
+   "sprite": 42883,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    104,
+    62
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200009,
+   "nombre": "Burning Witch",
+   "npc_type": 5542,
+   "sprite": 42883,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    99,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200010,
+   "nombre": "Ice Witch",
+   "npc_type": 5543,
+   "sprite": 42882,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    109,
+    60
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200011,
+   "nombre": "Ice Witch",
+   "npc_type": 5543,
+   "sprite": 42882,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    104,
+    57
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200012,
+   "nombre": "Dark Witch",
+   "npc_type": 5544,
+   "sprite": 42884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    109,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200013,
+   "nombre": "Dark Witch",
+   "npc_type": 5544,
+   "sprite": 42884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    114,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200014,
+   "nombre": "Swampy Witch",
+   "npc_type": 5545,
+   "sprite": 42885,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    114,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200015,
+   "nombre": "Swampy Witch",
+   "npc_type": 5545,
+   "sprite": 42885,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    107,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200016,
+   "nombre": "Burning Witch",
+   "npc_type": 5542,
+   "sprite": 42883,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    100,
+    96
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200017,
+   "nombre": "Burning Witch",
+   "npc_type": 5542,
+   "sprite": 42883,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    95,
+    91
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200018,
+   "nombre": "Burning Witch",
+   "npc_type": 5542,
+   "sprite": 42883,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    95,
+    96
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200019,
+   "nombre": "Burning Witch",
+   "npc_type": 5542,
+   "sprite": 42883,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    95,
+    101
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200020,
+   "nombre": "Burning Witch",
+   "npc_type": 5542,
+   "sprite": 42883,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    100,
+    91
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200021,
+   "nombre": "Burning Witch",
+   "npc_type": 5542,
+   "sprite": 42883,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    100,
+    101
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200022,
+   "nombre": "Ice Witch",
+   "npc_type": 5543,
+   "sprite": 42882,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    32,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200023,
+   "nombre": "Ice Witch",
+   "npc_type": 5543,
+   "sprite": 42882,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    27,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200024,
+   "nombre": "Ice Witch",
+   "npc_type": 5543,
+   "sprite": 42882,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    27,
+    93
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200025,
+   "nombre": "Ice Witch",
+   "npc_type": 5543,
+   "sprite": 42882,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    27,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200026,
+   "nombre": "Ice Witch",
+   "npc_type": 5543,
+   "sprite": 42882,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    32,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200027,
+   "nombre": "Ice Witch",
+   "npc_type": 5543,
+   "sprite": 42882,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    32,
+    98
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200028,
+   "nombre": "Dark Witch",
+   "npc_type": 5544,
+   "sprite": 42884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    182,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200029,
+   "nombre": "Dark Witch",
+   "npc_type": 5544,
+   "sprite": 42884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    177,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200030,
+   "nombre": "Dark Witch",
+   "npc_type": 5544,
+   "sprite": 42884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    177,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200031,
+   "nombre": "Dark Witch",
+   "npc_type": 5544,
+   "sprite": 42884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    177,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200032,
+   "nombre": "Dark Witch",
+   "npc_type": 5544,
+   "sprite": 42884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    182,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200033,
+   "nombre": "Dark Witch",
+   "npc_type": 5544,
+   "sprite": 42884,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    182,
+    59
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200034,
+   "nombre": "Swampy Witch",
+   "npc_type": 5545,
+   "sprite": 42885,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    181,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200035,
+   "nombre": "Swampy Witch",
+   "npc_type": 5545,
+   "sprite": 42885,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200036,
+   "nombre": "Swampy Witch",
+   "npc_type": 5545,
+   "sprite": 42885,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    20
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200037,
+   "nombre": "Swampy Witch",
+   "npc_type": 5545,
+   "sprite": 42885,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200038,
+   "nombre": "Swampy Witch",
+   "npc_type": 5545,
+   "sprite": 42885,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    181,
+    15
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200039,
+   "nombre": "Swampy Witch",
+   "npc_type": 5545,
+   "sprite": 42885,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    181,
+    25
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200040,
+   "nombre": "Evil Witch Judy",
+   "npc_type": 5541,
+   "sprite": 42881,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    91
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 120
+  },
+  {
+   "entity_id": 63200041,
+   "nombre": "Tree Spirit",
+   "npc_type": 10,
+   "sprite": 42043,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    205,
+    53
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200042,
+   "nombre": "Field Mouse",
+   "npc_type": 20,
+   "sprite": 42011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    9
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 9,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200043,
+   "nombre": "Field Mouse",
+   "npc_type": 20,
+   "sprite": 42011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    159,
+    11
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 9,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200044,
+   "nombre": "Field Mouse",
+   "npc_type": 20,
+   "sprite": 42011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    176,
+    42
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 9,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200045,
+   "nombre": "Tree Spirit",
+   "npc_type": 10,
+   "sprite": 42043,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    175,
+    76
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200046,
+   "nombre": "Tree Spirit",
+   "npc_type": 10,
+   "sprite": 42043,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    100
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200047,
+   "nombre": "Tree Spirit",
+   "npc_type": 10,
+   "sprite": 42043,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    144,
+    91
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200048,
+   "nombre": "Field Mouse",
+   "npc_type": 20,
+   "sprite": 42011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    155,
+    84
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 9,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200049,
+   "nombre": "Field Mouse",
+   "npc_type": 20,
+   "sprite": 42011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    144,
+    77
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 9,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200050,
+   "nombre": "Tree Spirit",
+   "npc_type": 10,
+   "sprite": 42043,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    156,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200051,
+   "nombre": "Wind Lord",
+   "npc_type": 15,
+   "sprite": 42102,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    161,
+    51
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 10,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200052,
+   "nombre": "Tree Spirit",
+   "npc_type": 10,
+   "sprite": 42043,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    155,
+    22
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200053,
+   "nombre": "Field Mouse",
+   "npc_type": 20,
+   "sprite": 42011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    118,
+    22
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 9,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200054,
+   "nombre": "Field Mouse",
+   "npc_type": 20,
+   "sprite": 42011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    108,
+    13
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 9,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200055,
+   "nombre": "Tree Spirit",
+   "npc_type": 10,
+   "sprite": 42043,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    133,
+    58
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200056,
+   "nombre": "Tree Spirit",
+   "npc_type": 10,
+   "sprite": 42043,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    126,
+    66
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200057,
+   "nombre": "Field Mouse",
+   "npc_type": 20,
+   "sprite": 42011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    132,
+    71
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 9,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200058,
+   "nombre": "Tree Spirit",
+   "npc_type": 10,
+   "sprite": 42043,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    122,
+    95
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200059,
+   "nombre": "Tree Spirit",
+   "npc_type": 10,
+   "sprite": 42043,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    70
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200060,
+   "nombre": "Tree Spirit",
+   "npc_type": 10,
+   "sprite": 42043,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    112,
+    67
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200061,
+   "nombre": "Field Mouse",
+   "npc_type": 20,
+   "sprite": 42011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    94,
+    51
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 9,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200062,
+   "nombre": "Field Mouse",
+   "npc_type": 20,
+   "sprite": 42011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    78,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 9,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200063,
+   "nombre": "Field Mouse",
+   "npc_type": 20,
+   "sprite": 42011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    84,
+    89
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 9,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200064,
+   "nombre": "Tree Spirit",
+   "npc_type": 10,
+   "sprite": 42043,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    92,
+    107
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200065,
+   "nombre": "Tree Spirit",
+   "npc_type": 10,
+   "sprite": 42043,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    73,
+    97
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200066,
+   "nombre": "Tree Spirit",
+   "npc_type": 10,
+   "sprite": 42043,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    23
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200067,
+   "nombre": "Field Mouse",
+   "npc_type": 20,
+   "sprite": 42011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    63,
+    35
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 9,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200068,
+   "nombre": "Field Mouse",
+   "npc_type": 20,
+   "sprite": 42011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    34,
+    64
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 9,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200069,
+   "nombre": "Field Mouse",
+   "npc_type": 20,
+   "sprite": 42011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    45,
+    24
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 9,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200070,
+   "nombre": "Field Mouse",
+   "npc_type": 20,
+   "sprite": 42011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    26
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 9,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200071,
+   "nombre": "Tree Spirit",
+   "npc_type": 10,
+   "sprite": 42043,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    31,
+    39
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200072,
+   "nombre": "Field Mouse",
+   "npc_type": 20,
+   "sprite": 42011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    21,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 9,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200073,
+   "nombre": "Tree Spirit",
+   "npc_type": 10,
+   "sprite": 42043,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    10,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200074,
+   "nombre": "Tree Spirit",
+   "npc_type": 10,
+   "sprite": 42043,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    26,
+    105
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200075,
+   "nombre": "Field Mouse",
+   "npc_type": 20,
+   "sprite": 42011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    19,
+    88
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 9,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200076,
+   "nombre": "Field Mouse",
+   "npc_type": 20,
+   "sprite": 42011,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    9,
+    82
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 9,
+   "apagado": true
+  },
+  {
+   "entity_id": 63200077,
+   "nombre": "Tree Spirit",
+   "npc_type": 10,
+   "sprite": 42043,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    8,
+    96
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8,
+   "apagado": true
+  }
+ ],
+ "recursos": []
+}

@@ -4487,21 +4487,6 @@
    "estado": 0,
    "marca_nombre": 109,
    "cola_nombre": "0000000000000004"
-  },
-  {
-   "entity_id": 73190000,
-   "sprite": 60417,
-   "capa": 0,
-   "px": [
-    9168,
-    5392
-   ],
-   "tile": [
-    286,
-    168
-   ],
-   "crudo": "70ca5c0400000000d0230000101500000000000027000000000000001a000000dc0601ec00004080140000",
-   "puesto_por": "objetos_de_mision"
   }
  ],
  "_descartados": [
