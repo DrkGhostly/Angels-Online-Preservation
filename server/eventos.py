@@ -260,6 +260,10 @@ class Contexto:
     def sorteo100(self):
         return random.randint(1, 100)
 
+    # -- actualizacion local durante la ejecucion de un evento --
+    def aplicar_efecto_local(self, ef):
+        pass
+
 
 def _p(parms, i, por_defecto=0):
     return parms[i] if len(parms) > i else por_defecto
@@ -453,8 +457,6 @@ def traducir(numero, parms):
 SE_TRADUCEN = frozenset((1, 3, 4, 7, 8, 9, 10, 12, 13, 14, 18, 19, 20, 21, 24,
                          25, 29, 30, 31, 33, 36, 39, 41, 42, 47, 51, 52, 53,
                          54, 55, 56, 57, 60, 63, 67, 70, 72, 78, 81, 104))
-
-
 def _alguna(condiciones, ctx):
     for c in condiciones:
         r = evaluar(c[0], c[1], ctx)
@@ -486,6 +488,8 @@ def ejecutar(stage, evento, disparo, ctx):
                 if ef[0] == 'parar':
                     return efectos
                 efectos.append(ef)
+                if hasattr(ctx, 'aplicar_efecto_local'):
+                    ctx.aplicar_efecto_local(ef)
             continue
         corta = False
         for c in d['si']:
@@ -513,6 +517,8 @@ def ejecutar(stage, evento, disparo, ctx):
             if ef[0] == 'parar':
                 return efectos
             efectos.append(ef)
+            if hasattr(ctx, 'aplicar_efecto_local'):
+                ctx.aplicar_efecto_local(ef)
     return efectos
 
 

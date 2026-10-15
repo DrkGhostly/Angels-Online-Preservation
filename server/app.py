@@ -1803,16 +1803,23 @@ def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
 
     if ses.personaje:
         import misiones as _mis_muerte
-        _mis_muerte.registrar_baja_monstruo(ses, m.npc_type, getattr(m, 'nombre', None))
+        _mis_muerte.registrar_baja_monstruo(ses, m.npc_type, getattr(m, 'nombre', None), en_combate_real=True)
         # La baja cuenta para las misiones de todo el grupo que este en la sala.
         for _s_gb in _grupo_en_sala(ses):
             if _s_gb is not ses:
                 try:
-                    _mis_muerte.registrar_baja_monstruo(_s_gb, m.npc_type, getattr(m, 'nombre', None))
+                    _mis_muerte.registrar_baja_monstruo(_s_gb, m.npc_type, getattr(m, 'nombre', None), en_combate_real=True)
                     _s_gb.volcar()
                 except Exception:
                     log.exception('baja de mision de un companero')
         _eventos_al_morir(ses, m, addr)
+        for _s_gb in _grupo_en_sala(ses):
+            if _s_gb is not ses:
+                try:
+                    _eventos_al_morir(_s_gb, m, getattr(_s_gb, 'addr', addr))
+                    _s_gb.volcar()
+                except Exception:
+                    log.exception('evento de muerte para companero')
         # La carrera de bajas (NPCKILLGAME): cada baja cuenta en la variable 8.
         import eventos_mundo as _evm_k
         _est_k = _evm_k.estado_de(ses)
@@ -2331,6 +2338,18 @@ def _tutor_en_progreso(ses) -> bool:
     return bool(st and not comp and pa < 4)
 
 
+def _es_graduado(ses) -> bool:
+    """Si el personaje ya completo el entrenamiento / se graduo del Angel Lyceum."""
+    p = getattr(ses, 'personaje', None)
+    if not p:
+        return False
+    fac = getattr(p, 'faction', 'Heaven') or 'Heaven'
+    if fac not in ('Heaven', 'Neutral', 'Neutrally'):
+        return True
+    import misiones as _mis
+    if _mis.mision_completada(p, 102) or _mis.tiene_mision(p, 103) or _mis.mision_completada(p, 103):
+        return True
+    return False
 # Las ranuras de equipo cuyo contenido se le anuncia al cliente para que
 # dibuje al personaje. Medido: el servidor real manda una linea por cada una
 # de la 1 a la 7 y la 10, con el item o con 0 si esta vacia.
@@ -2656,13 +2675,6 @@ def _aplicar_efectos(ses, addr, efectos, motivo=''):
                     # (en la Global llegan como 0x0017 con su entidad). De
                     # varios mensajes se dice uno al azar.
                     _txt = _msgs_t.get(random.choice(textos))
-                    # Los de un TEMPORIZADOR no los dice el jugador sino el
-                    # jefe de la sala: las oleadas de la sala 3 de la Magic
-                    # Kichen Path traen "Now it's my turn to deal with you!..."
-                    # (64919), y ese es Beelzebub. El parametro de la accion
-                    # vale 7 igual que en el "Too hot!" del jugador, asi que lo
-                    # que los separa es el disparo: pisar o pulsar es del
-                    # jugador, el temporizador es del mapa.
                     _quien = _jefe_que_habla(ses) if 'temporizador' in motivo else None
                     if _txt and _quien is not None:
                         _hablar_monstruo(ses, _quien, _txt)
@@ -3565,8 +3577,6 @@ def _jefe_que_habla(ses):
         return min(jefes, key=lambda m: max(abs(m.tile_x - p.tile_x), abs(m.tile_y - p.tile_y)))
     gen = [m for m in vivos if getattr(m, 'generado', False)]
     return max(gen, key=lambda m: m.entity_id) if gen else None
-
-
 def _hablar_monstruo(ses, m, texto):
     """Un bicho dice algo (le llega a todos los de la sala por _espejar)."""
     ses.enviar(_decir(m.entity_id, getattr(m, 'nombre', '') or '', texto))
@@ -3949,6 +3959,23 @@ def _dar_token_oculto(ses, addr, item_id, cant=1):
         p.inventario[r] = item_id
         cant_de[r] = 0
     cant_de[r] = int(cant_de.get(r, 0)) + max(1, cant)
+    # Mantener quest_kills sincronizado con la cantidad real del token
+    if hasattr(p, 'quest_kills') and isinstance(p.quest_kills, dict):
+        try:
+            import misiones as _mis_sync
+            _mis_sync._cargar_db()
+            for _q_s, _pa_s in (p.quests or []):
+                _c_tok = (_mis_sync.OBJETIVOS_CACERIA.get((_q_s, _pa_s), {}) or {}).get('token_id')
+                if not _c_tok:
+                    _c_tok = (_mis_sync._CACERIAS.get(f"{_q_s}_{_pa_s}", {}) or {}).get('token_id')
+                if _c_tok == item_id:
+                    p.quest_kills[f"{_q_s}_{_pa_s}"] = cant_de[r]
+                    p.quest_kills[(_q_s, _pa_s)] = cant_de[r]
+                    if hasattr(ses, 'quest_kills') and isinstance(ses.quest_kills, dict):
+                        ses.quest_kills[f"{_q_s}_{_pa_s}"] = cant_de[r]
+                        ses.quest_kills[(_q_s, _pa_s)] = cant_de[r]
+        except Exception:
+            pass
     dueno = getattr(ses, 'entity_id', p.char_id)
     entrada = _inv.entrada_recuperada(p.char_id, r, item_id, cant=cant_de[r], dueno=dueno)
     ses.enviar(struct.pack('<HI', 0x001B, 1) + entrada)
@@ -4319,10 +4346,14 @@ def _eventos_al_morir(ses, monstruo, addr):
         return
     try:
         import eventos_mundo as _evm
-        efectos = _evm.al_morir_monstruo(ses, monstruo) + _evm.pendientes(ses)
+        efectos = _evm.al_morir_monstruo(ses, monstruo)
         if efectos:
             _aplicar_efectos(ses, addr, efectos,
                              ' al morir %s' % getattr(monstruo, 'nombre', '?'))
+        ef_pend = _evm.pendientes(ses)
+        if ef_pend:
+            _aplicar_efectos(ses, addr, ef_pend,
+                             ' pendientes tras morir %s' % getattr(monstruo, 'nombre', '?'))
     except Exception:
         log.exception('fallo el evento al morir el monstruo')
 
@@ -5110,9 +5141,9 @@ class Servidor:
             lista = list(cuenta.get('personajes', []))[:3]
             import os as _o
             # Ajustables para bisecar: los tres unicos campos que todavia
-            # difieren del bloque real (ranuras=1, subcanal=3, clase=5).
             _ran = int(_o.environ.get('AO_RANURAS', 3))
             _sub = int(_o.environ.get('AO_SUBCANAL', 2))
+            _fac = _o.environ.get('AO_FACCION')
             _cls = _o.environ.get('AO_CLASE')
             # El cliente se CONGELA sin intentar ninguna conexion, asi que el
             # bloqueo es local -- muy probablemente la carga del mapa. Con
@@ -5121,6 +5152,9 @@ class Servidor:
             if _mapa is not None:
                 for _p in lista:
                     _p['stage_id'] = int(_mapa)
+            if _fac is not None:
+                for _p in lista:
+                    _p['faction'] = _fac
             if _cls is not None:
                 for _p in lista:
                     _p['class_id'] = int(_cls)
@@ -5139,7 +5173,7 @@ class Servidor:
                 ses.enviar_crudo(login_server.respuesta_login(
                     lista, cuenta=usuario, ranuras=_ran, subcanal=_sub))
             log.info(f"[{addr}] ranuras={_ran} subcanal={_sub} "
-                     f"clase={_cls or 'la del pj'} mapa={_mapa or 'el del pj'}")
+                     f"faccion={_fac or 'la del pj'} mapa={_mapa or 'el del pj'}")
             log.info(f"[{addr}] ranuras: {len(lista)} con personaje, "
                      f"{3 - len(lista)} libres")
             import os as _os
@@ -11141,7 +11175,7 @@ class Servidor:
                                 completada=(tipo_proc == 'completada'),
                                 paso=paso_proc, tipo_evento=tipo_proc
                             )
-                            dp = dialogos.propio(_nom_ent, faccion=faccion, jugador=nom2, entidad=ent)
+                            dp = dialogos.propio(_nom_ent, faccion=faccion, jugador=nom2, entidad=ent, graduado=_es_graduado(ses))
                             if _nom_ent.lower() in ('aurora angel', 'dark city angel', 'ironcastle angel', 'breezewood angel'):
                                 g_comp = dp if dp else g_mis
                             else:
@@ -11258,6 +11292,7 @@ class Servidor:
                                 return
                 _en_prog = _tutor_en_progreso(ses)
                 _reg = _ya_registrado(ses)
+                _es_grad = _es_graduado(ses)
                 if _nom_ent == 'Director Wolay' and ses.personaje:
                     _en_prog = bool(_mis.tiene_mision(ses.personaje, 100) and not _mis.mision_completada(ses.personaje, 100))
                     _reg = bool(_mis.mision_completada(ses.personaje, 100) or _mis.tiene_mision(ses.personaje, 101) or _reg)
@@ -11270,7 +11305,8 @@ class Servidor:
                         stage=getattr(ses.personaje, 'stage', 0) if ses.personaje else 0,
                         registrado=_reg,
                         entidad=ent,
-                        en_progreso=_en_prog)
+                        en_progreso=_en_prog,
+                        graduado=_es_grad)
 
                 # El dialogo del ARBOL DEL MAPA cuando el NPC tiene uno que
                 # hace algo (opciones, acciones, ramas). Solo en instancias,
@@ -11410,6 +11446,8 @@ class Servidor:
                 _i = dialogos.indice_opcion(_v)
                 import dialogos as _dlg_mod
                 _el = _ops[_i] if 0 <= _i < len(_ops) else None
+                if _el is None and (_v in _ops or _v > 100):
+                    _el = _v
                 val = getattr(ses, 'dlg_val', 4)
                 if _el is None:
                     # Sin opcion que corresponda no hay nada que hacer: se
@@ -11579,14 +11617,25 @@ class Servidor:
 
                 # Confirmacion de graduacion con Angels' Tutor
                 if _el == 10119:
+                    if _es_graduado(ses):
+                        ses.enviar(dialogos.armar_linea(11512, 2, []), struct.pack('<H', 0x0012) + dialogos.FIN)
+                        ses.dlg_ent = None
+                        log.info(f"[{addr}] Graduacion rechazada: el personaje ya esta graduado")
+                        return
                     import misiones as _mis_grad
                     puntos = _mis_grad.obtener_token_mision(ses, 1394)
                     if puntos >= 5:
                         _mis_grad.completar_mision(ses, 102)
+                        if ses.personaje:
+                            ses.personaje.faction = "Graduated"
+                            if getattr(ses, 'usuario', None):
+                                cuentas.guardar_faccion(ses.usuario,
+                                                        ses.personaje.char_id, "Graduated")
                         ses.enviar(struct.pack('<H', 0x0012) + dialogos.FIN)
                         ses.dlg_ent = None
-                        _sincronizar_cambio_mapa(ses, 58, 104, 187)
-                        log.info(f"[{addr}] Graduacion completada (puntos={puntos}) -> enviado a Graduation Palace (58)")
+                        _sincronizar_cambio_mapa(ses, STAGE_GRADUACION,
+                                                 TILE_GRADUACION[0], TILE_GRADUACION[1])
+                        log.info(f"[{addr}] Graduacion completada (puntos={puntos}) -> enviado a Graduation Palace ({STAGE_GRADUACION})")
                     else:
                         sub_msg = dialogos.armar_linea(10122, 2, [])
                         ses.enviar(sub_msg, struct.pack('<H', 0x0012) + dialogos.FIN)
@@ -11596,6 +11645,11 @@ class Servidor:
 
                 # Aceptacion de inscripcion de novato con Angels' Tutor (Quest 101)
                 if _el == 10135 and ses.personaje:
+                    if _es_graduado(ses):
+                        ses.enviar(dialogos.armar_linea(11512, 2, []), struct.pack('<H', 0x0012) + dialogos.FIN)
+                        ses.dlg_ent = None
+                        log.info(f"[{addr}] Inscripcion rechazada: el personaje ya esta graduado")
+                        return
                     import misiones as _mis_tut
                     nom = ses.personaje.nombre if ses.personaje else 'Jugador'
                     if not _mis_tut.tiene_mision(ses.personaje, 101) and not _mis_tut.mision_completada(ses.personaje, 101):
@@ -11651,13 +11705,16 @@ class Servidor:
                                        % _nombre_entidad(ses, ent))
                     return
 
+                _fac_actual = getattr(ses.personaje, 'faction', 'Heaven') if ses.personaje else 'Heaven'
                 submsgs = dialogos.respuesta_a(
                     _el, entidad=ent, val=val,
                     nombre=_nombre_entidad(ses, ent),
                     stage=getattr(ses.personaje, 'stage', 0)
                     if ses.personaje else 0,
                     nivel=getattr(ses.personaje, 'nivel', 0)
-                    if ses.personaje else 0) if _el else (struct.pack('<H', 0x0012) + dialogos.FIN,)
+                    if ses.personaje else 0,
+                    faccion=_fac_actual,
+                    graduado=_es_graduado(ses)) if _el else (struct.pack('<H', 0x0012) + dialogos.FIN,)
                 # El almacen se arma AQUI, no en dialogos.py, porque hay que
                 # leer lo que el personaje tiene guardado. dialogos.py devuelve
                 # un 0x004E vacio de marcador y se sustituye por el de verdad.
@@ -11707,6 +11764,11 @@ class Servidor:
                     _st_area, _tile_area, _nombre_area = DESTINOS_ENTRENAMIENTO[_el]
                     ses.viaje_pendiente = (_st_area, _tile_area, _nombre_area)
                 elif _el == 10125 and ses.personaje:
+                    if _es_graduado(ses):
+                        ses.enviar(dialogos.armar_linea(11512, 2, []), struct.pack('<H', 0x0012) + dialogos.FIN)
+                        ses.dlg_ent = None
+                        log.info(f"[{addr}] Abandono rechazado: el personaje ya esta graduado")
+                        return
                     # "Quit the training": el traslado NO va aqui. Medido:
                     # al decir que si el servidor manda el 10127, el cliente
                     # pide la linea siguiente, llega el cierre del cuadro y
@@ -12376,7 +12438,6 @@ class Servidor:
                         continue
                     _vistos.add(_evc)
                     _eventos_al_pisar(ses, addr, _cas)
-
                 # CHOCAR al llegar (ver _choques_al_llegar). Se espera lo que
                 # tarda en andar el tramo: el servidor le pone la casilla de
                 # destino al recibir el 0x0004 y, si se mirara ya, el menu del

@@ -304,6 +304,10 @@ class ContextoSesion(ev.Contexto):
                         getattr(self.p, 'tile_y', 0) or 0)
         self.es_alma = bool(getattr(ses, 'muerto', False))
         self._vivos = None
+        self._deltas_mision = {}
+        self._deltas_bolsa = {}
+        self._pasos_mision = {}
+        self._deltas_vars = {}
 
     # -- misiones ---------------------------------------------------------
     def paso_de_mision(self, quest):
@@ -320,6 +324,8 @@ class ContextoSesion(ev.Contexto):
         nunca y los disparadores no saltarian jamas -- que es exactamente
         como se veia: la mision aceptada y el objeto sin caer.
         """
+        if int(quest) in self._pasos_mision:
+            return self._pasos_mision[int(quest)]
         if not self.p:
             return PASO_SIN_MISION
         for q, pa in (getattr(self.p, 'quests', None) or []):
@@ -353,12 +359,14 @@ class ContextoSesion(ev.Contexto):
         return total
 
     def en_bolsa(self, item):
-        return self._contar(item, BOLSA_PRIMERA, BOLSA_ULTIMA)
+        return max(0, self._contar(item, BOLSA_PRIMERA, BOLSA_ULTIMA)
+                     + self._deltas_bolsa.get(int(item), 0))
 
     def objeto_de_mision(self, item):
+        delta = self._deltas_mision.get(int(item), 0)
         c = self._contar(item, OCULTA_PRIMERA, OCULTA_ULTIMA)
-        if c > 0:
-            return c
+        if c > 0 or delta != 0:
+            return max(0, c + delta)
         if self.p:
             qk = getattr(self.p, 'quest_kills', None) or {}
             for q, pa in (getattr(self.p, 'quests', None) or []):
@@ -368,10 +376,10 @@ class ContextoSesion(ev.Contexto):
                     _mis._cargar_db()
                     c_data = getattr(_mis, '_CACERIAS', {}).get(k, {})
                     if c_data.get('token_id') == int(item) or (int(item) == 16075 and q == 142):
-                        return int(qk.get(k, 0))
+                        return max(0, int(qk.get(k, 0)) + delta)
                 except Exception:
                     pass
-        return 0
+        return max(0, delta)
 
     def huecos_libres(self):
         if not self.p:
@@ -405,6 +413,9 @@ class ContextoSesion(ev.Contexto):
         return int(self._vivos.get(int(tag), 0))
 
     def variable_de_mapa(self, mapa, var):
+        k = (int(mapa), int(var))
+        if k in self._deltas_vars:
+            return self._deltas_vars[k]
         return self.estado.variable(mapa, var)
 
     def temporizador_activo(self, tag):
@@ -423,6 +434,33 @@ class ContextoSesion(ev.Contexto):
             return max(1, int(n or 1))
         except Exception:
             return 1
+
+    # -- aplicacion local de efectos durante la ejecucion de un evento ----
+    def aplicar_efecto_local(self, ef):
+        que = ef[0]
+        if que == 'dar':
+            for item, cant in ef[1]:
+                iid = int(item)
+                self._deltas_mision[iid] = self._deltas_mision.get(iid, 0) + int(cant)
+                self._deltas_bolsa[iid] = self._deltas_bolsa.get(iid, 0) + int(cant)
+        elif que == 'quitar':
+            for item, cant in ef[1]:
+                iid = int(item)
+                self._deltas_mision[iid] = self._deltas_mision.get(iid, 0) - int(cant)
+                self._deltas_bolsa[iid] = self._deltas_bolsa.get(iid, 0) - int(cant)
+        elif que == 'paso':
+            self._pasos_mision[int(ef[1])] = int(ef[2])
+        elif que == 'variable':
+            op = ef[1]
+            mapa, var, val = int(ef[2]), int(ef[3]), int(ef[4])
+            k = (mapa, var)
+            curr = self.variable_de_mapa(mapa, var)
+            if op == 'poner':
+                self._deltas_vars[k] = val
+            elif op == 'sumar':
+                self._deltas_vars[k] = curr + val
+            elif op == 'restar':
+                self._deltas_vars[k] = curr - val
 
 
 # PUERTAS QUE EL SERVIDOR ABRE SIN LA MISION QUE PIDEN. Decision del usuario
