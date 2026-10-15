@@ -126,6 +126,43 @@ _SEC = None
 MAPA_DE_LA_PLANTILLA = 51   # la captura es de Guide Palace
 
 
+FLAGS_MAPA = 0x0205
+RESTO_FLAGS_MAPA = b'\xff\x00\x00'
+SIN_MAPA = 0x20
+_SIN_MINIMAPA = None
+
+
+def _mapas_sin_minimapa():
+    """Los stage que stage.xml marca con 不顯示小地圖 (las instancias: Magic
+    Kichen Path, Gulp Room, Olympus Tower...). Traen de radar el smap\004
+    de Dawn Harbor como relleno, y el oficial los deja en negro."""
+    global _SIN_MINIMAPA
+    if _SIN_MINIMAPA is None:
+        _SIN_MINIMAPA = set()
+        try:
+            import sqlite3
+            db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
+            con = sqlite3.connect(db)
+            for (sid,) in con.execute('select id from stage where "不顯示小地圖" = ?', ('是',)):
+                if str(sid).isdigit():
+                    _SIN_MINIMAPA.add(int(sid))
+            con.close()
+        except Exception:
+            pass
+    return _SIN_MINIMAPA
+
+
+def flags_de_mapa(stage, base=b''):
+    """El 0x0014: flags de mapa. Con el bit 0x20 el cliente desactiva el mapa
+    (minimapa y Scene Map en negro, sin puntos ni carteles); va en los mapas
+    sin minimapa y en el resto el 0x0205 de la captura oficial."""
+    flags = FLAGS_MAPA | (SIN_MAPA if int(stage or 0) in _mapas_sin_minimapa() else 0)
+    # Mide 7 bytes: los flags y 'ff 00 00' detras (captura oficial). Con
+    # solo los 4 de los flags el cliente leia de mas y se cerraba al entrar.
+    resto = bytes(base[4:7]) if len(base) >= 7 else RESTO_FLAGS_MAPA
+    return struct.pack('<HI', 0x0014, flags) + resto
+
+
 def secuencia(p: Personaje):
     """Devuelve [bytes] -- cada uno un sub-mensaje listo (opcode incluido)."""
     global _SEC
@@ -181,7 +218,7 @@ def secuencia(p: Personaje):
             # Antes se sobreescribia con p.entity_id (ej: 1001, 1003), que tienen el bit 0x20 encendido,
             # dejando el Scene Map completamente vacio (teal).
             # La captura oficial (init_02_0014.bin) manda 0x00000205 (517) con bit 0x20 en 0.
-            salida.append(struct.pack('<H', 0x0014) + base)
+            salida.append(flags_de_mapa(getattr(p, 'stage', 0), base))
         elif op == 0x001D:
             # Atributos de entidad. La plantilla trae el entity_id del
             # personaje que se grabo, asi que habia que reescribirlo: se
@@ -1014,6 +1051,17 @@ PLANTILLAS_POR_STAGE = {
     392 : 'manege.json',
     393 : 'garrison.json',
     394 : 'champions_arena.json',
+    # Angel House Area y Angel Church, las dos salas que salen del Lyceum
+    # por los tornados de (168,103) y (259,79). De la captura de Celestia
+    # del 14/10/2026: Cupid en la primera y el tornado de vuelta en las dos.
+    370 : 'angel_house_area.json',
+    # Training Palace (Training Hall A1/A2/A3 del menu de los Playground):
+    # poblado desde los generadores del propio map044.mpc. Los tres
+    # canales comparten mapa.
+    44 : 'training_palace.json',
+    144 : 'training_palace.json',
+    244 : 'training_palace.json',
+    80 : 'angel_church.json',
     118 : 'training_area_a.json',
     134 : 'training_area_b.json',
     135 : 'training_area_c.json',

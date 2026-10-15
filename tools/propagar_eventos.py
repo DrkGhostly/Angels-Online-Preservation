@@ -59,7 +59,8 @@ def _del_mapa(stage, ruta):
             'n': d['veces'],
             'si': [[n, list(p)] + ([1] if neg else [])
                    for (n, p), neg in zip(d['condiciones'], d['negadas'])],
-            'haz': [[n, list(p)] for n, p in d['acciones']]})
+            'haz': [[n, list(p)] for n, p in d['acciones']],
+            **({'o': 1} if d.get('basta_una') else {})})
 
     # casilla -> evento. Solo los objetos que disparan algo; los demas son
     # decorado y hay mapas con 3.168 objetos.

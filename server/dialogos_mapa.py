@@ -195,3 +195,36 @@ def nodo_fin_de_juego(stage):
                 and not _acciones_debajo(arbol, k, 63, 1)):
             return k
     return None
+
+
+def zonas_de_inicio_de_juego(stage):
+    """Las zonas que GENERA (accion 31) la raiz que empieza el NPCKILLGAME
+    (63, 1): las marcas de "carrera en marcha". En el stage 74 es la 103, que
+    la raiz de cierre (61102) mira con GENERATOR_ALIVE."""
+    arbol = _arbol(stage)
+    zonas = set()
+    for n in arbol.values():
+        if any(a[0] == 63 and (a[1] or [None])[0] == 1 for a in n.get('a', ())):
+            zonas.update(int(a[1][0]) for a in n.get('a', ()) if a[0] == 31 and a[1])
+    return zonas
+
+
+def nodo_de_victoria(stage):
+    """El nodo al que la raiz de cierre del NPCKILLGAME manda cuando ganas:
+    el de la rama que mira la variable 8 del mapa (condicion 29 [0, 8, ...]).
+    En el stage 74 es el 1000020: "You win!", la zona 101 y al mapa 75."""
+    arbol = _arbol(stage)
+    raiz = nodo_fin_de_juego(stage)
+    pendientes, visto = [str(raiz)] if raiz else [], set()
+    while pendientes:
+        k = pendientes.pop()
+        if k in visto or k not in arbol:
+            continue
+        visto.add(k)
+        n = arbol[k]
+        for r in n.get('r', ()):
+            if any(c[0] == 29 and list(c[1][:2]) == [0, 8] for c in r.get('si', ())):
+                return r.get('ir')
+            pendientes.append(str(r.get('ir')))
+        pendientes += [str(n['s'])] if n.get('s') else []
+    return None

@@ -1186,7 +1186,18 @@ def datos_magia(magic_id: int) -> dict:
             nom_l = res['nombre'].lower()
             desc_l = desc.lower()
             res['es_self_aoe'] = (target == '自己' and res['area'] > 0 and (d.get('攻擊型') == '是' or 'trap' in nom_l or 'trap' in desc_l))
-            res['es_aoe'] = res['es_terreno'] or res['es_self_aoe']
+            # AREA ALREDEDOR DEL OBJETIVO: los de ataque que se lanzan a un
+            # enemigo (對象 角色) y traen 範圍 pegan a todos los que esten a
+            # esa distancia de el. Shock Suit ("dealing DMG to all enemies
+            # within range", 範圍 8), Arrow Fan, Earth Tremor... 568 en
+            # magic.xml, y todos le daban solo al pinchado. La rama de area
+            # de app.py ya centra en el bicho cuando lo hay. Fuera quedan los
+            # que reparten a su manera: Chain Lightning (42) rebota, las
+            # marcas (65) detonan y Wolf Spirit (38) sacrifica.
+            res['es_aoe_objetivo'] = (target == '角色' and res['area'] > 0
+                                      and d.get('攻擊型') == '是'
+                                      and res['formula'] not in (38, 42, 65))
+            res['es_aoe'] = res['es_terreno'] or res['es_self_aoe'] or res['es_aoe_objetivo']
 
             # Dimension Shift I..V (13595..13599, formula 7 con hijo 13600..13604 en 動態參數1):
             # hereda el radio (5) y el dano magico del sub-hechizo de impacto.

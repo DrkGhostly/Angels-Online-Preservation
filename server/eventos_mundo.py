@@ -450,8 +450,11 @@ def _sin_mision(stage, evento, efectos):
     return efectos
 
 
-def al_pisar(ses, tile):
-    """Los efectos de pisar una casilla. Lista vacia si ahi no hay nada."""
+def al_pisar(ses, tile, solo_chocar=False):
+    """Los efectos de pisar una casilla. Lista vacia si ahi no hay nada.
+
+    Con `solo_chocar` (el objeto esta AL LADO, no debajo) solo valen los
+    disparadores de chocar: los de pisar piden estar encima."""
     estado = estado_de(ses)
     evento = ev.evento_en(estado.stage, tile[0], tile[1])
     if not evento:
@@ -459,6 +462,8 @@ def al_pisar(ses, tile):
     ctx = ContextoSesion(ses, estado)
     disparo = ev.DISPAROS_AL_PASAR if not ctx.es_alma else (ev.ALMA_PISA,
                                                            ev.ALMA_CHOCA)
+    if solo_chocar:
+        disparo = (ev.CHOCAR,) if not ctx.es_alma else (ev.ALMA_CHOCA,)
     return _sin_mision(estado.stage, evento, ev.ejecutar(estado.stage, evento, disparo, ctx))
 
 

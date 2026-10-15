@@ -47,6 +47,44 @@
     "nota": "Lyceum -> East PlaygroundA1. Tile y llegada medidos en el juego, no deducidos.",
     "preguntar": true,
     "dibujar": true
+   },
+   {
+    "entity": 215,
+    "tile": [
+     259,
+     79
+    ],
+    "destino": 80,
+    "llegada": [
+     9,
+     11
+    ],
+    "preguntar": false,
+    "nota": "Lyceum -> Angel Church. Directo, sin menu. Medido en Celestia, captura del 14/10/2026 (mundo_2111xx/2112xx/2114xx)."
+   },
+   {
+    "entity": 230,
+    "tile": [
+     168,
+     103
+    ],
+    "destino": null,
+    "preguntar": true,
+    "msg": 514813,
+    "opciones": [
+     5954,
+     5955
+    ],
+    "destinos": {
+     "5954": {
+      "destino": 370,
+      "llegada": [
+       35,
+       25
+      ]
+     }
+    },
+    "nota": "Lyceum -> Angel House Area. Al pisarlo pregunta 'Are you going to the Angel House Area?' (514813, yes 5954 / no 5955). Medido en Celestia, captura del 14/10/2026 (mundo_2111xx/2112xx/2114xx)."
    }
   ],
   "43": [
@@ -10173,7 +10211,12 @@
     "radio": 3,
     "dibujar": true,
     "preguntar": false,
-    "nota": "Sale del mapa del propio cliente: map073.mpc, objeto 60001 en esa casilla, evento 4, y el evento hace CHANGE_MAP(74, 2). La llegada es el TAG 2 de map074.mpc. El metodo esta comprobado contra TODAS las llegadas que este json tiene medidas una por una cruzando portales: reproduce las 546. Antes de arreglar esta instancia reproducia 533 de 534, y la unica que fallaba era precisamente la entrada de aqui. Ver tools/mapa_del_cliente.py. LA SEGUNDA ENTRADA a la sala 2, por la esquina de abajo. En el cliente este evento va con una condicion (EVENT_COND 29 con parametros 0,3,0,1) y, si no se cumple, en vez de viajar saca el dialogo 10100. La condicion no se modela: aqui el tornado viaja siempre. Las tres casillas del TAG son [(32, 244), (39, 245), (41, 249)] y el servidor real coge una al azar -- medido: de las 533 llegadas que cuadran, 178 cayeron en la primera, 185 en la segunda y 170 en la tercera. Aqui se fija la que queda mas lejos de todos los tornados del mapa de destino."
+    "nota": "Sale del mapa del propio cliente: map073.mpc, objeto 60001 en esa casilla, evento 4, y el evento hace CHANGE_MAP(74, 2). La llegada es el TAG 2 de map074.mpc. El metodo esta comprobado contra TODAS las llegadas que este json tiene medidas una por una cruzando portales: reproduce las 546. Antes de arreglar esta instancia reproducia 533 de 534, y la unica que fallaba era precisamente la entrada de aqui. Ver tools/mapa_del_cliente.py. LA SEGUNDA ENTRADA a la sala 2, por la esquina de abajo. En el cliente este evento va con una condicion (EVENT_COND 29 con parametros 0,3,0,1) y, si no se cumple, en vez de viajar saca el dialogo 10100. La condicion no se modela: aqui el tornado viaja siempre. Las tres casillas del TAG son [(32, 244), (39, 245), (41, 249)] y el servidor real coge una al azar -- medido: de las 533 llegadas que cuadran, 178 cayeron en la primera, 185 en la segunda y 170 en la tercera. Aqui se fija la que queda mas lejos de todos los tornados del mapa de destino. CANDADO (14/10/2026): ahora SI se modela -- requiere_variable: la variable 3 del mapa vale 1 cuando muere el Soul-eating Demon (813, zona 86; evento 350), y si no se saca el dialogo 10100.",
+    "requiere_variable": {
+     "var": 3,
+     "valor": 1,
+     "dialogo": 10100
+    }
    },
    {
     "entity": 724,
@@ -17577,6 +17620,110 @@
     "dibujar": true,
     "preguntar": false,
     "nota": "Del mapa del cliente: map263.mpc, objeto 60001 en esa casilla, evento 1, que hace CHANGE_MAP(261, 1). Llegada (289, 171): la confirma jumpmap.xml. Las casillas del TAG son [(289, 171), (292, 169), (286, 173)] y el servidor coge una al azar. Metodo comprobado contra las 546 llegadas que este json tiene medidas cruzando portales una por una: reproduce todas. Ver tools/mapa_del_cliente.py y tools/propagar_portales.py."
+   }
+  ],
+  "80": [
+   {
+    "entity": 102269,
+    "tile": [
+     7,
+     4
+    ],
+    "destino": 41,
+    "llegada": [
+     253,
+     78
+    ],
+    "preguntar": false,
+    "nota": "Angel Church -> Lyceum. Medido en Celestia, captura del 14/10/2026 (mundo_2111xx/2112xx/2114xx)."
+   }
+  ],
+  "370": [
+   {
+    "entity": 119863,
+    "tile": [
+     22,
+     5
+    ],
+    "destino": 41,
+    "llegada": [
+     158,
+     82
+    ],
+    "preguntar": false,
+    "nota": "Angel House Area -> Lyceum. Medido en Celestia, captura del 14/10/2026 (mundo_2111xx/2112xx/2114xx)."
+   }
+  ],
+  "44": [
+   {
+    "entity": 802,
+    "tile": [
+     161,
+     8
+    ],
+    "destino": null,
+    "preguntar": false,
+    "dibujar": true,
+    "nota": "Training Palace: tornado del propio map044.mpc. Solo se DIBUJA: al pisarlo o pulsarlo salta el evento del mapa, que abre el menu del cliente (5801) y la opcion lleva a East Playground A1-A5."
+   },
+   {
+    "entity": 803,
+    "tile": [
+     13,
+     81
+    ],
+    "destino": null,
+    "preguntar": false,
+    "dibujar": true,
+    "nota": "Training Palace: tornado del propio map044.mpc. Solo se DIBUJA: al pisarlo o pulsarlo salta el evento del mapa, que abre el menu del cliente (5802) y la opcion lleva a West Playground A1-A5."
+   }
+  ],
+  "144": [
+   {
+    "entity": 802,
+    "tile": [
+     161,
+     8
+    ],
+    "destino": null,
+    "preguntar": false,
+    "dibujar": true,
+    "nota": "Training Palace: tornado del propio map044.mpc. Solo se DIBUJA: al pisarlo o pulsarlo salta el evento del mapa, que abre el menu del cliente (5801) y la opcion lleva a East Playground A1-A5."
+   },
+   {
+    "entity": 803,
+    "tile": [
+     13,
+     81
+    ],
+    "destino": null,
+    "preguntar": false,
+    "dibujar": true,
+    "nota": "Training Palace: tornado del propio map044.mpc. Solo se DIBUJA: al pisarlo o pulsarlo salta el evento del mapa, que abre el menu del cliente (5802) y la opcion lleva a West Playground A1-A5."
+   }
+  ],
+  "244": [
+   {
+    "entity": 802,
+    "tile": [
+     161,
+     8
+    ],
+    "destino": null,
+    "preguntar": false,
+    "dibujar": true,
+    "nota": "Training Palace: tornado del propio map044.mpc. Solo se DIBUJA: al pisarlo o pulsarlo salta el evento del mapa, que abre el menu del cliente (5801) y la opcion lleva a East Playground A1-A5."
+   },
+   {
+    "entity": 803,
+    "tile": [
+     13,
+     81
+    ],
+    "destino": null,
+    "preguntar": false,
+    "dibujar": true,
+    "nota": "Training Palace: tornado del propio map044.mpc. Solo se DIBUJA: al pisarlo o pulsarlo salta el evento del mapa, que abre el menu del cliente (5802) y la opcion lleva a West Playground A1-A5."
    }
   ]
  },

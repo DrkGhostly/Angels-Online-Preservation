@@ -1,5 +1,5 @@
 {
- "_nota": "magic_kichen_path_2 (stage 74). Poblado desde una captura del cliente GLOBAL, cuyo 0x0008 mide 46 bytes y no trae nombre: el nombre y el nivel salen de content.db por npc_type. Sin objetos de mapa: los 0x000E del Global miden 26 bytes y aqui se guardan crudos, asi que reenviarlos romperia nuestro cliente. Ver tools/poblar_instancia_global.py. Los objetos de mapa siguen vacios, pero los TORNADOS ya se dibujan: salen de portales.json, con la casilla sacada de map074.mpc. Ver tools/mapa_del_cliente.py. OLEADAS (14/10/2026): fuera el Rock God Mendun y los Rock Slarm de la captura. El Mendun es la zona 76, que solo sale con GENERATE(76) a las 45 bajas (evento 102); los Rock Slarm de las zonas 75, 90 y 91 salen con ENABLE_GENERATOR al pisar la cocina (evento 151), y los que trajo la captura eran restos de esas oleadas. Se dejan los 14 Rock Slarm fijos que declara map074.mpc fuera de esas zonas. REPOBLADO (14/10/2026) desde los generadores del cliente (poblar_del_cliente.spawns_de, sin las zonas de evento): la captura Global no traia el pasillo de la carrera del Annoying Clerk (zonas 81-83: Terra Miner, Charming Flower, Hungry Eater). Se conservan los NPC. OLEADAS ya fuera.",
+ "_nota": "magic_kichen_path_2 (stage 74). Poblado desde una captura del cliente GLOBAL, cuyo 0x0008 mide 46 bytes y no trae nombre: el nombre y el nivel salen de content.db por npc_type. Sin objetos de mapa: los 0x000E del Global miden 26 bytes y aqui se guardan crudos, asi que reenviarlos romperia nuestro cliente. Ver tools/poblar_instancia_global.py. Los objetos de mapa siguen vacios, pero los TORNADOS ya se dibujan: salen de portales.json, con la casilla sacada de map074.mpc. Ver tools/mapa_del_cliente.py. OLEADAS (14/10/2026): fuera el Rock God Mendun y los Rock Slarm de la captura. El Mendun es la zona 76, que solo sale con GENERATE(76) a las 45 bajas (evento 102); los Rock Slarm de las zonas 75, 90 y 91 salen con ENABLE_GENERATOR al pisar la cocina (evento 151), y los que trajo la captura eran restos de esas oleadas. Se dejan los 14 Rock Slarm fijos que declara map074.mpc fuera de esas zonas. REPOBLADO (14/10/2026) desde los generadores del cliente (poblar_del_cliente.spawns_de, sin las zonas de evento): la captura Global no traia el pasillo de la carrera del Annoying Clerk (zonas 81-83: Terra Miner, Charming Flower, Hungry Eater). Se conservan los NPC. OLEADAS ya fuera. POSICIONES (14/10/2026): los Terra Miner, Charming Flower, Hungry Eater y Air Hole estaban en una rejilla de 5 en 5 inventada y la mitad caia en la lava; ahora van en los puntos de sus zonas de generador del cliente (81, 82, 83 y 77), que traen justo esa cantidad.",
  "stage": 74,
  "spawns": [
   {
@@ -25,8 +25,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    214,
-    156
+    247,
+    134
    ],
    "direccion": 2,
    "visible": 0,
@@ -40,8 +40,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    214,
-    161
+    185,
+    148
    ],
    "direccion": 2,
    "visible": 0,
@@ -1045,7 +1045,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    101,
+    114,
     117
    ],
    "direccion": 2,
@@ -1060,8 +1060,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    101,
-    122
+    118,
+    105
    ],
    "direccion": 2,
    "visible": 0,
@@ -1075,8 +1075,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    101,
-    127
+    119,
+    114
    ],
    "direccion": 2,
    "visible": 0,
@@ -1090,8 +1090,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    106,
-    117
+    99,
+    119
    ],
    "direccion": 2,
    "visible": 0,
@@ -1106,7 +1106,7 @@
    "monstruo": true,
    "tile": [
     106,
-    127
+    113
    ],
    "direccion": 2,
    "visible": 0,
@@ -1120,8 +1120,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    111,
-    117
+    138,
+    96
    ],
    "direccion": 2,
    "visible": 0,
@@ -1135,8 +1135,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    111,
-    122
+    126,
+    100
    ],
    "direccion": 2,
    "visible": 0,
@@ -1150,8 +1150,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    111,
-    127
+    125,
+    109
    ],
    "direccion": 2,
    "visible": 0,
@@ -1165,8 +1165,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    96,
-    112
+    130,
+    95
    ],
    "direccion": 2,
    "visible": 0,
@@ -1180,8 +1180,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    96,
-    117
+    27,
+    93
    ],
    "direccion": 2,
    "visible": 0,
@@ -1195,8 +1195,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    96,
-    122
+    33,
+    86
    ],
    "direccion": 2,
    "visible": 0,
@@ -1210,8 +1210,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    96,
-    127
+    64,
+    77
    ],
    "direccion": 2,
    "visible": 0,
@@ -1225,8 +1225,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    96,
-    132
+    80,
+    100
    ],
    "direccion": 2,
    "visible": 0,
@@ -1240,8 +1240,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    101,
-    112
+    73,
+    104
    ],
    "direccion": 2,
    "visible": 0,
@@ -1256,7 +1256,7 @@
    "monstruo": true,
    "tile": [
     101,
-    132
+    109
    ],
    "direccion": 2,
    "visible": 0,
@@ -1270,8 +1270,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    106,
-    112
+    35,
+    92
    ],
    "direccion": 2,
    "visible": 0,
@@ -1285,8 +1285,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    106,
-    132
+    36,
+    97
    ],
    "direccion": 2,
    "visible": 0,
@@ -1300,8 +1300,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    111,
-    112
+    43,
+    92
    ],
    "direccion": 2,
    "visible": 0,
@@ -1315,8 +1315,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    111,
-    132
+    50,
+    96
    ],
    "direccion": 2,
    "visible": 0,
@@ -1330,8 +1330,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    116,
-    112
+    50,
+    71
    ],
    "direccion": 2,
    "visible": 0,
@@ -1345,8 +1345,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    116,
-    117
+    70,
+    95
    ],
    "direccion": 2,
    "visible": 0,
@@ -1360,8 +1360,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    116,
-    122
+    56,
+    88
    ],
    "direccion": 2,
    "visible": 0,
@@ -1375,8 +1375,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    116,
-    127
+    65,
+    100
    ],
    "direccion": 2,
    "visible": 0,
@@ -1390,8 +1390,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    116,
-    132
+    44,
+    101
    ],
    "direccion": 2,
    "visible": 0,
@@ -1420,8 +1420,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    142,
-    85
+    134,
+    88
    ],
    "direccion": 2,
    "visible": 0,
@@ -1435,8 +1435,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    142,
-    90
+    153,
+    87
    ],
    "direccion": 2,
    "visible": 0,
@@ -1450,7 +1450,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    142,
+    147,
     95
    ],
    "direccion": 2,
@@ -1465,8 +1465,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    147,
-    85
+    140,
+    92
    ],
    "direccion": 2,
    "visible": 0,
@@ -1480,8 +1480,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    147,
-    95
+    177,
+    76
    ],
    "direccion": 2,
    "visible": 0,
@@ -1495,8 +1495,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    152,
-    85
+    166,
+    84
    ],
    "direccion": 2,
    "visible": 0,
@@ -1510,8 +1510,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    152,
-    90
+    158,
+    78
    ],
    "direccion": 2,
    "visible": 0,
@@ -1525,8 +1525,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    152,
-    95
+    176,
+    85
    ],
    "direccion": 2,
    "visible": 0,
@@ -1540,8 +1540,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    137,
-    80
+    161,
+    82
    ],
    "direccion": 2,
    "visible": 0,
@@ -1555,8 +1555,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    137,
-    85
+    52,
+    65
    ],
    "direccion": 2,
    "visible": 0,
@@ -1570,8 +1570,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    137,
-    90
+    61,
+    70
    ],
    "direccion": 2,
    "visible": 0,
@@ -1585,8 +1585,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    137,
-    95
+    67,
+    73
    ],
    "direccion": 2,
    "visible": 0,
@@ -1600,8 +1600,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    137,
-    100
+    63,
+    65
    ],
    "direccion": 2,
    "visible": 0,
@@ -1615,8 +1615,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    142,
-    80
+    77,
+    73
    ],
    "direccion": 2,
    "visible": 0,
@@ -1630,8 +1630,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    142,
-    100
+    71,
+    69
    ],
    "direccion": 2,
    "visible": 0,
@@ -1645,8 +1645,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    147,
-    80
+    183,
+    81
    ],
    "direccion": 2,
    "visible": 0,
@@ -1660,8 +1660,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    147,
-    100
+    220,
+    83
    ],
    "direccion": 2,
    "visible": 0,
@@ -1675,8 +1675,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    152,
-    80
+    252,
+    87
    ],
    "direccion": 2,
    "visible": 0,
@@ -1690,8 +1690,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    152,
-    100
+    233,
+    89
    ],
    "direccion": 2,
    "visible": 0,
@@ -1705,8 +1705,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    157,
-    80
+    231,
+    76
    ],
    "direccion": 2,
    "visible": 0,
@@ -1720,8 +1720,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    157,
-    85
+    242,
+    83
    ],
    "direccion": 2,
    "visible": 0,
@@ -1735,8 +1735,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    157,
-    90
+    262,
+    92
    ],
    "direccion": 2,
    "visible": 0,
@@ -1750,8 +1750,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    157,
-    95
+    232,
+    83
    ],
    "direccion": 2,
    "visible": 0,
@@ -1765,8 +1765,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    157,
-    100
+    262,
+    86
    ],
    "direccion": 2,
    "visible": 0,
@@ -1795,8 +1795,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    195,
-    75
+    188,
+    69
    ],
    "direccion": 2,
    "visible": 0,
@@ -1810,8 +1810,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    195,
-    80
+    204,
+    72
    ],
    "direccion": 2,
    "visible": 0,
@@ -1825,8 +1825,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    195,
-    85
+    194,
+    73
    ],
    "direccion": 2,
    "visible": 0,
@@ -1840,8 +1840,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    200,
-    75
+    210,
+    67
    ],
    "direccion": 2,
    "visible": 0,
@@ -1855,8 +1855,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    200,
-    85
+    81,
+    56
    ],
    "direccion": 2,
    "visible": 0,
@@ -1870,8 +1870,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    205,
-    75
+    74,
+    52
    ],
    "direccion": 2,
    "visible": 0,
@@ -1885,8 +1885,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    205,
-    80
+    87,
+    46
    ],
    "direccion": 2,
    "visible": 0,
@@ -1900,8 +1900,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    205,
-    85
+    92,
+    53
    ],
    "direccion": 2,
    "visible": 0,
@@ -1915,8 +1915,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    190,
-    70
+    101,
+    46
    ],
    "direccion": 2,
    "visible": 0,
@@ -1930,8 +1930,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    190,
-    75
+    403,
+    121
    ],
    "direccion": 2,
    "visible": 0,
@@ -1945,8 +1945,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    190,
-    80
+    319,
+    93
    ],
    "direccion": 2,
    "visible": 0,
@@ -1960,8 +1960,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    190,
-    85
+    395,
+    125
    ],
    "direccion": 2,
    "visible": 0,
@@ -1975,8 +1975,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    190,
-    90
+    350,
+    93
    ],
    "direccion": 2,
    "visible": 0,
@@ -1990,8 +1990,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    195,
-    70
+    377,
+    104
    ],
    "direccion": 2,
    "visible": 0,
@@ -2005,8 +2005,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    195,
-    90
+    394,
+    119
    ],
    "direccion": 2,
    "visible": 0,
@@ -2020,8 +2020,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    200,
-    70
+    377,
+    111
    ],
    "direccion": 2,
    "visible": 0,
@@ -2035,8 +2035,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    200,
-    90
+    358,
+    88
    ],
    "direccion": 2,
    "visible": 0,
@@ -2050,8 +2050,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    205,
-    70
+    323,
+    84
    ],
    "direccion": 2,
    "visible": 0,
@@ -2065,8 +2065,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    205,
-    90
+    333,
+    91
    ],
    "direccion": 2,
    "visible": 0,
@@ -2080,8 +2080,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    210,
-    70
+    337,
+    103
    ],
    "direccion": 2,
    "visible": 0,
@@ -2095,8 +2095,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    210,
-    75
+    356,
+    78
    ],
    "direccion": 2,
    "visible": 0,
@@ -2110,8 +2110,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    210,
-    80
+    345,
+    85
    ],
    "direccion": 2,
    "visible": 0,
@@ -2125,8 +2125,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    210,
-    85
+    388,
+    104
    ],
    "direccion": 2,
    "visible": 0,
@@ -2140,8 +2140,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    210,
-    90
+    328,
+    99
    ],
    "direccion": 2,
    "visible": 0,
@@ -2155,8 +2155,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    91,
-    107
+    293,
+    74
    ],
    "direccion": 2,
    "visible": 0,
@@ -2170,8 +2170,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    91,
-    112
+    312,
+    81
    ],
    "direccion": 2,
    "visible": 0,
@@ -2185,8 +2185,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    91,
-    117
+    305,
+    86
    ],
    "direccion": 2,
    "visible": 0,
@@ -2200,8 +2200,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    91,
-    122
+    286,
+    78
    ],
    "direccion": 2,
    "visible": 0,
@@ -2215,8 +2215,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    91,
-    127
+    305,
+    76
    ],
    "direccion": 2,
    "visible": 0,
@@ -2230,8 +2230,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    91,
-    132
+    296,
+    82
    ],
    "direccion": 2,
    "visible": 0,
@@ -2245,8 +2245,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    91,
-    137
+    279,
+    82
    ],
    "direccion": 2,
    "visible": 0,
@@ -2260,8 +2260,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    96,
-    107
+    148,
+    57
    ],
    "direccion": 2,
    "visible": 0,
@@ -2275,8 +2275,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    96,
-    137
+    154,
+    55
    ],
    "direccion": 2,
    "visible": 0,
@@ -2290,8 +2290,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    101,
-    107
+    167,
+    50
    ],
    "direccion": 2,
    "visible": 0,
@@ -2305,8 +2305,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    101,
-    137
+    148,
+    48
    ],
    "direccion": 2,
    "visible": 0,
@@ -2320,8 +2320,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    106,
-    107
+    158,
+    44
    ],
    "direccion": 2,
    "visible": 0,
@@ -2335,8 +2335,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    106,
-    137
+    153,
+    38
    ],
    "direccion": 2,
    "visible": 0,
@@ -2350,8 +2350,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    132,
-    75
+    142,
+    53
    ],
    "direccion": 2,
    "visible": 0,
@@ -2365,8 +2365,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    132,
-    80
+    139,
+    44
    ],
    "direccion": 2,
    "visible": 0,
@@ -2380,8 +2380,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    132,
-    85
+    124,
+    60
    ],
    "direccion": 2,
    "visible": 0,
@@ -2395,8 +2395,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    132,
-    90
+    117,
+    55
    ],
    "direccion": 2,
    "visible": 0,
@@ -2410,8 +2410,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    132,
-    95
+    112,
+    63
    ],
    "direccion": 2,
    "visible": 0,
@@ -2425,8 +2425,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    132,
-    100
+    104,
+    68
    ],
    "direccion": 2,
    "visible": 0,
@@ -2440,8 +2440,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    132,
-    105
+    131,
+    51
    ],
    "direccion": 2,
    "visible": 0,
@@ -2455,8 +2455,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    137,
-    75
+    312,
+    69
    ],
    "direccion": 2,
    "visible": 0,
@@ -2470,8 +2470,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    137,
-    105
+    327,
+    61
    ],
    "direccion": 2,
    "visible": 0,
@@ -2485,8 +2485,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    142,
-    75
+    323,
+    68
    ],
    "direccion": 2,
    "visible": 0,
@@ -2500,8 +2500,8 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    142,
-    105
+    336,
+    66
    ],
    "direccion": 2,
    "visible": 0,
@@ -2515,7 +2515,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    147,
+    320,
     75
    ],
    "direccion": 2,

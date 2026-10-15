@@ -1,0 +1,37 @@
+{
+ "_nota": "",
+ "stage": 370,
+ "spawns": [
+  {
+   "entity_id": 123952,
+   "nombre": "Cupid",
+   "npc_type": 1862,
+   "sprite": 40006,
+   "klass": 199,
+   "monstruo": false,
+   "tile": [
+    27,
+    15
+   ],
+   "direccion": 6,
+   "visible": 1
+  }
+ ],
+ "recursos": [
+  {
+   "entity_id": 119863,
+   "capa": 0,
+   "px": [
+    716,
+    181
+   ],
+   "medio": "0000000027000000000000001a000000",
+   "marca": 220,
+   "orient": 6,
+   "sprite": 60001,
+   "cola": "00004080030000",
+   "crudo": "37d4010000000000cc020000b50000000000000027000000000000001a000000dc0661ea00004080030000",
+   "que_es": "tornado (portal)"
+  }
+ ]
+}

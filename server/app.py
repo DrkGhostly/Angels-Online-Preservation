@@ -12,6 +12,7 @@ import argparse
 import os
 import logging
 import logging.handlers
+import math
 import random
 import sys
 import pathlib
@@ -1822,6 +1823,8 @@ def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
             if _n_k % 10 == 0:
                 log.info(f"[{addr}] NPCKILLGAME: {_n_k} bajas")
             _marcador_carrera(ses, _est_k)
+            if _n_k >= META_CARRERA:
+                _terminar_carrera(ses, addr, _est_k, gana=True)
         ses.volcar()
 
     if getattr(m, 'encantado', False):
@@ -2653,7 +2656,17 @@ def _aplicar_efectos(ses, addr, efectos, motivo=''):
                     # (en la Global llegan como 0x0017 con su entidad). De
                     # varios mensajes se dice uno al azar.
                     _txt = _msgs_t.get(random.choice(textos))
-                    if _txt:
+                    # Los de un TEMPORIZADOR no los dice el jugador sino el
+                    # jefe de la sala: las oleadas de la sala 3 de la Magic
+                    # Kichen Path traen "Now it's my turn to deal with you!..."
+                    # (64919), y ese es Beelzebub. El parametro de la accion
+                    # vale 7 igual que en el "Too hot!" del jugador, asi que lo
+                    # que los separa es el disparo: pisar o pulsar es del
+                    # jugador, el temporizador es del mapa.
+                    _quien = _jefe_que_habla(ses) if 'temporizador' in motivo else None
+                    if _txt and _quien is not None:
+                        _hablar_monstruo(ses, _quien, _txt)
+                    elif _txt:
                         _hablar_jugador(ses, _txt)
                     textos = []
                 for msg in textos:
@@ -2712,6 +2725,7 @@ def _aplicar_efectos(ses, addr, efectos, motivo=''):
                 if int(ef[1] or 0):
                     fin = time.time() + DURACION_JUEGO_MATAR
                     estado.juego_matar = {'fin': fin, 'rivales': [], 'ultimo_marcador': 0}
+                    _marcador_carrera(ses, estado)
                     try:
                         import asyncio as _aio_tc
                         _aio_tc.get_event_loop().call_later(
@@ -2730,6 +2744,12 @@ def _aplicar_efectos(ses, addr, efectos, motivo=''):
                         _nodo = _dm_j.nodo_fin_de_juego(_st)
                         log.info('[%s] fin del NPCKILLGAME en %s: %d bajas, nodo %s',
                                  addr, _st, _e.variable(0, 8), _nodo)
+                        # Se acabo el tiempo: fuera la marca de "carrera en
+                        # marcha" (la zona que genera la raiz que la empieza,
+                        # la 103). Con ella viva la raiz de cierre diria "el
+                        # juego sigue"; sin ella cae en el "You fail".
+                        _quitar_marcas_de_carrera(_ses, _st)
+                        _ventana_carrera(_ses, _e, abrir=False)
                         if _nodo:
                             _recorrer_dialogo_mapa(_ses, addr, _st, _nodo)
                     try:
@@ -2738,6 +2758,8 @@ def _aplicar_efectos(ses, addr, efectos, motivo=''):
                     except Exception:
                         log.exception('no se pudo programar el fin del NPCKILLGAME')
                 else:
+                    if getattr(estado, 'juego_matar', None):
+                        _ventana_carrera(ses, estado, abrir=False)
                     estado.juego_matar = None
                 log.info('[%s] evento%s: NPCKILLGAME %s', addr, motivo, ef[1])
             elif que == 'npc':
@@ -2839,17 +2861,24 @@ def _hacer_npc(ses, addr, stage, npc_type, segundos, tag):
     if not cas or not ses.personaje:
         return
     nombre = 'NPC'
+    sprite = 0
     try:
         import sqlite3 as _sq
         con = _sq.connect(pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db')
-        r = con.execute('select name from npc where id=?', (int(npc_type),)).fetchone()
+        r = con.execute('select name, sprite_id from npc where id=?', (str(int(npc_type)),)).fetchone()
         con.close()
-        nombre = r[0] if r else nombre
+        if r:
+            nombre = r[0] or nombre
+            sprite = int(r[1] or 0)
     except Exception:
         pass
     _SIG_NPC_EVENTO[0] += 1
     eid = _SIG_NPC_EVENTO[0]
-    ses.enviar(_lg_n._npc_spawn(eid, npc_type, nombre, tuple(cas[0]), klass=199))
+    # Con su sprite del npc.xml (el Hell Rival es el 42336). Sin el, salia
+    # el 40001 por defecto y los rivales de la carrera no se veian.
+    # Como MONSTRUO (klass 1): a los NPC de clase 199 el cliente no les anima
+    # el 0x0005 y los rivales de la carrera tienen que andar hasta sus presas.
+    ses.enviar(_lg_n._npc_spawn(eid, npc_type, nombre, tuple(cas[0]), sprite=sprite, klass=1))
     log.info('[%s] MAKE_NPC %s (%d) en el tag %d %s, %ds', addr, nombre, npc_type,
              tag, tuple(cas[0]), segundos)
     if segundos > 0:
@@ -2866,48 +2895,80 @@ def _hacer_npc(ses, addr, stage, npc_type, segundos, tag):
 
 # LOS RIVALES DE LA CARRERA. Los Hell Rival (NPC 2135) que saca el Annoying
 # Clerk son alumnos del Evil Lyceum que compiten por las mismas bajas: cada
-# uno va a por el bicho mas cercano y lo mata, y su cuenta va en la variable 9
-# del mapa (la 8 es la del jugador; las dos se ponen a cero al empezar). El
-# ritmo no esta medido -- no hay ninguna captura de la carrera --: uno cada
-# RITMO_RIVAL segundos de media por rival, que con cinco da unas 15 por minuto.
-RITMO_RIVAL = 20.0
+# uno ELIGE el bicho mas cercano, VA ANDANDO hasta el (pasos cortos, como los
+# monstruos, bordeando paredes) y solo al llegar lo tumba. Su cuenta va en la
+# variable 9 del mapa. Antes se mandaba el movimiento y la muerte en el mismo
+# tic, con un salto de hasta 14 casillas que el cliente no anima: el rival se
+# quedaba quieto y los bichos caian "con la mente".
+# El ritmo no esta medido (no hay captura de la carrera): tras cada baja el
+# rival descansa DESCANSO_RIVAL segundos.
 RADIO_RIVAL = 14
-TIC_CARRERA = 3.0
+RADIO_TORNADO = 2
+TIC_CARRERA = 1.0
+PASOS_RIVAL = 3
+VELOCIDAD_RIVAL = 100
+DESCANSO_RIVAL = (4.0, 9.0)
 
 
 def _tic_carrera(ses, addr, estado, fin):
-    """Un tic de la carrera: los rivales matan, y cada 30 s el marcador."""
+    """Un tic de la carrera: cada rival anda hacia su presa o la tumba."""
     import combate as _cb_c
+    import transitable as _tr_c
     j = getattr(estado, 'juego_matar', None)
-    if (not ses.personaje or not j or j.get('fin') != fin or time.time() >= fin):
+    if (not ses.personaje or not j or j.get('fin') != fin or time.time() >= fin
+            or j.get('terminada')):
         return
     import eventos_mundo as _evm_c
     if _evm_c.estado_de(ses) is estado:
         MOVE = Msg.registry[(0x0005, 's2c', '*')]
-        vivos = [m for m in (ses.monstruos or {}).values()
-                 if getattr(m, 'vivo', False) and not getattr(m, 'generado', False)
-                 and getattr(m, 'en_combate_con', None) is None]
+        ahora = time.time()
+        bichos = ses.monstruos or {}
+        cazados = {r.get('presa') for r in j.get('rivales') or [] if r.get('presa')}
         for r in j.get('rivales') or []:
-            if r.get('hasta') and time.time() >= r['hasta']:
+            if r.get('hasta') and ahora >= r['hasta']:
                 continue
-            if random.random() > TIC_CARRERA / RITMO_RIVAL:
+            if ahora < r.get('libre_en', 0):
                 continue
-            cerca = [m for m in vivos
-                     if max(abs(m.tile_x - r['tile'][0]), abs(m.tile_y - r['tile'][1])) <= RADIO_RIVAL]
-            if not cerca:
-                continue
-            m = min(cerca, key=lambda mm: max(abs(mm.tile_x - r['tile'][0]), abs(mm.tile_y - r['tile'][1])))
-            vivos.remove(m)
-            # Se planta al lado y lo tumba.
-            ses.enviar(MOVE.build(entity_id=r['eid'], cur_x=r['tile'][0] * 32, cur_y=r['tile'][1] * 32,
-                                  dst_x=(m.tile_x + 1) * 32, dst_y=m.tile_y * 32, speed=110))
-            r['tile'] = [m.tile_x + 1, m.tile_y]
+            m = bichos.get(r.get('presa'))
+            if m is None or not getattr(m, 'vivo', False):
+                r['presa'] = None
+                libres = [b for b in bichos.values()
+                          if getattr(b, 'vivo', False) and not getattr(b, 'generado', False)
+                          and getattr(b, 'en_combate_con', None) is None
+                          and b.entity_id not in cazados
+                          and max(abs(b.tile_x - r['tile'][0]), abs(b.tile_y - r['tile'][1])) <= RADIO_RIVAL]
+                if not libres:
+                    continue
+                m = min(libres, key=lambda b: max(abs(b.tile_x - r['tile'][0]), abs(b.tile_y - r['tile'][1])))
+                r['presa'] = m.entity_id
+                cazados.add(m.entity_id)
+            dist = max(abs(m.tile_x - r['tile'][0]), abs(m.tile_y - r['tile'][1]))
+            if dist > 1:
+                nx, ny = _tr_c.avanzar(estado.stage, r['tile'], (m.tile_x, m.tile_y),
+                                       PASOS_RIVAL, parar_a=1)
+                if (nx, ny) != tuple(r['tile']):
+                    ses.enviar(MOVE.build(entity_id=r['eid'], cur_x=r['tile'][0] * 32,
+                                          cur_y=r['tile'][1] * 32, dst_x=nx * 32, dst_y=ny * 32,
+                                          speed=VELOCIDAD_RIVAL))
+                    r['tile'] = [nx, ny]
+                    continue
+                if dist > 2:
+                    r['presa'] = None        # no hay camino: a por otro
+                    continue
+            # Al lado: lo tumba.
+            r['presa'] = None
+            r['libre_en'] = ahora + random.uniform(*DESCANSO_RIVAL)
             m.hp = 0
-            m.muerto_en = time.time()
+            m.muerto_en = ahora
             ses.enviar(_cb_c.ataque(r['eid'], m.entity_id, 0),
                        _cb_c.atributo(m.entity_id, 0, _cb_c.VIDA),
                        _cb_c.muerte_monstruo(m.entity_id, r['eid']))
             estado.sumar_variable(0, 9, 1)
+            _marcador_carrera(ses, estado)
+            if estado.variable(0, 9) >= META_CARRERA:
+                _terminar_carrera(ses, addr, estado, gana=False)
+                ses.volcar()
+                return
             _eid_m = m.entity_id
             try:
                 import asyncio as _aio_c
@@ -2917,8 +2978,6 @@ def _tic_carrera(ses, addr, estado, fin):
                     _cb_c.SEGUNDOS_REAPARICION, lambda mm=m: _revivir_en_carrera(ses, estado, fin, mm))
             except Exception:
                 pass
-        if time.time() - j.get('ultimo_marcador', 0) >= 30:
-            _marcador_carrera(ses, estado)
         ses.volcar()
     try:
         import asyncio as _aio_c
@@ -2941,15 +3000,78 @@ def _revivir_en_carrera(ses, estado, fin, m):
                                           sprite=getattr(m, 'sprite', 0), klass=1))
 
 
+# La ventana del marcador (WND_NPCKILLGAME, el "006-055" rosa y azul del
+# oficial). La abre y la rellena el s2c 0x0134, 0060cf40 leido con REA:
+# [u8 1 abre / 0 cierra][u32 numero rosa (iconos 12754.., ventanas
+# 0x326a-c)][u32 numero azul (iconos 12900.., ventanas 0x3267-9)], tres
+# cifras cada uno. El rosa es el nuestro.
+VENTANA_CARRERA = 0x0134
+
+
+def _ventana_carrera(ses, estado, abrir=True):
+    nuestras = estado.variable(0, 8) if abrir else 0
+    rivales = estado.variable(0, 9) if abrir else 0
+    ses.enviar(struct.pack('<HBII', VENTANA_CARRERA, 1 if abrir else 0,
+                           min(999, max(0, nuestras)), min(999, max(0, rivales))))
+    ses._ventana_carrera = abrir
+
+
+# La carrera la gana el PRIMERO que llega a 50 bajas: si eres tu, pasas a la
+# sala 3; si llegan antes los del Evil Lyceum, pierdes y hay que salir de la
+# instancia y repetir. (Lo de "mas de 50" del arbol del cliente es la
+# comprobacion del Clerk, no la meta: medido en el oficial por el usuario.)
+META_CARRERA = 50
+
+
+def _terminar_carrera(ses, addr, estado, gana):
+    import dialogos_mapa as _dm_t
+    j = getattr(estado, 'juego_matar', None)
+    if not j or j.get('terminada'):
+        return
+    j['terminada'] = True
+    st = estado.stage
+    log.info('[%s] carrera en %s: %s (%d - %d)', addr, st, 'GANA' if gana else 'PIERDE',
+             estado.variable(0, 8), estado.variable(0, 9))
+    _ventana_carrera(ses, estado)
+    if gana:
+        nodo = _dm_t.nodo_de_victoria(st)
+    else:
+        # Sin la marca de "carrera en marcha" la raiz de cierre cae en su
+        # rama de derrota (1000002: "You fail", zona 102 y fuera).
+        _quitar_marcas_de_carrera(ses, st)
+        nodo = _dm_t.nodo_fin_de_juego(st)
+    if nodo:
+        _recorrer_dialogo_mapa(ses, addr, st, nodo)
+    else:
+        estado.juego_matar = None
+        _ventana_carrera(ses, estado, abrir=False)
+
+
+def _quitar_marcas_de_carrera(ses, stage):
+    import combate as _cb_q
+    import dialogos_mapa as _dm_q
+    zonas = _dm_q.zonas_de_inicio_de_juego(stage)
+    for m in list((ses.monstruos or {}).values()):
+        if (getattr(m, 'generado', False) and getattr(m, 'vivo', False)
+                and getattr(m, 'zona_generador', None) in zonas):
+            m.hp = 0
+            m.vivo = False
+            m.muerto_en = time.time()
+            ses.enviar(_cb_q.despawn_monstruo(m.entity_id))
+
+
 def _marcador_carrera(ses, estado):
     """El marcador: tus bajas, las del Evil Lyceum y lo que queda."""
     import clases as _cl_m
     j = getattr(estado, 'juego_matar', None)
     if not j:
         return
+    _ventana_carrera(ses, estado)
+    if time.time() - j.get('ultimo_marcador', 0) < 30:
+        return
     j['ultimo_marcador'] = time.time()
     queda = max(0, int(j['fin'] - time.time()))
-    ses.enviar(_cl_m.aviso('Race: you %d - Evil Lyceum %d (more than 50 to win) - %d:%02d left'
+    ses.enviar(_cl_m.aviso('Race: you %d - Evil Lyceum %d (first to 50 wins) - %d:%02d left'
                            % (estado.variable(0, 8), estado.variable(0, 9), queda // 60, queda % 60),
                            tipo=0, msg_id=_cl_m.MSG_TEXTO))
 
@@ -3328,8 +3450,17 @@ def _recurso_con_entidad(stage, ent):
                 d = _js.loads((pathlib.Path(__file__).parent / 'plantillas' / f)
                               .read_text(encoding='utf-8'))
                 for r in d.get('recursos') or []:
-                    if r.get('entity_id') and r.get('tile'):
+                    if not r.get('entity_id'):
+                        continue
+                    if r.get('tile'):
                         idx[int(r['entity_id'])] = tuple(r['tile'])
+                    elif r.get('px'):
+                        # Los de las capturas solo traen el pixel: el tornado
+                        # del East Playground hacia el Training Palace (102059)
+                        # se pulsaba y no se encontraba su casilla, asi que su
+                        # evento no saltaba nunca.
+                        idx[int(r['entity_id'])] = (int(r['px'][0]) // 32,
+                                                    int(r['px'][1]) // 32)
             except Exception:
                 pass
         _RECURSOS_POR_STAGE[stage] = idx
@@ -3375,7 +3506,13 @@ def _generar_zona(ses, addr, stage, tag, cuantos=None):
     if ses.monstruos is None:
         ses.monstruos = {}
     n = max(1, min(TOPE_GENERADOS, int(cuantos or g.get('cuantos') or 1)))
-    for i in range(n):
+    # Se sigue por el PUNTO SIGUIENTE a los ya ocupados. Los mapas piden un
+    # GENERATE por monstruo (cuantos=1) y cada llamada empezaba otra vez por
+    # el primer punto: los tres Blood Pillar de la zona 110 de la sala 3, que
+    # van en (251,156), (172,164) y (138,139), salian los tres en el primero.
+    ya = sum(1 for _m in ses.monstruos.values()
+             if getattr(_m, 'zona_generador', None) == int(tag) and getattr(_m, 'vivo', False))
+    for i in range(ya, ya + n):
         npc_type = int(g['tipos'][i % len(g['tipos'])])
         tile = list(g['puntos'][i % len(g['puntos'])])
         eid = _SIG_GENERADO[0]
@@ -3413,6 +3550,21 @@ def _hablar_jugador(ses, texto):
                     _pr_h._mandar(s, pkt)
     except Exception:
         log.debug('chat a los demas', exc_info=True)
+
+
+def _jefe_que_habla(ses):
+    """El jefe vivo de la sala mas cercano al jugador; si no hay ninguno, el
+    ultimo monstruo que saco un evento. None si no hay nadie."""
+    import combate as _cb_j
+    p = ses.personaje
+    vivos = [m for m in (ses.monstruos or {}).values() if getattr(m, 'vivo', False)]
+    if not vivos or not p:
+        return None
+    jefes = [m for m in vivos if _cb_j.es_jefe(m.npc_type)]
+    if jefes:
+        return min(jefes, key=lambda m: max(abs(m.tile_x - p.tile_x), abs(m.tile_y - p.tile_y)))
+    gen = [m for m in vivos if getattr(m, 'generado', False)]
+    return max(gen, key=lambda m: m.entity_id) if gen else None
 
 
 def _hablar_monstruo(ses, m, texto):
@@ -3613,7 +3765,17 @@ def _entrar_en_sala(ses, addr):
     import combate as _cb_r
     import login as _lg_r
     p = ses.personaje
+    # Los flags de mapa de ESTE stage: en las instancias el minimapa y el
+    # Scene Map van en negro (bit 0x20), como en el oficial; si no, salia el
+    # radar de Dawn Harbor que stage.xml les pone de relleno, con los puntos
+    # de los bichos y los carteles de los minerales encima.
+    ses.enviar(_lg_r.flags_de_mapa(getattr(p, 'stage', 0)))
     e = _sala_para(ses)
+    # Si se fue de la sala con la carrera en marcha, la ventana no se queda.
+    if getattr(ses, '_ventana_carrera', False):
+        _jc = getattr(e, 'juego_matar', None)
+        if not _jc or time.time() >= _jc.get('fin', 0):
+            _ventana_carrera(ses, e, abrir=False)
     e.sesiones = [s for s in e.sesiones
                   if s is not ses and getattr(s, '_sala', None) is e
                   and not getattr(s, 'cerrada', False)
@@ -4065,7 +4227,52 @@ def _evento_de_casilla(stage, tile):
         return None
 
 
-def _eventos_al_pisar(ses, addr, tile):
+def _choques_al_llegar(ses, addr, st, llegada, token, vistos):
+    """CHOCAR: los objetos (tornados, estatuas...) saltan al TOCARLOS, no hace
+    falta pararse justo encima. Los TORNADOS (60001) saltan al llegar a
+    RADIO_TORNADO casillas, como los de portales.json: el del East Playground
+    al Training Palace casi nunca abria el menu porque habia que pararse justo
+    encima. El resto de objetos, al estar al lado. Un tornado no vuelve a
+    saltar hasta que el jugador sale de su radio; los que ya estan en
+    portales.json los resuelve su propio radio y se saltan. Si mientras
+    andaba pidio otro movimiento, no se hace nada (lo hara el nuevo)."""
+    p = ses.personaje
+    if (not p or p.stage != st or getattr(ses, '_token_choque', None) is not token
+            or (p.tile_x, p.tile_y) != tuple(llegada)):
+        return
+    import eventos as _ev_ch
+    objs = (_ev_ch.del_stage(st) or {}).get('objetos') or {}
+    antes = getattr(ses, '_tornado_cerca', None)
+    ahora = None
+    for dx in range(-RADIO_TORNADO, RADIO_TORNADO + 1):
+        for dy in range(-RADIO_TORNADO, RADIO_TORNADO + 1):
+            if not (dx or dy):
+                continue
+            cv = (p.tile_x + dx, p.tile_y + dy)
+            o = objs.get('%d,%d' % cv)
+            if not o:
+                continue
+            es_tornado = int(o[1]) == 60001
+            if not es_tornado and max(abs(dx), abs(dy)) > 1:
+                continue
+            if _portal_en(st, *cv):
+                continue
+            if es_tornado:
+                ahora = (st, cv)
+                if antes == ahora:
+                    continue           # ya salto y no se ha ido
+            if o[0] in vistos:
+                continue
+            vistos.add(o[0])
+            _eventos_al_pisar(ses, addr, cv, solo_chocar=True)
+    ses._tornado_cerca = ahora
+    try:
+        ses.volcar()
+    except Exception:
+        pass
+
+
+def _eventos_al_pisar(ses, addr, tile, solo_chocar=False):
     """Dispara el evento del mapa de la casilla en la que se acaba de parar.
 
     Va DESPUES de _armar_portal_al_llegar y no en su lugar: los portales se
@@ -4077,7 +4284,7 @@ def _eventos_al_pisar(ses, addr, tile):
         return
     try:
         import eventos_mundo as _evm
-        efectos = _evm.al_pisar(ses, tile)
+        efectos = _evm.al_pisar(ses, tile, solo_chocar=solo_chocar)
         # Si esta casilla ya es un portal de portales.json, el viaje lo hace el
         # portal (medido uno a uno). Si no lo es, el viaje es de un objeto de
         # mision -- de los que te llevan a otro mapa para seguirla -- y se hace.
@@ -5582,7 +5789,12 @@ class Servidor:
                                         continue
 
                                     r_atk = max(1, getattr(m, 'atk_range', 1))
-                                    if d_targ <= r_atk:
+                                    # No pega hasta LLEGAR: el servidor le pone
+                                    # la casilla nueva al mandar el 0x0005 y en
+                                    # pantalla todavia va andando; pegando ya,
+                                    # se le veia atacar desde lejos (los Goat
+                                    # Demon del Training Palace).
+                                    if d_targ <= r_atk and ahora >= getattr(m, 'proximo_paso', 0):
                                         if ahora - getattr(m, 'ultimo_ataque', 0) >= _cb.cadencia_monstruo(m):
                                             m.ultimo_ataque = ahora
                                             if targ_eid == yo:
@@ -11069,7 +11281,21 @@ class Servidor:
                         import dialogos_mapa as _dm_c
                         _st_c = getattr(ses.personaje, 'stage', 0)
                         if es_instancia(_st_c) or not g2:
-                            _raiz_c = _dm_c.raiz_interactiva(_st_c, dialogos.val_por_entidad(ent))
+                            _ret_c = dialogos.val_por_entidad(ent)
+                            _raiz_c = _dm_c.raiz_interactiva(_st_c, _ret_c)
+                            # Con la carrera (NPCKILLGAME) en marcha, el que la
+                            # organiza contesta con la raiz que la cierra
+                            # (61102 en la sala 2 de la Magic Kichen Path): con
+                            # mas de 50 bajas "You win!" y te pasa al 75, y si
+                            # no "The game is in progress... make more effort".
+                            # Antes volvia a salir su presentacion (10001) y no
+                            # habia forma de cobrar la victoria.
+                            import eventos_mundo as _evm_cc
+                            _jm_c = getattr(_evm_cc.estado_de(ses), 'juego_matar', None)
+                            if _jm_c and time.time() < _jm_c.get('fin', 0):
+                                _fin_c = _dm_c.nodo_fin_de_juego(_st_c)
+                                if _fin_c and _dm_c._arbol(_st_c).get(str(_fin_c), {}).get('c') == _ret_c:
+                                    _raiz_c = _fin_c
                             if _raiz_c and _recorrer_dialogo_mapa(ses, addr, _st_c, _raiz_c):
                                 log.info(f"[{addr}] {_nom_ent}: dialogo del arbol del mapa ({_raiz_c})")
                                 return
@@ -12151,6 +12377,26 @@ class Servidor:
                     _vistos.add(_evc)
                     _eventos_al_pisar(ses, addr, _cas)
 
+                # CHOCAR al llegar (ver _choques_al_llegar). Se espera lo que
+                # tarda en andar el tramo: el servidor le pone la casilla de
+                # destino al recibir el 0x0004 y, si se mirara ya, el menu del
+                # tornado salia al empezar a andar, con el personaje todavia
+                # lejos en pantalla.
+                if ses.personaje and ses.personaje.stage == _st_paso:
+                    _tok_ch = object()
+                    ses._token_choque = _tok_ch
+                    _dist_px = math.hypot((ses.personaje.tile_x - _ox) * 32,
+                                          (ses.personaje.tile_y - _oy) * 32)
+                    _espera_ch = _dist_px / max(1, _velocidad_de(ses))
+                    _llegada_ch = (ses.personaje.tile_x, ses.personaje.tile_y)
+                    _vistos_ch = set(_vistos)
+                    try:
+                        asyncio.get_event_loop().call_later(
+                            _espera_ch, lambda: _choques_al_llegar(
+                                ses, addr, _st_paso, _llegada_ch, _tok_ch, _vistos_ch))
+                    except Exception:
+                        _choques_al_llegar(ses, addr, _st_paso, _llegada_ch, _tok_ch, _vistos_ch)
+
                 # Si el movimiento termina LEJOS del objetivo, se lo suelta:
                 # atacabas, te ibas, y al pararte el personaje seguia pegandole
                 # al bicho. Caminar HACIA el no lo suelta, que es lo que pasa
@@ -12211,6 +12457,19 @@ class Servidor:
                 if _ahora is not None and _ahora == _antes:
                     _por = None       # ya estaba encima: no reabrir
                 if _por is not None and not _por.get('preguntar'):
+                    # CANDADO DEL PORTAL: el evento del cliente lleva una
+                    # condicion de variable de mapa (EVENT_COND 29) y si no
+                    # se cumple saca un dialogo en vez de viajar. El tornado
+                    # de (340,204) de la sala 1 de la Magic Kichen Path no deja
+                    # pasar hasta que muere el jefe que pone la variable 3.
+                    _cand = _por.get('requiere_variable')
+                    if _cand:
+                        import eventos_mundo as _evm_cd
+                        _est_cd = _evm_cd.estado_de(ses)
+                        if _est_cd.variable(0, int(_cand['var'])) != int(_cand.get('valor', 1)):
+                            if _cand.get('dialogo'):
+                                _dialogo_del_mapa(ses, addr, ses.personaje.stage, int(_cand['dialogo']))
+                            return
                     # Vuelta directa: acercarse y listo, sin menu.
                     _cancelar_portal_armado(ses)
                     _viajar_por_portal(ses, addr, _por)

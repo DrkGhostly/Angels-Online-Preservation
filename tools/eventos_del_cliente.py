@@ -122,6 +122,12 @@ def disparadores_del_mapa(ruta):
                 # Se perdia al extraer y el interprete evaluaba al reves las
                 # 566 condiciones negadas de los mapas.
                 'negadas': [c.get('反向') == '1' for c in tr.findall('條件')],
+                # <旗標 一項成立算成立=""/>: "si una se cumple, se cumple" --
+                # las condiciones van con O, no con Y. Se perdia y el permiso
+                # del Training Palace (mision 123 terminada O en curso) no se
+                # cumplia nunca.
+                'basta_una': any(f.get('一項成立算成立') is not None
+                                 for f in tr.findall('旗標')),
                 'acciones': [_cod(a) for a in tr.findall('動作')]})
     return salida
 

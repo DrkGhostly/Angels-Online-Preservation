@@ -168,6 +168,13 @@ def objetos(stage):
         struct.pack_into('<I', b, 4, o['capa'])
         struct.pack_into('<II', b, 8, px[0], px[1])
         struct.pack_into('<H', b, 34, o['id'])
+
+        # Objeto con evento: marca 40 80 y el cursor del evento detras del
+        # sprite, o el cliente no deja pulsarlo (ver Mapa.cursores).
+        if o.get('evento') and len(b) >= 43 and b[40:43] == b'   ':
+            _cu = getattr(m, 'cursores', {}).get(o['evento'])
+            if _cu is not None:
+                b[40], b[41], b[42] = 0x40, 0x80, _cu
         salida.append({'entity_id': eid, 'sprite': o['id'], 'capa': o['capa'],
                        'px': list(px), 'tile': list(o['tile']),
                        # El evento del .mpc. CHANGE_STATICOBJ cambia el objeto

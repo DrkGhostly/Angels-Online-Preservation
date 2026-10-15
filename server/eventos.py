@@ -363,6 +363,13 @@ def traducir(numero, parms):
         return ('parar',)
     if numero == 3:
         return ('viajar', _p(parms, 0), _p(parms, 1))
+    if numero == 37:
+        # CHANGE_MAP a un CANAL: (mapa, canal, tag). Los tornados de los
+        # Playground preguntan "Training Palace" x3 y cada opcion lleva
+        # [44, 0|1|2, tag]: A1, A2 y A3 (stages 44, 144 y 244, el mismo
+        # map044). El canal no se distingue, igual que los Playground A1..A5
+        # ya iban todos al mismo stage: va al mapa base y a la casilla del tag.
+        return ('viajar', _p(parms, 0), _p(parms, 2))
     if numero == 4:
         return ('paso', _p(parms, 0), _p(parms, 1))
     if numero == 7:
@@ -448,6 +455,16 @@ SE_TRADUCEN = frozenset((1, 3, 4, 7, 8, 9, 10, 12, 13, 14, 18, 19, 20, 21, 24,
                          54, 55, 56, 57, 60, 63, 67, 70, 72, 78, 81, 104))
 
 
+def _alguna(condiciones, ctx):
+    for c in condiciones:
+        r = evaluar(c[0], c[1], ctx)
+        if r is not None and len(c) > 2 and c[2]:
+            r = not r
+        if r:
+            return True
+    return False
+
+
 def ejecutar(stage, evento, disparo, ctx):
     """Los efectos de disparar un evento. No cambia nada por si mismo.
 
@@ -458,6 +475,18 @@ def ejecutar(stage, evento, disparo, ctx):
     """
     efectos = []
     for d in disparadores(stage, evento, disparo):
+        if d.get('o') and d['si']:
+            # 一項成立算成立: con UNA que se cumpla basta.
+            if not _alguna(d['si'], ctx):
+                continue
+            for n, parms in d['haz']:
+                ef = traducir(n, parms)
+                if ef is None:
+                    continue
+                if ef[0] == 'parar':
+                    return efectos
+                efectos.append(ef)
+            continue
         corta = False
         for c in d['si']:
             n, parms = c[0], c[1]

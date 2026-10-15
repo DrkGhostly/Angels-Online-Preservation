@@ -140,6 +140,16 @@ class Mapa:
         self.objetos = self._objetos(b)
         self.tags = self._tags(b, c[16], c[17])
         self.eventos = self._eventos(b, c[5], c[6])
+        # El 游標 (cursor) de cada evento. Va en el cuerpo del 0x000E detras
+        # del sprite, con la marca 40 80: sin eso el cliente toma el objeto
+        # por decorado y no deja pulsarlo (el altar de Qiuaner del Training
+        # Palace, las estatuas...). 20 = pulsar, 3 = chocar (tornados).
+        try:
+            import re as _re
+            self.cursores = {int(a): int(g) for a, g in _re.findall(
+                r'<事件 編號="(\d+)" 游標="(\d+)"', self._xml(b, c[5], c[6]) or '')}
+        except Exception:
+            self.cursores = {}
         self.dialogos_xml = self._xml(b, c[12], c[13])
 
     # -- lectura ---------------------------------------------------------
