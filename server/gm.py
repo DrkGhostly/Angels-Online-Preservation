@@ -32,13 +32,14 @@ _CMDS_SKILLSALL = ('skillsall', 'learnall', 'skillall')
 _CMDS_SKILLS5 = ('skills5', 'skill5')
 _CMDS_CLEARSKILLS = ('clearskills', 'clearskill')
 _CMDS_PET = ('pet', 'mascota')
+_CMDS_QUEST = ('quest', 'mision')
 _CMDS = frozenset(('help',) + _CMDS_ITEM + _CMDS_LEVEL + _CMDS_LEVELALL
                   + _CMDS_SKILLS + _CMDS_SKILLSALL + _CMDS_SKILLS5
-                  + _CMDS_CLEARSKILLS + _CMDS_PET)
+                  + _CMDS_CLEARSKILLS + _CMDS_PET + _CMDS_QUEST)
 
 AYUDA = ("GM: /item <id> [qty]  /level <n>  /levelall <n>  "
          "/skills [lv]  /skillsall [lv]  /skills5  /clearskills  "
-         "/pet level|exp|path|evolve  "
+         "/pet level|exp|path|evolve  /quest <id> <step>  "
          "/rango [1..20]  /estacion <normal|navidad|halloween|sakura|verano>")
 
 
@@ -431,7 +432,35 @@ def parsear(texto: str):
         return ('clearskills',)
     if cmd in _CMDS_PET:
         return ('pet', parts[1:])
+    if cmd in _CMDS_QUEST:
+        # /quest <id> <paso>: paso en la numeracion del SERVIDOR (1 = primer
+        # paso), 999 = terminada, 0 = quitarla.
+        if len(parts) < 3:
+            return ('err', 'usage: /quest <id> <step>  (1 = first step, 999 = done, 0 = remove)')
+        try:
+            return ('quest', int(parts[1], 0), int(parts[2], 0))
+        except ValueError:
+            return ('err', 'quest id and step must be numbers')
     return None
+
+
+def poner_quest(ses, qid: int, paso: int) -> str:
+    """Pone una mision en ese paso (o la quita con 0) y lo guarda."""
+    p = getattr(ses, 'personaje', None)
+    if not p:
+        return "no character in world yet"
+    qs = [tuple(q) for q in (getattr(p, 'quests', None) or []) if q[0] != qid]
+    if paso:
+        qs.append((qid, paso))
+    p.quests = qs
+    try:
+        import cuentas
+        cuentas.guardar_quests(getattr(ses, 'usuario', None), p.char_id, qs)
+    except Exception:
+        log.exception("GM /quest")
+    msg = (f"quest {qid} -> step {paso}" if paso else f"quest {qid} removed") + " (relog to refresh the journal)"
+    _avisar(ses, msg)
+    return msg
 
 
 def _avisar(ses, msg: str):
@@ -472,6 +501,8 @@ def aplicar(ses, parsed) -> str:
         return limpiar_hechizos(ses)
     if kind == 'skilllevel':
         return poner_skills(ses, parsed[1])
+    if kind == 'quest':
+        return poner_quest(ses, parsed[1], parsed[2])
     if kind == 'pet':
         if getattr(ses, 'inventario', None) is None or not getattr(ses, 'personaje', None):
             return "no character in world yet"

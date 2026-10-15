@@ -1,5 +1,5 @@
 {
- "_nota": "training_palace (stage 44). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map044.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py. AJUSTE (14/10/2026, con el usuario): solo los generadores con cantidad (8 de cada uno, alrededor de su casilla y sobre suelo transitable): Wildwolf, Little Gebuer, Tree Spirit, Headless Armor, Goat Demon, y los Brute Priest en los puntos de su zona 75. Fuera los de cantidad 0 (Field Mouse, Wind Lord y los Tree Spirit de sobra). El ALTAR de (166,86), evento 123 -> dialogo 12301, que con las seis fichas (129..134) saca a Qiuaner (zona 3). REPARTO (14/10/2026): los 8 de cada generador se reparten hasta 7 casillas (lo que vaga un monstruo, move_range 6) separados 2 casillas, y un Tree Spirit en cada generador suelto de Tree Spirit del mapa (los de cantidad 0) que tenga suelo cerca. El usuario: estaban muy juntos y faltaban.",
+ "_nota": "training_palace (stage 44). POBLADO DESDE EL CLIENTE, no desde una captura: los generadores de monstruos son objetos del propio map044.mpc -- el monstruo en el u16 del +34, la zona en el +21, el tiempo en el +38 y cuantos en el +42. Eso da el censo COMPLETO del mapa, que una captura no puede dar porque solo trae lo que estuvo a la vista. El entity_id es fabricado y estable, no el del servidor. Las casillas son las del TAG de cada generador; los que no declaran TAG ponen sus monstruos en la casilla del generador y en un anillo de radio 3 a su alrededor, que es la dispersion MEDIDA en el stage 73. Los objetos de mapa son los del .mpc cuyo id esta en la lista de los que el servidor manda de verdad, con el cuerpo del 0x000E copiado de una captura del mismo objeto. Los tornados se dibujan aparte, desde portales.json. Ver tools/poblar_del_cliente.py. AJUSTE (14/10/2026, con el usuario): solo los generadores con cantidad (8 de cada uno, alrededor de su casilla y sobre suelo transitable): Wildwolf, Little Gebuer, Tree Spirit, Headless Armor, Goat Demon, y los Brute Priest en los puntos de su zona 75. Fuera los de cantidad 0 (Field Mouse, Wind Lord y los Tree Spirit de sobra). El ALTAR de (166,86), evento 123 -> dialogo 12301, que con las seis fichas (129..134) saca a Qiuaner (zona 3). REPARTO (14/10/2026): los 8 de cada generador se reparten hasta 7 casillas (lo que vaga un monstruo, move_range 6) separados 2 casillas, y un Tree Spirit en cada generador suelto de Tree Spirit del mapa (los de cantidad 0) que tenga suelo cerca. El usuario: estaban muy juntos y faltaban. AJUSTE 2 (15/10/2026, usuario): fuera los Tree Spirit sueltos (salian donde no tocaba y junto al altar); 10 de cada generador en vez de 8 (\"faltan un poco mas\"); solo casillas cuyas ocho vecinas tambien se pisan, para que no queden en el borde de la plataforma.",
  "stage": 44,
  "spawns": [
   {
@@ -25,7 +25,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    98,
+    89,
     92
    ],
    "direccion": 2,
@@ -40,21 +40,6 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    89,
-    92
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 8
-  },
-  {
-   "entity_id": 54400003,
-   "nombre": "Wildwolf",
-   "npc_type": 8,
-   "sprite": 42063,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
     94,
     98
    ],
@@ -63,7 +48,7 @@
    "nivel": 8
   },
   {
-   "entity_id": 54400004,
+   "entity_id": 54400003,
    "nombre": "Wildwolf",
    "npc_type": 8,
    "sprite": 42063,
@@ -78,7 +63,7 @@
    "nivel": 8
   },
   {
-   "entity_id": 54400005,
+   "entity_id": 54400004,
    "nombre": "Wildwolf",
    "npc_type": 8,
    "sprite": 42063,
@@ -93,7 +78,7 @@
    "nivel": 8
   },
   {
-   "entity_id": 54400006,
+   "entity_id": 54400005,
    "nombre": "Wildwolf",
    "npc_type": 8,
    "sprite": 42063,
@@ -108,7 +93,7 @@
    "nivel": 8
   },
   {
-   "entity_id": 54400007,
+   "entity_id": 54400006,
    "nombre": "Wildwolf",
    "npc_type": 8,
    "sprite": 42063,
@@ -123,7 +108,52 @@
    "nivel": 8
   },
   {
+   "entity_id": 54400007,
+   "nombre": "Wildwolf",
+   "npc_type": 8,
+   "sprite": 42063,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    88,
+    90
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8
+  },
+  {
    "entity_id": 54400008,
+   "nombre": "Wildwolf",
+   "npc_type": 8,
+   "sprite": 42063,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    91,
+    91
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8
+  },
+  {
+   "entity_id": 54400009,
+   "nombre": "Wildwolf",
+   "npc_type": 8,
+   "sprite": 42063,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    87,
+    86
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8
+  },
+  {
+   "entity_id": 54400010,
    "nombre": "Little Gebuer",
    "npc_type": 9,
    "sprite": 42077,
@@ -138,7 +168,7 @@
    "nivel": 8
   },
   {
-   "entity_id": 54400009,
+   "entity_id": 54400011,
    "nombre": "Little Gebuer",
    "npc_type": 9,
    "sprite": 42077,
@@ -153,7 +183,7 @@
    "nivel": 8
   },
   {
-   "entity_id": 54400010,
+   "entity_id": 54400012,
    "nombre": "Little Gebuer",
    "npc_type": 9,
    "sprite": 42077,
@@ -168,22 +198,7 @@
    "nivel": 8
   },
   {
-   "entity_id": 54400011,
-   "nombre": "Little Gebuer",
-   "npc_type": 9,
-   "sprite": 42077,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    32,
-    92
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 8
-  },
-  {
-   "entity_id": 54400012,
+   "entity_id": 54400013,
    "nombre": "Little Gebuer",
    "npc_type": 9,
    "sprite": 42077,
@@ -198,7 +213,7 @@
    "nivel": 8
   },
   {
-   "entity_id": 54400013,
+   "entity_id": 54400014,
    "nombre": "Little Gebuer",
    "npc_type": 9,
    "sprite": 42077,
@@ -213,7 +228,7 @@
    "nivel": 8
   },
   {
-   "entity_id": 54400014,
+   "entity_id": 54400015,
    "nombre": "Little Gebuer",
    "npc_type": 9,
    "sprite": 42077,
@@ -228,7 +243,7 @@
    "nivel": 8
   },
   {
-   "entity_id": 54400015,
+   "entity_id": 54400016,
    "nombre": "Little Gebuer",
    "npc_type": 9,
    "sprite": 42077,
@@ -243,7 +258,52 @@
    "nivel": 8
   },
   {
-   "entity_id": 54400016,
+   "entity_id": 54400017,
+   "nombre": "Little Gebuer",
+   "npc_type": 9,
+   "sprite": 42077,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    34,
+    83
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8
+  },
+  {
+   "entity_id": 54400018,
+   "nombre": "Little Gebuer",
+   "npc_type": 9,
+   "sprite": 42077,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    23,
+    86
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8
+  },
+  {
+   "entity_id": 54400019,
+   "nombre": "Little Gebuer",
+   "npc_type": 9,
+   "sprite": 42077,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    24,
+    96
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8
+  },
+  {
+   "entity_id": 54400020,
    "nombre": "Tree Spirit",
    "npc_type": 10,
    "sprite": 42043,
@@ -258,7 +318,7 @@
    "nivel": 8
   },
   {
-   "entity_id": 54400017,
+   "entity_id": 54400021,
    "nombre": "Tree Spirit",
    "npc_type": 10,
    "sprite": 42043,
@@ -273,66 +333,6 @@
    "nivel": 8
   },
   {
-   "entity_id": 54400018,
-   "nombre": "Tree Spirit",
-   "npc_type": 10,
-   "sprite": 42043,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    177,
-    49
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 8
-  },
-  {
-   "entity_id": 54400019,
-   "nombre": "Tree Spirit",
-   "npc_type": 10,
-   "sprite": 42043,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    183,
-    56
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 8
-  },
-  {
-   "entity_id": 54400020,
-   "nombre": "Tree Spirit",
-   "npc_type": 10,
-   "sprite": 42043,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    171,
-    55
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 8
-  },
-  {
-   "entity_id": 54400021,
-   "nombre": "Tree Spirit",
-   "npc_type": 10,
-   "sprite": 42043,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    179,
-    53
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 8
-  },
-  {
    "entity_id": 54400022,
    "nombre": "Tree Spirit",
    "npc_type": 10,
@@ -340,7 +340,7 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
-    173,
+    177,
     49
    ],
    "direccion": 2,
@@ -355,6 +355,51 @@
    "klass": 1,
    "monstruo": true,
    "tile": [
+    183,
+    56
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8
+  },
+  {
+   "entity_id": 54400024,
+   "nombre": "Tree Spirit",
+   "npc_type": 10,
+   "sprite": 42043,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    171,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8
+  },
+  {
+   "entity_id": 54400025,
+   "nombre": "Tree Spirit",
+   "npc_type": 10,
+   "sprite": 42043,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    173,
+    49
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8
+  },
+  {
+   "entity_id": 54400026,
+   "nombre": "Tree Spirit",
+   "npc_type": 10,
+   "sprite": 42043,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
     170,
     48
    ],
@@ -363,7 +408,52 @@
    "nivel": 8
   },
   {
-   "entity_id": 54400024,
+   "entity_id": 54400027,
+   "nombre": "Tree Spirit",
+   "npc_type": 10,
+   "sprite": 42043,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    182,
+    44
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8
+  },
+  {
+   "entity_id": 54400028,
+   "nombre": "Tree Spirit",
+   "npc_type": 10,
+   "sprite": 42043,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    170,
+    42
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8
+  },
+  {
+   "entity_id": 54400029,
+   "nombre": "Tree Spirit",
+   "npc_type": 10,
+   "sprite": 42043,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    174,
+    54
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8
+  },
+  {
+   "entity_id": 54400030,
    "nombre": "Headless Armor",
    "npc_type": 11,
    "sprite": 42099,
@@ -378,7 +468,7 @@
    "nivel": 8
   },
   {
-   "entity_id": 54400025,
+   "entity_id": 54400031,
    "nombre": "Headless Armor",
    "npc_type": 11,
    "sprite": 42099,
@@ -393,22 +483,7 @@
    "nivel": 8
   },
   {
-   "entity_id": 54400026,
-   "nombre": "Headless Armor",
-   "npc_type": 11,
-   "sprite": 42099,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    171,
-    10
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 8
-  },
-  {
-   "entity_id": 54400027,
+   "entity_id": 54400032,
    "nombre": "Headless Armor",
    "npc_type": 11,
    "sprite": 42099,
@@ -423,7 +498,7 @@
    "nivel": 8
   },
   {
-   "entity_id": 54400028,
+   "entity_id": 54400033,
    "nombre": "Headless Armor",
    "npc_type": 11,
    "sprite": 42099,
@@ -438,7 +513,7 @@
    "nivel": 8
   },
   {
-   "entity_id": 54400029,
+   "entity_id": 54400034,
    "nombre": "Headless Armor",
    "npc_type": 11,
    "sprite": 42099,
@@ -453,7 +528,7 @@
    "nivel": 8
   },
   {
-   "entity_id": 54400030,
+   "entity_id": 54400035,
    "nombre": "Headless Armor",
    "npc_type": 11,
    "sprite": 42099,
@@ -468,7 +543,7 @@
    "nivel": 8
   },
   {
-   "entity_id": 54400031,
+   "entity_id": 54400036,
    "nombre": "Headless Armor",
    "npc_type": 11,
    "sprite": 42099,
@@ -483,7 +558,52 @@
    "nivel": 8
   },
   {
-   "entity_id": 54400032,
+   "entity_id": 54400037,
+   "nombre": "Headless Armor",
+   "npc_type": 11,
+   "sprite": 42099,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    172,
+    18
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8
+  },
+  {
+   "entity_id": 54400038,
+   "nombre": "Headless Armor",
+   "npc_type": 11,
+   "sprite": 42099,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    179,
+    12
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8
+  },
+  {
+   "entity_id": 54400039,
+   "nombre": "Headless Armor",
+   "npc_type": 11,
+   "sprite": 42099,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    168,
+    16
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 8
+  },
+  {
+   "entity_id": 54400040,
    "nombre": "Goat Demon",
    "npc_type": 13,
    "sprite": 42046,
@@ -498,7 +618,7 @@
    "nivel": 10
   },
   {
-   "entity_id": 54400033,
+   "entity_id": 54400041,
    "nombre": "Goat Demon",
    "npc_type": 13,
    "sprite": 42046,
@@ -513,7 +633,7 @@
    "nivel": 10
   },
   {
-   "entity_id": 54400034,
+   "entity_id": 54400042,
    "nombre": "Goat Demon",
    "npc_type": 13,
    "sprite": 42046,
@@ -528,22 +648,7 @@
    "nivel": 10
   },
   {
-   "entity_id": 54400035,
-   "nombre": "Goat Demon",
-   "npc_type": 13,
-   "sprite": 42046,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    108,
-    56
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 10
-  },
-  {
-   "entity_id": 54400036,
+   "entity_id": 54400043,
    "nombre": "Goat Demon",
    "npc_type": 13,
    "sprite": 42046,
@@ -558,7 +663,7 @@
    "nivel": 10
   },
   {
-   "entity_id": 54400037,
+   "entity_id": 54400044,
    "nombre": "Goat Demon",
    "npc_type": 13,
    "sprite": 42046,
@@ -573,7 +678,7 @@
    "nivel": 10
   },
   {
-   "entity_id": 54400038,
+   "entity_id": 54400045,
    "nombre": "Goat Demon",
    "npc_type": 13,
    "sprite": 42046,
@@ -588,14 +693,14 @@
    "nivel": 10
   },
   {
-   "entity_id": 54400039,
+   "entity_id": 54400046,
    "nombre": "Goat Demon",
    "npc_type": 13,
    "sprite": 42046,
    "klass": 1,
    "monstruo": true,
    "tile": [
-    106,
+    103,
     55
    ],
    "direccion": 2,
@@ -603,7 +708,52 @@
    "nivel": 10
   },
   {
-   "entity_id": 54400040,
+   "entity_id": 54400047,
+   "nombre": "Goat Demon",
+   "npc_type": 13,
+   "sprite": 42046,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    101,
+    55
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 10
+  },
+  {
+   "entity_id": 54400048,
+   "nombre": "Goat Demon",
+   "npc_type": 13,
+   "sprite": 42046,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    108,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 10
+  },
+  {
+   "entity_id": 54400049,
+   "nombre": "Goat Demon",
+   "npc_type": 13,
+   "sprite": 42046,
+   "klass": 1,
+   "monstruo": true,
+   "tile": [
+    105,
+    50
+   ],
+   "direccion": 2,
+   "visible": 0,
+   "nivel": 10
+  },
+  {
+   "entity_id": 54400050,
    "nombre": "Brute Priest",
    "npc_type": 12,
    "sprite": 42025,
@@ -618,7 +768,7 @@
    "nivel": 10
   },
   {
-   "entity_id": 54400041,
+   "entity_id": 54400051,
    "nombre": "Brute Priest",
    "npc_type": 12,
    "sprite": 42025,
@@ -633,7 +783,7 @@
    "nivel": 10
   },
   {
-   "entity_id": 54400042,
+   "entity_id": 54400052,
    "nombre": "Brute Priest",
    "npc_type": 12,
    "sprite": 42025,
@@ -648,7 +798,7 @@
    "nivel": 10
   },
   {
-   "entity_id": 54400043,
+   "entity_id": 54400053,
    "nombre": "Brute Priest",
    "npc_type": 12,
    "sprite": 42025,
@@ -663,7 +813,7 @@
    "nivel": 10
   },
   {
-   "entity_id": 54400044,
+   "entity_id": 54400054,
    "nombre": "Brute Priest",
    "npc_type": 12,
    "sprite": 42025,
@@ -678,7 +828,7 @@
    "nivel": 10
   },
   {
-   "entity_id": 54400045,
+   "entity_id": 54400055,
    "nombre": "Brute Priest",
    "npc_type": 12,
    "sprite": 42025,
@@ -693,7 +843,7 @@
    "nivel": 10
   },
   {
-   "entity_id": 54400046,
+   "entity_id": 54400056,
    "nombre": "Brute Priest",
    "npc_type": 12,
    "sprite": 42025,
@@ -708,7 +858,7 @@
    "nivel": 10
   },
   {
-   "entity_id": 54400047,
+   "entity_id": 54400057,
    "nombre": "Brute Priest",
    "npc_type": 12,
    "sprite": 42025,
@@ -723,199 +873,34 @@
    "nivel": 10
   },
   {
-   "entity_id": 54400048,
-   "nombre": "Tree Spirit",
-   "npc_type": 10,
-   "sprite": 42043,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    207,
-    53
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 8
-  },
-  {
-   "entity_id": 54400049,
-   "nombre": "Tree Spirit",
-   "npc_type": 10,
-   "sprite": 42043,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    145,
-    93
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 8
-  },
-  {
-   "entity_id": 54400050,
-   "nombre": "Tree Spirit",
-   "npc_type": 10,
-   "sprite": 42043,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    155,
-    56
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 8
-  },
-  {
-   "entity_id": 54400051,
-   "nombre": "Tree Spirit",
-   "npc_type": 10,
-   "sprite": 42043,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    156,
-    22
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 8
-  },
-  {
-   "entity_id": 54400052,
-   "nombre": "Tree Spirit",
-   "npc_type": 10,
-   "sprite": 42043,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    132,
-    58
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 8
-  },
-  {
-   "entity_id": 54400053,
-   "nombre": "Tree Spirit",
-   "npc_type": 10,
-   "sprite": 42043,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    124,
-    63
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 8
-  },
-  {
-   "entity_id": 54400054,
-   "nombre": "Tree Spirit",
-   "npc_type": 10,
-   "sprite": 42043,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    122,
-    95
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 8
-  },
-  {
-   "entity_id": 54400055,
-   "nombre": "Tree Spirit",
-   "npc_type": 10,
-   "sprite": 42043,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    113,
-    68
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 8
-  },
-  {
-   "entity_id": 54400056,
-   "nombre": "Tree Spirit",
-   "npc_type": 10,
-   "sprite": 42043,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    74,
-    98
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 8
-  },
-  {
-   "entity_id": 54400057,
-   "nombre": "Tree Spirit",
-   "npc_type": 10,
-   "sprite": 42043,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    65,
-    26
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 8
-  },
-  {
    "entity_id": 54400058,
-   "nombre": "Tree Spirit",
-   "npc_type": 10,
-   "sprite": 42043,
+   "nombre": "Brute Priest",
+   "npc_type": 12,
+   "sprite": 42025,
    "klass": 1,
    "monstruo": true,
    "tile": [
-    32,
-    42
+    24,
+    18
    ],
    "direccion": 2,
    "visible": 0,
-   "nivel": 8
+   "nivel": 10
   },
   {
    "entity_id": 54400059,
-   "nombre": "Tree Spirit",
-   "npc_type": 10,
-   "sprite": 42043,
+   "nombre": "Brute Priest",
+   "npc_type": 12,
+   "sprite": 42025,
    "klass": 1,
    "monstruo": true,
    "tile": [
-    11,
-    51
+    30,
+    19
    ],
    "direccion": 2,
    "visible": 0,
-   "nivel": 8
-  },
-  {
-   "entity_id": 54400060,
-   "nombre": "Tree Spirit",
-   "npc_type": 10,
-   "sprite": 42043,
-   "klass": 1,
-   "monstruo": true,
-   "tile": [
-    9,
-    96
-   ],
-   "direccion": 2,
-   "visible": 0,
-   "nivel": 8
+   "nivel": 10
   }
  ],
  "recursos": [
@@ -931,7 +916,7 @@
     33,
     92
    ],
-   "crudo": "80aad6030000000037040000900b00000000000027000000000000001a000000dc0687ea00000000408014",
+   "crudo": "80aad6030000000037040000900b00000000000027000000000000001a000000dc0687ea00004080140000",
    "copiado_de": "cuerpo de una captura del objeto 60039"
   },
   {
@@ -946,7 +931,7 @@
     30,
     94
    ],
-   "crudo": "81aad60300000000c5030000d00b00000000000027000000000000001a000000dc0687ea00000000408014",
+   "crudo": "81aad60300000000c5030000d00b00000000000027000000000000001a000000dc0687ea00004080140000",
    "copiado_de": "cuerpo de una captura del objeto 60039"
   },
   {
@@ -961,7 +946,7 @@
     100,
     94
    ],
-   "crudo": "82aad60300000000900c0000d00b00000000000027000000000000001a000000dc0689ea00000000408014",
+   "crudo": "82aad60300000000900c0000d00b00000000000027000000000000001a000000dc0689ea00004080140000",
    "copiado_de": "cuerpo de una captura del objeto 60041"
   },
   {
@@ -976,7 +961,7 @@
     96,
     95
    ],
-   "crudo": "83aad603000000001b0c0000f00b00000000000027000000000000001a000000dc0689ea00000000408014",
+   "crudo": "83aad603000000001b0c0000f00b00000000000027000000000000001a000000dc0689ea00004080140000",
    "copiado_de": "cuerpo de una captura del objeto 60041"
   },
   {
@@ -991,7 +976,7 @@
     184,
     52
    ],
-   "crudo": "84aad6030000000017170000900600000000000027000000000000001a000000dc068bea00000000408014",
+   "crudo": "84aad6030000000017170000900600000000000027000000000000001a000000dc068bea00004080140000",
    "copiado_de": "cuerpo de una captura del objeto 60043"
   },
   {
@@ -1006,7 +991,7 @@
     181,
     54
    ],
-   "crudo": "85aad60300000000a0160000d00600000000000027000000000000001a000000dc068bea00000000408014",
+   "crudo": "85aad60300000000a0160000d00600000000000027000000000000001a000000dc068bea00004080140000",
    "copiado_de": "cuerpo de una captura del objeto 60043"
   },
   {
@@ -1021,7 +1006,7 @@
     182,
     18
    ],
-   "crudo": "86aad60300000000c5160000500200000000000027000000000000001a000000dc068dea00000000408014",
+   "crudo": "86aad60300000000c5160000500200000000000027000000000000001a000000dc068dea00004080140000",
    "copiado_de": "cuerpo de una captura del objeto 60045"
   },
   {
@@ -1036,7 +1021,7 @@
     178,
     20
    ],
-   "crudo": "87aad6030000000049160000900200000000000027000000000000001a000000dc068dea00000000408014",
+   "crudo": "87aad6030000000049160000900200000000000027000000000000001a000000dc068dea00004080140000",
    "copiado_de": "cuerpo de una captura del objeto 60045"
   },
   {
@@ -1051,7 +1036,7 @@
     41,
     20
    ],
-   "crudo": "88aad6030000000026050000900200000000000027000000000000001a000000dc068fea00000000408014",
+   "crudo": "88aad6030000000026050000900200000000000027000000000000001a000000dc068fea00004080140000",
    "copiado_de": "cuerpo de una captura del objeto 60047"
   },
   {
@@ -1066,7 +1051,7 @@
     37,
     22
    ],
-   "crudo": "89aad60300000000b2040000d00200000000000027000000000000001a000000dc068fea00000000408014",
+   "crudo": "89aad60300000000b2040000d00200000000000027000000000000001a000000dc068fea00004080140000",
    "copiado_de": "cuerpo de una captura del objeto 60047"
   },
   {
@@ -1111,7 +1096,7 @@
     166,
     86
    ],
-   "crudo": "e4aad60300000000d0140000d00a00000000000027000000000000001a000000dc06fcea00000000408014",
+   "crudo": "e4aad60300000000d0140000d00a00000000000027000000000000001a000000dc06fcea00004080140000",
    "evento": 123,
    "copiado_de": "cuerpo del objeto 60039 con el sprite cambiado (no hay captura del 60156)",
    "que_es": "altar de Qiuaner"

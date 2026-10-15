@@ -2450,7 +2450,7 @@ def _sincronizar_cambio_mapa(ses, stage_id: int, x: int = None, y: int = None):
 
 def _viajar_por_portal(ses, addr, por, motivo=''):
     """Manda al jugador por un tornado que no pregunta."""
-    dst, lleg = por['destino'], por['llegada']
+    dst, lleg = por.get('destino'), por.get('llegada')
     # Red de seguridad: sin destino o sin casilla no se viaja. Quien llama
     # tiene que haberlo filtrado antes, pero el manejador del CLIC no lo
     # hacia y la sesion se caia al desempaquetar un None.

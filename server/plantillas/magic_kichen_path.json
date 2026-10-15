@@ -5153,7 +5153,7 @@
    "evento": 999,
    "material": 153,
    "nombre_visible": "Flint Ore",
-   "crudo": "b2ea020400000000a7180000300e00000000000027000000000000001a000000dc0653eb00000000408010",
+   "crudo": "b2ea020400000000a7180000300e00000000000027000000000000001a000000dc0653eb00004080100000",
    "copiado_de": "cuerpo de una captura del objeto 60243",
    "puesto_por": "objetos_de_instancia"
   },
@@ -6464,7 +6464,7 @@
    "evento": 999,
    "material": 153,
    "nombre_visible": "Flint Ore",
-   "crudo": "12eb020400000000e6030000100200000000000027000000000000001a000000dc0653eb00000000408010",
+   "crudo": "12eb020400000000e6030000100200000000000027000000000000001a000000dc0653eb00004080100000",
    "copiado_de": "cuerpo de una captura del objeto 60243",
    "puesto_por": "objetos_de_instancia"
   },
@@ -7605,7 +7605,7 @@
    "evento": 999,
    "material": 153,
    "nombre_visible": "Flint Ore",
-   "crudo": "56eb0204020000000d050000300800000000000027000000000000001a000000dc0653eb00000000408010",
+   "crudo": "56eb0204020000000d050000300800000000000027000000000000001a000000dc0653eb00004080100000",
    "copiado_de": "cuerpo de una captura del objeto 60243",
    "puesto_por": "objetos_de_instancia"
   },
@@ -7624,7 +7624,7 @@
    "evento": 999,
    "material": 153,
    "nombre_visible": "Flint Ore",
-   "crudo": "57eb0204000000002a0a0000501300000000000027000000000000001a000000dc0653eb00000000408010",
+   "crudo": "57eb0204000000002a0a0000501300000000000027000000000000001a000000dc0653eb00004080100000",
    "copiado_de": "cuerpo de una captura del objeto 60243",
    "puesto_por": "objetos_de_instancia"
   },
@@ -7643,7 +7643,7 @@
    "evento": 999,
    "material": 153,
    "nombre_visible": "Flint Ore",
-   "crudo": "58eb020400000000a3080000b01900000000000027000000000000001a000000dc0653eb00000000408010",
+   "crudo": "58eb020400000000a3080000b01900000000000027000000000000001a000000dc0653eb00004080100000",
    "copiado_de": "cuerpo de una captura del objeto 60243",
    "puesto_por": "objetos_de_instancia"
   },
@@ -7662,7 +7662,7 @@
    "evento": 999,
    "material": 153,
    "nombre_visible": "Flint Ore",
-   "crudo": "59eb020400000000dd230000f01700000000000027000000000000001a000000dc0653eb00000000408010",
+   "crudo": "59eb020400000000dd230000f01700000000000027000000000000001a000000dc0653eb00004080100000",
    "copiado_de": "cuerpo de una captura del objeto 60243",
    "puesto_por": "objetos_de_instancia"
   }
