@@ -1,7 +1,7 @@
 """
 Construccion de la respuesta de login desde cero (sin plantilla).
 
-CREDITO: la estructura viene del proyecto anterior (F:\Ao Proyect\AO), que
+CREDITO: la estructura viene del proyecto anterior (F:\\Ao Proyect\\AO), que
 la habia derivado del parser del cliente (sub_51B250 / sub_4C4C60). El login
 ahi funcionaba; lo que estaba roto era la creacion de personaje.
 
@@ -22,7 +22,7 @@ Ficha de personaje (147 B, en 5 + 147*i), offsets relativos:
 
     [+0]        indice de ranura
     [+1..4]     nivel LE32
-    [+5]        class_id
+    [+5]        codigo de faccion (0..5: 0=Neutrally, 1=Aurora, 2=Beasts, 3=Steel, 4=Shadow, 5=Heaven)
     [+6..10]    apariencia (5 bytes)
     [+11..14]   stage_id LE32  -- CRITICO: con 0 el cliente crashea al cargar
     [+31..34]   ocupacion de ranura LE32 -- no-cero = la ranura TIENE personaje
@@ -86,10 +86,42 @@ OFF_SRV_DATOS = 646    # arreglo por servidor. La documentacion previa lo
 MAX_RANURAS = 3
 
 
+# Codigos de faccion correspondientes a los strings 1030..1035 y emblemas 2700..2705
+# en el binario del cliente Angel.exe (verificado en sub_4C5A70 y sub_4C5BA0):
+#   1030 Neutrally   1031 Aurora   1032 Beasts   1033 Steel   1034 Shadow   1035 Heaven
+CODIGO_FACCION = {
+    'Neutrally': 0,
+    'Aurora': 1,
+    'Aurora City': 1,
+    'Beasts': 2,
+    'Breeze Woods': 2,
+    'Steel': 3,
+    'Iron Castle': 3,
+    'Shadow': 4,
+    'Dark City': 4,
+    'Heaven': 5,
+    'Graduated': 5,
+    'Neutral': 5,
+}
+
+
+def codigo_faccion(fac) -> int:
+    """Devuelve el codigo numerico de faccion (0..5) para la ficha del cliente."""
+    if isinstance(fac, int):
+        return fac
+    if not fac:
+        return 5
+    return CODIGO_FACCION.get(str(fac).strip(), 5)
+
+
 def _ficha(buf, base, idx, p):
     buf[base + 0] = idx & 0xFF
     struct.pack_into('<I', buf, base + 1, p.get('nivel', 1) & 0xFFFFFFFF)
-    buf[base + 5] = p.get('class_id', 0) & 0xFF
+    # +5: codigo de faccion (0..5). CRITICO: sub_4C5A70 en Angel.exe evalua
+    # String = GetString(1030 + ficha[5]) e Icon = SetIcon(2700 + ficha[5]).
+    # Antes aqui se escribia class_id (p.ej. 14), haciendo que el cliente buscara
+    # la string 1044 que no existe y mostrara "Faction: null".
+    buf[base + 5] = codigo_faccion(p.get('faction')) & 0xFF
     for i, v in enumerate(p.get('apariencia', [0] * 5)[:5]):
         buf[base + 6 + i] = v & 0xFF
     # stage_id: con 0 el cliente crashea al cargar el mapa

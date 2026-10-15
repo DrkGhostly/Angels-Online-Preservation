@@ -589,8 +589,11 @@ def aceptar_mision(ses, qid: int) -> bool:
     c_token = OBJETIVOS_CACERIA.get((qid, 1), {}).get('token_id')
     if c_token:
         fijar_token_mision(ses, c_token, 0)
-    if hasattr(ses, 'quest_kills') and (qid, 1) in ses.quest_kills:
-        del ses.quest_kills[(qid, 1)]
+    for k in (f"{qid}_{paso_inicial}", f"{qid}_1", (qid, paso_inicial), (qid, 1)):
+        if hasattr(ses, 'quest_kills') and isinstance(ses.quest_kills, dict):
+            ses.quest_kills.pop(k, None)
+        if hasattr(p, 'quest_kills') and isinstance(p.quest_kills, dict):
+            p.quest_kills.pop(k, None)
 
     ses.enviar(pkg_m, pkg_av)
     if getattr(ses, 'usuario', None):
@@ -799,6 +802,11 @@ def completar_mision(ses, qid: int, exp: int = 0, oro: int = 0,
     c_token = OBJETIVOS_CACERIA.get((qid, 1), {}).get('token_id')
     if c_token:
         fijar_token_mision(ses, c_token, 0)
+    for k in (f"{qid}_{total_pasos}", f"{qid}_1", (qid, total_pasos), (qid, 1)):
+        if hasattr(ses, 'quest_kills') and isinstance(ses.quest_kills, dict):
+            ses.quest_kills.pop(k, None)
+        if hasattr(p, 'quest_kills') and isinstance(p.quest_kills, dict):
+            p.quest_kills.pop(k, None)
 
     # Otorgar horas de credito si la mision es un curso del Lyceum
     credito = CREDIT_HOURS_PER_QUEST.get(qid, 0)
@@ -900,7 +908,7 @@ def abandonar_mision(ses, qid: int) -> bool:
     return True
 
 
-def registrar_baja_monstruo(ses, npc_type: int, monster_name: str = None) -> bool:
+def registrar_baja_monstruo(ses, npc_type: int, monster_name: str = None, en_combate_real: bool = False) -> bool:
     """Verifica si el monstruo derrotado suma para alguna mision activa del jugador."""
     _cargar_db()
     p = getattr(ses, 'personaje', None)
@@ -919,6 +927,15 @@ def registrar_baja_monstruo(ses, npc_type: int, monster_name: str = None) -> boo
     for q, pa in list(p.quests):
         k_cac = f"{q}_{pa}"
         clave_tupla = (q, pa)
+
+        paso_c = max(0, int(pa) - 1)
+        if en_combate_real:
+            try:
+                import eventos as _ev_chk
+                if _ev_chk.paso_definido_por_muertes(q, paso_c):
+                    continue
+            except Exception:
+                pass
 
         c_data = None
         if clave_tupla in OBJETIVOS_CACERIA:
@@ -1099,6 +1116,9 @@ def fijar_token_mision(ses, token_id: int, cant: int = 1):
             cants.pop(str(target_slot), None)
             ses.inventario = inv
             ses.cantidades = cants
+            if p:
+                p.inventario = inv
+                p.cantidades = cants
             ses.enviar(_inv.vaciar_ranura(dueno, target_slot))
             if getattr(ses, 'usuario', None):
                 cuentas.guardar_inventario(ses.usuario, char_id, inv, cants)
@@ -1113,6 +1133,9 @@ def fijar_token_mision(ses, token_id: int, cant: int = 1):
     cants.pop(str(target_slot), None)
     ses.inventario = inv
     ses.cantidades = cants
+    if p:
+        p.inventario = inv
+        p.cantidades = cants
     ses.enviar(_inv.actualizar_ranura(char_id, target_slot, token_id, cant, dueno=dueno))
     if getattr(ses, 'usuario', None):
         cuentas.guardar_inventario(ses.usuario, char_id, inv, cants)

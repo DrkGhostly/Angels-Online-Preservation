@@ -373,7 +373,7 @@ CUPID_POR_ENTIDAD = {
 def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
            visto_michael: bool = False, stage: int = 0,
            registrado: bool = None, entidad: int = 0, val: int = 0,
-           en_progreso: bool = False):
+           en_progreso: bool = False, graduado: bool = False):
     """Una linea de dialogo para ese NPC, o None si no se le conoce ninguna."""
     npc_val = val or (val_por_entidad(entidad, 0) if entidad else 0)
 
@@ -558,7 +558,7 @@ def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
         return [armar_linea(5229, npc_val or 38, [5227, 5191])[2:]]
 
     if nombre == 'Director Wolay':
-        if faccion not in ("Heaven", "Neutral", "Neutrally", "Graduated"):
+        if graduado or faccion not in ("Heaven", "Neutral", "Neutrally"):
             return [armar_linea(5079, 49, [5080, 5081])[2:]]
         if en_progreso:
             return [armar_linea(10003, 49, [])[2:]]
@@ -630,6 +630,8 @@ def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
             return [armar_linea(12301, 1, [12302, 12303, 12304], ['1', jugador or '?'])[2:]]
 
     if "Angels' Tutor" in nombre or "Angel Tutor" in nombre or "Angels Tutor" in nombre:
+        if graduado or faccion not in ("Heaven", "Neutral", "Neutrally"):
+            return [armar_linea(11512, 2, [])[2:]]
         if en_progreso:
             return [armar_linea(10103, 2, [])[2:]]
         if registrado:
@@ -644,30 +646,42 @@ def propio(nombre: str, faccion: str = "Heaven", jugador: str = "",
 
     # Profesores y Lecturers de Angel Lyceum (Stage 41)
     if 'Battle Professor' in nombre:
-        if faccion not in ("Heaven", "Neutral", "Neutrally", "Graduated"):
+        if graduado or faccion not in ("Heaven", "Neutral", "Neutrally"):
             return [armar_linea(11512, 4, [])[2:]]
         if registrado is False:
             return [armar_linea(11511, 4, [])[2:]]
         return [armar_linea(11501, 4, [11503, 11504])[2:]]
     if 'Magic Professor' in nombre:
-        if faccion not in ("Heaven", "Neutral", "Neutrally", "Graduated"):
+        if graduado or faccion not in ("Heaven", "Neutral", "Neutrally"):
             return [armar_linea(11812, 4, [])[2:]]
         if registrado is False:
             return [armar_linea(11811, 4, [])[2:]]
         return [armar_linea(11801, 4, [11803, 11804])[2:]]
     if 'Mine Professor' in nombre:
+        if graduado or faccion not in ("Heaven", "Neutral", "Neutrally"):
+            return [armar_linea(10637, 4, [])[2:]]
         if registrado is False:
             return [armar_linea(10637, 4, [])[2:]]
         return [armar_linea(10601, 4, [10603, 10604])[2:]]
     if 'Weapon Lecturer' in nombre:
+        if graduado or faccion not in ("Heaven", "Neutral", "Neutrally"):
+            return [armar_linea(11512, 4, [])[2:]]
         return [armar_linea(11001, 4, [11002, 11003])[2:]]
     if 'Armor Lecturer' in nombre:
+        if graduado or faccion not in ("Heaven", "Neutral", "Neutrally"):
+            return [armar_linea(11512, 4, [])[2:]]
         return [armar_linea(11101, 4, [11102, 11103])[2:]]
     if 'Sewing Lecturer' in nombre:
+        if graduado or faccion not in ("Heaven", "Neutral", "Neutrally"):
+            return [armar_linea(11512, 4, [])[2:]]
         return [armar_linea(11201, 4, [11202, 11203])[2:]]
     if 'Art Lecturer' in nombre:
+        if graduado or faccion not in ("Heaven", "Neutral", "Neutrally"):
+            return [armar_linea(11512, 4, [])[2:]]
         return [armar_linea(11301, 4, [11302, 11303])[2:]]
     if 'Cooking Lecturer' in nombre:
+        if graduado or faccion not in ("Heaven", "Neutral", "Neutrally"):
+            return [armar_linea(11512, 4, [])[2:]]
         return [armar_linea(11401, 4, [11402, 11403])[2:]]
     if 'Jack' in nombre:
         return [armar_linea(5801, npc_val or 4, [5802])[2:]]
@@ -2364,7 +2378,8 @@ def opciones_de(linea: bytes):
 
 
 def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
-                nombre: str = '', stage: int = 0, nivel: int = 0):
+                nombre: str = '', stage: int = 0, nivel: int = 0,
+                faccion: str = "Heaven", graduado: bool = False):
     """Devuelve tupla de sub-mensajes: apertura de tienda y/o cierre/continuacion de dialogo."""
     # --- Clank Oasis (407) y Commercial Street (419) ---
     # Las cuatro opciones son las mismas en los dos mapas (ver la nota de
@@ -2465,6 +2480,8 @@ def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
     # captura, 8c270000 02 0000 02 00 | 8d270000 8e270000, o sea msg 10124,
     # val 2, dos opciones 10125 (si) y 10126 (no).
     if opcion_id == 10110:
+        if graduado or faccion not in ("Heaven", "Neutral", "Neutrally"):
+            return (armar_linea(11512, 2, []),)
         # Son DOS lineas, medidas en la captura: primero el 10123 suelto
         # (val 2, sin cadenas ni opciones) y despues el 10124 con las dos
         # opciones 10125 (si) y 10126 (no). Mandabamos solo el 10123.
@@ -2474,12 +2491,18 @@ def respuesta_a(opcion_id: int, entidad: int = 0, val: int = 4,
 
     # Opciones de Angels' Tutor
     if opcion_id == 10107:
+        if graduado or faccion not in ("Heaven", "Neutral", "Neutrally"):
+            return (armar_linea(11512, 2, []),)
         return (armar_linea(10112, 2, []),
                 armar_linea(10113, 2, []),
                 armar_linea(10114, 2, []))
     if opcion_id == 10108:
+        if graduado or faccion not in ("Heaven", "Neutral", "Neutrally"):
+            return (armar_linea(11512, 2, []),)
         return (armar_linea(10115, 2, []),)
     if opcion_id == 10109:
+        if graduado or faccion not in ("Heaven", "Neutral", "Neutrally"):
+            return (armar_linea(11512, 2, []),)
         pkg_pregunta = armar_linea(10118, 2, [10119, 10120])
         return (pkg_pregunta,)
 
@@ -3432,12 +3455,12 @@ DIALOGOS_PASOS_ESPECIALES = {
     (102, "angels' tutor"): {
         1: [10105],
         (1, 'progreso'): [10106],
-        'completada': [10118],
+        'completada': [11512],
     },
     (102, "angel tutor"): {
         1: [10105],
         (1, 'progreso'): [10106],
-        'completada': [10118],
+        'completada': [11512],
     },
     (115, 'battle professor'): {
         1: [11513],
