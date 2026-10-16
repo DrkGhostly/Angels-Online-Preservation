@@ -1270,6 +1270,18 @@ def vinculaciones_de(item_id):
     return _VINCULACIONES.get(int(item_id), (0, False))
 
 
+def puede_equipar(item_id: int, char_id: int, estado: dict = None) -> bool:
+    """Comprueba si el personaje puede ponerse la prenda segun sus vinculaciones."""
+    limite, al_equipar = vinculaciones_de(item_id)
+    if not limite or not al_equipar:
+        return True
+    v = (estado or {}).get('vinculacion')
+    if v and v.get('item_id') == item_id and v.get('dueno') == char_id:
+        return True
+    restantes = int(v['restantes']) if v and v.get('item_id') == item_id else limite
+    return restantes > 0
+
+
 def vincular_equipo(item_id, char_id, estado):
     """Consume una vinculacion una sola vez para el mismo propietario.
 
@@ -1284,7 +1296,7 @@ def vincular_equipo(item_id, char_id, estado):
         return False
     restantes = int(v['restantes']) if v and v.get('item_id') == item_id else limite
     if restantes <= 0:
-        raise ValueError('El objeto no tiene vinculaciones disponibles')
+        return False
     estado['vinculacion'] = {'item_id': item_id, 'dueno': char_id,
                              'restantes': restantes - 1}
     return True
@@ -1300,7 +1312,9 @@ def marcar_vinculacion(entrada, estado):
         return entrada
     if struct.unpack_from('<I', b, base + 9)[0] != v['item_id']:
         return entrada
-    b[base + 57] = max(0, min(255, int(v['restantes'])))
+    dueno = int(v.get('dueno') or 0)
+    struct.pack_into('<I', b, base + 53, dueno)
+    b[base + 57] = max(0, min(255, int(v.get('restantes', 0))))
     b[base + 58] = 1
     return bytes(b)
 
@@ -2067,10 +2081,14 @@ def _entrada(char_id: int, ranura: int, item_id: int, cant: int,
         #     off 58  bit 1 = vinculable (v19+57)
         puesta = es_equipo(ranura)
         cid = int(char_id if char_id else (dueno or 0))
-        struct.pack_into('<I', e, 53, cid)
         limite, al_equipar = vinculaciones_de(item_id)
-        e[57] = min(255, max(0, limite - int(puesta and al_equipar)))
-        e[58] = 1
+        if puesta:
+            struct.pack_into('<I', e, 53, cid)
+            e[57] = min(255, max(0, limite - int(al_equipar)))
+        else:
+            struct.pack_into('<I', e, 53, 0)
+            e[57] = min(255, max(0, limite))
+        e[58] = 1 if al_equipar else 0
         # Offset 51 (WORD v19+50) le indica al cliente que esta entrada
         # mide 119 bytes (1 + 85 + 33 extra). NUNCA debe alterarse.
         e[51] = 0x21
@@ -2254,7 +2272,7 @@ def acuse_movimiento(ranura: int, accion: int = 0x0012) -> bytes:
 
 
 def actualizar_ranuras(char_id: int, entradas, dueno: int = None,
-                       mascota: dict = None) -> bytes:
+                       mascota: dict = None, mejoras: dict = None) -> bytes:
     """0x001B con varias casillas de una vez.
 
     Es lo que manda el servidor al equipar: en la captura, mover la prenda
@@ -2265,9 +2283,21 @@ def actualizar_ranuras(char_id: int, entradas, dueno: int = None,
 
     entradas: iterable de (ranura, item_id, cantidad, instancia).
     """
-    lista = [_entrada(char_id, int(r), int(i), int(c), ins, dueno,
-                      mascota=mascota)
-             for r, i, c, ins in entradas]
+    mejoras = mejoras or {}
+    lista = []
+    for r, i, c, ins in entradas:
+        r, i, c = int(r), int(i), int(c)
+        _e = _entrada(char_id, r, i, c, ins, dueno, mascota=mascota)
+        if not es_mascota(i):
+            _m = mejoras.get(r)
+            _e = marcar_vinculacion(_e, _m)
+            if _m and _m.get('veces'):
+                _e = marcar_mejora(_e, _m['veces'])
+            if _m and _m.get('extra'):
+                _e = marcar_extras(_e, _m['extra'])
+            if _m and (_m.get('huecos') or _m.get('gemas')):
+                _e = marcar_huecos(_e, _m.get('huecos') or 0, _m.get('gemas'))
+        lista.append(_e)
     return (struct.pack('<HI', 0x001B, len(lista)) + b''.join(lista))
 
 

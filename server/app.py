@@ -10326,6 +10326,12 @@ class Servidor:
                     ses.enviar(_clf.aviso("Requires Finesse skill to dual-wield weapons.", tipo=0), *_refrescar(ses, [org]))
                     return
             cid = ses.personaje.char_id if ses.personaje else 4980
+            if inv.es_equipo(dst):
+                estado_org = (ses.personaje.mejoras or {}).get(org) if ses.personaje else None
+                if not inv.puede_equipar(it_org, cid, estado_org):
+                    import clases as _clf
+                    ses.enviar(_clf.aviso("Unable to equip the equipment.", tipo=0), *_refrescar(ses, [org]))
+                    return
             # Si equipa un arma/municion en la 3 o 4 incompatible con la otra mano
             # (ej. Staff/Spear con escudo, o Arco con escudo en vez de flechas, o Honda con flechas en vez de bolitas),
             # desequipar la otra mano a la mochila conservando su cantidad.
@@ -10362,6 +10368,12 @@ class Servidor:
                     log.warning(f"[{addr}] swap {org} <-> {dst}: ranura {org} no valida para item {it_dst}")
                     ses.enviar(*_refrescar(ses, [org, dst]))
                     return
+                if inv.es_equipo(org):
+                    estado_dst = (ses.personaje.mejoras or {}).get(dst) if ses.personaje else None
+                    if not inv.puede_equipar(it_dst, cid, estado_dst):
+                        import clases as _clf
+                        ses.enviar(_clf.aviso("Unable to equip the equipment.", tipo=0), *_refrescar(ses, [org, dst]))
+                        return
                 # Intercambio (swap) entre ranuras ocupadas
                 bolsa[org] = it_dst
                 bolsa[dst] = it_org
@@ -10372,6 +10384,14 @@ class Servidor:
                 _mover_inst(ses, org, 0xFFFF)
                 _mover_inst(ses, dst, org)
                 _mover_inst(ses, 0xFFFF, dst)
+                if ses.personaje:
+                    for _r_eq in (dst, org):
+                        if inv.es_equipo(_r_eq) and _r_eq in bolsa:
+                            _estado_eq = ses.personaje.mejoras.get(_r_eq, {})
+                            if inv.vincular_equipo(int(bolsa[_r_eq]), cid, _estado_eq):
+                                ses.personaje.mejoras[_r_eq] = _estado_eq
+                                if getattr(ses, 'usuario', None):
+                                    cuentas.guardar_mejoras(ses.usuario, cid, ses.personaje.mejoras)
                 _masc_p = getattr(ses.personaje, 'mascota', None) if ses.personaje else None
                 if isinstance(_masc_p, dict):
                     if _masc_p.get('ranura') == org:
@@ -10386,7 +10406,7 @@ class Servidor:
                           inv.actualizar_ranuras(cid, [
                     (dst, it_org, _c_org, _inst(ses, dst)),
                     (org, it_dst, _c_dst, _inst(ses, org)),
-                ], _dueno(ses), mascota=_masc_p)]
+                ], _dueno(ses), mascota=_masc_p, mejoras=getattr(ses.personaje, 'mejoras', None))]
                 if _extra_tocadas:
                     salida.extend(_refrescar(ses, _extra_tocadas))
                 if inv.es_equipo(org) or inv.es_equipo(dst):
@@ -11165,6 +11185,11 @@ class Servidor:
 
             eq_slot = inv.ranura_equipo_de(item_id)
             if eq_slot is not None:
+                estado_org = (ses.personaje.mejoras or {}).get(ranura) if ses.personaje else None
+                if not inv.puede_equipar(item_id, cid, estado_org):
+                    import clases as _clf_e
+                    ses.enviar(_clf_e.aviso("Unable to equip the equipment.", tipo=0))
+                    return
                 _tiene_finesse = any((h[0] if isinstance(h, (list, tuple)) else h) == 16 for h in (getattr(ses.personaje, 'habilidades', None) or []))
                 # Si es un arma dual de fashion y 169 ya esta ocupado pero 170 esta libre:
                 if eq_slot == 169 and (169 in bolsa) and (170 not in bolsa) and inv.es_arma_dual(item_id):
