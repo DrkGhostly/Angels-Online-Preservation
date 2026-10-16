@@ -103,6 +103,7 @@ class Personaje:
     apariencia: list = field(default_factory=lambda: [0, 0, 0, 8, 8])
     quest_kills: dict = field(default_factory=dict)  # {'qid_paso': count}
     cartas_canjes: list = field(default_factory=list)  # redeemed Card Book sets
+    expiracion_puesto: float = 0.0                      # timestamp expiracion tarjeta de puesto (0 = permanente)
 
 
 def _cargar_secuencia():
@@ -258,7 +259,7 @@ def secuencia(p: Personaje):
                       # personajes guardados: fashion en 176..199 y tarjetas
                       # coleccionables en la 276 y la 277.
                       if (int(r) == _inv.RANURA_ORO or (it and int(it) > 0))
-                      and (int(r) <= 120 or 167 <= int(r) <= 556)]
+                      and (int(r) <= 120 or 166 <= int(r) <= 556)]
             salida.append(_inv.completo(p.char_id, _items, p.entity_id,
                                         mejoras=getattr(p, 'mejoras', None),
                                         mascota=getattr(p, 'mascota', None),

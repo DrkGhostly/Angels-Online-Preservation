@@ -280,7 +280,7 @@ def entrar(ses, stage):
         if s is ses:
             continue
         # Presentar a 'ses' ante 's'
-        _mandar(s, yo_spawn, *_vestir(ses))
+        _mandar(s, yo_spawn, *_vestir(ses), *paquetes_puesto(ses))
         if ts_yo:
             _mandar(s, _cb.atributo(entidad_de(ses), ts_yo, _cb.KIND_TRANSFORM))
 
@@ -319,7 +319,7 @@ def entrar(ses, stage):
 
         # Presentar a 's' ante 'ses'
         s_spawn = _spawn(s)
-        _mandar(ses, s_spawn, *_vestir(s))
+        _mandar(ses, s_spawn, *_vestir(s), *paquetes_puesto(s))
         ts_s = transform_sprite_de(s)
         if ts_s:
             _mandar(ses, _cb.atributo(entidad_de(s), ts_s, _cb.KIND_TRANSFORM))
@@ -420,7 +420,7 @@ def notificar_transformacion(ses, trans_sprite: int):
             sp = _spawn(ses)
             for s in otros:
                 if sp:
-                    _mandar(s, sp, *_vestir(ses))
+                    _mandar(s, sp, *_vestir(ses), *paquetes_puesto(ses))
             log.info('%s deja de estar transformado: id publico %s -> %s',
                      getattr(ses.personaje, 'nombre', '?'), eid, entidad_de(ses))
             try:
@@ -446,9 +446,10 @@ def notificar_equipo(ses):
     import combate as _cb
     pkt_trans = _cb.atributo(entidad_de(ses), ts, _cb.KIND_TRANSFORM) if ts else None
     vestir = _vestir(ses)
+    puesto = paquetes_puesto(ses)
     for s in _vivas(stage):
         if s is not ses:
-            _mandar(s, yo_spawn, *vestir)
+            _mandar(s, yo_spawn, *vestir, *puesto)
             if pkt_trans:
                 _mandar(s, pkt_trans)
 
@@ -503,6 +504,85 @@ def cuantos(stage) -> int:
 
 def mapas_con_gente() -> dict:
     return {st: len(_vivas(st)) for st in list(_POR_MAPA) if _vivas(st)}
+
+
+def paquetes_puesto(ses) -> tuple:
+    """Paquetes S2C (0x000A accion 10 + 0x0043 kind 0) que dibujan el cartel del
+    puesto de venta (Stall) y su mensaje Hawk sobre un jugador para los demas.
+
+    Segun Angel.exe:
+      - FUN_005ecbd0 (0x000A): accion 10 (pkt+0x0A) y estilo 0..6 (pkt+0x0B)
+        llama a 0x650870(entity_ptr, estilo, "") que crea el boton flotante
+        encima del jugador con su entity_id en appdata.
+      - FUN_005f1110 (0x0043): kind 0 (pkt+6) y texto ASCIIZ (pkt+7)
+        llama a 0x650af0(entity_ptr, texto) para escribir el Hawk en el cartel.
+    """
+    pv = getattr(ses, 'puesto', None) or getattr(ses, 'puesto_venta', None)
+    if not pv:
+        return ()
+    eid = entidad_de(ses)
+    estilo = pv.get('estilo')
+    if estilo is None:
+        import inventario as _iv_est
+        estilo = _iv_est.estilo_puesto_de(getattr(ses, 'inventario', None))
+    estilo = max(0, min(6, int(estilo or 0)))
+    hawk = (pv.get('hawk') or '').encode('latin-1', 'replace')[:48]
+    pkt_accion = struct.pack('<HIIBBH', 0x000A, eid, 0, 10, estilo, 0)
+    pkt_hawk = struct.pack('<HIB', 0x0043, eid, 0) + hawk + b'\x00'
+    return (pkt_accion, pkt_hawk)
+
+
+def notificar_puesto(ses):
+    """Avisa a los demas jugadores del mapa que este jugador abrio o actualizo su puesto."""
+    stage = getattr(ses, '_mapa_presencia', None)
+    if stage is None and getattr(ses, 'personaje', None):
+        stage = clave_de_mapa(ses, getattr(ses.personaje, 'stage', None))
+    if stage is None:
+        return
+    pkts = paquetes_puesto(ses)
+    if not pkts:
+        return
+    for s in _vivas(stage):
+        if s is not ses:
+            _mandar(s, *pkts)
+
+
+def notificar_cierre_puesto(ses):
+    """Avisa a los demas jugadores del mapa que este jugador cerro su puesto."""
+    stage = getattr(ses, '_mapa_presencia', None)
+    if stage is None and getattr(ses, 'personaje', None):
+        stage = clave_de_mapa(ses, getattr(ses.personaje, 'stage', None))
+    if stage is None:
+        return
+    eid = entidad_de(ses)
+    # Accion 0 en 0x000A llama a 0x650a30 -> 0x5bbc90(4, eid), quitando el cartel
+    # flotante y cerrando WND_SALE_TRADE si alguien lo estaba mirando.
+    pkt_fin = struct.pack('<HIIBBH', 0x000A, eid, 0, 0, 0, 0)
+    for s in _vivas(stage):
+        if s is not ses:
+            _mandar(s, pkt_fin)
+
+
+def sesion_por_entidad(ses_consulta, eid: int):
+    """Busca la sesion de un jugador en el mapa actual por su entidad publica (o propia)."""
+    eid = int(eid or 0)
+    if not eid:
+        return None
+    stage = getattr(ses_consulta, '_mapa_presencia', None)
+    if stage is None and getattr(ses_consulta, 'personaje', None):
+        stage = clave_de_mapa(ses_consulta, getattr(ses_consulta.personaje, 'stage', None))
+    candidatos = list(_vivas(stage)) if stage is not None else []
+    for st_k in list(_POR_MAPA):
+        for s_extra in _vivas(st_k):
+            if s_extra not in candidatos:
+                candidatos.append(s_extra)
+    for s in candidatos:
+        if entidad_de(s) == eid:
+            return s
+        p = getattr(s, 'personaje', None)
+        if p and int(getattr(p, 'entity_id', 0) or 0) == eid and (getattr(s, 'puesto', None) or getattr(s, 'puesto_venta', None)):
+            return s
+    return None
 
 
 def notificar_invocacion_spawn(ses, inv, spawn_pkg, hp_pkg):

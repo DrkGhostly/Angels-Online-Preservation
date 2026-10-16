@@ -543,6 +543,11 @@ def personaje_de(cuenta, ranura=0):
                 _cant_limpia[int(_k)] = int(_v[1])
         else:
             _inv_limpio[int(_k)] = _v
+    _exp_puesto = float(p.get('expiracion_puesto', 0) or 0.0)
+    if _exp_puesto > 0 and _ahora() >= _exp_puesto:
+        _inv_limpio.pop(166, None)
+        _cant_limpia.pop(166, None)
+        _exp_puesto = 0.0
     return Personaje(
         entity_id=1000 + p['char_id'] % 1000,
         char_id=p['char_id'],
@@ -589,6 +594,7 @@ def personaje_de(cuenta, ranura=0):
         mascotas=_cargar_mascotas(p),
         apariencia=list(p.get('apariencia') or [0, 0, 0, 8, 8]),
         quest_kills={str(k): int(v) for k, v in (p.get('quest_kills') or {}).items()},
+        expiracion_puesto=_exp_puesto,
     )
 
 
@@ -656,7 +662,7 @@ def _slot_sort_key(item):
 
 
 def guardar_inventario(usuario: str, char_id: int, bolsa: dict,
-                       cantidades=None, mejoras=None):
+                       cantidades=None, mejoras=None, expiracion_puesto=None):
     def _mut(p):
         p['inventario'] = {str(k): v for k, v in sorted(bolsa.items(), key=_slot_sort_key)}
         if mejoras is not None:
@@ -668,6 +674,8 @@ def guardar_inventario(usuario: str, char_id: int, bolsa: dict,
             p['cantidades'] = {str(k): int(v)
                                for k, v in sorted(cantidades.items(), key=_slot_sort_key)
                                if (int(v) > 1 or 497 <= int(k) <= 556) and (int(k) in bolsa or str(k) in bolsa)}
+        if expiracion_puesto is not None:
+            p['expiracion_puesto'] = float(expiracion_puesto)
     _actualizar_personaje(usuario, char_id, _mut)
 
 

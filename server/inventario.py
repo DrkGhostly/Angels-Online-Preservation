@@ -157,7 +157,7 @@ def vaciar_ranura(dueno: int, ranura: int,
     # Excluir 176..496 dejaba el item nuevo en destino pero nunca borraba el
     # origen en el cliente; dos vistas conservaban la misma instancia y el
     # cliente se cerraba (reproducido al mover una card 280 -> 37).
-    if contenedor == CONT_MOCHILA and (ranura < 0 or (ranura > 154 and not (167 <= ranura <= 556))):
+    if contenedor == CONT_MOCHILA and (ranura < 0 or (ranura > 154 and not (166 <= ranura <= 556))):
         log.warning(f"Intento de vaciar ranura fuera de limites ({ranura}) en CONT_MOCHILA - omitido para evitar crash")
         return b''
     return struct.pack('<HIBBIH', 0x001B, 1, 2, contenedor, dueno, ranura)
@@ -199,15 +199,16 @@ def ranura_de_instancia(instancias, instancia: bytes, bolsa=None,
 
 
 def es_equipo(ranura) -> bool:
-    """Si esa ranura es del personaje (equipo regular 1..19 o Fashion 167..174) y no de la mochila."""
+    """Si esa ranura es del personaje (equipo regular 1..19, tarjeta de puesto 166 o Fashion 167..175) y no de la mochila."""
     try:
         r = int(ranura)
     except (ValueError, TypeError):
         return False
-    # La 175 es la insignia. Sin incluirla aqui, una insignia puesta no
-    # contaba como equipo y sus bonos no se sumaban a los stats: la Crystal
-    # Badge declara +3484 de ataque y no daba ni uno.
-    return (r < PRIMERA_RANURA_BOLSA) or (167 <= r <= 175)
+    # La 175 es la insignia y la 166 (0xA6) es la tarjeta de puesto (Stall Card).
+    # Sin incluir la 175 aqui, una insignia puesta no contaba como equipo y sus
+    # bonos no se sumaban a los stats: la Crystal Badge declara +3484 de ataque
+    # y no daba ni uno.
+    return (r < PRIMERA_RANURA_BOLSA) or (166 <= r <= 175)
 
 
 def es_fashion(ranura) -> bool:
@@ -1475,6 +1476,8 @@ def es_arma_dual(item_id: int) -> bool:
 
 def es_ranura_valida(item_id: int, ranura: int) -> bool:
     """Verifica si un item puede colocarse en esa ranura especifica para evitar pisar armadura real con fashion."""
+    if ranura == RANURA_PUESTO:
+        return int(item_id) in ITEMS_TARJETA_PUESTO
     if ranura == RANURA_INSIGNIA:
         # La 175 esta por encima del inicio de la mochila, asi que antes
         # pasaba por "mochila" sin mirar nada. Es la ranura de la insignia y
@@ -1516,6 +1519,135 @@ def es_ranura_valida(item_id: int, ranura: int) -> bool:
         return ranura == target
 
 
+# Donde va la tarjeta de puesto (Stall Card / Extra Sale Slot). En Angel.exe
+# sub_5C3860 lee la casilla 166 (0xA6) y useextrasaleslot (0x584550) equipa
+# las tarjetas 511..513, 2725..2733 y 15718..15720 en esa ranura.
+RANURA_PUESTO = 166
+ITEMS_TARJETA_PUESTO = frozenset({
+    511, 512, 513,
+    2725, 2726, 2727, 2728, 2729, 2730, 2731, 2732, 2733,
+    15718, 15719, 15720,
+})
+
+# Mapeo de vales consumibles a su tarjeta de puesto equipada en la ranura 166
+VALES_TARJETA_PUESTO = {
+    # Common Card (Estilo 1 -> 10 ranuras)
+    491: 511,       # Stall Common Card 4 (Permanence)
+    79745: 511,     # Stall Common Card 4 (Permanence)
+    2701: 2725,     # Stall Common Card 1 (1 Day)
+    79752: 2725,    # Stall Common Card 1 (1 Day)
+    2702: 2726,     # Stall Common Card 2 (7 Days)
+    79753: 2726,    # Stall Common Card 2 (7 Days)
+    8447: 2726,     # Stall Common Card 2 (7 Days)
+    2703: 2727,     # Stall Common Card 3 (30 Days)
+    79754: 2727,    # Stall Common Card 3 (30 Days)
+
+    # Silver Card (Estilo 2 -> 20 ranuras)
+    492: 512,       # Stall Silver Card 4 (Permanence)
+    79746: 512,     # Stall Silver Card 4 (Permanence)
+    2704: 2728,     # Stall Silver Card 1 (1 Day)
+    79755: 2728,    # Stall Silver Card 1 (1 Day)
+    2705: 2729,     # Stall Silver Card 2 (7 Days)
+    79756: 2729,    # Stall Silver Card 2 (7 Days)
+    2706: 2730,     # Stall Silver Card 3 (30 Days)
+    2710: 2730,     # Stall Silver Card 3 (30 Days)
+    79757: 2730,    # Stall Silver Card 3 (30 Days)
+
+    # Gold Card (Estilo 3 -> 30 ranuras)
+    493: 513,       # Stall Gold Card 4 (Permanence)
+    79747: 513,     # Stall Gold Card 4 (Permanence)
+    2707: 2731,     # Stall Gold Card 1 (1 Day)
+    79758: 2731,    # Stall Gold Card 1 (1 Day)
+    2708: 2732,     # Stall Gold Card 2 (7 Days)
+    79759: 2732,    # Stall Gold Card 2 (7 Days)
+    2709: 2733,     # Stall Gold Card 3 (30 Days)
+    2711: 2733,     # Stall Gold Card 3 (30 Days)
+    79760: 2733,    # Stall Gold Card 3 (30 Days)
+
+    # Purple Card 5 (Estilo 4 -> 35 ranuras)
+    15716: 15718,   # Stall Purple Card 5 (Permanence)
+
+    # Blue Card 5 (Estilo 5 -> 40 ranuras)
+    15715: 15719,   # Stall Blue Card 5 (Permanence)
+
+    # Black Card 5 (Estilo 6 -> 50 ranuras)
+    15717: 15720,   # Stall Black Card 5 (Permanence)
+}
+
+# Las tarjetas de puesto directas se equipan a si mismas
+for _it in ITEMS_TARJETA_PUESTO:
+    VALES_TARJETA_PUESTO[_it] = _it
+
+# Duracion en segundos de las tarjetas de puesto temporales (0 = permanente)
+DURACION_TARJETA_PUESTO = {
+    # 1 Dia = 86400s (1440m)
+    2725: 86400,
+    2728: 86400,
+    2731: 86400,
+    # 7 Dias = 604800s (10080m)
+    2726: 604800,
+    2729: 604800,
+    2732: 604800,
+    # 30 Dias = 2592000s (43200m)
+    2727: 2592000,
+    2730: 2592000,
+    2733: 2592000,
+    # Permanentes
+    511: 0,
+    512: 0,
+    513: 0,
+    15718: 0,
+    15719: 0,
+    15720: 0,
+}
+
+
+def resolver_tarjeta_puesto(item_id: int):
+    """Si el item es un vale o tarjeta de puesto consumible/directa, devuelve el ID de tarjeta a equipar en 166."""
+    return VALES_TARJETA_PUESTO.get(int(item_id or 0))
+
+
+def duracion_tarjeta_puesto(item_id: int) -> int:
+    """Devuelve la duracion en segundos de la tarjeta de puesto (0 = permanente)."""
+    return DURACION_TARJETA_PUESTO.get(int(item_id or 0), 0)
+
+
+def estilo_puesto_de(bolsa) -> int:
+    """Devuelve el estilo visual del puesto (0..6) segun la tarjeta en la ranura 166 (sub_5C3860)."""
+    it = int((bolsa or {}).get(RANURA_PUESTO) or (bolsa or {}).get(str(RANURA_PUESTO)) or 0)
+    if it in (511, 2725, 2726, 2727):
+        return 1
+    if it in (512, 2728, 2729, 2730):
+        return 2
+    if it in (513, 2731, 2732, 2733):
+        return 3
+    if it == 15718:
+        return 4
+    if it == 15719:
+        return 5
+    if it == 15720:
+        return 6
+    return 0
+
+
+def limite_ranuras_puesto(bolsa) -> int:
+    """Devuelve el limite de ranuras de compra y venta segun la tarjeta en la ranura 166 (sub_5C39B0)."""
+    estilo = estilo_puesto_de(bolsa)
+    if estilo == 1:
+        return 10
+    if estilo == 2:
+        return 20
+    if estilo == 3:
+        return 30
+    if estilo == 4:
+        return 35
+    if estilo == 5:
+        return 40
+    if estilo == 6:
+        return 50
+    return 5
+
+
 # Donde va la insignia. MEDIDO el 29/09/2026: al ponerse una Purple Seashell
 # Badge el servidor real la coloco en la 175, justo despues de las ranuras de
 # Fashion (167..174). No es la 11 como se habia supuesto.
@@ -1554,6 +1686,8 @@ def ranura_libre_equipo(item_id: int, bolsa):
 def ranura_equipo_de(item_id: int):
     """Devuelve la ranura de equipamiento donde se coloca el item, o None si no es equipable."""
     global _SLOT_CACHE, _DUAL_CACHE, _FASHION_CACHE
+    if int(item_id or 0) in ITEMS_TARJETA_PUESTO:
+        return RANURA_PUESTO
     if _SLOT_CACHE is None:
         import sqlite3
         db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
@@ -1569,7 +1703,7 @@ def ranura_equipo_de(item_id: int):
             # equipar: la montura Galactic Moped, por ejemplo, vive en item5.
             filas = []
             for _tabla in ('item', 'item2', 'item3', 'item4', 'item5',
-                           'item6', 'item7', 'item8', 'item9'):
+                           'item7', 'item8', 'item9', 'item6'):
                 try:
                     filas += list(con.execute(
                         f'select id,"物品類別",{campos} from {_tabla} '
@@ -1639,6 +1773,8 @@ def ranura_equipo_de(item_id: int):
                     # una insignia equipada. Se usa la 11, la siguiente libre
                     # despues de la montura, y se puede cambiar en un sitio.
                     _SLOT_CACHE[iid] = RANURA_INSIGNIA
+            for _sc in ITEMS_TARJETA_PUESTO:
+                _SLOT_CACHE[_sc] = RANURA_PUESTO
     return _SLOT_CACHE.get(item_id)
 
 _TWO_HAND_CACHE = {}
@@ -1786,7 +1922,7 @@ _RECOMPENSAS_CACHE = {}
 def recompensas_caja(item_id: int):
     """Si el item es una caja de regalo o bolsa de la suerte (Elf Lucky Bag, Growth Boxes, etc.),
     devuelve lista de (item_id, cantidad) a entregar. Si no, devuelve None."""
-    if es_comida_mascota(item_id):
+    if es_comida_mascota(item_id) or resolver_tarjeta_puesto(item_id) is not None:
         return None
     import sqlite3, random
     db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
