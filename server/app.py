@@ -66,6 +66,23 @@ def defensa_jugador(ses) -> int:
         return 0
 
 
+def defensas_elementales_jugador(ses) -> dict:
+    """Las defensas de resistencia y elementales del personaje, leidas del 0x0042."""
+    try:
+        import struct as _s
+        raw = _stats_ses(ses)
+        return {
+            'stamina': _s.unpack_from('<H', raw, 70 + 2)[0],
+            'soul': _s.unpack_from('<H', raw, 74 + 2)[0],
+            'thnd': _s.unpack_from('<H', raw, 76 + 2)[0],
+            'fire': _s.unpack_from('<H', raw, 80 + 2)[0],
+            'ice': _s.unpack_from('<H', raw, 84 + 2)[0],
+            'rotten': _s.unpack_from('<H', raw, 88 + 2)[0],
+        }
+    except Exception:
+        return {'stamina': 5, 'soul': 5, 'thnd': 0, 'fire': 0, 'ice': 0, 'rotten': 0}
+
+
 def skills_arma_ses(ses):
     """Las habilidades de arma de lo equipado."""
     import clases as _cl
@@ -4100,7 +4117,10 @@ _MAPEO_BUFF = (('matk_pct', 'matk_pct'), ('mdef_pct', 'mdef_pct'), ('atk_pct', '
                ('matk_bonus', 'matk'), ('mdef_bonus', 'mdef'), ('hit_bonus', 'hit'),
                ('eva_bonus', 'eva'), ('mag_dmg_pct', 'mag_dmg_pct'),
                ('phys_dmg_pct', 'phys_dmg_pct'), ('hp_bonus', 'hp_bonus'),
-               ('mp_bonus', 'mp_bonus'), ('cast_redux', 'cast_redux'))
+               ('mp_bonus', 'mp_bonus'), ('cast_redux', 'cast_redux'),
+               ('res_body', 'res_body'), ('res_mind', 'res_mind'),
+               ('res_elec', 'res_lightning'), ('res_fire', 'res_fire'),
+               ('res_ice', 'res_ice'), ('res_poison', 'res_corrosion'))
 
 
 def _entrada_de_buff(mag, dur_s):
@@ -5851,15 +5871,24 @@ class Servidor:
                                             m.ultimo_ataque = ahora
                                             if targ_eid == yo:
                                                 def_targ = defensa_jugador(ses)
+                                                def_elem = defensas_elementales_jugador(ses)
+                                                thnd_d = max(0, getattr(m, 'thnd_atk', 0) - def_elem['thnd'])
+                                                fire_d = max(0, getattr(m, 'fire_atk', 0) - def_elem['fire'])
+                                                ice_d = max(0, getattr(m, 'ice_atk', 0) - def_elem['ice'])
+                                                rot_d = max(0, getattr(m, 'rotten_atk', 0) - def_elem['rotten'])
+                                                elem_tot = thnd_d + fire_d + ice_d + rot_d
+                                                suyo = _cb.dano_recibido(m.pegar(), def_targ, elem_atk=elem_tot, elem_def=0)
                                             elif f_pet and targ_eid == pet_eid:
                                                 b_st_def = _ms.bonos_de_ficha(f_pet)
                                                 b_bf_def = _ms.bonos_buffs(f_pet)
                                                 def_targ = int(f_pet.get('dfs', 50)) + int(b_st_def.get('dfs', 0)) + int(b_bf_def.get('dfs', 0))
                                                 if int(f_pet.get('saciedad', 0)) > 100:
                                                     def_targ = int(round(def_targ * 1.4))
+                                                elem_tot = getattr(m, 'thnd_atk', 0) + getattr(m, 'fire_atk', 0) + getattr(m, 'ice_atk', 0) + getattr(m, 'rotten_atk', 0)
+                                                suyo = _cb.dano_recibido(m.pegar(), def_targ, elem_atk=elem_tot, elem_def=0)
                                             else:
                                                 def_targ = 100
-                                            suyo = _cb.dano_recibido(m.pegar(), def_targ)
+                                                suyo = _cb.dano_recibido(m.pegar(), def_targ)
                                             # En sigilo se esquiva: Sneak V da
                                             # un 75% (物理迴避). Un golpe esquivado
                                             # hace 0; no hay paquete de "Miss"
@@ -7665,6 +7694,18 @@ class Servidor:
                                 buff_entry['mp_bonus'] = mag.get('mp_bonus')
                             if mag.get('cast_redux'):
                                 buff_entry['cast_redux'] = mag.get('cast_redux')
+                            if mag.get('res_body'):
+                                buff_entry['res_body'] = mag.get('res_body')
+                            if mag.get('res_mind'):
+                                buff_entry['res_mind'] = mag.get('res_mind')
+                            if mag.get('res_elec'):
+                                buff_entry['res_lightning'] = mag.get('res_elec')
+                            if mag.get('res_fire'):
+                                buff_entry['res_fire'] = mag.get('res_fire')
+                            if mag.get('res_ice'):
+                                buff_entry['res_ice'] = mag.get('res_ice')
+                            if mag.get('res_poison'):
+                                buff_entry['res_corrosion'] = mag.get('res_poison')
                             if es_target_pet and isinstance(f_pet_cast, dict):
                                 f_pet_cast.setdefault('buffs', {})[tipo] = dict(buff_entry)
                             elif _a_mi_b:

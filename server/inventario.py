@@ -294,12 +294,19 @@ def _bonus(item_id: int) -> dict:
                     # nada. No esta en el mismo sitio en cada tabla, por eso
                     # se busca por nombre.
                     carga_col = '"負重"' if '負重' in cols else '0'
+                    rb_col = 'res_body' if 'res_body' in cols else '0'
+                    rm_col = 'res_mind' if 'res_mind' in cols else '0'
+                    rl_col = 'res_lightning' if 'res_lightning' in cols else '0'
+                    rf_col = 'res_fire' if 'res_fire' in cols else '0'
+                    ri_col = 'res_ice' if 'res_ice' in cols else '0'
+                    rc_col = 'res_corrosion' if 'res_corrosion' in cols else '0'
                     _filas_b += list(con.execute(
-                        f"select id, def, accuracy, agility, atk_avg, matk, mdef, {hp_col}, {mp_col}, {carga_col} from {_t} "
+                        f"select id, def, accuracy, agility, atk_avg, matk, mdef, {hp_col}, {mp_col}, {carga_col}, "
+                        f"{rb_col}, {rm_col}, {rl_col}, {rf_col}, {ri_col}, {rc_col} from {_t} "
                         "where id glob '[0-9]*'"))
                 except Exception:
                     continue
-            for i, d, ac, ag, av, ma, md, _hp, _mp, _cg in _filas_b:
+            for i, d, ac, ag, av, ma, md, _hp, _mp, _cg, _rb, _rm, _rl, _rf, _ri, _rc in _filas_b:
                 # Algunos valores vienen con decimales en item.xml.
                 def _n(x):
                     try:
@@ -310,8 +317,14 @@ def _bonus(item_id: int) -> dict:
                                 'agility': _n(ag), 'atk': _n(av),
                                 'matk': _n(ma), 'mdef': _n(md),
                                 'hp': _n(_hp), 'mp': _n(_mp),
-                                'carga': _n(_cg)}
-    return _BON.get(item_id, {'def': 0, 'accuracy': 0, 'agility': 0, 'atk': 0, 'matk': 0, 'mdef': 0, 'hp': 0, 'mp': 0, 'carga': 0})
+                                'carga': _n(_cg),
+                                'res_body': _n(_rb), 'res_mind': _n(_rm),
+                                'res_lightning': _n(_rl), 'res_fire': _n(_rf),
+                                'res_ice': _n(_ri), 'res_corrosion': _n(_rc)}
+    return _BON.get(item_id, {'def': 0, 'accuracy': 0, 'agility': 0, 'atk': 0,
+                              'matk': 0, 'mdef': 0, 'hp': 0, 'mp': 0, 'carga': 0,
+                              'res_body': 0, 'res_mind': 0, 'res_lightning': 0,
+                              'res_fire': 0, 'res_ice': 0, 'res_corrosion': 0})
 
 
 def bonos_de_habilidades(habilidades):
@@ -425,7 +438,8 @@ def bonos_de_habilidades(habilidades):
 
 def bonos_de_equipo(bolsa, mejoras: dict = None) -> dict:
     """Calcula la suma de atributos que otorgan los items equipados en la bolsa (Gear 1..10 y Fashion 167..174)."""
-    eq = {'def': 0, 'accuracy': 0, 'agility': 0, 'atk_r': 0, 'atk_l': 0, 'matk': 0, 'mdef': 0, 'hp': 0, 'mp': 0, 'carga': 0}
+    eq = {'def': 0, 'accuracy': 0, 'agility': 0, 'atk_r': 0, 'atk_l': 0, 'matk': 0, 'mdef': 0, 'hp': 0, 'mp': 0, 'carga': 0,
+          'res_body': 0, 'res_mind': 0, 'res_lightning': 0, 'res_fire': 0, 'res_ice': 0, 'res_corrosion': 0}
     if not bolsa:
         return eq
 
@@ -475,15 +489,23 @@ def bonos_de_equipo(bolsa, mejoras: dict = None) -> dict:
                 continue
             for _k, _v in bono_gema(_g, r, iid).items():
                 _dest = {'rigor': 'accuracy', 'dfs': 'def',
-                         'agilidad': 'agility', 'peso': 'carga'}.get(_k, _k)
+                         'agilidad': 'agility', 'peso': 'carga',
+                         '體抗': 'res_body', '心抗': 'res_mind',
+                         '電抗': 'res_lightning', '火抗': 'res_fire',
+                         '冰抗': 'res_ice', '腐抗': 'res_corrosion'}.get(_k, _k)
                 if _dest in ('def', 'accuracy', 'agility', 'matk', 'mdef',
-                             'hp', 'mp', 'atk'):
+                             'hp', 'mp', 'atk', 'res_body', 'res_mind',
+                             'res_lightning', 'res_fire', 'res_ice', 'res_corrosion'):
                     x[_dest] = x.get(_dest, 0) + int(_v)
         for _k, _v in (_ex.get('extra') or {}).items():
             _dest = {'rigor': 'accuracy', 'dfs': 'def',
-                     'agilidad': 'agility', 'peso': 'carga'}.get(_k, _k)
+                     'agilidad': 'agility', 'peso': 'carga',
+                     '體抗': 'res_body', '心抗': 'res_mind',
+                     '電抗': 'res_lightning', '火抗': 'res_fire',
+                     '冰抗': 'res_ice', '腐抗': 'res_corrosion'}.get(_k, _k)
             if _dest in ('def', 'accuracy', 'agility', 'matk', 'mdef',
-                         'hp', 'mp', 'atk', 'carga'):
+                         'hp', 'mp', 'atk', 'carga', 'res_body', 'res_mind',
+                         'res_lightning', 'res_fire', 'res_ice', 'res_corrosion'):
                 x[_dest] = x.get(_dest, 0) + int(_v)
         eq['def'] += x.get('def', 0)
         eq['accuracy'] += x.get('accuracy', 0)
@@ -493,6 +515,12 @@ def bonos_de_equipo(bolsa, mejoras: dict = None) -> dict:
         eq['hp'] += x.get('hp', 0)
         eq['mp'] += x.get('mp', 0)
         eq['carga'] += x.get('carga', 0)
+        eq['res_body'] += x.get('res_body', 0)
+        eq['res_mind'] += x.get('res_mind', 0)
+        eq['res_lightning'] += x.get('res_lightning', 0)
+        eq['res_fire'] += x.get('res_fire', 0)
+        eq['res_ice'] += x.get('res_ice', 0)
+        eq['res_corrosion'] += x.get('res_corrosion', 0)
 
         item_atk = x.get('atk', 0)
 
@@ -791,6 +819,20 @@ def stats(bolsa=None, habilidades: list = None,
     rigor_eff = c_rigor_base + eq_rigor
     agi_eff = c_agi_base + eq_agi
 
+    base_stamina = 5
+    base_soul = 5
+    base_thnd = 0
+    base_fire = 0
+    base_ice = 0
+    base_rotten = 0
+
+    stamina_eff = base_stamina + eq.get('res_body', 0)
+    soul_eff = base_soul + eq.get('res_mind', 0)
+    thnd_eff = base_thnd + eq.get('res_lightning', 0)
+    fire_eff = base_fire + eq.get('res_fire', 0)
+    ice_eff = base_ice + eq.get('res_ice', 0)
+    rotten_eff = base_rotten + eq.get('res_corrosion', 0)
+
     hp_eff = hp if hp is not None else struct.unpack_from('<I', b, 0)[0]
     hp_max_eff = (hp_max + hp_bonus + eq_hp) if hp_max is not None else (struct.unpack_from('<I', b, 4)[0] + hp_bonus + eq_hp)
     mp_eff = mp if mp is not None else struct.unpack_from('<I', b, 8)[0]
@@ -850,6 +892,18 @@ def stats(bolsa=None, habilidades: list = None,
                     hp_max_eff += b_data['hp_bonus']
                 if b_data.get('mp_bonus'):
                     mp_max_eff += b_data['mp_bonus']
+                if 'res_body' in b_data:
+                    stamina_eff += b_data['res_body']
+                if 'res_mind' in b_data:
+                    soul_eff += b_data['res_mind']
+                if 'res_lightning' in b_data:
+                    thnd_eff += b_data['res_lightning']
+                if 'res_fire' in b_data:
+                    fire_eff += b_data['res_fire']
+                if 'res_ice' in b_data:
+                    ice_eff += b_data['res_ice']
+                if 'res_corrosion' in b_data:
+                    rotten_eff += b_data['res_corrosion']
 
     # TODO lo que va aqui se recorta al rango del campo. Sin esto, un solo
     # numero fuera de sitio -- un debuff que deje un stat en negativo, o un
@@ -882,7 +936,19 @@ def stats(bolsa=None, habilidades: list = None,
     struct.pack_into('<HH', b, 56, _u16(c_rigor_base), _u16(rigor_eff))
     struct.pack_into('<HH', b, 60, _u16(c_agi_base), _u16(agi_eff))
     struct.pack_into('<HH', b, 64, _u16(base_crit), _u16(crit_eff))
-    struct.pack_into('<HH', b, 68, 0, 5)
+    # Atributos de resistencia y defensa elemental (Widgets 366..371 en ventana 265 / Alt+A):
+    # +68: Stamina Base, +70: Stamina Efectiva (Widget 366)
+    # +72: Soul Base, +74: Soul Efectiva (Widget 367)
+    # +76: Thunder DEF Efectiva (Widget 368), +78: Thunder DEF Base
+    # +80: Fire DEF Efectiva (Widget 369), +82: Fire DEF Base
+    # +84: Ice DEF Efectiva (Widget 370), +86: Ice DEF Base
+    # +88: Rotten DEF Efectiva (Widget 371), +90: Rotten DEF Base
+    struct.pack_into('<HH', b, 68, _u16(base_stamina), _u16(stamina_eff))
+    struct.pack_into('<HH', b, 72, _u16(base_soul), _u16(soul_eff))
+    struct.pack_into('<HH', b, 76, _u16(thnd_eff), _u16(base_thnd))
+    struct.pack_into('<HH', b, 80, _u16(fire_eff), _u16(base_fire))
+    struct.pack_into('<HH', b, 84, _u16(ice_eff), _u16(base_ice))
+    struct.pack_into('<HH', b, 88, _u16(rotten_eff), _u16(base_rotten))
     # Peso. El orden no es el que parecia: en la captura de Celestia los
     # offsets 92 y 96 llevan los dos el tope y el 100 lleva lo que se carga
     # ahora (sube de a uno segun se recoge botin). Antes escribiamos el oro
@@ -2544,12 +2610,16 @@ def _valores_gema(item_id: int) -> dict:
         if db.exists():
             fila = fila_item(sqlite3.connect(db),
                              '"動態資料1", "atk_avg", "def", "matk", "mdef", '
-                             '"hp", "mp", "accuracy", "agility"', item_id)
+                             '"hp", "mp", "accuracy", "agility", '
+                             '"res_body", "res_mind", "res_lightning", "res_fire", "res_ice", "res_corrosion", '
+                             '"火焰攻擊", "雷電攻擊", "寒冰攻擊", "腐蝕攻擊"', item_id)
             if fila:
                 nombres = ('efecto', 'atk', 'dfs', 'matk', 'mdef', 'hp', 'mp',
-                           'rigor', 'agilidad')
+                           'rigor', 'agilidad',
+                           'res_body', 'res_mind', 'res_lightning', 'res_fire', 'res_ice', 'res_corrosion',
+                           '火傷', '電傷', '冰傷', '腐傷')
                 for k, v in zip(nombres, fila):
-                    if str(v or '').isdigit():
+                    if str(v or '').lstrip('-').isdigit():
                         d[k] = int(v)
     except Exception:
         pass
@@ -2591,11 +2661,17 @@ def bono_gema(item_id: int, ranura: int, pieza: int = 0) -> dict:
     else:
         equipo = fila.get('equipo') or {}
         cuales = equipo.get(str(r)) or equipo.get('2') or []
+    _alias_gem = {
+        '火抗': 'res_fire', '電抗': 'res_lightning',
+        '冰抗': 'res_ice', '腐抗': 'res_corrosion',
+        '體抗': 'res_body', '心抗': 'res_mind',
+    }
     out = {}
     for stat in cuales:
-        v = val.get(stat)
+        v = val.get(stat) or val.get(_alias_gem.get(stat, ''))
         if v:
-            out[stat] = out.get(stat, 0) + v
+            dest = _alias_gem.get(stat, stat)
+            out[dest] = out.get(dest, 0) + v
     return out
 
 
