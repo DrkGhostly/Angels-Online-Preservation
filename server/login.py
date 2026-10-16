@@ -102,6 +102,7 @@ class Personaje:
     casa: dict = field(default_factory=dict)         # {'muebles': [ids]}
     apariencia: list = field(default_factory=lambda: [0, 0, 0, 8, 8])
     quest_kills: dict = field(default_factory=dict)  # {'qid_paso': count}
+    cartas_canjes: list = field(default_factory=list)  # redeemed Card Book sets
 
 
 def _cargar_secuencia():
@@ -1308,6 +1309,8 @@ def _ficha(p, base):
         crudo[62] = CODIGO_FACCION.get(getattr(p, 'faction', ''), 5)
     if len(crudo) >= 0xd8:
         struct.pack_into('<I', crudo, 0xd4, int(p.char_id or 0))
+    import cartas as _cartas
+    _cartas.perfil(crudo, p)
     return bytes(crudo)
 
 

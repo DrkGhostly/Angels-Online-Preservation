@@ -1,0 +1,2392 @@
+{
+ "_origen": "cardset.xml (update25, IGG)",
+ "filas": [
+  {
+   "id": 1,
+   "nombre": "Elf  Cardset",
+   "elegir": false,
+   "cartas": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "premios": [
+    [
+     0,
+     7333,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 2,
+   "nombre": "Spike Cardset",
+   "elegir": false,
+   "cartas": [
+    5,
+    6,
+    7,
+    8
+   ],
+   "premios": [
+    [
+     0,
+     3399,
+     1
+    ],
+    [
+     1,
+     3375,
+     1
+    ],
+    [
+     2,
+     7758,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 3,
+   "nombre": "Railway Cardset",
+   "elegir": false,
+   "cartas": [
+    9,
+    10,
+    11,
+    12
+   ],
+   "premios": [
+    [
+     0,
+     3397,
+     1
+    ],
+    [
+     1,
+     3375,
+     1
+    ],
+    [
+     2,
+     7758,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 4,
+   "nombre": "Jungle Cardset",
+   "elegir": false,
+   "cartas": [
+    13,
+    14,
+    15,
+    16
+   ],
+   "premios": [
+    [
+     0,
+     3396,
+     1
+    ],
+    [
+     1,
+     3375,
+     1
+    ],
+    [
+     2,
+     7758,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 5,
+   "nombre": "Desert Cardset",
+   "elegir": false,
+   "cartas": [
+    17,
+    18,
+    19,
+    20
+   ],
+   "premios": [
+    [
+     0,
+     3398,
+     1
+    ],
+    [
+     1,
+     3375,
+     1
+    ],
+    [
+     2,
+     7758,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 6,
+   "nombre": "Crash Cardset",
+   "elegir": false,
+   "cartas": [
+    21,
+    22,
+    23,
+    24
+   ],
+   "premios": [
+    [
+     0,
+     7319,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 7,
+   "nombre": "Fungus Cardset",
+   "elegir": false,
+   "cartas": [
+    25,
+    26,
+    27,
+    28
+   ],
+   "premios": [
+    [
+     0,
+     7320,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 8,
+   "nombre": "Mirror Cardset",
+   "elegir": false,
+   "cartas": [
+    29,
+    30,
+    31,
+    32
+   ],
+   "premios": [
+    [
+     0,
+     7337,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 9,
+   "nombre": "Mushroom Cardset",
+   "elegir": false,
+   "cartas": [
+    33,
+    34,
+    35,
+    36
+   ],
+   "premios": [
+    [
+     0,
+     7322,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 10,
+   "nombre": "Degula Cardset",
+   "elegir": false,
+   "cartas": [
+    37,
+    38,
+    39,
+    40
+   ],
+   "premios": [
+    [
+     0,
+     7336,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 11,
+   "nombre": "Scrap Cardset",
+   "elegir": false,
+   "cartas": [
+    41,
+    42,
+    43,
+    44
+   ],
+   "premios": [
+    [
+     0,
+     7321,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 12,
+   "nombre": "Flame Cardset",
+   "elegir": false,
+   "cartas": [
+    45,
+    46,
+    47,
+    48
+   ],
+   "premios": [
+    [
+     0,
+     7334,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 13,
+   "nombre": "Gebuer Cardset",
+   "elegir": true,
+   "cartas": [
+    49,
+    50,
+    51,
+    52
+   ],
+   "premios": [
+    [
+     0,
+     7344,
+     1
+    ],
+    [
+     1,
+     7345,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 14,
+   "nombre": "Dragon Cardset",
+   "elegir": true,
+   "cartas": [
+    53,
+    54,
+    55,
+    56
+   ],
+   "premios": [
+    [
+     0,
+     7346,
+     1
+    ],
+    [
+     1,
+     7347,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 15,
+   "nombre": "Jade Cardset",
+   "elegir": false,
+   "cartas": [
+    57,
+    58,
+    59,
+    60
+   ],
+   "premios": [
+    [
+     0,
+     7335,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 16,
+   "nombre": "Nightmare Cardset",
+   "elegir": false,
+   "cartas": [
+    61,
+    62,
+    63,
+    64,
+    65
+   ],
+   "premios": [
+    [
+     0,
+     4780,
+     20
+    ]
+   ]
+  },
+  {
+   "id": 17,
+   "nombre": "Artisan Cardset",
+   "elegir": false,
+   "cartas": [
+    66,
+    67,
+    68,
+    69,
+    70
+   ],
+   "premios": [
+    [
+     0,
+     6023,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 18,
+   "nombre": "Power Cardset",
+   "elegir": false,
+   "cartas": [
+    71,
+    72,
+    73,
+    74,
+    75
+   ],
+   "premios": [
+    [
+     0,
+     3121,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 19,
+   "nombre": "Flora Cardset",
+   "elegir": true,
+   "cartas": [
+    76,
+    77,
+    78,
+    79,
+    80,
+    81
+   ],
+   "premios": [
+    [
+     0,
+     6020,
+     1
+    ],
+    [
+     1,
+     6021,
+     1
+    ],
+    [
+     2,
+     6022,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 20,
+   "nombre": "Flame Cardset",
+   "elegir": true,
+   "cartas": [
+    82,
+    83,
+    84,
+    85,
+    86,
+    87
+   ],
+   "premios": [
+    [
+     0,
+     6024,
+     1
+    ],
+    [
+     1,
+     6025,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 21,
+   "nombre": "Aurora Cardset",
+   "elegir": false,
+   "cartas": [
+    74,
+    88,
+    89,
+    90,
+    91
+   ],
+   "premios": [
+    [
+     0,
+     6026,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 22,
+   "nombre": "Beast Cardset",
+   "elegir": false,
+   "cartas": [
+    72,
+    92,
+    93,
+    94,
+    95
+   ],
+   "premios": [
+    [
+     0,
+     6028,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 23,
+   "nombre": "Peace Cardset",
+   "elegir": true,
+   "cartas": [
+    73,
+    96,
+    97,
+    98,
+    99
+   ],
+   "premios": [
+    [
+     0,
+     6029,
+     1
+    ],
+    [
+     1,
+     6031,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 24,
+   "nombre": "Iron Cardset",
+   "elegir": false,
+   "cartas": [
+    71,
+    100,
+    101,
+    102,
+    103
+   ],
+   "premios": [
+    [
+     0,
+     6030,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 25,
+   "nombre": "Craftsman Cardset",
+   "elegir": true,
+   "cartas": [
+    104,
+    105,
+    106,
+    107,
+    108
+   ],
+   "premios": [
+    [
+     0,
+     6019,
+     1
+    ],
+    [
+     1,
+     4781,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 26,
+   "nombre": "Renascence Cardset",
+   "elegir": false,
+   "cartas": [
+    109,
+    110,
+    111,
+    112,
+    113
+   ],
+   "premios": [
+    [
+     0,
+     4028,
+     1
+    ],
+    [
+     1,
+     5014,
+     1
+    ],
+    [
+     2,
+     5988,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 27,
+   "nombre": "Earthquake Cardset",
+   "elegir": false,
+   "cartas": [
+    109,
+    114,
+    115,
+    116,
+    117
+   ],
+   "premios": [
+    [
+     0,
+     4034,
+     1
+    ],
+    [
+     1,
+     5014,
+     1
+    ],
+    [
+     2,
+     5989,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 28,
+   "nombre": "Storm Cardset",
+   "elegir": false,
+   "cartas": [
+    118,
+    119,
+    120,
+    121,
+    122
+   ],
+   "premios": [
+    [
+     0,
+     4040,
+     1
+    ],
+    [
+     1,
+     5014,
+     1
+    ],
+    [
+     2,
+     5990,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 29,
+   "nombre": "Arc Cardset",
+   "elegir": false,
+   "cartas": [
+    118,
+    123,
+    124,
+    125,
+    126
+   ],
+   "premios": [
+    [
+     0,
+     4046,
+     1
+    ],
+    [
+     1,
+     5014,
+     1
+    ],
+    [
+     2,
+     5991,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 30,
+   "nombre": "Wisdom Cardset",
+   "elegir": false,
+   "cartas": [
+    118,
+    127,
+    128,
+    129,
+    130
+   ],
+   "premios": [
+    [
+     0,
+     4054,
+     1
+    ],
+    [
+     1,
+     5014,
+     1
+    ],
+    [
+     2,
+     5992,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 31,
+   "nombre": "Primary Craftsman Cardset",
+   "elegir": false,
+   "cartas": [
+    131,
+    132,
+    133,
+    134,
+    135,
+    136,
+    137
+   ],
+   "premios": [
+    [
+     0,
+     6018,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 32,
+   "nombre": "Defense Cardset",
+   "elegir": false,
+   "cartas": [
+    109,
+    138,
+    139,
+    140,
+    141
+   ],
+   "premios": [
+    [
+     0,
+     4133,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 33,
+   "nombre": "Mystery Cardset",
+   "elegir": false,
+   "cartas": [
+    142,
+    143,
+    144,
+    145,
+    146
+   ],
+   "premios": [
+    [
+     0,
+     4501,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 34,
+   "nombre": "Curse Cardset",
+   "elegir": false,
+   "cartas": [
+    142,
+    147,
+    148,
+    149,
+    150
+   ],
+   "premios": [
+    [
+     0,
+     4141,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 35,
+   "nombre": "Nobility Cardset",
+   "elegir": false,
+   "cartas": [
+    151,
+    152,
+    153,
+    154,
+    155
+   ],
+   "premios": [
+    [
+     0,
+     4493,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 36,
+   "nombre": "Wish Cardset",
+   "elegir": true,
+   "cartas": [
+    156,
+    157,
+    158,
+    159
+   ],
+   "premios": [
+    [
+     0,
+     6080,
+     1
+    ],
+    [
+     1,
+     6081,
+     1
+    ],
+    [
+     2,
+     6082,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 37,
+   "nombre": "Beach Cardset",
+   "elegir": false,
+   "cartas": [
+    160,
+    161,
+    162,
+    163
+   ],
+   "premios": [
+    [
+     0,
+     6083,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 38,
+   "nombre": "Belief Cardset",
+   "elegir": true,
+   "cartas": [
+    164,
+    165,
+    166,
+    167
+   ],
+   "premios": [
+    [
+     0,
+     6084,
+     1
+    ],
+    [
+     1,
+     6085,
+     1
+    ],
+    [
+     2,
+     6086,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 39,
+   "nombre": "Coral Cardset",
+   "elegir": true,
+   "cartas": [
+    168,
+    169,
+    170,
+    171
+   ],
+   "premios": [
+    [
+     0,
+     6087,
+     1
+    ],
+    [
+     1,
+     6088,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 40,
+   "nombre": "Impurity Cardset",
+   "elegir": true,
+   "cartas": [
+    172,
+    173,
+    174,
+    175,
+    176
+   ],
+   "premios": [
+    [
+     0,
+     3788,
+     1
+    ],
+    [
+     1,
+     3789,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 41,
+   "nombre": "Art Cardset",
+   "elegir": true,
+   "cartas": [
+    177,
+    178,
+    179,
+    180,
+    181
+   ],
+   "premios": [
+    [
+     0,
+     6089,
+     1
+    ],
+    [
+     1,
+     6090,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 42,
+   "nombre": "Take Care of Your Stomach",
+   "elegir": false,
+   "cartas": [
+    182,
+    183,
+    184,
+    185
+   ],
+   "premios": [
+    [
+     0,
+     12304,
+     100
+    ]
+   ]
+  },
+  {
+   "id": 43,
+   "nombre": "Underwater World",
+   "elegir": false,
+   "cartas": [
+    186,
+    187,
+    188,
+    189,
+    190
+   ],
+   "premios": [
+    [
+     0,
+     12558,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 44,
+   "nombre": "Fish's Dance",
+   "elegir": false,
+   "cartas": [
+    191,
+    192,
+    193,
+    194
+   ],
+   "premios": [
+    [
+     0,
+     12305,
+     10
+    ],
+    [
+     1,
+     12306,
+     10
+    ],
+    [
+     2,
+     12307,
+     10
+    ]
+   ]
+  },
+  {
+   "id": 45,
+   "nombre": "King on the Sea",
+   "elegir": false,
+   "cartas": [
+    195,
+    196,
+    197,
+    198,
+    199
+   ],
+   "premios": [
+    [
+     0,
+     12308,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 46,
+   "nombre": "Scramble in the Sea",
+   "elegir": false,
+   "cartas": [
+    200,
+    201,
+    202,
+    203
+   ],
+   "premios": [
+    [
+     0,
+     12312,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 47,
+   "nombre": "Melee Now",
+   "elegir": true,
+   "cartas": [
+    204,
+    205,
+    206,
+    207
+   ],
+   "premios": [
+    [
+     0,
+     12322,
+     1
+    ],
+    [
+     1,
+     12323,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 48,
+   "nombre": "Magic is Art",
+   "elegir": true,
+   "cartas": [
+    208,
+    209,
+    210,
+    211
+   ],
+   "premios": [
+    [
+     0,
+     12320,
+     1
+    ],
+    [
+     1,
+     12324,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 49,
+   "nombre": "Real Bowman",
+   "elegir": true,
+   "cartas": [
+    212,
+    213,
+    214,
+    215
+   ],
+   "premios": [
+    [
+     0,
+     12319,
+     1
+    ],
+    [
+     1,
+     12321,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 50,
+   "nombre": "King of Worms",
+   "elegir": false,
+   "cartas": [
+    216,
+    217,
+    218,
+    219
+   ],
+   "premios": [
+    [
+     0,
+     12311,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 51,
+   "nombre": "Rainforest Ecology",
+   "elegir": false,
+   "cartas": [
+    220,
+    221,
+    222,
+    223
+   ],
+   "premios": [
+    [
+     0,
+     4457,
+     1
+    ],
+    [
+     1,
+     3121,
+     1
+    ],
+    [
+     2,
+     1211,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 52,
+   "nombre": "Bloody  Demons",
+   "elegir": true,
+   "cartas": [
+    224,
+    225,
+    226,
+    227
+   ],
+   "premios": [
+    [
+     0,
+     12309,
+     1
+    ],
+    [
+     1,
+     12310,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 53,
+   "nombre": "Forest's Hope",
+   "elegir": true,
+   "cartas": [
+    228,
+    229,
+    230,
+    231,
+    232
+   ],
+   "premios": [
+    [
+     0,
+     12313,
+     1
+    ],
+    [
+     1,
+     12314,
+     1
+    ],
+    [
+     2,
+     12315,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 54,
+   "nombre": "Sealed Souls",
+   "elegir": true,
+   "cartas": [
+    233,
+    234,
+    235,
+    236
+   ],
+   "premios": [
+    [
+     0,
+     12316,
+     1
+    ],
+    [
+     1,
+     12317,
+     1
+    ],
+    [
+     2,
+     12318,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 55,
+   "nombre": "Digging Tools",
+   "elegir": false,
+   "cartas": [
+    237,
+    238,
+    239,
+    240,
+    241
+   ],
+   "premios": [
+    [
+     0,
+     10555,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 56,
+   "nombre": "Eilian Awaits You",
+   "elegir": true,
+   "cartas": [
+    242,
+    243,
+    244,
+    245,
+    246
+   ],
+   "premios": [
+    [
+     0,
+     12878,
+     1
+    ],
+    [
+     1,
+     12879,
+     1
+    ],
+    [
+     2,
+     12880,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 57,
+   "nombre": "Master of Robbers",
+   "elegir": false,
+   "cartas": [
+    247,
+    248,
+    249,
+    250
+   ],
+   "premios": [
+    [
+     0,
+     12881,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 58,
+   "nombre": "Slay Dragon",
+   "elegir": true,
+   "cartas": [
+    251,
+    252,
+    253,
+    254
+   ],
+   "premios": [
+    [
+     0,
+     7521,
+     1
+    ],
+    [
+     1,
+     7533,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 59,
+   "nombre": "Search for Special Animals",
+   "elegir": true,
+   "cartas": [
+    255,
+    256,
+    257,
+    258
+   ],
+   "premios": [
+    [
+     0,
+     10564,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 60,
+   "nombre": "Modern Traffic",
+   "elegir": true,
+   "cartas": [
+    259,
+    260,
+    261,
+    262
+   ],
+   "premios": [
+    [
+     0,
+     12883,
+     1
+    ],
+    [
+     1,
+     12884,
+     1
+    ],
+    [
+     2,
+     12885,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 61,
+   "nombre": "Self-protection in Desert",
+   "elegir": false,
+   "cartas": [
+    263,
+    264,
+    265,
+    266,
+    267
+   ],
+   "premios": [
+    [
+     0,
+     12889,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 62,
+   "nombre": "Little Girl's Wish",
+   "elegir": false,
+   "cartas": [
+    268,
+    269,
+    270,
+    271,
+    272
+   ],
+   "premios": [
+    [
+     0,
+     12886,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 63,
+   "nombre": "Happy Together",
+   "elegir": false,
+   "cartas": [
+    273,
+    274,
+    275,
+    276,
+    277
+   ],
+   "premios": [
+    [
+     0,
+     12887,
+     50
+    ]
+   ]
+  },
+  {
+   "id": 64,
+   "nombre": "Join Party Now",
+   "elegir": false,
+   "cartas": [
+    278,
+    279,
+    280,
+    281
+   ],
+   "premios": [
+    [
+     0,
+     12888,
+     100
+    ]
+   ]
+  },
+  {
+   "id": 65,
+   "nombre": "I want a zoo",
+   "elegir": false,
+   "cartas": [
+    282,
+    283,
+    284,
+    285,
+    286,
+    287,
+    288
+   ],
+   "premios": [
+    [
+     0,
+     12890,
+     10
+    ],
+    [
+     1,
+     12891,
+     10
+    ],
+    [
+     2,
+     12892,
+     10
+    ]
+   ]
+  },
+  {
+   "id": 66,
+   "nombre": "Palace, Palace!",
+   "elegir": false,
+   "cartas": [
+    289,
+    290,
+    291,
+    292,
+    293
+   ],
+   "premios": [
+    [
+     0,
+     12893,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 67,
+   "nombre": "Storm Comes Now!",
+   "elegir": false,
+   "cartas": [
+    294,
+    295,
+    296,
+    297
+   ],
+   "premios": [
+    [
+     0,
+     17321,
+     3
+    ],
+    [
+     1,
+     17322,
+     3
+    ],
+    [
+     2,
+     17323,
+     3
+    ]
+   ]
+  },
+  {
+   "id": 68,
+   "nombre": "Worms Conquer the World!",
+   "elegir": false,
+   "cartas": [
+    298,
+    299,
+    300,
+    301,
+    302
+   ],
+   "premios": [
+    [
+     0,
+     12894,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 69,
+   "nombre": "Leaders of Evil Lyceum",
+   "elegir": true,
+   "cartas": [
+    303,
+    304,
+    305,
+    306,
+    307
+   ],
+   "premios": [
+    [
+     0,
+     12895,
+     1
+    ],
+    [
+     1,
+     12896,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 70,
+   "nombre": "Cute but Deadly",
+   "elegir": true,
+   "cartas": [
+    308,
+    309,
+    310,
+    311
+   ],
+   "premios": [
+    [
+     0,
+     22211,
+     1
+    ],
+    [
+     1,
+     22212,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 71,
+   "nombre": "Powers of Nature",
+   "elegir": true,
+   "cartas": [
+    312,
+    313,
+    314,
+    315
+   ],
+   "premios": [
+    [
+     0,
+     22193,
+     1
+    ],
+    [
+     1,
+     22194,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 72,
+   "nombre": "Sky City",
+   "elegir": false,
+   "cartas": [
+    316,
+    317,
+    318,
+    319
+   ],
+   "premios": [
+    [
+     0,
+     22213,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 73,
+   "nombre": "Tech-Revolution",
+   "elegir": true,
+   "cartas": [
+    320,
+    321,
+    322,
+    323
+   ],
+   "premios": [
+    [
+     0,
+     22214,
+     1
+    ],
+    [
+     1,
+     22215,
+     1
+    ],
+    [
+     2,
+     22216,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 74,
+   "nombre": "Garden of Mystery",
+   "elegir": true,
+   "cartas": [
+    324,
+    325,
+    326,
+    327
+   ],
+   "premios": [
+    [
+     0,
+     15359,
+     4
+    ],
+    [
+     1,
+     15358,
+     4
+    ]
+   ]
+  },
+  {
+   "id": 75,
+   "nombre": "Killer Racers",
+   "elegir": true,
+   "cartas": [
+    328,
+    329,
+    330,
+    331
+   ],
+   "premios": [
+    [
+     0,
+     15361,
+     4
+    ],
+    [
+     1,
+     15360,
+     4
+    ]
+   ]
+  },
+  {
+   "id": 76,
+   "nombre": "Young and Dangerous",
+   "elegir": true,
+   "cartas": [
+    332,
+    333,
+    334,
+    335
+   ],
+   "premios": [
+    [
+     0,
+     15362,
+     4
+    ],
+    [
+     1,
+     15363,
+     4
+    ]
+   ]
+  },
+  {
+   "id": 77,
+   "nombre": "Flight Masters",
+   "elegir": true,
+   "cartas": [
+    336,
+    337,
+    338,
+    339
+   ],
+   "premios": [
+    [
+     0,
+     22201,
+     1
+    ],
+    [
+     1,
+     22202,
+     1
+    ],
+    [
+     2,
+     22203,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 78,
+   "nombre": "Ironfists",
+   "elegir": true,
+   "cartas": [
+    340,
+    341,
+    342,
+    343
+   ],
+   "premios": [
+    [
+     0,
+     22217,
+     1
+    ],
+    [
+     1,
+     22218,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 79,
+   "nombre": "Beauty Beyond",
+   "elegir": true,
+   "cartas": [
+    344,
+    345,
+    346,
+    347
+   ],
+   "premios": [
+    [
+     0,
+     22204,
+     1
+    ],
+    [
+     1,
+     22205,
+     1
+    ],
+    [
+     2,
+     22206,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 80,
+   "nombre": "Feathery Memory",
+   "elegir": true,
+   "cartas": [
+    348,
+    349,
+    350,
+    351
+   ],
+   "premios": [
+    [
+     0,
+     22207,
+     1
+    ],
+    [
+     1,
+     22208,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 81,
+   "nombre": "Brash Challenger",
+   "elegir": true,
+   "cartas": [
+    352,
+    353,
+    354,
+    355
+   ],
+   "premios": [
+    [
+     0,
+     22209,
+     1
+    ],
+    [
+     1,
+     22210,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 82,
+   "nombre": "Unspeakable Secret",
+   "elegir": true,
+   "cartas": [
+    356,
+    357,
+    358,
+    359
+   ],
+   "premios": [
+    [
+     0,
+     22211,
+     1
+    ],
+    [
+     1,
+     22212,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 83,
+   "nombre": "All-You-Can-Eat is the Way to Go",
+   "elegir": true,
+   "cartas": [
+    360,
+    361,
+    362,
+    363
+   ],
+   "premios": [
+    [
+     0,
+     77695,
+     1
+    ],
+    [
+     1,
+     77696,
+     1
+    ],
+    [
+     2,
+     77697,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 84,
+   "nombre": "Welcome to the Theme Park Tour",
+   "elegir": false,
+   "cartas": [
+    364,
+    365,
+    366,
+    367
+   ],
+   "premios": [
+    [
+     0,
+     22191,
+     3
+    ],
+    [
+     1,
+     22192,
+     3
+    ]
+   ]
+  },
+  {
+   "id": 85,
+   "nombre": "Piggy's Wonderland",
+   "elegir": true,
+   "cartas": [
+    368,
+    369,
+    370,
+    371
+   ],
+   "premios": [
+    [
+     0,
+     20291,
+     4
+    ],
+    [
+     1,
+     20290,
+     4
+    ]
+   ]
+  },
+  {
+   "id": 86,
+   "nombre": "Soldier's Request",
+   "elegir": true,
+   "cartas": [
+    372,
+    373,
+    374,
+    375
+   ],
+   "premios": [
+    [
+     0,
+     28649,
+     5
+    ],
+    [
+     1,
+     28651,
+     5
+    ],
+    [
+     2,
+     28648,
+     5
+    ]
+   ]
+  },
+  {
+   "id": 87,
+   "nombre": "I Want to Eat Fruits",
+   "elegir": true,
+   "cartas": [
+    376,
+    377,
+    378,
+    379
+   ],
+   "premios": [
+    [
+     0,
+     20293,
+     4
+    ],
+    [
+     1,
+     20292,
+     4
+    ]
+   ]
+  },
+  {
+   "id": 88,
+   "nombre": "The Pinnacle of Magic",
+   "elegir": true,
+   "cartas": [
+    380,
+    381,
+    382,
+    383
+   ],
+   "premios": [
+    [
+     0,
+     77701,
+     1
+    ],
+    [
+     1,
+     77702,
+     1
+    ],
+    [
+     2,
+     77703,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 89,
+   "nombre": "Idol's Wish",
+   "elegir": true,
+   "cartas": [
+    384,
+    385,
+    386,
+    387
+   ],
+   "premios": [
+    [
+     0,
+     77698,
+     1
+    ],
+    [
+     1,
+     77699,
+     1
+    ],
+    [
+     2,
+     77700,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 90,
+   "nombre": "Weight Loss Method",
+   "elegir": true,
+   "cartas": [
+    388,
+    389,
+    390,
+    391
+   ],
+   "premios": [
+    [
+     0,
+     20294,
+     4
+    ],
+    [
+     1,
+     20295,
+     4
+    ]
+   ]
+  },
+  {
+   "id": 91,
+   "nombre": "Duel Expert",
+   "elegir": true,
+   "cartas": [
+    392,
+    393,
+    394,
+    395
+   ],
+   "premios": [
+    [
+     0,
+     77693,
+     1
+    ],
+    [
+     1,
+     77694,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 92,
+   "nombre": "Don't Push Your Luck",
+   "elegir": true,
+   "cartas": [
+    396,
+    397,
+    398,
+    399
+   ],
+   "premios": [
+    [
+     0,
+     77688,
+     1
+    ],
+    [
+     1,
+     77689,
+     1
+    ],
+    [
+     2,
+     77690,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 93,
+   "nombre": "Red Riding Hood's Adventure",
+   "elegir": true,
+   "cartas": [
+    400,
+    401,
+    402,
+    403
+   ],
+   "premios": [
+    [
+     0,
+     22211,
+     1
+    ],
+    [
+     1,
+     22212,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 94,
+   "nombre": "The Great Taste of Chocolate",
+   "elegir": true,
+   "cartas": [
+    404,
+    405,
+    406,
+    407
+   ],
+   "premios": [
+    [
+     0,
+     77686,
+     10
+    ],
+    [
+     1,
+     77687,
+     10
+    ]
+   ]
+  },
+  {
+   "id": 95,
+   "nombre": "The Path of the Brave",
+   "elegir": true,
+   "cartas": [
+    408,
+    409,
+    410,
+    411
+   ],
+   "premios": [
+    [
+     0,
+     77691,
+     1
+    ],
+    [
+     1,
+     77692,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 96,
+   "nombre": "Jurassic Park",
+   "elegir": true,
+   "cartas": [
+    412,
+    413,
+    414,
+    415,
+    416
+   ],
+   "premios": [
+    [
+     0,
+     2,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 97,
+   "nombre": "The Honor of the Tribe",
+   "elegir": true,
+   "cartas": [
+    417,
+    418,
+    419,
+    420
+   ],
+   "premios": [
+    [
+     0,
+     2,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 98,
+   "nombre": "Recycle Expert",
+   "elegir": true,
+   "cartas": [
+    421,
+    422,
+    423,
+    424
+   ],
+   "premios": [
+    [
+     0,
+     2,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 99,
+   "nombre": "Green Faced",
+   "elegir": true,
+   "cartas": [
+    425,
+    426,
+    427,
+    428,
+    429
+   ],
+   "premios": [
+    [
+     0,
+     2,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 100,
+   "nombre": "Janice's Dating",
+   "elegir": true,
+   "cartas": [
+    430,
+    431,
+    432,
+    433
+   ],
+   "premios": [
+    [
+     0,
+     2,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 101,
+   "nombre": "Looks Evil",
+   "elegir": true,
+   "cartas": [
+    434,
+    435,
+    436,
+    437
+   ],
+   "premios": [
+    [
+     0,
+     2,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 102,
+   "nombre": "No show",
+   "elegir": true,
+   "cartas": [
+    438,
+    439,
+    440,
+    441
+   ],
+   "premios": [
+    [
+     0,
+     2,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 103,
+   "nombre": "Enrol Family's Curse",
+   "elegir": true,
+   "cartas": [
+    442,
+    443,
+    444,
+    445
+   ],
+   "premios": [
+    [
+     0,
+     2,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 104,
+   "nombre": "Professor Krieg's Research",
+   "elegir": true,
+   "cartas": [
+    446,
+    447,
+    448,
+    449,
+    450
+   ],
+   "premios": [
+    [
+     0,
+     2,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 105,
+   "nombre": "Thick Faced Fellow",
+   "elegir": true,
+   "cartas": [
+    451,
+    452,
+    453,
+    454
+   ],
+   "premios": [
+    [
+     0,
+     2,
+     1
+    ]
+   ]
+  },
+  {
+   "id": 106,
+   "nombre": "The stories about him are true",
+   "elegir": true,
+   "cartas": [
+    455,
+    456,
+    457,
+    458,
+    459
+   ],
+   "premios": [
+    [
+     0,
+     2,
+     1
+    ]
+   ]
+  }
+ ]
+}

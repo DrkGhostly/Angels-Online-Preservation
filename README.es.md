@@ -26,6 +26,20 @@ una suposición, lo dice.
 - Inventario con **cantidades**: los consumibles se apilan, y equipar,
   desequipar y mover entre casillas se contesta casilla por casilla, como
   hace el servidor real
+- **Card Book de IGG**: las 459 cartas coleccionables y los 106 sets salen de
+  las tablas del último cliente de IGG. Registrar una carta auténtica consume
+  exactamente una unidad, actualiza de inmediato la Card List nativa y conserva
+  la colección al reconectar. Los objetos que no son cartas y los registros
+  duplicados se rechazan sin consumir nada
+- **Premios de sets de cartas**: los sets de «todos los premios» y «elegir uno»
+  usan la petición de canje nativa del cliente. El servidor valida que el set
+  esté completo y que sólo se canjee una vez; los premios y el estado del canje
+  se guardan de forma atómica, por lo que una mochila llena o un fallo al guardar
+  no puede entregar premios parciales ni duplicados
+- El bloque extendido del inventario se sincroniza en las pestañas **Fashion,
+  Card y Furniture (ranuras 167..556)**. Al mover un objeto desde una ranura alta,
+  como la 280 de Card, a la mochila normal se vacía el origen con el delta
+  `0x001B` nativo, evitando la instancia duplicada que cerraba el cliente
 - Tiendas: comprar **varios objetos y varias unidades de una vez**, vender,
   separar un montón y destruirlo. Los precios de compra y venta salen de
   `item.xml`, y el total de una venta coincide con el capturado al oro

@@ -148,12 +148,16 @@ def vaciar_ranura(dueno: int, ranura: int,
     El byte del contenedor se creia fijo en 1. Al guardar algo en el banco el
     servidor real manda 02 y de dueno el 252 en vez de la entidad.
     """
-    # Las de Fashion (167..174) y la insignia (175) tambien son casillas
-    # validas: con el tope en 154 se quedaban fuera y, al quitarse una pieza
-    # de fashion, la casilla no se vaciaba en el cliente -- la pieza salia en
-    # la mochila Y seguia en su casilla de la pestana Fashion --.
-    if contenedor == CONT_MOCHILA and (ranura < 0 or (ranura > 154 and not (167 <= ranura <= 175)
-                                                      and not (497 <= ranura <= 556))):
+    # Ademas de la mochila normal, el 0x001A inicial restaura el bloque
+    # extendido completo del personaje (login.py):
+    #   167..175  fashion equipada e insignia
+    #   176..275  bolsa Fashion
+    #   276..     pestanas Card y Furniture, hasta 556
+    # Esas casillas tambien aceptan el submensaje de vaciado con ranura u16.
+    # Excluir 176..496 dejaba el item nuevo en destino pero nunca borraba el
+    # origen en el cliente; dos vistas conservaban la misma instancia y el
+    # cliente se cerraba (reproducido al mover una card 280 -> 37).
+    if contenedor == CONT_MOCHILA and (ranura < 0 or (ranura > 154 and not (167 <= ranura <= 556))):
         log.warning(f"Intento de vaciar ranura fuera de limites ({ranura}) en CONT_MOCHILA - omitido para evitar crash")
         return b''
     return struct.pack('<HIBBIH', 0x001B, 1, 2, contenedor, dueno, ranura)

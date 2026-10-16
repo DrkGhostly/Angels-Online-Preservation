@@ -9460,24 +9460,10 @@ class Servidor:
                 log.info(f"[{addr}] item destruido en ranura {slot}: {item_del} ({nom_it})")
             return
 
-        # --- Mover / Intercambiar item entre ranuras (drag & drop) -------
+        # IGG 0x0130 is Card Book Exchange (sub_6229C0), NOT inventory drag.
         if opcode == 0x0130 and ses.rol == 'mundo' and ses.personaje and cuerpo:
-            import inventario as _iv
-            if len(cuerpo) >= 2:
-                s1, s2 = cuerpo[0], cuerpo[1]
-                bolsa = getattr(ses, 'inventario', {})
-                cid = ses.personaje.char_id
-                it1 = bolsa.pop(s1, None)
-                it2 = bolsa.pop(s2, None)
-                if it1 is not None:
-                    bolsa[s2] = it1
-                if it2 is not None:
-                    bolsa[s1] = it2
-                ses.enviar(_iv.completo(cid, _con_oro(ses), _dueno(ses), _mejoras_de(ses)))
-                if getattr(ses, 'usuario', None):
-                    cuentas.guardar_inventario(ses.usuario, cid, bolsa,
-                                   _cantidades(ses))
-                log.info(f"[{addr}] intercambio ranuras inventario: {s1} <-> {s2}")
+            import cartas as _cartas
+            _cartas.canjear(ses, cuerpo, _meter, _refrescar)
             return
 
         # --- eleccion de clase -----------------------------------------
@@ -9907,6 +9893,16 @@ class Servidor:
                     ses.enviar(_ms.entidad_mundo(_pet_plantilla(), ficha))
                 _guardar_bolsa(ses, ses.personaje.char_id)
                 log.info('[%s] mascota renombrada a %s' % (addr, nom))
+            return
+
+        # The client's Card/Furniture bag uses slots above 255. sub_61B000
+        # emits 0x0132 (<II>) instead of 0x002E (<BI>) for those slots.
+        if opcode == 0x0132 and ses.rol == 'mundo' and ses.personaje:
+            if len(cuerpo) == 8:
+                _ranura_card, _param_card = struct.unpack('<II', cuerpo)
+                if _param_card == 0:
+                    import cartas as _cartas
+                    _cartas.registrar(ses, _ranura_card, _sacar, _refrescar)
             return
 
         if opcode == 0x002E and ses.rol == 'mundo' and len(cuerpo) >= 4:
@@ -10813,19 +10809,12 @@ class Servidor:
                          addr, item_id, premio_id, premio_n, nom_premio)
                 return
 
-            # Caso 6: Tarjetas de Monstruo / Coleccionables
-            if inv.es_tarjeta_coleccion(item_id):
-                _sacar(ses, ranura, 1)
-                nom_it = _nombre_item(item_id)
-                salida = [
-                    _c.aviso(f"Registered {nom_it} to Card Collection!", tipo=0, msg_id=_c.MSG_ITEM),
-                    *_refrescar(ses, [ranura]),
-                ]
-                ses.enviar(*salida)
-                if ses.personaje and getattr(ses, 'usuario', None):
-                    cuentas.guardar_inventario(ses.usuario, cid, bolsa,
-                                   _cantidades(ses))
-                log.info(f"[{addr}] tarjeta usada: {nom_it} (ranura {ranura})")
+            # Caso 6: genuine Card Book cards. Validation and consumption
+            # must commit together; an English name containing Card is not
+            # sufficient to consume an item (EXP cards are other systems).
+            import cartas as _cartas
+            if ses.personaje and not objetivo and _cartas.registrar(
+                    ses, ranura, _sacar, _refrescar):
                 return
 
             # Caso 7: Advancement Stone (subir nivel del personaje instantaneamente)

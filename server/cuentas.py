@@ -572,6 +572,7 @@ def personaje_de(cuenta, ranura=0):
         album={str(k): int(v) for k, v in (p.get('album') or {}).items()},
         logros=[int(x) for x in (p.get('logros') or [])],
         cartas=[int(x) for x in (p.get('cartas') or [])],
+        cartas_canjes=[int(x) for x in (p.get('cartas_canjes') or [])],
         permisos=[str(x) for x in (p.get('permisos') or [])],
         estrellas=[tuple(x) for x in (p.get('estrellas') or [])
                    if isinstance(x, (list, tuple)) and len(x) >= 2],
@@ -807,6 +808,45 @@ def guardar_sistemas(usuario: str, char_id: int, p):
         fila['casa'] = {'muebles': [int(x) for x in
                                     ((getattr(p, 'casa', None) or {}).get('muebles') or [])]}
     _actualizar_personaje(usuario, char_id, _mut)
+
+
+def guardar_cardbook(usuario: str, char_id: int, plan):
+    """Commit card ownership/redemptions and inventory in ONE transaction.
+
+    Require the exact authenticated character; do not fall back to a different
+    slot. Never write whole account JSON or change unrelated systems.
+    """
+    with _LOCK:
+        con = _get_conn()
+        try:
+            con.execute('BEGIN IMMEDIATE')
+            row = con.execute(
+                'SELECT ranura, datos FROM personajes WHERE usuario=? AND char_id=?',
+                (usuario, char_id)).fetchone()
+            if row is None:
+                raise ValueError('Character no longer exists.')
+            datos = json.loads(row[1])
+            datos['cartas'] = sorted(set(int(x) for x in plan.personaje.cartas))
+            datos['cartas_canjes'] = sorted(set(int(x) for x in
+                                                 plan.personaje.cartas_canjes))
+            datos['inventario'] = {str(k): v for k, v in plan.inventario.items()}
+            datos['cantidades'] = {str(k): int(v) for k, v in plan.cantidades.items()
+                                    if int(k) in plan.inventario}
+            datos['mejoras'] = {str(k): v for k, v in
+                                (getattr(plan.personaje, 'mejoras', {}) or {}).items()}
+            # Reward items may themselves be pets; _meter prepares their data.
+            datos['mascota'] = getattr(plan.personaje, 'mascota', {}) or {}
+            datos['mascotas'] = getattr(plan.personaje, 'mascotas', {}) or {}
+            con.execute('UPDATE personajes SET datos=?, actualizado_en=CURRENT_TIMESTAMP '
+                        'WHERE usuario=? AND char_id=?',
+                        (json.dumps(datos, ensure_ascii=False), usuario, char_id))
+            con.commit()
+        except Exception:
+            con.rollback()
+            raise
+        finally:
+            con.close()
+        _notificar_cambio(inmediato=True)
 
 
 def guardar_banco(usuario: str, char_id: int, banco: dict):

@@ -26,6 +26,19 @@ a guess, it says so.
 - Inventory with **quantities**: consumables stack, and equipping, unequipping
   and moving between slots all report back per slot, the way the real server
   does
+- **IGG Card Book**: all 459 collectible cards and 106 sets are read from the
+  last IGG client's own tables. Registering a genuine card consumes exactly
+  one unit, updates the native Card List immediately, and persists ownership
+  across reconnects. Non-card items and duplicate registrations are rejected
+  without consuming anything
+- **Card-set rewards**: both "all rewards" and "choose one" sets use the
+  client's native exchange request. Completion and one-time redemption are
+  validated server-side; rewards and redemption state are committed atomically,
+  so a full bag or a failed save cannot grant partial or duplicate rewards
+- The extended inventory block is synchronized across **Fashion, Card and
+  Furniture slots (167..556)**. Moving an item from a high slot such as Card
+  slot 280 back to the normal bag now clears the source with the native
+  `0x001B` delta instead of leaving a duplicate instance that crashes the client
 - Shops: buying **several items and several units in one go**, selling,
   splitting a stack and destroying one. Buy and sell prices come from
   `item.xml`, and the sale total matches the captured one to the gold
