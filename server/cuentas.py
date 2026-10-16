@@ -595,6 +595,8 @@ def personaje_de(cuenta, ranura=0):
         apariencia=list(p.get('apariencia') or [0, 0, 0, 8, 8]),
         quest_kills={str(k): int(v) for k, v in (p.get('quest_kills') or {}).items()},
         expiracion_puesto=_exp_puesto,
+        emotes={int(x) for x in (p.get('emotes') or [])},
+        quick_emotes={int(k): int(v) for k, v in (p.get('quick_emotes') or {0: -1, 1: -1, 2: -1, 3: -1}).items()},
     )
 
 
@@ -815,7 +817,22 @@ def guardar_sistemas(usuario: str, char_id: int, p):
         fila['estrellas'] = [list(x) for x in (getattr(p, 'estrellas', None) or [])]
         fila['casa'] = {'muebles': [int(x) for x in
                                     ((getattr(p, 'casa', None) or {}).get('muebles') or [])]}
+        fila['emotes'] = sorted({int(x) for x in (getattr(p, 'emotes', None) or [])})
+        fila['quick_emotes'] = {str(k): int(v) for k, v in (getattr(p, 'quick_emotes', None) or {}).items()}
     _actualizar_personaje(usuario, char_id, _mut)
+
+
+def guardar_emotes(usuario: str, char_id: int, emotes):
+    def _mut(fila):
+        fila['emotes'] = sorted({int(x) for x in (emotes or [])})
+    _actualizar_personaje(usuario, char_id, _mut)
+
+
+def guardar_quick_emotes(usuario: str, char_id: int, quick_emotes):
+    def _mut(fila):
+        fila['quick_emotes'] = {str(k): int(v) for k, v in (quick_emotes or {}).items()}
+    _actualizar_personaje(usuario, char_id, _mut)
+
 
 
 def guardar_cardbook(usuario: str, char_id: int, plan):

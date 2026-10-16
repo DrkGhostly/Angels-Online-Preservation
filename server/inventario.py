@@ -2863,3 +2863,48 @@ def sp_de_item(item_id: int) -> int:
         return int(r[0]) if r and str(r[0] or '').isdigit() else 0
     except Exception:
         return 0
+
+
+def es_tarjeta_emocion(item_id: int) -> bool:
+    """Si el item es una tarjeta de expresion/emocion ('表情卡')."""
+    return categoria_item(item_id) == '表情卡'
+
+
+def emote_de_tarjeta(item_id: int) -> int | None:
+    """Devuelve el ID de emote asociado a la tarjeta de expresion, o None.
+
+    En content.db, las tarjetas de emocion tienen categoria '表情卡'
+    y el ID del emote (0..36) viene en la columna '動態資料1'.
+    """
+    if not item_id:
+        return None
+    try:
+        import sqlite3
+        db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
+        if not db.exists():
+            return None
+        con = sqlite3.connect(db)
+        try:
+            fila = fila_item(con, '"動態資料1"', int(item_id))
+            if fila and fila[0] is not None:
+                val = str(fila[0]).strip()
+                if val.isdigit():
+                    return int(val)
+        finally:
+            con.close()
+    except Exception:
+        pass
+    return None
+
+
+EMOTES_BASICOS = frozenset(range(12))  # 0..11 son los emotes basicos de fabrica
+
+
+def puede_usar_emocion(personaje, emote_id: int) -> bool:
+    """True si el personaje tiene acceso a este emote (es basico o fue adquirido mediante item)."""
+    emo = int(emote_id)
+    if emo in EMOTES_BASICOS:
+        return True
+    adquiridos = getattr(personaje, 'emotes', None) or set()
+    return emo in adquiridos
+

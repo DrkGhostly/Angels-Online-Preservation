@@ -979,6 +979,7 @@ PALABRAS_GM = frozenset((
     'skills', 'spells', 'skillsall', 'learnall', 'skillall', 'skills5', 'skill5',
     'clearskills', 'clearskill',
     'pet', 'mascota',
+    'emote', 'emocion',
 ))
 
 
@@ -1092,6 +1093,25 @@ def _gm_parsear(texto: str):
                'pet', 'mascota'):
         import gm as _gm
         return _gm.parsear(texto)
+    if cmd in ('emote', 'e', 'emocion'):
+        if len(partes) < 2:
+            return ('err', 'usage: /emote <id 0..36> | /emote unlock <id> | /emote unlockall | /emote list')
+        sub = partes[1].lower()
+        if sub in ('unlockall', 'all'):
+            return ('emote_unlockall',)
+        if sub == 'list':
+            return ('emote_list',)
+        if sub in ('unlock', 'learn') and len(partes) >= 3:
+            try:
+                eid = int(partes[2], 0)
+                return ('emote_unlock', eid)
+            except ValueError:
+                return ('err', 'el id de emote debe ser un numero')
+        try:
+            emo_id = int(partes[1], 0)
+        except ValueError:
+            return ('err', 'el id de emote debe ser un numero')
+        return ('emote', emo_id)
     if cmd not in ('item', 'give', 'i'):
         return None
     if len(partes) < 2:
@@ -1122,9 +1142,56 @@ def _probar_gm(ses, cuerpo, addr) -> bool:
         ses.enviar(_cl.aviso(
             'GM: /item <id> [qty] | /level <n> | /levelall <n> | /skills [lv] | /skillsall [lv] | /skills5 | /clearskills | '
             '/pet level|exp|path|evolve | /rango [1..20] | '
-            '/estacion <normal|navidad|halloween|sakura|verano>',
+            '/estacion <normal|navidad|halloween|sakura|verano> | /emote <0..36> | /emote unlock <id> | /emote unlockall | /emote list',
             tipo=0, msg_id=_cl.MSG_ITEM))
         log.info('[%s] GM help' % (addr,))
+        return True
+    if leido[0] == 'emote' and ses.personaje:
+        import inventario as _iv_emo
+        emo_id = max(0, min(36, int(leido[1])))
+        if not _iv_emo.puede_usar_emocion(ses.personaje, emo_id):
+            ses.enviar(_cl.aviso("You have not unlocked this expression yet.", tipo=0, msg_id=_cl.MSG_ITEM))
+            return True
+        import presencia as _pr_emo
+        _pr_emo.notificar_emocion(ses, emo_id)
+        log.info(f"[{addr}] GM emote {emo_id} reproducido por {ses.personaje.nombre}")
+        return True
+    if leido[0] == 'emote_unlock' and ses.personaje:
+        emo_id = max(0, min(36, int(leido[1])))
+        emotes = getattr(ses.personaje, 'emotes', None)
+        if emotes is None:
+            emotes = set()
+            ses.personaje.emotes = emotes
+        emotes.add(emo_id)
+        if getattr(ses, 'usuario', None):
+            cuentas.guardar_emotes(ses.usuario, ses.personaje.char_id, emotes)
+        import presencia as _pr_emo
+        ses.enviar(
+            _cl.aviso(f"Emote {emo_id} unlocked!", tipo=0, msg_id=_cl.MSG_ITEM),
+            _pr_emo.paquete_emotes_desbloqueados(emotes)
+        )
+        _pr_emo.notificar_emocion(ses, emo_id)
+        log.info(f"[{addr}] GM desbloqueo emote {emo_id} para {ses.personaje.nombre}")
+        return True
+    if leido[0] == 'emote_unlockall' and ses.personaje:
+        emotes = getattr(ses.personaje, 'emotes', None)
+        if emotes is None:
+            emotes = set()
+            ses.personaje.emotes = emotes
+        for i in range(37):
+            emotes.add(i)
+        if getattr(ses, 'usuario', None):
+            cuentas.guardar_emotes(ses.usuario, ses.personaje.char_id, emotes)
+        import presencia as _pr_emo
+        ses.enviar(
+            _cl.aviso("All 37 emotes unlocked!", tipo=0, msg_id=_cl.MSG_ITEM),
+            _pr_emo.paquete_emotes_desbloqueados(emotes)
+        )
+        log.info(f"[{addr}] GM desbloqueo todos los emotes para {ses.personaje.nombre}")
+        return True
+    if leido[0] == 'emote_list' and ses.personaje:
+        adquiridos = sorted(getattr(ses.personaje, 'emotes', None) or [])
+        ses.enviar(_cl.aviso(f"Basic: 0..11 | Acquired: {adquiridos}", tipo=0, msg_id=_cl.MSG_ITEM))
         return True
     if leido[0] == 'err':
         ses.enviar(_cl.aviso(leido[1], tipo=0, msg_id=_cl.MSG_ITEM))
@@ -11183,6 +11250,37 @@ class Servidor:
                 log.info(f"[{addr}] tarjeta de puesto activada: {item_id} -> {tarjeta_equipar} en ranura {inv.RANURA_PUESTO} (duracion {dur_s}s)")
                 return
 
+            # Caso 1.0b: TARJETAS DE EXPRESION / EMOCION (EMOTE CARDS).
+            # Items como 3262 (Wait), 3263 (Follow), 3274 (Cry), 3280 (Love), etc.
+            # Categoria '表情卡', con el id de emote en '動態資料1'.
+            if inv.es_tarjeta_emocion(item_id):
+                emo_id = inv.emote_de_tarjeta(item_id)
+                if emo_id is None:
+                    emo_id = 0
+                emotes_actuales = getattr(ses.personaje, 'emotes', None)
+                if emotes_actuales is None:
+                    emotes_actuales = set()
+                    ses.personaje.emotes = emotes_actuales
+                if emo_id in emotes_actuales:
+                    ses.enviar(_c.aviso("You have already learned this expression.", tipo=0, msg_id=_c.MSG_ITEM))
+                    return
+                _sacar(ses, ranura, 1)
+                emotes_actuales.add(emo_id)
+                import presencia as _pr_emo
+                _pr_emo.notificar_emocion(ses, emo_id)
+                nom_item_usado = _nombre_item(item_id)
+                salida = [
+                    _c.aviso(f"Learned expression: {nom_item_usado}!", tipo=0, msg_id=_c.MSG_ITEM),
+                    _pr_emo.paquete_emotes_desbloqueados(emotes_actuales),
+                    *_refrescar(ses, [ranura]),
+                ]
+                ses.enviar(*salida)
+                if ses.personaje and getattr(ses, 'usuario', None):
+                    cuentas.guardar_inventario(ses.usuario, cid, bolsa, _cantidades(ses))
+                    cuentas.guardar_emotes(ses.usuario, cid, emotes_actuales)
+                log.info(f"[{addr}] tarjeta de expresion aprendida: item {item_id} -> emote {emo_id} (ranura {ranura})")
+                return
+
             eq_slot = inv.ranura_equipo_de(item_id)
             if eq_slot is not None:
                 estado_org = (ses.personaje.mejoras or {}).get(ranura) if ses.personaje else None
@@ -13017,6 +13115,40 @@ class Servidor:
             # porque los bytes altos son cero, pero rompe la 0x0c.
             accion = cuerpo[0]
             parametro = struct.unpack_from('<I', cuerpo, 1)[0]
+            if accion == 1 and ses.personaje and not getattr(ses, 'muerto', False):
+                # EMOTE / EMOCION (Alt+E o ranuras de acceso rapido).
+                # Angel.exe FUN_00614DA0(1, AppData) manda C2S 0x0016 [01] [LE32 emote_id].
+                # Se responde y difunde con S2C 0x0019 [LE32 entity_id][U8 emote_id] (FUN_005f2200).
+                import inventario as _iv_emo
+                if not _iv_emo.puede_usar_emocion(ses.personaje, parametro):
+                    import clases as _cl_emo
+                    ses.enviar(_cl_emo.aviso("You have not unlocked this expression yet.", tipo=0, msg_id=_cl_emo.MSG_ITEM))
+                    return
+                import presencia as _pr_emo
+                _pr_emo.notificar_emocion(ses, parametro)
+                log.info(f"[{addr}] emote {parametro} usado por {ses.personaje.nombre}")
+                return
+            if accion == 6 and ses.personaje:
+                # ASIGNAR / QUITAR EMOTE RAPIDO (Alt+1..Alt+4).
+                # Angel.exe FUN_00578E60 (dropemot) y FUN_00578EF0 (dropxquickemot)
+                # mandan C2S 0x0016 [06] [LE32 val].
+                # val = (slot << 16) | (emote_id & 0xFFFF).
+                # slot va de 0 a 3 (Alt+1..Alt+4).
+                # Si emote_id == 0xFFFF, la ranura se vacio / quito.
+                slot = (parametro >> 16) & 0xFFFF
+                emo_id = parametro & 0xFFFF
+                if 0 <= slot <= 3:
+                    if getattr(ses.personaje, 'quick_emotes', None) is None:
+                        ses.personaje.quick_emotes = {0: -1, 1: -1, 2: -1, 3: -1}
+                    if emo_id == 0xFFFF or emo_id == 0xFFFFFFFF:
+                        ses.personaje.quick_emotes[slot] = -1
+                        log.info(f"[{addr}] emote rapido Alt+{slot+1} quitado")
+                    else:
+                        ses.personaje.quick_emotes[slot] = emo_id
+                        log.info(f"[{addr}] emote rapido Alt+{slot+1} asignado a emote {emo_id}")
+                    if getattr(ses, 'usuario', None):
+                        cuentas.guardar_quick_emotes(ses.usuario, ses.personaje.char_id, ses.personaje.quick_emotes)
+                return
             if accion == 0x0C and ses.personaje and not getattr(ses, 'muerto', False):
                 # ATAQUE BASICO. El cliente NO manda 0x0006 para pegar sin
                 # habilidad ni espera a que se le conteste un clic: manda este

@@ -665,3 +665,69 @@ def notificar_mascota_despawn(ses, pet_eid):
         if s is not ses:
             _mandar(s, pkt, pkt_despawn)
 
+
+def notificar_emocion(ses, emote_id: int):
+    """Envia S2C 0x0019 con el emote al jugador y a los demas en el mapa."""
+    p = getattr(ses, 'personaje', None)
+    if not p:
+        return
+    emo = int(emote_id) & 0xFF
+    # Paquete para el propio jugador (usa su entity_id de ficha 0x0002)
+    eid_propio = getattr(p, 'entity_id', None)
+    if eid_propio is not None:
+        pkt_propio = struct.pack('<HIB', 0x0019, int(eid_propio), emo)
+        ses.enviar(pkt_propio)
+
+    stage = getattr(ses, '_mapa_presencia', None)
+    if stage is None and p:
+        stage = clave_de_mapa(ses, getattr(p, 'stage', None))
+    if stage is not None:
+        eid_pub = entidad_de(ses)
+        pkt_pub = struct.pack('<HIB', 0x0019, int(eid_pub), emo)
+        for s in _vivas(stage):
+            if s is not ses:
+                _mandar(s, pkt_pub)
+
+
+def notificar_emocion_entidad(stage, entity_id: int, emote_id: int):
+    """Envia S2C 0x0019 con el emote para cualquier entidad (NPC, monstruo) a todos en el mapa."""
+    if stage is None:
+        return
+    pkt = struct.pack('<HIB', 0x0019, int(entity_id), int(emote_id) & 0xFF)
+    for s in _vivas(stage):
+        _mandar(s, pkt)
+
+
+def paquete_emotes_desbloqueados(emotes) -> bytes:
+    """Construye S2C 0x005C con el array de 37 bytes de emotes comprados/desbloqueados (12..48).
+
+    En Angel.exe FUN_006094a0 lee [opcode 0x005C][37 bytes] y almacena cada byte
+    en m_bEmotBuy[i] (offset 0x240 + i, que en game.getemotbuy(i - 1) se consulta
+    sumando el indice a 0x234). Luego invoca Lua CreateEmotionWndUpdate() para
+    refrescar la lista de la ventana si esta abierta.
+    """
+    emotes_set = set(emotes or [])
+    flags = bytearray(37)
+    for i in range(37):
+        if (12 + i) in emotes_set:
+            flags[i] = 1
+    return struct.pack('<H', 0x005C) + bytes(flags)
+
+
+def paquete_quick_emotes(entity_id: int, quick_emotes: dict) -> bytes:
+    """Construye S2C 0x001D con las 4 ranuras de emotes rapidos (Alt+1..Alt+4).
+
+    En Angel.exe FUN_005f0ef0 maneja 0x001D. Para kind=6 llama a FUN_005ffc70,
+    que guarda [this + slot*4 + 0x5dd8] = emote_id (o -1 / 0xFFFFFFFF si esta vacio).
+    """
+    items = []
+    for slot in range(4):
+        emo = quick_emotes.get(slot, -1)
+        if emo is None or emo < 0:
+            emo_val = 0xFFFFFFFF
+        else:
+            emo_val = int(emo) & 0xFFFF
+        items.append(struct.pack('<BII', 6, slot, emo_val))
+    return struct.pack('<HIB', 0x001D, int(entity_id), 4) + b''.join(items)
+
+
