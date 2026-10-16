@@ -479,10 +479,11 @@ ATACANTE = [None]
 class Monstruo:
     """Un bicho vivo en el mapa."""
 
-    def __init__(self, entity_id, npc_type, nombre, tile, sprite=0):
+    def __init__(self, entity_id, npc_type, nombre, tile, sprite=0, stage=None):
         self.entity_id = entity_id
         self.npc_type = npc_type
         self.nombre = nombre
+        self.stage = stage
         # El sprite que venia en la captura. Hace falta al REAPARECER: si no
         # se guarda, el monstruo se reconstruye sin el y cae en la tabla por
         # defecto, que es la del Slarm. Por eso las Wild Lily, los Forest
@@ -738,10 +739,25 @@ class Monstruo:
         import random as _r
         self.hp = self.hp_max
         self.muerto_en = None
-        radio = max(1, min(getattr(self, 'move_range', 0) or 0,
-                           RANGO_PASEO_MIN))
-        self.tile_x = max(0, self.spawn_x + _r.randint(-radio, radio))
-        self.tile_y = max(0, self.spawn_y + _r.randint(-radio, radio))
+        if getattr(self, 'es_estatico', False) or getattr(self, 'move_speed', 50) == 0 or getattr(self, 'move_range', 6) <= 0:
+            self.tile_x = self.spawn_x
+            self.tile_y = self.spawn_y
+        else:
+            radio = max(1, min(getattr(self, 'move_range', 0) or 0,
+                               RANGO_PASEO_MIN))
+            import transitable as _tr
+            st = getattr(self, 'stage', None)
+            candidato = None
+            for _ in range(10):
+                tx = max(0, self.spawn_x + _r.randint(-radio, radio))
+                ty = max(0, self.spawn_y + _r.randint(-radio, radio))
+                if st is None or _tr.se_pisa(st, tx, ty):
+                    candidato = (tx, ty)
+                    break
+            if candidato:
+                self.tile_x, self.tile_y = candidato
+            else:
+                self.tile_x, self.tile_y = self.spawn_x, self.spawn_y
         self.tile = [self.tile_x, self.tile_y]
         self.en_combate_con = None
         self.ultimo_ataque = 0.0

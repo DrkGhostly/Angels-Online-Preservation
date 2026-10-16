@@ -354,12 +354,13 @@ def _monstruos_de(stage: int):
             d = json.loads(f.read_text(encoding='utf-8'))
             bichos = {e['entity_id']: combate.Monstruo(e['entity_id'], e['npc_type'],
                                                      e['nombre'], e['tile'],
-                                                     e.get('sprite', 0))
+                                                     e.get('sprite', 0), stage=stage)
                     for e in d.get('spawns', []) if e.get('monstruo') and not e.get('apagado')}
     # Los mapas sin plantilla o cuya plantilla no traiga monstruos usan la lista escrita a mano
     if not bichos and stage in _lg.PLAYGROUND_MONSTERS:
         bichos = {eid: combate.Monstruo(eid, ntype, nom, tile,
-                                       sprite=_lg.sprite_de(ntype, 42107) if ntype == 224 else _lg.sprite_de(ntype, 0))
+                                       sprite=_lg.sprite_de(ntype, 42107) if ntype == 224 else _lg.sprite_de(ntype, 0),
+                                       stage=stage)
                 for eid, ntype, nom, tile in _lg.PLAYGROUND_MONSTERS[stage]}
     return bichos
 
@@ -1910,10 +1911,16 @@ def _procesar_muerte_monstruo(ses, m, yo, addr, espera=0.0):
         if not getattr(m, 'vivo', False):
             m.revivir()
             import login as _lg
-            ses.enviar_inmediato(_lg._npc_spawn(
+            _sp_pkg = _lg._npc_spawn(
                 objetivo, m.npc_type, m.nombre, (m.tile_x, m.tile_y),
-                sprite=getattr(m, 'sprite', 0), klass=1))
-            log.info(f"[{addr}] monstruo {m.nombre} (entidad {objetivo}) reaparecio")
+                sprite=getattr(m, 'sprite', 0), klass=1)
+            ses.enviar_inmediato(_sp_pkg)
+            for _comp in _companeros(ses):
+                try:
+                    _comp.enviar_inmediato(_sp_pkg)
+                except Exception:
+                    pass
+            log.info(f"[{addr}] monstruo {m.nombre} (entidad {objetivo}) reaparecio en ({m.tile_x}, {m.tile_y})")
 
     try:
         asyncio.get_event_loop().call_later(_cb.SEGUNDOS_REAPARICION, _respawn)
@@ -3651,7 +3658,8 @@ def _poner_generado(ses, eid, npc_type, tile, zona):
     import combate as _cb_g
     import login as _lg_g
     nombre, sprite = _monstruo_bd(npc_type)
-    m = _cb_g.Monstruo(eid, npc_type, nombre, list(tile), sprite)
+    _st = getattr(getattr(ses, 'personaje', None), 'stage', None)
+    m = _cb_g.Monstruo(eid, npc_type, nombre, list(tile), sprite, stage=_st)
     m.generado = True
     m.zona_generador = int(zona)
     if ses.monstruos is None:
@@ -4890,8 +4898,14 @@ class Servidor:
                 for mid, m in list(monstruos.items()):
                     if not _en_instancia and m.toca_reaparecer():
                         m.revivir()
-                        ses.enviar(_lg._npc_spawn(m.entity_id, m.npc_type, m.nombre, m.spawn_tile, sprite=getattr(m, 'sprite', 0), klass=1))
-                        log.info(f"monstruo {m.nombre} (eid={m.entity_id}) reaparecio en {m.spawn_tile}")
+                        _sp_pkg = _lg._npc_spawn(m.entity_id, m.npc_type, m.nombre, (m.tile_x, m.tile_y), sprite=getattr(m, 'sprite', 0), klass=1)
+                        ses.enviar(_sp_pkg)
+                        for _comp in _companeros(ses):
+                            try:
+                                _comp.enviar_inmediato(_sp_pkg)
+                            except Exception:
+                                pass
+                        log.info(f"monstruo {m.nombre} (eid={m.entity_id}) reaparecio en ({m.tile_x}, {m.tile_y})")
 
                 out = ses.drenar()
                 if out and getattr(ses, 'writer', None):
@@ -6726,11 +6740,9 @@ class Servidor:
                 # pega ya.
                 if _obj_act is None and tipo == _cb.ATAQUE_NORMAL:
                     ses.objetivo_actual = objetivo
-                    ses.ultimo_golpe = 0
                     _obj_act = objetivo
                 if _obj_act != objetivo:
                     ses.objetivo_actual = objetivo
-                    ses.ultimo_golpe = 0
 
             _ahora_atk = time.time()
 
@@ -11126,13 +11138,18 @@ class Servidor:
                 # antes de empezar a pegar.
                 if getattr(ses, 'objetivo_actual', None) != ent:
                     ses.objetivo_actual = ent
-                    ses.ultimo_golpe = 0
                 if not getattr(_m, 'encantado', False):
                     if getattr(ses, 'invocacion', None):
                         ses.invocacion['objetivo'] = _m
                     if getattr(ses, 'monstruo_encantado', None) and getattr(ses.monstruo_encantado, 'vivo', False):
                         ses.monstruo_encantado.charmed_objetivo = _m
-                ses.enviar(_cb0.atributo(ent, _m.porcentaje))
+                ses.enviar(_cb0.atributo(ent, _m.porcentaje if getattr(_m, 'vivo', False) else 0))
+                # El clic sobre un monstruo vivo ataca con golpe basico respetando alcance y cadencia.
+                # Como ultimo_golpe NO se resetea a 0, si este clic llega junto a un 0x0016
+                # la cadencia de _atacar descarta el segundo sin duplicar golpes.
+                if getattr(_m, 'vivo', False) and not getattr(_m, 'encantado', False) and not getattr(ses, 'muerto', False) and getattr(ses, 'personaje', None):
+                    self.manejar(ses, 0x0006, m, d, addr,
+                                 struct.pack('<HI', _cb0.ATAQUE_NORMAL, ent))
                 return
 
 
@@ -12515,12 +12532,18 @@ class Servidor:
                     _bi = (getattr(ses, 'monstruos', None) or {}).get(_obj)
                     if _bi is not None:
                         _alc = _cb_alcance(ses)
-                        _dd = max(abs(_bi.tile_x - ses.personaje.tile_x),
-                                  abs(_bi.tile_y - ses.personaje.tile_y))
-                        if _dd > _alc + 1:
+                        _dist_antes = max(abs(_bi.tile_x - _ox),
+                                          abs(_bi.tile_y - _oy))
+                        _dist_ahora = max(abs(_bi.tile_x - ses.personaje.tile_x),
+                                          abs(_bi.tile_y - ses.personaje.tile_y))
+                        if _dist_ahora > 20 or (_dist_ahora > _dist_antes and _dist_ahora > _alc + 1):
                             ses.objetivo_actual = None
                             log.info(f"[{addr}] objetivo soltado: te alejaste a "
-                                     f"{_dd} casillas del {_bi.nombre}")
+                                     f"{_dist_ahora} casillas del {_bi.nombre}")
+                        elif _dist_ahora <= _alc + 1 and getattr(_bi, 'vivo', False) and not getattr(ses, 'muerto', False):
+                            import combate as _cb_mv
+                            self.manejar(ses, 0x0006, m, d, addr,
+                                         struct.pack('<HI', _cb_mv.ATAQUE_NORMAL, _obj))
                 import clases as _cl3
                 # Portales: un solo camino, el de plantillas/portales.json.
                 # Antes habia otro bloque con areas enormes (tx<=32 y ty>=126
