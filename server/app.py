@@ -489,9 +489,10 @@ def _tope_bolsa(bolsa) -> int:
     return TOPE_CON_MOCHILA if hay else TOPE_SIN_MOCHILA
 
 
-def _ranura_libre(bolsa, desde=20):
-    """Primera casilla vacia de la mochila, o None si esta llena."""
-    for r in range(desde, _tope_bolsa(bolsa) + 1):
+def _ranura_libre(bolsa, desde=20, hasta=None):
+    """Primera casilla vacia de la mochila o rango, o None si esta llena."""
+    limite = hasta if hasta is not None else _tope_bolsa(bolsa)
+    for r in range(desde, limite + 1):
         if r not in bolsa:
             return r
     return None
@@ -10693,15 +10694,20 @@ class Servidor:
                 log.info('[%s] mascota renombrada a %s' % (addr, nom))
             return
 
-        # The client's Card/Furniture bag uses slots above 255. sub_61B000
-        # emits 0x0132 (<II>) instead of 0x002E (<BI>) for those slots.
+        # The client emits 0x0132 (<II>) instead of 0x002E (<BI>) for slots above 255 (sub_61B000).
+        # This includes card registration (276..325), furniture (326..425),
+        # chat bubble equip/unequip (616) and chat bubble bag (617..666).
         if opcode == 0x0132 and ses.rol == 'mundo' and ses.personaje:
             if len(cuerpo) == 8:
                 _ranura_card, _param_card = struct.unpack('<II', cuerpo)
                 if _param_card == 0:
                     import cartas as _cartas
-                    _cartas.registrar(ses, _ranura_card, _sacar, _refrescar)
-            return
+                    if _cartas.carta_de_item(getattr(ses, 'inventario', {}).get(_ranura_card)):
+                        if _cartas.registrar(ses, _ranura_card, _sacar, _refrescar):
+                            return
+            # Si no es un registro de carta, se procesa como 0x002E para ranuras > 255
+            # (por ejemplo, burbujas de chat 616..666).
+            opcode = 0x002E
 
         if opcode == 0x002E and ses.rol == 'mundo' and len(cuerpo) >= 4:
             import inventario as inv
@@ -10715,7 +10721,10 @@ class Servidor:
             bolsa = getattr(ses, 'inventario', None)
             if bolsa is None:
                 return
-            if len(cuerpo) == 5:
+            if len(cuerpo) == 8:
+                ranura, target_raw = struct.unpack_from('<II', cuerpo, 0)
+                objetivo = target_raw if target_raw != 0 else None
+            elif len(cuerpo) == 5:
                 if cuerpo[4] == 0 and cuerpo[0] not in bolsa and struct.unpack_from('<I', cuerpo, 0)[0] in bolsa:
                     ranura = struct.unpack_from('<I', cuerpo, 0)[0]
                 else:
@@ -11160,7 +11169,12 @@ class Servidor:
             # Caso 1: Item equipable (clic derecho)
             if inv.es_equipo(ranura):
                 # Ya esta puesto -> desequipar a la bolsa
-                dst = _ranura_libre(bolsa, desde=20)
+                if ranura == inv.RANURA_BURBUJA:
+                    dst = _ranura_libre(bolsa, desde=inv.PRIMERA_RANURA_BURBUJA_BOLSA, hasta=inv.ULTIMA_RANURA_BURBUJA_BOLSA)
+                    if dst is None:
+                        dst = _ranura_libre(bolsa, desde=20, hasta=120)
+                else:
+                    dst = _ranura_libre(bolsa, desde=20)
                 if dst is None:
                     import clases as _clf_u
                     ses.enviar(_clf_u.aviso("Your backpack is full.", tipo=0))

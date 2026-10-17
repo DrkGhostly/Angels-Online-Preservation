@@ -60,6 +60,7 @@ mismo numero que el jugador ve en su propia ficha.
 import collections
 import logging
 import struct
+import inventario as _inv
 
 log = logging.getLogger('presencia')
 
@@ -184,13 +185,19 @@ def _spawn(ses):
     # en +96 iba el vestido, en +100 la segunda arma de fashion y en +106 la
     # insignia, y los demas jugadores salian con el cuerpo por defecto.
     bolsa = getattr(ses, 'inventario', None) or {}
+
     for idx, (r_fash, r_eq) in enumerate(((167, 1), (168, 2), (169, 3), (170, 4),
                                           (171, 5), (172, 6), (173, 7), (174, 10))):
         it = int(bolsa.get(r_fash) or bolsa.get(r_eq) or 0)
         struct.pack_into('<I', b, 64 + idx * 4, it)
     struct.pack_into('<I', b, 96, int(bolsa.get(3) or 0))
     struct.pack_into('<I', b, 100, int(bolsa.get(175) or 0))
-    struct.pack_into('<I', b, 106, 0)
+    # Burbuja de chat para otros jugadores: Angel.exe 0x5e997b lee dword ptr [packet + 0x6C]
+    # (offset 106 en 'b') y lo almacena en la ranura 15 (0xF) del equipo del personaje.
+    # Al hablar, Angel.exe (0x4b977a) consulta la ranura 15 para dibujar la burbuja.
+    # (El offset 62 NO es la burbuja: es el indicador de circulo de seleccion/aura en el suelo).
+    it_burbuja = int(bolsa.get(_inv.RANURA_BURBUJA) or 0)
+    struct.pack_into('<I', b, 106, it_burbuja)
 
     # Estado del personaje (+61): 7 sentado, 0 de pie. El 8 NO es "montado":
     # en 316 jugadores capturados el servidor real no lo usa nunca (0 con o
@@ -729,5 +736,6 @@ def paquete_quick_emotes(entity_id: int, quick_emotes: dict) -> bytes:
             emo_val = int(emo) & 0xFFFF
         items.append(struct.pack('<BII', 6, slot, emo_val))
     return struct.pack('<HIB', 0x001D, int(entity_id), 4) + b''.join(items)
+
 
 

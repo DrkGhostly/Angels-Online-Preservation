@@ -257,11 +257,10 @@ def secuencia(p: Personaje):
                       #   175       la insignia
                       #   176..275  la bolsa de Fashion (4 paginas de 25)
                       #   276..     las pestanas Card y Furniture de esa bolsa
-                      # El rango sale de las ranuras que de verdad usan los
-                      # personajes guardados: fashion en 176..199 y tarjetas
-                      # coleccionables en la 276 y la 277.
+                      #   616       la burbuja de chat puesta
+                      #   617..666  la bolsa de burbujas de chat
                       if (int(r) == _inv.RANURA_ORO or (it and int(it) > 0))
-                      and (int(r) <= 120 or 166 <= int(r) <= 556)]
+                      and (int(r) <= 120 or 166 <= int(r) <= 666)]
             salida.append(_inv.completo(p.char_id, _items, p.entity_id,
                                         mejoras=getattr(p, 'mejoras', None),
                                         mascota=getattr(p, 'mascota', None),

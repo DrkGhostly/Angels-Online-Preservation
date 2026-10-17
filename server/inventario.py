@@ -55,6 +55,15 @@ RANURA_CUERPO = 2           # la unica ranura de equipo MEDIDA en el trafico
 # maximo: el inventario es un diccionario de ranura a item.
 PRIMERA_RANURA_BOLSA = 20
 
+# Ranura de burbuja de chat (Speech Bubble Slot) y bolsa de burbujas (Speech Bubble Bag)
+# En Angel.exe:
+#   Slot 616 (0x268) -> Ranura equipada de burbuja (對話泡泡的slot, control 19016)
+#   Slots 617..666 (0x269..0x29A) -> Bolsa de burbujas (對話泡泡隨身包的slot, 50 ranuras / 2 paginas de 25)
+RANURA_BURBUJA = 616
+PRIMERA_RANURA_BURBUJA_BOLSA = 617
+ULTIMA_RANURA_BURBUJA_BOLSA = 666
+RANURAS_BURBUJA_BOLSA = range(617, 667)
+
 # El cliente reparte sus items en item, item2 ... item9, una por update.
 # Consultando solo `item`, todo lo que vino en un update posterior quedaba
 # como si no existiera: sin ranura, sin peso y sin bonos.
@@ -153,11 +162,10 @@ def vaciar_ranura(dueno: int, ranura: int,
     #   167..175  fashion equipada e insignia
     #   176..275  bolsa Fashion
     #   276..     pestanas Card y Furniture, hasta 556
+    #   616       burbuja de chat equipada
+    #   617..666  bolsa de burbujas de chat
     # Esas casillas tambien aceptan el submensaje de vaciado con ranura u16.
-    # Excluir 176..496 dejaba el item nuevo en destino pero nunca borraba el
-    # origen en el cliente; dos vistas conservaban la misma instancia y el
-    # cliente se cerraba (reproducido al mover una card 280 -> 37).
-    if contenedor == CONT_MOCHILA and (ranura < 0 or (ranura > 154 and not (166 <= ranura <= 556))):
+    if contenedor == CONT_MOCHILA and (ranura < 0 or (ranura > 154 and not (166 <= ranura <= 666))):
         log.warning(f"Intento de vaciar ranura fuera de limites ({ranura}) en CONT_MOCHILA - omitido para evitar crash")
         return b''
     return struct.pack('<HIBBIH', 0x001B, 1, 2, contenedor, dueno, ranura)
@@ -199,16 +207,23 @@ def ranura_de_instancia(instancias, instancia: bytes, bolsa=None,
 
 
 def es_equipo(ranura) -> bool:
-    """Si esa ranura es del personaje (equipo regular 1..19, tarjeta de puesto 166 o Fashion 167..175) y no de la mochila."""
+    """Si esa ranura es del personaje (equipo regular 1..19, tarjeta de puesto 166, Fashion 167..175 o Burbuja de Chat 616) y no de la mochila."""
     try:
         r = int(ranura)
     except (ValueError, TypeError):
         return False
     # La 175 es la insignia y la 166 (0xA6) es la tarjeta de puesto (Stall Card).
-    # Sin incluir la 175 aqui, una insignia puesta no contaba como equipo y sus
-    # bonos no se sumaban a los stats: la Crystal Badge declara +3484 de ataque
-    # y no daba ni uno.
-    return (r < PRIMERA_RANURA_BOLSA) or (166 <= r <= 175)
+    # La 616 es la ranura equipada de la burbuja de chat (Speech Bubble slot).
+    return (r < PRIMERA_RANURA_BOLSA) or (166 <= r <= 175) or (r == RANURA_BURBUJA)
+
+
+def es_burbuja_bag(ranura) -> bool:
+    """Si esa ranura corresponde a la bolsa de Burbujas de Chat (617..666)."""
+    try:
+        r = int(ranura)
+    except (ValueError, TypeError):
+        return False
+    return PRIMERA_RANURA_BURBUJA_BOLSA <= r <= ULTIMA_RANURA_BURBUJA_BOLSA
 
 
 def es_fashion(ranura) -> bool:
@@ -1488,49 +1503,91 @@ def es_arma_dual(item_id: int) -> bool:
     return _DUAL_CACHE.get(item_id, False)
 
 
+_BURBUJA_LOOK_CACHE = None
+
+
+def es_burbuja_chat(item_id: int) -> bool:
+    """Si el item pertenece a la categoria Burbuja de Chat (對話泡泡)."""
+    if not item_id:
+        return False
+    return categoria_de(item_id) == '對話泡泡'
+
+
+def look_de_burbuja(item_id: int) -> int:
+    """Devuelve el ID de apariencia (原型外觀) de una burbuja de chat, o 0 si no tiene."""
+    global _BURBUJA_LOOK_CACHE
+    if not item_id:
+        return 0
+    if _BURBUJA_LOOK_CACHE is None:
+        _BURBUJA_LOOK_CACHE = {}
+        import sqlite3
+        db = pathlib.Path(__file__).parent.parent / 'corpus' / 'content.db'
+        if db.exists():
+            con = sqlite3.connect(db)
+            col_look = '原型外觀'
+            col_cat = '物品類別'
+            val_cat = '對話泡泡'
+            for _t in TABLAS_ITEM:
+                try:
+                    q = f'select id, "{col_look}" from {_t} where "{col_cat}" = "{val_cat}" and id glob "[0-9]*"'
+                    for iid, lk in con.execute(q).fetchall():
+                        try:
+                            _BURBUJA_LOOK_CACHE[int(iid)] = int(lk or 0)
+                        except (ValueError, TypeError):
+                            continue
+                except Exception:
+                    continue
+            con.close()
+    return _BURBUJA_LOOK_CACHE.get(int(item_id), 0)
+
+
 def es_ranura_valida(item_id: int, ranura: int) -> bool:
     """Verifica si un item puede colocarse en esa ranura especifica para evitar pisar armadura real con fashion."""
+    # 1. Ranura equipada de burbuja de chat (616): SOLO admite burbujas de chat
+    if ranura == RANURA_BURBUJA:
+        return es_burbuja_chat(item_id)
+    # 2. Bolsa de burbujas de chat (617..666): SOLO admite burbujas de chat
+    if es_burbuja_bag(ranura):
+        return es_burbuja_chat(item_id)
+    # 3. Si el item ES una burbuja de chat: SOLO puede ir en 616, en 617..666, o en la mochila normal 1..120
+    if es_burbuja_chat(item_id):
+        return ranura == RANURA_BURBUJA or es_burbuja_bag(ranura) or (1 <= ranura <= 120)
+    # 4. Ranura de tarjeta de puesto (166)
     if ranura == RANURA_PUESTO:
         return int(item_id) in ITEMS_TARJETA_PUESTO
+    # 5. Ranura de insignia (175)
     if ranura == RANURA_INSIGNIA:
-        # La 175 esta por encima del inicio de la mochila, asi que antes
-        # pasaba por "mochila" sin mirar nada. Es la ranura de la insignia y
-        # solo admite insignias.
         return ranura_equipo_de(item_id) == RANURA_INSIGNIA
-    if ranura >= PRIMERA_RANURA_BOLSA: # >= 20 (mochila siempre valida)
+    # 6. Pestaña Fashion equipada (167..174):
+    if es_fashion(ranura):
+        if not es_item_fashion(item_id):
+            return False
+        target = ranura_equipo_de(item_id)
+        if target == 169 and ranura in (169, 170) and es_arma_dual(item_id):
+            return True
+        return ranura == target
+    # 7. Bolsa de Fashion (176..275): SOLO ropa de fashion (紙娃娃)
+    if 176 <= ranura <= 275:
+        return es_item_fashion(item_id)
+    # 8. Mochila normal (20..120): valida para cualquier item regular
+    if 20 <= ranura <= 120:
         return True
     if es_mascota(item_id):
-        # UNA MASCOTA NO ES UN ACCESORIO. item.xml las resuelve a la ranura 9,
-        # que es el segundo Trinket, asi que desde que la 9 empezo a admitir
-        # accesorios se podian equipar como si fueran un anillo. Tienen su
-        # propia ranura, y ademas solo entran con 5 estrellas: la Battlemaid
-        # de la captura iba por 0.1. Hasta saber el numero de esa ranura no
-        # se equipan en ninguna, que es mejor que equiparlas en la que no es.
+        # UNA MASCOTA NO ES UN ACCESORIO.
         return False
     target = ranura_equipo_de(item_id)
     if target is None:
         return False
-    # Los accesorios valen en la 8 Y en la 9, los dos "Trinket". Se exigia
-    # ranura == target, asi que arrastrar un anillo al segundo hueco daba
-    # "ranura no valida" y el objeto se quedaba donde estaba.
     if ranura in RANURAS_ACCESORIO and target in RANURAS_ACCESORIO:
         return True
-    # Pestaña Fashion (167..174):
-    if es_fashion(ranura):
-        if not es_item_fashion(item_id):
-            return False
-        if target == 169 and ranura in (169, 170) and es_arma_dual(item_id):
-            return True
-        return ranura == target
-    # Pestaña Gear regular (1..10):
-    else:
-        if es_item_fashion(item_id):
-            return False # Un item de Fashion NUNCA va en la pestaña de Gear!
-        if target == 3 and ranura in (3, 4, 11, 12):
-            return ranura in (3, 11) or es_arma_dual(item_id)
-        if target == 4 and ranura in (4, 12):
-            return True
-        return ranura == target
+    # 9. Pestaña Gear regular (1..10, 11, 12):
+    if es_item_fashion(item_id):
+        return False # Un item de Fashion NUNCA va en la pestaña de Gear!
+    if target == 3 and ranura in (3, 4, 11, 12):
+        return ranura in (3, 11) or es_arma_dual(item_id)
+    if target == 4 and ranura in (4, 12):
+        return True
+    return ranura == target
 
 
 # Donde va la tarjeta de puesto (Stall Card / Extra Sale Slot). En Angel.exe
@@ -1733,7 +1790,9 @@ def ranura_equipo_de(item_id: int):
                     # Shadow Blade (影刃) es de 1 mano (permite escudo en la 4), pero NO se puede llevar en duales.
                     if cat == '紙娃娃' or any(k in cat for k in ('劍', '刀', '斧', '錘', '锤')):
                         _DUAL_CACHE[iid] = True
-                if cat == '紙娃娃':
+                if cat == '對話泡泡':
+                    _SLOT_CACHE[iid] = RANURA_BURBUJA
+                elif cat == '紙娃娃':
                     _FASHION_CACHE[iid] = True
                     # Items de Fashion (Paper Doll) se equipan en las ranuras de la pestaña Fashion (167..174)
                     if head:
@@ -1787,6 +1846,7 @@ def ranura_equipo_de(item_id: int):
                     # una insignia equipada. Se usa la 11, la siguiente libre
                     # despues de la montura, y se puede cambiar en un sitio.
                     _SLOT_CACHE[iid] = RANURA_INSIGNIA
+            con.close()
             for _sc in ITEMS_TARJETA_PUESTO:
                 _SLOT_CACHE[_sc] = RANURA_PUESTO
     return _SLOT_CACHE.get(item_id)
